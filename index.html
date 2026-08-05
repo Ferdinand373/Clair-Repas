@@ -9,60 +9,68 @@
 <meta name="apple-mobile-web-app-title" content="Clair Repas">
 <link rel="manifest" href="./manifest.webmanifest">
 <link rel="apple-touch-icon" href="./icon-192.png">
-<title>Clair Repas V1.2</title>
+<title>Clair Repas V1.3</title>
 <style>
 :root{
   --bg:#f4efe7;--card:#fffdfa;--text:#27231f;--muted:#746c63;
   --green:#3f7657;--green-soft:#e3f0e8;--line:#e6ddd3;
-  --purple:#665581;--gold:#9a6a18;--danger:#934b4b
+  --purple:#665581;--gold:#9a6a18
 }
 *{box-sizing:border-box}
 html{background:var(--bg)}
 body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
 button,select{font:inherit}
 button{cursor:pointer}
-main{max-width:680px;margin:auto;padding:calc(16px + env(safe-area-inset-top)) 15px calc(28px + env(safe-area-inset-bottom))}
+main{max-width:720px;margin:auto;padding:calc(16px + env(safe-area-inset-top)) 15px calc(28px + env(safe-area-inset-bottom))}
 header{text-align:center;margin:3px 0 15px}
 h1{font-size:30px;margin:0 0 3px;letter-spacing:-.5px}
-.date{color:var(--muted);font-size:14px;text-transform:capitalize}
-.settings,.card,.history{background:var(--card);border:1px solid var(--line);border-radius:21px;box-shadow:0 8px 26px rgba(45,35,25,.055)}
-.settings{padding:13px;margin-bottom:13px;display:flex;gap:10px;align-items:end}
-.settings>div{flex:1}
+.subtitle{color:var(--muted);font-size:14px}
+.settings,.day-card,.history{background:var(--card);border:1px solid var(--line);border-radius:21px;box-shadow:0 8px 26px rgba(45,35,25,.055)}
+.settings{padding:13px;margin-bottom:14px;display:grid;grid-template-columns:repeat(3,1fr);gap:10px;align-items:end}
 label{display:block;font-size:12px;color:var(--muted);margin:0 0 6px}
 select{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:13px;background:white;color:var(--text)}
-.card{padding:17px;margin:12px 0}
-.tag{font-size:13px;font-weight:850;color:var(--green);letter-spacing:.35px}
+.day-card{padding:16px;margin:12px 0}
+.day-head{display:flex;justify-content:space-between;align-items:baseline;gap:10px;padding-bottom:10px;border-bottom:1px solid var(--line)}
+.day-title{font-weight:900;font-size:18px;color:var(--green)}
+.day-date{font-size:12px;color:var(--muted);text-transform:capitalize}
+.meal{padding:14px 0 2px}
+.meal+.meal{border-top:1px dashed var(--line);margin-top:12px}
+.tag{font-size:12px;font-weight:850;color:var(--green);letter-spacing:.35px}
 .tag.evening{color:var(--purple)}
-.meal-title{font-size:24px;line-height:1.15;margin:8px 0 6px}
-.meta{color:var(--muted);font-size:14px}
-.card-actions{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:14px}
-.small-btn{padding:11px 9px;border:0;border-radius:13px;background:var(--green-soft);color:var(--text);font-weight:760}
+.meal-title{font-size:21px;line-height:1.16;margin:7px 0 5px}
+.meta{color:var(--muted);font-size:13px}
+.meal-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:11px}
+.small-btn{padding:10px 8px;border:0;border-radius:12px;background:var(--green-soft);color:var(--text);font-weight:760}
 .small-btn.secondary{background:#f2eee9}
-.recipe{display:none;margin-top:14px;padding-top:12px;border-top:1px solid var(--line)}
+.recipe{display:none;margin-top:12px;padding-top:10px;border-top:1px solid var(--line)}
 .recipe.open{display:block}
-.recipe h3{margin:11px 0 5px;font-size:17px}
-.recipe ul,.recipe ol{padding-left:21px;line-height:1.48;margin:5px 0}
+.recipe h3{margin:10px 0 5px;font-size:16px}
+.recipe ul,.recipe ol{padding-left:21px;line-height:1.46;margin:5px 0}
 .actions{display:grid;gap:9px;margin-top:15px}
 .actions button{width:100%;padding:14px;border-radius:15px;border:1px solid var(--line);background:white;color:var(--text);font-weight:820}
 .actions .primary{background:var(--green);border-color:var(--green);color:white;font-size:17px}
-.actions .favorite.on{color:var(--gold);background:#fff4da;border-color:#ead19a}
+.actions .liked{color:var(--gold);background:#fff4da;border-color:#ead19a}
 .history{margin-top:14px;overflow:hidden}
 .history summary{padding:14px 16px;font-weight:800;cursor:pointer;list-style:none}
 .history summary::-webkit-details-marker{display:none}
 .history-content{border-top:1px solid var(--line);padding:10px 16px 14px}
 .history-item{padding:9px 0;border-bottom:1px solid var(--line)}
 .history-item:last-child{border-bottom:0}
-.history-date{font-size:12px;color:var(--muted);margin-bottom:3px}
-.history-meals{font-size:14px;line-height:1.35}
+.history-date{font-size:12px;color:var(--muted);margin-bottom:4px}
+.history-meals{font-size:13px;line-height:1.42}
 .empty{color:var(--muted);font-size:14px}
 .note{text-align:center;color:var(--muted);font-size:12px;margin:13px 0 0}
 .version{text-align:center;color:#9a9187;font-size:11px;margin-top:7px}
 .toast{position:fixed;left:50%;bottom:calc(22px + env(safe-area-inset-bottom));transform:translateX(-50%);background:#28231f;color:white;padding:11px 15px;border-radius:999px;display:none;z-index:9;max-width:88%;text-align:center}
 .toast.show{display:block}
-@media(max-width:420px){
+@media(max-width:560px){
+  .settings{grid-template-columns:1fr 1fr}
+  .settings .mode-setting{grid-column:1/-1}
+}
+@media(max-width:390px){
   .settings{display:block}.settings>div+div{margin-top:10px}
-  .meal-title{font-size:22px}
-  .card-actions{grid-template-columns:1fr}
+  .meal-title{font-size:20px}
+  .meal-actions{grid-template-columns:1fr}
 }
 </style>
 </head>
@@ -70,7 +78,7 @@ select{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:1
 <main>
 <header>
   <h1>🍽️ Clair Repas</h1>
-  <div class="date" id="date"></div>
+  <div class="subtitle">Les repas et les courses, simplement.</div>
 </header>
 
 <section class="settings">
@@ -84,6 +92,14 @@ select{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:1
     </select>
   </div>
   <div>
+    <label for="days">Prévoir pour</label>
+    <select id="days">
+      <option value="1">1 jour</option>
+      <option value="2" selected>2 jours</option>
+      <option value="3">3 jours</option>
+    </select>
+  </div>
+  <div class="mode-setting">
     <label for="mode">Cuisson préférée</label>
     <select id="mode">
       <option value="Tous">Toutes</option>
@@ -97,76 +113,60 @@ select{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:1
   </div>
 </section>
 
-<section class="card">
-  <div class="tag">☀️ MIDI · PLAT COMPLET</div>
-  <div class="meal-title" id="midTitle"></div>
-  <div class="meta" id="midMeta"></div>
-  <div class="card-actions">
-    <button class="small-btn" data-target="midRecipe">📖 Voir la recette</button>
-    <button class="small-btn secondary" id="changeMid">🔄 Changer le midi</button>
-  </div>
-  <div class="recipe" id="midRecipe"></div>
-</section>
-
-<section class="card">
-  <div class="tag evening">🌙 SOIR · LÉGER ET RASSASIANT</div>
-  <div class="meal-title" id="eveTitle"></div>
-  <div class="meta" id="eveMeta"></div>
-  <div class="card-actions">
-    <button class="small-btn" data-target="eveRecipe">📖 Voir la recette</button>
-    <button class="small-btn secondary" id="changeEve">🔄 Changer le soir</button>
-  </div>
-  <div class="recipe" id="eveRecipe"></div>
-</section>
+<div id="daysContainer"></div>
 
 <div class="actions">
-  <button class="primary" id="surprise">🎲 Surprends-nous</button>
-  <button id="courses">🛒 Copier les courses du jour</button>
-  <button class="favorite" id="favorite">☆ J’aime ce menu</button>
+  <button class="primary" id="newPlan">🎲 Nouveau programme</button>
+  <button id="courses">🛒 Copier toutes les courses</button>
+  <button id="favorite">☆ J’aime ces menus</button>
 </div>
 
 <details class="history">
-  <summary>🕘 Les derniers menus</summary>
+  <summary>🕘 Les derniers programmes</summary>
   <div class="history-content" id="historyContent"></div>
 </details>
 
-<p class="note">Le menu reste le même toute la journée et les répétitions sont évitées.</p>
-<p class="version">Clair Repas V1.2</p>
+<p class="note">Les produits identiques sont regroupés avant l’envoi vers Clair Courses.</p>
+<p class="version">Clair Repas V1.3 · version finale</p>
 </main>
 <div class="toast" id="toast"></div>
 
 <script>
-const I=(q,u,n)=>({q,u,n});
+const I=(q,u,n,k)=>({q,u,n,k:k||n});
 const noon=[
-{id:'n01',n:'Poulet au paprika et pommes de terre',m:'Air Fryer',t:'35 min',s:['printemps','été','automne','hiver'],i:[I(2,'','blancs de poulet'),I(500,'g','pommes de terre'),I(1,'c. à café','paprika'),I(null,'','un filet d’huile'),I(null,'','sel et poivre')],p:['Couper les pommes de terre et les mélanger avec l’huile, le paprika, le sel et le poivre.','Cuire 15 minutes à 190 °C.','Ajouter le poulet assaisonné.','Poursuivre 18 à 20 minutes en retournant à mi-cuisson.']},
-{id:'n02',n:'Échines de porc et poêlée de légumes',m:'Poêle',t:'30 min',s:['printemps','été','automne'],i:[I(2,'','échines de porc'),I(1,'','courgette'),I(1,'','poivron'),I(1,'','oignon'),I(null,'','beurre ou huile'),I(null,'','sel et poivre')],p:['Émincer les légumes et les faire revenir 12 à 15 minutes.','Les réserver au chaud.','Cuire les échines 8 à 10 minutes par face.','Servir avec les légumes.']},
-{id:'n03',n:'Saumon, riz et courgettes',m:'Air Fryer',t:'30 min',s:['printemps','été','automne'],i:[I(2,'','pavés de saumon'),I(120,'g','riz'),I(1,'','courgette'),I(0.5,'','citron'),I(null,'','un peu d’aneth'),I(null,'','sel et poivre')],p:['Cuire le riz.','Assaisonner le saumon et le cuire 10 à 12 minutes à 180 °C.','Poêler rapidement la courgette.','Servir avec le citron et l’aneth.']},
-{id:'n04',n:'Currywurst et pommes de terre sautées',m:'Poêle',t:'30 min',s:['automne','hiver','printemps'],i:[I(4,'','saucisses'),I(500,'g','pommes de terre cuites'),I(20,'cl','coulis de tomate'),I(1,'c. à soupe','ketchup'),I(1,'c. à café','curry'),I(1,'','oignon')],p:['Faire dorer les pommes de terre avec l’oignon.','Cuire les saucisses.','Chauffer le coulis avec le ketchup et le curry.','Couper les saucisses et les napper de sauce.']},
-{id:'n05',n:'Brochettes de poulet et légumes grillés',m:'Barbecue',t:'30 min',s:['printemps','été'],i:[I(400,'g','poulet'),I(1,'','courgette'),I(1,'','poivron'),I(1,'','citron'),I(null,'','huile et herbes'),I(null,'','sel et poivre')],p:['Couper le poulet et les légumes.','Monter les brochettes et assaisonner.','Cuire 12 à 15 minutes au barbecue en les retournant.']},
-{id:'n06',n:'Saucisses et légumes à la plancha',m:'Plancha',t:'25 min',s:['printemps','été'],i:[I(4,'','saucisses'),I(1,'','courgette'),I(1,'','poivron'),I(1,'','oignon'),I(null,'','huile'),I(null,'','sel et poivre')],p:['Couper les légumes.','Cuire les saucisses et les légumes sur la plancha chaude.','Retourner régulièrement et servir dès que les légumes sont tendres.']},
-{id:'n07',n:'Jambon roulé gratiné et salade',m:'Four',t:'30 min',s:['automne','hiver','printemps'],i:[I(4,'','tranches de jambon'),I(80,'g','gruyère'),I(20,'cl','crème'),I(1,'c. à soupe','concentré de tomate'),I(1,'','salade verte')],p:['Mettre un peu de gruyère dans chaque tranche de jambon et rouler.','Mélanger la crème et le concentré de tomate.','Napper, ajouter le reste de gruyère et gratiner 15 minutes à 200 °C.','Servir avec la salade.']},
-{id:'n08',n:'Schnitzel et salade de pommes de terre',m:'Poêle',t:'35 min',s:['printemps','été','automne','hiver'],i:[I(2,'','escalopes de porc ou de veau'),I(1,'','œuf'),I(60,'g','chapelure'),I(500,'g','pommes de terre cuites'),I(1,'','oignon'),I(null,'','vinaigrette et persil')],p:['Préparer la salade de pommes de terre avec l’oignon, la vinaigrette et le persil.','Passer les escalopes dans l’œuf puis la chapelure.','Les cuire 4 à 5 minutes par face à la poêle.']},
-{id:'n09',n:'Filet mignon moutarde et haricots verts',m:'Four',t:'40 min',s:['automne','hiver','printemps'],i:[I(1,'','petit filet mignon'),I(2,'c. à soupe','moutarde'),I(15,'cl','crème'),I(400,'g','haricots verts'),I(1,'','échalote'),I(null,'','sel et poivre')],p:['Faire revenir l’échalote et colorer le filet mignon.','Badigeonner de moutarde et cuire 25 minutes à 190 °C.','Ajouter la crème en fin de cuisson.','Servir avec les haricots verts.']},
-{id:'n10',n:'Pâtes au poulet, tomates et basilic',m:'Poêle',t:'25 min',s:['printemps','été'],i:[I(220,'g','pâtes'),I(300,'g','poulet'),I(250,'g','tomates cerises'),I(1,'','gousse d’ail'),I(null,'','basilic'),I(null,'','huile d’olive')],p:['Cuire les pâtes.','Faire revenir le poulet en morceaux avec l’ail.','Ajouter les tomates et cuire 5 minutes.','Mélanger avec les pâtes et le basilic.']},
-{id:'n11',n:'Poisson blanc citronné et légumes rôtis',m:'Air Fryer',t:'28 min',s:['printemps','été','automne'],i:[I(2,'','filets de poisson blanc'),I(1,'','courgette'),I(2,'','carottes'),I(0.5,'','citron'),I(null,'','huile et herbes'),I(null,'','sel et poivre')],p:['Couper les légumes, les assaisonner et les cuire 12 minutes à 190 °C.','Ajouter le poisson citronné.','Poursuivre 10 à 12 minutes.']},
-{id:'n12',n:'Steaks hachés, pommes sautées et salade',m:'Poêle',t:'25 min',s:['printemps','été','automne','hiver'],i:[I(2,'','steaks hachés'),I(500,'g','pommes de terre cuites'),I(1,'','petite salade'),I(1,'','échalote'),I(null,'','beurre'),I(null,'','sel et poivre')],p:['Faire sauter les pommes de terre avec l’échalote.','Cuire les steaks selon la cuisson souhaitée.','Servir avec la salade assaisonnée.']},
+{id:'n01',n:'Poulet au paprika et pommes de terre',m:'Air Fryer',t:'35 min',s:['printemps','été','automne','hiver'],i:[I(2,'','blancs de poulet'),I(500,'g','pommes de terre'),I(1,'c. à café','paprika'),I(null,'','huile'),I(null,'','sel et poivre')],p:['Couper les pommes de terre et les mélanger avec l’huile, le paprika, le sel et le poivre.','Cuire 15 minutes à 190 °C.','Ajouter le poulet assaisonné.','Poursuivre 18 à 20 minutes en retournant à mi-cuisson.']},
+{id:'n02',n:'Échines de porc et poêlée de légumes',m:'Poêle',t:'30 min',s:['printemps','été','automne'],i:[I(2,'','échines de porc'),I(1,'','courgette','courgettes'),I(1,'','poivron','poivrons'),I(1,'','oignon','oignons'),I(null,'','beurre ou huile'),I(null,'','sel et poivre')],p:['Émincer les légumes et les faire revenir 12 à 15 minutes.','Les réserver au chaud.','Cuire les échines 8 à 10 minutes par face.','Servir avec les légumes.']},
+{id:'n03',n:'Saumon, riz et courgettes',m:'Air Fryer',t:'30 min',s:['printemps','été','automne'],i:[I(2,'','pavés de saumon'),I(120,'g','riz'),I(1,'','courgette','courgettes'),I(0.5,'','citron','citrons'),I(null,'','aneth'),I(null,'','sel et poivre')],p:['Cuire le riz.','Assaisonner le saumon et le cuire 10 à 12 minutes à 180 °C.','Poêler rapidement la courgette.','Servir avec le citron et l’aneth.']},
+{id:'n04',n:'Currywurst et pommes de terre sautées',m:'Poêle',t:'30 min',s:['automne','hiver','printemps'],i:[I(4,'','saucisses'),I(500,'g','pommes de terre'),I(20,'cl','coulis de tomate'),I(1,'c. à soupe','ketchup'),I(1,'c. à café','curry'),I(1,'','oignon','oignons')],p:['Faire dorer les pommes de terre avec l’oignon.','Cuire les saucisses.','Chauffer le coulis avec le ketchup et le curry.','Couper les saucisses et les napper de sauce.']},
+{id:'n05',n:'Brochettes de poulet et légumes grillés',m:'Barbecue',t:'30 min',s:['printemps','été'],i:[I(400,'g','poulet'),I(1,'','courgette','courgettes'),I(1,'','poivron','poivrons'),I(1,'','citron','citrons'),I(null,'','huile et herbes'),I(null,'','sel et poivre')],p:['Couper le poulet et les légumes.','Monter les brochettes et assaisonner.','Cuire 12 à 15 minutes au barbecue en les retournant.']},
+{id:'n06',n:'Saucisses et légumes à la plancha',m:'Plancha',t:'25 min',s:['printemps','été'],i:[I(4,'','saucisses'),I(1,'','courgette','courgettes'),I(1,'','poivron','poivrons'),I(1,'','oignon','oignons'),I(null,'','huile'),I(null,'','sel et poivre')],p:['Couper les légumes.','Cuire les saucisses et les légumes sur la plancha chaude.','Retourner régulièrement et servir dès que les légumes sont tendres.']},
+{id:'n07',n:'Jambon roulé gratiné et salade',m:'Four',t:'30 min',s:['automne','hiver','printemps'],i:[I(4,'','tranches de jambon'),I(80,'g','gruyère'),I(20,'cl','crème'),I(1,'c. à soupe','concentré de tomate'),I(1,'','salade verte','salades vertes')],p:['Mettre un peu de gruyère dans chaque tranche de jambon et rouler.','Mélanger la crème et le concentré de tomate.','Napper, ajouter le reste de gruyère et gratiner 15 minutes à 200 °C.','Servir avec la salade.']},
+{id:'n08',n:'Schnitzel et salade de pommes de terre',m:'Poêle',t:'35 min',s:['printemps','été','automne','hiver'],i:[I(2,'','escalopes de porc ou de veau'),I(1,'','œuf','œufs'),I(60,'g','chapelure'),I(500,'g','pommes de terre'),I(1,'','oignon','oignons'),I(null,'','vinaigrette et persil')],p:['Préparer la salade de pommes de terre avec l’oignon, la vinaigrette et le persil.','Passer les escalopes dans l’œuf puis la chapelure.','Les cuire 4 à 5 minutes par face à la poêle.']},
+{id:'n09',n:'Filet mignon moutarde et haricots verts',m:'Four',t:'40 min',s:['automne','hiver','printemps'],i:[I(1,'','petit filet mignon'),I(2,'c. à soupe','moutarde'),I(15,'cl','crème'),I(400,'g','haricots verts'),I(1,'','échalote','échalotes'),I(null,'','sel et poivre')],p:['Faire revenir l’échalote et colorer le filet mignon.','Badigeonner de moutarde et cuire 25 minutes à 190 °C.','Ajouter la crème en fin de cuisson.','Servir avec les haricots verts.']},
+{id:'n10',n:'Pâtes au poulet, tomates et basilic',m:'Poêle',t:'25 min',s:['printemps','été'],i:[I(220,'g','pâtes'),I(300,'g','poulet'),I(250,'g','tomates cerises'),I(1,'','gousse d’ail','gousses d’ail'),I(null,'','basilic'),I(null,'','huile d’olive')],p:['Cuire les pâtes.','Faire revenir le poulet en morceaux avec l’ail.','Ajouter les tomates et cuire 5 minutes.','Mélanger avec les pâtes et le basilic.']},
+{id:'n11',n:'Poisson blanc citronné et légumes rôtis',m:'Air Fryer',t:'28 min',s:['printemps','été','automne'],i:[I(2,'','filets de poisson blanc'),I(1,'','courgette','courgettes'),I(2,'','carottes'),I(0.5,'','citron','citrons'),I(null,'','huile et herbes'),I(null,'','sel et poivre')],p:['Couper les légumes, les assaisonner et les cuire 12 minutes à 190 °C.','Ajouter le poisson citronné.','Poursuivre 10 à 12 minutes.']},
+{id:'n12',n:'Steaks hachés, pommes sautées et salade',m:'Poêle',t:'25 min',s:['printemps','été','automne','hiver'],i:[I(2,'','steaks hachés'),I(500,'g','pommes de terre'),I(1,'','petite salade','salades vertes'),I(1,'','échalote','échalotes'),I(null,'','beurre'),I(null,'','sel et poivre')],p:['Faire sauter les pommes de terre avec l’échalote.','Cuire les steaks selon la cuisson souhaitée.','Servir avec la salade assaisonnée.']},
 {id:'n13',n:'Magret de canard et courgettes grillées',m:'Plancha',t:'30 min',s:['printemps','été','automne'],i:[I(1,'','magret de canard'),I(2,'','courgettes'),I(1,'c. à café','miel'),I(1,'c. à soupe','vinaigre balsamique'),I(null,'','sel et poivre')],p:['Quadriller la peau du magret.','Cuire côté peau puis côté chair sur la plancha.','Griller les courgettes en rondelles.','Déglacer rapidement avec le miel et le balsamique.']},
-{id:'n14',n:'Poulet moutarde, crème et riz',m:'Poêle',t:'30 min',s:['automne','hiver','printemps'],i:[I(350,'g','poulet'),I(120,'g','riz'),I(15,'cl','crème'),I(1,'c. à soupe','moutarde'),I(1,'','oignon'),I(null,'','sel et poivre')],p:['Cuire le riz.','Faire revenir l’oignon puis le poulet.','Ajouter la moutarde et la crème.','Laisser mijoter 8 minutes et servir avec le riz.']}
+{id:'n14',n:'Poulet moutarde, crème et riz',m:'Poêle',t:'30 min',s:['automne','hiver','printemps'],i:[I(350,'g','poulet'),I(120,'g','riz'),I(15,'cl','crème'),I(1,'c. à soupe','moutarde'),I(1,'','oignon','oignons'),I(null,'','sel et poivre')],p:['Cuire le riz.','Faire revenir l’oignon puis le poulet.','Ajouter la moutarde et la crème.','Laisser mijoter 8 minutes et servir avec le riz.']},
+{id:'n15',n:'Bratkartoffeln, knack et salade',m:'Poêle',t:'30 min',s:['printemps','été','automne','hiver'],i:[I(500,'g','pommes de terre'),I(4,'','knacks'),I(1,'','oignon','oignons'),I(1,'','petite salade','salades vertes'),I(null,'','beurre ou huile'),I(null,'','persil')],p:['Faire revenir les pommes de terre avec l’oignon jusqu’à ce qu’elles soient dorées.','Réchauffer les knacks.','Servir avec une petite salade et du persil.']},
+{id:'n16',n:'Saumon à l’aneth et pommes vapeur',m:'Four',t:'30 min',s:['printemps','été','automne','hiver'],i:[I(2,'','pavés de saumon'),I(500,'g','pommes de terre'),I(15,'cl','crème'),I(null,'','aneth'),I(0.5,'','citron','citrons'),I(null,'','sel et poivre')],p:['Cuire les pommes de terre à la vapeur.','Cuire le saumon 15 minutes à 180 °C.','Chauffer doucement la crème avec l’aneth et un peu de citron.','Servir ensemble.']}
 ];
 
 const evening=[
-{id:'e01',n:'Salade de pommes de terre, thon et œufs',m:'Sans cuisson',t:'20 min',s:['printemps','été','automne'],i:[I(400,'g','pommes de terre cuites'),I(1,'boîte','thon'),I(2,'','œufs durs'),I(2,'','tomates'),I(null,'','vinaigrette'),I(null,'','ciboulette')],p:['Couper les pommes de terre et les tomates.','Ajouter le thon et les œufs.','Assaisonner et parsemer de ciboulette.']},
+{id:'e01',n:'Salade de pommes de terre, thon et œufs',m:'Sans cuisson',t:'20 min',s:['printemps','été','automne'],i:[I(400,'g','pommes de terre'),I(1,'boîte','thon'),I(2,'','œufs'),I(2,'','tomates'),I(null,'','vinaigrette'),I(null,'','ciboulette')],p:['Couper les pommes de terre et les tomates.','Ajouter le thon et les œufs.','Assaisonner et parsemer de ciboulette.']},
 {id:'e02',n:'Tomates, mozzarella, jambon cru et pain grillé',m:'Sans cuisson',t:'12 min',s:['printemps','été'],i:[I(4,'','tomates'),I(1,'','mozzarella'),I(4,'','tranches de jambon cru'),I(4,'','tranches de pain'),I(null,'','huile d’olive et basilic')],p:['Couper les tomates et la mozzarella.','Ajouter le jambon cru et assaisonner.','Servir avec le pain grillé.']},
-{id:'e03',n:'Omelette aux champignons et salade',m:'Poêle',t:'20 min',s:['printemps','été','automne','hiver'],i:[I(4,'','œufs'),I(200,'g','champignons'),I(1,'','petite salade'),I(null,'','beurre'),I(null,'','sel et poivre')],p:['Faire revenir les champignons.','Ajouter les œufs battus et cuire doucement.','Servir avec la salade.']},
-{id:'e04',n:'Salade grecque et tartines grillées',m:'Sans cuisson',t:'15 min',s:['printemps','été'],i:[I(3,'','tomates'),I(0.5,'','concombre'),I(100,'g','feta'),I(null,'','quelques olives'),I(4,'','tranches de pain'),I(null,'','huile d’olive et origan')],p:['Couper les légumes et la feta.','Ajouter les olives, l’huile et l’origan.','Servir avec les tartines grillées.']},
+{id:'e03',n:'Omelette aux champignons et salade',m:'Poêle',t:'20 min',s:['printemps','été','automne','hiver'],i:[I(4,'','œufs'),I(200,'g','champignons'),I(1,'','petite salade','salades vertes'),I(null,'','beurre'),I(null,'','sel et poivre')],p:['Faire revenir les champignons.','Ajouter les œufs battus et cuire doucement.','Servir avec la salade.']},
+{id:'e04',n:'Salade grecque et tartines grillées',m:'Sans cuisson',t:'15 min',s:['printemps','été'],i:[I(3,'','tomates'),I(0.5,'','concombre','concombres'),I(100,'g','feta'),I(null,'','olives'),I(4,'','tranches de pain'),I(null,'','huile d’olive et origan')],p:['Couper les légumes et la feta.','Ajouter les olives, l’huile et l’origan.','Servir avec les tartines grillées.']},
 {id:'e05',n:'Courgettes rôties, jambon et fromage frais',m:'Air Fryer',t:'20 min',s:['printemps','été'],i:[I(2,'','courgettes'),I(4,'','tranches de jambon'),I(100,'g','fromage frais'),I(null,'','huile et herbes'),I(null,'','sel et poivre')],p:['Couper les courgettes et les assaisonner.','Cuire 12 à 15 minutes à 190 °C.','Servir avec le jambon et le fromage frais.']},
-{id:'e06',n:'Saumon fumé, concombre et pommes de terre',m:'Sans cuisson',t:'15 min',s:['printemps','été'],i:[I(200,'g','saumon fumé'),I(0.5,'','concombre'),I(400,'g','pommes de terre cuites'),I(1,'','yaourt nature'),I(null,'','aneth et citron')],p:['Couper le concombre et les pommes de terre.','Mélanger le yaourt, le citron et l’aneth.','Servir avec le saumon fumé.']},
-{id:'e07',n:'Tartines chaudes jambon, tomate et fromage',m:'Four',t:'18 min',s:['printemps','été','automne','hiver'],i:[I(4,'','grandes tranches de pain'),I(2,'','tranches de jambon'),I(2,'','tomates'),I(80,'g','fromage râpé'),I(1,'','petite salade')],p:['Garnir le pain avec le jambon, les tomates et le fromage.','Gratiner 8 à 10 minutes à 200 °C.','Servir avec la salade.']},
-{id:'e08',n:'Poêlée de légumes, œufs au plat et pain',m:'Poêle',t:'22 min',s:['printemps','été','automne'],i:[I(1,'','courgette'),I(1,'','poivron'),I(1,'','oignon'),I(4,'','œufs'),I(4,'','tranches de pain'),I(null,'','huile, sel et poivre')],p:['Faire revenir les légumes émincés 12 minutes.','Cuire les œufs au plat.','Servir les légumes avec les œufs et le pain.']},
-{id:'e09',n:'Salade de poulet, avocat et maïs',m:'Sans cuisson',t:'15 min',s:['printemps','été'],i:[I(250,'g','poulet déjà cuit'),I(1,'','avocat'),I(1,'petite boîte','maïs'),I(1,'','salade'),I(1,'','tomate'),I(null,'','vinaigrette')],p:['Couper le poulet, l’avocat et la tomate.','Ajouter le maïs et la salade.','Assaisonner juste avant de servir.']},
-{id:'e10',n:'Velouté de légumes et tartines au fromage',m:'Poêle',t:'30 min',s:['automne','hiver'],i:[I(2,'','carottes'),I(1,'','poireau'),I(2,'','pommes de terre'),I(75,'cl','bouillon'),I(4,'','tranches de pain'),I(80,'g','fromage')],p:['Couper les légumes et les cuire dans le bouillon 22 minutes.','Mixer le velouté.','Faire griller les tartines avec le fromage.']},
-{id:'e11',n:'Croque-monsieur et salade verte',m:'Air Fryer',t:'16 min',s:['printemps','été','automne','hiver'],i:[I(4,'','tranches de pain de mie'),I(2,'','tranches de jambon'),I(80,'g','fromage'),I(1,'','petite salade'),I(null,'','un peu de beurre')],p:['Monter les croque-monsieur.','Les cuire 7 à 9 minutes à 180 °C.','Servir avec la salade.']},
-{id:'e12',n:'Salade de lentilles, œufs et tomates',m:'Sans cuisson',t:'15 min',s:['printemps','été','automne','hiver'],i:[I(300,'g','lentilles cuites'),I(2,'','œufs durs'),I(2,'','tomates'),I(1,'','échalote'),I(null,'','vinaigrette et persil')],p:['Rincer et égoutter les lentilles.','Ajouter les œufs, les tomates et l’échalote.','Assaisonner et parsemer de persil.']}
+{id:'e06',n:'Saumon fumé, concombre et pommes de terre',m:'Sans cuisson',t:'15 min',s:['printemps','été'],i:[I(200,'g','saumon fumé'),I(0.5,'','concombre','concombres'),I(400,'g','pommes de terre'),I(1,'','yaourt nature','yaourts nature'),I(null,'','aneth et citron')],p:['Couper le concombre et les pommes de terre.','Mélanger le yaourt, le citron et l’aneth.','Servir avec le saumon fumé.']},
+{id:'e07',n:'Tartines chaudes jambon, tomate et fromage',m:'Four',t:'18 min',s:['printemps','été','automne','hiver'],i:[I(4,'','grandes tranches de pain'),I(2,'','tranches de jambon'),I(2,'','tomates'),I(80,'g','fromage râpé'),I(1,'','petite salade','salades vertes')],p:['Garnir le pain avec le jambon, les tomates et le fromage.','Gratiner 8 à 10 minutes à 200 °C.','Servir avec la salade.']},
+{id:'e08',n:'Poêlée de légumes, œufs au plat et pain',m:'Poêle',t:'22 min',s:['printemps','été','automne'],i:[I(1,'','courgette','courgettes'),I(1,'','poivron','poivrons'),I(1,'','oignon','oignons'),I(4,'','œufs'),I(4,'','tranches de pain'),I(null,'','huile, sel et poivre')],p:['Faire revenir les légumes émincés 12 minutes.','Cuire les œufs au plat.','Servir les légumes avec les œufs et le pain.']},
+{id:'e09',n:'Salade de poulet, avocat et maïs',m:'Sans cuisson',t:'15 min',s:['printemps','été'],i:[I(250,'g','poulet cuit'),I(1,'','avocat','avocats'),I(1,'petite boîte','maïs'),I(1,'','salade verte','salades vertes'),I(1,'','tomate','tomates'),I(null,'','vinaigrette')],p:['Couper le poulet, l’avocat et la tomate.','Ajouter le maïs et la salade.','Assaisonner juste avant de servir.']},
+{id:'e10',n:'Velouté de légumes et tartines au fromage',m:'Poêle',t:'30 min',s:['automne','hiver'],i:[I(2,'','carottes'),I(1,'','poireau','poireaux'),I(2,'','pommes de terre'),I(75,'cl','bouillon'),I(4,'','tranches de pain'),I(80,'g','fromage')],p:['Couper les légumes et les cuire dans le bouillon 22 minutes.','Mixer le velouté.','Faire griller les tartines avec le fromage.']},
+{id:'e11',n:'Croque-monsieur et salade verte',m:'Air Fryer',t:'16 min',s:['printemps','été','automne','hiver'],i:[I(4,'','tranches de pain de mie'),I(2,'','tranches de jambon'),I(80,'g','fromage'),I(1,'','petite salade','salades vertes'),I(null,'','beurre')],p:['Monter les croque-monsieur.','Les cuire 7 à 9 minutes à 180 °C.','Servir avec la salade.']},
+{id:'e12',n:'Salade de lentilles, œufs et tomates',m:'Sans cuisson',t:'15 min',s:['printemps','été','automne','hiver'],i:[I(300,'g','lentilles cuites'),I(2,'','œufs'),I(2,'','tomates'),I(1,'','échalote','échalotes'),I(null,'','vinaigrette et persil')],p:['Rincer et égoutter les lentilles.','Ajouter les œufs, les tomates et l’échalote.','Assaisonner et parsemer de persil.']},
+{id:'e13',n:'Knack, purée légère et salade',m:'Poêle',t:'25 min',s:['automne','hiver','printemps'],i:[I(4,'','knacks'),I(500,'g','pommes de terre'),I(10,'cl','lait'),I(1,'','petite salade','salades vertes'),I(null,'','beurre'),I(null,'','sel et poivre')],p:['Cuire les pommes de terre et les écraser avec le lait et un peu de beurre.','Réchauffer les knacks.','Servir avec une petite salade.']},
+{id:'e14',n:'Avocat, crevettes et riz froid',m:'Sans cuisson',t:'18 min',s:['printemps','été'],i:[I(1,'','avocat','avocats'),I(200,'g','crevettes cuites'),I(120,'g','riz cuit'),I(0.5,'','citron','citrons'),I(null,'','ciboulette'),I(null,'','sauce légère')],p:['Couper l’avocat.','Mélanger avec les crevettes et le riz froid.','Ajouter le citron, la ciboulette et la sauce légère.']}
 ];
 
 const $=id=>document.getElementById(id);
@@ -178,162 +178,254 @@ const season=()=>{
   if(m>=9&&m<=11)return'automne';
   return'hiver';
 };
-let current={mid:null,eve:null};
+let plan=[];
 
-$('date').textContent=new Intl.DateTimeFormat('fr-FR',{weekday:'long',day:'numeric',month:'long'}).format(new Date());
 $('people').value=localStorage.getItem('crPeople')||'2';
+$('days').value=localStorage.getItem('crDays')||'2';
 $('mode').value=localStorage.getItem('crMode')||'Tous';
 
+function dateFor(index){
+  const d=new Date();
+  d.setDate(d.getDate()+index);
+  return d;
+}
+function dayLabel(index){
+  if(index===0)return"Aujourd’hui";
+  if(index===1)return"Demain";
+  return"Après-demain";
+}
+function formatDate(index){
+  return new Intl.DateTimeFormat('fr-FR',{weekday:'long',day:'numeric',month:'long'}).format(dateFor(index));
+}
 function formatQty(q){
   if(q==null)return'';
   const rounded=Math.round(q*100)/100;
-  if(rounded===0.25)return'¼';
-  if(rounded===0.5)return'½';
-  if(rounded===0.75)return'¾';
-  if(rounded===1.5)return'1½';
-  return String(rounded).replace('.',',');
+  const special={0.25:'¼',0.5:'½',0.75:'¾',1.5:'1½'};
+  return special[rounded]||String(rounded).replace('.',',');
 }
-function ingredientText(x){
-  if(x.q==null)return x.n;
-  const factor=Number($('people').value)/2;
-  const q=formatQty(x.q*factor);
-  return [q,x.u,x.n].filter(Boolean).join(' ');
+function qtyForPeople(q){
+  return q==null?null:q*(Number($('people').value)/2);
+}
+function ingredientText(x,qOverride){
+  const q=qOverride===undefined?qtyForPeople(x.q):qOverride;
+  if(q==null)return x.n;
+  return [formatQty(q),x.u,x.n].filter(Boolean).join(' ');
 }
 function recipeHTML(x){
   return `<h3>Ingrédients</h3><ul>${x.i.map(v=>`<li>${ingredientText(v)}</li>`).join('')}</ul>
   <h3>Préparation</h3><ol>${x.p.map(v=>`<li>${v}</li>`).join('')}</ol>`;
 }
-function recentIds(type){
-  const h=JSON.parse(localStorage.getItem('crHistoryV12')||'[]').slice(0,7);
-  return new Set(h.map(x=>type==='mid'?x.midId:x.eveId));
+function priorRecentIds(type){
+  const h=JSON.parse(localStorage.getItem('crHistoryV13')||'[]').filter(x=>x.date!==todayKey()).slice(0,5);
+  const ids=[];
+  h.forEach(entry=>(entry.plan||[]).forEach(d=>ids.push(type==='mid'?d.midId:d.eveId)));
+  return new Set(ids);
 }
-function filtered(list,type,excludeId){
+function poolFor(list,type,exclude){
   const pref=$('mode').value;
-  const nowSeason=season();
-  let pool=list.filter(x=>x.s.includes(nowSeason));
+  const now=season();
+  let pool=list.filter(x=>x.s.includes(now));
   if(pref!=='Tous'){
     pool=pool.filter(x=>x.m===pref || (type==='eve'&&x.m==='Sans cuisson'));
   }
-  if(!pool.length)pool=list.filter(x=>x.s.includes(nowSeason));
+  if(!pool.length)pool=list.filter(x=>x.s.includes(now));
   if(!pool.length)pool=[...list];
-  const recent=recentIds(type);
-  let clean=pool.filter(x=>!recent.has(x.id)&&x.id!==excludeId);
-  if(!clean.length)clean=pool.filter(x=>x.id!==excludeId);
+
+  const recent=priorRecentIds(type);
+  let clean=pool.filter(x=>!exclude.has(x.id)&&!recent.has(x.id));
+  if(!clean.length)clean=pool.filter(x=>!exclude.has(x.id));
   if(!clean.length)clean=pool;
   return clean;
 }
-function pick(list,type,excludeId){
-  const pool=filtered(list,type,excludeId);
-  return pool[Math.floor(Math.random()*pool.length)];
+function pick(list,type,exclude){
+  const pool=poolFor(list,type,exclude);
+  const favs=new Set(JSON.parse(localStorage.getItem('crFavMeals')||'[]'));
+  const weighted=[...pool,...pool.filter(x=>favs.has(x.id))];
+  return weighted[Math.floor(Math.random()*weighted.length)];
 }
-function menuKey(){return current.mid.id+'|'+current.eve.id}
-function render(){
-  $('midTitle').textContent=current.mid.n;
-  $('midMeta').textContent=`⏱️ ${current.mid.t} · 🔥 ${current.mid.m}`;
-  $('eveTitle').textContent=current.eve.n;
-  $('eveMeta').textContent=`⏱️ ${current.eve.t} · 🔥 ${current.eve.m}`;
-  $('midRecipe').innerHTML=recipeHTML(current.mid);
-  $('eveRecipe').innerHTML=recipeHTML(current.eve);
-  document.querySelectorAll('.recipe').forEach(x=>x.classList.remove('open'));
-  document.querySelectorAll('[data-target]').forEach(x=>x.textContent='📖 Voir la recette');
-  const favs=JSON.parse(localStorage.getItem('crMenus')||'[]');
-  const on=favs.includes(menuKey());
-  $('favorite').classList.toggle('on',on);
-  $('favorite').textContent=on?'★ Menu aimé':'☆ J’aime ce menu';
-  saveToday();
-  renderHistory();
+function buildPlan(count){
+  const mids=new Set(), eves=new Set(), result=[];
+  for(let i=0;i<count;i++){
+    const mid=pick(noon,'mid',mids); mids.add(mid.id);
+    const eve=pick(evening,'eve',eves); eves.add(eve.id);
+    result.push({mid,eve});
+  }
+  return result;
 }
-function saveToday(){
-  localStorage.setItem('crTodayV12',JSON.stringify({
-    date:todayKey(),midId:current.mid.id,eveId:current.eve.id,mode:$('mode').value
+function saveState(){
+  localStorage.setItem('crStateV13',JSON.stringify({
+    date:todayKey(),
+    days:Number($('days').value),
+    mode:$('mode').value,
+    plan:plan.map(d=>({midId:d.mid.id,eveId:d.eve.id}))
   }));
 }
-function addHistory(){
-  let h=JSON.parse(localStorage.getItem('crHistoryV12')||'[]');
+function saveHistory(){
+  let h=JSON.parse(localStorage.getItem('crHistoryV13')||'[]');
   h=h.filter(x=>x.date!==todayKey());
-  h.unshift({date:todayKey(),midId:current.mid.id,eveId:current.eve.id,mid:current.mid.n,eve:current.eve.n});
-  localStorage.setItem('crHistoryV12',JSON.stringify(h.slice(0,15)));
+  h.unshift({
+    date:todayKey(),
+    plan:plan.map(d=>({midId:d.mid.id,eveId:d.eve.id,mid:d.mid.n,eve:d.eve.n}))
+  });
+  localStorage.setItem('crHistoryV13',JSON.stringify(h.slice(0,10)));
   renderHistory();
 }
 function renderHistory(){
-  const h=JSON.parse(localStorage.getItem('crHistoryV12')||'[]');
-  if(!h.length){$('historyContent').innerHTML='<div class="empty">Aucun ancien menu pour le moment.</div>';return}
-  $('historyContent').innerHTML=h.slice(0,7).map(x=>{
+  const h=JSON.parse(localStorage.getItem('crHistoryV13')||'[]');
+  if(!h.length){$('historyContent').innerHTML='<div class="empty">Aucun ancien programme pour le moment.</div>';return}
+  $('historyContent').innerHTML=h.slice(0,5).map(x=>{
     const d=new Date(x.date+'T12:00:00');
     const date=new Intl.DateTimeFormat('fr-FR',{weekday:'short',day:'numeric',month:'short'}).format(d);
-    return `<div class="history-item"><div class="history-date">${date}</div><div class="history-meals">☀️ ${x.mid}<br>🌙 ${x.eve}</div></div>`;
+    const meals=(x.plan||[]).map((p,i)=>`<strong>J${i+1}</strong> · ${p.mid}<br>↳ ${p.eve}`).join('<br>');
+    return `<div class="history-item"><div class="history-date">${date}</div><div class="history-meals">${meals}</div></div>`;
   }).join('');
 }
-function loadOrCreate(){
-  const saved=JSON.parse(localStorage.getItem('crTodayV12')||'null');
-  if(saved&&saved.date===todayKey()){
-    const mid=noon.find(x=>x.id===saved.midId);
-    const eve=evening.find(x=>x.id===saved.eveId);
-    if(mid&&eve){current={mid,eve};render();return}
+function updateLikedButton(){
+  const favs=new Set(JSON.parse(localStorage.getItem('crFavMeals')||'[]'));
+  const ids=plan.flatMap(d=>[d.mid.id,d.eve.id]);
+  const allLiked=ids.length>0&&ids.every(id=>favs.has(id));
+  $('favorite').classList.toggle('liked',allLiked);
+  $('favorite').textContent=allLiked?'★ Menus aimés':'☆ J’aime ces menus';
+}
+function render(){
+  $('daysContainer').innerHTML=plan.map((d,i)=>`
+    <section class="day-card">
+      <div class="day-head">
+        <div class="day-title">${dayLabel(i)}</div>
+        <div class="day-date">${formatDate(i)}</div>
+      </div>
+
+      <div class="meal">
+        <div class="tag">☀️ MIDI · PLAT COMPLET</div>
+        <div class="meal-title">${d.mid.n}</div>
+        <div class="meta">⏱️ ${d.mid.t} · 🔥 ${d.mid.m}</div>
+        <div class="meal-actions">
+          <button class="small-btn recipe-btn" data-day="${i}" data-type="mid">📖 Voir la recette</button>
+          <button class="small-btn secondary change-btn" data-day="${i}" data-type="mid">🔄 Changer le midi</button>
+        </div>
+        <div class="recipe" id="recipe-${i}-mid">${recipeHTML(d.mid)}</div>
+      </div>
+
+      <div class="meal">
+        <div class="tag evening">🌙 SOIR · LÉGER ET RASSASIANT</div>
+        <div class="meal-title">${d.eve.n}</div>
+        <div class="meta">⏱️ ${d.eve.t} · 🔥 ${d.eve.m}</div>
+        <div class="meal-actions">
+          <button class="small-btn recipe-btn" data-day="${i}" data-type="eve">📖 Voir la recette</button>
+          <button class="small-btn secondary change-btn" data-day="${i}" data-type="eve">🔄 Changer le soir</button>
+        </div>
+        <div class="recipe" id="recipe-${i}-eve">${recipeHTML(d.eve)}</div>
+      </div>
+    </section>`).join('');
+
+  document.querySelectorAll('.recipe-btn').forEach(b=>b.onclick=()=>{
+    const el=$(`recipe-${b.dataset.day}-${b.dataset.type}`);
+    const open=el.classList.toggle('open');
+    b.textContent=open?'📕 Masquer la recette':'📖 Voir la recette';
+  });
+
+  document.querySelectorAll('.change-btn').forEach(b=>b.onclick=()=>{
+    changeMeal(Number(b.dataset.day),b.dataset.type);
+  });
+
+  updateLikedButton();
+  saveState();
+  saveHistory();
+}
+function changeMeal(index,type){
+  const used=new Set(plan.map(d=>type==='mid'?d.mid.id:d.eve.id));
+  used.delete(type==='mid'?plan[index].mid.id:plan[index].eve.id);
+  if(type==='mid')plan[index].mid=pick(noon,'mid',used);
+  else plan[index].eve=pick(evening,'eve',used);
+  render();
+}
+function ensureDays(){
+  const count=Number($('days').value);
+  if(plan.length>count)plan=plan.slice(0,count);
+  while(plan.length<count){
+    const mids=new Set(plan.map(d=>d.mid.id));
+    const eves=new Set(plan.map(d=>d.eve.id));
+    plan.push({mid:pick(noon,'mid',mids),eve:pick(evening,'eve',eves)});
   }
-  current.mid=pick(noon,'mid');
-  current.eve=pick(evening,'eve');
-  render();
-  addHistory();
 }
-function changeMid(){
-  current.mid=pick(noon,'mid',current.mid.id);
+function loadOrCreate(){
+  const saved=JSON.parse(localStorage.getItem('crStateV13')||'null');
+  if(saved&&saved.date===todayKey()&&Array.isArray(saved.plan)){
+    const loaded=saved.plan.map(d=>({
+      mid:noon.find(x=>x.id===d.midId),
+      eve:evening.find(x=>x.id===d.eveId)
+    })).filter(d=>d.mid&&d.eve);
+    if(loaded.length){
+      plan=loaded;
+      ensureDays();
+      render();
+      return;
+    }
+  }
+  plan=buildPlan(Number($('days').value));
   render();
-  addHistory();
 }
-function changeEve(){
-  current.eve=pick(evening,'eve',current.eve.id);
-  render();
-  addHistory();
-}
-function surprise(){
-  current.mid=pick(noon,'mid',current.mid.id);
-  current.eve=pick(evening,'eve',current.eve.id);
-  render();
-  addHistory();
+function groupedCourses(){
+  const map=new Map();
+  const all=plan.flatMap(d=>[...d.mid.i,...d.eve.i]);
+  all.forEach(item=>{
+    const q=qtyForPeople(item.q);
+    const key=`${String(item.k).toLowerCase()}|${item.u||''}`;
+    if(!map.has(key))map.set(key,{...item,q:0,hasQty:q!=null});
+    const entry=map.get(key);
+    if(q==null){
+      entry.hasQty=false;
+    }else{
+      entry.q+=q;
+    }
+  });
+  return [...map.values()].map(x=>{
+    if(!x.hasQty)return x.n;
+    return ingredientText(x,x.q);
+  });
 }
 function show(t){
   $('toast').textContent=t;
   $('toast').classList.add('show');
   setTimeout(()=>$('toast').classList.remove('show'),1900);
 }
-document.querySelectorAll('[data-target]').forEach(b=>b.onclick=()=>{
-  const el=$(b.dataset.target);
-  const open=el.classList.toggle('open');
-  b.textContent=open?'📕 Masquer la recette':'📖 Voir la recette';
-});
-$('changeMid').onclick=changeMid;
-$('changeEve').onclick=changeEve;
-$('surprise').onclick=surprise;
+$('newPlan').onclick=()=>{
+  plan=buildPlan(Number($('days').value));
+  render();
+};
+$('days').onchange=()=>{
+  localStorage.setItem('crDays',$('days').value);
+  ensureDays();
+  render();
+};
 $('people').onchange=()=>{
   localStorage.setItem('crPeople',$('people').value);
-  $('midRecipe').innerHTML=recipeHTML(current.mid);
-  $('eveRecipe').innerHTML=recipeHTML(current.eve);
+  render();
 };
 $('mode').onchange=()=>{
   localStorage.setItem('crMode',$('mode').value);
-  surprise();
+  plan=buildPlan(Number($('days').value));
+  render();
 };
 $('favorite').onclick=()=>{
-  const key=menuKey();
-  const favs=JSON.parse(localStorage.getItem('crMenus')||'[]');
-  const i=favs.indexOf(key);
-  if(i>=0)favs.splice(i,1);else favs.push(key);
-  localStorage.setItem('crMenus',JSON.stringify(favs));
-  render();
-  show(i>=0?'Menu retiré des favoris':'Menu enregistré');
+  const favs=new Set(JSON.parse(localStorage.getItem('crFavMeals')||'[]'));
+  const ids=plan.flatMap(d=>[d.mid.id,d.eve.id]);
+  const allLiked=ids.every(id=>favs.has(id));
+  ids.forEach(id=>allLiked?favs.delete(id):favs.add(id));
+  localStorage.setItem('crFavMeals',JSON.stringify([...favs]));
+  updateLikedButton();
+  show(allLiked?'Menus retirés des favoris':'Menus enregistrés');
 };
 $('courses').onclick=async()=>{
-  const text=`${current.mid.i.map(ingredientText).join('\n')}
-
-${current.eve.i.map(ingredientText).join('\n')}`;
+  const text=groupedCourses().join('\n');
   try{
     await navigator.clipboard.writeText(text);
-    show('Liste copiée pour Clair Courses');
+    show('Toutes les courses ont été copiées');
   }catch(e){
     prompt('Copie cette liste :',text);
   }
 };
+
 loadOrCreate();
 if('serviceWorker' in navigator){
   navigator.serviceWorker.register('./sw.js').catch(()=>{});

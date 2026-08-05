@@ -1,7 +1,7 @@
 {
   "name": "Clair Repas",
   "short_name": "Clair Repas",
-  "description": "Un plat complet le midi et un repas léger le soir.",
+  "description": "Menus et courses pour un à trois jours.",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
