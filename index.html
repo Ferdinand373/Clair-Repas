@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#f6f1e8" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="apple-touch-icon" href="icon.svg" />
+  <title>Clair Repas</title>
+  <style>
+    :root { --bg:#f6f1e8; --card:#fffdf9; --text:#25211d; --muted:#746b62; --accent:#496b52; --accent2:#dde8df; --border:#e5ddd2; }
+    *{box-sizing:border-box} body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--bg);color:var(--text)}
+    main{max-width:620px;margin:0 auto;padding:calc(22px + env(safe-area-inset-top)) 18px calc(30px + env(safe-area-inset-bottom))}
+    h1{font-size:32px;margin:6px 0 4px;letter-spacing:-.6px} .subtitle{margin:0 0 24px;color:var(--muted)}
+    .panel,.meal{background:var(--card);border:1px solid var(--border);border-radius:22px;padding:18px;box-shadow:0 8px 28px rgba(40,32,24,.06)}
+    .row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px}
+    label{font-size:13px;color:var(--muted);display:block;margin-bottom:7px}
+    select,button{width:100%;font:inherit;border-radius:14px;border:1px solid var(--border);padding:13px;background:white;color:var(--text)}
+    button{cursor:pointer;font-weight:700}.primary{background:var(--accent);color:white;border-color:var(--accent);font-size:18px;padding:16px}
+    .meal{display:none;margin-top:18px}.meal.show{display:block}.meal h2{font-size:26px;margin:0 0 7px}.meta{color:var(--muted);margin-bottom:16px}
+    .actions{display:grid;gap:10px}.secondary{background:var(--accent2);border-color:var(--accent2)}.ghost{background:white}
+    .fav{width:auto;float:right;border:0;background:transparent;font-size:26px;padding:0 2px}.recipe{display:none;margin-top:16px;padding-top:14px;border-top:1px solid var(--border)}
+    .recipe.show{display:block}.recipe h3{margin:14px 0 6px}.recipe ul,.recipe ol{padding-left:21px;line-height:1.5}
+    .note{font-size:13px;color:var(--muted);text-align:center;margin-top:16px}
+    @media(max-width:390px){.row{grid-template-columns:1fr}h1{font-size:29px}}
+  </style>
+</head>
+<body>
+<main>
+  <h1>Clair Repas</h1>
+  <p class="subtitle">Une idée simple, en quelques secondes.</p>
+
+  <section class="panel">
+    <div class="row">
+      <div><label for="people">Pour combien ?</label><select id="people"><option>1 personne</option><option selected>2 personnes</option><option>3 personnes</option><option>4 personnes</option></select></div>
+      <div><label for="mode">Cuisson disponible</label><select id="mode"><option value="Tous">Tous</option><option>Poêle</option><option>Air Fryer</option><option>Plancha</option><option>Barbecue</option><option>Four</option><option>Sans cuisson</option></select></div>
+    </div>
+    <button class="primary" id="suggest">🍽️ Proposer un repas</button>
+  </section>
+
+  <section class="meal" id="meal">
+    <button class="fav" id="fav" aria-label="Ajouter aux favoris">☆</button>
+    <h2 id="title"></h2>
+    <div class="meta" id="meta"></div>
+    <div class="actions">
+      <button class="secondary" id="recipeBtn">📖 Voir la recette</button>
+      <button class="ghost" id="copyBtn">🛒 Copier pour les courses</button>
+      <button class="ghost" id="another">🔄 Une autre idée</button>
+    </div>
+    <div class="recipe" id="recipe"></div>
+  </section>
+  <p class="note">Les favoris restent enregistrés sur cet iPhone.</p>
+</main>
+<script>
+const meals = [
+ {n:'Knack et purée maison',m:'Poêle',t:'25 min',i:['4 knack','600 g de pommes de terre','20 g de beurre','10 cl de lait','Sel','Poivre'],p:['Cuire les pommes de terre dans l’eau salée.','Réchauffer doucement les knack à la poêle.','Écraser les pommes de terre avec le beurre et le lait.','Servir bien chaud.']},
+ {n:'Poulet au paprika',m:'Air Fryer',t:'25 min',i:['2 blancs de poulet','1 c. à café de paprika','1 filet d’huile','Sel','Poivre'],p:['Mélanger le poulet avec l’huile et le paprika.','Cuire 18 à 20 min à 190 °C en retournant à mi-cuisson.']},
+ {n:'Saumon à l’aneth',m:'Air Fryer',t:'18 min',i:['2 pavés de saumon','Un peu d’aneth','1/2 citron','Sel','Poivre'],p:['Assaisonner les pavés.','Cuire 10 à 12 min à 180 °C.','Ajouter citron et aneth au moment de servir.']},
+ {n:'Bratkartoffeln',m:'Poêle',t:'30 min',i:['500 g de pommes de terre cuites','1 oignon','100 g de lardons','Beurre','Poivre'],p:['Couper les pommes de terre en rondelles.','Faire revenir les lardons et l’oignon.','Ajouter les pommes de terre et faire dorer.']},
+ {n:'Currywurst maison',m:'Poêle',t:'20 min',i:['4 saucisses','20 cl de coulis de tomate','1 c. à soupe de ketchup','1 c. à café de curry'],p:['Faire dorer les saucisses.','Chauffer tomate, ketchup et curry.','Couper les saucisses et napper de sauce.']},
+ {n:'Brochettes de poulet citronnées',m:'Barbecue',t:'30 min',i:['400 g de poulet','1 citron','1 filet d’huile','Herbes','Sel','Poivre'],p:['Couper et assaisonner le poulet.','Monter les brochettes.','Cuire 10 à 12 min au barbecue.']},
+ {n:'Tomates, mozzarella et jambon',m:'Sans cuisson',t:'10 min',i:['4 tomates','1 mozzarella','4 tranches de jambon','Huile d’olive','Basilic'],p:['Couper tomates et mozzarella.','Ajouter jambon, huile et basilic.']},
+ {n:'Échines à la poêle',m:'Poêle',t:'25 min',i:['2 échines de porc','1 noix de beurre','Herbes','Sel','Poivre'],p:['Assaisonner les échines.','Les cuire 8 à 10 min par face à feu moyen.','Laisser reposer 3 min avant de servir.']},
+ {n:'Jambon roulé gratiné',m:'Four',t:'25 min',i:['4 tranches de jambon','80 g de gruyère','20 cl de crème','1 c. à soupe de concentré de tomate'],p:['Mettre un peu de gruyère dans chaque tranche de jambon et rouler.','Mélanger crème et concentré de tomate.','Napper, ajouter le gruyère et gratiner 15 min à 200 °C.']},
+ {n:'Saucisses et légumes à la plancha',m:'Plancha',t:'25 min',i:['4 saucisses','1 courgette','1 poivron','1 oignon','Huile'],p:['Couper les légumes.','Cuire saucisses et légumes sur la plancha chaude.','Retourner régulièrement.']}
+];
+let current=null; let last=-1; const favorites=JSON.parse(localStorage.getItem('clairRepasFav')||'[]');
+const $=id=>document.getElementById(id);
+function choose(){const mode=$('mode').value;const pool=meals.map((x,i)=>({...x,idx:i})).filter(x=>mode==='Tous'||x.m===mode);if(!pool.length)return;let pick;do{pick=pool[Math.floor(Math.random()*pool.length)]}while(pool.length>1&&pick.idx===last);last=pick.idx;current=pick;render();}
+function render(){ $('meal').classList.add('show'); $('title').textContent=current.n; $('meta').textContent=`⏱️ ${current.t} · 🔥 ${current.m}`; $('fav').textContent=favorites.includes(current.n)?'★':'☆'; $('recipe').classList.remove('show'); $('recipeBtn').textContent='📖 Voir la recette'; $('recipe').innerHTML=`<h3>Ingrédients</h3><ul>${current.i.map(x=>`<li>${x}</li>`).join('')}</ul><h3>Préparation</h3><ol>${current.p.map(x=>`<li>${x}</li>`).join('')}</ol>`;}
+$('suggest').onclick=choose;$('another').onclick=choose;
+$('recipeBtn').onclick=()=>{const open=$('recipe').classList.toggle('show');$('recipeBtn').textContent=open?'📕 Masquer la recette':'📖 Voir la recette'};
+$('fav').onclick=()=>{const i=favorites.indexOf(current.n);if(i>=0)favorites.splice(i,1);else favorites.push(current.n);localStorage.setItem('clairRepasFav',JSON.stringify(favorites));render()};
+$('copyBtn').onclick=async()=>{const text=`${current.n}\n\n${current.i.join('\n')}`;try{await navigator.clipboard.writeText(text);$('copyBtn').textContent='✅ Liste copiée';setTimeout(()=>$('copyBtn').textContent='🛒 Copier pour les courses',1500)}catch(e){alert(text)}};
+if('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js');
+</script>
+</body>
+</html>
