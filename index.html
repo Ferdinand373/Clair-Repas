@@ -324,12 +324,8 @@ $('favorite').onclick=()=>{
   show(i>=0?'Menu retiré des favoris':'Menu enregistré');
 };
 $('courses').onclick=async()=>{
-  const text=`CLAIR REPAS — ${$('people').value} personne(s)
+  const text=`${current.mid.i.map(ingredientText).join('\n')}
 
-MIDI — ${current.mid.n}
-${current.mid.i.map(ingredientText).join('\n')}
-
-SOIR — ${current.eve.n}
 ${current.eve.i.map(ingredientText).join('\n')}`;
   try{
     await navigator.clipboard.writeText(text);
