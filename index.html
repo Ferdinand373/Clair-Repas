@@ -9,7 +9,7 @@
 <meta name="apple-mobile-web-app-title" content="Clair Repas">
 <link rel="manifest" href="./manifest.webmanifest">
 <link rel="apple-touch-icon" href="./icon-192.png">
-<title>Clair Repas V1.3.1</title>
+<title>Clair Repas V1.4</title>
 <style>
 :root{
   --bg:#f4efe7;--card:#fffdfa;--text:#27231f;--muted:#746c63;
@@ -126,8 +126,8 @@ select{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:1
   <div class="history-content" id="historyContent"></div>
 </details>
 
-<p class="note">Les produits identiques sont regroupés et convertis en quantités réellement achetables.</p>
-<p class="version">Clair Repas V1.3.1 · courses réelles</p>
+<p class="note">Les produits identiques sont regroupés ; viandes et poissons sont indiqués en pièces lorsqu’ils s’achètent ainsi.</p>
+<p class="version">Clair Repas V1.4 · achats clairs</p>
 </main>
 <div class="toast" id="toast"></div>
 
@@ -149,7 +149,8 @@ const noon=[
 {id:'n13',n:'Magret de canard et courgettes grillées',m:'Plancha',t:'30 min',s:['printemps','été','automne'],i:[I(1,'','magret de canard'),I(2,'','courgettes'),I(1,'c. à café','miel'),I(1,'c. à soupe','vinaigre balsamique'),I(null,'','sel et poivre')],p:['Quadriller la peau du magret.','Cuire côté peau puis côté chair sur la plancha.','Griller les courgettes en rondelles.','Déglacer rapidement avec le miel et le balsamique.']},
 {id:'n14',n:'Poulet moutarde, crème et riz',m:'Poêle',t:'30 min',s:['automne','hiver','printemps'],i:[I(350,'g','poulet'),I(120,'g','riz'),I(15,'cl','crème'),I(1,'c. à soupe','moutarde'),I(1,'','oignon','oignons'),I(null,'','sel et poivre')],p:['Cuire le riz.','Faire revenir l’oignon puis le poulet.','Ajouter la moutarde et la crème.','Laisser mijoter 8 minutes et servir avec le riz.']},
 {id:'n15',n:'Bratkartoffeln, knack et salade',m:'Poêle',t:'30 min',s:['printemps','été','automne','hiver'],i:[I(500,'g','pommes de terre'),I(4,'','knacks'),I(1,'','oignon','oignons'),I(1,'','petite salade','salades vertes'),I(null,'','beurre ou huile'),I(null,'','persil')],p:['Faire revenir les pommes de terre avec l’oignon jusqu’à ce qu’elles soient dorées.','Réchauffer les knacks.','Servir avec une petite salade et du persil.']},
-{id:'n16',n:'Saumon à l’aneth et pommes vapeur',m:'Four',t:'30 min',s:['printemps','été','automne','hiver'],i:[I(2,'','pavés de saumon'),I(500,'g','pommes de terre'),I(15,'cl','crème'),I(null,'','aneth'),I(0.5,'','citron','citrons'),I(null,'','sel et poivre')],p:['Cuire les pommes de terre à la vapeur.','Cuire le saumon 15 minutes à 180 °C.','Chauffer doucement la crème avec l’aneth et un peu de citron.','Servir ensemble.']}
+{id:'n16',n:'Saumon à l’aneth et pommes vapeur',m:'Four',t:'30 min',s:['printemps','été','automne','hiver'],i:[I(2,'','pavés de saumon'),I(500,'g','pommes de terre'),I(15,'cl','crème'),I(null,'','aneth'),I(0.5,'','citron','citrons'),I(null,'','sel et poivre')],p:['Cuire les pommes de terre à la vapeur.','Cuire le saumon 15 minutes à 180 °C.','Chauffer doucement la crème avec l’aneth et un peu de citron.','Servir ensemble.']},
+{id:'n17',n:'Côte de bœuf, pommes grenailles et salade',m:'Barbecue',t:'45 min',s:['printemps','été','automne'],i:[I(1,'','côte de bœuf'),I(600,'g','pommes de terre'),I(1,'','salade verte','salades vertes'),I(null,'','huile et herbes'),I(null,'','sel et poivre')],p:['Sortir la côte de bœuf 30 minutes avant la cuisson.','Cuire les pommes de terre assaisonnées.','Griller la côte de bœuf selon la cuisson souhaitée et la laisser reposer 8 minutes.','Servir avec les pommes de terre et la salade.']}
 ];
 
 const evening=[
@@ -391,6 +392,34 @@ function purchaseText(x){
   const q=x.hasQty?Number(x.q):null;
   const unit=String(x.u||'').toLowerCase();
 
+  // Viandes et poissons vendus à la pièce.
+  const meatPieces={
+    'blancs de poulet':['blanc de poulet','blancs de poulet'],
+    'échines de porc':['échine de porc','échines de porc'],
+    'escalopes de porc ou de veau':['escalope de porc ou de veau','escalopes de porc ou de veau'],
+    'steaks hachés':['steak haché','steaks hachés'],
+    'pavés de saumon':['pavé de saumon','pavés de saumon'],
+    'filets de poisson blanc':['filet de poisson blanc','filets de poisson blanc'],
+    'magret de canard':['magret de canard','magrets de canard'],
+    'petit filet mignon':['filet mignon','filets mignons'],
+    'côte de bœuf':['côte de bœuf','côtes de bœuf'],
+    'côtes de porc':['côte de porc','côtes de porc'],
+    'cuisses de poulet':['cuisse de poulet','cuisses de poulet'],
+    'saucisses':['saucisse','saucisses'],
+    'knacks':['knack','knacks'],
+    'tranches de jambon':['tranche de jambon','tranches de jambon'],
+    'tranches de jambon cru':['tranche de jambon cru','tranches de jambon cru']
+  };
+  if(q!=null&&unit===''&&meatPieces[key]){
+    return countText(q,meatPieces[key][0],meatPieces[key][1]);
+  }
+
+  // Le poulet exprimé en grammes devient un nombre de blancs à acheter.
+  if(q!=null&&unit==='g'&&(key==='poulet'||key==='poulet cuit')){
+    const pieces=Math.max(1,Math.ceil(q/200));
+    return `${pieces} ${pieces>1?'blancs de poulet':'blanc de poulet'}`;
+  }
+
   // Fruits et légumes : on achète des pièces entières.
   const pieces={
     'courgettes':['courgette','courgettes'],
@@ -502,8 +531,12 @@ function purchaseText(x){
   };
   if(herbs[key])return herbs[key];
 
-  // La viande et le poisson vendus au poids gardent leur quantité exacte.
+  // Viandes, poissons et autres produits réellement vendus au poids.
   if(!x.hasQty)return x.n;
+  if(unit==='g')return `${formatQty(x.q)} g de ${x.n}`;
+  if(unit==='kg')return `${formatQty(x.q)} kg de ${x.n}`;
+  if(unit==='cl')return `${formatQty(x.q)} cl de ${x.n}`;
+  if(unit==='ml')return `${formatQty(x.q)} ml de ${x.n}`;
   return ingredientText(x,x.q);
 }
 function groupedCourses(){
