@@ -9,7 +9,7 @@
 <meta name="apple-mobile-web-app-title" content="Clair Repas">
 <link rel="manifest" href="./manifest.webmanifest">
 <link rel="apple-touch-icon" href="./icon-192.png">
-<title>Clair Repas V1.3</title>
+<title>Clair Repas V1.3.1</title>
 <style>
 :root{
   --bg:#f4efe7;--card:#fffdfa;--text:#27231f;--muted:#746c63;
@@ -126,8 +126,8 @@ select{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:1
   <div class="history-content" id="historyContent"></div>
 </details>
 
-<p class="note">Les produits identiques sont regroupés avant l’envoi vers Clair Courses.</p>
-<p class="version">Clair Repas V1.3 · version finale</p>
+<p class="note">Les produits identiques sont regroupés et convertis en quantités réellement achetables.</p>
+<p class="version">Clair Repas V1.3.1 · courses réelles</p>
 </main>
 <div class="toast" id="toast"></div>
 
@@ -365,6 +365,147 @@ function loadOrCreate(){
   plan=buildPlan(Number($('days').value));
   render();
 }
+function shopKey(x){
+  return String(x.k||x.n).toLowerCase().trim();
+}
+function wholeCount(q){
+  return Math.max(1,Math.ceil(Number(q)-0.00001));
+}
+function countText(q,singular,plural){
+  const n=wholeCount(q);
+  return `${n} ${n>1?(plural||singular+'s'):singular}`;
+}
+function roundedWeightText(g,step=500){
+  const rounded=Math.ceil(Number(g)/step)*step;
+  if(rounded>=1000){
+    const kg=rounded/1000;
+    return `${formatQty(kg)} kg`;
+  }
+  return `${rounded} g`;
+}
+function packCount(q,capacity){
+  return Math.max(1,Math.ceil(Number(q)/capacity));
+}
+function purchaseText(x){
+  const key=shopKey(x);
+  const q=x.hasQty?Number(x.q):null;
+  const unit=String(x.u||'').toLowerCase();
+
+  // Fruits et légumes : on achète des pièces entières.
+  const pieces={
+    'courgettes':['courgette','courgettes'],
+    'poivrons':['poivron','poivrons'],
+    'oignons':['oignon','oignons'],
+    'citrons':['citron','citrons'],
+    'concombres':['concombre','concombres'],
+    'carottes':['carotte','carottes'],
+    'échalotes':['échalote','échalotes'],
+    'tomates':['tomate','tomates'],
+    'avocats':['avocat','avocats'],
+    'poireaux':['poireau','poireaux'],
+    'salades vertes':['salade','salades']
+  };
+  if(q!=null&&pieces[key])return countText(q,pieces[key][0],pieces[key][1]);
+
+  // Produits vendus en boîtes, paquets, pots, briques ou sachets.
+  if(key==='œufs'&&q!=null){
+    const n=wholeCount(q);
+    if(n<=6)return'1 boîte de 6 œufs';
+    if(n<=12)return'1 boîte de 12 œufs';
+    return `${Math.ceil(n/12)} boîtes de 12 œufs`;
+  }
+  if(key==='gousses d’ail'&&q!=null){
+    const heads=Math.max(1,Math.ceil(q/8));
+    return heads===1?'1 tête d’ail':`${heads} têtes d’ail`;
+  }
+  if(key==='tranches de pain de mie'&&q!=null){
+    const n=packCount(q,20);
+    return n===1?'1 paquet de pain de mie':`${n} paquets de pain de mie`;
+  }
+  if((key==='tranches de pain'||key==='grandes tranches de pain')&&q!=null){
+    const n=packCount(q,8);
+    return n===1?'1 pain':`${n} pains`;
+  }
+  if(key==='pommes de terre'&&q!=null&&unit==='g'){
+    return `${roundedWeightText(q,500)} de pommes de terre`;
+  }
+  if((key==='pâtes'||key==='riz'||key==='riz cuit')&&q!=null&&unit==='g'){
+    const n=packCount(q,500);
+    const label=key==='pâtes'?'pâtes':'riz';
+    return n===1?`1 paquet de ${label} (500 g)`:`${n} paquets de ${label} (500 g)`;
+  }
+  if(key==='chapelure'&&q!=null)return'1 paquet de chapelure';
+  if(key==='lentilles cuites'&&q!=null)return'1 boîte de lentilles';
+  if(key==='tomates cerises'&&q!=null){
+    const n=packCount(q,250);
+    return n===1?'1 barquette de tomates cerises (250 g)':`${n} barquettes de tomates cerises (250 g)`;
+  }
+  if(key==='champignons'&&q!=null){
+    const n=packCount(q,250);
+    return n===1?'1 barquette de champignons (250 g)':`${n} barquettes de champignons (250 g)`;
+  }
+  if(key==='haricots verts'&&q!=null){
+    const n=packCount(q,500);
+    return n===1?'1 sachet de haricots verts (500 g)':`${n} sachets de haricots verts (500 g)`;
+  }
+  if(key==='saumon fumé'&&q!=null){
+    const n=packCount(q,200);
+    return n===1?'1 paquet de saumon fumé (200 g)':`${n} paquets de saumon fumé (200 g)`;
+  }
+  if(key==='crevettes cuites'&&q!=null){
+    const n=packCount(q,200);
+    return n===1?'1 barquette de crevettes (200 g)':`${n} barquettes de crevettes (200 g)`;
+  }
+  if(key==='crème'&&q!=null&&unit==='cl'){
+    if(q<=25)return'1 briquette de crème (25 cl)';
+    if(q<=50)return'1 bouteille de crème (50 cl)';
+    return `${Math.ceil(q/50)} bouteilles de crème (50 cl)`;
+  }
+  if(key==='lait'&&q!=null&&unit==='cl'){
+    if(q<=50)return'1 petite brique de lait (50 cl)';
+    return'1 bouteille de lait (1 L)';
+  }
+  if(key==='coulis de tomate'&&q!=null)return'1 brique de coulis de tomate';
+  if(key==='bouillon'&&q!=null)return'1 brique de bouillon (1 L)';
+  if(key==='fromage râpé'&&q!=null)return'1 sachet de fromage râpé';
+  if(key==='gruyère'&&q!=null)return'1 sachet de gruyère râpé';
+  if(key==='fromage'&&q!=null)return'1 sachet de fromage râpé';
+  if(key==='feta'&&q!=null)return'1 paquet de feta';
+  if(key==='fromage frais'&&q!=null)return'1 pot de fromage frais';
+  if(key==='thon')return q==null?'1 boîte de thon':`${wholeCount(q)} boîte${wholeCount(q)>1?'s':''} de thon`;
+  if(key==='maïs')return q==null?'1 petite boîte de maïs':`${wholeCount(q)} petite${wholeCount(q)>1?'s':''} boîte${wholeCount(q)>1?'s':''} de maïs`;
+
+  // Condiments et épices : la quantité de recette devient un contenant.
+  const containers={
+    'ketchup':'1 flacon de ketchup',
+    'moutarde':'1 pot de moutarde',
+    'concentré de tomate':'1 tube de concentré de tomate',
+    'paprika':'1 pot de paprika',
+    'curry':'1 pot de curry',
+    'miel':'1 pot de miel',
+    'vinaigre balsamique':'1 bouteille de vinaigre balsamique',
+    'olives':'1 bocal d’olives',
+    'vinaigrette':'1 bouteille de vinaigrette',
+    'sauce légère':'1 flacon de sauce légère',
+    'huile':'1 bouteille d’huile',
+    'huile d’olive':'1 bouteille d’huile d’olive',
+    'beurre':'1 plaquette de beurre'
+  };
+  if(containers[key])return containers[key];
+
+  // Herbes fraîches.
+  const herbs={
+    'aneth':'1 bouquet d’aneth',
+    'basilic':'1 bouquet de basilic',
+    'ciboulette':'1 bouquet de ciboulette',
+    'persil':'1 bouquet de persil'
+  };
+  if(herbs[key])return herbs[key];
+
+  // La viande et le poisson vendus au poids gardent leur quantité exacte.
+  if(!x.hasQty)return x.n;
+  return ingredientText(x,x.q);
+}
 function groupedCourses(){
   const map=new Map();
   const all=plan.flatMap(d=>[...d.mid.i,...d.eve.i]);
@@ -379,10 +520,7 @@ function groupedCourses(){
       entry.q+=q;
     }
   });
-  return [...map.values()].map(x=>{
-    if(!x.hasQty)return x.n;
-    return ingredientText(x,x.q);
-  });
+  return [...map.values()].map(purchaseText);
 }
 function show(t){
   $('toast').textContent=t;

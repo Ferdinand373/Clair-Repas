@@ -1,4 +1,4 @@
-const CACHE='clair-repas-v1.3-final';
+const CACHE='clair-repas-v1.3.1-courses-reelles';
 const ASSETS=['./','./index.html','./manifest.webmanifest','./icon-192.png','./icon-512.png'];
 
 self.addEventListener('install',event=>{
