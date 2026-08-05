@@ -9,7 +9,7 @@
 <meta name="apple-mobile-web-app-title" content="Clair Repas">
 <link rel="manifest" href="./manifest.webmanifest">
 <link rel="apple-touch-icon" href="./icon-192.png">
-<title>Clair Repas V1.8</title>
+<title>Clair Repas V1.9</title>
 <style>
 :root{
   --bg:#f4efe7;--card:#fffdfa;--text:#27231f;--muted:#746c63;
@@ -126,8 +126,8 @@ select{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:1
   <div class="history-content" id="historyContent"></div>
 </details>
 
-<p class="note">Les produits identiques sont regroupés ; viandes et poissons sont indiqués en pièces lorsqu’ils s’achètent ainsi.</p>
-<p class="version">Clair Repas V1.8 · 200 recettes vérifiées</p>
+<p class="note">Les produits identiques sont regroupés ; une recette proposée ne revient pas avant 20 jours, sauf si tous les choix compatibles ont été utilisés.</p>
+<p class="version">Clair Repas V1.9 · anti-répétition 20 jours</p>
 </main>
 <div class="toast" id="toast"></div>
 
@@ -385,11 +385,58 @@ function recipeHTML(x){
   return `<h3>Ingrédients</h3><ul>${x.i.map(v=>`<li>${ingredientText(v)}</li>`).join('')}</ul>
   <h3>Préparation</h3><ol>${x.p.map(v=>`<li>${v}</li>`).join('')}</ol>`;
 }
-function priorRecentIds(type){
-  const h=JSON.parse(localStorage.getItem('crHistoryV13')||'[]').filter(x=>x.date!==todayKey()).slice(0,5);
-  const ids=[];
-  h.forEach(entry=>(entry.plan||[]).forEach(d=>ids.push(type==='mid'?d.midId:d.eveId)));
-  return new Set(ids);
+const ANTI_REPEAT_DAYS=20;
+const USAGE_KEY='crMealUsageV19';
+function usageData(){
+  let data;
+  try{data=JSON.parse(localStorage.getItem(USAGE_KEY)||'null')}catch(e){data=null}
+  if(!data||!Array.isArray(data.mid)||!Array.isArray(data.eve))data={mid:[],eve:[],seeded:false};
+
+  // Au premier lancement, reprendre l’historique déjà présent dans l’application.
+  if(!data.seeded){
+    let history=[];
+    try{history=JSON.parse(localStorage.getItem('crHistoryV13')||'[]')}catch(e){}
+    history.forEach(entry=>{
+      const at=new Date(`${entry.date}T12:00:00`).getTime();
+      (entry.plan||[]).forEach(d=>{
+        if(d.midId)data.mid.push({id:d.midId,at});
+        if(d.eveId)data.eve.push({id:d.eveId,at});
+      });
+    });
+    data.seeded=true;
+  }
+
+  const cutoff=Date.now()-ANTI_REPEAT_DAYS*24*60*60*1000;
+  ['mid','eve'].forEach(type=>{
+    const latest=new Map();
+    data[type].forEach(item=>{
+      if(item&&item.id&&Number(item.at)>=cutoff){
+        latest.set(item.id,Math.max(latest.get(item.id)||0,Number(item.at)));
+      }
+    });
+    data[type]=[...latest].map(([id,at])=>({id,at}));
+  });
+  localStorage.setItem(USAGE_KEY,JSON.stringify(data));
+  return data;
+}
+function rememberMeal(type,id){
+  const data=usageData();
+  data[type]=data[type].filter(item=>item.id!==id);
+  data[type].push({id,at:Date.now()});
+  localStorage.setItem(USAGE_KEY,JSON.stringify(data));
+}
+function rememberPlan(items){
+  (items||[]).forEach(d=>{
+    rememberMeal('mid',d.mid.id);
+    rememberMeal('eve',d.eve.id);
+  });
+}
+function recentUseIds(type){
+  return new Set(usageData()[type].map(item=>item.id));
+}
+function lastUsedAt(type,id){
+  const found=usageData()[type].find(item=>item.id===id);
+  return found?Number(found.at):0;
 }
 function poolFor(list,type,exclude){
   const pref=$('mode').value;
@@ -401,11 +448,16 @@ function poolFor(list,type,exclude){
   if(!pool.length)pool=list.filter(x=>x.s.includes(now));
   if(!pool.length)pool=[...list];
 
-  const recent=priorRecentIds(type);
-  let clean=pool.filter(x=>!exclude.has(x.id)&&!recent.has(x.id));
-  if(!clean.length)clean=pool.filter(x=>!exclude.has(x.id));
-  if(!clean.length)clean=pool;
-  return clean;
+  let available=pool.filter(x=>!exclude.has(x.id));
+  if(!available.length)available=pool;
+  const recent=recentUseIds(type);
+  const clean=available.filter(x=>!recent.has(x.id));
+  if(clean.length)return clean;
+
+  // Cas exceptionnel : tous les choix compatibles ont été utilisés.
+  // On reprend alors uniquement la ou les recettes les plus anciennes.
+  const oldest=Math.min(...available.map(x=>lastUsedAt(type,x.id)));
+  return available.filter(x=>lastUsedAt(type,x.id)===oldest);
 }
 function pick(list,type,exclude){
   const pool=poolFor(list,type,exclude);
@@ -420,6 +472,7 @@ function buildPlan(count){
     const eve=pick(evening,'eve',eves); eves.add(eve.id);
     result.push({mid,eve});
   }
+  rememberPlan(result);
   return result;
 }
 function saveState(){
@@ -505,8 +558,13 @@ function render(){
 function changeMeal(index,type){
   const used=new Set(plan.map(d=>type==='mid'?d.mid.id:d.eve.id));
   used.delete(type==='mid'?plan[index].mid.id:plan[index].eve.id);
-  if(type==='mid')plan[index].mid=pick(noon,'mid',used);
-  else plan[index].eve=pick(evening,'eve',used);
+  if(type==='mid'){
+    plan[index].mid=pick(noon,'mid',used);
+    rememberMeal('mid',plan[index].mid.id);
+  }else{
+    plan[index].eve=pick(evening,'eve',used);
+    rememberMeal('eve',plan[index].eve.id);
+  }
   render();
 }
 function ensureDays(){
@@ -515,7 +573,9 @@ function ensureDays(){
   while(plan.length<count){
     const mids=new Set(plan.map(d=>d.mid.id));
     const eves=new Set(plan.map(d=>d.eve.id));
-    plan.push({mid:pick(noon,'mid',mids),eve:pick(evening,'eve',eves)});
+    const added={mid:pick(noon,'mid',mids),eve:pick(evening,'eve',eves)};
+    plan.push(added);
+    rememberPlan([added]);
   }
 }
 function loadOrCreate(){
