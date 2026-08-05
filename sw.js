@@ -1,4 +1,4 @@
-const CACHE='clair-repas-v1.9-anti-repetition-20j';
+const CACHE='clair-repas-v2.0-programme-conserve';
 const ASSETS=['./','./index.html','./manifest.webmanifest','./icon-192.png','./icon-512.png'];
 
 self.addEventListener('install',event=>{

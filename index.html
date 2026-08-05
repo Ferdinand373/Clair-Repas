@@ -9,7 +9,7 @@
 <meta name="apple-mobile-web-app-title" content="Clair Repas">
 <link rel="manifest" href="./manifest.webmanifest">
 <link rel="apple-touch-icon" href="./icon-192.png">
-<title>Clair Repas V1.9</title>
+<title>Clair Repas V2.0</title>
 <style>
 :root{
   --bg:#f4efe7;--card:#fffdfa;--text:#27231f;--muted:#746c63;
@@ -126,8 +126,8 @@ select{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:1
   <div class="history-content" id="historyContent"></div>
 </details>
 
-<p class="note">Les produits identiques sont regroupés ; une recette proposée ne revient pas avant 20 jours, sauf si tous les choix compatibles ont été utilisés.</p>
-<p class="version">Clair Repas V1.9 · anti-répétition 20 jours</p>
+<p class="note">Le programme reste en mémoire jusqu’à ce que vous choisissiez « Nouveau programme » ou changiez un repas. Une recette proposée ne revient pas avant 20 jours.</p>
+<p class="version">Clair Repas V2.0 · programme conservé</p>
 </main>
 <div class="toast" id="toast"></div>
 
@@ -580,7 +580,8 @@ function ensureDays(){
 }
 function loadOrCreate(){
   const saved=JSON.parse(localStorage.getItem('crStateV13')||'null');
-  if(saved&&saved.date===todayKey()&&Array.isArray(saved.plan)){
+  // Le programme reste disponible d’un jour à l’autre jusqu’à une action volontaire.
+  if(saved&&Array.isArray(saved.plan)){
     const loaded=saved.plan.map(d=>({
       mid:noon.find(x=>x.id===d.midId),
       eve:evening.find(x=>x.id===d.eveId)
@@ -847,8 +848,7 @@ $('people').onchange=()=>{
 };
 $('mode').onchange=()=>{
   localStorage.setItem('crMode',$('mode').value);
-  plan=buildPlan(Number($('days').value));
-  render();
+  show('Préférence enregistrée pour le prochain programme');
 };
 $('favorite').onclick=()=>{
   const favs=new Set(JSON.parse(localStorage.getItem('crFavMeals')||'[]'));

@@ -1,7 +1,7 @@
 {
   "name": "Clair Repas",
   "short_name": "Clair Repas",
-  "description": "200 recettes simples : 100 midis et 100 soirs rassasiants.",
+  "description": "200 recettes simples ; les menus restent enregistrés jusqu’au prochain changement.",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
