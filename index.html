@@ -1,78 +1,61 @@
 <!doctype html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <meta name="theme-color" content="#f6f1e8" />
-  <link rel="manifest" href="manifest.webmanifest" />
-  <link rel="apple-touch-icon" href="icon.svg" />
-  <title>Clair Repas</title>
-  <style>
-    :root { --bg:#f6f1e8; --card:#fffdf9; --text:#25211d; --muted:#746b62; --accent:#496b52; --accent2:#dde8df; --border:#e5ddd2; }
-    *{box-sizing:border-box} body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--bg);color:var(--text)}
-    main{max-width:620px;margin:0 auto;padding:calc(22px + env(safe-area-inset-top)) 18px calc(30px + env(safe-area-inset-bottom))}
-    h1{font-size:32px;margin:6px 0 4px;letter-spacing:-.6px} .subtitle{margin:0 0 24px;color:var(--muted)}
-    .panel,.meal{background:var(--card);border:1px solid var(--border);border-radius:22px;padding:18px;box-shadow:0 8px 28px rgba(40,32,24,.06)}
-    .row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px}
-    label{font-size:13px;color:var(--muted);display:block;margin-bottom:7px}
-    select,button{width:100%;font:inherit;border-radius:14px;border:1px solid var(--border);padding:13px;background:white;color:var(--text)}
-    button{cursor:pointer;font-weight:700}.primary{background:var(--accent);color:white;border-color:var(--accent);font-size:18px;padding:16px}
-    .meal{display:none;margin-top:18px}.meal.show{display:block}.meal h2{font-size:26px;margin:0 0 7px}.meta{color:var(--muted);margin-bottom:16px}
-    .actions{display:grid;gap:10px}.secondary{background:var(--accent2);border-color:var(--accent2)}.ghost{background:white}
-    .fav{width:auto;float:right;border:0;background:transparent;font-size:26px;padding:0 2px}.recipe{display:none;margin-top:16px;padding-top:14px;border-top:1px solid var(--border)}
-    .recipe.show{display:block}.recipe h3{margin:14px 0 6px}.recipe ul,.recipe ol{padding-left:21px;line-height:1.5}
-    .note{font-size:13px;color:var(--muted);text-align:center;margin-top:16px}
-    @media(max-width:390px){.row{grid-template-columns:1fr}h1{font-size:29px}}
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#f4efe7">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icon-192.png">
+<title>Clair Repas V1.1</title>
+<style>
+:root{--bg:#f4efe7;--card:#fffdfa;--text:#27231f;--muted:#746c63;--green:#456851;--soft:#e5eee7;--line:#e6ddd3;--gold:#c89235}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}main{max-width:650px;margin:auto;padding:calc(18px + env(safe-area-inset-top)) 16px calc(28px + env(safe-area-inset-bottom))}header{text-align:center;margin-bottom:16px}h1{font-size:31px;margin:4px 0}.date{color:var(--muted)}.settings,.card{background:var(--card);border:1px solid var(--line);border-radius:22px;box-shadow:0 8px 26px rgba(45,35,25,.06)}.settings{padding:14px;margin-bottom:14px;display:flex;gap:10px;align-items:end}.settings>div{flex:1}label{display:block;font-size:12px;color:var(--muted);margin:0 0 6px}select{width:100%;font:inherit;padding:11px;border:1px solid var(--line);border-radius:13px;background:white}.card{padding:18px;margin:12px 0}.tag{font-size:13px;font-weight:800;color:var(--green);letter-spacing:.4px}.tag.evening{color:#665581}.meal-title{font-size:25px;line-height:1.1;margin:8px 0}.meta{color:var(--muted);font-size:14px}.recipe{display:none;margin-top:14px;padding-top:12px;border-top:1px solid var(--line)}.recipe.open{display:block}.recipe h3{margin:12px 0 5px;font-size:17px}.recipe ul,.recipe ol{padding-left:21px;line-height:1.48;margin-top:5px}.mini{margin-top:14px;width:100%;padding:11px;border:0;border-radius:13px;background:var(--soft);color:var(--text);font:inherit;font-weight:750}.actions{display:grid;gap:10px;margin-top:16px}.actions button{width:100%;padding:15px;border-radius:15px;border:1px solid var(--line);font:inherit;font-weight:800;background:white}.actions .primary{background:var(--green);border-color:var(--green);color:white;font-size:17px}.actions .favorite.on{color:#8c5c0e;background:#fff3d8;border-color:#ebcf91}.note{text-align:center;color:var(--muted);font-size:12px;margin-top:14px}.toast{position:fixed;left:50%;bottom:25px;transform:translateX(-50%);background:#28231f;color:white;padding:11px 15px;border-radius:999px;display:none;z-index:9}.toast.show{display:block}@media(max-width:390px){.settings{display:block}.settings>div+div{margin-top:10px}.meal-title{font-size:23px}}
+</style>
 </head>
 <body>
 <main>
-  <h1>Clair Repas</h1>
-  <p class="subtitle">Une idée simple, en quelques secondes.</p>
-
-  <section class="panel">
-    <div class="row">
-      <div><label for="people">Pour combien ?</label><select id="people"><option>1 personne</option><option selected>2 personnes</option><option>3 personnes</option><option>4 personnes</option></select></div>
-      <div><label for="mode">Cuisson disponible</label><select id="mode"><option value="Tous">Tous</option><option>Poêle</option><option>Air Fryer</option><option>Plancha</option><option>Barbecue</option><option>Four</option><option>Sans cuisson</option></select></div>
-    </div>
-    <button class="primary" id="suggest">🍽️ Proposer un repas</button>
-  </section>
-
-  <section class="meal" id="meal">
-    <button class="fav" id="fav" aria-label="Ajouter aux favoris">☆</button>
-    <h2 id="title"></h2>
-    <div class="meta" id="meta"></div>
-    <div class="actions">
-      <button class="secondary" id="recipeBtn">📖 Voir la recette</button>
-      <button class="ghost" id="copyBtn">🛒 Copier pour les courses</button>
-      <button class="ghost" id="another">🔄 Une autre idée</button>
-    </div>
-    <div class="recipe" id="recipe"></div>
-  </section>
-  <p class="note">Les favoris restent enregistrés sur cet iPhone.</p>
-</main>
+<header><h1>🍽️ Clair Repas</h1><div class="date" id="date"></div></header>
+<section class="settings">
+<div><label for="people">Pour combien ?</label><select id="people"><option value="1">1 personne</option><option value="2" selected>2 personnes</option><option value="3">3 personnes</option><option value="4">4 personnes</option></select></div>
+<div><label for="mode">Cuisson préférée</label><select id="mode"><option value="Tous">Toutes</option><option>Poêle</option><option>Air Fryer</option><option>Four</option><option>Plancha</option><option>Barbecue</option><option>Sans cuisson</option></select></div>
+</section>
+<section class="card"><div class="tag">☀️ MIDI · PLAT COMPLET</div><div class="meal-title" id="midTitle"></div><div class="meta" id="midMeta"></div><button class="mini" data-target="midRecipe">📖 Voir la recette</button><div class="recipe" id="midRecipe"></div></section>
+<section class="card"><div class="tag evening">🌙 SOIR · PLUS LÉGER</div><div class="meal-title" id="eveTitle"></div><div class="meta" id="eveMeta"></div><button class="mini" data-target="eveRecipe">📖 Voir la recette</button><div class="recipe" id="eveRecipe"></div></section>
+<div class="actions"><button class="primary" id="surprise">🎲 Surprends-nous</button><button id="courses">🛒 Copier les courses du jour</button><button class="favorite" id="favorite">☆ J’aime ce menu</button></div>
+<p class="note">Les choix et favoris restent enregistrés sur cet appareil.</p>
+</main><div class="toast" id="toast"></div>
 <script>
-const meals = [
- {n:'Knack et purée maison',m:'Poêle',t:'25 min',i:['4 knack','600 g de pommes de terre','20 g de beurre','10 cl de lait','Sel','Poivre'],p:['Cuire les pommes de terre dans l’eau salée.','Réchauffer doucement les knack à la poêle.','Écraser les pommes de terre avec le beurre et le lait.','Servir bien chaud.']},
- {n:'Poulet au paprika',m:'Air Fryer',t:'25 min',i:['2 blancs de poulet','1 c. à café de paprika','1 filet d’huile','Sel','Poivre'],p:['Mélanger le poulet avec l’huile et le paprika.','Cuire 18 à 20 min à 190 °C en retournant à mi-cuisson.']},
- {n:'Saumon à l’aneth',m:'Air Fryer',t:'18 min',i:['2 pavés de saumon','Un peu d’aneth','1/2 citron','Sel','Poivre'],p:['Assaisonner les pavés.','Cuire 10 à 12 min à 180 °C.','Ajouter citron et aneth au moment de servir.']},
- {n:'Bratkartoffeln',m:'Poêle',t:'30 min',i:['500 g de pommes de terre cuites','1 oignon','100 g de lardons','Beurre','Poivre'],p:['Couper les pommes de terre en rondelles.','Faire revenir les lardons et l’oignon.','Ajouter les pommes de terre et faire dorer.']},
- {n:'Currywurst maison',m:'Poêle',t:'20 min',i:['4 saucisses','20 cl de coulis de tomate','1 c. à soupe de ketchup','1 c. à café de curry'],p:['Faire dorer les saucisses.','Chauffer tomate, ketchup et curry.','Couper les saucisses et napper de sauce.']},
- {n:'Brochettes de poulet citronnées',m:'Barbecue',t:'30 min',i:['400 g de poulet','1 citron','1 filet d’huile','Herbes','Sel','Poivre'],p:['Couper et assaisonner le poulet.','Monter les brochettes.','Cuire 10 à 12 min au barbecue.']},
- {n:'Tomates, mozzarella et jambon',m:'Sans cuisson',t:'10 min',i:['4 tomates','1 mozzarella','4 tranches de jambon','Huile d’olive','Basilic'],p:['Couper tomates et mozzarella.','Ajouter jambon, huile et basilic.']},
- {n:'Échines à la poêle',m:'Poêle',t:'25 min',i:['2 échines de porc','1 noix de beurre','Herbes','Sel','Poivre'],p:['Assaisonner les échines.','Les cuire 8 à 10 min par face à feu moyen.','Laisser reposer 3 min avant de servir.']},
- {n:'Jambon roulé gratiné',m:'Four',t:'25 min',i:['4 tranches de jambon','80 g de gruyère','20 cl de crème','1 c. à soupe de concentré de tomate'],p:['Mettre un peu de gruyère dans chaque tranche de jambon et rouler.','Mélanger crème et concentré de tomate.','Napper, ajouter le gruyère et gratiner 15 min à 200 °C.']},
- {n:'Saucisses et légumes à la plancha',m:'Plancha',t:'25 min',i:['4 saucisses','1 courgette','1 poivron','1 oignon','Huile'],p:['Couper les légumes.','Cuire saucisses et légumes sur la plancha chaude.','Retourner régulièrement.']}
+const noon=[
+{n:'Poulet au paprika et pommes de terre',m:'Air Fryer',t:'35 min',i:['2 blancs de poulet','500 g de pommes de terre','1 c. à café de paprika','1 filet d’huile','Sel','Poivre'],p:['Couper les pommes de terre et les mélanger avec un peu d’huile.','Cuire 15 min à 190 °C.','Ajouter le poulet assaisonné au paprika.','Poursuivre 18 à 20 min en retournant à mi-cuisson.']},
+{n:'Échines de porc et poêlée de légumes',m:'Poêle',t:'30 min',i:['2 échines de porc','1 courgette','1 poivron','1 oignon','Beurre ou huile','Sel','Poivre'],p:['Faire revenir les légumes émincés.','Les réserver au chaud.','Cuire les échines 8 à 10 min par face.','Servir avec les légumes.']},
+{n:'Saumon, riz et courgettes',m:'Air Fryer',t:'30 min',i:['2 pavés de saumon','120 g de riz','1 courgette','1/2 citron','Aneth','Sel','Poivre'],p:['Cuire le riz.','Cuire le saumon 10 à 12 min à 180 °C.','Poêler rapidement la courgette.','Servir avec citron et aneth.']},
+{n:'Currywurst et pommes de terre sautées',m:'Poêle',t:'30 min',i:['4 saucisses','500 g de pommes de terre cuites','20 cl de coulis de tomate','1 c. à soupe de ketchup','1 c. à café de curry','1 oignon'],p:['Faire dorer les pommes de terre avec l’oignon.','Cuire les saucisses.','Chauffer le coulis avec ketchup et curry.','Couper les saucisses et napper de sauce.']},
+{n:'Brochettes de poulet et légumes grillés',m:'Barbecue',t:'30 min',i:['400 g de poulet','1 courgette','1 poivron','1 citron','Huile','Herbes','Sel','Poivre'],p:['Couper le poulet et les légumes.','Monter les brochettes et assaisonner.','Cuire 12 à 15 min au barbecue.']},
+{n:'Saucisses et légumes à la plancha',m:'Plancha',t:'25 min',i:['4 saucisses','1 courgette','1 poivron','1 oignon','Huile','Sel','Poivre'],p:['Couper les légumes.','Cuire les saucisses et les légumes sur la plancha chaude.','Retourner régulièrement.']},
+{n:'Jambon roulé gratiné et salade',m:'Four',t:'30 min',i:['4 tranches de jambon','80 g de gruyère','20 cl de crème','1 c. à soupe de concentré de tomate','1 salade verte'],p:['Mettre un peu de gruyère dans le jambon et rouler.','Mélanger crème et concentré de tomate.','Napper, ajouter le reste de gruyère et gratiner 15 min à 200 °C.','Servir avec la salade.']}
 ];
-let current=null; let last=-1; const favorites=JSON.parse(localStorage.getItem('clairRepasFav')||'[]');
-const $=id=>document.getElementById(id);
-function choose(){const mode=$('mode').value;const pool=meals.map((x,i)=>({...x,idx:i})).filter(x=>mode==='Tous'||x.m===mode);if(!pool.length)return;let pick;do{pick=pool[Math.floor(Math.random()*pool.length)]}while(pool.length>1&&pick.idx===last);last=pick.idx;current=pick;render();}
-function render(){ $('meal').classList.add('show'); $('title').textContent=current.n; $('meta').textContent=`⏱️ ${current.t} · 🔥 ${current.m}`; $('fav').textContent=favorites.includes(current.n)?'★':'☆'; $('recipe').classList.remove('show'); $('recipeBtn').textContent='📖 Voir la recette'; $('recipe').innerHTML=`<h3>Ingrédients</h3><ul>${current.i.map(x=>`<li>${x}</li>`).join('')}</ul><h3>Préparation</h3><ol>${current.p.map(x=>`<li>${x}</li>`).join('')}</ol>`;}
-$('suggest').onclick=choose;$('another').onclick=choose;
-$('recipeBtn').onclick=()=>{const open=$('recipe').classList.toggle('show');$('recipeBtn').textContent=open?'📕 Masquer la recette':'📖 Voir la recette'};
-$('fav').onclick=()=>{const i=favorites.indexOf(current.n);if(i>=0)favorites.splice(i,1);else favorites.push(current.n);localStorage.setItem('clairRepasFav',JSON.stringify(favorites));render()};
-$('copyBtn').onclick=async()=>{const text=`${current.n}\n\n${current.i.join('\n')}`;try{await navigator.clipboard.writeText(text);$('copyBtn').textContent='✅ Liste copiée';setTimeout(()=>$('copyBtn').textContent='🛒 Copier pour les courses',1500)}catch(e){alert(text)}};
-if('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js');
+const evening=[
+{n:'Salade de pommes de terre, thon et œufs',m:'Sans cuisson',t:'20 min',i:['400 g de pommes de terre cuites','1 boîte de thon','2 œufs durs','2 tomates','Vinaigrette','Ciboulette'],p:['Couper les pommes de terre et les tomates.','Ajouter le thon et les œufs.','Assaisonner et parsemer de ciboulette.']},
+{n:'Tomates, mozzarella et jambon cru',m:'Sans cuisson',t:'10 min',i:['4 tomates','1 mozzarella','4 tranches de jambon cru','Huile d’olive','Basilic','Poivre'],p:['Couper les tomates et la mozzarella.','Ajouter le jambon cru.','Assaisonner avec huile, basilic et poivre.']},
+{n:'Omelette aux champignons et salade',m:'Poêle',t:'20 min',i:['4 œufs','200 g de champignons','1 petite salade','Beurre','Sel','Poivre'],p:['Faire revenir les champignons.','Ajouter les œufs battus et cuire doucement.','Servir avec la salade.']},
+{n:'Salade grecque et tartines grillées',m:'Sans cuisson',t:'15 min',i:['3 tomates','1/2 concombre','100 g de feta','Quelques olives','4 tranches de pain','Huile d’olive','Origan'],p:['Couper les légumes et la feta.','Ajouter olives, huile et origan.','Servir avec les tartines grillées.']},
+{n:'Courgettes rôties, jambon et fromage frais',m:'Air Fryer',t:'20 min',i:['2 courgettes','4 tranches de jambon','100 g de fromage frais','Huile','Herbes','Sel','Poivre'],p:['Couper les courgettes et les assaisonner.','Cuire 12 à 15 min à 190 °C.','Servir avec le jambon et le fromage frais.']},
+{n:'Saumon froid, concombre et pommes vapeur',m:'Sans cuisson',t:'15 min',i:['200 g de saumon fumé','1/2 concombre','400 g de pommes de terre cuites','1 yaourt nature','Aneth','Citron'],p:['Couper le concombre et les pommes de terre.','Mélanger yaourt, citron et aneth.','Servir avec le saumon fumé.']}
+];
+const $=id=>document.getElementById(id);let current={mid:null,eve:null};let lastMid=-1,lastEve=-1;
+$('date').textContent=new Intl.DateTimeFormat('fr-FR',{weekday:'long',day:'numeric',month:'long'}).format(new Date());
+$('people').value=localStorage.getItem('crPeople')||'2';$('mode').value=localStorage.getItem('crMode')||'Tous';
+$('people').onchange=()=>localStorage.setItem('crPeople',$('people').value);$('mode').onchange=()=>{localStorage.setItem('crMode',$('mode').value);chooseMenu()};
+function pick(list,last){const mode=$('mode').value;let pool=list.map((x,i)=>({...x,idx:i})).filter(x=>mode==='Tous'||x.m===mode||x.m==='Sans cuisson');if(!pool.length)pool=list.map((x,i)=>({...x,idx:i}));let x;do{x=pool[Math.floor(Math.random()*pool.length)]}while(pool.length>1&&x.idx===last);return x}
+function scaled(items){const p=Number($('people').value);if(p===2)return items;return items.map(x=>x.replace(/(^|\s)(\d+(?:[.,]\d+)?)(?=\s|$)/,(_,a,n)=>a+String(Math.max(1,Math.round(Number(n.replace(',','.'))*p/2*10)/10)).replace('.',',')))}
+function recipeHTML(x){return `<h3>Ingrédients</h3><ul>${scaled(x.i).map(v=>`<li>${v}</li>`).join('')}</ul><h3>Préparation</h3><ol>${x.p.map(v=>`<li>${v}</li>`).join('')}</ol>`}
+function render(){midTitle.textContent=current.mid.n;midMeta.textContent=`⏱️ ${current.mid.t} · 🔥 ${current.mid.m}`;eveTitle.textContent=current.eve.n;eveMeta.textContent=`⏱️ ${current.eve.t} · 🔥 ${current.eve.m}`;midRecipe.innerHTML=recipeHTML(current.mid);eveRecipe.innerHTML=recipeHTML(current.eve);document.querySelectorAll('.recipe').forEach(x=>x.classList.remove('open'));document.querySelectorAll('.mini').forEach(x=>x.textContent='📖 Voir la recette');const key=current.mid.n+'|'+current.eve.n;const favs=JSON.parse(localStorage.getItem('crMenus')||'[]');favorite.classList.toggle('on',favs.includes(key));favorite.textContent=favs.includes(key)?'★ Menu aimé':'☆ J’aime ce menu'}
+function chooseMenu(){current.mid=pick(noon,lastMid);lastMid=current.mid.idx;current.eve=pick(evening,lastEve);lastEve=current.eve.idx;render()}
+document.querySelectorAll('.mini').forEach(b=>b.onclick=()=>{const el=$(b.dataset.target);const open=el.classList.toggle('open');b.textContent=open?'📕 Masquer la recette':'📖 Voir la recette'});
+surprise.onclick=chooseMenu;
+favorite.onclick=()=>{const key=current.mid.n+'|'+current.eve.n;const favs=JSON.parse(localStorage.getItem('crMenus')||'[]');const i=favs.indexOf(key);if(i>=0)favs.splice(i,1);else favs.push(key);localStorage.setItem('crMenus',JSON.stringify(favs));render();show(i>=0?'Menu retiré des favoris':'Menu enregistré')};
+courses.onclick=async()=>{const text=`CLAIR REPAS — ${$('people').value} personne(s)\n\nMIDI — ${current.mid.n}\n${scaled(current.mid.i).join('\n')}\n\nSOIR — ${current.eve.n}\n${scaled(current.eve.i).join('\n')}`;try{await navigator.clipboard.writeText(text);show('Liste copiée pour Clair Courses')}catch(e){prompt('Copie cette liste :',text)}};
+function show(t){toast.textContent=t;toast.classList.add('show');setTimeout(()=>toast.classList.remove('show'),1800)}
+chooseMenu();if('serviceWorker' in navigator)navigator.serviceWorker.register('./sw.js');
 </script>
-</body>
-</html>
+</body></html>
