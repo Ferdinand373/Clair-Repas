@@ -1,4 +1,4 @@
-const CACHE='clair-repas-v2.0-programme-conserve';
+const CACHE='clair-repas-v2.1-saison-temps';
 const ASSETS=['./','./index.html','./manifest.webmanifest','./icon-192.png','./icon-512.png'];
 
 self.addEventListener('install',event=>{

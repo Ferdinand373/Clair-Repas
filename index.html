@@ -9,7 +9,7 @@
 <meta name="apple-mobile-web-app-title" content="Clair Repas">
 <link rel="manifest" href="./manifest.webmanifest">
 <link rel="apple-touch-icon" href="./icon-192.png">
-<title>Clair Repas V2.0</title>
+<title>Clair Repas V2.1</title>
 <style>
 :root{
   --bg:#f4efe7;--card:#fffdfa;--text:#27231f;--muted:#746c63;
@@ -25,8 +25,9 @@ main{max-width:720px;margin:auto;padding:calc(16px + env(safe-area-inset-top)) 1
 header{text-align:center;margin:3px 0 15px}
 h1{font-size:30px;margin:0 0 3px;letter-spacing:-.5px}
 .subtitle{color:var(--muted);font-size:14px}
+.season-line{display:inline-block;margin-top:8px;padding:6px 10px;border-radius:999px;background:var(--green-soft);color:var(--green);font-size:12px;font-weight:800}
 .settings,.day-card,.history{background:var(--card);border:1px solid var(--line);border-radius:21px;box-shadow:0 8px 26px rgba(45,35,25,.055)}
-.settings{padding:13px;margin-bottom:14px;display:grid;grid-template-columns:repeat(3,1fr);gap:10px;align-items:end}
+.settings{padding:13px;margin-bottom:14px;display:grid;grid-template-columns:repeat(4,1fr);gap:10px;align-items:end}
 label{display:block;font-size:12px;color:var(--muted);margin:0 0 6px}
 select{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:13px;background:white;color:var(--text)}
 .day-card{padding:16px;margin:12px 0}
@@ -63,9 +64,8 @@ select{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:1
 .version{text-align:center;color:#9a9187;font-size:11px;margin-top:7px}
 .toast{position:fixed;left:50%;bottom:calc(22px + env(safe-area-inset-bottom));transform:translateX(-50%);background:#28231f;color:white;padding:11px 15px;border-radius:999px;display:none;z-index:9;max-width:88%;text-align:center}
 .toast.show{display:block}
-@media(max-width:560px){
+@media(max-width:620px){
   .settings{grid-template-columns:1fr 1fr}
-  .settings .mode-setting{grid-column:1/-1}
 }
 @media(max-width:390px){
   .settings{display:block}.settings>div+div{margin-top:10px}
@@ -79,6 +79,7 @@ select{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:1
 <header>
   <h1>🍽️ Clair Repas</h1>
   <div class="subtitle">Les repas et les courses, simplement.</div>
+  <div class="season-line" id="seasonLine"></div>
 </header>
 
 <section class="settings">
@@ -111,6 +112,15 @@ select{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:1
       <option>Sans cuisson</option>
     </select>
   </div>
+  <div>
+    <label for="timeAvailable">Temps disponible</label>
+    <select id="timeAvailable">
+      <option value="Tous">Peu importe</option>
+      <option value="20">20 min maximum</option>
+      <option value="30">30 min maximum</option>
+      <option value="45plus">45 min ou plus</option>
+    </select>
+  </div>
 </section>
 
 <div id="daysContainer"></div>
@@ -126,8 +136,8 @@ select{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:1
   <div class="history-content" id="historyContent"></div>
 </details>
 
-<p class="note">Le programme reste en mémoire jusqu’à ce que vous choisissiez « Nouveau programme » ou changiez un repas. Une recette proposée ne revient pas avant 20 jours.</p>
-<p class="version">Clair Repas V2.0 · programme conservé</p>
+<p class="note">La saison et le temps disponible guident les prochains choix. Le programme affiché reste conservé jusqu’à une action volontaire.</p>
+<p class="version">Clair Repas V2.1 · saison et temps disponible</p>
 </main>
 <div class="toast" id="toast"></div>
 
@@ -353,6 +363,16 @@ let plan=[];
 $('people').value=localStorage.getItem('crPeople')||'2';
 $('days').value=localStorage.getItem('crDays')||'2';
 $('mode').value=localStorage.getItem('crMode')||'Tous';
+$('timeAvailable').value=localStorage.getItem('crTimeAvailable')||'Tous';
+
+const seasonInfo={
+  printemps:{icon:'🌱',label:'Menus de printemps'},
+  été:{icon:'☀️',label:'Menus d’été'},
+  automne:{icon:'🍂',label:'Menus d’automne'},
+  hiver:{icon:'❄️',label:'Menus d’hiver'}
+};
+const currentSeason=seasonInfo[season()];
+$('seasonLine').textContent=`${currentSeason.icon} ${currentSeason.label} · produits de saison privilégiés`;
 
 function dateFor(index){
   const d=new Date();
@@ -438,15 +458,30 @@ function lastUsedAt(type,id){
   const found=usageData()[type].find(item=>item.id===id);
   return found?Number(found.at):0;
 }
+function recipeMinutes(recipe){
+  const match=String(recipe.t||'').match(/\d+/);
+  return match?Number(match[0]):999;
+}
+function fitsAvailableTime(recipe){
+  const pref=$('timeAvailable').value;
+  if(pref==='Tous'||pref==='45plus')return true;
+  return recipeMinutes(recipe)<=Number(pref);
+}
 function poolFor(list,type,exclude){
   const pref=$('mode').value;
   const now=season();
-  let pool=list.filter(x=>x.s.includes(now));
+  let seasonal=list.filter(x=>x.s.includes(now));
+  if(!seasonal.length)seasonal=[...list];
+
+  // Le temps disponible reste prioritaire : aucune recette trop longue n’est proposée.
+  let timed=seasonal.filter(fitsAvailableTime);
+  if(!timed.length)timed=seasonal;
+
+  let pool=timed;
   if(pref!=='Tous'){
-    pool=pool.filter(x=>x.m===pref || (type==='eve'&&x.m==='Sans cuisson'));
+    const byMode=timed.filter(x=>x.m===pref || (type==='eve'&&x.m==='Sans cuisson'));
+    if(byMode.length)pool=byMode;
   }
-  if(!pool.length)pool=list.filter(x=>x.s.includes(now));
-  if(!pool.length)pool=[...list];
 
   let available=pool.filter(x=>!exclude.has(x.id));
   if(!available.length)available=pool;
@@ -480,6 +515,7 @@ function saveState(){
     date:todayKey(),
     days:Number($('days').value),
     mode:$('mode').value,
+    timeAvailable:$('timeAvailable').value,
     plan:plan.map(d=>({midId:d.mid.id,eveId:d.eve.id}))
   }));
 }
@@ -849,6 +885,10 @@ $('people').onchange=()=>{
 $('mode').onchange=()=>{
   localStorage.setItem('crMode',$('mode').value);
   show('Préférence enregistrée pour le prochain programme');
+};
+$('timeAvailable').onchange=()=>{
+  localStorage.setItem('crTimeAvailable',$('timeAvailable').value);
+  show('Temps enregistré pour le prochain programme');
 };
 $('favorite').onclick=()=>{
   const favs=new Set(JSON.parse(localStorage.getItem('crFavMeals')||'[]'));

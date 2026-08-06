@@ -1,7 +1,7 @@
 {
   "name": "Clair Repas",
   "short_name": "Clair Repas",
-  "description": "200 recettes simples ; les menus restent enregistrés jusqu’au prochain changement.",
+  "description": "200 recettes simples, adaptées à la saison et au temps disponible ; les menus restent enregistrés.",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
