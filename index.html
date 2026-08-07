@@ -9,7 +9,7 @@
 <meta name="apple-mobile-web-app-title" content="Clair Repas">
 <link rel="manifest" href="./manifest.webmanifest">
 <link rel="apple-touch-icon" href="./icon-192.png">
-<title>Clair Repas V2.1</title>
+<title>Clair Repas V2.2</title>
 <style>
 :root{
   --bg:#f4efe7;--card:#fffdfa;--text:#27231f;--muted:#746c63;
@@ -47,6 +47,10 @@ select{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:1
 .recipe.open{display:block}
 .recipe h3{margin:10px 0 5px;font-size:16px}
 .recipe ul,.recipe ol{padding-left:21px;line-height:1.46;margin:5px 0}
+.cooking-tools{margin:13px 0 2px;padding:10px 11px;border-radius:14px;background:#f3f7f2;border:1px solid #dce9df}
+.wake-note{display:none;margin:0 0 8px;color:var(--green);font-size:12px;font-weight:760}
+body.wake-active .wake-note{display:block}
+.timer-start{width:100%;padding:10px 12px;border:0;border-radius:11px;background:var(--green);color:white;font-weight:820}
 .actions{display:grid;gap:9px;margin-top:15px}
 .actions button{width:100%;padding:14px;border-radius:15px;border:1px solid var(--line);background:white;color:var(--text);font-weight:820}
 .actions .primary{background:var(--green);border-color:var(--green);color:white;font-size:17px}
@@ -62,7 +66,16 @@ select{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:1
 .empty{color:var(--muted);font-size:14px}
 .note{text-align:center;color:var(--muted);font-size:12px;margin:13px 0 0}
 .version{text-align:center;color:#9a9187;font-size:11px;margin-top:7px}
-.toast{position:fixed;left:50%;bottom:calc(22px + env(safe-area-inset-bottom));transform:translateX(-50%);background:#28231f;color:white;padding:11px 15px;border-radius:999px;display:none;z-index:9;max-width:88%;text-align:center}
+.kitchen-timer{position:fixed;left:50%;bottom:calc(18px + env(safe-area-inset-bottom));transform:translateX(-50%);width:min(440px,calc(100% - 24px));padding:10px 11px 10px 14px;border-radius:16px;background:#28231f;color:white;box-shadow:0 12px 30px rgba(30,24,19,.28);display:none;align-items:center;gap:11px;z-index:10}
+.kitchen-timer.show{display:flex}
+.kitchen-timer.done{background:var(--green)}
+.timer-copy{min-width:0;flex:1}
+.timer-label{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:11px;color:#d8d1ca}
+.timer-count{display:block;margin-top:1px;font-size:20px;line-height:1;font-variant-numeric:tabular-nums}
+.timer-stop{flex:0 0 auto;padding:8px 10px;border:1px solid rgba(255,255,255,.3);border-radius:10px;background:transparent;color:white;font-weight:800}
+.toast{position:fixed;left:50%;bottom:calc(22px + env(safe-area-inset-bottom));transform:translateX(-50%);background:#28231f;color:white;padding:11px 15px;border-radius:999px;display:none;z-index:11;max-width:88%;text-align:center}
+body.timer-running .toast{bottom:calc(92px + env(safe-area-inset-bottom))}
+body.timer-running main{padding-bottom:calc(112px + env(safe-area-inset-bottom))}
 .toast.show{display:block}
 @media(max-width:620px){
   .settings{grid-template-columns:1fr 1fr}
@@ -105,6 +118,7 @@ select{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:1
     <select id="mode">
       <option value="Tous">Toutes</option>
       <option>Poêle</option>
+      <option>Casserole</option>
       <option>Air Fryer</option>
       <option>Four</option>
       <option>Plancha</option>
@@ -137,8 +151,15 @@ select{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:1
 </details>
 
 <p class="note">La saison et le temps disponible guident les prochains choix. Le programme affiché reste conservé jusqu’à une action volontaire.</p>
-<p class="version">Clair Repas V2.1 · saison et temps disponible</p>
+<p class="version" id="versionLine">Clair Repas V2.2 · moteur enrichi et mode cuisine</p>
 </main>
+<div class="kitchen-timer" id="kitchenTimer" role="status" aria-live="polite">
+  <div class="timer-copy">
+    <span class="timer-label" id="timerLabel">Minuteur de cuisine</span>
+    <strong class="timer-count" id="timerCount">00:00</strong>
+  </div>
+  <button class="timer-stop" id="timerStop">Arrêter</button>
+</div>
 <div class="toast" id="toast"></div>
 
 <script>
@@ -349,7 +370,416 @@ const evening=[
 {id:"e100",n:"Couscous de légumes au poulet",m:"Poêle",t:"25 min",s:["printemps", "été", "automne", "hiver"],i:[I(140,"g","semoule"),I(220,"g","poulet cuit"),I(2,"","carottes"),I(1,"","courgette","courgettes"),I(1,"boîte","pois chiches"),I(null,"","épices couscous")],p:["Faire revenir les légumes avec les épices.", "Ajouter pois chiches et poulet avec un peu d’eau.", "Préparer la semoule et servir."]}
 ];
 
+// Moteur combinatoire V2.2
+// Chaque profil indique explicitement les protéines avec lesquelles il fonctionne.
+const ALL_SEASONS=['printemps','été','automne','hiver'];
+const cooking=(minutes,step)=>({minutes,step});
+const lunchProteins=[
+  {id:'poulet',label:'Poulet',group:'volaille',ingredient:I(320,'g','poulet'),cook:{
+    'Poêle':cooking(14,'Saisir le poulet 6 à 7 minutes par face, jusqu’à cuisson complète.'),
+    'Air Fryer':cooking(16,'Cuire le poulet 15 à 17 minutes à 185 °C en le retournant à mi-cuisson.'),
+    'Plancha':cooking(13,'Griller le poulet 12 à 14 minutes sur la plancha en le retournant régulièrement.'),
+    'Four':cooking(22,'Cuire le poulet 20 à 22 minutes au four à 190 °C.'),
+    'Barbecue':cooking(14,'Griller le poulet 12 à 15 minutes au barbecue en le retournant.')
+  }},
+  {id:'dinde',label:'Dinde',group:'volaille',ingredient:I(320,'g','escalopes de dinde'),cook:{
+    'Poêle':cooking(12,'Cuire la dinde 5 à 6 minutes par face à la poêle.'),
+    'Air Fryer':cooking(14,'Cuire la dinde 13 à 15 minutes à 185 °C en la retournant.'),
+    'Plancha':cooking(12,'Griller la dinde 10 à 12 minutes sur la plancha.'),
+    'Four':cooking(20,'Cuire la dinde 18 à 20 minutes au four à 190 °C.'),
+    'Barbecue':cooking(13,'Griller la dinde 12 à 14 minutes au barbecue.')
+  }},
+  {id:'filet-mignon',label:'Filet mignon',group:'viande',ingredient:I(350,'g','filet mignon en médaillons'),cook:{
+    'Poêle':cooking(16,'Dorer les médaillons puis poursuivre 12 à 14 minutes à feu doux.'),
+    'Air Fryer':cooking(20,'Cuire les médaillons 18 à 20 minutes à 185 °C en les retournant.'),
+    'Plancha':cooking(15,'Griller les médaillons 14 à 16 minutes sur la plancha.'),
+    'Four':cooking(25,'Cuire le filet mignon 23 à 25 minutes au four à 190 °C.'),
+    'Barbecue':cooking(15,'Griller les médaillons 14 à 16 minutes au barbecue.')
+  }},
+  {id:'cotes-porc',label:'Côtes de porc',group:'viande',ingredient:I(2,'','côtes de porc'),cook:{
+    'Poêle':cooking(16,'Cuire les côtes de porc 7 à 8 minutes par face.'),
+    'Air Fryer':cooking(18,'Cuire les côtes 17 à 19 minutes à 190 °C en les retournant.'),
+    'Plancha':cooking(16,'Griller les côtes 7 à 8 minutes par face sur la plancha.'),
+    'Barbecue':cooking(16,'Griller les côtes 7 à 8 minutes par face au barbecue.')
+  }},
+  {id:'boeuf',label:'Bœuf émincé',group:'viande',ingredient:I(320,'g','bœuf émincé'),cook:{
+    'Poêle':cooking(7,'Saisir le bœuf 5 à 7 minutes à feu vif.'),
+    'Plancha':cooking(7,'Saisir le bœuf 5 à 7 minutes sur la plancha très chaude.')
+  }},
+  {id:'saumon',label:'Saumon',group:'poisson',ingredient:I(2,'','pavés de saumon'),cook:{
+    'Poêle':cooking(10,'Cuire le saumon environ 5 minutes côté peau puis 3 à 4 minutes côté chair.'),
+    'Air Fryer':cooking(10,'Cuire le saumon 9 à 11 minutes à 180 °C.'),
+    'Plancha':cooking(10,'Cuire le saumon 8 à 10 minutes sur la plancha.'),
+    'Four':cooking(15,'Cuire le saumon 13 à 15 minutes au four à 180 °C.'),
+    'Barbecue':cooking(12,'Cuire le saumon 10 à 12 minutes au barbecue, idéalement sur une feuille de cuisson.')
+  }},
+  {id:'poisson-blanc',label:'Poisson blanc',group:'poisson',ingredient:I(2,'','filets de poisson blanc'),cook:{
+    'Poêle':cooking(10,'Cuire le poisson 4 à 5 minutes par face à feu moyen.'),
+    'Air Fryer':cooking(11,'Cuire le poisson 10 à 12 minutes à 180 °C.'),
+    'Plancha':cooking(9,'Cuire le poisson 8 à 10 minutes sur la plancha huilée.'),
+    'Four':cooking(14,'Cuire le poisson 12 à 14 minutes au four à 180 °C.')
+  }},
+  {id:'crevettes',label:'Crevettes',group:'poisson',ingredient:I(300,'g','crevettes décortiquées'),cook:{
+    'Poêle':cooking(6,'Saisir les crevettes 5 à 6 minutes à feu vif.'),
+    'Air Fryer':cooking(7,'Cuire les crevettes 6 à 8 minutes à 180 °C.'),
+    'Plancha':cooking(6,'Saisir les crevettes 5 à 6 minutes sur la plancha.')
+  }},
+  {id:'saucisses',label:'Saucisses',group:'viande',ingredient:I(4,'','saucisses'),cook:{
+    'Poêle':cooking(14,'Cuire les saucisses 12 à 14 minutes en les retournant.'),
+    'Air Fryer':cooking(14,'Cuire les saucisses 13 à 15 minutes à 190 °C.'),
+    'Plancha':cooking(14,'Griller les saucisses 12 à 14 minutes sur la plancha.'),
+    'Four':cooking(20,'Cuire les saucisses 18 à 20 minutes au four à 190 °C.'),
+    'Barbecue':cooking(14,'Griller les saucisses 12 à 14 minutes au barbecue sans les piquer.')
+  }},
+  {id:'boulettes',label:'Boulettes de bœuf',group:'viande',ingredient:I(320,'g','boulettes de bœuf'),cook:{
+    'Poêle':cooking(12,'Faire dorer les boulettes 10 à 12 minutes en les tournant.'),
+    'Air Fryer':cooking(12,'Cuire les boulettes 11 à 13 minutes à 185 °C.'),
+    'Four':cooking(18,'Cuire les boulettes 16 à 18 minutes au four à 190 °C.')
+  }},
+  {id:'falafels',label:'Falafels',group:'vegetal',ingredient:I(8,'','falafels'),cook:{
+    'Poêle':cooking(10,'Dorer les falafels 8 à 10 minutes à la poêle.'),
+    'Air Fryer':cooking(10,'Cuire les falafels 9 à 11 minutes à 185 °C.'),
+    'Four':cooking(15,'Cuire les falafels 13 à 15 minutes au four à 190 °C.')
+  }},
+  {id:'pois-chiches',label:'Pois chiches croustillants',group:'vegetal',ingredient:I(1,'boîte','pois chiches'),cook:{
+    'Poêle':cooking(8,'Rincer puis faire dorer les pois chiches 7 à 8 minutes à la poêle.'),
+    'Air Fryer':cooking(15,'Rincer, sécher puis cuire les pois chiches 14 à 16 minutes à 190 °C.'),
+    'Four':cooking(20,'Rincer, sécher puis rôtir les pois chiches 18 à 20 minutes au four à 200 °C.')
+  }}
+];
+
+const lunchProfiles=[
+  {id:'citron-herbes',method:'Plancha',total:25,starch:'semoule',seasons:['printemps','été','automne'],allow:['poulet','dinde','filet-mignon','saumon','poisson-blanc','crevettes'],
+    title:p=>`${p.label} citron et herbes, semoule aux courgettes`,
+    ingredients:[I(140,'g','semoule'),I(1,'','courgette','courgettes'),I(1,'','citron','citrons'),I(null,'','persil et herbes')],
+    start:'Préparer la semoule. Couper la courgette en longues tranches et l’assaisonner.',
+    finish:'Griller la courgette, ajouter le citron et les herbes puis servir avec la semoule.'},
+  {id:'paprika-grenailles',method:'Air Fryer',total:35,starch:'pommes-de-terre',seasons:ALL_SEASONS,allow:['poulet','dinde','cotes-porc','saumon','poisson-blanc','saucisses','boulettes','falafels','pois-chiches'],
+    title:p=>`${p.label} au paprika, grenailles et poivron`,
+    ingredients:[I(450,'g','pommes de terre grenailles'),I(1,'','poivron','poivrons'),I(1,'c. à café','paprika'),I(null,'','huile')],
+    start:'Couper les grenailles et le poivron, les assaisonner au paprika et commencer leur cuisson 12 minutes.',
+    cookStep:(protein,cook)=>`Ajouter la préparation principale dans le panier et poursuivre la cuisson ${cook.minutes} minutes.`,
+    finish:'Vérifier que les grenailles sont tendres et servir bien chaud.'},
+  {id:'moutarde-champignons',method:'Poêle',total:30,starch:'riz',seasons:['printemps','automne','hiver'],allow:['poulet','dinde','filet-mignon','cotes-porc','saumon','poisson-blanc','boulettes'],
+    title:p=>`${p.label} sauce moutarde légère, riz et champignons`,
+    ingredients:[I(130,'g','riz'),I(200,'g','champignons'),I(12,'cl','crème légère'),I(1,'c. à soupe','moutarde'),I(1,'','échalote','échalotes')],
+    start:'Cuire le riz. Faire revenir l’échalote et les champignons.',
+    finish:'Ajouter la crème et la moutarde, réchauffer doucement puis servir avec le riz.'},
+  {id:'tomate-basilic',method:'Poêle',total:25,starch:'pates',seasons:['printemps','été','automne'],allow:['poulet','dinde','filet-mignon','boeuf','saumon','poisson-blanc','crevettes','boulettes','pois-chiches'],
+    title:p=>`${p.label} tomate-basilic, pâtes et courgettes`,
+    ingredients:[I(190,'g','pâtes'),I(1,'','courgette','courgettes'),I(250,'g','tomates cerises'),I(1,'','gousse d’ail','gousses d’ail'),I(null,'','basilic')],
+    start:'Cuire les pâtes. Faire revenir la courgette, l’ail et les tomates pendant 7 minutes.',
+    finish:'Mélanger le tout avec les pâtes et terminer avec le basilic.'},
+  {id:'provencale',method:'Plancha',total:28,starch:'semoule',seasons:['printemps','été'],allow:['poulet','dinde','cotes-porc','boeuf','saumon','poisson-blanc','crevettes','saucisses'],
+    title:p=>`${p.label} à la provençale, semoule et légumes grillés`,
+    ingredients:[I(140,'g','semoule'),I(1,'','aubergine','aubergines'),I(2,'','tomates'),I(1,'','courgette','courgettes'),I(null,'','herbes de Provence')],
+    start:'Préparer la semoule. Trancher les légumes et les assaisonner aux herbes.',
+    finish:'Griller les légumes sur la plancha puis servir l’ensemble avec la semoule.'},
+  {id:'curry-doux',method:'Poêle',total:28,starch:'riz',seasons:ALL_SEASONS,allow:['poulet','dinde','saumon','poisson-blanc','crevettes','pois-chiches'],
+    title:p=>`Curry doux de ${p.label.toLowerCase()}, riz et carottes`,
+    ingredients:[I(130,'g','riz'),I(3,'','carottes'),I(15,'cl','lait de coco'),I(1,'c. à café','curry'),I(150,'g','épinards')],
+    start:'Cuire le riz. Émincer les carottes et les faire revenir 8 minutes.',
+    finish:'Ajouter lait de coco, curry et épinards, laisser frémir 5 minutes puis servir avec le riz.'},
+  {id:'soja-miel',method:'Poêle',total:25,starch:'nouilles',seasons:ALL_SEASONS,allow:['poulet','dinde','boeuf','saumon','crevettes','pois-chiches'],
+    title:p=>`${p.label} soja-miel, nouilles et légumes croquants`,
+    ingredients:[I(170,'g','nouilles'),I(2,'','carottes'),I(250,'g','brocoli'),I(1,'c. à soupe','sauce soja'),I(1,'c. à café','miel')],
+    start:'Cuire les nouilles. Tailler les légumes et les faire sauter en les gardant légèrement croquants.',
+    finish:'Ajouter soja et miel, réunir avec les nouilles et mélanger une minute.'},
+  {id:'poireaux-creme',method:'Four',total:35,starch:'pommes-de-terre',seasons:['automne','hiver','printemps'],allow:['poulet','dinde','filet-mignon','saumon','poisson-blanc'],
+    title:p=>`${p.label} aux poireaux, pommes de terre et crème légère`,
+    ingredients:[I(450,'g','pommes de terre'),I(2,'','poireaux'),I(12,'cl','crème légère'),I(null,'','muscade')],
+    start:'Émincer les poireaux, couper les pommes de terre et les précuire 10 minutes à l’eau. Les répartir dans un plat avec la crème et la muscade.',
+    cookStep:(protein,cook)=>`Ajouter la préparation principale et cuire l’ensemble ${cook.minutes} minutes au four.`,
+    finish:'Vérifier la cuisson, mélanger délicatement les légumes et servir bien chaud.'},
+  {id:'champignons-polenta',method:'Poêle',total:30,starch:'polenta',seasons:['automne','hiver'],allow:['poulet','dinde','filet-mignon','cotes-porc','boeuf','boulettes','pois-chiches'],
+    title:p=>`${p.label} aux champignons et polenta crémeuse`,
+    ingredients:[I(140,'g','polenta'),I(250,'g','champignons'),I(10,'cl','crème légère'),I(1,'','échalote','échalotes'),I(null,'','persil')],
+    start:'Cuire la polenta. Faire revenir l’échalote et les champignons.',
+    finish:'Ajouter un peu de crème et de persil puis servir sur la polenta.'},
+  {id:'grillade-mais',method:'Barbecue',total:35,starch:'pommes-de-terre',seasons:['printemps','été'],allow:['poulet','dinde','filet-mignon','cotes-porc','saumon','saucisses'],
+    title:p=>`${p.label} grillé, maïs et pommes grenailles`,
+    ingredients:[I(400,'g','pommes de terre grenailles'),I(2,'','épis de maïs'),I(1,'','citron','citrons'),I(null,'','huile et herbes')],
+    start:'Précuire les grenailles 10 minutes à l’eau puis les assaisonner. Couper les épis si nécessaire.',
+    finish:'Griller le maïs et les grenailles, ajouter le citron et servir avec la grillade.'},
+  {id:'haricots-riz',method:'Poêle',total:28,starch:'riz',seasons:['printemps','été','automne'],allow:['poulet','dinde','filet-mignon','cotes-porc','boeuf','saumon','poisson-blanc','crevettes','boulettes','pois-chiches'],
+    title:p=>`${p.label} aux herbes, haricots verts et riz`,
+    ingredients:[I(130,'g','riz'),I(400,'g','haricots verts'),I(1,'','échalote','échalotes'),I(1,'','citron','citrons'),I(null,'','persil')],
+    start:'Cuire le riz et les haricots verts. Faire revenir l’échalote.',
+    finish:'Ajouter citron et persil puis servir avec le riz et les haricots.'},
+  {id:'ratatouille',method:'Poêle',total:30,starch:'semoule',seasons:['été','automne'],allow:['poulet','dinde','filet-mignon','cotes-porc','boeuf','saumon','poisson-blanc','crevettes','saucisses','boulettes','pois-chiches'],
+    title:p=>`${p.label} avec ratatouille minute et semoule`,
+    ingredients:[I(140,'g','semoule'),I(1,'','courgette','courgettes'),I(1,'','aubergine','aubergines'),I(3,'','tomates'),I(1,'','oignon','oignons')],
+    start:'Préparer la semoule. Couper les légumes et les faire mijoter 15 minutes avec l’oignon.',
+    finish:'Rectifier l’assaisonnement et servir la ratatouille avec la semoule.'},
+  {id:'ail-persil',method:'Plancha',total:25,starch:'pommes-de-terre',seasons:['printemps','été','automne'],allow:['poulet','filet-mignon','boeuf','saumon','poisson-blanc','crevettes'],
+    title:p=>`${p.label} ail et persil, pommes vapeur et tomates`,
+    ingredients:[I(450,'g','pommes de terre'),I(3,'','tomates'),I(2,'','gousses d’ail'),I(null,'','persil'),I(null,'','huile d’olive')],
+    start:'Cuire les pommes de terre à la vapeur. Couper les tomates et hacher l’ail.',
+    finish:'Ajouter ail et persil en fin de cuisson, puis servir avec les pommes vapeur et les tomates.'},
+  {id:'legumes-racines',method:'Air Fryer',total:38,starch:'pommes-de-terre',seasons:['automne','hiver'],allow:['poulet','dinde','cotes-porc','saucisses','boulettes','falafels','pois-chiches'],
+    title:p=>`${p.label} et légumes racines rôtis`,
+    ingredients:[I(350,'g','pommes de terre'),I(3,'','carottes'),I(1,'','petit panais','panais'),I(1,'','oignon rouge','oignons rouges'),I(null,'','thym et huile')],
+    start:'Couper les légumes, les mélanger avec l’huile et le thym puis les cuire 15 minutes à 190 °C.',
+    cookStep:(protein,cook)=>`Ajouter la préparation principale dans le panier et poursuivre la cuisson ${cook.minutes} minutes.`,
+    finish:'Mélanger délicatement et servir dès que les légumes sont tendres.'}
+];
+
+const generatedNoon=lunchProfiles.flatMap(profile=>profile.allow.map(proteinId=>{
+  const protein=lunchProteins.find(item=>item.id===proteinId);
+  const cook=protein&&protein.cook[profile.method];
+  if(!protein||!cook)return null;
+  return {
+    id:`gn-${protein.id}-${profile.id}`,
+    n:profile.title(protein),
+    m:profile.method,
+    t:`${profile.total} min`,
+    s:profile.seasons,
+    i:[protein.ingredient,...profile.ingredients],
+    p:[profile.start,profile.cookStep?profile.cookStep(protein,cook):cook.step,profile.finish],
+    timer:cook.minutes,
+    protein:protein.id,
+    group:protein.group,
+    starch:profile.starch,
+    kind:'warm',
+    family:profile.id
+  };
+}).filter(Boolean));
+noon.push(...generatedNoon);
+
+const dinnerProteins=[
+  {id:'poulet',label:'poulet',group:'volaille',ingredient:I(260,'g','poulet'),cook:{
+    'Poêle':cooking(12,'Faire dorer le poulet 10 à 12 minutes à la poêle.'),
+    'Air Fryer':cooking(15,'Cuire le poulet 14 à 16 minutes à 185 °C.'),
+    'Four':cooking(20,'Cuire le poulet 18 à 20 minutes au four à 190 °C.'),
+    'Casserole':cooking(12,'Ajouter le poulet et laisser cuire 12 minutes à petits frémissements.')
+  }},
+  {id:'dinde',label:'dinde',group:'volaille',ingredient:I(260,'g','dinde'),cook:{
+    'Poêle':cooking(10,'Faire dorer la dinde 9 à 11 minutes à la poêle.'),
+    'Air Fryer':cooking(14,'Cuire la dinde 13 à 15 minutes à 185 °C.'),
+    'Four':cooking(18,'Cuire la dinde 17 à 19 minutes au four à 190 °C.'),
+    'Casserole':cooking(10,'Ajouter la dinde et laisser cuire 10 minutes à petits frémissements.')
+  }},
+  {id:'saumon',label:'saumon',group:'poisson',ingredient:I(2,'','petits pavés de saumon'),cook:{
+    'Poêle':cooking(9,'Cuire le saumon 8 à 10 minutes à la poêle.'),
+    'Air Fryer':cooking(10,'Cuire le saumon 9 à 11 minutes à 180 °C.'),
+    'Four':cooking(14,'Cuire le saumon 13 à 15 minutes au four à 180 °C.')
+  }},
+  {id:'poisson-blanc',label:'poisson blanc',group:'poisson',ingredient:I(2,'','filets de poisson blanc'),cook:{
+    'Poêle':cooking(9,'Cuire le poisson 4 à 5 minutes par face à la poêle.'),
+    'Air Fryer':cooking(11,'Cuire le poisson 10 à 12 minutes à 180 °C.'),
+    'Four':cooking(14,'Cuire le poisson 12 à 14 minutes au four à 180 °C.'),
+    'Casserole':cooking(10,'Déposer le poisson dans la préparation et cuire 10 minutes à couvert.')
+  }},
+  {id:'crevettes',label:'crevettes',group:'poisson',ingredient:I(260,'g','crevettes décortiquées'),cook:{
+    'Poêle':cooking(6,'Saisir les crevettes 5 à 6 minutes à la poêle.'),
+    'Air Fryer':cooking(7,'Cuire les crevettes 6 à 8 minutes à 180 °C.')
+  }},
+  {id:'saucisses',label:'saucisses',group:'viande',ingredient:I(4,'','petites saucisses'),cook:{
+    'Poêle':cooking(12,'Cuire les saucisses 11 à 13 minutes à la poêle.'),
+    'Air Fryer':cooking(14,'Cuire les saucisses 13 à 15 minutes à 190 °C.'),
+    'Casserole':cooking(10,'Ajouter les saucisses en rondelles et laisser mijoter 10 minutes.')
+  }},
+  {id:'boulettes',label:'boulettes de bœuf',group:'viande',ingredient:I(280,'g','boulettes de bœuf'),cook:{
+    'Poêle':cooking(11,'Faire dorer les boulettes 10 à 12 minutes à la poêle.'),
+    'Air Fryer':cooking(12,'Cuire les boulettes 11 à 13 minutes à 185 °C.'),
+    'Four':cooking(18,'Cuire les boulettes 16 à 18 minutes au four à 190 °C.')
+  }},
+  {id:'jambon',label:'jambon',group:'viande',ingredient:I(4,'','tranches de jambon'),cook:{
+    'Poêle':cooking(3,'Ajouter le jambon en lanières et le réchauffer 2 à 3 minutes.'),
+    'Four':cooking(5,'Ajouter le jambon à la préparation avant les 5 dernières minutes de cuisson.'),
+    'Casserole':cooking(3,'Ajouter le jambon en lanières pendant les 3 dernières minutes.')
+  }},
+  {id:'falafels',label:'falafels',group:'vegetal',ingredient:I(8,'','falafels'),cook:{
+    'Poêle':cooking(9,'Dorer les falafels 8 à 10 minutes à la poêle.'),
+    'Air Fryer':cooking(10,'Cuire les falafels 9 à 11 minutes à 185 °C.')
+  }},
+  {id:'pois-chiches',label:'pois chiches',group:'vegetal',ingredient:I(1,'boîte','pois chiches'),cook:{
+    'Poêle':cooking(7,'Rincer puis faire dorer les pois chiches 6 à 8 minutes.'),
+    'Air Fryer':cooking(15,'Rincer, sécher puis cuire les pois chiches 14 à 16 minutes à 190 °C.'),
+    'Four':cooking(17,'Rincer, sécher puis rôtir les pois chiches 16 à 18 minutes au four.'),
+    'Casserole':cooking(5,'Rincer puis ajouter les pois chiches pendant les 5 dernières minutes.')
+  }}
+];
+
+const dinnerWarmProfiles=[
+  {id:'poelee-riz-courgette',method:'Poêle',total:24,starch:'riz',seasons:['printemps','été','automne'],allow:['poulet','dinde','saumon','poisson-blanc','crevettes','saucisses','pois-chiches'],
+    title:p=>`Poêlée de ${p.label}, riz et courgette`,
+    ingredients:[I(110,'g','riz'),I(1,'','courgette','courgettes'),I(2,'','carottes'),I(1,'','citron','citrons')],
+    start:'Cuire le riz. Tailler la courgette et les carottes puis les poêler 8 minutes.',
+    finish:'Ajouter un peu de citron et servir le tout bien chaud.'},
+  {id:'grenailles-legumes',method:'Air Fryer',total:30,starch:'pommes-de-terre',seasons:ALL_SEASONS,allow:['poulet','dinde','saumon','poisson-blanc','crevettes','saucisses','boulettes','falafels','pois-chiches'],
+    title:p=>`${p.label[0].toUpperCase()+p.label.slice(1)}, grenailles et légumes à l’Air Fryer`,
+    ingredients:[I(350,'g','pommes de terre grenailles'),I(1,'','poivron','poivrons'),I(250,'g','brocoli'),I(null,'','huile et herbes')],
+    start:'Couper les légumes, les assaisonner et les cuire 12 minutes à 190 °C.',
+    cookStep:(protein,cook)=>`Ajouter la préparation principale dans le panier et poursuivre la cuisson ${cook.minutes} minutes.`,
+    finish:'Vérifier la cuisson des grenailles, mélanger délicatement et servir.'},
+  {id:'tomate-polenta',method:'Poêle',total:25,starch:'polenta',seasons:['printemps','été','automne'],allow:['poulet','dinde','poisson-blanc','saucisses','boulettes','pois-chiches'],
+    title:p=>`${p.label[0].toUpperCase()+p.label.slice(1)} à la tomate et polenta`,
+    ingredients:[I(120,'g','polenta'),I(20,'cl','coulis de tomate'),I(1,'','courgette','courgettes'),I(1,'','oignon','oignons')],
+    start:'Cuire la polenta. Faire revenir l’oignon et la courgette puis ajouter le coulis.',
+    finish:'Laisser mijoter 5 minutes et servir sur la polenta.'},
+  {id:'gratin-poireaux',method:'Four',total:32,starch:'pommes-de-terre',seasons:['automne','hiver','printemps'],allow:['poulet','dinde','saumon','poisson-blanc','boulettes','jambon','pois-chiches'],
+    title:p=>`Gratin léger de poireaux, pommes de terre et ${p.label}`,
+    ingredients:[I(350,'g','pommes de terre'),I(2,'','poireaux'),I(10,'cl','crème légère'),I(70,'g','fromage râpé')],
+    start:'Précuire les pommes de terre 10 minutes. Faire fondre les poireaux puis réunir les légumes et la crème dans un plat.',
+    cookStep:(protein,cook)=>`Ajouter la préparation principale, parsemer de fromage et cuire ${cook.minutes} minutes au four.`,
+    finish:'Vérifier la cuisson au centre du plat puis servir ce gratin léger bien chaud.'},
+  {id:'couscous-legumes',method:'Poêle',total:24,starch:'semoule',seasons:ALL_SEASONS,allow:['poulet','dinde','poisson-blanc','boulettes','falafels','pois-chiches'],
+    title:p=>`Couscous léger de légumes et ${p.label}`,
+    ingredients:[I(110,'g','semoule'),I(2,'','carottes'),I(1,'','courgette','courgettes'),I(20,'cl','bouillon'),I(null,'','épices couscous')],
+    start:'Faire revenir les légumes avec les épices puis ajouter le bouillon. Préparer la semoule.',
+    finish:'Laisser mijoter 8 minutes et servir avec la semoule.'},
+  {id:'nouilles-legumes',method:'Poêle',total:20,starch:'nouilles',seasons:ALL_SEASONS,allow:['poulet','dinde','crevettes','boulettes','pois-chiches'],
+    title:p=>`Nouilles aux légumes et ${p.label}`,
+    ingredients:[I(150,'g','nouilles'),I(2,'','carottes'),I(250,'g','brocoli'),I(1,'c. à soupe','sauce soja')],
+    start:'Cuire les nouilles. Faire sauter carottes et brocoli 7 minutes.',
+    finish:'Ajouter la sauce soja et mélanger avec les nouilles.'},
+  {id:'lentilles-carottes',method:'Casserole',total:25,starch:'legumineuses',seasons:['automne','hiver','printemps'],allow:['poulet','dinde','saucisses','jambon'],
+    title:p=>`Lentilles mijotées aux carottes et ${p.label}`,
+    ingredients:[I(400,'g','lentilles cuites'),I(3,'','carottes'),I(1,'','oignon','oignons'),I(1,'c. à café','moutarde'),I(20,'cl','bouillon')],
+    start:'Faire revenir l’oignon et les carottes puis ajouter lentilles et bouillon.',
+    finish:'Laisser mijoter doucement, ajouter la moutarde et servir.'},
+  {id:'wraps-chauds',method:'Poêle',total:18,starch:'pain',seasons:ALL_SEASONS,allow:['poulet','dinde','poisson-blanc','crevettes','falafels','pois-chiches'],
+    title:p=>`Wraps chauds de ${p.label}, tomate et sauce légère`,
+    ingredients:[I(4,'','tortillas'),I(2,'','tomates'),I(1,'','petite salade','salades vertes'),I(1,'','yaourt nature','yaourts nature'),I(null,'','herbes')],
+    start:'Préparer la sauce au yaourt et aux herbes. Couper les tomates.',
+    finish:'Garnir les tortillas, les rouler puis les dorer 2 minutes par face.'},
+  {id:'soupe-complete',method:'Casserole',total:30,starch:'pommes-de-terre',seasons:['automne','hiver'],allow:['poulet','dinde','poisson-blanc','jambon','pois-chiches'],
+    title:p=>`Soupe complète poireaux, pommes de terre et ${p.label}`,
+    ingredients:[I(2,'','poireaux'),I(2,'','carottes'),I(300,'g','pommes de terre'),I(60,'cl','bouillon'),I(2,'','tranches de pain')],
+    start:'Couper les légumes, les couvrir de bouillon et cuire 18 minutes.',
+    finish:'Rectifier l’assaisonnement et servir la soupe bien chaude avec le pain.'},
+  {id:'poelee-pommes-epinards',method:'Poêle',total:25,starch:'pommes-de-terre',seasons:['printemps','automne','hiver'],allow:['poulet','dinde','saumon','crevettes','saucisses','jambon','pois-chiches'],
+    title:p=>`Pommes de terre, épinards et ${p.label} en poêlée`,
+    ingredients:[I(350,'g','pommes de terre'),I(250,'g','épinards'),I(2,'','tomates'),I(1,'','oignon','oignons')],
+    start:'Couper les pommes de terre en petits dés et les faire dorer 10 minutes avec l’oignon.',
+    cookStep:(protein,cook)=>`Ajouter la préparation principale et poursuivre la cuisson ${cook.minutes} minutes.`,
+    finish:'Ajouter les épinards et les tomates pendant les 4 dernières minutes, puis servir.'}
+];
+
+const generatedWarmDinners=dinnerWarmProfiles.flatMap(profile=>profile.allow.map(proteinId=>{
+  const protein=dinnerProteins.find(item=>item.id===proteinId);
+  const cook=protein&&protein.cook[profile.method];
+  if(!protein||!cook)return null;
+  return {
+    id:`ge-${protein.id}-${profile.id}`,
+    n:profile.title(protein),
+    m:profile.method,
+    t:`${profile.total} min`,
+    s:profile.seasons,
+    i:[protein.ingredient,...profile.ingredients],
+    p:[profile.start,profile.cookStep?profile.cookStep(protein,cook):cook.step,profile.finish],
+    timer:cook.minutes,
+    protein:protein.id,
+    group:protein.group,
+    starch:profile.starch,
+    kind:'warm',
+    family:profile.id
+  };
+}).filter(Boolean));
+
+const saladProteins=[
+  {id:'poulet',label:'poulet',article:'au',group:'volaille',ingredient:I(240,'g','poulet cuit'),method:'Sans cuisson',step:'Couper le poulet en morceaux.'},
+  {id:'dinde',label:'dinde',article:'à la',group:'volaille',ingredient:I(4,'','tranches de dinde'),method:'Sans cuisson',step:'Couper la dinde en lanières.'},
+  {id:'jambon',label:'jambon',article:'au',group:'viande',ingredient:I(4,'','tranches de jambon'),method:'Sans cuisson',step:'Couper le jambon en lanières.'},
+  {id:'thon',label:'thon',article:'au',group:'poisson',ingredient:I(1,'boîte','thon'),method:'Sans cuisson',step:'Égoutter et émietter le thon.'},
+  {id:'saumon-fume',label:'saumon fumé',article:'au',group:'poisson',ingredient:I(160,'g','saumon fumé'),method:'Sans cuisson',step:'Détailler le saumon fumé en rubans.'},
+  {id:'crevettes',label:'crevettes',article:'aux',group:'poisson',ingredient:I(240,'g','crevettes cuites'),method:'Sans cuisson',step:'Décortiquer les crevettes si nécessaire.'},
+  {id:'oeufs',label:'œufs',article:'aux',group:'oeufs',ingredient:I(4,'','œufs'),method:'Casserole',step:'Cuire les œufs 9 minutes, les refroidir puis les écaler.'},
+  {id:'pois-chiches',label:'pois chiches',article:'aux',group:'vegetal',ingredient:I(1,'boîte','pois chiches'),method:'Sans cuisson',step:'Rincer et égoutter les pois chiches.'}
+];
+const saladProfiles=[
+  {id:'salade-pommes-haricots',label:'pommes de terre, haricots verts et tomates',starch:'pommes-de-terre',seasons:['printemps','été','automne'],
+    ingredients:[I(350,'g','pommes de terre'),I(300,'g','haricots verts'),I(2,'','tomates'),I(1,'','échalote','échalotes'),I(null,'','vinaigrette')],
+    start:'Cuire les pommes de terre et les haricots verts puis les laisser tiédir.',
+    finish:'Réunir avec les tomates et l’échalote, assaisonner et servir.'},
+  {id:'salade-riz-concombre',label:'riz, concombre et avocat',starch:'riz',seasons:['printemps','été'],
+    ingredients:[I(120,'g','riz'),I(1,'','concombre','concombres'),I(1,'','avocat','avocats'),I(2,'','tomates'),I(1,'','citron','citrons')],
+    start:'Cuire le riz puis le rafraîchir. Couper concombre, avocat et tomates.',
+    finish:'Assembler avec le citron et une vinaigrette légère.'},
+  {id:'salade-pates-crudites',label:'pâtes, crudités et herbes',starch:'pates',seasons:['printemps','été'],
+    ingredients:[I(170,'g','pâtes'),I(250,'g','tomates cerises'),I(0.5,'','concombre','concombres'),I(1,'','poivron','poivrons'),I(null,'','basilic et vinaigrette')],
+    start:'Cuire les pâtes puis les rafraîchir. Couper les crudités.',
+    finish:'Mélanger avec les herbes et la vinaigrette juste avant de servir.'},
+  {id:'salade-lentilles-carottes',label:'lentilles, carottes et tomates',starch:'legumineuses',seasons:ALL_SEASONS,
+    ingredients:[I(400,'g','lentilles cuites'),I(2,'','carottes'),I(2,'','tomates'),I(1,'','échalote','échalotes'),I(null,'','persil et vinaigrette')],
+    start:'Rincer les lentilles, râper les carottes et couper les tomates.',
+    finish:'Mélanger avec l’échalote, le persil et la vinaigrette.'}
+];
+const generatedSalads=saladProfiles.flatMap(profile=>saladProteins.map(protein=>({
+  id:`ge-${protein.id}-${profile.id}`,
+  n:`Salade-repas ${profile.label} ${protein.article} ${protein.label}`,
+  m:protein.method,
+  t:protein.id==='oeufs'?'22 min':'18 min',
+  s:profile.seasons,
+  i:[protein.ingredient,...profile.ingredients],
+  p:[profile.start,protein.step,profile.finish],
+  timer:protein.id==='oeufs'?9:null,
+  protein:protein.id,
+  group:protein.group,
+  starch:profile.starch,
+  kind:'salad',
+  family:profile.id
+})));
+
+const omeletteFillings=[
+  {id:'champignons-pommes',label:'champignons, persil et pommes de terre',seasons:ALL_SEASONS,starch:'pommes-de-terre',ingredients:[I(200,'g','champignons'),I(300,'g','pommes de terre'),I(null,'','persil')]},
+  {id:'courgette-feta',label:'courgette, feta et pain grillé',seasons:['printemps','été'],starch:'pain',ingredients:[I(1,'','courgette','courgettes'),I(100,'g','feta'),I(4,'','tranches de pain')]},
+  {id:'jambon-petits-pois',label:'jambon, petits pois et pommes de terre',seasons:['printemps','été','automne'],starch:'pommes-de-terre',ingredients:[I(2,'','tranches de jambon'),I(200,'g','petits pois'),I(300,'g','pommes de terre')]},
+  {id:'saumon-epinards',label:'saumon fumé, épinards et pain',seasons:['printemps','automne','hiver'],starch:'pain',ingredients:[I(120,'g','saumon fumé'),I(200,'g','épinards'),I(4,'','tranches de pain')]},
+  {id:'poireaux-fromage',label:'poireaux, fromage et pommes de terre',seasons:['automne','hiver','printemps'],starch:'pommes-de-terre',ingredients:[I(1,'','poireau','poireaux'),I(80,'g','fromage râpé'),I(300,'g','pommes de terre')]},
+  {id:'tomate-mozzarella',label:'tomate, mozzarella et pain grillé',seasons:['printemps','été'],starch:'pain',ingredients:[I(2,'','tomates'),I(125,'g','mozzarella'),I(4,'','tranches de pain'),I(null,'','basilic')]},
+  {id:'poivron-chorizo',label:'poivron, chorizo et pommes de terre',seasons:['printemps','été','automne'],starch:'pommes-de-terre',ingredients:[I(1,'','poivron','poivrons'),I(70,'g','chorizo'),I(280,'g','pommes de terre')]},
+  {id:'thon-courgette',label:'thon, courgette et pain grillé',seasons:['printemps','été','automne'],starch:'pain',ingredients:[I(1,'boîte','thon'),I(1,'','courgette','courgettes'),I(4,'','tranches de pain')]}
+];
+const generatedOmelettes=omeletteFillings.map(filling=>({
+  id:`ge-omelette-${filling.id}`,
+  n:`Omelette complète avec ${filling.label}`,
+  m:'Poêle',
+  t:'25 min',
+  s:filling.seasons,
+  i:[I(4,'','œufs'),...filling.ingredients],
+  p:['Préparer et cuire le féculent ou le pain indiqué. Faire revenir la garniture.','Battre les œufs, les verser sur la garniture et cuire 8 à 10 minutes à feu doux.','Servir l’omelette avec son accompagnement.'],
+  timer:9,
+  protein:'oeufs',
+  group:'oeufs',
+  starch:filling.starch,
+  kind:'warm',
+  family:'omelette'
+}));
+
+const soupBases=[
+  {id:'poireaux',label:'poireaux et pommes de terre',seasons:['automne','hiver','printemps'],minutes:22,ingredients:[I(2,'','poireaux'),I(350,'g','pommes de terre'),I(1,'','oignon','oignons'),I(70,'cl','bouillon')]},
+  {id:'tomate-lentilles',label:'tomate et lentilles corail',seasons:ALL_SEASONS,minutes:20,ingredients:[I(40,'cl','coulis de tomate'),I(140,'g','lentilles corail'),I(2,'','carottes'),I(60,'cl','bouillon')]},
+  {id:'courge-carotte',label:'courge et carottes',seasons:['automne','hiver'],minutes:25,ingredients:[I(600,'g','courge'),I(3,'','carottes'),I(1,'','oignon','oignons'),I(70,'cl','bouillon')]},
+  {id:'legumes-haricots',label:'légumes et haricots blancs',seasons:['automne','hiver','printemps'],minutes:24,ingredients:[I(2,'','carottes'),I(1,'','poireau','poireaux'),I(1,'boîte','haricots blancs'),I(70,'cl','bouillon')]}
+];
+const soupSides=[
+  {id:'jambon',label:'tartines jambon-fromage',protein:'jambon',group:'viande',ingredients:[I(4,'','tranches de pain'),I(2,'','tranches de jambon'),I(70,'g','fromage râpé')],step:'Garnir le pain de jambon et de fromage puis le faire griller.'},
+  {id:'oeufs',label:'œufs mollets et pain grillé',protein:'oeufs',group:'oeufs',ingredients:[I(4,'','œufs'),I(4,'','tranches de pain')],step:'Cuire les œufs 6 minutes, les écaler et griller le pain.'},
+  {id:'poulet',label:'poulet et croûtons',protein:'poulet',group:'volaille',ingredients:[I(200,'g','poulet cuit'),I(4,'','tranches de pain')],step:'Réchauffer le poulet dans la soupe et faire griller le pain en croûtons.'}
+];
+const generatedSoups=soupBases.flatMap(base=>soupSides.map(side=>({
+  id:`ge-soupe-${base.id}-${side.id}`,
+  n:`Soupe consistante ${base.label}, ${side.label}`,
+  m:'Casserole',
+  t:`${Math.max(30,base.minutes+8)} min`,
+  s:base.seasons,
+  i:[...base.ingredients,...side.ingredients],
+  p:['Couper les légumes, ajouter le bouillon et cuire à petits frémissements. Mixer selon la texture souhaitée.',side.step,'Servir la soupe bien chaude avec son accompagnement.'],
+  timer:base.minutes,
+  protein:side.protein,
+  group:side.group,
+  starch:'pain',
+  kind:'warm',
+  family:'soupe'
+})));
+
+evening.push(...generatedWarmDinners,...generatedSalads,...generatedOmelettes,...generatedSoups);
+
 const $=id=>document.getElementById(id);
+const recipeIndex=new Map([...noon,...evening].map(recipe=>[recipe.id,recipe]));
+$('versionLine').textContent=`Clair Repas V2.2 · ${noon.length+evening.length} repas possibles`;
 const todayKey=()=>new Date().toLocaleDateString('en-CA');
 const season=()=>{
   const m=new Date().getMonth()+1;
@@ -401,16 +831,94 @@ function ingredientText(x,qOverride){
   if(q==null)return x.n;
   return [formatQty(q),x.u,x.n].filter(Boolean).join(' ');
 }
+function suggestedTimer(x){
+  if(Number(x.timer)>0)return Number(x.timer);
+  const durations=[];
+  (x.p||[]).forEach(step=>{
+    const matches=String(step).matchAll(/(\d+)(?:\s*(?:à|-)\s*(\d+))?\s*minutes?/gi);
+    for(const match of matches)durations.push(Number(match[2]||match[1]));
+  });
+  const usableDurations=durations.filter(value=>value>0&&value<=90);
+  if(usableDurations.length)return Math.max(...usableDurations);
+  const total=recipeMinutes(x);
+  return Number.isFinite(total)&&total<90?total:null;
+}
 function recipeHTML(x){
+  const timerMinutes=suggestedTimer(x);
+  const tools=timerMinutes?`<div class="cooking-tools">
+    <p class="wake-note">☀️ Mode cuisine · écran maintenu allumé</p>
+    <button class="timer-start" data-recipe-id="${x.id}" data-timer-minutes="${timerMinutes}">⏱️ Lancer ${timerMinutes} min</button>
+  </div>`:'';
   return `<h3>Ingrédients</h3><ul>${x.i.map(v=>`<li>${ingredientText(v)}</li>`).join('')}</ul>
-  <h3>Préparation</h3><ol>${x.p.map(v=>`<li>${v}</li>`).join('')}</ol>`;
+  <h3>Préparation</h3><ol>${x.p.map(v=>`<li>${v}</li>`).join('')}</ol>${tools}`;
+}
+function recipeText(recipe){
+  return `${recipe.n} ${(recipe.i||[]).map(item=>item.n).join(' ')}`.toLowerCase();
+}
+function inferProtein(recipe){
+  if(recipe.protein&&recipe.group)return{protein:recipe.protein,group:recipe.group};
+  const title=String(recipe.n||'').toLowerCase();
+  const text=recipeText(recipe);
+  if(/^(omelette|tortilla)|œufs|oeufs/.test(title))return{protein:'oeufs',group:'oeufs'};
+  if(text.includes('poulet'))return{protein:'poulet',group:'volaille'};
+  if(text.includes('dinde'))return{protein:'dinde',group:'volaille'};
+  if(text.includes('canard'))return{protein:'canard',group:'volaille'};
+  if(text.includes('saumon'))return{protein:'saumon',group:'poisson'};
+  if(text.includes('crevette'))return{protein:'crevettes',group:'poisson'};
+  if(/thon|cabillaud|colin|truite|poisson|sardine|maquereau|crabe|surimi|calamar/.test(text))return{protein:'poisson',group:'poisson'};
+  if(text.includes('bœuf')||text.includes('boeuf')||text.includes('steak'))return{protein:'boeuf',group:'viande'};
+  if(/porc|jambon|lardon|saucisse|knack|merguez|chorizo|veau|filet mignon/.test(text))return{protein:'viande',group:'viande'};
+  if(/œuf|oeuf|omelette|tortilla/.test(text))return{protein:'oeufs',group:'oeufs'};
+  if(/pois chiche|lentille|haricot|falafel|végét|veget/.test(text))return{protein:'vegetal',group:'vegetal'};
+  return{protein:'autre',group:'autre'};
+}
+function inferStarch(recipe){
+  if(recipe.starch)return recipe.starch;
+  const text=recipeText(recipe);
+  if(/pomme[s]? de terre|grenailles|purée|rosti|rösti/.test(text))return'pommes-de-terre';
+  if(/pâtes|pates|tagliatelle|spaghetti|gnocchi|tortellini|raviole/.test(text))return'pates';
+  if(/riz/.test(text))return'riz';
+  if(/semoule|couscous/.test(text))return'semoule';
+  if(/nouille/.test(text))return'nouilles';
+  if(/polenta/.test(text))return'polenta';
+  if(/pain|croque|tartine|wrap|tortilla|galette|pita|sandwich|hot-dog/.test(text))return'pain';
+  if(/lentille|pois chiche|haricot/.test(text))return'legumineuses';
+  return'sans-feculent';
+}
+function inferFamily(recipe){
+  if(recipe.family)return recipe.family;
+  const name=String(recipe.n||'').toLowerCase();
+  if(name.startsWith('salade'))return'salade';
+  if(name.includes('omelette')||name.includes('tortilla'))return'omelette';
+  if(name.includes('soupe')||name.includes('velouté'))return'soupe';
+  if(name.includes('croque')||name.includes('sandwich'))return'croque';
+  if(name.includes('wrap')||name.includes('galette'))return'wrap';
+  if(name.includes('gratin'))return'gratin';
+  if(name.includes('pâtes')||name.includes('pates'))return'pates';
+  if(name.includes('poêlée'))return'poelee';
+  return recipe.id;
+}
+function tagsOf(recipe){
+  const protein=inferProtein(recipe);
+  return{
+    protein:protein.protein,
+    group:protein.group,
+    starch:inferStarch(recipe),
+    method:recipe.m||'Autre',
+    kind:recipe.kind||(/^(salade|salade-repas)/i.test(String(recipe.n||''))?'salad':'warm'),
+    family:inferFamily(recipe)
+  };
+}
+function historyItem(recipe,type,at=Date.now()){
+  return{id:recipe.id,type,at,...tagsOf(recipe)};
 }
 const ANTI_REPEAT_DAYS=20;
 const USAGE_KEY='crMealUsageV19';
 function usageData(){
   let data;
   try{data=JSON.parse(localStorage.getItem(USAGE_KEY)||'null')}catch(e){data=null}
-  if(!data||!Array.isArray(data.mid)||!Array.isArray(data.eve))data={mid:[],eve:[],seeded:false};
+  if(!data||!Array.isArray(data.mid)||!Array.isArray(data.eve))data={mid:[],eve:[],sequence:[],seeded:false};
+  if(!Array.isArray(data.sequence))data.sequence=[];
 
   // Au premier lancement, reprendre l’historique déjà présent dans l’application.
   if(!data.seeded){
@@ -436,6 +944,19 @@ function usageData(){
     });
     data[type]=[...latest].map(([id,at])=>({id,at}));
   });
+  if(!data.sequence.length){
+    data.sequence=[
+      ...data.mid.map(item=>({type:'mid',...item})),
+      ...data.eve.map(item=>({type:'eve',...item}))
+    ].sort((a,b)=>a.at-b.at).map(item=>{
+      const recipe=recipeIndex.get(item.id);
+      return recipe?historyItem(recipe,item.type,item.at):item;
+    });
+  }
+  data.sequence=data.sequence
+    .filter(item=>item&&item.id&&Number(item.at)>=cutoff)
+    .sort((a,b)=>Number(a.at)-Number(b.at))
+    .slice(-80);
   localStorage.setItem(USAGE_KEY,JSON.stringify(data));
   return data;
 }
@@ -443,6 +964,12 @@ function rememberMeal(type,id){
   const data=usageData();
   data[type]=data[type].filter(item=>item.id!==id);
   data[type].push({id,at:Date.now()});
+  const recipe=recipeIndex.get(id);
+  if(recipe){
+    data.sequence=data.sequence.filter(item=>item.id!==id);
+    data.sequence.push(historyItem(recipe,type));
+    data.sequence=data.sequence.slice(-80);
+  }
   localStorage.setItem(USAGE_KEY,JSON.stringify(data));
 }
 function rememberPlan(items){
@@ -467,15 +994,68 @@ function fitsAvailableTime(recipe){
   if(pref==='Tous'||pref==='45plus')return true;
   return recipeMinutes(recipe)<=Number(pref);
 }
+function seasonMethodBoost(recipe){
+  const preferred={
+    printemps:['Poêle','Air Fryer','Plancha'],
+    été:['Plancha','Barbecue','Sans cuisson','Air Fryer'],
+    automne:['Poêle','Four','Air Fryer','Casserole'],
+    hiver:['Four','Poêle','Casserole','Air Fryer']
+  };
+  return preferred[season()].includes(recipe.m)?1.35:1;
+}
+function candidateScore(recipe,type,context,data,favorites){
+  const tags=tagsOf(recipe);
+  let score=recipe.s.includes(season())?4.5:0.65;
+  score*=seasonMethodBoost(recipe);
+  if(favorites.has(recipe.id))score*=1.8;
+
+  const history=(data.sequence||[]).map(item=>({
+    type:item.type,
+    protein:item.protein||tagsOf(recipeIndex.get(item.id)||{}).protein,
+    group:item.group||tagsOf(recipeIndex.get(item.id)||{}).group,
+    starch:item.starch||tagsOf(recipeIndex.get(item.id)||{}).starch,
+    method:item.method||tagsOf(recipeIndex.get(item.id)||{}).method,
+    kind:item.kind||tagsOf(recipeIndex.get(item.id)||{}).kind,
+    family:item.family||tagsOf(recipeIndex.get(item.id)||{}).family
+  }));
+  const selected=context.map(item=>({type:item.type,...tagsOf(item.recipe)}));
+  const recent=[...history,...selected].slice(-10);
+  const last=recent.at(-1);
+
+  if(last){
+    if(tags.protein===last.protein)score*=0.08;
+    else if(tags.group===last.group)score*=0.32;
+    if(tags.starch===last.starch)score*=0.32;
+    if(tags.method===last.method)score*=0.55;
+    if(tags.family===last.family)score*=0.12;
+  }
+  const lastSix=recent.slice(-6);
+  const proteinCount=lastSix.filter(item=>item.protein===tags.protein).length;
+  const starchCount=lastSix.filter(item=>item.starch===tags.starch).length;
+  const methodCount=lastSix.filter(item=>item.method===tags.method).length;
+  score*=1/(1+proteinCount*0.7+starchCount*0.35+methodCount*0.2);
+
+  if(tags.protein==='poulet'&&proteinCount>0)score*=0.45;
+  if(tags.group==='vegetal'){
+    const vegetalRecent=lastSix.filter(item=>item.group==='vegetal').length;
+    score*=vegetalRecent?0.45:0.95;
+  }
+
+  if(type==='eve'&&tags.kind==='salad'){
+    const selectedEvenings=selected.filter(item=>item.type==='eve');
+    if(selectedEvenings.some(item=>item.kind==='salad'))return 0;
+    const recentEvenings=history.filter(item=>item.type==='eve').slice(-6);
+    if(recentEvenings.at(-1)?.kind==='salad')return 0;
+    if(recentEvenings.filter(item=>item.kind==='salad').length>=2)return 0;
+    score*=({printemps:1.05,été:1.1,automne:0.7,hiver:0.4})[season()];
+  }
+  return Math.max(0,score);
+}
 function poolFor(list,type,exclude){
   const pref=$('mode').value;
-  const now=season();
-  let seasonal=list.filter(x=>x.s.includes(now));
-  if(!seasonal.length)seasonal=[...list];
-
   // Le temps disponible reste prioritaire : aucune recette trop longue n’est proposée.
-  let timed=seasonal.filter(fitsAvailableTime);
-  if(!timed.length)timed=seasonal;
+  let timed=list.filter(fitsAvailableTime);
+  if(!timed.length)timed=[...list];
 
   let pool=timed;
   if(pref!=='Tous'){
@@ -494,17 +1074,31 @@ function poolFor(list,type,exclude){
   const oldest=Math.min(...available.map(x=>lastUsedAt(type,x.id)));
   return available.filter(x=>lastUsedAt(type,x.id)===oldest);
 }
-function pick(list,type,exclude){
+function pick(list,type,exclude,context=[]){
   const pool=poolFor(list,type,exclude);
   const favs=new Set(JSON.parse(localStorage.getItem('crFavMeals')||'[]'));
-  const weighted=[...pool,...pool.filter(x=>favs.has(x.id))];
-  return weighted[Math.floor(Math.random()*weighted.length)];
+  const data=usageData();
+  let weighted=pool.map(recipe=>({recipe,score:candidateScore(recipe,type,context,data,favs)}))
+    .filter(item=>item.score>0);
+  if(!weighted.length&&type==='eve'){
+    weighted=pool.filter(recipe=>tagsOf(recipe).kind!=='salad').map(recipe=>({recipe,score:1}));
+  }
+  if(!weighted.length)weighted=pool.map(recipe=>({recipe,score:1}));
+  const total=weighted.reduce((sum,item)=>sum+item.score,0);
+  let target=Math.random()*total;
+  for(const item of weighted){
+    target-=item.score;
+    if(target<=0)return item.recipe;
+  }
+  return weighted.at(-1).recipe;
 }
 function buildPlan(count){
-  const mids=new Set(), eves=new Set(), result=[];
+  const mids=new Set(), eves=new Set(), result=[], context=[];
   for(let i=0;i<count;i++){
-    const mid=pick(noon,'mid',mids); mids.add(mid.id);
-    const eve=pick(evening,'eve',eves); eves.add(eve.id);
+    const mid=pick(noon,'mid',mids,context); mids.add(mid.id);
+    context.push({type:'mid',recipe:mid});
+    const eve=pick(evening,'eve',eves,context); eves.add(eve.id);
+    context.push({type:'eve',recipe:eve});
     result.push({mid,eve});
   }
   rememberPlan(result);
@@ -546,6 +1140,142 @@ function updateLikedButton(){
   $('favorite').classList.toggle('liked',allLiked);
   $('favorite').textContent=allLiked?'★ Menus aimés':'☆ J’aime ces menus';
 }
+
+let wakeLock=null;
+async function releaseWakeLock(){
+  const lock=wakeLock;
+  wakeLock=null;
+  document.body.classList.remove('wake-active');
+  if(lock){
+    try{await lock.release()}catch(e){}
+  }
+}
+async function updateWakeLock(){
+  const recipeIsOpen=Boolean(document.querySelector('.recipe.open'));
+  if(!recipeIsOpen||document.visibilityState!=='visible'){
+    await releaseWakeLock();
+    return;
+  }
+  if(!('wakeLock' in navigator)||wakeLock)return;
+  try{
+    const sentinel=await navigator.wakeLock.request('screen');
+    wakeLock=sentinel;
+    document.body.classList.add('wake-active');
+    sentinel.addEventListener('release',()=>{
+      if(wakeLock===sentinel)wakeLock=null;
+      document.body.classList.remove('wake-active');
+    },{once:true});
+  }catch(e){
+    wakeLock=null;
+    document.body.classList.remove('wake-active');
+  }
+}
+document.addEventListener('visibilitychange',()=>{
+  updateWakeLock();
+  updateTimerUI();
+});
+
+const TIMER_KEY='crKitchenTimerV22';
+let kitchenTimer=null;
+let timerAudio=null;
+let timerSignalled=false;
+let timerInterval=null;
+function timerAudioContext(){
+  if(timerAudio)return timerAudio;
+  const AudioContext=window.AudioContext||window.webkitAudioContext;
+  if(AudioContext)timerAudio=new AudioContext();
+  return timerAudio;
+}
+function unlockTimerAudio(){
+  const context=timerAudioContext();
+  if(context&&context.state==='suspended')context.resume().catch(()=>{});
+}
+function beepAt(context,delay,frequency){
+  const oscillator=context.createOscillator();
+  const gain=context.createGain();
+  oscillator.frequency.value=frequency;
+  gain.gain.setValueAtTime(0.0001,context.currentTime+delay);
+  gain.gain.exponentialRampToValueAtTime(0.22,context.currentTime+delay+0.02);
+  gain.gain.exponentialRampToValueAtTime(0.0001,context.currentTime+delay+0.28);
+  oscillator.connect(gain).connect(context.destination);
+  oscillator.start(context.currentTime+delay);
+  oscillator.stop(context.currentTime+delay+0.3);
+}
+function signalTimer(){
+  if(timerSignalled)return;
+  timerSignalled=true;
+  const context=timerAudioContext();
+  if(context){
+    context.resume().then(()=>{
+      beepAt(context,0,880);
+      beepAt(context,0.38,1040);
+    }).catch(()=>{});
+  }
+  if('vibrate' in navigator)navigator.vibrate([180,100,260]);
+}
+function timerClock(seconds){
+  const minutes=Math.floor(seconds/60);
+  const rest=seconds%60;
+  return `${String(minutes).padStart(2,'0')}:${String(rest).padStart(2,'0')}`;
+}
+function saveTimer(){
+  if(kitchenTimer)localStorage.setItem(TIMER_KEY,JSON.stringify(kitchenTimer));
+  else localStorage.removeItem(TIMER_KEY);
+}
+function updateTimerUI(){
+  const bar=$('kitchenTimer');
+  if(!kitchenTimer){
+    if(timerInterval){clearInterval(timerInterval);timerInterval=null}
+    bar.classList.remove('show','done');
+    document.body.classList.remove('timer-running');
+    document.title='Clair Repas V2.2';
+    return;
+  }
+  const remaining=Math.max(0,Math.ceil((kitchenTimer.endAt-Date.now())/1000));
+  const done=remaining===0;
+  bar.classList.add('show');
+  bar.classList.toggle('done',done);
+  document.body.classList.add('timer-running');
+  $('timerLabel').textContent=done?`${kitchenTimer.label} · terminé`:`${kitchenTimer.label} · minuteur`;
+  $('timerCount').textContent=done?'C’est prêt !':timerClock(remaining);
+  $('timerStop').textContent=done?'Fermer':'Arrêter';
+  if(done){
+    if(timerInterval){clearInterval(timerInterval);timerInterval=null}
+    document.title='Minuteur terminé · Clair Repas';
+    signalTimer();
+  }
+}
+function startTimerTick(){
+  if(!timerInterval)timerInterval=setInterval(updateTimerUI,1000);
+}
+function startKitchenTimer(recipe,minutes){
+  unlockTimerAudio();
+  kitchenTimer={
+    recipeId:recipe.id,
+    label:recipe.n,
+    minutes,
+    endAt:Date.now()+minutes*60*1000
+  };
+  timerSignalled=false;
+  saveTimer();
+  startTimerTick();
+  updateTimerUI();
+  show(`Minuteur ${minutes} min lancé`);
+}
+function stopKitchenTimer(){
+  kitchenTimer=null;
+  timerSignalled=false;
+  saveTimer();
+  updateTimerUI();
+}
+$('timerStop').onclick=stopKitchenTimer;
+try{
+  const savedTimer=JSON.parse(localStorage.getItem(TIMER_KEY)||'null');
+  if(savedTimer&&Number(savedTimer.endAt)>Date.now()-12*60*60*1000)kitchenTimer=savedTimer;
+}catch(e){}
+if(kitchenTimer&&Number(kitchenTimer.endAt)>Date.now())startTimerTick();
+updateTimerUI();
+
 function render(){
   $('daysContainer').innerHTML=plan.map((d,i)=>`
     <section class="day-card">
@@ -581,24 +1311,36 @@ function render(){
     const el=$(`recipe-${b.dataset.day}-${b.dataset.type}`);
     const open=el.classList.toggle('open');
     b.textContent=open?'📕 Masquer la recette':'📖 Voir la recette';
+    updateWakeLock();
   });
 
   document.querySelectorAll('.change-btn').forEach(b=>b.onclick=()=>{
     changeMeal(Number(b.dataset.day),b.dataset.type);
   });
+  document.querySelectorAll('.timer-start').forEach(button=>button.onclick=()=>{
+    const recipe=recipeIndex.get(button.dataset.recipeId);
+    const minutes=Number(button.dataset.timerMinutes);
+    if(recipe&&minutes>0)startKitchenTimer(recipe,minutes);
+  });
 
   updateLikedButton();
   saveState();
   saveHistory();
+  updateWakeLock();
 }
 function changeMeal(index,type){
   const used=new Set(plan.map(d=>type==='mid'?d.mid.id:d.eve.id));
   used.delete(type==='mid'?plan[index].mid.id:plan[index].eve.id);
+  const context=[];
+  plan.forEach((day,dayIndex)=>{
+    if(!(dayIndex===index&&type==='mid'))context.push({type:'mid',recipe:day.mid});
+    if(!(dayIndex===index&&type==='eve'))context.push({type:'eve',recipe:day.eve});
+  });
   if(type==='mid'){
-    plan[index].mid=pick(noon,'mid',used);
+    plan[index].mid=pick(noon,'mid',used,context);
     rememberMeal('mid',plan[index].mid.id);
   }else{
-    plan[index].eve=pick(evening,'eve',used);
+    plan[index].eve=pick(evening,'eve',used,context);
     rememberMeal('eve',plan[index].eve.id);
   }
   render();
@@ -609,7 +1351,13 @@ function ensureDays(){
   while(plan.length<count){
     const mids=new Set(plan.map(d=>d.mid.id));
     const eves=new Set(plan.map(d=>d.eve.id));
-    const added={mid:pick(noon,'mid',mids),eve:pick(evening,'eve',eves)};
+    const context=plan.flatMap(day=>[
+      {type:'mid',recipe:day.mid},
+      {type:'eve',recipe:day.eve}
+    ]);
+    const mid=pick(noon,'mid',mids,context);
+    context.push({type:'mid',recipe:mid});
+    const added={mid,eve:pick(evening,'eve',eves,context)};
     plan.push(added);
     rememberPlan([added]);
   }

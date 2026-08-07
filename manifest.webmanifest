@@ -1,7 +1,7 @@
 {
   "name": "Clair Repas",
   "short_name": "Clair Repas",
-  "description": "200 recettes simples, adaptées à la saison et au temps disponible ; les menus restent enregistrés.",
+  "description": "Plus de 400 repas cohérents, adaptés au midi, au soir, à la saison et au temps disponible.",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",

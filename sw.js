@@ -1,4 +1,4 @@
-const CACHE='clair-repas-v2.1-saison-temps';
+const CACHE='clair-repas-v2.2-moteur-cuisine';
 const ASSETS=['./','./index.html','./manifest.webmanifest','./icon-192.png','./icon-512.png'];
 
 self.addEventListener('install',event=>{
@@ -8,7 +8,9 @@ self.addEventListener('install',event=>{
 
 self.addEventListener('activate',event=>{
   event.waitUntil(
-    caches.keys().then(keys=>Promise.all(keys.filter(k=>k!==CACHE).map(k=>caches.delete(k))))
+    caches.keys().then(keys=>Promise.all(
+      keys.filter(k=>k.startsWith('clair-repas-')&&k!==CACHE).map(k=>caches.delete(k))
+    ))
   );
   self.clients.claim();
 });
