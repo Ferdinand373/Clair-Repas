@@ -9,7 +9,7 @@
 <meta name="apple-mobile-web-app-title" content="Clair Repas">
 <link rel="manifest" href="./manifest.webmanifest">
 <link rel="apple-touch-icon" href="./icon-192.png">
-<title>Clair Repas V2.2</title>
+<title>Clair Repas V2.3</title>
 <style>
 :root{
   --bg:#f4efe7;--card:#fffdfa;--text:#27231f;--muted:#746c63;
@@ -36,25 +36,38 @@ select{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:1
 .day-date{font-size:12px;color:var(--muted);text-transform:capitalize}
 .meal{padding:14px 0 2px}
 .meal+.meal{border-top:1px dashed var(--line);margin-top:12px}
+.meal-top{display:flex;justify-content:space-between;align-items:center;gap:10px}
 .tag{font-size:12px;font-weight:850;color:var(--green);letter-spacing:.35px}
 .tag.evening{color:var(--purple)}
+.meal-toggle{display:inline-flex;align-items:center;gap:6px;min-height:36px;padding:7px 10px;border-radius:999px;background:var(--green-soft);color:var(--green);font-size:12px;font-weight:820;cursor:pointer;user-select:none}
+.meal-toggle.outside{background:#f2eee9;color:var(--muted)}
+.meal-toggle.leftovers{background:#fff4da;color:var(--gold)}
+.meal-toggle input{width:18px;height:18px;margin:0;accent-color:var(--green)}
 .meal-title{font-size:21px;line-height:1.16;margin:7px 0 5px}
 .meta{color:var(--muted);font-size:13px}
 .meal-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:11px}
 .small-btn{padding:10px 8px;border:0;border-radius:12px;background:var(--green-soft);color:var(--text);font-weight:760}
 .small-btn.secondary{background:#f2eee9}
+.meal-status-action{width:100%;min-height:40px;margin-top:7px;padding:8px;border:0;background:transparent;color:var(--muted);font-weight:730}
+.meal-placeholder{margin-top:10px;padding:13px 14px;border-radius:15px;background:#f6f2ed;color:var(--muted)}
+.meal-placeholder.leftovers{background:#fff8e9;color:#715522}
+.meal-placeholder strong{display:block;color:var(--text);font-size:17px}
+.meal-placeholder span{display:block;margin-top:3px;font-size:12px}
+.meal-placeholder button{width:100%;min-height:40px;margin-top:9px;padding:8px 10px;border:0;border-radius:11px;background:white;color:var(--text);font-weight:780}
 .recipe{display:none;margin-top:12px;padding-top:10px;border-top:1px solid var(--line)}
 .recipe.open{display:block}
 .recipe h3{margin:10px 0 5px;font-size:16px}
 .recipe ul,.recipe ol{padding-left:21px;line-height:1.46;margin:5px 0}
-.cooking-tools{margin:13px 0 2px;padding:10px 11px;border-radius:14px;background:#f3f7f2;border:1px solid #dce9df}
-.wake-note{display:none;margin:0 0 8px;color:var(--green);font-size:12px;font-weight:760}
+.recipe ol>li{margin-bottom:10px}
+.wake-note{display:none;margin:4px 0 9px;padding:8px 10px;border-radius:11px;background:#f3f7f2;color:var(--green);font-size:12px;font-weight:760}
 body.wake-active .wake-note{display:block}
-.timer-start{width:100%;padding:10px 12px;border:0;border-radius:11px;background:var(--green);color:white;font-weight:820}
+.step-timers{display:flex;flex-wrap:wrap;gap:7px;margin-top:6px}
+.step-timer{min-height:36px;padding:7px 10px;border:1px solid #cfe2d5;border-radius:10px;background:var(--green-soft);color:var(--green);font-size:12px;font-weight:850}
 .actions{display:grid;gap:9px;margin-top:15px}
 .actions button{width:100%;padding:14px;border-radius:15px;border:1px solid var(--line);background:white;color:var(--text);font-weight:820}
 .actions .primary{background:var(--green);border-color:var(--green);color:white;font-size:17px}
 .actions .liked{color:var(--gold);background:#fff4da;border-color:#ead19a}
+.actions button:disabled{opacity:.55;cursor:default}
 .history{margin-top:14px;overflow:hidden}
 .history summary{padding:14px 16px;font-weight:800;cursor:pointer;list-style:none}
 .history summary::-webkit-details-marker{display:none}
@@ -84,6 +97,7 @@ body.timer-running main{padding-bottom:calc(112px + env(safe-area-inset-bottom))
   .settings{display:block}.settings>div+div{margin-top:10px}
   .meal-title{font-size:20px}
   .meal-actions{grid-template-columns:1fr}
+  .meal-top{align-items:flex-start}
 }
 </style>
 </head>
@@ -151,7 +165,7 @@ body.timer-running main{padding-bottom:calc(112px + env(safe-area-inset-bottom))
 </details>
 
 <p class="note">La saison et le temps disponible guident les prochains choix. Le programme affiché reste conservé jusqu’à une action volontaire.</p>
-<p class="version" id="versionLine">Clair Repas V2.2 · moteur enrichi et mode cuisine</p>
+<p class="version" id="versionLine">Clair Repas V2.3 · planning souple et minuteurs d’étapes</p>
 </main>
 <div class="kitchen-timer" id="kitchenTimer" role="status" aria-live="polite">
   <div class="timer-copy">
@@ -370,7 +384,7 @@ const evening=[
 {id:"e100",n:"Couscous de légumes au poulet",m:"Poêle",t:"25 min",s:["printemps", "été", "automne", "hiver"],i:[I(140,"g","semoule"),I(220,"g","poulet cuit"),I(2,"","carottes"),I(1,"","courgette","courgettes"),I(1,"boîte","pois chiches"),I(null,"","épices couscous")],p:["Faire revenir les légumes avec les épices.", "Ajouter pois chiches et poulet avec un peu d’eau.", "Préparer la semoule et servir."]}
 ];
 
-// Moteur combinatoire V2.2
+// Moteur combinatoire V2.3, dérivé sans rupture de la V2.2
 // Chaque profil indique explicitement les protéines avec lesquelles il fonctionne.
 const ALL_SEASONS=['printemps','été','automne','hiver'];
 const cooking=(minutes,step)=>({minutes,step});
@@ -766,7 +780,7 @@ const generatedSoups=soupBases.flatMap(base=>soupSides.map(side=>({
   t:`${Math.max(30,base.minutes+8)} min`,
   s:base.seasons,
   i:[...base.ingredients,...side.ingredients],
-  p:['Couper les légumes, ajouter le bouillon et cuire à petits frémissements. Mixer selon la texture souhaitée.',side.step,'Servir la soupe bien chaude avec son accompagnement.'],
+  p:[`Couper les légumes, ajouter le bouillon et cuire ${base.minutes} minutes à petits frémissements. Mixer selon la texture souhaitée.`,side.step,'Servir la soupe bien chaude avec son accompagnement.'],
   timer:base.minutes,
   protein:side.protein,
   group:side.group,
@@ -779,7 +793,7 @@ evening.push(...generatedWarmDinners,...generatedSalads,...generatedOmelettes,..
 
 const $=id=>document.getElementById(id);
 const recipeIndex=new Map([...noon,...evening].map(recipe=>[recipe.id,recipe]));
-$('versionLine').textContent=`Clair Repas V2.2 · ${noon.length+evening.length} repas possibles`;
+$('versionLine').textContent=`Clair Repas V2.3 · ${noon.length+evening.length} repas possibles`;
 const todayKey=()=>new Date().toLocaleDateString('en-CA');
 const season=()=>{
   const m=new Date().getMonth()+1;
@@ -789,6 +803,23 @@ const season=()=>{
   return'hiver';
 };
 let plan=[];
+const MEAL_TYPES=['mid','eve'];
+const MEAL_PLANNED='planned';
+const MEAL_OUTSIDE='outside';
+const MEAL_LEFTOVERS='leftovers';
+function statusKey(type){return`${type}Status`}
+function normalizeMealStatus(value){
+  return [MEAL_PLANNED,MEAL_OUTSIDE,MEAL_LEFTOVERS].includes(value)?value:MEAL_PLANNED;
+}
+function mealStatus(day,type){
+  return normalizeMealStatus(day&&day[statusKey(type)]);
+}
+function activeRecipeEntries(source=plan){
+  return (source||[]).flatMap((day,dayIndex)=>MEAL_TYPES.flatMap(type=>{
+    const recipe=day&&day[type];
+    return mealStatus(day,type)===MEAL_PLANNED&&recipe?[{dayIndex,type,recipe}]:[];
+  }));
+}
 
 $('people').value=localStorage.getItem('crPeople')||'2';
 $('days').value=localStorage.getItem('crDays')||'2';
@@ -831,26 +862,28 @@ function ingredientText(x,qOverride){
   if(q==null)return x.n;
   return [formatQty(q),x.u,x.n].filter(Boolean).join(' ');
 }
-function suggestedTimer(x){
-  if(Number(x.timer)>0)return Number(x.timer);
+function stepTimerDurations(step){
+  const text=String(step||'');
+  const timedAction=/(cuire|cuisson|précuire|poursuivre|mijoter|frémir|gratiner|griller|rôtir|poêler|saisir|réchauffer|chauffer|dorer|revenir|sauter|fondre|reposer|repos|laisser|mariner|attendre|réserver|refroidir|sortir|enfourner)/i;
+  if(!timedAction.test(text))return[];
   const durations=[];
-  (x.p||[]).forEach(step=>{
-    const matches=String(step).matchAll(/(\d+)(?:\s*(?:à|-)\s*(\d+))?\s*minutes?/gi);
-    for(const match of matches)durations.push(Number(match[2]||match[1]));
-  });
-  const usableDurations=durations.filter(value=>value>0&&value<=90);
-  if(usableDurations.length)return Math.max(...usableDurations);
-  const total=recipeMinutes(x);
-  return Number.isFinite(total)&&total<90?total:null;
+  const matches=text.matchAll(/(\d{1,3})(?:\s*(?:à|-|–)\s*(\d{1,3}))?\s*(?:min(?:ute)?s?)\b/gi);
+  for(const match of matches){
+    const minutes=Number(match[2]||match[1]);
+    if(minutes>0&&minutes<=120&&!durations.includes(minutes))durations.push(minutes);
+  }
+  return durations;
 }
 function recipeHTML(x){
-  const timerMinutes=suggestedTimer(x);
-  const tools=timerMinutes?`<div class="cooking-tools">
-    <p class="wake-note">☀️ Mode cuisine · écran maintenu allumé</p>
-    <button class="timer-start" data-recipe-id="${x.id}" data-timer-minutes="${timerMinutes}">⏱️ Lancer ${timerMinutes} min</button>
-  </div>`:'';
+  const steps=(x.p||[]).map((step,index)=>{
+    const timers=stepTimerDurations(step);
+    const buttons=timers.length?`<div class="step-timers">${timers.map(minutes=>
+      `<button class="step-timer" data-recipe-id="${x.id}" data-step-index="${index}" data-timer-minutes="${minutes}">⏱ ${minutes} min</button>`
+    ).join('')}</div>`:'';
+    return `<li><span>${step}</span>${buttons}</li>`;
+  }).join('');
   return `<h3>Ingrédients</h3><ul>${x.i.map(v=>`<li>${ingredientText(v)}</li>`).join('')}</ul>
-  <h3>Préparation</h3><ol>${x.p.map(v=>`<li>${v}</li>`).join('')}</ol>${tools}`;
+  <h3>Préparation</h3><p class="wake-note">☀️ Mode cuisine · écran maintenu allumé</p><ol>${steps}</ol>`;
 }
 function recipeText(recipe){
   return `${recipe.n} ${(recipe.i||[]).map(item=>item.n).join(' ')}`.toLowerCase();
@@ -972,11 +1005,15 @@ function rememberMeal(type,id){
   }
   localStorage.setItem(USAGE_KEY,JSON.stringify(data));
 }
+function forgetMeal(type,id){
+  if(!id)return;
+  const data=usageData();
+  data[type]=data[type].filter(item=>item.id!==id);
+  data.sequence=data.sequence.filter(item=>!(item.type===type&&item.id===id));
+  localStorage.setItem(USAGE_KEY,JSON.stringify(data));
+}
 function rememberPlan(items){
-  (items||[]).forEach(d=>{
-    rememberMeal('mid',d.mid.id);
-    rememberMeal('eve',d.eve.id);
-  });
+  activeRecipeEntries(items).forEach(item=>rememberMeal(item.type,item.recipe.id));
 }
 function recentUseIds(type){
   return new Set(usageData()[type].map(item=>item.id));
@@ -1092,14 +1129,27 @@ function pick(list,type,exclude,context=[]){
   }
   return weighted.at(-1).recipe;
 }
-function buildPlan(count){
+function buildPlan(count,template=plan){
   const mids=new Set(), eves=new Set(), result=[], context=[];
   for(let i=0;i<count;i++){
-    const mid=pick(noon,'mid',mids,context); mids.add(mid.id);
-    context.push({type:'mid',recipe:mid});
-    const eve=pick(evening,'eve',eves,context); eves.add(eve.id);
-    context.push({type:'eve',recipe:eve});
-    result.push({mid,eve});
+    const previous=template[i]||{};
+    const day={
+      mid:null,
+      eve:null,
+      midStatus:normalizeMealStatus(previous.midStatus),
+      eveStatus:normalizeMealStatus(previous.eveStatus)
+    };
+    if(day.midStatus===MEAL_PLANNED){
+      day.mid=pick(noon,'mid',mids,context);
+      mids.add(day.mid.id);
+      context.push({type:'mid',recipe:day.mid});
+    }
+    if(day.eveStatus===MEAL_PLANNED){
+      day.eve=pick(evening,'eve',eves,context);
+      eves.add(day.eve.id);
+      context.push({type:'eve',recipe:day.eve});
+    }
+    result.push(day);
   }
   rememberPlan(result);
   return result;
@@ -1110,7 +1160,12 @@ function saveState(){
     days:Number($('days').value),
     mode:$('mode').value,
     timeAvailable:$('timeAvailable').value,
-    plan:plan.map(d=>({midId:d.mid.id,eveId:d.eve.id}))
+    plan:plan.map(d=>({
+      midId:d.mid?.id||null,
+      eveId:d.eve?.id||null,
+      midStatus:mealStatus(d,'mid'),
+      eveStatus:mealStatus(d,'eve')
+    }))
   }));
 }
 function saveHistory(){
@@ -1118,7 +1173,14 @@ function saveHistory(){
   h=h.filter(x=>x.date!==todayKey());
   h.unshift({
     date:todayKey(),
-    plan:plan.map(d=>({midId:d.mid.id,eveId:d.eve.id,mid:d.mid.n,eve:d.eve.n}))
+    plan:plan.map(d=>({
+      midId:d.mid?.id||null,
+      eveId:d.eve?.id||null,
+      mid:d.mid?.n||null,
+      eve:d.eve?.n||null,
+      midStatus:mealStatus(d,'mid'),
+      eveStatus:mealStatus(d,'eve')
+    }))
   });
   localStorage.setItem('crHistoryV13',JSON.stringify(h.slice(0,10)));
   renderHistory();
@@ -1129,16 +1191,23 @@ function renderHistory(){
   $('historyContent').innerHTML=h.slice(0,5).map(x=>{
     const d=new Date(x.date+'T12:00:00');
     const date=new Intl.DateTimeFormat('fr-FR',{weekday:'short',day:'numeric',month:'short'}).format(d);
-    const meals=(x.plan||[]).map((p,i)=>`<strong>J${i+1}</strong> · ${p.mid}<br>↳ ${p.eve}`).join('<br>');
+    const mealName=(p,type)=>{
+      const status=normalizeMealStatus(p&&p[statusKey(type)]);
+      if(status===MEAL_OUTSIDE)return'Extérieur';
+      if(status===MEAL_LEFTOVERS)return'Restes / Déjà prévu';
+      return p&&p[type]?p[type]:'Repas à prévoir';
+    };
+    const meals=(x.plan||[]).map((p,i)=>`<strong>J${i+1}</strong> · ${mealName(p,'mid')}<br>↳ ${mealName(p,'eve')}`).join('<br>');
     return `<div class="history-item"><div class="history-date">${date}</div><div class="history-meals">${meals}</div></div>`;
   }).join('');
 }
 function updateLikedButton(){
   const favs=new Set(JSON.parse(localStorage.getItem('crFavMeals')||'[]'));
-  const ids=plan.flatMap(d=>[d.mid.id,d.eve.id]);
+  const ids=activeRecipeEntries().map(item=>item.recipe.id);
   const allLiked=ids.length>0&&ids.every(id=>favs.has(id));
   $('favorite').classList.toggle('liked',allLiked);
-  $('favorite').textContent=allLiked?'★ Menus aimés':'☆ J’aime ces menus';
+  $('favorite').disabled=ids.length===0;
+  $('favorite').textContent=ids.length===0?'☆ Aucun menu à aimer':allLiked?'★ Menus aimés':'☆ J’aime ces menus';
 }
 
 let wakeLock=null;
@@ -1228,7 +1297,7 @@ function updateTimerUI(){
     if(timerInterval){clearInterval(timerInterval);timerInterval=null}
     bar.classList.remove('show','done');
     document.body.classList.remove('timer-running');
-    document.title='Clair Repas V2.2';
+    document.title='Clair Repas V2.3';
     return;
   }
   const remaining=Math.max(0,Math.ceil((kitchenTimer.endAt-Date.now())/1000));
@@ -1248,11 +1317,13 @@ function updateTimerUI(){
 function startTimerTick(){
   if(!timerInterval)timerInterval=setInterval(updateTimerUI,1000);
 }
-function startKitchenTimer(recipe,minutes){
+function startKitchenTimer(recipe,minutes,stepIndex){
   unlockTimerAudio();
+  const stepNumber=Number.isFinite(Number(stepIndex))?Number(stepIndex)+1:null;
   kitchenTimer={
     recipeId:recipe.id,
-    label:recipe.n,
+    label:stepNumber?`${recipe.n} · étape ${stepNumber}`:recipe.n,
+    stepIndex:stepNumber?stepNumber-1:null,
     minutes,
     endAt:Date.now()+minutes*60*1000
   };
@@ -1276,6 +1347,46 @@ try{
 if(kitchenTimer&&Number(kitchenTimer.endAt)>Date.now())startTimerTick();
 updateTimerUI();
 
+function mealHTML(day,dayIndex,type){
+  const status=mealStatus(day,type);
+  const recipe=day[type];
+  const isEvening=type==='eve';
+  const tag=isEvening?'🌙 SOIR · LÉGER ET RASSASIANT':'☀️ MIDI · PLAT COMPLET';
+  const toggleText=status===MEAL_OUTSIDE?'Extérieur':status===MEAL_LEFTOVERS?'Déjà prévu':'À prévoir';
+  let content='';
+  if(status===MEAL_OUTSIDE){
+    content=`<div class="meal-placeholder">
+      <strong>Extérieur</strong>
+      <span>Aucune recette ni course pour ce repas.</span>
+      <button class="leftovers-btn" data-day="${dayIndex}" data-type="${type}">🍲 Restes / déjà prévu</button>
+    </div>`;
+  }else if(status===MEAL_LEFTOVERS){
+    content=`<div class="meal-placeholder leftovers">
+      <strong>Restes / Déjà prévu</strong>
+      <span>Ce repas reste visible, sans ajouter de nouvelles courses.</span>
+      <button class="plan-meal-btn" data-day="${dayIndex}" data-type="${type}">🎲 Prévoir une recette</button>
+    </div>`;
+  }else if(recipe){
+    content=`<div class="meal-title">${recipe.n}</div>
+      <div class="meta">⏱️ ${recipe.t} · 🔥 ${recipe.m}</div>
+      <div class="meal-actions">
+        <button class="small-btn recipe-btn" data-day="${dayIndex}" data-type="${type}">📖 Voir la recette</button>
+        <button class="small-btn secondary change-btn" data-day="${dayIndex}" data-type="${type}">🔄 Changer ${isEvening?'le soir':'le midi'}</button>
+      </div>
+      <button class="meal-status-action leftovers-btn" data-day="${dayIndex}" data-type="${type}">🍲 Restes / déjà prévu</button>
+      <div class="recipe" id="recipe-${dayIndex}-${type}">${recipeHTML(recipe)}</div>`;
+  }
+  return `<div class="meal">
+    <div class="meal-top">
+      <div class="tag${isEvening?' evening':''}">${tag}</div>
+      <label class="meal-toggle ${status}">
+        <input class="meal-active" type="checkbox" data-day="${dayIndex}" data-type="${type}" ${status===MEAL_OUTSIDE?'':'checked'}>
+        <span>${toggleText}</span>
+      </label>
+    </div>
+    ${content}
+  </div>`;
+}
 function render(){
   $('daysContainer').innerHTML=plan.map((d,i)=>`
     <section class="day-card">
@@ -1283,28 +1394,8 @@ function render(){
         <div class="day-title">${dayLabel(i)}</div>
         <div class="day-date">${formatDate(i)}</div>
       </div>
-
-      <div class="meal">
-        <div class="tag">☀️ MIDI · PLAT COMPLET</div>
-        <div class="meal-title">${d.mid.n}</div>
-        <div class="meta">⏱️ ${d.mid.t} · 🔥 ${d.mid.m}</div>
-        <div class="meal-actions">
-          <button class="small-btn recipe-btn" data-day="${i}" data-type="mid">📖 Voir la recette</button>
-          <button class="small-btn secondary change-btn" data-day="${i}" data-type="mid">🔄 Changer le midi</button>
-        </div>
-        <div class="recipe" id="recipe-${i}-mid">${recipeHTML(d.mid)}</div>
-      </div>
-
-      <div class="meal">
-        <div class="tag evening">🌙 SOIR · LÉGER ET RASSASIANT</div>
-        <div class="meal-title">${d.eve.n}</div>
-        <div class="meta">⏱️ ${d.eve.t} · 🔥 ${d.eve.m}</div>
-        <div class="meal-actions">
-          <button class="small-btn recipe-btn" data-day="${i}" data-type="eve">📖 Voir la recette</button>
-          <button class="small-btn secondary change-btn" data-day="${i}" data-type="eve">🔄 Changer le soir</button>
-        </div>
-        <div class="recipe" id="recipe-${i}-eve">${recipeHTML(d.eve)}</div>
-      </div>
+      ${mealHTML(d,i,'mid')}
+      ${mealHTML(d,i,'eve')}
     </section>`).join('');
 
   document.querySelectorAll('.recipe-btn').forEach(b=>b.onclick=()=>{
@@ -1317,10 +1408,20 @@ function render(){
   document.querySelectorAll('.change-btn').forEach(b=>b.onclick=()=>{
     changeMeal(Number(b.dataset.day),b.dataset.type);
   });
-  document.querySelectorAll('.timer-start').forEach(button=>button.onclick=()=>{
+  document.querySelectorAll('.meal-active').forEach(input=>input.onchange=()=>{
+    setMealStatus(Number(input.dataset.day),input.dataset.type,input.checked?MEAL_PLANNED:MEAL_OUTSIDE);
+  });
+  document.querySelectorAll('.leftovers-btn').forEach(button=>button.onclick=()=>{
+    setMealStatus(Number(button.dataset.day),button.dataset.type,MEAL_LEFTOVERS);
+  });
+  document.querySelectorAll('.plan-meal-btn').forEach(button=>button.onclick=()=>{
+    setMealStatus(Number(button.dataset.day),button.dataset.type,MEAL_PLANNED);
+  });
+  document.querySelectorAll('.step-timer').forEach(button=>button.onclick=()=>{
     const recipe=recipeIndex.get(button.dataset.recipeId);
     const minutes=Number(button.dataset.timerMinutes);
-    if(recipe&&minutes>0)startKitchenTimer(recipe,minutes);
+    const stepIndex=Number(button.dataset.stepIndex);
+    if(recipe&&minutes>0)startKitchenTimer(recipe,minutes,stepIndex);
   });
 
   updateLikedButton();
@@ -1329,53 +1430,87 @@ function render(){
   updateWakeLock();
 }
 function changeMeal(index,type){
-  const used=new Set(plan.map(d=>type==='mid'?d.mid.id:d.eve.id));
-  used.delete(type==='mid'?plan[index].mid.id:plan[index].eve.id);
-  const context=[];
-  plan.forEach((day,dayIndex)=>{
-    if(!(dayIndex===index&&type==='mid'))context.push({type:'mid',recipe:day.mid});
-    if(!(dayIndex===index&&type==='eve'))context.push({type:'eve',recipe:day.eve});
-  });
+  const day=plan[index];
+  if(!day||mealStatus(day,type)!==MEAL_PLANNED)return;
+  const used=new Set(activeRecipeEntries().filter(item=>item.type===type).map(item=>item.recipe.id));
+  if(day[type])used.delete(day[type].id);
+  const context=activeRecipeEntries()
+    .filter(item=>!(item.dayIndex===index&&item.type===type))
+    .map(item=>({type:item.type,recipe:item.recipe}));
   if(type==='mid'){
-    plan[index].mid=pick(noon,'mid',used,context);
-    rememberMeal('mid',plan[index].mid.id);
+    day.mid=pick(noon,'mid',used,context);
+    rememberMeal('mid',day.mid.id);
   }else{
-    plan[index].eve=pick(evening,'eve',used,context);
-    rememberMeal('eve',plan[index].eve.id);
+    day.eve=pick(evening,'eve',used,context);
+    rememberMeal('eve',day.eve.id);
   }
   render();
+}
+function setMealStatus(index,type,nextStatus){
+  const day=plan[index];
+  if(!day||!MEAL_TYPES.includes(type))return;
+  const next=normalizeMealStatus(nextStatus);
+  if(mealStatus(day,type)===next)return;
+  const previousRecipe=day[type];
+  day[statusKey(type)]=next;
+  if(next===MEAL_PLANNED){
+    const used=new Set(activeRecipeEntries().filter(item=>item.type===type).map(item=>item.recipe.id));
+    const context=activeRecipeEntries().map(item=>({type:item.type,recipe:item.recipe}));
+    day[type]=pick(type==='mid'?noon:evening,type,used,context);
+    rememberMeal(type,day[type].id);
+  }else{
+    forgetMeal(type,previousRecipe&&previousRecipe.id);
+    day[type]=null;
+  }
+  render();
+  show(next===MEAL_OUTSIDE?'Repas noté à l’extérieur · courses mises à jour':next===MEAL_LEFTOVERS?'Restes / déjà prévu · courses mises à jour':'Repas ajouté · courses mises à jour');
 }
 function ensureDays(){
   const count=Number($('days').value);
   if(plan.length>count)plan=plan.slice(0,count);
-  while(plan.length<count){
-    const mids=new Set(plan.map(d=>d.mid.id));
-    const eves=new Set(plan.map(d=>d.eve.id));
-    const context=plan.flatMap(day=>[
-      {type:'mid',recipe:day.mid},
-      {type:'eve',recipe:day.eve}
-    ]);
-    const mid=pick(noon,'mid',mids,context);
-    context.push({type:'mid',recipe:mid});
-    const added={mid,eve:pick(evening,'eve',eves,context)};
-    plan.push(added);
-    rememberPlan([added]);
-  }
+  while(plan.length<count)plan.push({mid:null,eve:null,midStatus:MEAL_PLANNED,eveStatus:MEAL_PLANNED});
+  const mids=new Set(), eves=new Set(), context=[];
+  plan.forEach(day=>{
+    MEAL_TYPES.forEach(type=>day[statusKey(type)]=mealStatus(day,type));
+    if(day.midStatus===MEAL_PLANNED){
+      if(!day.mid){
+        day.mid=pick(noon,'mid',mids,context);
+        rememberMeal('mid',day.mid.id);
+      }
+      mids.add(day.mid.id);
+      context.push({type:'mid',recipe:day.mid});
+    }else day.mid=null;
+    if(day.eveStatus===MEAL_PLANNED){
+      if(!day.eve){
+        day.eve=pick(evening,'eve',eves,context);
+        rememberMeal('eve',day.eve.id);
+      }
+      eves.add(day.eve.id);
+      context.push({type:'eve',recipe:day.eve});
+    }else day.eve=null;
+  });
+}
+function loadSavedPlan(savedPlan){
+  return savedPlan.map(item=>{
+    const midStatus=normalizeMealStatus(item&&item.midStatus);
+    const eveStatus=normalizeMealStatus(item&&item.eveStatus);
+    return{
+      mid:midStatus===MEAL_PLANNED?noon.find(recipe=>recipe.id===item.midId)||null:null,
+      eve:eveStatus===MEAL_PLANNED?evening.find(recipe=>recipe.id===item.eveId)||null:null,
+      midStatus,
+      eveStatus
+    };
+  });
 }
 function loadOrCreate(){
-  const saved=JSON.parse(localStorage.getItem('crStateV13')||'null');
-  // Le programme reste disponible d’un jour à l’autre jusqu’à une action volontaire.
-  if(saved&&Array.isArray(saved.plan)){
-    const loaded=saved.plan.map(d=>({
-      mid:noon.find(x=>x.id===d.midId),
-      eve:evening.find(x=>x.id===d.eveId)
-    })).filter(d=>d.mid&&d.eve);
-    if(loaded.length){
-      plan=loaded;
-      ensureDays();
-      render();
-      return;
-    }
+  let saved=null;
+  try{saved=JSON.parse(localStorage.getItem('crStateV13')||'null')}catch(e){}
+  // Les anciens programmes V2.2 sont repris avec Midi et Soir activés par défaut.
+  if(saved&&Array.isArray(saved.plan)&&saved.plan.length){
+    plan=loadSavedPlan(saved.plan);
+    ensureDays();
+    render();
+    return;
   }
   plan=buildPlan(Number($('days').value));
   render();
@@ -1598,7 +1733,7 @@ function purchaseText(x){
 }
 function groupedCourses(){
   const map=new Map();
-  const all=plan.flatMap(d=>[...d.mid.i,...d.eve.i]);
+  const all=activeRecipeEntries().flatMap(item=>item.recipe.i);
   all.forEach(item=>{
     const q=qtyForPeople(item.q);
     const key=`${String(item.k).toLowerCase()}|${item.u||''}`;
@@ -1640,7 +1775,8 @@ $('timeAvailable').onchange=()=>{
 };
 $('favorite').onclick=()=>{
   const favs=new Set(JSON.parse(localStorage.getItem('crFavMeals')||'[]'));
-  const ids=plan.flatMap(d=>[d.mid.id,d.eve.id]);
+  const ids=activeRecipeEntries().map(item=>item.recipe.id);
+  if(!ids.length){show('Aucun repas à enregistrer');return}
   const allLiked=ids.every(id=>favs.has(id));
   ids.forEach(id=>allLiked?favs.delete(id):favs.add(id));
   localStorage.setItem('crFavMeals',JSON.stringify([...favs]));
@@ -1648,7 +1784,9 @@ $('favorite').onclick=()=>{
   show(allLiked?'Menus retirés des favoris':'Menus enregistrés');
 };
 $('courses').onclick=async()=>{
-  const text=groupedCourses().join('\n');
+  const items=groupedCourses();
+  if(!items.length){show('Aucune course à ajouter');return}
+  const text=items.join('\n');
   try{
     await navigator.clipboard.writeText(text);
     show('Toutes les courses ont été copiées');
