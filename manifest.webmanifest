@@ -1,7 +1,7 @@
 {
   "name": "Clair Repas",
   "short_name": "Clair Repas",
-  "description": "Plus de 400 repas cohérents, un planning souple, des courses justes et des minuteurs utiles pendant la cuisine.",
+  "description": "600 repas cohérents, un moteur saisonnier progressif, un planning souple, des courses justes et des minuteurs utiles pendant la cuisine.",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",

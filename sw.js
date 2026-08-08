@@ -1,4 +1,4 @@
-const CACHE='clair-repas-v2.3-planning-minuteurs-etapes';
+const CACHE='clair-repas-v2.4-600-saisons-progressives';
 const ASSETS=['./','./index.html','./manifest.webmanifest','./icon-192.png','./icon-512.png'];
 
 self.addEventListener('install',event=>{
