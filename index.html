@@ -9,7 +9,7 @@
 <meta name="apple-mobile-web-app-title" content="Clair Repas">
 <link rel="manifest" href="./manifest.webmanifest">
 <link rel="apple-touch-icon" href="./icon-192.png">
-<title>Clair Repas V2.5</title>
+<title>Clair Repas V3</title>
 <style>
 :root{
   --bg:#f4efe7;--card:#fffdfa;--text:#27231f;--muted:#746c63;
@@ -74,6 +74,12 @@ select{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:1
 .portion-label{min-width:94px;text-align:center;font-size:13px;font-weight:820}
 .recipe-favorite{min-width:44px;height:46px;padding:0 12px;border:1px solid var(--line);border-radius:13px;background:white;color:#9a4141;font-size:20px;font-weight:850}
 .recipe-favorite.active{border-color:#efcaca;background:#fff1f1}
+.recipe-feedback{margin:0 0 13px;padding:10px;border:1px solid var(--line);border-radius:14px;background:#faf7f2}
+.recipe-feedback-label{margin:0 0 8px;color:var(--muted);font-size:12px;font-weight:760}
+.recipe-feedback-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.recipe-reaction{min-height:42px;padding:9px 10px;border:1px solid var(--line);border-radius:11px;background:white;color:var(--text);font-size:13px;font-weight:800}
+.recipe-reaction.again.active{border-color:#b8d8c3;background:var(--green-soft);color:var(--green)}
+.recipe-reaction.not-for-me.active{border-color:#e6c2bd;background:#fff1ef;color:#8b3d35}
 .wake-note{display:none;margin:4px 0 9px;padding:8px 10px;border-radius:11px;background:#f3f7f2;color:var(--green);font-size:12px;font-weight:760}
 body.wake-active .wake-note{display:block}
 .step-timers{display:flex;flex-wrap:wrap;gap:7px;margin-top:6px}
@@ -92,6 +98,12 @@ body.wake-active .wake-note{display:block}
 .history-date{font-size:12px;color:var(--muted);margin-bottom:4px}
 .history-meals{font-size:13px;line-height:1.42}
 .empty{color:var(--muted);font-size:14px}
+.learning-settings{margin:11px auto 0;text-align:center;color:var(--muted);font-size:12px}
+.learning-settings summary{display:inline-block;padding:7px 9px;cursor:pointer;list-style:none;font-weight:760}
+.learning-settings summary::-webkit-details-marker{display:none}
+.learning-settings-panel{margin:7px auto 0;padding:12px;max-width:390px;border:1px solid var(--line);border-radius:14px;background:var(--card)}
+.learning-settings-panel p{margin:0 0 9px;line-height:1.4}
+.reset-preferences{min-height:42px;padding:9px 12px;border:1px solid #e2c5c0;border-radius:11px;background:#fff7f5;color:#80433b;font-weight:780}
 .note{text-align:center;color:var(--muted);font-size:12px;margin:13px 0 0}
 .version{text-align:center;color:#9a9187;font-size:11px;margin-top:7px}
 .kitchen-timer{position:fixed;left:50%;bottom:calc(18px + env(safe-area-inset-bottom));transform:translateX(-50%);width:min(440px,calc(100% - 24px));padding:10px 11px 10px 14px;border-radius:16px;background:#28231f;color:white;box-shadow:0 12px 30px rgba(30,24,19,.28);display:none;align-items:center;gap:11px;z-index:30}
@@ -221,8 +233,16 @@ body.timer-running .browser-content{padding-bottom:calc(105px + env(safe-area-in
   <div class="history-content" id="historyContent"></div>
 </details>
 
-<p class="note">La saison et le temps disponible guident les prochains choix. Le programme affiché reste conservé jusqu’à une action volontaire.</p>
-<p class="version" id="versionLine">Clair Repas V2.5 · 600 repas possibles</p>
+<details class="learning-settings">
+  <summary>⚙️ Préférences</summary>
+  <div class="learning-settings-panel">
+    <p>Efface uniquement les avis et l’apprentissage. Les favoris et les recettes restent conservés.</p>
+    <button class="reset-preferences" id="resetPreferences" type="button">Réinitialiser mes préférences</button>
+  </div>
+</details>
+
+<p class="note">La saison, le temps disponible et vos préférences guident les prochains choix. Le programme affiché reste conservé jusqu’à une action volontaire.</p>
+<p class="version" id="versionLine">Clair Repas V3 · 600 repas possibles</p>
 </main>
 <div class="recipe-browser" id="recipeBrowser" hidden>
   <section class="browser-panel" role="dialog" aria-modal="true" aria-labelledby="browserTitle">
@@ -1064,10 +1084,15 @@ noon.forEach(recipe=>{recipe.mealSlots=['mid']});
 evening.forEach(recipe=>{recipe.mealSlots=['eve']});
 const recipeLibrary=[...noon,...evening];
 const recipeIndex=new Map(recipeLibrary.map(recipe=>[recipe.id,recipe]));
-$('versionLine').textContent=`Clair Repas V2.5 · ${recipeLibrary.length} repas possibles`;
+$('versionLine').textContent=`Clair Repas V3 · ${recipeLibrary.length} repas possibles`;
 const FAVORITES_KEY='crFavMeals';
 const RECENT_RECIPES_KEY='crRecentRecipesV25';
 const MAX_RECENT_RECIPES=10;
+const REACTIONS_KEY='crRecipeReactionsV3';
+const LEARNING_KEY='crRecipeLearningV3';
+const LEARNING_CHOICE_LIMIT=120;
+const CHOICE_DEDUPLICATION_MS=6*60*60*1000;
+const DISCOVERY_RATE=0.18;
 function readIdList(key){
   let values=[];
   try{values=JSON.parse(localStorage.getItem(key)||'[]')}catch(e){values=[]}
@@ -1084,6 +1109,93 @@ function recentRecipeIds(){return readIdList(RECENT_RECIPES_KEY).filter(id=>reci
 function recordRecentRecipe(id){
   if(!recipeIndex.has(id))return;
   writeIdList(RECENT_RECIPES_KEY,[id,...recentRecipeIds().filter(value=>value!==id)].slice(0,MAX_RECENT_RECIPES));
+  recordRecipeChoice(id);
+}
+function reactionMap(){
+  let values={};
+  try{values=JSON.parse(localStorage.getItem(REACTIONS_KEY)||'{}')}catch(e){values={}}
+  if(!values||Array.isArray(values)||typeof values!=='object')return{};
+  return Object.fromEntries(Object.entries(values).filter(([id,value])=>recipeIndex.has(id)&&['again','notForMe'].includes(value)));
+}
+function recipeReaction(id){return reactionMap()[id]||null}
+function writeReactionMap(values){
+  const clean=Object.fromEntries(Object.entries(values||{}).filter(([id,value])=>recipeIndex.has(id)&&['again','notForMe'].includes(value)));
+  localStorage.setItem(REACTIONS_KEY,JSON.stringify(clean));
+}
+function learningData(){
+  let raw=null;
+  try{raw=JSON.parse(localStorage.getItem(LEARNING_KEY)||'null')}catch(e){raw=null}
+  const data={version:1,choices:[],stats:{}};
+  if(!raw||typeof raw!=='object')return data;
+  if(Array.isArray(raw.choices)){
+    data.choices=raw.choices.filter(item=>item&&recipeIndex.has(item.id)&&Number.isFinite(Number(item.at)))
+      .map(item=>({id:item.id,at:Number(item.at)})).slice(-LEARNING_CHOICE_LIMIT);
+  }
+  if(raw.stats&&typeof raw.stats==='object'&&!Array.isArray(raw.stats)){
+    Object.entries(raw.stats).forEach(([id,value])=>{
+      if(!recipeIndex.has(id)||!value||typeof value!=='object')return;
+      const proposed=Math.max(0,Math.floor(Number(value.proposed)||0));
+      const viewed=Math.max(0,Math.floor(Number(value.viewed)||0));
+      const lastProposedAt=Math.max(0,Number(value.lastProposedAt)||0);
+      const lastViewedAt=Math.max(0,Number(value.lastViewedAt)||0);
+      if(proposed||viewed||lastProposedAt||lastViewedAt)data.stats[id]={proposed,viewed,lastProposedAt,lastViewedAt};
+    });
+  }
+  return data;
+}
+function saveLearningData(data){
+  localStorage.setItem(LEARNING_KEY,JSON.stringify({version:1,choices:data.choices.slice(-LEARNING_CHOICE_LIMIT),stats:data.stats}));
+}
+function recipeLearningStats(data,id){
+  if(!data.stats[id])data.stats[id]={proposed:0,viewed:0,lastProposedAt:0,lastViewedAt:0};
+  return data.stats[id];
+}
+function recordRecipeChoice(id){
+  if(!recipeIndex.has(id))return;
+  const data=learningData();
+  const now=Date.now();
+  const lastSame=[...data.choices].reverse().find(item=>item.id===id);
+  const isNewChoice=!lastSame||now-lastSame.at>=CHOICE_DEDUPLICATION_MS;
+  if(isNewChoice){
+    data.choices.push({id,at:now});
+    const stats=recipeLearningStats(data,id);
+    stats.viewed+=1;
+    stats.lastViewedAt=now;
+    saveLearningData(data);
+  }
+}
+function recordAutomaticProposal(id){
+  if(!recipeIndex.has(id))return;
+  const data=learningData();
+  const stats=recipeLearningStats(data,id);
+  stats.proposed+=1;
+  stats.lastProposedAt=Date.now();
+  saveLearningData(data);
+}
+function setRecipeReaction(id,value){
+  if(!recipeIndex.has(id)||!['again','notForMe'].includes(value))return;
+  const reactions=reactionMap();
+  const removing=reactions[id]===value;
+  if(removing)delete reactions[id];
+  else reactions[id]=value;
+  writeReactionMap(reactions);
+  updateReactionUI();
+  if(removing)show('Avis retiré · recette redevenue neutre');
+  else show(value==='again'?'À refaire · Clair Repas le retiendra':'Pas pour moi · recette fortement défavorisée');
+}
+function updateReactionUI(){
+  const reactions=reactionMap();
+  document.querySelectorAll('.recipe-reaction').forEach(button=>{
+    const active=reactions[button.dataset.recipeId]===button.dataset.reaction;
+    button.classList.toggle('active',active);
+    button.setAttribute('aria-pressed',String(active));
+  });
+}
+function resetLearnedPreferences(){
+  localStorage.removeItem(REACTIONS_KEY);
+  localStorage.removeItem(LEARNING_KEY);
+  updateReactionUI();
+  show('Préférences réinitialisées · favoris conservés');
 }
 const todayKey=()=>new Date().toLocaleDateString('en-CA');
 const SEASON_TRANSITION_DAYS=15;
@@ -1245,6 +1357,16 @@ function stepTimerDurations(step){
   }
   return durations;
 }
+function recipeFeedbackHTML(recipe){
+  const reaction=recipeReaction(recipe.id);
+  return `<div class="recipe-feedback" aria-label="Votre avis sur cette recette">
+    <p class="recipe-feedback-label">Pour améliorer les prochaines idées</p>
+    <div class="recipe-feedback-actions">
+      <button class="recipe-reaction again${reaction==='again'?' active':''}" data-recipe-id="${recipe.id}" data-reaction="again" type="button" aria-pressed="${reaction==='again'}">✓ À refaire</button>
+      <button class="recipe-reaction not-for-me${reaction==='notForMe'?' active':''}" data-recipe-id="${recipe.id}" data-reaction="notForMe" type="button" aria-pressed="${reaction==='notForMe'}">👎 Pas pour moi</button>
+    </div>
+  </div>`;
+}
 function recipeHTML(x,{showFavorite=true}={}){
   const steps=(x.p||[]).map((step,index)=>{
     const timers=stepTimerDurations(step);
@@ -1263,6 +1385,7 @@ function recipeHTML(x,{showFavorite=true}={}){
     </div>
     ${showFavorite?`<button class="recipe-favorite${liked?' active':''}" data-recipe-id="${x.id}" type="button" aria-pressed="${liked}" aria-label="${liked?'Retirer des favoris':'Ajouter aux favoris'}">${liked?'♥':'♡'}</button>`:''}
   </div>
+  ${recipeFeedbackHTML(x)}
   <h3>Ingrédients</h3><ul>${x.i.map((v,index)=>`<li class="ingredient-line" data-recipe-id="${x.id}" data-ingredient-index="${index}">${ingredientText(v)}</li>`).join('')}</ul>
   <h3>Préparation</h3><p class="wake-note">☀️ Mode cuisine · écran maintenu allumé</p><ol>${steps}</ol>`;
 }
@@ -1333,6 +1456,104 @@ function tagsOf(recipe){
   recipeTagCache.set(source,tags);
   return tags;
 }
+const HABIT_AXES=['group','protein','starch','method'];
+const HABIT_MAX_BOOST={group:0.08,protein:0.08,starch:0.06,method:0.04};
+const HABIT_REACTION_STEP={group:0.018,protein:0.014,starch:0.012,method:0.008};
+const baselineShareCache=new Map();
+function baselineTagShare(type,axis,value){
+  const key=`${type}|${axis}|${value}`;
+  if(baselineShareCache.has(key))return baselineShareCache.get(key);
+  const list=type==='eve'?evening:noon;
+  const share=list.filter(recipe=>tagsOf(recipe)[axis]===value).length/Math.max(1,list.length);
+  baselineShareCache.set(key,share);
+  return share;
+}
+function buildPreferenceProfile(data=learningData(),reactions=reactionMap()){
+  const choiceCounts=Object.fromEntries(HABIT_AXES.map(axis=>[axis,new Map()]));
+  const reactionScores=Object.fromEntries(HABIT_AXES.map(axis=>[axis,new Map()]));
+  let choiceWeight=0;
+  const now=Date.now();
+  data.choices.forEach(item=>{
+    if(reactions[item.id]==='notForMe')return;
+    const recipe=recipeIndex.get(item.id);
+    if(!recipe)return;
+    const ageDays=Math.max(0,(now-Number(item.at))/DAY_MS);
+    const weight=Math.max(0.35,1-ageDays/180);
+    const tags=tagsOf(recipe);
+    choiceWeight+=weight;
+    HABIT_AXES.forEach(axis=>{
+      const value=tags[axis];
+      const counts=choiceCounts[axis];
+      counts.set(value,(counts.get(value)||0)+weight);
+    });
+  });
+  Object.entries(reactions).forEach(([id,value])=>{
+    const recipe=recipeIndex.get(id);
+    if(!recipe)return;
+    const direction=value==='again'?1:-1;
+    const tags=tagsOf(recipe);
+    HABIT_AXES.forEach(axis=>{
+      const tagValue=tags[axis];
+      const scores=reactionScores[axis];
+      scores.set(tagValue,(scores.get(tagValue)||0)+direction);
+    });
+  });
+  return{choiceCounts,reactionScores,choiceWeight};
+}
+function observedPreferenceMultiplier(recipe,type,profile,discovery=false){
+  if(discovery)return 1;
+  const tags=tagsOf(recipe);
+  let factor=1;
+  if(profile.choiceWeight>=3){
+    HABIT_AXES.forEach(axis=>{
+      const share=(profile.choiceCounts[axis].get(tags[axis])||0)/profile.choiceWeight;
+      const lift=Math.max(0,share-baselineTagShare(type,axis,tags[axis]));
+      factor*=1+Math.min(HABIT_MAX_BOOST[axis],lift*0.35);
+    });
+  }
+  HABIT_AXES.forEach(axis=>{
+    const score=profile.reactionScores[axis].get(tags[axis])||0;
+    if(score>0)factor*=1+Math.min(0.05,score*HABIT_REACTION_STEP[axis]);
+    if(score<0)factor*=1-Math.min(0.06,-score*HABIT_REACTION_STEP[axis]);
+  });
+  return Math.max(0.82,Math.min(1.22,factor));
+}
+function explicitReactionMultiplier(id,reactions,discovery=false){
+  if(reactions[id]==='again')return discovery?1:1.45;
+  if(reactions[id]==='notForMe')return discovery?0.14:0.06;
+  return 1;
+}
+function exposureMultiplier(recipe,data,discovery=false){
+  const stats=data.stats[recipe.id]||{};
+  const proposed=Math.max(0,Number(stats.proposed)||0);
+  let novelty=1;
+  if(proposed===0)novelty=discovery?1.34:1.16;
+  else if(proposed===1)novelty=discovery?1.20:1.10;
+  else if(proposed<=3)novelty=discovery?1.10:1.05;
+  else if(proposed>=10)novelty=0.98;
+
+  const lastAt=Math.max(Number(stats.lastProposedAt)||0,Number(stats.lastViewedAt)||0);
+  if(!lastAt)return novelty;
+  const ageDays=Math.max(0,(Date.now()-lastAt)/DAY_MS);
+  let recency=1;
+  if(ageDays<1)recency=0.05;
+  else if(ageDays<3)recency=0.12;
+  else if(ageDays<7)recency=0.28;
+  else if(ageDays<14)recency=0.52;
+  else if(ageDays<30)recency=0.76;
+  else if(ageDays<60)recency=0.92;
+  return novelty*recency;
+}
+function personalizationContext(discovery=false){
+  const learning=learningData();
+  const reactions=reactionMap();
+  return{
+    discovery,
+    learning,
+    reactions,
+    profile:buildPreferenceProfile(learning,reactions)
+  };
+}
 function historyItem(recipe,type,at=Date.now()){
   return{id:recipe.id,type,at,...tagsOf(recipe)};
 }
@@ -1395,6 +1616,7 @@ function rememberMeal(type,id){
     data.sequence=data.sequence.slice(-80);
   }
   localStorage.setItem(USAGE_KEY,JSON.stringify(data));
+  recordAutomaticProposal(id);
 }
 function forgetMeal(type,id){
   if(!id)return;
@@ -1622,12 +1844,17 @@ function prepareScoringContext(context,data){
   const recent=[...history,...selected].slice(-10);
   return {history,selected,last:recent.at(-1),lastSix:recent.slice(-6),seasonProfile:culinarySeasonProfile()};
 }
-function candidateScore(recipe,type,context,data,favorites,prepared){
+function candidateScore(recipe,type,context,data,favorites,prepared,personalization=personalizationContext(false)){
   const tags=tagsOf(recipe);
   const scoring=prepared||prepareScoringContext(context,data);
   let score=0.75+seasonalAffinity(recipe,tags,scoring.seasonProfile)*3.15;
   score*=seasonMethodBoost(recipe,scoring.seasonProfile);
-  if(favorites.has(recipe.id))score*=1.8;
+
+  // Les favoris servent à retrouver une recette. Seuls les avis « À refaire »
+  // et « Pas pour moi » apprennent réellement les goûts de l’utilisateur.
+  score*=explicitReactionMultiplier(recipe.id,personalization.reactions,personalization.discovery);
+  score*=observedPreferenceMultiplier(recipe,type,personalization.profile,personalization.discovery);
+  score*=exposureMultiplier(recipe,personalization.learning,personalization.discovery);
 
   const {history,selected,last,lastSix}=scoring;
 
@@ -1687,7 +1914,8 @@ function pick(list,type,exclude,context=[]){
   const favs=favoriteSet();
   const data=usageData();
   const scoring=prepareScoringContext(context,data);
-  let weighted=pool.map(recipe=>({recipe,score:candidateScore(recipe,type,context,data,favs,scoring)}))
+  const personalization=personalizationContext(Math.random()<DISCOVERY_RATE);
+  let weighted=pool.map(recipe=>({recipe,score:candidateScore(recipe,type,context,data,favs,scoring,personalization)}))
     .filter(item=>item.score>0);
   if(!weighted.length&&type==='eve'){
     weighted=pool.filter(recipe=>tagsOf(recipe).kind!=='salad').map(recipe=>({recipe,score:1}));
@@ -1838,6 +2066,10 @@ function bindRecipeControls(){
   document.querySelectorAll('.recipe-favorite').forEach(button=>button.onclick=()=>{
     toggleFavorite(button.dataset.recipeId);
   });
+  document.querySelectorAll('.recipe-reaction').forEach(button=>button.onclick=()=>{
+    setRecipeReaction(button.dataset.recipeId,button.dataset.reaction);
+  });
+  updateReactionUI();
 }
 
 let wakeLock=null;
@@ -1927,7 +2159,7 @@ function updateTimerUI(){
     if(timerInterval){clearInterval(timerInterval);timerInterval=null}
     bar.classList.remove('show','done');
     document.body.classList.remove('timer-running');
-    document.title='Clair Repas V2.5';
+    document.title='Clair Repas V3';
     return;
   }
   const remaining=Math.max(0,Math.ceil((kitchenTimer.endAt-Date.now())/1000));
@@ -2404,6 +2636,11 @@ $('mode').onchange=()=>{
 $('timeAvailable').onchange=()=>{
   localStorage.setItem('crTimeAvailable',$('timeAvailable').value);
   show('Temps enregistré pour le prochain programme');
+};
+$('resetPreferences').onclick=()=>{
+  if(confirm('Réinitialiser les avis et l’apprentissage de Clair Repas ?\n\nLes favoris et les 600 recettes seront conservés.')){
+    resetLearnedPreferences();
+  }
 };
 $('favorite').onclick=()=>{
   const favs=favoriteSet();

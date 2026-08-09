@@ -1,7 +1,7 @@
 {
   "name": "Clair Repas",
   "short_name": "Clair Repas",
-  "description": "600 recettes, recherche par nom ou ingrédient, favoris, portions ajustables, suggestions saisonnières et cuisine simple au quotidien.",
+  "description": "600 recettes, suggestions saisonnières, préférences locales, découverte, favoris et cuisine simple au quotidien.",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",

@@ -1,4 +1,4 @@
-const CACHE='clair-repas-v2.5-choix-favoris-portions-recentes';
+const CACHE='clair-repas-v3-preferences-decouverte';
 const ASSETS=['./','./index.html','./manifest.webmanifest','./icon-192.png','./icon-512.png'];
 
 self.addEventListener('install',event=>{
