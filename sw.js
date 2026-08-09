@@ -1,4 +1,4 @@
-const CACHE='clair-repas-v2.4-600-saisons-progressives';
+const CACHE='clair-repas-v2.5-choix-favoris-portions-recentes';
 const ASSETS=['./','./index.html','./manifest.webmanifest','./icon-192.png','./icon-512.png'];
 
 self.addEventListener('install',event=>{
