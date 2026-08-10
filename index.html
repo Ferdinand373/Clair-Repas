@@ -9,7 +9,7 @@
 <meta name="apple-mobile-web-app-title" content="Clair Repas">
 <link rel="manifest" href="./manifest.webmanifest">
 <link rel="apple-touch-icon" href="./icon-192.png">
-<title>Clair Repas V3.1</title>
+<title>Clair Repas V3.2</title>
 <style>
 :root{
   --bg:#f4efe7;--card:#fffdfa;--text:#27231f;--muted:#746c63;
@@ -253,7 +253,7 @@ body.timer-running .browser-content{padding-bottom:calc(105px + env(safe-area-in
 
 <p class="note">La saison, le temps disponible et vos préférences guident les prochains choix. Le programme affiché reste conservé jusqu’à une action volontaire.</p>
 <p class="library-count" id="libraryCount">800 vraies recettes différentes</p>
-<p class="version" id="versionLine">Clair Repas V3.1</p>
+<p class="version" id="versionLine">Clair Repas V3.2</p>
 </main>
 <div class="recipe-browser" id="recipeBrowser" hidden>
   <section class="browser-panel" role="dialog" aria-modal="true" aria-labelledby="browserTitle">
@@ -1112,7 +1112,7 @@ const generatedSoups=soupBases.flatMap(base=>soupSides.map(side=>({
 
 evening.push(...generatedWarmDinners,...generatedSalads,...generatedOmelettes,...generatedSoups);
 
-// Clair Repas V3.1 — 200 fiches autonomes rédigées individuellement.
+// Clair Repas V3.2 — 200 fiches autonomes rédigées individuellement.
 // Le petit constructeur ci-dessous normalise uniquement la forme des données ;
 // il ne combine aucun profil avec une protéine et ne génère aucune recette.
 const V31_ALL=ALL_SEASONS;
@@ -2214,7 +2214,7 @@ const generatedRecipesToCurate=[
 generatedRecipesToCurate.forEach(curateGeneratedRecipe);
 // Quelques fiches historiques de la V3 étaient presque identiques malgré des
 // identifiants différents. Leur identifiant reste intact, mais leur finition et
-// leur technique sont réellement différenciées en V3.1.
+// leur technique sont réellement différenciées en V3.2.
 const legacyRecipesToCurate=new Set([
   'n70','n87','e51','e33','n89','n68','e100','n85','e64','e43','n69','n96','e62','e94'
 ]);
@@ -2338,7 +2338,7 @@ evening.forEach(recipe=>{recipe.mealSlots=['eve']});
 const recipeLibrary=[...noon,...evening];
 const recipeIndex=new Map(recipeLibrary.map(recipe=>[recipe.id,recipe]));
 $('libraryCount').textContent=`${recipeLibrary.length} vraies recettes différentes`;
-$('versionLine').textContent='Clair Repas V3.1';
+$('versionLine').textContent='Clair Repas V3.2';
 const FAVORITES_KEY='crFavMeals';
 const RECENT_RECIPES_KEY='crRecentRecipesV25';
 const MAX_RECENT_RECIPES=10;
@@ -3663,7 +3663,7 @@ function updateTimerUI(){
     if(timerInterval){clearInterval(timerInterval);timerInterval=null}
     bar.classList.remove('show','done');
     document.body.classList.remove('timer-running');
-    document.title='Clair Repas V3.1';
+    document.title='Clair Repas V3.2';
     return;
   }
   const remaining=Math.max(0,Math.ceil((kitchenTimer.endAt-Date.now())/1000));

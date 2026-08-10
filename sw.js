@@ -1,4 +1,4 @@
-const CACHE='clair-repas-v31-200-recettes-autonomes-20260810';
+const CACHE='clair-repas-v32-200-recettes-autonomes-20260810';
 const ASSETS=['./','./index.html','./manifest.webmanifest','./icon-192.png','./icon-512.png'];
 
 self.addEventListener('install',event=>{
