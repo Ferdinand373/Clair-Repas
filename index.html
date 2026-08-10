@@ -41,8 +41,9 @@ h1{font-size:30px;margin:0 0 3px;letter-spacing:-.5px}
 .settings{padding:0;margin:0 0 13px;display:grid;grid-template-columns:repeat(3,1fr);gap:10px;align-items:end}
 label{display:block;font-size:12px;color:var(--muted);margin:0 0 6px}
 select{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:13px;background:white;color:var(--text)}
-.plan-primary{width:100%;min-height:56px;padding:14px;border:1px solid var(--green);border-radius:15px;background:var(--green);color:white;font-size:17px;font-weight:880;box-shadow:0 8px 18px rgba(63,118,87,.2)}
+.plan-primary{position:relative;z-index:1;width:100%;min-height:56px;padding:14px;border:1px solid var(--green);border-radius:15px;background:var(--green);color:white;font-size:17px;font-weight:880;box-shadow:0 8px 18px rgba(63,118,87,.2);touch-action:manipulation}
 .plan-primary:active{transform:translateY(1px)}
+.plan-primary[aria-busy="true"]{cursor:progress}
 .recipe-shortcuts{padding:12px;margin-bottom:14px}
 .recipe-shortcuts-main,.recipe-shortcuts-secondary{display:grid;gap:8px}
 .recipe-shortcuts-secondary{grid-template-columns:1fr 1fr;margin-top:8px}
@@ -52,7 +53,7 @@ select{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:1
 .shortcut-title{font-size:16px;font-weight:880}
 .shortcut-hint{margin-top:3px;font-size:12px;font-weight:650;color:var(--muted)}
 .shortcut-count{display:inline-flex;justify-content:center;align-items:center;min-width:22px;height:22px;margin-left:4px;padding:0 6px;border-radius:999px;background:#fff1f1;color:#9a4141;font-size:11px}
-.program-results{margin-top:16px}
+.program-results{margin-top:16px;scroll-margin-top:12px}
 .program-heading{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin:0 2px 8px}
 .program-heading h2{margin:0;font-size:21px;letter-spacing:-.2px}
 .program-summary{color:var(--muted);font-size:12px;font-weight:760;white-space:nowrap}
@@ -328,7 +329,7 @@ body.timer-running .browser-content{padding-bottom:calc(105px + env(safe-area-in
   </div>
   <button class="timer-stop" id="timerStop">Arrêter</button>
 </div>
-<div class="toast" id="toast"></div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <script>
 const I=(q,u,n,k)=>({q,u,n,k:k||n});
@@ -2627,6 +2628,10 @@ function syncDayChoice(){
     const active=button.dataset.days===selected;
     button.setAttribute('aria-pressed',String(active));
   });
+  const planButton=$('newPlan');
+  if(planButton&&planButton.dataset.preparing!=='true'){
+    planButton.textContent=`🎲 Préparer mon programme · ${selected} ${selected==='1'?'jour':'jours'}`;
+  }
 }
 function updateProgramSummary(){
   const count=Math.max(1,plan.length||Number($('days').value)||1);
@@ -4214,8 +4219,8 @@ function setMealStatus(index,type,nextStatus){
   render();
   show(next===MEAL_OUTSIDE?'Repas noté à l’extérieur · courses mises à jour':next===MEAL_LEFTOVERS?'Restes / déjà prévu · courses mises à jour':'Repas ajouté · courses mises à jour');
 }
-function ensureDays(){
-  const count=Number($('days').value);
+function ensureDays(requestedCount=Number($('days').value)){
+  const count=Math.max(1,Number(requestedCount)||1);
   if(plan.length>count)plan=plan.slice(0,count);
   while(plan.length<count)plan.push({mid:null,eve:null,midStatus:MEAL_PLANNED,eveStatus:MEAL_PLANNED});
   const mids=new Set(), eves=new Set(), context=[];
@@ -4257,7 +4262,9 @@ function loadOrCreate(){
   // Les anciens programmes V2.2 sont repris avec Midi et Soir activés par défaut.
   if(saved&&Array.isArray(saved.plan)&&saved.plan.length){
     plan=loadSavedPlan(saved.plan);
-    ensureDays();
+    // Le programme mémorisé conserve sa propre durée. Un choix 1 / 2 / 3 jours
+    // non encore validé ne doit pas le reconstruire au prochain démarrage.
+    ensureDays(plan.length);
     render();
     return;
   }
@@ -4501,26 +4508,47 @@ function show(t){
   $('toast').classList.add('show');
   setTimeout(()=>$('toast').classList.remove('show'),1900);
 }
+let planGenerationInProgress=false;
 $('newPlan').onclick=()=>{
-  recordPlanSelections();
-  resetAlternativeSession();
-  plan=buildPlan(Number($('days').value));
-  render();
+  if(planGenerationInProgress)return;
+  const count=Math.max(1,Math.min(3,Number($('days').value)||1));
+  const button=$('newPlan');
+  planGenerationInProgress=true;
+  button.dataset.preparing='true';
+  button.setAttribute('aria-busy','true');
+  button.textContent='⏳ Préparation du programme…';
+  try{
+    recordPlanSelections();
+    resetAlternativeSession();
+    plan=buildPlan(count);
+    render();
+    show(`Programme préparé pour ${count} ${count===1?'jour':'jours'}`);
+    const results=$('programResults');
+    if(results&&typeof results.scrollIntoView==='function'){
+      const reveal=()=>results.scrollIntoView({behavior:'smooth',block:'start'});
+      if(typeof requestAnimationFrame==='function')requestAnimationFrame(reveal);
+      else setTimeout(reveal,0);
+    }
+  }catch(error){
+    console.error('Impossible de préparer le programme',error);
+    show('La préparation du programme n’a pas abouti');
+  }finally{
+    planGenerationInProgress=false;
+    delete button.dataset.preparing;
+    button.setAttribute('aria-busy','false');
+    syncDayChoice();
+  }
 };
 $('days').onchange=()=>{
-  recordPlanSelections();
-  resetAlternativeSession();
   localStorage.setItem('crDays',$('days').value);
   syncDayChoice();
-  ensureDays();
-  render();
 };
 document.querySelectorAll('.day-option').forEach(button=>button.onclick=()=>{
   const next=String(button.dataset.days||'');
   if(!['1','2','3'].includes(next))return;
-  if($('days').value===next){syncDayChoice();return}
   $('days').value=next;
-  $('days').onchange();
+  localStorage.setItem('crDays',next);
+  syncDayChoice();
 });
 $('people').onchange=()=>{
   setPeopleCount($('people').value,false);
