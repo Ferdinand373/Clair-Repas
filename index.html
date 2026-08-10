@@ -9,7 +9,7 @@
 <meta name="apple-mobile-web-app-title" content="Clair Repas">
 <link rel="manifest" href="./manifest.webmanifest">
 <link rel="apple-touch-icon" href="./icon-192.png">
-<title>Clair Repas V3.2</title>
+<title>Clair Repas V3.3</title>
 <style>
 :root{
   --bg:#f4efe7;--card:#fffdfa;--text:#27231f;--muted:#746c63;
@@ -253,7 +253,7 @@ body.timer-running .browser-content{padding-bottom:calc(105px + env(safe-area-in
 
 <p class="note">La saison, le temps disponible et vos préférences guident les prochains choix. Le programme affiché reste conservé jusqu’à une action volontaire.</p>
 <p class="library-count" id="libraryCount">800 vraies recettes différentes</p>
-<p class="version" id="versionLine">Clair Repas V3.2</p>
+<p class="version" id="versionLine">Clair Repas V3.3</p>
 </main>
 <div class="recipe-browser" id="recipeBrowser" hidden>
   <section class="browser-panel" role="dialog" aria-modal="true" aria-labelledby="browserTitle">
@@ -264,7 +264,7 @@ body.timer-running .browser-content{padding-bottom:calc(105px + env(safe-area-in
     </div>
     <div class="browser-search" id="browserSearchArea">
       <input id="recipeSearch" type="search" inputmode="search" autocomplete="off" placeholder="Nom ou ingrédient : poulet, courgette…" aria-label="Rechercher par nom ou ingrédient">
-      <p class="browser-hint">Les recettes de saison apparaissent d’abord, mais les 800 restent accessibles.</p>
+      <p class="browser-hint">Jusqu’à 12 idées de saison, renouvelées à chaque ouverture.</p>
     </div>
     <div class="browser-content" id="browserContent"></div>
   </section>
@@ -2338,7 +2338,7 @@ evening.forEach(recipe=>{recipe.mealSlots=['eve']});
 const recipeLibrary=[...noon,...evening];
 const recipeIndex=new Map(recipeLibrary.map(recipe=>[recipe.id,recipe]));
 $('libraryCount').textContent=`${recipeLibrary.length} vraies recettes différentes`;
-$('versionLine').textContent='Clair Repas V3.2';
+$('versionLine').textContent='Clair Repas V3.3';
 const FAVORITES_KEY='crFavMeals';
 const RECENT_RECIPES_KEY='crRecentRecipesV25';
 const MAX_RECENT_RECIPES=10;
@@ -3148,11 +3148,181 @@ function seasonalRecipeScore(recipe){
   const profile=culinarySeasonProfile();
   return seasonalAffinity(recipe,tagsOf(recipe),profile)*10+seasonMethodBoost(recipe,profile);
 }
+const BROWSER_DISCOVERY_KEY='crBrowserDiscoveryV33';
+const BROWSER_DISCOVERY_PAGE_SIZE=6;
+const BROWSER_DISCOVERY_TRAIL_LIMIT=36;
+const BROWSER_DISCOVERY_AXES=['family','cuisine','protein','starch','method','technique'];
+const browserDiscoveryTrail=[];
+let browserDiscoveryPage=[];
+function browserDiscoveryData(){
+  let raw=null;
+  try{raw=JSON.parse(localStorage.getItem(BROWSER_DISCOVERY_KEY)||'null')}catch(e){raw=null}
+  const data={version:1,stats:{}};
+  if(!raw||typeof raw!=='object'||!raw.stats||typeof raw.stats!=='object')return data;
+  Object.entries(raw.stats).forEach(([id,value])=>{
+    if(!recipeIndex.has(id)||!value||typeof value!=='object')return;
+    const shown=Math.max(0,Math.floor(Number(value.shown)||0));
+    const lastShownAt=Math.max(0,Number(value.lastShownAt)||0);
+    if(shown||lastShownAt)data.stats[id]={shown,lastShownAt};
+  });
+  return data;
+}
+function saveBrowserDiscoveryData(data){
+  localStorage.setItem(BROWSER_DISCOVERY_KEY,JSON.stringify({version:1,stats:data.stats||{}}));
+}
+function browserCompatibleRecipes(list){
+  const timed=list.filter(fitsAvailableTime);
+  const mode=$('mode').value;
+  return mode==='Tous'?timed:timed.filter(recipe=>recipe.m===mode);
+}
+function browserExposureProfile(data,pool){
+  const axes=Object.fromEntries(BROWSER_DISCOVERY_AXES.map(axis=>[axis,new Map()]));
+  let totalShown=0;
+  pool.forEach(recipe=>{
+    const shown=Math.max(0,Number(data.stats[recipe.id]?.shown)||0);
+    totalShown+=shown;
+    const tags=tagsOf(recipe);
+    BROWSER_DISCOVERY_AXES.forEach(axis=>{
+      const value=tags[axis]||'autre';
+      const entry=axes[axis].get(value)||{shown:0,recipes:0};
+      entry.shown+=shown;
+      entry.recipes+=1;
+      axes[axis].set(value,entry);
+    });
+  });
+  return{axes,averageShown:totalShown/Math.max(1,pool.length)};
+}
+function browserExposureMultiplier(recipe,data,profile){
+  const stats=data.stats[recipe.id]||{};
+  const shown=Math.max(0,Number(stats.shown)||0);
+  let factor=shown===0?1.58:Math.max(0.55,1.18/Math.pow(shown,0.32));
+  const lastShownAt=Math.max(0,Number(stats.lastShownAt)||0);
+  if(lastShownAt){
+    const ageMinutes=Math.max(0,(Date.now()-lastShownAt)/60000);
+    if(ageMinutes<15)factor*=0.28;
+    else if(ageMinutes<60)factor*=0.58;
+    else if(ageMinutes<24*60)factor*=0.82;
+  }
+  const tags=tagsOf(recipe);
+  const axisWeights={family:0.14,cuisine:0.12,protein:0.09,starch:0.08,method:0.06,technique:0.08};
+  BROWSER_DISCOVERY_AXES.forEach(axis=>{
+    const entry=profile.axes[axis].get(tags[axis]||'autre');
+    if(!entry||profile.averageShown<=0)return;
+    const ownAverage=entry.shown/Math.max(1,entry.recipes);
+    const delta=(profile.averageShown-ownAverage)/(profile.averageShown+1);
+    if(delta>0)factor*=1+Math.min(axisWeights[axis],delta*axisWeights[axis]*1.6);
+    else factor*=1-Math.min(axisWeights[axis]*0.45,-delta*axisWeights[axis]*0.7);
+  });
+  return Math.max(0.12,factor);
+}
+function browserPageDiversityMultiplier(recipe,selected){
+  if(!selected.length)return 1;
+  const tags=tagsOf(recipe);
+  const selectedTags=selected.map(tagsOf);
+  const count=axis=>selectedTags.filter(item=>item[axis]===tags[axis]).length;
+  let factor=1;
+  factor*=Math.pow(0.24,count('family'));
+  factor*=Math.pow(0.36,count('protein'));
+  factor*=Math.pow(0.58,count('group'));
+  factor*=Math.pow(0.48,count('starch'));
+  factor*=Math.pow(0.58,count('cuisine'));
+  factor*=Math.pow(0.52,count('technique'));
+  if($('mode').value==='Tous')factor*=Math.pow(0.48,count('method'));
+  const maximumSimilarity=Math.max(...selected.map(item=>recipeSimilarity(recipe,item)));
+  if(maximumSimilarity>=0.84)factor*=0.015;
+  else if(maximumSimilarity>=0.74)factor*=0.08;
+  else if(maximumSimilarity>=0.64)factor*=0.28;
+  else if(maximumSimilarity>=0.54)factor*=0.62;
+  return factor;
+}
+function browserDiversityCandidates(remaining,selected){
+  if(!selected.length)return remaining;
+  const selectedTags=selected.map(tagsOf);
+  const axes=['family','protein','group','starch','cuisine','technique'];
+  if($('mode').value==='Tous')axes.push('method');
+  let candidates=remaining;
+  axes.forEach(axis=>{
+    const counts=new Map();
+    selectedTags.forEach(tags=>counts.set(tags[axis],(counts.get(tags[axis])||0)+1));
+    const capped=candidates.filter(recipe=>(counts.get(tagsOf(recipe)[axis])||0)<2);
+    if(capped.length)candidates=capped;
+  });
+  return candidates;
+}
+function weightedBrowserRecipe(items){
+  const total=items.reduce((sum,item)=>sum+item.score,0);
+  if(!(total>0))return items[Math.floor(Math.random()*items.length)].recipe;
+  let target=Math.random()*total;
+  for(const item of items){
+    target-=item.score;
+    if(target<=0)return item.recipe;
+  }
+  return items.at(-1).recipe;
+}
+function browserDiscoveryScore(recipe,type,context){
+  const tags=tagsOf(recipe);
+  let score=0.72+seasonalAffinity(recipe,tags,context.seasonProfile)*3.35;
+  score*=seasonMethodBoost(recipe,context.seasonProfile);
+  score*=explicitReactionMultiplier(recipe.id,context.personalization.reactions,false);
+  score*=observedPreferenceMultiplier(recipe,type,context.personalization.profile,false);
+  score*=exposureMultiplier(recipe,context.personalization.learning,true);
+  score*=browserExposureMultiplier(recipe,context.discoveryData,context.exposureProfile);
+  if(context.trailIds.has(recipe.id))score*=0.018;
+  return Math.max(0.0001,score);
+}
+function selectBrowserDiscoveries(list,type,count,discoveryData){
+  const pool=browserCompatibleRecipes(list);
+  if(!pool.length)return[];
+  const trailIds=new Set(browserDiscoveryTrail);
+  const fresh=pool.filter(recipe=>!trailIds.has(recipe.id));
+  const seen=pool.filter(recipe=>trailIds.has(recipe.id));
+  let remaining=[...fresh,...seen];
+  const context={
+    seasonProfile:culinarySeasonProfile(),
+    personalization:personalizationContext(false),
+    discoveryData,
+    exposureProfile:browserExposureProfile(discoveryData,pool),
+    trailIds
+  };
+  const selected=[];
+  while(selected.length<Math.min(count,pool.length)&&remaining.length){
+    const candidates=browserDiversityCandidates(remaining,selected);
+    const weighted=candidates.map(recipe=>({
+      recipe,
+      score:browserDiscoveryScore(recipe,type,context)*browserPageDiversityMultiplier(recipe,selected)
+    }));
+    const picked=weightedBrowserRecipe(weighted);
+    selected.push(picked);
+    remaining=remaining.filter(recipe=>recipe.id!==picked.id);
+  }
+  return selected;
+}
+function recordBrowserDiscoveries(recipes,data){
+  const now=Date.now();
+  recipes.forEach(recipe=>{
+    const stats=data.stats[recipe.id]||{shown:0,lastShownAt:0};
+    stats.shown=Math.min(100000,Math.max(0,Number(stats.shown)||0)+1);
+    stats.lastShownAt=now;
+    data.stats[recipe.id]=stats;
+  });
+  saveBrowserDiscoveryData(data);
+  browserDiscoveryTrail.push(...recipes.map(recipe=>recipe.id));
+  if(browserDiscoveryTrail.length>BROWSER_DISCOVERY_TRAIL_LIMIT){
+    browserDiscoveryTrail.splice(0,browserDiscoveryTrail.length-BROWSER_DISCOVERY_TRAIL_LIMIT);
+  }
+}
+function refreshBrowserDiscoveryPage(){
+  const discoveryData=browserDiscoveryData();
+  const lunches=selectBrowserDiscoveries(noon,'mid',BROWSER_DISCOVERY_PAGE_SIZE,discoveryData);
+  const dinners=selectBrowserDiscoveries(evening,'eve',BROWSER_DISCOVERY_PAGE_SIZE,discoveryData);
+  browserDiscoveryPage=Array.from({length:Math.max(lunches.length,dinners.length)},(_,index)=>[
+    lunches[index],dinners[index]
+  ].filter(Boolean)).flat();
+  recordBrowserDiscoveries(browserDiscoveryPage,discoveryData);
+  return[...browserDiscoveryPage];
+}
 function seasonalSuggestions(){
-  const rank=list=>[...list].sort((a,b)=>seasonalRecipeScore(b)-seasonalRecipeScore(a)||a.n.localeCompare(b.n,'fr'));
-  const lunches=rank(noon).slice(0,6);
-  const dinners=rank(evening).slice(0,6);
-  return lunches.flatMap((recipe,index)=>[recipe,dinners[index]].filter(Boolean));
+  return browserDiscoveryPage.length?[...browserDiscoveryPage]:refreshBrowserDiscoveryPage();
 }
 function searchRecipes(query){
   const normalized=normalizeSearchText(query);
@@ -3201,7 +3371,10 @@ function openRecipeBrowser(mode='search'){
   browserLastFocus=document.activeElement||null;
   $('recipeBrowser').hidden=false;
   document.body.classList.add('browser-open');
-  if(browserMode==='search')$('recipeSearch').value='';
+  if(browserMode==='search'){
+    $('recipeSearch').value='';
+    refreshBrowserDiscoveryPage();
+  }
   renderRecipeBrowser();
   if(browserMode==='search')setTimeout(()=>{try{$('recipeSearch').focus()}catch(e){}},60);
 }
@@ -3254,7 +3427,9 @@ function renderRecipeBrowser(){
     $('browserTitle').textContent='Choisir une recette';
     const query=$('recipeSearch').value;
     const recipes=searchRecipes(query);
-    const lead=normalizeSearchText(query)?`${recipes.length} résultat${recipes.length>1?'s':''}`:'Suggestions adaptées à la saison';
+    const lunches=recipes.filter(recipe=>recipe.mealSlots?.includes('mid')).length;
+    const dinners=recipes.filter(recipe=>recipe.mealSlots?.includes('eve')).length;
+    const lead=normalizeSearchText(query)?`${recipes.length} résultat${recipes.length>1?'s':''}`:`Nouvelles découvertes · ${lunches} Midi + ${dinners} Soir`;
     content.innerHTML=recipeListHTML(recipes,'Aucune recette trouvée. Essayez un autre nom ou ingrédient.',lead);
   }
   content.scrollTop=0;
@@ -3663,7 +3838,7 @@ function updateTimerUI(){
     if(timerInterval){clearInterval(timerInterval);timerInterval=null}
     bar.classList.remove('show','done');
     document.body.classList.remove('timer-running');
-    document.title='Clair Repas V3.2';
+    document.title='Clair Repas V3.3';
     return;
   }
   const remaining=Math.max(0,Math.ceil((kitchenTimer.endAt-Date.now())/1000));
