@@ -1,4 +1,4 @@
-const CACHE='clair-repas-v33-decouverte-renouvelee-20260810';
+const CACHE='clair-repas-v34-renouvellement-visible-20260810';
 const ASSETS=['./','./index.html','./manifest.webmanifest','./icon-192.png','./icon-512.png'];
 
 self.addEventListener('install',event=>{

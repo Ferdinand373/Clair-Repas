@@ -9,7 +9,7 @@
 <meta name="apple-mobile-web-app-title" content="Clair Repas">
 <link rel="manifest" href="./manifest.webmanifest">
 <link rel="apple-touch-icon" href="./icon-192.png">
-<title>Clair Repas V3.3</title>
+<title>Clair Repas V3.4</title>
 <style>
 :root{
   --bg:#f4efe7;--card:#fffdfa;--text:#27231f;--muted:#746c63;
@@ -142,6 +142,7 @@ body.timer-running .browser-content{padding-bottom:calc(105px + env(safe-area-in
 .browser-hint{margin:7px 3px 0;color:var(--muted);font-size:12px}
 .browser-content{flex:1;overflow:auto;-webkit-overflow-scrolling:touch;padding:8px 14px calc(20px + env(safe-area-inset-bottom))}
 .result-count{margin:3px 2px 9px;color:var(--muted);font-size:12px}
+.browser-refresh{width:100%;min-height:46px;margin:0 0 10px;border:1px solid #cfded4;border-radius:14px;background:#edf6f0;color:#24563b;font-weight:850}
 .recipe-result{display:grid;grid-template-columns:1fr 48px;gap:8px;margin-bottom:8px;padding:7px;border:1px solid var(--line);border-radius:16px;background:var(--card)}
 .recipe-result-open{min-width:0;padding:7px 8px;border:0;background:transparent;color:var(--text);text-align:left}
 .recipe-result-title{display:block;font-size:16px;line-height:1.22;font-weight:850}
@@ -253,7 +254,7 @@ body.timer-running .browser-content{padding-bottom:calc(105px + env(safe-area-in
 
 <p class="note">La saison, le temps disponible et vos préférences guident les prochains choix. Le programme affiché reste conservé jusqu’à une action volontaire.</p>
 <p class="library-count" id="libraryCount">800 vraies recettes différentes</p>
-<p class="version" id="versionLine">Clair Repas V3.3</p>
+<p class="version" id="versionLine">Clair Repas V3.4</p>
 </main>
 <div class="recipe-browser" id="recipeBrowser" hidden>
   <section class="browser-panel" role="dialog" aria-modal="true" aria-labelledby="browserTitle">
@@ -264,7 +265,7 @@ body.timer-running .browser-content{padding-bottom:calc(105px + env(safe-area-in
     </div>
     <div class="browser-search" id="browserSearchArea">
       <input id="recipeSearch" type="search" inputmode="search" autocomplete="off" placeholder="Nom ou ingrédient : poulet, courgette…" aria-label="Rechercher par nom ou ingrédient">
-      <p class="browser-hint">Jusqu’à 12 idées de saison, renouvelées à chaque ouverture.</p>
+      <p class="browser-hint">12 idées renouvelées à chaque ouverture, à chaque retour ou sur demande.</p>
     </div>
     <div class="browser-content" id="browserContent"></div>
   </section>
@@ -2338,7 +2339,7 @@ evening.forEach(recipe=>{recipe.mealSlots=['eve']});
 const recipeLibrary=[...noon,...evening];
 const recipeIndex=new Map(recipeLibrary.map(recipe=>[recipe.id,recipe]));
 $('libraryCount').textContent=`${recipeLibrary.length} vraies recettes différentes`;
-$('versionLine').textContent='Clair Repas V3.3';
+$('versionLine').textContent='Clair Repas V3.4';
 const FAVORITES_KEY='crFavMeals';
 const RECENT_RECIPES_KEY='crRecentRecipesV25';
 const MAX_RECENT_RECIPES=10;
@@ -3148,27 +3149,36 @@ function seasonalRecipeScore(recipe){
   const profile=culinarySeasonProfile();
   return seasonalAffinity(recipe,tagsOf(recipe),profile)*10+seasonMethodBoost(recipe,profile);
 }
-const BROWSER_DISCOVERY_KEY='crBrowserDiscoveryV33';
+const BROWSER_DISCOVERY_KEY='crBrowserDiscoveryV34';
 const BROWSER_DISCOVERY_PAGE_SIZE=6;
-const BROWSER_DISCOVERY_TRAIL_LIMIT=36;
+const BROWSER_DISCOVERY_TRAIL_LIMIT=48;
 const BROWSER_DISCOVERY_AXES=['family','cuisine','protein','starch','method','technique'];
 const browserDiscoveryTrail=[];
 let browserDiscoveryPage=[];
 function browserDiscoveryData(){
   let raw=null;
   try{raw=JSON.parse(localStorage.getItem(BROWSER_DISCOVERY_KEY)||'null')}catch(e){raw=null}
-  const data={version:1,stats:{}};
-  if(!raw||typeof raw!=='object'||!raw.stats||typeof raw.stats!=='object')return data;
-  Object.entries(raw.stats).forEach(([id,value])=>{
-    if(!recipeIndex.has(id)||!value||typeof value!=='object')return;
-    const shown=Math.max(0,Math.floor(Number(value.shown)||0));
-    const lastShownAt=Math.max(0,Number(value.lastShownAt)||0);
-    if(shown||lastShownAt)data.stats[id]={shown,lastShownAt};
-  });
+  const data={version:2,stats:{},recentIds:[]};
+  if(!raw||typeof raw!=='object')return data;
+  if(raw.stats&&typeof raw.stats==='object'){
+    Object.entries(raw.stats).forEach(([id,value])=>{
+      if(!recipeIndex.has(id)||!value||typeof value!=='object')return;
+      const shown=Math.max(0,Math.floor(Number(value.shown)||0));
+      const lastShownAt=Math.max(0,Number(value.lastShownAt)||0);
+      if(shown||lastShownAt)data.stats[id]={shown,lastShownAt};
+    });
+  }
+  if(Array.isArray(raw.recentIds)){
+    data.recentIds=raw.recentIds.filter(id=>recipeIndex.has(id)).slice(-BROWSER_DISCOVERY_TRAIL_LIMIT);
+  }
   return data;
 }
 function saveBrowserDiscoveryData(data){
-  localStorage.setItem(BROWSER_DISCOVERY_KEY,JSON.stringify({version:1,stats:data.stats||{}}));
+  localStorage.setItem(BROWSER_DISCOVERY_KEY,JSON.stringify({
+    version:2,
+    stats:data.stats||{},
+    recentIds:Array.isArray(data.recentIds)?data.recentIds.slice(-BROWSER_DISCOVERY_TRAIL_LIMIT):[]
+  }));
 }
 function browserCompatibleRecipes(list){
   const timed=list.filter(fitsAvailableTime);
@@ -3273,10 +3283,20 @@ function browserDiscoveryScore(recipe,type,context){
 function selectBrowserDiscoveries(list,type,count,discoveryData){
   const pool=browserCompatibleRecipes(list);
   if(!pool.length)return[];
-  const trailIds=new Set(browserDiscoveryTrail);
-  const fresh=pool.filter(recipe=>!trailIds.has(recipe.id));
-  const seen=pool.filter(recipe=>trailIds.has(recipe.id));
-  let remaining=[...fresh,...seen];
+  const requested=Math.min(count,pool.length);
+  const recentIds=[...(discoveryData.recentIds||[]),...browserDiscoveryTrail];
+  const recentSet=new Set(recentIds);
+  const immediateSet=new Set(browserDiscoveryPage.map(recipe=>recipe.id));
+  const fresh=pool.filter(recipe=>!recentSet.has(recipe.id));
+  const olderRecent=[...recentIds].reverse()
+    .filter((id,index,array)=>array.indexOf(id)===index&&!immediateSet.has(id))
+    .map(id=>recipeIndex.get(id))
+    .filter(recipe=>recipe&&pool.includes(recipe));
+  const immediate=pool.filter(recipe=>immediateSet.has(recipe.id));
+  let remaining=fresh.length>=requested
+    ?fresh
+    :[...fresh,...olderRecent,...immediate].filter((recipe,index,array)=>array.indexOf(recipe)===index);
+  const trailIds=new Set([...recentSet,...immediateSet]);
   const context={
     seasonProfile:culinarySeasonProfile(),
     personalization:personalizationContext(false),
@@ -3305,8 +3325,12 @@ function recordBrowserDiscoveries(recipes,data){
     stats.lastShownAt=now;
     data.stats[recipe.id]=stats;
   });
+  const shownIds=recipes.map(recipe=>recipe.id);
+  const shownSet=new Set(shownIds);
+  data.recentIds=[...(data.recentIds||[]).filter(id=>!shownSet.has(id)),...shownIds]
+    .slice(-BROWSER_DISCOVERY_TRAIL_LIMIT);
   saveBrowserDiscoveryData(data);
-  browserDiscoveryTrail.push(...recipes.map(recipe=>recipe.id));
+  browserDiscoveryTrail.push(...shownIds);
   if(browserDiscoveryTrail.length>BROWSER_DISCOVERY_TRAIL_LIMIT){
     browserDiscoveryTrail.splice(0,browserDiscoveryTrail.length-BROWSER_DISCOVERY_TRAIL_LIMIT);
   }
@@ -3429,10 +3453,17 @@ function renderRecipeBrowser(){
     const recipes=searchRecipes(query);
     const lunches=recipes.filter(recipe=>recipe.mealSlots?.includes('mid')).length;
     const dinners=recipes.filter(recipe=>recipe.mealSlots?.includes('eve')).length;
-    const lead=normalizeSearchText(query)?`${recipes.length} résultat${recipes.length>1?'s':''}`:`Nouvelles découvertes · ${lunches} Midi + ${dinners} Soir`;
-    content.innerHTML=recipeListHTML(recipes,'Aucune recette trouvée. Essayez un autre nom ou ingrédient.',lead);
+    const searching=Boolean(normalizeSearchText(query));
+    const lead=searching?`${recipes.length} résultat${recipes.length>1?'s':''}`:`Nouvelles découvertes · ${lunches} Midi + ${dinners} Soir`;
+    const refreshButton=searching?'':'<button class="browser-refresh" id="refreshDiscoveries" type="button">🔄 Afficher 12 autres idées</button>';
+    content.innerHTML=refreshButton+recipeListHTML(recipes,'Aucune recette trouvée. Essayez un autre nom ou ingrédient.',lead);
   }
   content.scrollTop=0;
+  const refreshButton=$('refreshDiscoveries');
+  if(refreshButton)refreshButton.onclick=()=>{
+    refreshBrowserDiscoveryPage();
+    renderRecipeBrowser();
+  };
   bindBrowserInteractions();
   bindRecipeControls();
   updateFavoriteUI();
@@ -3838,7 +3869,7 @@ function updateTimerUI(){
     if(timerInterval){clearInterval(timerInterval);timerInterval=null}
     bar.classList.remove('show','done');
     document.body.classList.remove('timer-running');
-    document.title='Clair Repas V3.3';
+    document.title='Clair Repas V3.4';
     return;
   }
   const remaining=Math.max(0,Math.ceil((kitchenTimer.endAt-Date.now())/1000));
@@ -4365,6 +4396,7 @@ $('browserBack').onclick=()=>{
   if(browserMode!=='detail'){closeRecipeBrowser();return}
   browserMode=browserReturnMode;
   browserRecipeId=null;
+  if(browserMode==='search'&&!normalizeSearchText($('recipeSearch').value))refreshBrowserDiscoveryPage();
   renderRecipeBrowser();
   updateWakeLock();
 };
