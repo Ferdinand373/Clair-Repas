@@ -9,7 +9,7 @@
 <meta name="apple-mobile-web-app-title" content="Clair Repas">
 <link rel="manifest" href="./manifest.webmanifest">
 <link rel="apple-touch-icon" href="./icon-192.png">
-<title>Clair Repas V3</title>
+<title>Clair Repas V3.1</title>
 <style>
 :root{
   --bg:#f4efe7;--card:#fffdfa;--text:#27231f;--muted:#746c63;
@@ -80,6 +80,16 @@ select{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:1
 .recipe-reaction{min-height:42px;padding:9px 10px;border:1px solid var(--line);border-radius:11px;background:white;color:var(--text);font-size:13px;font-weight:800}
 .recipe-reaction.again.active{border-color:#b8d8c3;background:var(--green-soft);color:var(--green)}
 .recipe-reaction.not-for-me.active{border-color:#e6c2bd;background:#fff1ef;color:#8b3d35}
+.recipe-personal-note{margin:0 0 13px;padding:11px;border:1px solid #d9d3e3;border-radius:14px;background:#faf8fc}
+.recipe-note-label{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:0 0 7px;color:var(--purple);font-size:13px;font-weight:850}
+.recipe-note-status{font-size:11px;color:var(--green)}
+.recipe-note-input{width:100%;min-height:74px;resize:vertical;padding:10px 11px;border:1px solid var(--line);border-radius:11px;background:white;color:var(--text);font:inherit;font-size:14px;line-height:1.4}
+.recipe-note-input:focus{outline:0;border-color:var(--purple);box-shadow:0 0 0 3px rgba(102,85,129,.11)}
+.recipe-note-footer{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:6px;color:var(--muted);font-size:11px}
+.recipe-note-delete{min-height:34px;padding:6px 9px;border:0;border-radius:9px;background:#f2eee9;color:#7e4a45;font-size:12px;font-weight:760}
+.recipe-note-delete[hidden]{display:none}
+.note-indicator{display:inline-flex;align-items:center;margin-left:5px;color:var(--purple);font-size:12px;font-weight:800;white-space:nowrap}
+.library-count{text-align:center;color:var(--muted);font-size:12px;margin:13px 0 0}
 .wake-note{display:none;margin:4px 0 9px;padding:8px 10px;border-radius:11px;background:#f3f7f2;color:var(--green);font-size:12px;font-weight:760}
 body.wake-active .wake-note{display:block}
 .step-timers{display:flex;flex-wrap:wrap;gap:7px;margin-top:6px}
@@ -236,13 +246,14 @@ body.timer-running .browser-content{padding-bottom:calc(105px + env(safe-area-in
 <details class="learning-settings">
   <summary>⚙️ Préférences</summary>
   <div class="learning-settings-panel">
-    <p>Efface uniquement les avis et l’apprentissage. Les favoris et les recettes restent conservés.</p>
+    <p>Efface uniquement les avis et l’apprentissage. Les favoris, les notes et les recettes restent conservés.</p>
     <button class="reset-preferences" id="resetPreferences" type="button">Réinitialiser mes préférences</button>
   </div>
 </details>
 
 <p class="note">La saison, le temps disponible et vos préférences guident les prochains choix. Le programme affiché reste conservé jusqu’à une action volontaire.</p>
-<p class="version" id="versionLine">Clair Repas V3 · 600 repas possibles</p>
+<p class="library-count" id="libraryCount">800 vraies recettes différentes</p>
+<p class="version" id="versionLine">Clair Repas V3.1</p>
 </main>
 <div class="recipe-browser" id="recipeBrowser" hidden>
   <section class="browser-panel" role="dialog" aria-modal="true" aria-labelledby="browserTitle">
@@ -253,7 +264,7 @@ body.timer-running .browser-content{padding-bottom:calc(105px + env(safe-area-in
     </div>
     <div class="browser-search" id="browserSearchArea">
       <input id="recipeSearch" type="search" inputmode="search" autocomplete="off" placeholder="Nom ou ingrédient : poulet, courgette…" aria-label="Rechercher par nom ou ingrédient">
-      <p class="browser-hint">Les recettes de saison apparaissent d’abord, mais les 600 restent accessibles.</p>
+      <p class="browser-hint">Les recettes de saison apparaissent d’abord, mais les 800 restent accessibles.</p>
     </div>
     <div class="browser-content" id="browserContent"></div>
   </section>
@@ -647,6 +658,24 @@ const lunchProfiles=[
     finish:'Mélanger délicatement et servir dès que les légumes sont tendres.'}
 ];
 
+const GENERATED_PROFILE_CUISINE={
+  'citron-herbes':'française','paprika-grenailles':'espagnole','moutarde-champignons':'française','tomate-basilic':'italienne',
+  provencale:'méditerranéenne','curry-doux':'indienne','soja-miel':'asiatique','poireaux-creme':'française',
+  'champignons-polenta':'italienne','grillade-mais':'française','haricots-riz':'française',ratatouille:'méditerranéenne',
+  'ail-persil':'française','legumes-racines':'française','grecque-orzo':'grecque','pesto-haricots':'italienne',
+  'allemande-chou-pomme':'allemande','cidre-ecrase':'normande','basquaise-riz':'espagnole','riz-espagnol':'espagnole',
+  'gingembre-sesame':'asiatique','coco-citron-vert':'asiatique','italienne-polenta':'italienne',
+  'mediterraneenne-four':'méditerranéenne','grillade-persillee':'française','airfryer-boulgour':'orientale',
+  'estragon-petits-pois':'française','toscane-haricots':'italienne','poelee-riz-courgette':'française',
+  'grenailles-legumes':'française','tomate-polenta':'italienne','gratin-poireaux':'française','couscous-legumes':'maghrébine',
+  'nouilles-legumes':'asiatique','lentilles-carottes':'française','wraps-chauds':'méditerranéenne','soupe-complete':'française',
+  'poelee-pommes-epinards':'française','verts-quinoa':'méditerranéenne','ratatouille-boulgour':'méditerranéenne',
+  'courge-epinards-polenta':'italienne','potee-legere':'française','gnocchi-epinards':'italienne','gingembre-riz':'asiatique',
+  'mediterraneenne-haricots':'méditerranéenne','spaetzle-poireaux':'allemande','curry-chou-fleur':'indienne',
+  'salade-pommes-haricots':'française','salade-riz-concombre':'méditerranéenne','salade-pates-crudites':'italienne',
+  'salade-lentilles-carottes':'française','salade-quinoa-legumes':'méditerranéenne','salade-boulgour-betterave':'orientale'
+};
+
 const generatedNoon=lunchProfiles.flatMap(profile=>profile.allow.map(proteinId=>{
   const protein=lunchProteins.find(item=>item.id===proteinId);
   const cook=protein&&protein.cook[profile.method];
@@ -664,7 +693,8 @@ const generatedNoon=lunchProfiles.flatMap(profile=>profile.allow.map(proteinId=>
     group:protein.group,
     starch:profile.starch,
     kind:'warm',
-    family:profile.id
+    family:profile.id,
+    cuisine:GENERATED_PROFILE_CUISINE[profile.id]
   };
 }).filter(Boolean));
 noon.push(...generatedNoon);
@@ -762,7 +792,8 @@ const generatedExpandedNoon=expandedLunchProfiles.flatMap(profile=>profile.allow
     group:protein.group,
     starch:profile.starch,
     kind:'warm',
-    family:profile.id
+    family:profile.id,
+    cuisine:GENERATED_PROFILE_CUISINE[profile.id]
   };
 }).filter(Boolean));
 noon.push(...generatedExpandedNoon);
@@ -954,7 +985,8 @@ const generatedWarmDinners=dinnerWarmProfiles.flatMap(profile=>profile.allow.map
     group:protein.group,
     starch:profile.starch,
     kind:'warm',
-    family:profile.id
+    family:profile.id,
+    cuisine:GENERATED_PROFILE_CUISINE[profile.id]
   };
 }).filter(Boolean));
 
@@ -1009,7 +1041,8 @@ const generatedSalads=saladProfiles.flatMap(profile=>saladProteins.map(protein=>
   group:protein.group,
   starch:profile.starch,
   kind:'salad',
-  family:profile.id
+  family:profile.id,
+  cuisine:GENERATED_PROFILE_CUISINE[profile.id]
 })));
 
 const omeletteFillings=[
@@ -1037,7 +1070,7 @@ const generatedOmelettes=omeletteFillings.map(filling=>({
   t:'25 min',
   s:filling.seasons,
   i:[I(4,'','œufs'),...filling.ingredients],
-  p:['Préparer et cuire le féculent ou le pain indiqué. Faire revenir la garniture.','Battre les œufs, les verser sur la garniture et cuire 8 à 10 minutes à feu doux.','Servir l’omelette avec son accompagnement.'],
+  p:[`Préparer séparément ${filling.label}, puis faire revenir les éléments qui doivent être servis chauds.`,`Battre les œufs, les verser sur la garniture ${filling.label} et cuire 8 à 10 minutes à feu doux.`,`Servir cette omelette avec ${filling.label} en répartissant bien la garniture dans chaque part.`],
   timer:9,
   protein:'oeufs',
   group:'oeufs',
@@ -1057,9 +1090,9 @@ soupBases.push(
   {id:'chou-fleur-poireau',label:'chou-fleur et poireau',seasons:['automne','hiver','printemps'],minutes:23,ingredients:[I(1,'','chou-fleur'),I(1,'','poireau','poireaux'),I(300,'g','pommes de terre'),I(70,'cl','bouillon'),I(null,'','muscade')]}
 );
 const soupSides=[
-  {id:'jambon',label:'tartines jambon-fromage',protein:'jambon',group:'viande',ingredients:[I(4,'','tranches de pain'),I(2,'','tranches de jambon'),I(70,'g','fromage râpé')],step:'Garnir le pain de jambon et de fromage puis le faire griller.'},
-  {id:'oeufs',label:'œufs mollets et pain grillé',protein:'oeufs',group:'oeufs',ingredients:[I(4,'','œufs'),I(4,'','tranches de pain')],step:'Cuire les œufs 6 minutes, les écaler et griller le pain.'},
-  {id:'poulet',label:'poulet et croûtons',protein:'poulet',group:'volaille',ingredients:[I(200,'g','poulet cuit'),I(4,'','tranches de pain')],step:'Réchauffer le poulet dans la soupe et faire griller le pain en croûtons.'}
+  {id:'jambon',label:'tartines jambon-fromage',protein:'jambon',group:'viande',starch:'pain',ingredients:[I(4,'','tranches de pain'),I(2,'','tranches de jambon'),I(70,'g','fromage râpé')],step:'Garnir le pain de jambon et de fromage puis le faire griller.'},
+  {id:'oeufs',label:'œufs mollets et pain grillé',protein:'oeufs',group:'oeufs',starch:'pain',ingredients:[I(4,'','œufs'),I(4,'','tranches de pain')],step:'Cuire les œufs 6 minutes, les écaler et griller le pain.'},
+  {id:'poulet',label:'poulet effiloché et riz aux herbes',protein:'poulet',group:'volaille',starch:'riz',ingredients:[I(200,'g','poulet cuit'),I(120,'g','riz'),I(null,'','persil')],step:'Cuire le riz 10 minutes, réchauffer le poulet effiloché dans la soupe puis servir avec le riz et le persil.'}
 ];
 const generatedSoups=soupBases.flatMap(base=>soupSides.map(side=>({
   id:`ge-soupe-${base.id}-${side.id}`,
@@ -1068,31 +1101,563 @@ const generatedSoups=soupBases.flatMap(base=>soupSides.map(side=>({
   t:`${Math.max(30,base.minutes+8)} min`,
   s:base.seasons,
   i:[...base.ingredients,...side.ingredients],
-  p:[`Couper les légumes, ajouter le bouillon et cuire ${base.minutes} minutes à petits frémissements. Mixer selon la texture souhaitée.`,side.step,'Servir la soupe bien chaude avec son accompagnement.'],
+  p:[`Couper les ingrédients de la soupe ${base.label}, ajouter le bouillon et cuire ${base.minutes} minutes à petits frémissements. Mixer selon la texture souhaitée.`,side.step,`Servir la soupe ${base.label} bien chaude avec ${side.label}.`],
   timer:base.minutes,
   protein:side.protein,
   group:side.group,
-  starch:'pain',
+  starch:side.starch||'pain',
   kind:'warm',
   family:'soupe'
 })));
 
 evening.push(...generatedWarmDinners,...generatedSalads,...generatedOmelettes,...generatedSoups);
 
+// V3.1 — 200 recettes supplémentaires, construites sur vingt structures
+// culinaires différentes. Chaque recette reçoit ensuite une signature propre
+// (sauce, finition, texture et technique) : une simple substitution de protéine
+// ne suffit donc jamais à créer une nouvelle idée.
+const V31_MAINS=['poulet','dinde','filet-mignon','cotes-porc','boeuf','saumon','poisson-blanc','crevettes','boulettes','tofu'];
+const V31_PLANCHA_MAINS=['poulet','dinde','filet-mignon','cotes-porc','boeuf','saumon','poisson-blanc','crevettes','saucisses','tofu'];
+const V31_AIRFRYER_MAINS=['poulet','dinde','filet-mignon','cotes-porc','saumon','poisson-blanc','crevettes','boulettes','falafels','tofu'];
+const V31_OVEN_MAINS=['poulet','dinde','filet-mignon','saumon','poisson-blanc','saucisses','boulettes','falafels','pois-chiches','tofu'];
+const mainDisplayName=protein=>({
+  poulet:'poulet',dinde:'dinde','filet-mignon':'filet mignon','cotes-porc':'porc',boeuf:'bœuf',
+  saumon:'saumon','poisson-blanc':'poisson blanc',crevettes:'crevettes',boulettes:'boulettes de bœuf',
+  tofu:'tofu',saucisses:'saucisses',falafels:'falafels','pois-chiches':'pois chiches'
+}[protein.id]||protein.label.toLowerCase());
+const mainWithArticle=protein=>({
+  poulet:'au poulet',dinde:'à la dinde','filet-mignon':'au filet mignon','cotes-porc':'au porc',boeuf:'au bœuf',
+  saumon:'au saumon','poisson-blanc':'au poisson blanc',crevettes:'aux crevettes',boulettes:'aux boulettes de bœuf',
+  tofu:'au tofu',saucisses:'aux saucisses',falafels:'aux falafels','pois-chiches':'aux pois chiches'
+}[protein.id]||`au ${mainDisplayName(protein)}`);
+
+const v31LunchProfiles=[
+  {id:'donburi',method:'Poêle',total:28,starch:'riz',family:'bowl',subFamily:'donburi',cuisine:'japonaise',seasons:ALL_SEASONS,allow:V31_MAINS,
+    title:p=>`Donburi de ${mainDisplayName(p)}, riz vinaigré et concombre`,
+    ingredients:[I(130,'g','riz'),I(0.5,'','concombre','concombres'),I(2,'','carottes'),I(1,'c. à soupe','sauce soja'),I(null,'','graines de sésame')],
+    start:'Cuire le riz 12 minutes, le laisser reposer 5 minutes puis l’assaisonner avec un trait de vinaigre.',
+    finish:'Tailler concombre et carottes, dresser en bol avec le riz et terminer par le sésame.'},
+  {id:'orzo',method:'Poêle',total:30,starch:'pates',family:'pates',subFamily:'orzo-cremeux',cuisine:'italienne',seasons:['printemps','été','automne'],allow:V31_MAINS,
+    title:p=>`Orzo crémeux ${mainWithArticle(p)}, tomates rôties et épinards`,
+    ingredients:[I(180,'g','orzo'),I(250,'g','tomates cerises'),I(180,'g','épinards'),I(50,'g','parmesan'),I(50,'cl','bouillon')],
+    start:'Faire nacrer l’orzo 2 minutes puis ajouter le bouillon peu à peu pendant 12 minutes.',
+    finish:'Ajouter les tomates, faire tomber les épinards 3 minutes et lier avec le parmesan.'},
+  {id:'couscous-minute',method:'Poêle',total:30,starch:'semoule',family:'couscous',subFamily:'couscous-minute',cuisine:'maghrébine',seasons:ALL_SEASONS,allow:V31_MAINS,
+    title:p=>`Couscous minute de ${mainDisplayName(p)}, légumes et pois chiches`,
+    ingredients:[I(140,'g','semoule'),I(2,'','carottes'),I(1,'','courgette','courgettes'),I(1,'boîte','pois chiches'),I(40,'cl','bouillon'),I(null,'','épices couscous')],
+    start:'Faire revenir carottes et courgette 8 minutes avec les épices puis ajouter pois chiches et bouillon.',
+    finish:'Gonfler la semoule 5 minutes, l’égrener et servir avec les légumes et leur jus.'},
+  {id:'nouilles-wok',method:'Poêle',total:24,starch:'nouilles',family:'wok',subFamily:'nouilles-sautees',cuisine:'asiatique',seasons:ALL_SEASONS,allow:V31_MAINS,
+    title:p=>`Nouilles sautées ${mainWithArticle(p)}, brocoli et légumes croquants`,
+    ingredients:[I(170,'g','nouilles'),I(250,'g','brocoli'),I(2,'','carottes'),I(1,'','poivron','poivrons'),I(1,'c. à soupe','sauce soja'),I(1,'c. à café','gingembre')],
+    start:'Cuire les nouilles. Sauter brocoli, carottes et poivron 7 minutes avec le gingembre.',
+    finish:'Ajouter les nouilles et la sauce soja, puis faire sauter encore 2 minutes à feu vif.'},
+  {id:'tacos',method:'Poêle',total:26,starch:'pain',family:'tacos',subFamily:'tacos-garnis',cuisine:'mexicaine',seasons:['printemps','été','automne'],allow:V31_MAINS,
+    title:p=>`Tacos de ${mainDisplayName(p)}, poivrons, maïs et salsa fraîche`,
+    ingredients:[I(6,'','petites tortillas'),I(2,'','poivrons'),I(1,'boîte','maïs'),I(2,'','tomates'),I(1,'','citron vert','citrons verts'),I(null,'','coriandre')],
+    start:'Poêler les poivrons 8 minutes et préparer une salsa avec tomate, citron vert et coriandre.',
+    finish:'Réchauffer les tortillas 2 minutes, les garnir et servir aussitôt avec la salsa.'},
+  {id:'brochettes-tabboule',method:'Plancha',total:30,starch:'semoule',family:'brochettes',subFamily:'brochettes-tabboule',cuisine:'méditerranéenne',seasons:['printemps','été'],allow:V31_PLANCHA_MAINS,
+    title:p=>`Brochettes de ${mainDisplayName(p)}, taboulé aux herbes et yaourt citronné`,
+    ingredients:[I(140,'g','boulgour'),I(2,'','tomates'),I(0.5,'','concombre','concombres'),I(1,'','yaourt nature','yaourts nature'),I(1,'','citron','citrons'),I(null,'','menthe et persil')],
+    start:'Cuire le boulgour 10 minutes, le refroidir puis ajouter tomate, concombre, menthe et persil.',
+    finish:'Monter les brochettes, servir avec le taboulé et un yaourt assaisonné au citron.'},
+  {id:'croustillant-coleslaw',method:'Air Fryer',total:34,starch:'pommes-de-terre',family:'croustillant',subFamily:'airfryer-coleslaw',cuisine:'française',seasons:ALL_SEASONS,allow:V31_AIRFRYER_MAINS,
+    title:p=>`Assiette croustillante de ${mainDisplayName(p)}, grenailles et coleslaw léger`,
+    ingredients:[I(450,'g','pommes de terre grenailles'),I(250,'g','chou blanc'),I(2,'','carottes'),I(1,'','yaourt nature','yaourts nature'),I(50,'g','chapelure'),I(1,'c. à café','moutarde')],
+    start:'Cuire les grenailles assaisonnées 12 minutes à 190 °C et préparer le coleslaw au yaourt et à la moutarde.',
+    finish:'Ajouter la préparation principale légèrement panée, poursuivre la cuisson et servir avec le coleslaw frais.'},
+  {id:'papillote-fenouil',method:'Four',total:35,starch:'pommes-de-terre',family:'papillote',subFamily:'papillote-legumes',cuisine:'française',seasons:['printemps','été','automne'],allow:V31_OVEN_MAINS,
+    title:p=>`Papillote de ${mainDisplayName(p)}, fenouil, tomate et pommes vapeur`,
+    ingredients:[I(500,'g','pommes de terre'),I(1,'','fenouil'),I(2,'','tomates'),I(1,'','citron','citrons'),I(null,'','herbes fraîches')],
+    start:'Cuire les pommes de terre 18 minutes. Émincer fenouil et tomates et les déposer sur une feuille de cuisson.',
+    finish:'Fermer la papillote avec citron et herbes, cuire jusqu’à tendreté et servir avec les pommes vapeur.'},
+  {id:'gratin-chou-fleur',method:'Four',total:42,starch:'pommes-de-terre',family:'gratin',subFamily:'gratin-chou-fleur',cuisine:'française',seasons:['automne','hiver','printemps'],allow:V31_OVEN_MAINS,
+    title:p=>`Gratin de ${mainDisplayName(p)}, chou-fleur et pommes de terre`,
+    ingredients:[I(450,'g','pommes de terre'),I(500,'g','chou-fleur'),I(20,'cl','crème légère'),I(90,'g','fromage râpé'),I(null,'','muscade')],
+    start:'Précuire pommes de terre et chou-fleur 10 minutes, puis les répartir dans un plat avec la crème et la muscade.',
+    finish:'Ajouter le fromage et gratiner 15 minutes à 200 °C jusqu’à obtenir une surface dorée.'},
+  {id:'bowl-quinoa-courge',method:'Four',total:38,starch:'quinoa',family:'bowl',subFamily:'bowl-quinoa-roti',cuisine:'méditerranéenne',seasons:['automne','hiver','printemps'],allow:V31_OVEN_MAINS,
+    title:p=>`Bowl tiède de ${mainDisplayName(p)}, quinoa, courge rôtie et feta`,
+    ingredients:[I(130,'g','quinoa'),I(500,'g','courge'),I(100,'g','feta'),I(1,'','oignon rouge','oignons rouges'),I(1,'','citron','citrons'),I(null,'','herbes')],
+    start:'Cuire le quinoa 12 minutes. Rôtir courge et oignon assaisonnés 18 minutes à 200 °C.',
+    finish:'Dresser le quinoa, la courge et la préparation principale, puis ajouter feta, citron et herbes.'}
+];
+
+const v31EveningProfiles=[
+  {id:'bouillon-nouilles',method:'Casserole',total:28,starch:'nouilles',family:'soupe',subFamily:'bouillon-nouilles',cuisine:'asiatique',seasons:['automne','hiver','printemps'],allow:V31_MAINS,
+    title:p=>`Bouillon de nouilles ${mainWithArticle(p)}, poireau et gingembre`,
+    ingredients:[I(120,'g','nouilles'),I(1,'','poireau','poireaux'),I(2,'','carottes'),I(80,'cl','bouillon'),I(1,'c. à café','gingembre'),I(1,'c. à soupe','sauce soja')],
+    start:'Porter le bouillon à frémissement avec carottes, poireau et gingembre pendant 10 minutes.',
+    finish:'Ajouter les nouilles pour 5 minutes, assaisonner de sauce soja et servir très chaud.'},
+  {id:'pomme-terre-garnie',method:'Four',total:40,starch:'pommes-de-terre',family:'pomme-de-terre-garnie',subFamily:'jacket-potato',cuisine:'européenne',seasons:ALL_SEASONS,allow:V31_OVEN_MAINS,
+    title:p=>`Pommes de terre garnies ${mainWithArticle(p)}, épinards et fromage`,
+    ingredients:[I(4,'','grosses pommes de terre'),I(200,'g','épinards'),I(100,'g','fromage râpé'),I(1,'','échalote','échalotes'),I(1,'','salade verte','salades vertes')],
+    start:'Précuire les pommes de terre 12 minutes au micro-ondes puis les ouvrir et récupérer un peu de chair.',
+    finish:'Mélanger la chair avec épinards et échalote, garnir, ajouter le fromage et gratiner 10 minutes.'},
+  {id:'quesadillas',method:'Poêle',total:22,starch:'pain',family:'quesadilla',subFamily:'quesadilla-legumes',cuisine:'mexicaine',seasons:ALL_SEASONS,allow:V31_MAINS,
+    title:p=>`Quesadillas ${mainWithArticle(p)}, haricots rouges et poivron`,
+    ingredients:[I(4,'','tortillas'),I(1,'boîte','haricots rouges'),I(1,'','poivron','poivrons'),I(120,'g','cheddar'),I(1,'','tomate','tomates'),I(null,'','paprika')],
+    start:'Écraser grossièrement les haricots, poêler le poivron 6 minutes et préparer la garniture.',
+    finish:'Garnir les tortillas, les plier et les dorer 3 minutes par face. Servir avec la tomate.'},
+  {id:'crumble-sale',method:'Four',total:38,starch:'pain',family:'crumble-sale',subFamily:'crumble-legumes',cuisine:'française',seasons:['automne','hiver','printemps'],allow:V31_OVEN_MAINS,
+    title:p=>`Crumble salé de ${mainDisplayName(p)}, poireaux et carottes`,
+    ingredients:[I(2,'','poireaux'),I(3,'','carottes'),I(80,'g','farine'),I(60,'g','beurre'),I(50,'g','parmesan'),I(1,'','salade verte','salades vertes')],
+    start:'Faire fondre poireaux et carottes 10 minutes. Sabler farine, beurre et parmesan du bout des doigts.',
+    finish:'Répartir la garniture, couvrir de pâte et cuire 18 minutes à 190 °C. Servir avec la salade.'},
+  {id:'ragout-leger',method:'Casserole',total:35,starch:'legumineuses',family:'mijote',subFamily:'ragout-legumineuses',cuisine:'méditerranéenne',seasons:['automne','hiver','printemps'],allow:V31_MAINS,
+    title:p=>`Ragoût léger de ${mainDisplayName(p)}, haricots blancs et tomate`,
+    ingredients:[I(1,'boîte','haricots blancs'),I(25,'cl','coulis de tomate'),I(2,'','carottes'),I(1,'','oignon','oignons'),I(50,'cl','bouillon'),I(null,'','thym')],
+    start:'Faire revenir oignon et carottes 6 minutes, puis ajouter tomate, haricots, bouillon et thym.',
+    finish:'Laisser mijoter 18 minutes à petits frémissements et rectifier l’assaisonnement.'},
+  {id:'pita-chaude',method:'Poêle',total:22,starch:'pain',family:'pita',subFamily:'pita-garnie',cuisine:'grecque',seasons:['printemps','été','automne'],allow:V31_MAINS,
+    title:p=>`Pita chaude ${mainWithArticle(p)}, crudités et sauce au yaourt`,
+    ingredients:[I(4,'','pains pita'),I(0.5,'','concombre','concombres'),I(2,'','tomates'),I(1,'','yaourt nature','yaourts nature'),I(1,'','citron','citrons'),I(null,'','menthe')],
+    start:'Préparer la sauce avec yaourt, citron et menthe, puis couper concombre et tomates.',
+    finish:'Réchauffer les pitas 2 minutes, les garnir avec la préparation chaude et les crudités.'},
+  {id:'galette-sarrasin',method:'Poêle',total:24,starch:'pain',family:'galette',subFamily:'galette-complete',cuisine:'bretonne',seasons:ALL_SEASONS,allow:V31_MAINS,
+    title:p=>`Galettes de sarrasin ${mainWithArticle(p)}, champignons et œuf`,
+    ingredients:[I(4,'','galettes de sarrasin'),I(200,'g','champignons'),I(4,'','œufs'),I(80,'g','fromage râpé'),I(1,'','salade verte','salades vertes')],
+    start:'Poêler les champignons 7 minutes et réchauffer une galette dans une grande poêle.',
+    finish:'Ajouter garniture, œuf et fromage, replier puis cuire 4 minutes. Servir avec la salade.'},
+  {id:'bowl-boulgour',method:'Poêle',total:25,starch:'semoule',family:'bowl',subFamily:'bowl-boulgour',cuisine:'orientale',seasons:ALL_SEASONS,allow:V31_MAINS,
+    title:p=>`Bowl de boulgour ${mainWithArticle(p)}, betterave, carottes et sauce citronnée`,
+    ingredients:[I(130,'g','boulgour'),I(250,'g','betteraves cuites'),I(2,'','carottes'),I(1,'','citron','citrons'),I(1,'','yaourt nature','yaourts nature'),I(40,'g','noix')],
+    start:'Cuire le boulgour 10 minutes, râper les carottes et couper les betteraves.',
+    finish:'Dresser en bol, ajouter la sauce yaourt-citron et terminer avec les noix.'},
+  {id:'tartines-gratinees',method:'Air Fryer',total:18,starch:'pain',family:'tartine',subFamily:'tartine-gratinee',cuisine:'française',seasons:ALL_SEASONS,allow:V31_AIRFRYER_MAINS,
+    title:p=>`Tartines gratinées ${mainWithArticle(p)}, tomate et mozzarella`,
+    ingredients:[I(4,'','grandes tranches de pain'),I(2,'','tomates'),I(125,'g','mozzarella'),I(1,'','courgette','courgettes'),I(null,'','basilic'),I(1,'','salade verte','salades vertes')],
+    start:'Poêler rapidement la courgette 5 minutes et répartir tomate, courgette et garniture sur le pain.',
+    finish:'Ajouter la mozzarella et cuire 7 minutes à 180 °C. Servir avec la salade et le basilic.'},
+  {id:'riz-croustillant',method:'Poêle',total:24,starch:'riz',family:'poelee',subFamily:'riz-croustillant',cuisine:'asiatique',seasons:ALL_SEASONS,allow:V31_MAINS,
+    title:p=>`Riz croustillant ${mainWithArticle(p)}, petits pois et omelette fine`,
+    ingredients:[I(160,'g','riz cuit'),I(180,'g','petits pois'),I(2,'','œufs'),I(1,'','oignon','oignons'),I(1,'c. à soupe','sauce soja'),I(null,'','ciboulette')],
+    start:'Faire dorer le riz avec l’oignon 7 minutes sans trop le remuer puis ajouter les petits pois.',
+    finish:'Cuire une omelette fine 3 minutes, la détailler et mélanger avec le riz, la sauce soja et la ciboulette.'}
+];
+
+function curatedCookStep(protein,method){
+  const known=protein&&protein.cook&&protein.cook[method];
+  if(known)return known.step;
+  const group=protein?.group||'autre';
+  if(method==='Casserole'){
+    if(protein?.id==='filet-mignon')return'Couper le filet mignon en fines lanières, les saisir 3 minutes puis les laisser frémir 8 minutes dans le bouillon.';
+    if(protein?.id==='cotes-porc')return'Désosser le porc, le tailler en lamelles et le laisser cuire 12 minutes à petits frémissements.';
+    if(protein?.id==='boeuf')return'Émincer le bœuf très finement et l’ajouter seulement pour les 4 dernières minutes afin qu’il reste tendre.';
+    if(protein?.id==='boulettes')return'Faire dorer les boulettes 5 minutes dans la casserole puis verser le bouillon et poursuivre 10 minutes.';
+    if(protein?.id==='saucisses')return'Couper les saucisses en tronçons, les colorer 4 minutes puis les laisser mijoter 10 minutes dans le bouillon.';
+    if(group==='poisson')return'Ajouter la préparation principale au bouillon et cuire doucement 6 à 8 minutes.';
+    if(group==='vegetal')return'Ajouter la préparation principale et laisser mijoter 8 minutes pour bien l’imprégner.';
+    if(group==='volaille')return'Ajouter la préparation principale en morceaux et laisser mijoter 12 à 14 minutes.';
+    return'Ajouter la préparation principale et laisser mijoter 14 à 16 minutes à feu doux.';
+  }
+  return'Cuire la préparation principale jusqu’à ce qu’elle soit dorée et cuite à cœur.';
+}
+function buildV31Series(profiles,slot){
+  return profiles.flatMap(profile=>profile.allow.map((proteinId,variantIndex)=>{
+    const protein=lunchProteins.find(item=>item.id===proteinId);
+    if(!protein)return null;
+    const knownCooking=protein.cook&&protein.cook[profile.method];
+    const credibleTotal=Math.max(profile.total,(knownCooking?.minutes||0)+10);
+    return{
+      id:`v31${slot}-${profile.id}-${protein.id}`,
+      n:profile.title(protein),m:profile.method,t:`${credibleTotal} min`,s:profile.seasons,
+      i:[{...protein.ingredient},...profile.ingredients.map(item=>({...item}))],
+      p:[profile.start,curatedCookStep(protein,profile.method),profile.finish],
+      protein:protein.id,group:protein.group,starch:profile.starch,kind:profile.family==='salade'?'salad':'warm',
+      family:profile.family,subFamily:profile.subFamily,cuisine:profile.cuisine,variantIndex
+    };
+  }).filter(Boolean));
+}
+const v31Noon=buildV31Series(v31LunchProfiles,'n');
+const v31Evening=buildV31Series(v31EveningProfiles,'e');
+noon.push(...v31Noon);
+evening.push(...v31Evening);
+
+// Signatures compatibles avec les ingrédients du quotidien. Elles donnent à
+// chaque fiche combinatoire une sauce, une finition et une expérience propres.
+const CURATION_ACCENTS={
+  volaille:[
+    {key:'citron-estragon',label:'citron confit et estragon',cuisine:'française',texture:'fondant',ingredients:[I(1,'c. à café','citron confit'),I(null,'','estragon')],step:'Terminer avec le citron confit finement haché et l’estragon pour une sauce fraîche et parfumée.'},
+    {key:'moutarde-ciboulette',label:'moutarde à l’ancienne et ciboulette',cuisine:'française',texture:'crémeux',ingredients:[I(1,'c. à soupe','moutarde à l’ancienne'),I(null,'','ciboulette')],step:'Détendre la moutarde avec une cuillerée de jus de cuisson et ajouter la ciboulette au dernier moment.'},
+    {key:'paprika-amandes',label:'paprika fumé et amandes',cuisine:'espagnole',texture:'croquant',ingredients:[I(1,'c. à café','paprika fumé'),I(30,'g','amandes effilées')],step:'Parfumer au paprika fumé et ajouter les amandes légèrement grillées pour apporter du croquant.'},
+    {key:'orange-thym',label:'orange et thym',cuisine:'méditerranéenne',texture:'juteux',ingredients:[I(1,'','orange','oranges'),I(null,'','thym')],step:'Déglacer avec le jus d’orange, ajouter le thym et laisser réduire 2 minutes pour glacer la préparation.'},
+    {key:'pesto-basilic',label:'pesto et basilic',cuisine:'italienne',texture:'onctueux',ingredients:[I(1,'c. à soupe','pesto'),I(null,'','basilic')],step:'Hors du feu, enrober d’un peu de pesto et terminer avec le basilic frais.'},
+    {key:'soja-sesame',label:'soja, gingembre et sésame',cuisine:'asiatique',texture:'laqué',ingredients:[I(1,'c. à soupe','sauce soja'),I(null,'','graines de sésame')],step:'Faire réduire la sauce soja avec une pincée de gingembre puis parsemer de sésame.'},
+    {key:'curry-yaourt',label:'curry doux et yaourt citronné',cuisine:'indienne',texture:'crémeux',ingredients:[I(1,'c. à café','curry doux'),I(1,'','yaourt nature','yaourts nature')],step:'Mélanger le yaourt avec le curry et un trait de citron, puis servir cette sauce à côté.'},
+    {key:'olive-tomate',label:'olives et tomates séchées',cuisine:'méditerranéenne',texture:'moelleux',ingredients:[I(40,'g','olives'),I(40,'g','tomates séchées')],step:'Ajouter olives et tomates séchées émincées pendant les 3 dernières minutes de cuisson.'}
+  ],
+  viande:[
+    {key:'echalote-balsamique',label:'échalote et balsamique',cuisine:'française',texture:'glacé',ingredients:[I(1,'','échalote','échalotes'),I(1,'c. à soupe','vinaigre balsamique')],step:'Faire fondre l’échalote puis déglacer au balsamique et napper la viande avec le jus réduit.'},
+    {key:'cidre-moutarde',label:'cidre et moutarde',cuisine:'normande',texture:'crémeux',ingredients:[I(8,'cl','cidre'),I(1,'c. à soupe','moutarde')],step:'Déglacer avec le cidre, ajouter la moutarde et laisser réduire 3 minutes à feu doux.'},
+    {key:'paprika-poivron',label:'paprika fumé et poivron rôti',cuisine:'espagnole',texture:'juteux',ingredients:[I(1,'c. à café','paprika fumé'),I(1,'','poivron rouge','poivrons rouges')],step:'Ajouter le poivron rôti en lanières et le paprika fumé pour une finition douce et légèrement fumée.'},
+    {key:'chimichurri',label:'chimichurri aux herbes',cuisine:'argentine',texture:'grillé',ingredients:[I(null,'','persil'),I(1,'','gousse d’ail','gousses d’ail')],step:'Mélanger persil, ail, huile et un trait de vinaigre, puis déposer ce chimichurri sur la viande au service.'},
+    {key:'poivre-creme',label:'poivre concassé et crème',cuisine:'française',texture:'onctueux',ingredients:[I(10,'cl','crème légère'),I(1,'c. à café','poivre concassé')],step:'Ajouter crème et poivre concassé au jus de cuisson et laisser épaissir 3 minutes.'},
+    {key:'tomate-olive',label:'tomate, olive et origan',cuisine:'italienne',texture:'mijoté',ingredients:[I(15,'cl','coulis de tomate'),I(40,'g','olives')],step:'Ajouter tomate, olives et origan, puis laisser mijoter 5 minutes pour concentrer la sauce.'},
+    {key:'soja-gingembre',label:'soja et gingembre',cuisine:'asiatique',texture:'laqué',ingredients:[I(1,'c. à soupe','sauce soja'),I(1,'c. à café','gingembre')],step:'Verser soja et gingembre, puis faire sauter 2 minutes pour obtenir une viande légèrement laquée.'},
+    {key:'ail-herbes',label:'ail rôti et herbes fraîches',cuisine:'méditerranéenne',texture:'rôti',ingredients:[I(2,'','gousses d’ail'),I(null,'','herbes fraîches')],step:'Écraser l’ail rôti dans le jus de cuisson et terminer avec les herbes fraîches.'}
+  ],
+  poisson:[
+    {key:'citron-aneth',label:'citron et aneth',cuisine:'nordique',texture:'fondant',ingredients:[I(1,'','citron','citrons'),I(null,'','aneth')],step:'Ajouter zeste et jus de citron, puis parsemer généreusement d’aneth juste avant de servir.'},
+    {key:'capres-persil',label:'câpres et persil',cuisine:'française',texture:'nacré',ingredients:[I(1,'c. à soupe','câpres'),I(null,'','persil')],step:'Réchauffer les câpres dans le jus de cuisson et terminer avec le persil frais.'},
+    {key:'miso-sesame',label:'miso doux et sésame',cuisine:'japonaise',texture:'laqué',ingredients:[I(1,'c. à café','miso doux'),I(null,'','graines de sésame')],step:'Délayer le miso avec une cuillerée d’eau, en badigeonner le poisson et terminer au sésame.'},
+    {key:'tomate-olive',label:'tomates, olives et basilic',cuisine:'méditerranéenne',texture:'juteux',ingredients:[I(2,'','tomates'),I(40,'g','olives')],step:'Ajouter tomates et olives pendant les dernières minutes, puis finir au basilic.'},
+    {key:'coco-curry',label:'coco et curry doux',cuisine:'asiatique',texture:'crémeux',ingredients:[I(12,'cl','lait de coco'),I(1,'c. à café','curry doux')],step:'Faire frémir lait de coco et curry 4 minutes puis napper délicatement le poisson.'},
+    {key:'pesto-citron',label:'pesto et citron',cuisine:'italienne',texture:'moelleux',ingredients:[I(1,'c. à soupe','pesto'),I(0.5,'','citron','citrons')],step:'Mélanger pesto et citron, puis déposer cette finition sur le poisson hors du feu.'},
+    {key:'orange-fenouil',label:'orange et fenouil',cuisine:'méditerranéenne',texture:'parfumé',ingredients:[I(1,'','orange','oranges'),I(0.5,'','fenouil')],step:'Ajouter le fenouil finement émincé et un trait d’orange pour une finition fraîche et anisée.'},
+    {key:'paprika-poivron',label:'paprika et poivron doux',cuisine:'espagnole',texture:'grillé',ingredients:[I(1,'c. à café','paprika'),I(1,'','poivron','poivrons')],step:'Ajouter le poivron grillé et le paprika, puis laisser les saveurs se mêler 3 minutes.'}
+  ],
+  vegetal:[
+    {key:'tahini-citron',label:'tahini et citron',cuisine:'orientale',texture:'crémeux',ingredients:[I(1,'c. à soupe','tahini'),I(1,'','citron','citrons')],step:'Délayer le tahini avec le citron et un peu d’eau, puis verser en filet au moment de servir.'},
+    {key:'harissa-yaourt',label:'harissa douce et yaourt',cuisine:'maghrébine',texture:'onctueux',ingredients:[I(1,'c. à café','harissa douce'),I(1,'','yaourt nature','yaourts nature')],step:'Mélanger harissa et yaourt et servir cette sauce fraîche avec la préparation chaude.'},
+    {key:'pesto-noix',label:'pesto et noix',cuisine:'italienne',texture:'croquant',ingredients:[I(1,'c. à soupe','pesto'),I(35,'g','noix')],step:'Ajouter le pesto hors du feu et parsemer de noix concassées.'},
+    {key:'coco-curry',label:'coco et curry',cuisine:'indienne',texture:'crémeux',ingredients:[I(12,'cl','lait de coco'),I(1,'c. à café','curry')],step:'Verser lait de coco et curry et laisser frémir 5 minutes pour obtenir une sauce douce.'},
+    {key:'soja-sesame',label:'soja et sésame',cuisine:'asiatique',texture:'croustillant',ingredients:[I(1,'c. à soupe','sauce soja'),I(null,'','graines de sésame')],step:'Faire sauter avec la sauce soja puis ajouter le sésame juste avant de servir.'},
+    {key:'feta-menthe',label:'feta et menthe',cuisine:'grecque',texture:'frais',ingredients:[I(70,'g','feta'),I(null,'','menthe')],step:'Émietter la feta et ajouter la menthe fraîche au moment du dressage.'},
+    {key:'tomate-olive',label:'tomate, olive et origan',cuisine:'méditerranéenne',texture:'mijoté',ingredients:[I(15,'cl','coulis de tomate'),I(40,'g','olives')],step:'Laisser mijoter avec la tomate et les olives 5 minutes puis terminer avec l’origan.'},
+    {key:'cumin-coriandre',label:'cumin et coriandre',cuisine:'orientale',texture:'parfumé',ingredients:[I(1,'c. à café','cumin'),I(null,'','coriandre')],step:'Torréfier le cumin quelques secondes et ajouter la coriandre fraîche au service.'}
+  ],
+  oeufs:[
+    {key:'comte-ciboulette',label:'comté et ciboulette',cuisine:'française',texture:'moelleux',ingredients:[I(70,'g','comté'),I(null,'','ciboulette')],step:'Ajouter le comté pendant la cuisson et la ciboulette juste avant de servir.'},
+    {key:'feta-menthe',label:'feta et menthe',cuisine:'grecque',texture:'fondant',ingredients:[I(70,'g','feta'),I(null,'','menthe')],step:'Émietter la feta sur les œufs encore moelleux puis ajouter la menthe.'},
+    {key:'parmesan-basilic',label:'parmesan et basilic',cuisine:'italienne',texture:'moelleux',ingredients:[I(50,'g','parmesan'),I(null,'','basilic')],step:'Ajouter le parmesan en fin de cuisson et terminer au basilic.'},
+    {key:'paprika-poivron',label:'paprika et poivron',cuisine:'espagnole',texture:'juteux',ingredients:[I(1,'c. à café','paprika'),I(1,'','poivron','poivrons')],step:'Faire fondre le poivron au paprika avant d’ajouter les œufs.'}
+  ]
+};
+CURATION_ACCENTS.volaille.push(
+  {key:'teriyaki-sesame',label:'teriyaki et sésame',cuisine:'japonaise',texture:'laqué',ingredients:[I(1,'c. à soupe','sauce soja'),I(1,'c. à café','miel'),I(null,'','graines de sésame')],step:'Réduire soja et miel en glaçage léger, enrober la volaille puis ajouter le sésame.'},
+  {key:'miso-gingembre',label:'miso doux et gingembre',cuisine:'japonaise',texture:'moelleux',ingredients:[I(1,'c. à café','miso doux'),I(1,'c. à café','gingembre')],step:'Délayer le miso avec un peu d’eau et le gingembre, puis enrober la volaille en fin de cuisson.'},
+  {key:'citron-soja',label:'citron, soja et ciboule',cuisine:'asiatique',texture:'juteux',ingredients:[I(1,'','citron','citrons'),I(1,'c. à soupe','sauce soja'),I(null,'','ciboule')],step:'Ajouter soja et citron sur les dernières minutes puis terminer avec la ciboule fraîche.'}
+);
+CURATION_ACCENTS.viande.push(
+  {key:'teriyaki-sesame',label:'teriyaki et sésame',cuisine:'japonaise',texture:'laqué',ingredients:[I(1,'c. à soupe','sauce soja'),I(1,'c. à café','miel'),I(null,'','graines de sésame')],step:'Faire réduire soja et miel autour de la viande puis ajouter le sésame au service.'},
+  {key:'miso-gingembre',label:'miso doux et gingembre',cuisine:'japonaise',texture:'glacé',ingredients:[I(1,'c. à café','miso doux'),I(1,'c. à café','gingembre')],step:'Mélanger miso et gingembre avec un peu d’eau puis glacer la viande sans brûler la sauce.'},
+  {key:'cinq-epices-ciboule',label:'cinq-épices et ciboule',cuisine:'asiatique',texture:'parfumé',ingredients:[I(1,'c. à café','cinq-épices'),I(null,'','ciboule')],step:'Parfumer la viande au cinq-épices pendant la cuisson et ajouter la ciboule fraîche au dressage.'},
+  {key:'citron-soja',label:'citron, soja et ciboule',cuisine:'asiatique',texture:'sauté',ingredients:[I(1,'','citron','citrons'),I(1,'c. à soupe','sauce soja'),I(null,'','ciboule')],step:'Déglacer avec soja et citron puis servir avec la ciboule finement émincée.'},
+  {key:'soja-sesame',label:'soja, gingembre et sésame',cuisine:'asiatique',texture:'laqué',ingredients:[I(1,'c. à soupe','sauce soja'),I(null,'','graines de sésame')],step:'Faire réduire la sauce soja avec une pincée de gingembre puis ajouter le sésame.'},
+  {key:'ponzu-ciboule',label:'ponzu citronné et ciboule',cuisine:'japonaise',texture:'frais',ingredients:[I(1,'','citron','citrons'),I(1,'c. à soupe','sauce soja'),I(null,'','ciboule')],step:'Mélanger citron et soja, verser ce ponzu sur la viande puis ajouter la ciboule.'},
+  {key:'miso-sesame',label:'miso doux et sésame',cuisine:'japonaise',texture:'glacé',ingredients:[I(1,'c. à café','miso doux'),I(null,'','graines de sésame')],step:'Délayer le miso, glacer la viande en fin de cuisson puis ajouter le sésame.'}
+);
+CURATION_ACCENTS.poisson.push(
+  {key:'teriyaki-sesame',label:'teriyaki et sésame',cuisine:'japonaise',texture:'laqué',ingredients:[I(1,'c. à soupe','sauce soja'),I(1,'c. à café','miel'),I(null,'','graines de sésame')],step:'Badigeonner de soja et miel en fin de cuisson puis parsemer de sésame.'},
+  {key:'soja-gingembre',label:'soja et gingembre',cuisine:'asiatique',texture:'nacré',ingredients:[I(1,'c. à soupe','sauce soja'),I(1,'c. à café','gingembre')],step:'Ajouter soja et gingembre sur les dernières minutes pour garder le poisson nacré.'},
+  {key:'ponzu-ciboule',label:'ponzu citronné et ciboule',cuisine:'japonaise',texture:'frais',ingredients:[I(1,'','citron','citrons'),I(1,'c. à soupe','sauce soja'),I(null,'','ciboule')],step:'Mélanger citron et soja, verser cette sauce ponzu au service puis ajouter la ciboule.'},
+  {key:'citron-soja',label:'citron, soja et ciboule',cuisine:'asiatique',texture:'juteux',ingredients:[I(1,'','citron','citrons'),I(1,'c. à soupe','sauce soja'),I(null,'','ciboule')],step:'Déglacer très brièvement au soja et au citron puis finir avec la ciboule.'}
+);
+CURATION_ACCENTS.vegetal.push(
+  {key:'teriyaki-sesame',label:'teriyaki et sésame',cuisine:'japonaise',texture:'croustillant-laqué',ingredients:[I(1,'c. à soupe','sauce soja'),I(1,'c. à café','miel'),I(null,'','graines de sésame')],step:'Laisser légèrement caraméliser avec soja et miel puis ajouter le sésame.'},
+  {key:'miso-gingembre',label:'miso doux et gingembre',cuisine:'japonaise',texture:'fondant',ingredients:[I(1,'c. à café','miso doux'),I(1,'c. à café','gingembre')],step:'Délayer miso et gingembre, enrober la préparation chaude et couper le feu.'},
+  {key:'cinq-epices-ciboule',label:'cinq-épices et ciboule',cuisine:'asiatique',texture:'parfumé',ingredients:[I(1,'c. à café','cinq-épices'),I(null,'','ciboule')],step:'Torréfier le cinq-épices quelques secondes puis terminer avec la ciboule.'},
+  {key:'citron-soja',label:'citron, soja et ciboule',cuisine:'asiatique',texture:'frais-croquant',ingredients:[I(1,'','citron','citrons'),I(1,'c. à soupe','sauce soja'),I(null,'','ciboule')],step:'Ajouter soja et citron hors du feu puis parsemer de ciboule.'}
+);
+CURATION_ACCENTS.oeufs.push(
+  {key:'soja-sesame',label:'soja, gingembre et sésame',cuisine:'asiatique',texture:'moelleux',ingredients:[I(1,'c. à soupe','sauce soja'),I(null,'','graines de sésame')],step:'Ajouter un trait de soja et de gingembre puis terminer au sésame.'},
+  {key:'miso-gingembre',label:'miso doux et gingembre',cuisine:'japonaise',texture:'fondant',ingredients:[I(1,'c. à café','miso doux'),I(1,'c. à café','gingembre')],step:'Délayer le miso et le gingembre avant de les incorporer à feu doux.'},
+  {key:'cinq-epices-ciboule',label:'cinq-épices et ciboule',cuisine:'asiatique',texture:'parfumé',ingredients:[I(1,'c. à café','cinq-épices'),I(null,'','ciboule')],step:'Parfumer au cinq-épices et ajouter la ciboule fraîche au service.'},
+  {key:'citron-soja',label:'citron, soja et ciboule',cuisine:'asiatique',texture:'frais',ingredients:[I(1,'','citron','citrons'),I(1,'c. à soupe','sauce soja'),I(null,'','ciboule')],step:'Ajouter soja et citron hors du feu puis parsemer de ciboule.'}
+);
+CURATION_ACCENTS.autre=CURATION_ACCENTS.vegetal;
+// Une signature ne repose pas seulement sur la sauce. Elle combine une vraie
+// technique de cuisson et une manière de servir cohérentes avec l'assaisonnement.
+// Ces axes sont aussi lus par le moteur de proximité.
+const CURATION_EXPERIENCE_BY_ACCENT={
+  'ail-herbes':{technique:'saisi aux herbes',presentation:'assiette rustique',cook:'Saisir franchement, baisser le feu puis arroser avec le jus de cuisson aux herbes.',serve:'Dresser en assiette rustique et répartir le jus parfumé juste avant de servir.'},
+  'capres-persil':{technique:'snacké puis citronné',presentation:'assiette fraîche',cook:'Snacker rapidement pour garder une texture juteuse, puis détendre les sucs avec un trait de citron.',serve:'Servir en assiette fraîche avec les câpres et le persil répartis au dernier moment.'},
+  'chimichurri':{technique:'mariné puis grillé',presentation:'tranché à partager',cook:'Enrober d’un peu de chimichurri, laisser reposer 5 minutes puis griller vivement.',serve:'Trancher si nécessaire et présenter à partager avec le reste de chimichurri à part.'},
+  'cidre-moutarde':{technique:'braisé court',presentation:'sauce nappante',cook:'Colorer, déglacer avec le cidre puis terminer à feu doux pour obtenir une cuisson braisée courte.',serve:'Napper de sauce moutardée et servir dans une assiette creuse pour conserver tout le jus.'},
+  'citron-aneth':{technique:'cuisson douce citronnée',presentation:'dressage aux herbes',cook:'Cuire doucement pour préserver le moelleux, puis ajouter le citron sans le laisser amériser.',serve:'Dresser avec l’aneth frais et quelques gouttes de jus citronné autour de la garniture.'},
+  'citron-estragon':{technique:'saisi puis infusé',presentation:'assiette légère',cook:'Saisir, couvrir brièvement puis laisser l’estragon infuser hors du feu avec le citron.',serve:'Présenter en assiette légère, avec la garniture séparée de la sauce aux herbes.'},
+  'coco-curry':{technique:'mijoté crémeux',presentation:'bol généreux',cook:'Faire revenir les épices quelques secondes puis laisser mijoter doucement dans le lait de coco.',serve:'Servir en bol généreux en gardant une partie de la garniture visible sur la sauce.'},
+  'comte-ciboulette':{technique:'fondu moelleux',presentation:'portion dorée',cook:'Cuire à feu doux et ajouter le comté assez tard pour garder une texture moelleuse et filante.',serve:'Servir en portion dorée et terminer par la ciboulette fraîche.'},
+  'cumin-coriandre':{technique:'épices torréfiées',presentation:'bol oriental',cook:'Torréfier le cumin à sec quelques secondes avant d’ajouter les éléments à cuire.',serve:'Dresser en bol oriental et ajouter la coriandre fraîche sans la cuire.'},
+  'curry-yaourt':{technique:'mariné au yaourt',presentation:'assiette épicée douce',cook:'Enrober de yaourt au curry pendant 5 minutes puis cuire sans brûler la marinade.',serve:'Servir avec une petite cuillerée de yaourt frais pour créer un contraste chaud-froid.'},
+  'echalote-balsamique':{technique:'caramélisé-déglacé',presentation:'assiette bistrot',cook:'Faire caraméliser doucement l’échalote puis déglacer au balsamique pour concentrer les sucs.',serve:'Dresser façon bistrot et répartir les échalotes brillantes sur la préparation.'},
+  'feta-menthe':{technique:'cuisson puis finition fraîche',presentation:'assiette méditerranéenne',cook:'Conduire la cuisson sans la feta, puis laisser reposer 2 minutes avant la finition fraîche.',serve:'Émietter la feta, ajouter la menthe et présenter en assiette méditerranéenne.'},
+  'harissa-yaourt':{technique:'rôti puis rafraîchi',presentation:'sauce en contraste',cook:'Cuire jusqu’à obtenir des bords bien colorés et garder la sauce au yaourt totalement froide.',serve:'Déposer la sauce en contraste dans l’assiette plutôt que de la mélanger à la préparation.'},
+  'miso-sesame':{technique:'laqué au miso',presentation:'dressage japonais',cook:'Badigeonner d’une fine couche de miso en fin de cuisson et laisser la surface laquer sans brûler.',serve:'Découper proprement, dresser à la japonaise et terminer par le sésame.'},
+  'moutarde-ciboulette':{technique:'saisi sauce minute',presentation:'nappage léger',cook:'Saisir, réserver brièvement puis monter une sauce minute à la moutarde dans les sucs.',serve:'Napper légèrement et parsemer de ciboulette pour garder une finition nette.'},
+  'olive-tomate':{technique:'compoté méditerranéen',presentation:'plat à partager',cook:'Laisser tomate et olives compoter avant de réunir tous les éléments pour les dernières minutes.',serve:'Présenter dans un plat à partager avec le jus de tomate visible.'},
+  'orange-fenouil':{technique:'rôti aux agrumes',presentation:'assiette en quartiers',cook:'Colorer avec le fenouil puis ajouter l’orange en fin de cuisson pour préserver son parfum.',serve:'Dresser avec les quartiers d’orange et le fenouil répartis autour de la préparation.'},
+  'orange-thym':{technique:'glacé à l’orange',presentation:'tranché et glacé',cook:'Réduire le jus d’orange avec le thym jusqu’à une consistance sirupeuse puis glacer en fin de cuisson.',serve:'Trancher si nécessaire et lustrer avec le glaçage avant de servir.'},
+  'paprika-amandes':{technique:'toasté-croquant',presentation:'finition aux amandes',cook:'Faire légèrement torréfier le paprika dans la matière grasse puis conduire la cuisson à feu moyen.',serve:'Ajouter les amandes toastées seulement au dressage pour conserver leur croquant.'},
+  'paprika-poivron':{technique:'grillé puis étuvé',presentation:'assiette colorée',cook:'Griller le poivron, le couvrir 2 minutes puis l’associer à la préparation parfumée au paprika.',serve:'Dresser en séparant les éléments pour faire ressortir les couleurs et les textures.'},
+  'parmesan-basilic':{technique:'gratiné minute',presentation:'copeaux et basilic',cook:'Ajouter le parmesan juste assez tôt pour former une fine croûte sans dessécher la préparation.',serve:'Terminer avec le basilic et quelques copeaux de parmesan au moment de servir.'},
+  'pesto-basilic':{technique:'saisi puis enrobé',presentation:'dressage vert',cook:'Saisir d’abord sans le pesto, puis enrober hors du feu pour garder le basilic très aromatique.',serve:'Dresser avec quelques touches de pesto visibles et du basilic frais.'},
+  'pesto-citron':{technique:'cuisson vive finition crue',presentation:'assiette citronnée',cook:'Cuire sur feu vif puis ajouter le pesto citronné hors du feu afin de préserver sa fraîcheur.',serve:'Présenter avec un quartier de citron et une finition de pesto non chauffé.'},
+  'pesto-noix':{technique:'poêlé puis croquant',presentation:'éclats de noix',cook:'Poêler jusqu’à coloration, couper le feu puis incorporer le pesto sans le recuire.',serve:'Servir avec les noix concassées en surface pour apporter le contraste croquant.'},
+  'poivre-creme':{technique:'saisi sauce réduite',presentation:'assiette brasserie',cook:'Saisir, réserver puis faire réduire la crème et le poivre dans les sucs avant de réunir le tout.',serve:'Napper en assiette brasserie sans masquer complètement la garniture.'},
+  'soja-gingembre':{technique:'sauté minute',presentation:'bol asiatique',cook:'Sauter rapidement à feu vif avec le gingembre, puis ajouter la sauce soja sur les dernières secondes.',serve:'Servir en bol asiatique avec les légumes encore visibles et croquants.'},
+  'soja-sesame':{technique:'caramélisé au soja',presentation:'sésame au dernier moment',cook:'Laisser légèrement caraméliser avec la sauce soja sans prolonger la cuisson.',serve:'Dresser aussitôt et ajouter le sésame au dernier moment.'},
+  'tahini-citron':{technique:'rôti sauce crue',presentation:'sauce en filet',cook:'Cuire jusqu’à coloration en gardant le tahini et le citron hors de la chaleur.',serve:'Délayer la sauce puis la verser en filet sur chaque portion.'},
+  'tomate-olive':{technique:'mijoté à découvert',presentation:'cocotte méditerranéenne',cook:'Mijoter à découvert pour concentrer la tomate tout en gardant les olives entières.',serve:'Servir en petite cocotte ou assiette creuse avec le jus réduit.'},
+  'teriyaki-sesame':{technique:'laqué teriyaki',presentation:'bol japonais',cook:'Cuire d’abord sans sucre puis ajouter le mélange soja-miel seulement pour le faire laquer.',serve:'Dresser en bol et ajouter le sésame juste avant de servir.'},
+  'miso-gingembre':{technique:'glacé au miso',presentation:'assiette japonaise',cook:'Conduire la cuisson doucement puis ajouter miso et gingembre dilués sans les faire bouillir.',serve:'Dresser sobrement et répartir le glaçage au miso sur chaque portion.'},
+  'cinq-epices-ciboule':{technique:'sauté aux cinq-épices',presentation:'bol asiatique',cook:'Torréfier brièvement le cinq-épices puis cuire à feu vif pour garder une texture nette.',serve:'Servir en bol et ajouter la ciboule fraîche au dernier moment.'},
+  'citron-soja':{technique:'saisi puis déglacé',presentation:'assiette fraîche asiatique',cook:'Saisir rapidement puis déglacer avec soja et citron sans prolonger la cuisson.',serve:'Dresser avec la ciboule et un quartier de citron.'},
+  'ponzu-ciboule':{technique:'cuisson douce sauce ponzu',presentation:'dressage ponzu',cook:'Cuire doucement pour préserver le moelleux et garder la sauce ponzu hors du feu.',serve:'Verser le ponzu au service et terminer avec la ciboule fraîche.'}
+};
+const CURATION_KEYS_BY_CUISINE={
+  japonaise:['miso-sesame','miso-gingembre','teriyaki-sesame','ponzu-ciboule','soja-gingembre','soja-sesame','citron-soja','cinq-epices-ciboule','coco-curry','cumin-coriandre'],
+  asiatique:['miso-sesame','miso-gingembre','teriyaki-sesame','ponzu-ciboule','soja-gingembre','soja-sesame','citron-soja','cinq-epices-ciboule','coco-curry','cumin-coriandre'],
+  indienne:['curry-yaourt','coco-curry','cumin-coriandre','harissa-yaourt','paprika-amandes'],
+  italienne:['pesto-basilic','pesto-citron','pesto-noix','parmesan-basilic','tomate-olive','olive-tomate','ail-herbes','capres-persil'],
+  espagnole:['paprika-amandes','paprika-poivron','tomate-olive','olive-tomate','ail-herbes','chimichurri'],
+  grecque:['feta-menthe','tahini-citron','citron-estragon','citron-aneth','ail-herbes','tomate-olive','olive-tomate','pesto-noix','pesto-citron','cumin-coriandre','paprika-poivron'],
+  maghrébine:['harissa-yaourt','tahini-citron','cumin-coriandre','coco-curry','curry-yaourt','paprika-amandes','paprika-poivron','olive-tomate','tomate-olive','orange-thym','orange-fenouil'],
+  orientale:['harissa-yaourt','tahini-citron','cumin-coriandre','coco-curry','curry-yaourt','feta-menthe','paprika-amandes','paprika-poivron','olive-tomate','tomate-olive'],
+  mexicaine:['paprika-poivron','paprika-amandes','cumin-coriandre','harissa-yaourt','tomate-olive','olive-tomate','ail-herbes'],
+  allemande:['moutarde-ciboulette','cidre-moutarde','echalote-balsamique','poivre-creme','comte-ciboulette','ail-herbes'],
+  normande:['cidre-moutarde','moutarde-ciboulette','poivre-creme','echalote-balsamique','comte-ciboulette'],
+  bretonne:['moutarde-ciboulette','echalote-balsamique','citron-aneth','capres-persil','comte-ciboulette','ail-herbes'],
+  française:['citron-estragon','citron-aneth','moutarde-ciboulette','echalote-balsamique','cidre-moutarde','poivre-creme','capres-persil','pesto-citron','comte-ciboulette','ail-herbes'],
+  européenne:['citron-estragon','moutarde-ciboulette','echalote-balsamique','poivre-creme','feta-menthe','ail-herbes'],
+  méditerranéenne:['orange-thym','pesto-basilic','olive-tomate','tomate-olive','ail-herbes','citron-aneth','pesto-citron','orange-fenouil','feta-menthe','tahini-citron','paprika-poivron','chimichurri']
+};
+const CURATION_FORBIDDEN_KEYS_BY_CUISINE={
+  japonaise:['cidre-moutarde','moutarde-ciboulette','poivre-creme','chimichurri','pesto-basilic','pesto-citron','pesto-noix','parmesan-basilic','comte-ciboulette','feta-menthe','paprika-amandes','paprika-poivron','tomate-olive','olive-tomate','echalote-balsamique','ail-herbes','citron-aneth','citron-estragon','orange-thym','orange-fenouil'],
+  asiatique:['cidre-moutarde','moutarde-ciboulette','poivre-creme','chimichurri','pesto-basilic','pesto-citron','pesto-noix','parmesan-basilic','comte-ciboulette','feta-menthe','paprika-amandes','paprika-poivron','tomate-olive','olive-tomate','echalote-balsamique','ail-herbes','citron-aneth','citron-estragon','orange-thym','orange-fenouil'],
+  indienne:['cidre-moutarde','moutarde-ciboulette','poivre-creme','capres-persil','citron-aneth','citron-estragon','pesto-basilic','pesto-citron','pesto-noix','parmesan-basilic','comte-ciboulette','miso-sesame'],
+  italienne:['cidre-moutarde','moutarde-ciboulette','comte-ciboulette','miso-sesame','soja-gingembre','soja-sesame','coco-curry','curry-yaourt','harissa-yaourt','tahini-citron'],
+  espagnole:['miso-sesame','soja-gingembre','soja-sesame','coco-curry','curry-yaourt','comte-ciboulette','parmesan-basilic'],
+  grecque:['cidre-moutarde','moutarde-ciboulette','poivre-creme','comte-ciboulette','miso-sesame','soja-gingembre','soja-sesame','coco-curry'],
+  maghrébine:['cidre-moutarde','moutarde-ciboulette','poivre-creme','comte-ciboulette','parmesan-basilic','miso-sesame','soja-gingembre','soja-sesame','pesto-basilic','pesto-citron','pesto-noix'],
+  orientale:['cidre-moutarde','moutarde-ciboulette','poivre-creme','comte-ciboulette','parmesan-basilic','miso-sesame','soja-gingembre','soja-sesame','pesto-basilic'],
+  mexicaine:['cidre-moutarde','moutarde-ciboulette','poivre-creme','comte-ciboulette','parmesan-basilic','miso-sesame','soja-gingembre','soja-sesame','pesto-basilic','pesto-citron','pesto-noix'],
+  allemande:['miso-sesame','soja-gingembre','soja-sesame','coco-curry','curry-yaourt','tahini-citron','harissa-yaourt','feta-menthe','pesto-basilic','pesto-citron','pesto-noix'],
+  normande:['miso-sesame','soja-gingembre','soja-sesame','coco-curry','curry-yaourt','tahini-citron','harissa-yaourt','feta-menthe'],
+  bretonne:['miso-sesame','soja-gingembre','soja-sesame','coco-curry','curry-yaourt','tahini-citron','harissa-yaourt'],
+  française:['miso-sesame','soja-gingembre','soja-sesame','coco-curry','tahini-citron','harissa-yaourt'],
+  méditerranéenne:['miso-sesame','soja-gingembre','soja-sesame','cidre-moutarde','moutarde-ciboulette','poivre-creme','comte-ciboulette']
+};
+function cuisineCompatibleAccents(recipe,accents){
+  const cuisine=recipe.cuisine||metadataCuisine(recipe);
+  const allowed=CURATION_KEYS_BY_CUISINE[cuisine];
+  const forbidden=new Set(CURATION_FORBIDDEN_KEYS_BY_CUISINE[cuisine]||[]);
+  if(!['japonaise','asiatique'].includes(cuisine)){
+    ['teriyaki-sesame','miso-gingembre','cinq-epices-ciboule','citron-soja','ponzu-ciboule'].forEach(key=>forbidden.add(key));
+  }
+  const safe=accents.filter(accent=>!forbidden.has(accent.key));
+  const candidates=safe.length?safe:accents;
+  if(!allowed)return{accents:candidates,preferredCount:candidates.length};
+  const compatible=candidates.filter(accent=>allowed.includes(accent.key));
+  if(!compatible.length)return{accents:candidates,preferredCount:candidates.length};
+  const compatibleKeys=new Set(compatible.map(accent=>accent.key));
+  return{accents:[...compatible,...candidates.filter(accent=>!compatibleKeys.has(accent.key))],preferredCount:compatible.length};
+}
+function stableRecipeHash(value){
+  let hash=2166136261;
+  for(const char of String(value)){hash^=char.charCodeAt(0);hash=Math.imul(hash,16777619)}
+  return hash>>>0;
+}
+const ACCENT_OFFSET_BY_PROTEIN={
+  poulet:0,dinde:1,'filet-mignon':0,'cotes-porc':1,boeuf:2,boulettes:3,saucisses:4,jambon:5,
+  saumon:0,'poisson-blanc':1,crevettes:2,thon:3,'saumon-fume':4,
+  tofu:0,falafels:1,'pois-chiches':2,oeufs:0,omelette:0
+};
+const usedAccentsByStructure=new Map();
+const usedAccentKeysByStructure=new Map();
+function recipeStructuralIdentity(recipe){
+  if(recipe.subFamily)return recipe.subFamily;
+  if(recipe.family==='omelette')return String(recipe.id).replace(/^ge-omelette-/, 'omelette-');
+  if(recipe.family==='soupe')return String(recipe.id).replace(/^ge-soupe-/, 'soupe-');
+  return recipe.family||metadataFamily(recipe);
+}
+function curateGeneratedRecipe(recipe,index){
+  const inferred=inferProtein(recipe);
+  recipe.protein=recipe.protein||inferred.protein;
+  recipe.group=recipe.group||inferred.group;
+  recipe.baseCuisine=recipe.cuisine||metadataCuisine(recipe);
+  const group=CURATION_ACCENTS[recipe.group]?recipe.group:(recipe.protein==='oeufs'?'oeufs':'autre');
+  const allAccents=CURATION_ACCENTS[group]||CURATION_ACCENTS.autre;
+  const accentPool=cuisineCompatibleAccents(recipe,allAccents);
+  const accents=accentPool.accents;
+  const structure=recipeStructuralIdentity(recipe);
+  const cluster=`${structure}|${group}`;
+  const alreadyUsed=usedAccentsByStructure.get(cluster)||new Set();
+  const usedKeys=usedAccentKeysByStructure.get(structure)||new Set();
+  let accentIndex=(ACCENT_OFFSET_BY_PROTEIN[recipe.protein]??stableRecipeHash(recipe.protein))%accentPool.preferredCount;
+  accentIndex=(accentIndex+stableRecipeHash(structure))%accentPool.preferredCount;
+  for(let offset=0;offset<accents.length&&(alreadyUsed.has(accentIndex)||usedKeys.has(accents[accentIndex].key));offset+=1)accentIndex=(accentIndex+1)%accents.length;
+  alreadyUsed.add(accentIndex);
+  usedAccentsByStructure.set(cluster,alreadyUsed);
+  const accent=accents[accentIndex];
+  const experience=CURATION_EXPERIENCE_BY_ACCENT[accent.key]||CURATION_EXPERIENCE_BY_ACCENT['ail-herbes'];
+  usedKeys.add(accent.key);
+  usedAccentKeysByStructure.set(structure,usedKeys);
+  const existingNames=new Set((recipe.i||[]).map(item=>String(item.k||item.n).toLowerCase()));
+  const additions=accent.ingredients.filter(item=>!existingNames.has(String(item.k||item.n).toLowerCase())).map(item=>({...item}));
+  recipe.n=`${recipe.n} · ${accent.label}`;
+  recipe.n=recipe.n
+    .replace(/^Dinde grillé/, 'Dinde grillée')
+    .replace(/^Dinde croustillant/, 'Dinde croustillante')
+    .replace(/^Côtes de porc grillé/, 'Côtes de porc grillées')
+    .replace(/^Côtes de porc croustillant/, 'Côtes de porc croustillantes')
+    .replace(/^Saucisses grillé/, 'Saucisses grillées')
+    .replace(/^Saucisses croustillant/, 'Saucisses croustillantes')
+    .replace(/^Crevettes grillé/, 'Crevettes grillées')
+    .replace(/^Crevettes croustillant/, 'Crevettes croustillantes')
+    .replace(/^Boulettes de bœuf croustillant/, 'Boulettes de bœuf croustillantes');
+  recipe.i=[...(recipe.i||[]),...additions];
+  const originalSteps=[...(recipe.p||[])];
+  const opening=originalSteps.shift();
+  const cooking=originalSteps.shift();
+  recipe.p=[
+    opening,
+    `${experience.cook} ${cooking||''}`.trim(),
+    accent.step,
+    ...originalSteps,
+    experience.serve
+  ].filter(Boolean);
+  recipe.cuisine=recipe.cuisine||accent.cuisine;
+  recipe.subFamily=`${structure}-${accent.key}`;
+  recipe.texture=accent.texture;
+  recipe.sauce=accent.key;
+  recipe.technique=experience.technique;
+  recipe.presentation=experience.presentation;
+  return recipe;
+}
+const generatedRecipesToCurate=[
+  ...generatedNoon,...generatedExpandedNoon,...generatedWarmDinners,...generatedSalads,
+  ...v31Noon,...v31Evening
+];
+generatedRecipesToCurate.forEach(curateGeneratedRecipe);
+// Quelques fiches historiques de la V3 étaient presque identiques malgré des
+// identifiants différents. Leur identifiant reste intact, mais leur finition et
+// leur technique sont réellement différenciées en V3.1.
+const legacyRecipesToCurate=new Set([
+  'n70','n87','e51','e33','n89','n68','e100','n85','e64','e43','n69','n96','e62','e94'
+]);
+[...noon,...evening].filter(recipe=>legacyRecipesToCurate.has(recipe.id))
+  .forEach((recipe,index)=>curateGeneratedRecipe(recipe,generatedRecipesToCurate.length+index));
+
+// Deux paires historiques étaient réellement trop proches. Elles sont
+// retravaillées comme des plats différents tout en conservant leur identifiant,
+// donc sans perdre un favori ou un avis déjà enregistré.
+const legacyTunaCroque=evening.find(recipe=>recipe.id==='e24');
+if(legacyTunaCroque)Object.assign(legacyTunaCroque,{
+  n:'Croques au thon, câpres et citron, salade croquante',m:'Air Fryer',t:'18 min',
+  i:[I(4,'','tranches de pain de mie'),I(1,'boîte','thon'),I(80,'g','fromage frais'),I(1,'','citron','citrons'),I(1,'c. à soupe','câpres'),I(1,'','tomate','tomates'),I(1,'','petite salade','salades vertes')],
+  p:['Mélanger le thon égoutté avec le fromage frais, le zeste de citron et les câpres.','Répartir cette préparation et quelques rondelles de tomate sur le pain, puis refermer les croques.','Cuire 7 à 8 minutes à 180 °C dans l’Air Fryer et servir avec la salade assaisonnée au jus de citron.'],
+  protein:'thon',group:'poisson',starch:'pain',kind:'warm',family:'croque',subFamily:'croque-thon-citron-capres',cuisine:'française',texture:'croustillant',technique:'gratiné air-fryer',presentation:'croques et salade séparée'
+});
+const legacyTunaPatties=noon.find(recipe=>recipe.id==='n82');
+if(legacyTunaPatties)Object.assign(legacyTunaPatties,{
+  n:'Galettes de thon et pommes de terre, salade de poivrons',m:'Poêle',t:'35 min',
+  i:[I(1,'boîte','thon'),I(450,'g','pommes de terre'),I(1,'','œuf','œufs'),I(45,'g','chapelure'),I(2,'','poivrons'),I(2,'','tomates'),I(1,'','citron','citrons'),I(null,'','persil')],
+  p:['Cuire les pommes de terre 18 minutes, les égoutter puis les écraser avec le thon, l’œuf, la chapelure et le persil.','Former des galettes et les dorer 4 minutes par face dans une poêle légèrement huilée.','Mélanger poivrons finement émincés, tomates et citron, puis servir cette salade fraîche avec les galettes chaudes.'],
+  protein:'thon',group:'poisson',starch:'pommes-de-terre',kind:'warm',family:'galettes',subFamily:'galettes-thon-pommes-de-terre',cuisine:'méditerranéenne',texture:'croustillant-moelleux',technique:'galettes poêlées',presentation:'galettes avec salade fraîche'
+});
+
+const VEGETABLE_TAGS=['tomate','courgette','aubergine','poivron','concombre','carotte','poireau','champignon','épinard','brocoli','chou','courge','fenouil','asperge','petits pois','haricots verts','betterave','oignon','radis','avocat','maïs'];
+function metadataText(recipe){return `${recipe.n} ${(recipe.i||[]).map(item=>item.n).join(' ')}`.toLowerCase()}
+function metadataCuisine(recipe){
+  if(recipe.cuisine)return recipe.cuisine;
+  const text=metadataText(recipe);
+  if(/sushi|miso|donburi|teriyaki|yakitori|katsu|ramen/.test(text))return'japonaise';
+  if(/curry|tandoori|dal|dahl/.test(text))return'indienne';
+  if(/soja|nouilles|gingembre|wok/.test(text))return'asiatique';
+  if(/pesto|parmesan|mozzarella|risotto|gnocchi|pâtes|orzo/.test(text))return'italienne';
+  if(/paella|chorizo|tortilla|paprika/.test(text))return'espagnole';
+  if(/feta|tzatziki|grec/.test(text))return'grecque';
+  if(/couscous|tajine|harissa|semoule/.test(text))return'maghrébine';
+  if(/currywurst|spätzle|knack|schnitzel|rösti|allemand/.test(text))return'allemande';
+  if(/breton|galette de sarrasin/.test(text))return'bretonne';
+  if(/olive|basilic|aubergine|courgette|tomate/.test(text))return'méditerranéenne';
+  return'française';
+}
+function metadataVegetables(recipe){
+  const text=metadataText(recipe).normalize('NFD').replace(/[\u0300-\u036f]/g,'');
+  return VEGETABLE_TAGS.filter(value=>text.includes(value.normalize('NFD').replace(/[\u0300-\u036f]/g,'')));
+}
+function metadataFamily(recipe){
+  if(recipe.family&&!String(recipe.family).startsWith('gn'))return recipe.family;
+  const name=String(recipe.n||'').toLowerCase();
+  if(/salade|taboulé/.test(name))return'salade';
+  if(/soupe|velouté|bouillon/.test(name))return'soupe';
+  if(/gratin/.test(name))return'gratin';
+  if(/curry|cari/.test(name))return'curry';
+  if(/risotto|orzo/.test(name))return'risotto';
+  if(/pâtes|spaghetti|tagliatelle|gnocchi|nouilles/.test(name))return'pates-nouilles';
+  if(/brochette/.test(name))return'brochettes';
+  if(/tarte|quiche|pizza/.test(name))return'tarte-pizza';
+  if(/wrap|taco|pita|galette|tartine|croque/.test(name))return'pain-garni';
+  if(/mijot|ragoût|potée|tajine|blanquette/.test(name))return'mijote';
+  if(/omelette|tortilla|œuf/.test(name))return'oeufs';
+  if(/poêlée|sauté|wok/.test(name))return'poelee';
+  if(recipe.m==='Barbecue'||recipe.m==='Plancha')return'grillade';
+  if(recipe.m==='Air Fryer')return'air-fryer';
+  if(recipe.m==='Four')return'roti-four';
+  return'plat-complet';
+}
+function metadataTechnique(recipe){
+  if(recipe.technique)return recipe.technique;
+  const text=metadataText(recipe);
+  if(/mijot|ragoût|ragout|braisé|braise/.test(text))return'mijoté';
+  if(/gratin|croûte|croute|pané|pane|croustill/.test(text))return'gratiné-croustillant';
+  if(/brochette|grill|plancha|barbecue/.test(text))return'grillé';
+  if(/papillote/.test(text))return'papillote';
+  if(/soupe|velouté|bouillon/.test(text))return'cuisson douce';
+  if(recipe.m==='Sans cuisson')return'assemblage frais';
+  if(recipe.m==='Air Fryer')return'air-fryer rôti';
+  if(recipe.m==='Four')return'rôti au four';
+  if(recipe.m==='Casserole')return'frémissement';
+  return'saisi-poêlé';
+}
+function metadataPresentation(recipe){
+  if(recipe.presentation)return recipe.presentation;
+  const family=metadataFamily(recipe);
+  if(family==='salade'||family==='bowl')return'bol ou assiette composée';
+  if(family==='soupe')return'assiette creuse';
+  if(family==='gratin'||family==='tarte-pizza')return'plat à partager';
+  if(family==='brochettes')return'brochettes dressées';
+  if(family==='pain-garni')return'portion individuelle';
+  return'assiette complète';
+}
+const PROFILE_STOP_WORDS=new Set(['de','du','des','au','aux','a','la','le','les','et','avec','façon','facon','express','leger','legere','maison','complet','complete','poulet','dinde','porc','boeuf','bœuf','veau','saumon','cabillaud','poisson','crevettes','jambon','thon','saucisses','saucisse','knack','tofu']);
+function metadataTitleProfile(recipe){
+  const words=String(recipe.n||'').toLowerCase().replace(/œ/g,'oe').normalize('NFD')
+    .replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]+/g,' ').trim().split(/\s+/)
+    .filter(word=>word&&!PROFILE_STOP_WORDS.has(word));
+  return words.slice(0,5).join('-')||metadataFamily(recipe);
+}
+function applyRecipeMetadata(recipe,slot){
+  const proteinInfo=inferProtein(recipe);
+  recipe.protein=recipe.protein||proteinInfo.protein;
+  recipe.group=recipe.group||proteinInfo.group;
+  recipe.starch=recipe.starch||inferStarch(recipe);
+  recipe.family=metadataFamily(recipe);
+  recipe.cuisine=metadataCuisine(recipe);
+  recipe.vegetables=metadataVegetables(recipe);
+  recipe.method=recipe.m;
+  recipe.hotCold=recipe.kind==='salad'||recipe.m==='Sans cuisson'?'froid':'chaud';
+  recipe.lightness=slot==='eve'?(recipe.family==='gratin'||recipe.family==='mijote'?'classique':'léger-rassasiant'):'classique';
+  recipe.subFamily=recipe.subFamily||`${recipe.family}-${metadataTitleProfile(recipe)}`;
+  recipe.texture=recipe.texture||(/croustill|grill|rôti|roti/.test(metadataText(recipe))?'croustillant':/soupe|velouté|crème|creme/.test(metadataText(recipe))?'onctueux':'moelleux');
+  recipe.technique=metadataTechnique(recipe);
+  recipe.presentation=metadataPresentation(recipe);
+  recipe.profile=recipe.profile||`${recipe.family}|${recipe.subFamily}|${recipe.cuisine}|${recipe.starch}|${recipe.texture}|${recipe.technique}|${recipe.presentation}`;
+  recipe.season=[...(recipe.s||ALL_SEASONS)];
+}
+noon.forEach(recipe=>applyRecipeMetadata(recipe,'mid'));
+evening.forEach(recipe=>applyRecipeMetadata(recipe,'eve'));
+
 const $=id=>document.getElementById(id);
 noon.forEach(recipe=>{recipe.mealSlots=['mid']});
 evening.forEach(recipe=>{recipe.mealSlots=['eve']});
 const recipeLibrary=[...noon,...evening];
 const recipeIndex=new Map(recipeLibrary.map(recipe=>[recipe.id,recipe]));
-$('versionLine').textContent=`Clair Repas V3 · ${recipeLibrary.length} repas possibles`;
+$('libraryCount').textContent=`${recipeLibrary.length} vraies recettes différentes`;
+$('versionLine').textContent='Clair Repas V3.1';
 const FAVORITES_KEY='crFavMeals';
 const RECENT_RECIPES_KEY='crRecentRecipesV25';
 const MAX_RECENT_RECIPES=10;
 const REACTIONS_KEY='crRecipeReactionsV3';
 const LEARNING_KEY='crRecipeLearningV3';
+const RECIPE_NOTES_KEY='crRecipeNotesV31';
 const LEARNING_CHOICE_LIMIT=120;
 const CHOICE_DEDUPLICATION_MS=6*60*60*1000;
-const DISCOVERY_RATE=0.18;
+const DISCOVERY_RATE=0.24;
 function readIdList(key){
   let values=[];
   try{values=JSON.parse(localStorage.getItem(key)||'[]')}catch(e){values=[]}
@@ -1111,6 +1676,33 @@ function recordRecentRecipe(id){
   writeIdList(RECENT_RECIPES_KEY,[id,...recentRecipeIds().filter(value=>value!==id)].slice(0,MAX_RECENT_RECIPES));
   recordRecipeChoice(id);
 }
+function escapeHTML(value){
+  return String(value??'').replace(/[&<>"']/g,char=>({
+    '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
+  }[char]));
+}
+function recipeNoteMap(){
+  let values={};
+  try{values=JSON.parse(localStorage.getItem(RECIPE_NOTES_KEY)||'{}')}catch(e){values={}}
+  if(!values||Array.isArray(values)||typeof values!=='object')return{};
+  return Object.fromEntries(Object.entries(values)
+    .filter(([id,value])=>recipeIndex.has(id)&&typeof value==='string'&&value.trim())
+    .map(([id,value])=>[id,value.slice(0,2000)]));
+}
+function recipeNote(id){return recipeNoteMap()[id]||''}
+function saveRecipeNote(id,value){
+  if(!recipeIndex.has(id))return;
+  const notes=recipeNoteMap();
+  const clean=String(value??'').slice(0,2000);
+  if(clean.trim())notes[id]=clean;else delete notes[id];
+  localStorage.setItem(RECIPE_NOTES_KEY,JSON.stringify(notes));
+  updateNoteIndicators(id);
+}
+function deleteRecipeNote(id){
+  saveRecipeNote(id,'');
+  document.querySelectorAll(`.recipe-note-input[data-recipe-id="${id}"]`).forEach(input=>{input.value=''});
+  show('Note supprimée');
+}
 function reactionMap(){
   let values={};
   try{values=JSON.parse(localStorage.getItem(REACTIONS_KEY)||'{}')}catch(e){values={}}
@@ -1125,29 +1717,37 @@ function writeReactionMap(values){
 function learningData(){
   let raw=null;
   try{raw=JSON.parse(localStorage.getItem(LEARNING_KEY)||'null')}catch(e){raw=null}
-  const data={version:1,choices:[],stats:{}};
+  const data={version:2,choices:[],selections:[],stats:{}};
   if(!raw||typeof raw!=='object')return data;
   if(Array.isArray(raw.choices)){
     data.choices=raw.choices.filter(item=>item&&recipeIndex.has(item.id)&&Number.isFinite(Number(item.at)))
       .map(item=>({id:item.id,at:Number(item.at)})).slice(-LEARNING_CHOICE_LIMIT);
   }
+  if(Array.isArray(raw.selections)){
+    data.selections=raw.selections.filter(item=>item&&recipeIndex.has(item.id)&&Number.isFinite(Number(item.at)))
+      .map(item=>({id:item.id,type:item.type==='eve'?'eve':'mid',at:Number(item.at)})).slice(-LEARNING_CHOICE_LIMIT);
+  }
   if(raw.stats&&typeof raw.stats==='object'&&!Array.isArray(raw.stats)){
     Object.entries(raw.stats).forEach(([id,value])=>{
       if(!recipeIndex.has(id)||!value||typeof value!=='object')return;
-      const proposed=Math.max(0,Math.floor(Number(value.proposed)||0));
-      const viewed=Math.max(0,Math.floor(Number(value.viewed)||0));
-      const lastProposedAt=Math.max(0,Number(value.lastProposedAt)||0);
-      const lastViewedAt=Math.max(0,Number(value.lastViewedAt)||0);
-      if(proposed||viewed||lastProposedAt||lastViewedAt)data.stats[id]={proposed,viewed,lastProposedAt,lastViewedAt};
+      const stats={};
+      for(const key of ['proposed','viewed','rejected','selected'])stats[key]=Math.max(0,Math.floor(Number(value[key])||0));
+      for(const key of ['lastProposedAt','lastViewedAt','lastRejectedAt','lastSelectedAt'])stats[key]=Math.max(0,Number(value[key])||0);
+      if(Object.values(stats).some(Boolean))data.stats[id]=stats;
     });
   }
   return data;
 }
 function saveLearningData(data){
-  localStorage.setItem(LEARNING_KEY,JSON.stringify({version:1,choices:data.choices.slice(-LEARNING_CHOICE_LIMIT),stats:data.stats}));
+  localStorage.setItem(LEARNING_KEY,JSON.stringify({
+    version:2,
+    choices:(data.choices||[]).slice(-LEARNING_CHOICE_LIMIT),
+    selections:(data.selections||[]).slice(-LEARNING_CHOICE_LIMIT),
+    stats:data.stats||{}
+  }));
 }
 function recipeLearningStats(data,id){
-  if(!data.stats[id])data.stats[id]={proposed:0,viewed:0,lastProposedAt:0,lastViewedAt:0};
+  if(!data.stats[id])data.stats[id]={proposed:0,viewed:0,rejected:0,selected:0,lastProposedAt:0,lastViewedAt:0,lastRejectedAt:0,lastSelectedAt:0};
   return data.stats[id];
 }
 function recordRecipeChoice(id){
@@ -1172,6 +1772,28 @@ function recordAutomaticProposal(id){
   stats.lastProposedAt=Date.now();
   saveLearningData(data);
 }
+function recordRecipeRejection(id){
+  if(!recipeIndex.has(id))return;
+  const data=learningData();
+  const stats=recipeLearningStats(data,id);
+  stats.rejected+=1;
+  stats.lastRejectedAt=Date.now();
+  saveLearningData(data);
+}
+function recordRecipeSelection(id,type){
+  if(!recipeIndex.has(id))return;
+  const data=learningData();
+  const now=Date.now();
+  const normalizedType=type==='eve'?'eve':'mid';
+  const lastSame=[...(data.selections||[])].reverse().find(item=>item.id===id&&item.type===normalizedType);
+  if(lastSame&&now-lastSame.at<CHOICE_DEDUPLICATION_MS)return;
+  data.selections.push({id,type:normalizedType,at:now});
+  const stats=recipeLearningStats(data,id);
+  stats.selected+=1;
+  stats.lastSelectedAt=now;
+  saveLearningData(data);
+  rememberSelectedMeal(normalizedType,id,now);
+}
 function setRecipeReaction(id,value){
   if(!recipeIndex.has(id)||!['again','notForMe'].includes(value))return;
   const reactions=reactionMap();
@@ -1180,6 +1802,8 @@ function setRecipeReaction(id,value){
   else reactions[id]=value;
   writeReactionMap(reactions);
   updateReactionUI();
+  if(!removing&&value==='again')recordRecipeSelection(id,recipeIndex.get(id)?.mealSlots?.[0]);
+  if(!removing&&value==='notForMe')recordRecipeRejection(id);
   if(removing)show('Avis retiré · recette redevenue neutre');
   else show(value==='again'?'À refaire · Clair Repas le retiendra':'Pas pour moi · recette fortement défavorisée');
 }
@@ -1367,6 +1991,31 @@ function recipeFeedbackHTML(recipe){
     </div>
   </div>`;
 }
+function noteIndicatorHTML(recipe){
+  const hasNote=Boolean(recipeNote(recipe.id).trim());
+  return `<span class="note-indicator" data-recipe-id="${recipe.id}" ${hasNote?'':'hidden'}>📝 Note ✓</span>`;
+}
+function recipePersonalNoteHTML(recipe){
+  const note=recipeNote(recipe.id);
+  const hasNote=Boolean(note.trim());
+  return `<section class="recipe-personal-note" aria-label="Note personnelle">
+    <label class="recipe-note-label" for="note-${recipe.id}">
+      <span>📝 Ma note</span>
+      <span class="recipe-note-status" data-recipe-id="${recipe.id}">${hasNote?'✓ Enregistrée':''}</span>
+    </label>
+    <textarea class="recipe-note-input" id="note-${recipe.id}" data-recipe-id="${recipe.id}" maxlength="2000" placeholder="Ex. Run préfère sans poivron">${escapeHTML(note)}</textarea>
+    <div class="recipe-note-footer">
+      <span>Sauvegarde automatique · la recette reste inchangée</span>
+      <button class="recipe-note-delete" data-recipe-id="${recipe.id}" type="button" ${hasNote?'':'hidden'}>Supprimer</button>
+    </div>
+  </section>`;
+}
+function updateNoteIndicators(id){
+  const hasNote=Boolean(recipeNote(id).trim());
+  document.querySelectorAll(`.note-indicator[data-recipe-id="${id}"]`).forEach(indicator=>{indicator.hidden=!hasNote});
+  document.querySelectorAll(`.recipe-note-status[data-recipe-id="${id}"]`).forEach(status=>{status.textContent=hasNote?'✓ Enregistrée':''});
+  document.querySelectorAll(`.recipe-note-delete[data-recipe-id="${id}"]`).forEach(button=>{button.hidden=!hasNote});
+}
 function recipeHTML(x,{showFavorite=true}={}){
   const steps=(x.p||[]).map((step,index)=>{
     const timers=stepTimerDurations(step);
@@ -1386,6 +2035,7 @@ function recipeHTML(x,{showFavorite=true}={}){
     ${showFavorite?`<button class="recipe-favorite${liked?' active':''}" data-recipe-id="${x.id}" type="button" aria-pressed="${liked}" aria-label="${liked?'Retirer des favoris':'Ajouter aux favoris'}">${liked?'♥':'♡'}</button>`:''}
   </div>
   ${recipeFeedbackHTML(x)}
+  ${recipePersonalNoteHTML(x)}
   <h3>Ingrédients</h3><ul>${x.i.map((v,index)=>`<li class="ingredient-line" data-recipe-id="${x.id}" data-ingredient-index="${index}">${ingredientText(v)}</li>`).join('')}</ul>
   <h3>Préparation</h3><p class="wake-note">☀️ Mode cuisine · écran maintenu allumé</p><ol>${steps}</ol>`;
 }
@@ -1451,14 +2101,78 @@ function tagsOf(recipe){
     starch:inferStarch(source),
     method:source.m||'Autre',
     kind:source.kind||(/^(salade|salade-repas)/i.test(String(source.n||''))?'salad':'warm'),
-    family:inferFamily(source)
+    family:source.family||inferFamily(source),
+    subFamily:source.subFamily||source.family||inferFamily(source),
+    cuisine:source.cuisine||metadataCuisine(source),
+    vegetables:Array.isArray(source.vegetables)?source.vegetables:metadataVegetables(source),
+    hotCold:source.hotCold||(source.m==='Sans cuisson'?'froid':'chaud'),
+    lightness:source.lightness||'classique',
+    season:Array.isArray(source.season)?source.season:(source.s||ALL_SEASONS),
+    profile:source.profile||`${inferFamily(source)}|${inferStarch(source)}|${source.m||'Autre'}`,
+    texture:source.texture||'moelleux',
+    technique:source.technique||metadataTechnique(source),
+    presentation:source.presentation||metadataPresentation(source)
   };
   recipeTagCache.set(source,tags);
   return tags;
 }
-const HABIT_AXES=['group','protein','starch','method'];
-const HABIT_MAX_BOOST={group:0.08,protein:0.08,starch:0.06,method:0.04};
-const HABIT_REACTION_STEP={group:0.018,protein:0.014,starch:0.012,method:0.008};
+function setJaccard(left,right){
+  const a=new Set((left||[]).filter(Boolean));
+  const b=new Set((right||[]).filter(Boolean));
+  if(!a.size&&!b.size)return 0;
+  let common=0;
+  a.forEach(value=>{if(b.has(value))common+=1});
+  return common/Math.max(1,a.size+b.size-common);
+}
+const similarityVectorCache=new WeakMap();
+function similarityVector(recipe){
+  const cached=similarityVectorCache.get(recipe);
+  if(cached)return cached;
+  const tags=tagsOf(recipe);
+  const ingredients=(recipe.i||[]).map(item=>normalizeSearchText(item.k||item.n)).filter(Boolean);
+  const vector={...tags,ingredients};
+  similarityVectorCache.set(recipe,vector);
+  return vector;
+}
+const similarityPairCache=new Map();
+function recipeSimilarity(left,right){
+  if(!left||!right)return 0;
+  if(left.id&&right.id&&left.id===right.id)return 1;
+  const key=left.id&&right.id?[left.id,right.id].sort().join('|'):'';
+  if(key&&similarityPairCache.has(key))return similarityPairCache.get(key);
+  const a=similarityVector(left),b=similarityVector(right);
+  let score=0;
+  if(a.family===b.family)score+=0.15;
+  if(a.subFamily===b.subFamily)score+=0.09;
+  if(a.cuisine===b.cuisine)score+=0.07;
+  if(a.protein===b.protein)score+=0.09;
+  if(a.group===b.group)score+=0.04;
+  if(a.starch===b.starch)score+=0.08;
+  if(a.method===b.method)score+=0.06;
+  if(a.hotCold===b.hotCold)score+=0.03;
+  if(a.lightness===b.lightness)score+=0.03;
+  if(a.texture===b.texture)score+=0.05;
+  if(a.profile===b.profile)score+=0.07;
+  if(a.technique===b.technique)score+=0.06;
+  if(a.presentation===b.presentation)score+=0.04;
+  score+=setJaccard(a.vegetables,b.vegetables)*0.07;
+  score+=setJaccard(a.ingredients,b.ingredients)*0.07;
+  score=Math.max(0,Math.min(1,score));
+  if(key){
+    if(similarityPairCache.size>12000)similarityPairCache.clear();
+    similarityPairCache.set(key,score);
+  }
+  return score;
+}
+// Métadonnées et vecteurs préparés une seule fois au démarrage : les sélections
+// suivantes ne retraitent jamais les 800 fiches.
+recipeLibrary.forEach(recipe=>{
+  tagsOf(recipe);
+  similarityVector(recipe);
+});
+const HABIT_AXES=['group','protein','starch','method','family','cuisine'];
+const HABIT_MAX_BOOST={group:0.07,protein:0.07,starch:0.05,method:0.035,family:0.04,cuisine:0.035};
+const HABIT_REACTION_STEP={group:0.016,protein:0.013,starch:0.010,method:0.007,family:0.006,cuisine:0.006};
 const baselineShareCache=new Map();
 function baselineTagShare(type,axis,value){
   const key=`${type}|${axis}|${value}`;
@@ -1473,12 +2187,12 @@ function buildPreferenceProfile(data=learningData(),reactions=reactionMap()){
   const reactionScores=Object.fromEntries(HABIT_AXES.map(axis=>[axis,new Map()]));
   let choiceWeight=0;
   const now=Date.now();
-  data.choices.forEach(item=>{
+  const addEvent=(item,importance)=>{
     if(reactions[item.id]==='notForMe')return;
     const recipe=recipeIndex.get(item.id);
     if(!recipe)return;
     const ageDays=Math.max(0,(now-Number(item.at))/DAY_MS);
-    const weight=Math.max(0.35,1-ageDays/180);
+    const weight=importance*Math.max(0.35,1-ageDays/180);
     const tags=tagsOf(recipe);
     choiceWeight+=weight;
     HABIT_AXES.forEach(axis=>{
@@ -1486,7 +2200,9 @@ function buildPreferenceProfile(data=learningData(),reactions=reactionMap()){
       const counts=choiceCounts[axis];
       counts.set(value,(counts.get(value)||0)+weight);
     });
-  });
+  };
+  (data.choices||[]).forEach(item=>addEvent(item,0.35));
+  (data.selections||[]).forEach(item=>addEvent(item,1));
   Object.entries(reactions).forEach(([id,value])=>{
     const recipe=recipeIndex.get(id);
     if(!recipe)return;
@@ -1532,17 +2248,32 @@ function exposureMultiplier(recipe,data,discovery=false){
   else if(proposed<=3)novelty=discovery?1.10:1.05;
   else if(proposed>=10)novelty=0.98;
 
-  const lastAt=Math.max(Number(stats.lastProposedAt)||0,Number(stats.lastViewedAt)||0);
-  if(!lastAt)return novelty;
-  const ageDays=Math.max(0,(Date.now()-lastAt)/DAY_MS);
-  let recency=1;
-  if(ageDays<1)recency=0.05;
-  else if(ageDays<3)recency=0.12;
-  else if(ageDays<7)recency=0.28;
-  else if(ageDays<14)recency=0.52;
-  else if(ageDays<30)recency=0.76;
-  else if(ageDays<60)recency=0.92;
-  return novelty*recency;
+  const committedAt=Math.max(Number(stats.lastViewedAt)||0,Number(stats.lastSelectedAt)||0);
+  let committedRecency=1;
+  if(committedAt){
+    const ageDays=Math.max(0,(Date.now()-committedAt)/DAY_MS);
+    if(ageDays<1)committedRecency=0.06;
+    else if(ageDays<3)committedRecency=0.15;
+    else if(ageDays<7)committedRecency=0.32;
+    else if(ageDays<14)committedRecency=0.56;
+    else if(ageDays<30)committedRecency=0.78;
+    else if(ageDays<60)committedRecency=0.93;
+  }
+  let proposalRecency=1;
+  const proposedAt=Number(stats.lastProposedAt)||0;
+  if(proposedAt){
+    const ageDays=Math.max(0,(Date.now()-proposedAt)/DAY_MS);
+    if(ageDays<1)proposalRecency=0.72;
+    else if(ageDays<3)proposalRecency=0.88;
+  }
+  let rejectionRecency=1;
+  const rejectedAt=Number(stats.lastRejectedAt)||0;
+  if(rejectedAt){
+    const ageDays=Math.max(0,(Date.now()-rejectedAt)/DAY_MS);
+    if(ageDays<1)rejectionRecency=0.62;
+    else if(ageDays<3)rejectionRecency=0.84;
+  }
+  return novelty*committedRecency*proposalRecency*rejectionRecency;
 }
 function personalizationContext(discovery=false){
   const learning=learningData();
@@ -1606,17 +2337,20 @@ function usageData(){
   return data;
 }
 function rememberMeal(type,id){
+  // Une recette affichée est une proposition, pas encore un repas retenu.
+  recordAutomaticProposal(id);
+}
+function rememberSelectedMeal(type,id,at=Date.now()){
   const data=usageData();
   data[type]=data[type].filter(item=>item.id!==id);
-  data[type].push({id,at:Date.now()});
+  data[type].push({id,at});
   const recipe=recipeIndex.get(id);
   if(recipe){
     data.sequence=data.sequence.filter(item=>item.id!==id);
-    data.sequence.push(historyItem(recipe,type));
+    data.sequence.push(historyItem(recipe,type,at));
     data.sequence=data.sequence.slice(-80);
   }
   localStorage.setItem(USAGE_KEY,JSON.stringify(data));
-  recordAutomaticProposal(id);
 }
 function forgetMeal(type,id){
   if(!id)return;
@@ -1628,6 +2362,9 @@ function forgetMeal(type,id){
 function rememberPlan(items){
   activeRecipeEntries(items).forEach(item=>rememberMeal(item.type,item.recipe.id));
 }
+function recordPlanSelections(items=plan){
+  activeRecipeEntries(items).forEach(item=>recordRecipeSelection(item.recipe.id,item.type));
+}
 function recentUseIds(type){
   return new Set(usageData()[type].map(item=>item.id));
 }
@@ -1635,10 +2372,11 @@ function lastUsedAt(type,id){
   const found=usageData()[type].find(item=>item.id===id);
   return found?Number(found.at):0;
 }
-function recipeMinutes(recipe){
+const recipeMinutesCache=new WeakMap(recipeLibrary.map(recipe=>{
   const match=String(recipe.t||'').match(/\d+/);
-  return match?Number(match[0]):999;
-}
+  return[recipe,match?Number(match[0]):999];
+}));
+function recipeMinutes(recipe){return recipeMinutesCache.get(recipe)??999}
 function fitsAvailableTime(recipe){
   const pref=$('timeAvailable').value;
   if(pref==='Tous'||pref==='45plus')return true;
@@ -1715,6 +2453,7 @@ function recipeSearchData(recipe){
   recipeSearchCache.set(recipe,data);
   return data;
 }
+recipeLibrary.forEach(recipeSearchData);
 function seasonalRecipeScore(recipe){
   const profile=culinarySeasonProfile();
   return seasonalAffinity(recipe,tagsOf(recipe),profile)*10+seasonMethodBoost(recipe,profile);
@@ -1731,14 +2470,18 @@ function searchRecipes(query){
   const tokens=normalized.split(/\s+/).filter(Boolean);
   return recipeLibrary.map(recipe=>{
     const data=recipeSearchData(recipe);
-    if(!tokens.every(token=>data.all.includes(token)))return null;
+    const notes=normalizeSearchText(recipeNote(recipe.id));
+    const searchable=`${data.all} ${notes}`;
+    if(!tokens.every(token=>searchable.includes(token)))return null;
     let relevance=0;
     if(data.name===normalized)relevance+=120;
     else if(data.name.startsWith(normalized))relevance+=85;
     else if(data.name.includes(normalized))relevance+=65;
     if(data.ingredients.includes(normalized))relevance+=48;
+    if(notes.includes(normalized))relevance+=32;
     relevance+=tokens.filter(token=>data.name.includes(token)).length*14;
     relevance+=tokens.filter(token=>data.ingredients.includes(token)).length*8;
+    relevance+=tokens.filter(token=>notes.includes(token)).length*6;
     return{recipe,score:relevance+seasonalRecipeScore(recipe)};
   }).filter(Boolean).sort((a,b)=>b.score-a.score||a.recipe.n.localeCompare(b.recipe.n,'fr')).map(item=>item.recipe);
 }
@@ -1748,7 +2491,7 @@ function recipeResultHTML(recipe){
   return `<div class="recipe-result">
     <button class="recipe-result-open" type="button" data-recipe-id="${recipe.id}">
       <span class="recipe-result-title">${recipe.n}</span>
-      <span class="recipe-result-meta">${slot} · ⏱️ ${recipe.t} · 🔥 ${recipe.m}</span>
+      <span class="recipe-result-meta">${slot} · ⏱️ ${recipe.t} · 🔥 ${recipe.m}${recipeNote(recipe.id).trim()?' · 📝 Note ✓':''}</span>
     </button>
     <button class="recipe-favorite${liked?' active':''}" data-recipe-id="${recipe.id}" type="button" aria-pressed="${liked}" aria-label="${liked?'Retirer des favoris':'Ajouter aux favoris'}">${liked?'♥':'♡'}</button>
   </div>`;
@@ -1806,7 +2549,7 @@ function renderRecipeBrowser(){
     $('browserTitle').textContent='Recette';
     content.innerHTML=`<article class="browser-recipe">
       <h2 class="browser-recipe-title">${recipe.n}</h2>
-      <div class="meta">⏱️ ${recipe.t} · 🔥 ${recipe.m}</div>
+      <div class="meta">⏱️ ${recipe.t} · 🔥 ${recipe.m}${noteIndicatorHTML(recipe)}</div>
       <div class="recipe open">${recipeHTML(recipe)}</div>
     </article>`;
   }else if(browserMode==='favorites'){
@@ -1831,18 +2574,46 @@ function renderRecipeBrowser(){
   refreshPortionDisplays();
 }
 function prepareScoringContext(context,data){
-  const history=(data.sequence||[]).map(item=>({
-    type:item.type,
-    protein:item.protein||tagsOf(recipeIndex.get(item.id)||{}).protein,
-    group:item.group||tagsOf(recipeIndex.get(item.id)||{}).group,
-    starch:item.starch||tagsOf(recipeIndex.get(item.id)||{}).starch,
-    method:item.method||tagsOf(recipeIndex.get(item.id)||{}).method,
-    kind:item.kind||tagsOf(recipeIndex.get(item.id)||{}).kind,
-    family:item.family||tagsOf(recipeIndex.get(item.id)||{}).family
-  }));
-  const selected=context.map(item=>({type:item.type,...tagsOf(item.recipe)}));
+  const history=(data.sequence||[]).map(item=>{
+    const storedRecipe=recipeIndex.get(item.id)||null;
+    return{type:item.type,recipe:storedRecipe,...(storedRecipe?tagsOf(storedRecipe):item)};
+  });
+  const selected=context.map(item=>({type:item.type,recipe:item.recipe,...tagsOf(item.recipe)}));
   const recent=[...history,...selected].slice(-10);
   return {history,selected,last:recent.at(-1),lastSix:recent.slice(-6),seasonProfile:culinarySeasonProfile()};
+}
+function similarityPenalty(recipe,items,strict=false){
+  const similarities=(items||[]).map(item=>recipeSimilarity(recipe,item.recipe||item)).filter(Number.isFinite);
+  const maximum=similarities.length?Math.max(...similarities):0;
+  if(maximum>=0.84)return strict?0.008:0.035;
+  if(maximum>=0.74)return strict?0.035:0.12;
+  if(maximum>=0.64)return strict?0.12:0.34;
+  if(maximum>=0.54)return strict?0.34:0.68;
+  return 1;
+}
+function alternativeTrailPenalty(recipe,trailRecipes){
+  const recent=(trailRecipes||[]).slice(-6);
+  if(!recent.length)return 1;
+  const tags=tagsOf(recipe);
+  const recentTags=recent.map(tagsOf);
+  const last=recentTags.at(-1);
+  let factor=1;
+  if(tags.family===last.family)factor*=0.06;
+  if(tags.protein===last.protein)factor*=0.12;
+  else if(tags.group===last.group)factor*=0.30;
+  if(tags.starch===last.starch)factor*=0.34;
+  if(tags.method===last.method)factor*=0.32;
+  if(tags.cuisine===last.cuisine)factor*=0.35;
+  if(tags.technique===last.technique)factor*=0.42;
+  if(tags.presentation===last.presentation)factor*=0.66;
+  const lastTwo=recentTags.slice(-2);
+  for(const [axis,penalty] of [['group',0.12],['starch',0.10],['method',0.08],['cuisine',0.03],['technique',0.10]]){
+    if(lastTwo.length===2&&lastTwo.every(item=>item[axis]===tags[axis])){
+      if(['group','starch','method','technique'].includes(axis))return 0;
+      factor*=penalty;
+    }
+  }
+  return factor;
 }
 function candidateScore(recipe,type,context,data,favorites,prepared,personalization=personalizationContext(false)){
   const tags=tagsOf(recipe);
@@ -1857,6 +2628,7 @@ function candidateScore(recipe,type,context,data,favorites,prepared,personalizat
   score*=exposureMultiplier(recipe,personalization.learning,personalization.discovery);
 
   const {history,selected,last,lastSix}=scoring;
+  score*=similarityPenalty(recipe,lastSix,false);
 
   if(last){
     if(tags.protein===last.protein)score*=0.08;
@@ -1864,11 +2636,32 @@ function candidateScore(recipe,type,context,data,favorites,prepared,personalizat
     if(tags.starch===last.starch)score*=0.32;
     if(tags.method===last.method)score*=0.55;
     if(tags.family===last.family)score*=0.12;
+    if(tags.subFamily===last.subFamily)score*=0.20;
+    if(tags.cuisine===last.cuisine)score*=0.66;
+    if(tags.texture===last.texture)score*=0.72;
+    if(tags.technique===last.technique)score*=0.58;
+    if(tags.presentation===last.presentation)score*=0.78;
   }
   const proteinCount=lastSix.filter(item=>item.protein===tags.protein).length;
   const starchCount=lastSix.filter(item=>item.starch===tags.starch).length;
   const methodCount=lastSix.filter(item=>item.method===tags.method).length;
-  score*=1/(1+proteinCount*0.7+starchCount*0.35+methodCount*0.2);
+  const familyCount=lastSix.filter(item=>item.family===tags.family).length;
+  const cuisineCount=lastSix.filter(item=>item.cuisine===tags.cuisine).length;
+  const techniqueCount=lastSix.filter(item=>item.technique===tags.technique).length;
+  score*=1/(1+proteinCount*0.75+starchCount*0.42+methodCount*0.22+familyCount*0.58+cuisineCount*0.28+techniqueCount*0.24);
+  const lastTwo=lastSix.slice(-2);
+  if(lastTwo.length===2&&lastTwo.every(item=>item.group===tags.group))score*=0.18;
+  if(lastTwo.length===2&&lastTwo.every(item=>item.starch===tags.starch))score*=0.16;
+  if(lastTwo.length===2&&lastTwo.every(item=>item.method===tags.method))score*=0.10;
+  if(lastTwo.length===2&&lastTwo.every(item=>item.cuisine===tags.cuisine))score*=0.32;
+  if(lastTwo.length===2&&lastTwo.every(item=>item.technique===tags.technique))score*=0.18;
+
+  // Une part de la sélection favorise explicitement les univers encore peu
+  // explorés, même quand l’apprentissage connaît déjà les goûts de l’utilisateur.
+  if(!familyCount)score*=personalization.discovery?1.28:1.10;
+  if(!cuisineCount)score*=personalization.discovery?1.22:1.07;
+  if(!methodCount)score*=personalization.discovery?1.12:1.04;
+  if(!techniqueCount)score*=personalization.discovery?1.12:1.04;
 
   if(tags.protein==='poulet'&&proteinCount>0)score*=0.45;
   if(tags.group==='vegetal'){
@@ -1886,6 +2679,13 @@ function candidateScore(recipe,type,context,data,favorites,prepared,personalizat
   }
   return Math.max(0,score);
 }
+const sessionRejectedIds=new Set();
+const alternativeTrails=new Map();
+function alternativeTrailKey(dayIndex,type){return`${dayIndex}:${type}`}
+function resetAlternativeSession(){
+  sessionRejectedIds.clear();
+  alternativeTrails.clear();
+}
 function poolFor(list,type,exclude){
   const pref=$('mode').value;
   // Le temps disponible reste prioritaire : aucune recette trop longue n’est proposée.
@@ -1898,7 +2698,8 @@ function poolFor(list,type,exclude){
     if(byMode.length)pool=byMode;
   }
 
-  let available=pool.filter(x=>!exclude.has(x.id));
+  let available=pool.filter(x=>!exclude.has(x.id)&&!sessionRejectedIds.has(x.id));
+  if(!available.length)available=pool.filter(x=>!exclude.has(x.id));
   if(!available.length)available=pool;
   const recent=recentUseIds(type);
   const clean=available.filter(x=>!recent.has(x.id));
@@ -1909,13 +2710,19 @@ function poolFor(list,type,exclude){
   const oldest=Math.min(...available.map(x=>lastUsedAt(type,x.id)));
   return available.filter(x=>lastUsedAt(type,x.id)===oldest);
 }
-function pick(list,type,exclude,context=[]){
+function pick(list,type,exclude,context=[],options={}){
   const pool=poolFor(list,type,exclude);
   const favs=favoriteSet();
   const data=usageData();
   const scoring=prepareScoringContext(context,data);
   const personalization=personalizationContext(Math.random()<DISCOVERY_RATE);
-  let weighted=pool.map(recipe=>({recipe,score:candidateScore(recipe,type,context,data,favs,scoring,personalization)}))
+  const avoidRecipes=(options.avoidIds||[]).map(id=>recipeIndex.get(id)).filter(Boolean);
+  let weighted=pool.map(recipe=>({
+    recipe,
+    score:candidateScore(recipe,type,context,data,favs,scoring,personalization)
+      *similarityPenalty(recipe,avoidRecipes,true)
+      *alternativeTrailPenalty(recipe,avoidRecipes)
+  }))
     .filter(item=>item.score>0);
   if(!weighted.length&&type==='eve'){
     weighted=pool.filter(recipe=>tagsOf(recipe).kind!=='salad').map(recipe=>({recipe,score:1}));
@@ -2069,6 +2876,12 @@ function bindRecipeControls(){
   document.querySelectorAll('.recipe-reaction').forEach(button=>button.onclick=()=>{
     setRecipeReaction(button.dataset.recipeId,button.dataset.reaction);
   });
+  document.querySelectorAll('.recipe-note-input').forEach(input=>input.oninput=()=>{
+    saveRecipeNote(input.dataset.recipeId,input.value);
+  });
+  document.querySelectorAll('.recipe-note-delete').forEach(button=>button.onclick=()=>{
+    deleteRecipeNote(button.dataset.recipeId);
+  });
   updateReactionUI();
 }
 
@@ -2102,6 +2915,7 @@ async function updateWakeLock(){
   }
 }
 document.addEventListener('visibilitychange',()=>{
+  if(document.visibilityState==='hidden')recordPlanSelections();
   updateWakeLock();
   updateTimerUI();
 });
@@ -2159,7 +2973,7 @@ function updateTimerUI(){
     if(timerInterval){clearInterval(timerInterval);timerInterval=null}
     bar.classList.remove('show','done');
     document.body.classList.remove('timer-running');
-    document.title='Clair Repas V3';
+    document.title='Clair Repas V3.1';
     return;
   }
   const remaining=Math.max(0,Math.ceil((kitchenTimer.endAt-Date.now())/1000));
@@ -2296,16 +3110,25 @@ function render(){
 function changeMeal(index,type){
   const day=plan[index];
   if(!day||mealStatus(day,type)!==MEAL_PLANNED)return;
+  const previous=day[type];
+  const trailKey=alternativeTrailKey(index,type);
+  const trail=alternativeTrails.get(trailKey)||[];
+  if(previous){
+    trail.push(previous.id);
+    sessionRejectedIds.add(previous.id);
+    recordRecipeRejection(previous.id);
+  }
+  alternativeTrails.set(trailKey,trail.slice(-60));
   const used=new Set(activeRecipeEntries().filter(item=>item.type===type).map(item=>item.recipe.id));
-  if(day[type])used.add(day[type].id);
+  if(previous)used.add(previous.id);
   const context=activeRecipeEntries()
     .filter(item=>!(item.dayIndex===index&&item.type===type))
     .map(item=>({type:item.type,recipe:item.recipe}));
   if(type==='mid'){
-    day.mid=pick(noon,'mid',used,context);
+    day.mid=pick(noon,'mid',used,context,{avoidIds:trail});
     rememberMeal('mid',day.mid.id);
   }else{
-    day.eve=pick(evening,'eve',used,context);
+    day.eve=pick(evening,'eve',used,context,{avoidIds:trail});
     rememberMeal('eve',day.eve.id);
   }
   render();
@@ -2324,7 +3147,6 @@ function setMealStatus(index,type,nextStatus){
     day[type]=pick(type==='mid'?noon:evening,type,used,context);
     rememberMeal(type,day[type].id);
   }else{
-    forgetMeal(type,previousRecipe&&previousRecipe.id);
     day[type]=null;
   }
   render();
@@ -2618,10 +3440,14 @@ function show(t){
   setTimeout(()=>$('toast').classList.remove('show'),1900);
 }
 $('newPlan').onclick=()=>{
+  recordPlanSelections();
+  resetAlternativeSession();
   plan=buildPlan(Number($('days').value));
   render();
 };
 $('days').onchange=()=>{
+  recordPlanSelections();
+  resetAlternativeSession();
   localStorage.setItem('crDays',$('days').value);
   ensureDays();
   render();
@@ -2638,11 +3464,12 @@ $('timeAvailable').onchange=()=>{
   show('Temps enregistré pour le prochain programme');
 };
 $('resetPreferences').onclick=()=>{
-  if(confirm('Réinitialiser les avis et l’apprentissage de Clair Repas ?\n\nLes favoris et les 600 recettes seront conservés.')){
+  if(confirm('Réinitialiser les avis et l’apprentissage de Clair Repas ?\n\nLes favoris, les notes personnelles et les 800 recettes seront conservés.')){
     resetLearnedPreferences();
   }
 };
 $('favorite').onclick=()=>{
+  recordPlanSelections();
   const favs=favoriteSet();
   const ids=activeRecipeEntries().map(item=>item.recipe.id);
   if(!ids.length){show('Aucun repas à enregistrer');return}
@@ -2653,6 +3480,7 @@ $('favorite').onclick=()=>{
   show(allLiked?'Menus retirés des favoris':'Menus enregistrés');
 };
 $('courses').onclick=async()=>{
+  recordPlanSelections();
   const items=groupedCourses();
   if(!items.length){show('Aucune course à ajouter');return}
   const text=items.join('\n');

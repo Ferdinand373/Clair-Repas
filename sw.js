@@ -1,4 +1,4 @@
-const CACHE='clair-repas-v3-preferences-decouverte';
+const CACHE='clair-repas-v31-800-recettes-notes';
 const ASSETS=['./','./index.html','./manifest.webmanifest','./icon-192.png','./icon-512.png'];
 
 self.addEventListener('install',event=>{
