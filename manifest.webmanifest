@@ -1,7 +1,7 @@
 {
   "name": "Clair Repas",
   "short_name": "Clair Repas",
-  "description": "800 recettes différentes, cycle de découverte complet sans boucle courte, notes personnelles et cuisine simple au quotidien.",
+  "description": "Planification évidente sur 1, 2 ou 3 jours, 800 recettes différentes, découverte sans boucle courte et cuisine simple au quotidien.",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",

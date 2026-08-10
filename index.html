@@ -9,7 +9,7 @@
 <meta name="apple-mobile-web-app-title" content="Clair Repas">
 <link rel="manifest" href="./manifest.webmanifest">
 <link rel="apple-touch-icon" href="./icon-192.png">
-<title>Clair Repas V3.5</title>
+<title>Clair Repas V3.6</title>
 <style>
 :root{
   --bg:#f4efe7;--card:#fffdfa;--text:#27231f;--muted:#746c63;
@@ -21,22 +21,41 @@ html{background:var(--bg)}
 body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
 body.browser-open{overflow:hidden}
 button,select,input{font:inherit}
-button{cursor:pointer}
+button{cursor:pointer;-webkit-tap-highlight-color:transparent}
+button:focus-visible{outline:3px solid rgba(63,118,87,.25);outline-offset:2px}
 main{max-width:720px;margin:auto;padding:calc(16px + env(safe-area-inset-top)) 15px calc(28px + env(safe-area-inset-bottom))}
 header{text-align:center;margin:3px 0 15px}
 h1{font-size:30px;margin:0 0 3px;letter-spacing:-.5px}
 .subtitle{color:var(--muted);font-size:14px}
 .season-line{display:inline-block;margin-top:8px;padding:6px 10px;border-radius:999px;background:var(--green-soft);color:var(--green);font-size:12px;font-weight:800}
-.settings,.recipe-shortcuts,.day-card,.history{background:var(--card);border:1px solid var(--line);border-radius:21px;box-shadow:0 8px 26px rgba(45,35,25,.055)}
-.settings{padding:13px;margin-bottom:14px;display:grid;grid-template-columns:repeat(4,1fr);gap:10px;align-items:end}
+.planning-card,.recipe-shortcuts,.day-card,.history{background:var(--card);border:1px solid var(--line);border-radius:21px;box-shadow:0 8px 26px rgba(45,35,25,.055)}
+.planning-card{padding:16px;margin-bottom:14px}
+.planning-heading{text-align:center}
+.planning-heading h2{margin:0;color:var(--green);font-size:22px;line-height:1.2;letter-spacing:-.25px}
+.planning-intro{margin:7px 0 0;color:var(--muted);font-size:13px;line-height:1.35}
+.day-segments{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:16px 0 14px}
+.day-option{min-width:0;min-height:54px;padding:9px 6px;border:1px solid var(--line);border-radius:14px;background:white;color:var(--text);font-weight:850;transition:background .15s,border-color .15s,color .15s,transform .08s}
+.day-option:active{transform:scale(.98)}
+.day-option[aria-pressed="true"]{border-color:var(--green);background:var(--green);color:white;box-shadow:0 5px 14px rgba(63,118,87,.2)}
+.days-select-fallback{display:none}
+.settings{padding:0;margin:0 0 13px;display:grid;grid-template-columns:repeat(3,1fr);gap:10px;align-items:end}
 label{display:block;font-size:12px;color:var(--muted);margin:0 0 6px}
 select{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:13px;background:white;color:var(--text)}
+.plan-primary{width:100%;min-height:56px;padding:14px;border:1px solid var(--green);border-radius:15px;background:var(--green);color:white;font-size:17px;font-weight:880;box-shadow:0 8px 18px rgba(63,118,87,.2)}
+.plan-primary:active{transform:translateY(1px)}
 .recipe-shortcuts{padding:12px;margin-bottom:14px}
 .recipe-shortcuts-main,.recipe-shortcuts-secondary{display:grid;gap:8px}
 .recipe-shortcuts-secondary{grid-template-columns:1fr 1fr;margin-top:8px}
 .shortcut-btn{min-height:46px;padding:11px 12px;border:1px solid var(--line);border-radius:14px;background:white;color:var(--text);font-weight:820}
-.shortcut-btn.primary{border-color:var(--green);background:var(--green);color:white;font-size:16px}
+.shortcut-btn.primary{border-color:#b8d8c3;background:var(--green-soft);color:#24563b;font-size:16px}
+.shortcut-title,.shortcut-hint{display:block}
+.shortcut-title{font-size:16px;font-weight:880}
+.shortcut-hint{margin-top:3px;font-size:12px;font-weight:650;color:var(--muted)}
 .shortcut-count{display:inline-flex;justify-content:center;align-items:center;min-width:22px;height:22px;margin-left:4px;padding:0 6px;border-radius:999px;background:#fff1f1;color:#9a4141;font-size:11px}
+.program-results{margin-top:16px}
+.program-heading{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin:0 2px 8px}
+.program-heading h2{margin:0;font-size:21px;letter-spacing:-.2px}
+.program-summary{color:var(--muted);font-size:12px;font-weight:760;white-space:nowrap}
 .day-card{padding:16px;margin:12px 0}
 .day-head{display:flex;justify-content:space-between;align-items:baseline;gap:10px;padding-bottom:10px;border-bottom:1px solid var(--line)}
 .day-title{font-weight:900;font-size:18px;color:var(--green)}
@@ -156,10 +175,20 @@ body.timer-running .browser-content{padding-bottom:calc(105px + env(safe-area-in
 .browser-recipe .recipe{display:block;margin-top:12px}
 @media(max-width:620px){
   .settings{grid-template-columns:1fr 1fr}
+  .settings .mode-setting{grid-column:1/-1}
 }
 @media(max-width:390px){
-  .settings{display:block}.settings>div+div{margin-top:10px}
+  main{padding-left:12px;padding-right:12px}
+  .planning-card{padding:14px}
+  .planning-heading h2{font-size:20px}
+  .day-segments{gap:6px}
+  .day-option{min-height:52px;padding-left:3px;padding-right:3px;font-size:14px}
+  .settings{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+  .settings>div+div{margin-top:0}
+  .settings .mode-setting{grid-column:1/-1}
   .recipe-shortcuts-secondary{grid-template-columns:1fr}
+  .program-heading{display:block}
+  .program-summary{display:block;margin-top:3px}
   .meal-title{font-size:20px}
   .meal-actions{grid-template-columns:1fr}
   .meal-top{align-items:flex-start}
@@ -177,55 +206,70 @@ body.timer-running .browser-content{padding-bottom:calc(105px + env(safe-area-in
   <div class="season-line" id="seasonLine"></div>
 </header>
 
-<section class="settings">
-  <div>
-    <label for="people">Pour combien ?</label>
-    <select id="people">
-      <option value="1">1 personne</option>
-      <option value="2" selected>2 personnes</option>
-      <option value="3">3 personnes</option>
-      <option value="4">4 personnes</option>
-      <option value="5">5 personnes</option>
-      <option value="6">6 personnes</option>
-      <option value="7">7 personnes</option>
-      <option value="8">8 personnes</option>
-    </select>
+<section class="planning-card" aria-labelledby="planningTitle">
+  <div class="planning-heading">
+    <h2 id="planningTitle">🍽️ Je prépare mes repas pour</h2>
+    <p class="planning-intro">Clair Repas choisit automatiquement le Midi et le Soir.</p>
   </div>
-  <div>
-    <label for="days">Prévoir pour</label>
-    <select id="days">
-      <option value="1">1 jour</option>
-      <option value="2" selected>2 jours</option>
-      <option value="3">3 jours</option>
-    </select>
+
+  <div class="day-segments" id="daySegments" role="group" aria-label="Nombre de jours à planifier">
+    <button class="day-option" type="button" data-days="1" aria-pressed="false">1 jour</button>
+    <button class="day-option" type="button" data-days="2" aria-pressed="true">2 jours</button>
+    <button class="day-option" type="button" data-days="3" aria-pressed="false">3 jours</button>
   </div>
-  <div class="mode-setting">
-    <label for="mode">Cuisson préférée</label>
-    <select id="mode">
-      <option value="Tous">Toutes</option>
-      <option>Poêle</option>
-      <option>Casserole</option>
-      <option>Air Fryer</option>
-      <option>Four</option>
-      <option>Plancha</option>
-      <option>Barbecue</option>
-      <option>Sans cuisson</option>
-    </select>
+  <select class="days-select-fallback" id="days" tabindex="-1" aria-hidden="true">
+    <option value="1">1 jour</option>
+    <option value="2" selected>2 jours</option>
+    <option value="3">3 jours</option>
+  </select>
+
+  <div class="settings">
+    <div>
+      <label for="people">Nombre de personnes</label>
+      <select id="people">
+        <option value="1">1 personne</option>
+        <option value="2" selected>2 personnes</option>
+        <option value="3">3 personnes</option>
+        <option value="4">4 personnes</option>
+        <option value="5">5 personnes</option>
+        <option value="6">6 personnes</option>
+        <option value="7">7 personnes</option>
+        <option value="8">8 personnes</option>
+      </select>
+    </div>
+    <div>
+      <label for="timeAvailable">Temps disponible</label>
+      <select id="timeAvailable">
+        <option value="Tous">Peu importe</option>
+        <option value="20">20 min maximum</option>
+        <option value="30">30 min maximum</option>
+        <option value="45plus">45 min ou plus</option>
+      </select>
+    </div>
+    <div class="mode-setting">
+      <label for="mode">Mode de cuisson</label>
+      <select id="mode">
+        <option value="Tous">Toutes</option>
+        <option>Poêle</option>
+        <option>Casserole</option>
+        <option>Air Fryer</option>
+        <option>Four</option>
+        <option>Plancha</option>
+        <option>Barbecue</option>
+        <option>Sans cuisson</option>
+      </select>
+    </div>
   </div>
-  <div>
-    <label for="timeAvailable">Temps disponible</label>
-    <select id="timeAvailable">
-      <option value="Tous">Peu importe</option>
-      <option value="20">20 min maximum</option>
-      <option value="30">30 min maximum</option>
-      <option value="45plus">45 min ou plus</option>
-    </select>
-  </div>
+
+  <button class="plan-primary" id="newPlan" type="button">🎲 Préparer mon programme</button>
 </section>
 
 <section class="recipe-shortcuts" aria-label="Trouver une recette">
   <div class="recipe-shortcuts-main">
-    <button class="shortcut-btn primary" id="chooseRecipe">🔎 Choisir une recette</button>
+    <button class="shortcut-btn primary" id="chooseRecipe" type="button">
+      <span class="shortcut-title">🔎 Choisir une recette</span>
+      <span class="shortcut-hint">Explorer librement les 800 recettes</span>
+    </button>
   </div>
   <div class="recipe-shortcuts-secondary">
     <button class="shortcut-btn" id="openFavorites">❤️ Mes favoris <span class="shortcut-count" id="favoritesCount">0</span></button>
@@ -233,13 +277,18 @@ body.timer-running .browser-content{padding-bottom:calc(105px + env(safe-area-in
   </div>
 </section>
 
-<div id="daysContainer"></div>
+<section class="program-results" id="programResults" aria-labelledby="programTitle">
+  <div class="program-heading">
+    <h2 id="programTitle">Mon programme</h2>
+    <span class="program-summary" id="programSummary">2 jours · Midi et Soir</span>
+  </div>
+  <div id="daysContainer"></div>
 
-<div class="actions">
-  <button class="primary" id="newPlan">🎲 Nouveau programme</button>
-  <button id="courses">🛒 Copier toutes les courses</button>
-  <button id="favorite">☆ J’aime ces menus</button>
-</div>
+  <div class="actions">
+    <button id="courses">🛒 Copier toutes les courses</button>
+    <button id="favorite">☆ J’aime ces menus</button>
+  </div>
+</section>
 
 <details class="history">
   <summary>🕘 Les derniers programmes</summary>
@@ -256,7 +305,7 @@ body.timer-running .browser-content{padding-bottom:calc(105px + env(safe-area-in
 
 <p class="note">La saison, le temps disponible et vos préférences guident les prochains choix. Le programme affiché reste conservé jusqu’à une action volontaire.</p>
 <p class="library-count" id="libraryCount">800 vraies recettes différentes</p>
-<p class="version" id="versionLine">Clair Repas V3.5</p>
+<p class="version" id="versionLine">Clair Repas V3.6</p>
 </main>
 <div class="recipe-browser" id="recipeBrowser" hidden>
   <section class="browser-panel" role="dialog" aria-modal="true" aria-labelledby="browserTitle">
@@ -2341,7 +2390,7 @@ evening.forEach(recipe=>{recipe.mealSlots=['eve']});
 const recipeLibrary=[...noon,...evening];
 const recipeIndex=new Map(recipeLibrary.map(recipe=>[recipe.id,recipe]));
 $('libraryCount').textContent=`${recipeLibrary.length} vraies recettes différentes`;
-$('versionLine').textContent='Clair Repas V3.5';
+$('versionLine').textContent='Clair Repas V3.6';
 const FAVORITES_KEY='crFavMeals';
 const RECENT_RECIPES_KEY='crRecentRecipesV25';
 const MAX_RECENT_RECIPES=10;
@@ -2572,10 +2621,23 @@ function activeRecipeEntries(source=plan){
   }));
 }
 
+function syncDayChoice(){
+  const selected=String($('days').value||'2');
+  document.querySelectorAll('.day-option').forEach(button=>{
+    const active=button.dataset.days===selected;
+    button.setAttribute('aria-pressed',String(active));
+  });
+}
+function updateProgramSummary(){
+  const count=Math.max(1,plan.length||Number($('days').value)||1);
+  $('programSummary').textContent=`${count} ${count===1?'jour':'jours'} · Midi et Soir`;
+}
+
 $('people').value=localStorage.getItem('crPeople')||'2';
 $('days').value=localStorage.getItem('crDays')||'2';
 $('mode').value=localStorage.getItem('crMode')||'Tous';
 $('timeAvailable').value=localStorage.getItem('crTimeAvailable')||'Tous';
+syncDayChoice();
 
 const seasonInfo={
   printemps:{icon:'🌱',label:'Menus de printemps'},
@@ -3971,7 +4033,7 @@ function updateTimerUI(){
     if(timerInterval){clearInterval(timerInterval);timerInterval=null}
     bar.classList.remove('show','done');
     document.body.classList.remove('timer-running');
-    document.title='Clair Repas V3.5';
+    document.title='Clair Repas V3.6';
     return;
   }
   const remaining=Math.max(0,Math.ceil((kitchenTimer.endAt-Date.now())/1000));
@@ -4075,6 +4137,8 @@ function render(){
       ${mealHTML(d,i,'mid')}
       ${mealHTML(d,i,'eve')}
     </section>`).join('');
+  updateProgramSummary();
+  syncDayChoice();
 
   document.querySelectorAll('.recipe-btn').forEach(b=>b.onclick=()=>{
     const el=$(`recipe-${b.dataset.day}-${b.dataset.type}`);
@@ -4447,9 +4511,17 @@ $('days').onchange=()=>{
   recordPlanSelections();
   resetAlternativeSession();
   localStorage.setItem('crDays',$('days').value);
+  syncDayChoice();
   ensureDays();
   render();
 };
+document.querySelectorAll('.day-option').forEach(button=>button.onclick=()=>{
+  const next=String(button.dataset.days||'');
+  if(!['1','2','3'].includes(next))return;
+  if($('days').value===next){syncDayChoice();return}
+  $('days').value=next;
+  $('days').onchange();
+});
 $('people').onchange=()=>{
   setPeopleCount($('people').value,false);
 };
