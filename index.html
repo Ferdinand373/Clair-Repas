@@ -9,7 +9,7 @@
 <meta name="apple-mobile-web-app-title" content="Clair Repas">
 <link rel="manifest" href="./manifest.webmanifest">
 <link rel="apple-touch-icon" href="./icon-192.png">
-<title>Clair Repas V3.8</title>
+<title>Clair Repas V3.9</title>
 <style>
 :root{
   --bg:#f4efe7;--card:#fffdfa;--text:#27231f;--muted:#746c63;
@@ -290,7 +290,7 @@ body.timer-running .browser-content{padding-bottom:calc(105px + env(safe-area-in
   <div class="recipe-shortcuts-main">
     <button class="shortcut-btn primary" id="chooseRecipe" type="button">
       <span class="shortcut-title">🔎 Choisir une recette</span>
-      <span class="shortcut-hint">Explorer les 800 plats, 100 entrées et 100 desserts</span>
+      <span class="shortcut-hint" id="libraryHint">Explorer les 827 plats, 100 entrées et 100 desserts</span>
     </button>
   </div>
   <div class="recipe-shortcuts-secondary">
@@ -326,8 +326,8 @@ body.timer-running .browser-content{padding-bottom:calc(105px + env(safe-area-in
 </details>
 
 <p class="note">La saison, le temps disponible et vos préférences guident les prochains choix. Le programme affiché reste conservé jusqu’à une action volontaire.</p>
-<p class="library-count" id="libraryCount">800 plats · 100 entrées · 100 desserts</p>
-<p class="version" id="versionLine">Clair Repas V3.8</p>
+<p class="library-count" id="libraryCount">827 plats · 100 entrées · 100 desserts</p>
+<p class="version" id="versionLine">Clair Repas V3.9</p>
 </main>
 <div class="recipe-browser" id="recipeBrowser" hidden>
   <section class="browser-panel" role="dialog" aria-modal="true" aria-labelledby="browserTitle">
@@ -563,6 +563,20 @@ const evening=[
 // Moteur combinatoire V2.4, enrichi sans rupture de la V2.3
 // Chaque profil indique explicitement les protéines avec lesquelles il fonctionne.
 const ALL_SEASONS=['printemps','été','automne','hiver'];
+// Normalisation V3.9 : une seule règle reconnaît toute la famille des pâtes,
+// aussi bien dans les titres que dans les ingrédients.
+const PASTA_FAMILY_WORDS=new Set([
+  'pate','pates','spaghetti','spaghettis','penne','pennes','rigatoni','linguine',
+  'tagliatelle','tagliatelles','fusilli','farfalle','macaroni','coquillette','coquillettes',
+  'cannelloni','lasagne','lasagnes','ravioli','raviolis','raviole','ravioles',
+  'tortellini','gnocchi','gnocchis','orzo','spatzle','spaetzle'
+]);
+function normalizedFamilyWords(value){
+  return String(value||'').toLowerCase().replace(/œ/g,'oe').replace(/æ/g,'ae')
+    .normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]+/g,' ').trim().split(/\s+/).filter(Boolean);
+}
+function hasPastaFamily(value){return normalizedFamilyWords(value).some(word=>PASTA_FAMILY_WORDS.has(word))}
+function recipeHasPasta(recipe){return hasPastaFamily(`${recipe?.n||''} ${(recipe?.i||[]).map(item=>item.n).join(' ')}`)}
 const cooking=(minutes,step)=>({minutes,step});
 const lunchProteins=[
   {id:'poulet',label:'Poulet',group:'volaille',ingredient:I(320,'g','poulet'),cook:{
@@ -2313,6 +2327,187 @@ if(legacyTunaPatties)Object.assign(legacyTunaPatties,{
   protein:'thon',group:'poisson',starch:'pommes-de-terre',kind:'warm',family:'galettes',subFamily:'galettes-thon-pommes-de-terre',cuisine:'méditerranéenne',texture:'croustillant-moelleux',technique:'galettes poêlées',presentation:'galettes avec salade fraîche'
 });
 
+// V3.9 — socle des grands classiques. Les fiches sont écrites pour deux
+// personnes, avec des quantités adaptables par le système existant.
+const V39C=({id,n,m,minutes,seasons=ALL_SEASONS,i,p,meta={}})=>({
+  id,n,m,t:String(minutes)+' min',s:seasons,i,p,servings:2,classic:true,...meta
+});
+const V39_COOL=['automne','hiver','printemps'];
+const v39Evening=[
+  V39C({id:'v39-spaghetti-bolognaise',n:'Spaghetti bolognaise',m:'Poêle',minutes:55,
+    i:[I(180,'g','spaghetti'),I(250,'g','bœuf haché'),I(400,'g','tomates concassées'),I(1,'','carotte','carottes'),I(1,'','oignon','oignons'),I(0.5,'','branche de céleri','branches de céleri'),I(1,'','gousse d’ail','gousses d’ail'),I(1,'c. à soupe','huile d’olive'),I(1,'c. à café','origan'),I(30,'g','parmesan'),I(null,'','sel et poivre selon le goût')],
+    p:['Émincer finement l’oignon, la carotte et le céleri, puis les faire fondre 7 minutes à feu moyen dans l’huile, jusqu’à ce que l’oignon soit translucide.','Ajouter l’ail puis le bœuf et cuire 5 minutes à feu assez vif en l’émiettant, jusqu’à ce qu’il soit bien doré.','Verser les tomates, ajouter l’origan, saler légèrement et laisser frémir 30 minutes à feu doux ; la sauce doit devenir épaisse et nappante.','Cuire les spaghetti al dente dans une grande casserole d’eau salée selon le temps du paquet, en réservant 5 cl d’eau de cuisson.','Mélanger les pâtes avec la sauce et un peu d’eau de cuisson si nécessaire, puis servir avec le parmesan.'],
+    meta:V31M('boeuf','viande','pates','pates-nouilles','spaghetti-bolognaise','italienne','sauce-nappante','sauce mijotée puis enrobage','spaghetti en assiette creuse')}),
+  V39C({id:'v39-spaghetti-carbonara',n:'Spaghetti carbonara',m:'Poêle',minutes:25,
+    i:[I(180,'g','spaghetti'),I(100,'g','guanciale ou pancetta'),I(2,'','œufs'),I(1,'','jaune d’œuf','jaunes d’œufs'),I(60,'g','pecorino romano'),I(1,'c. à café','poivre noir concassé'),I(null,'','sel selon le goût')],
+    p:['Couper le guanciale en petits bâtonnets et le faire dorer 6 à 8 minutes à feu moyen, sans ajouter de matière grasse ; il doit être croustillant et son gras translucide.','Cuire les spaghetti al dente dans l’eau peu salée et conserver 10 cl d’eau de cuisson.','Fouetter les œufs, le jaune, le pecorino et le poivre dans un saladier pour obtenir une pâte épaisse.','Hors du feu, ajouter les spaghetti très chauds et le guanciale dans la poêle, puis incorporer le mélange aux œufs en remuant vivement.','Ajouter l’eau de cuisson cuillerée par cuillerée jusqu’à obtenir une sauce brillante et crémeuse, sans remettre sur le feu afin de ne pas brouiller les œufs.'],
+    meta:V31M('guanciale','viande','pates','pates-nouilles','spaghetti-carbonara','italienne','cremeux','émulsion hors du feu','spaghetti crémeux en assiette creuse')}),
+  V39C({id:'v39-spaghetti-aglio-olio',n:'Spaghetti aglio e olio',m:'Poêle',minutes:20,
+    i:[I(180,'g','spaghetti'),I(3,'','gousses d’ail'),I(4,'c. à soupe','huile d’olive'),I(0.5,'c. à café','piment en flocons'),I(10,'g','persil plat'),I(null,'','sel selon le goût')],
+    p:['Cuire les spaghetti al dente dans une grande casserole d’eau salée et réserver 10 cl d’eau de cuisson.','Émincer très finement l’ail et le chauffer 3 minutes à feu doux dans l’huile avec le piment ; l’ail doit blondir sans brunir.','Ajouter les pâtes égouttées et 5 cl d’eau de cuisson, puis remuer 2 minutes à feu moyen jusqu’à ce que l’huile forme une sauce légère.','Hors du feu, ajouter le persil haché et servir immédiatement.'],
+    meta:V31M('vegetal','vegetal','pates','pates-nouilles','spaghetti-aglio-olio','italienne','soyeux','ail confit puis émulsion','spaghetti en assiette creuse')}),
+  V39C({id:'v39-spaghetti-tomate-basilic',n:'Spaghetti tomate, ail et basilic',m:'Poêle',minutes:30,seasons:['printemps','été','automne'],
+    i:[I(180,'g','spaghetti'),I(350,'g','tomates concassées'),I(2,'','gousses d’ail'),I(2,'c. à soupe','huile d’olive'),I(12,'','feuilles de basilic'),I(30,'g','parmesan'),I(null,'','sel et poivre selon le goût')],
+    p:['Faire revenir l’ail émincé 1 minute à feu doux dans l’huile, sans le colorer.','Ajouter les tomates, saler, poivrer et laisser frémir 15 minutes à feu moyen-doux, jusqu’à ce que la sauce épaississe légèrement.','Cuire les spaghetti al dente selon le temps du paquet et réserver 5 cl d’eau de cuisson.','Mélanger les pâtes avec la sauce et la moitié du basilic pendant 1 minute ; détendre avec un peu d’eau de cuisson si nécessaire.','Servir avec le reste du basilic et le parmesan.'],
+    meta:V31M('vegetal','vegetal','pates','pates-nouilles','spaghetti-tomate-basilic','italienne','sauce-nappante','sauce tomate courte','spaghetti au basilic')}),
+  V39C({id:'v39-cacio-e-pepe',n:'Cacio e pepe',m:'Poêle',minutes:20,
+    i:[I(180,'g','spaghetti ou tonnarelli'),I(85,'g','pecorino romano'),I(1,'c. à café','poivre noir concassé'),I(null,'','sel selon le goût')],
+    p:['Râper finement le pecorino et le mélanger dans un saladier avec 4 cl d’eau froide pour former une pâte lisse.','Cuire les pâtes al dente dans une eau modérément salée et réserver 15 cl d’eau de cuisson.','Torréfier le poivre 1 minute à sec dans une grande poêle, puis ajouter 8 cl d’eau de cuisson.','Ajouter les pâtes et remuer 1 minute à feu moyen, puis retirer la poêle du feu.','Incorporer progressivement la pâte de pecorino en mélangeant vivement ; la sauce doit être crémeuse et sans grumeaux.'],
+    meta:V31M('pecorino','vegetal','pates','pates-nouilles','cacio-e-pepe','italienne','cremeux','émulsion fromage-eau de cuisson','pâtes poivrées en assiette creuse')}),
+  V39C({id:'v39-amatriciana',n:'Bucatini all’amatriciana',m:'Poêle',minutes:30,
+    i:[I(180,'g','bucatini ou spaghetti'),I(100,'g','guanciale ou pancetta'),I(350,'g','tomates pelées'),I(45,'g','pecorino romano'),I(0.25,'c. à café','piment en flocons'),I(null,'','sel selon le goût')],
+    p:['Couper le guanciale en bâtonnets et le faire dorer 6 minutes à feu moyen dans une grande poêle, jusqu’à ce qu’il soit croustillant.','Retirer la moitié du guanciale, ajouter le piment et les tomates écrasées, puis laisser frémir 15 minutes à feu doux.','Cuire les bucatini al dente dans l’eau salée et réserver 5 cl d’eau de cuisson.','Mélanger les pâtes avec la sauce pendant 1 minute, en ajoutant un peu d’eau de cuisson si nécessaire.','Servir avec le guanciale réservé et le pecorino.'],
+    meta:V31M('guanciale','viande','pates','pates-nouilles','amatriciana','italienne','sauce-concentree','guanciale doré puis sauce tomate','bucatini en assiette creuse')}),
+  V39C({id:'v39-penne-arrabbiata',n:'Penne all’arrabbiata',m:'Poêle',minutes:25,
+    i:[I(180,'g','penne'),I(350,'g','tomates concassées'),I(2,'','gousses d’ail'),I(2,'c. à soupe','huile d’olive'),I(0.5,'c. à café','piment en flocons'),I(10,'g','persil plat'),I(null,'','sel selon le goût')],
+    p:['Faire revenir l’ail émincé et le piment 1 minute à feu doux dans l’huile, sans laisser brunir l’ail.','Ajouter les tomates, saler et laisser frémir 15 minutes à feu moyen, jusqu’à obtenir une sauce vive et légèrement réduite.','Cuire les penne al dente selon le temps du paquet et réserver 5 cl d’eau de cuisson.','Enrober les pâtes de sauce pendant 1 minute, ajouter un peu d’eau de cuisson si besoin, puis terminer avec le persil haché.'],
+    meta:V31M('vegetal','vegetal','pates','pates-nouilles','penne-arrabbiata','italienne','sauce-reduite','sauce tomate pimentée','penne en assiette creuse')}),
+  V39C({id:'v39-pates-pesto-genois',n:'Pâtes au pesto génois',m:'Casserole',minutes:25,seasons:['printemps','été','automne'],
+    i:[I(180,'g','linguine ou trofie'),I(40,'g','basilic frais'),I(25,'g','pignons de pin'),I(45,'g','parmesan'),I(15,'g','pecorino'),I(1,'','gousse d’ail','gousses d’ail'),I(6,'c. à soupe','huile d’olive'),I(null,'','sel selon le goût')],
+    p:['Mixer brièvement le basilic, les pignons, l’ail et une pincée de sel, puis incorporer les fromages et l’huile pour obtenir un pesto encore légèrement texturé.','Cuire les pâtes al dente dans une grande casserole d’eau salée et réserver 8 cl d’eau de cuisson.','Détendre le pesto avec 3 à 4 cuillerées d’eau de cuisson ; ne pas le chauffer afin de préserver sa couleur et son parfum.','Égoutter les pâtes, les mélanger hors du feu avec le pesto et servir aussitôt.'],
+    meta:V31M('vegetal','vegetal','pates','pates-nouilles','pesto-genois','italienne','onctueux','pesto cru puis enrobage','pâtes vertes au pesto')}),
+  V39C({id:'v39-linguine-vongole',n:'Linguine alle vongole',m:'Poêle',minutes:40,seasons:['printemps','été','automne'],
+    i:[I(180,'g','linguine'),I(600,'g','palourdes'),I(2,'','gousses d’ail'),I(8,'cl','vin blanc sec'),I(2,'c. à soupe','huile d’olive'),I(15,'g','persil plat'),I(null,'','poivre selon le goût')],
+    p:['Faire dégorger les palourdes 30 minutes dans de l’eau froide salée, les rincer soigneusement et éliminer celles qui sont cassées.','Cuire les linguine 2 minutes de moins que le temps indiqué et réserver 10 cl d’eau de cuisson.','Faire revenir l’ail 1 minute dans l’huile, ajouter les palourdes et le vin, couvrir et cuire 4 à 5 minutes à feu vif, jusqu’à leur ouverture.','Retirer les palourdes ouvertes, jeter celles restées fermées et filtrer le jus si du sable est présent.','Remettre le jus dans la poêle, ajouter les linguine et terminer leur cuisson 2 minutes ; replacer les palourdes, poivrer et ajouter le persil.'],
+    meta:V31M('palourdes','poisson','pates','pates-nouilles','linguine-vongole','italienne','juteux','coquillages ouverts au vin','linguine et palourdes visibles')}),
+  V39C({id:'v39-lasagnes-bolognaise',n:'Lasagnes bolognaise',m:'Four',minutes:90,
+    i:[I(6,'','feuilles de lasagnes'),I(300,'g','bœuf haché'),I(400,'g','tomates concassées'),I(1,'','carotte','carottes'),I(1,'','oignon','oignons'),I(1,'c. à soupe','huile d’olive'),I(30,'g','beurre'),I(30,'g','farine'),I(35,'cl','lait'),I(60,'g','parmesan'),I(1,'pincée','muscade'),I(null,'','sel et poivre selon le goût')],
+    p:['Faire fondre l’oignon et la carotte finement coupés 6 minutes dans l’huile, ajouter le bœuf et le dorer 5 minutes.','Verser les tomates, saler, poivrer et laisser mijoter 30 minutes à feu doux, jusqu’à obtenir une sauce épaisse.','Faire fondre le beurre, ajouter la farine et cuire 1 minute ; verser le lait progressivement en fouettant et cuire 5 minutes, jusqu’à ce que la béchamel nappe la cuillère. Ajouter la muscade.','Dans un plat, alterner sauce bolognaise, feuilles de lasagnes et béchamel, puis terminer par la béchamel et le parmesan.','Cuire 30 à 35 minutes à 180 °C, jusqu’à ce que le dessus soit doré, puis laisser reposer 10 minutes avant de couper.'],
+    meta:V31M('boeuf','viande','pates','pates-gratinees','lasagnes-bolognaise','italienne','fondant-gratine','montage puis gratin','lasagnes à partager')}),
+  V39C({id:'v39-lasagnes-ricotta-epinards',n:'Lasagnes ricotta-épinards',m:'Four',minutes:60,seasons:['automne','hiver','printemps'],
+    i:[I(6,'','feuilles de lasagnes'),I(400,'g','épinards'),I(250,'g','ricotta'),I(1,'','œuf','œufs'),I(300,'g','coulis de tomate'),I(100,'g','mozzarella'),I(40,'g','parmesan'),I(1,'','gousse d’ail','gousses d’ail'),I(1,'c. à soupe','huile d’olive'),I(null,'','sel et poivre selon le goût')],
+    p:['Faire tomber les épinards 5 minutes avec l’huile et l’ail, puis les presser soigneusement pour retirer l’eau.','Mélanger les épinards hachés avec la ricotta, l’œuf, la moitié du parmesan, du sel et du poivre.','Dans un plat, alterner coulis, feuilles de lasagnes et farce ricotta-épinards ; terminer avec le coulis, la mozzarella et le reste de parmesan.','Couvrir et cuire 25 minutes à 180 °C, puis découvrir et poursuivre 15 minutes, jusqu’à ce que le dessus soit doré.','Laisser reposer 8 minutes avant de servir.'],
+    meta:V31M('ricotta','vegetal','pates','pates-gratinees','lasagnes-ricotta-epinards','italienne','fondant-gratine','montage puis gratin','lasagnes végétariennes à partager')}),
+  V39C({id:'v39-cannelloni-ricotta-epinards',n:'Cannelloni ricotta-épinards',m:'Four',minutes:55,seasons:['automne','hiver','printemps'],
+    i:[I(8,'','tubes de cannelloni'),I(350,'g','épinards'),I(250,'g','ricotta'),I(1,'','œuf','œufs'),I(350,'g','coulis de tomate'),I(100,'g','mozzarella'),I(35,'g','parmesan'),I(1,'pincée','muscade'),I(null,'','sel et poivre selon le goût')],
+    p:['Faire tomber les épinards 5 minutes à feu moyen, les presser puis les hacher.','Mélanger épinards, ricotta, œuf, muscade, sel et poivre, puis remplir les cannelloni avec cette farce.','Verser la moitié du coulis dans un plat, ranger les cannelloni sans les superposer et couvrir avec le reste de sauce.','Ajouter mozzarella et parmesan, couvrir et cuire 25 minutes à 180 °C.','Découvrir et poursuivre 12 minutes, jusqu’à ce que le gratin soit doré et les pâtes tendres.'],
+    meta:V31M('ricotta','vegetal','pates','pates-gratinees','cannelloni-ricotta-epinards','italienne','fondant-gratine','pâtes farcies puis gratinées','cannelloni alignés dans un plat')}),
+  V39C({id:'v39-macaroni-jambon-fromage',n:'Macaroni jambon-fromage gratinés',m:'Four',minutes:40,
+    i:[I(180,'g','macaroni'),I(150,'g','jambon blanc'),I(25,'g','beurre'),I(25,'g','farine'),I(30,'cl','lait'),I(100,'g','gruyère râpé'),I(1,'pincée','muscade'),I(null,'','sel et poivre selon le goût')],
+    p:['Cuire les macaroni 2 minutes de moins que le temps du paquet, puis les égoutter.','Faire fondre le beurre, ajouter la farine et remuer 1 minute ; verser le lait progressivement et cuire 5 minutes à feu moyen, jusqu’à ce que la sauce nappe la cuillère.','Ajouter la muscade, la moitié du gruyère et le jambon coupé en dés, puis incorporer les macaroni.','Verser dans un plat, couvrir avec le reste de gruyère et gratiner 15 minutes à 200 °C, jusqu’à obtenir une croûte bien dorée.'],
+    meta:V31M('jambon','viande','pates','pates-gratinees','macaroni-jambon-fromage','française','cremeux-gratine','béchamel puis gratin','macaroni à partager')}),
+  V39C({id:'v39-pasta-alla-norma',n:'Pasta alla Norma',m:'Poêle',minutes:40,seasons:['été','automne'],
+    i:[I(180,'g','rigatoni'),I(1,'','aubergine','aubergines'),I(350,'g','tomates concassées'),I(2,'','gousses d’ail'),I(2,'c. à soupe','huile d’olive'),I(50,'g','ricotta salata ou pecorino'),I(12,'','feuilles de basilic'),I(null,'','sel et poivre selon le goût')],
+    p:['Couper l’aubergine en dés, la mélanger avec 1 cuillerée d’huile et la cuire 18 minutes à 200 °C, jusqu’à ce qu’elle soit tendre et dorée.','Faire revenir l’ail 1 minute dans le reste d’huile, ajouter les tomates, saler, poivrer et laisser frémir 15 minutes.','Cuire les rigatoni al dente et réserver 5 cl d’eau de cuisson.','Ajouter les aubergines et les pâtes à la sauce, puis mélanger 1 minute avec un peu d’eau de cuisson si nécessaire.','Servir avec la ricotta salata râpée et le basilic.'],
+    meta:V31M('vegetal','vegetal','pates','pates-nouilles','pasta-alla-norma','italienne','fondant','aubergine rôtie puis enrobage','rigatoni aubergine et basilic')})
+];
+const v39Noon=[
+  V39C({id:'v39-boeuf-bourguignon',n:'Bœuf bourguignon',m:'Casserole',minutes:165,seasons:V39_COOL,
+    i:[I(500,'g','bœuf à braiser'),I(40,'cl','vin rouge de Bourgogne'),I(100,'g','lardons'),I(200,'g','champignons de Paris'),I(2,'','carottes'),I(1,'','oignon','oignons'),I(1,'','gousse d’ail','gousses d’ail'),I(1,'c. à soupe','farine'),I(1,'c. à soupe','huile'),I(1,'','bouquet garni','bouquets garnis'),I(null,'','sel et poivre selon le goût')],
+    p:['Couper le bœuf en cubes de 4 cm, les éponger puis les dorer en deux fois 4 minutes dans l’huile à feu vif ; réserver.','Faire revenir lardons, oignon et carottes 6 minutes à feu moyen, ajouter l’ail et la farine puis remuer 1 minute.','Remettre la viande, verser le vin et compléter avec un peu d’eau afin de presque couvrir ; ajouter le bouquet garni.','Porter à frémissement, couvrir et cuire 2 heures à feu très doux ; la sauce doit à peine frémir.','Poêler les champignons 6 minutes, les ajouter et poursuivre 20 minutes sans couvercle, jusqu’à ce que la viande soit fondante et la sauce nappante.'],
+    meta:V31M('boeuf','viande','aucun','mijote','boeuf-bourguignon','française','fondant-nappant','braisé long au vin','cocotte à partager')}),
+  V39C({id:'v39-pot-au-feu',n:'Pot-au-feu',m:'Casserole',minutes:195,seasons:V39_COOL,
+    i:[I(600,'g','bœuf à pot-au-feu, paleron et jarret'),I(3,'','carottes'),I(2,'','poireaux'),I(2,'','navets'),I(1,'','branche de céleri','branches de céleri'),I(1,'','oignon','oignons'),I(2,'','clous de girofle'),I(400,'g','pommes de terre'),I(1,'','bouquet garni','bouquets garnis'),I(1.5,'l','eau'),I(1,'c. à café','gros sel'),I(null,'','poivre selon le goût')],
+    p:['Mettre la viande dans une grande casserole avec l’eau froide, porter lentement à frémissement et écumer soigneusement pendant 10 minutes.','Ajouter l’oignon piqué des clous de girofle, le bouquet garni, le céleri, le sel et du poivre ; couvrir partiellement et cuire 2 heures à très petit frémissement.','Ajouter carottes, poireaux et navets en gros morceaux, puis poursuivre 45 minutes ; les légumes doivent être tendres sans se défaire.','Cuire les pommes de terre séparément 20 minutes dans un peu de bouillon prélevé.','Servir la viande tranchée avec les légumes et le bouillon bien chaud.'],
+    meta:V31M('boeuf','viande','pommes-de-terre','mijote','pot-au-feu','française','fondant-bouillonne','pochage long à frémissement','viande et légumes avec bouillon')}),
+  V39C({id:'v39-blanquette-veau',n:'Blanquette de veau',m:'Casserole',minutes:120,seasons:V39_COOL,
+    i:[I(500,'g','épaule de veau'),I(2,'','carottes'),I(1,'','poireau','poireaux'),I(1,'','oignon','oignons'),I(200,'g','champignons de Paris'),I(75,'cl','bouillon de volaille'),I(20,'g','beurre'),I(20,'g','farine'),I(15,'cl','crème entière'),I(1,'','jaune d’œuf','jaunes d’œufs'),I(0.5,'','citron','citrons'),I(1,'','bouquet garni','bouquets garnis'),I(null,'','sel et poivre selon le goût')],
+    p:['Couper le veau en gros cubes, le couvrir de bouillon froid et porter à frémissement en écumant.','Ajouter carottes, poireau, oignon et bouquet garni, puis cuire 1 heure 15 à feu doux sans faire bouillir ; le veau doit être très tendre.','Poêler les champignons 6 minutes, filtrer 40 cl de bouillon et garder viande et légumes au chaud.','Faire fondre le beurre, ajouter la farine 1 minute puis verser progressivement le bouillon filtré ; cuire 8 minutes jusqu’à obtenir une sauce nappante.','Hors du feu, incorporer crème, jaune d’œuf et jus de citron sans faire bouillir, puis remettre veau, légumes et champignons dans la sauce.'],
+    meta:V31M('veau','viande','aucun','mijote','blanquette-veau','française','onctueux','poché puis lié hors du feu','blanquette en assiette creuse')}),
+  V39C({id:'v39-coq-au-vin',n:'Coq au vin',m:'Casserole',minutes:105,seasons:V39_COOL,
+    i:[I(4,'','cuisses de poulet'),I(50,'cl','vin rouge'),I(100,'g','lardons'),I(200,'g','champignons de Paris'),I(2,'','carottes'),I(1,'','oignon','oignons'),I(1,'','gousse d’ail','gousses d’ail'),I(1,'c. à soupe','farine'),I(1,'c. à soupe','huile'),I(1,'','bouquet garni','bouquets garnis'),I(null,'','sel et poivre selon le goût')],
+    p:['Éponger les cuisses de poulet et les dorer 8 minutes dans l’huile, côté peau en premier, puis réserver.','Faire revenir lardons, oignon et carottes 6 minutes, ajouter l’ail et la farine puis mélanger 1 minute.','Remettre le poulet, verser le vin, ajouter le bouquet garni et porter à frémissement.','Couvrir et cuire 55 minutes à feu doux, en retournant le poulet à mi-cuisson.','Poêler les champignons 6 minutes, les ajouter et poursuivre 15 minutes sans couvercle ; la viande doit se détacher facilement et la sauce napper la cuillère.'],
+    meta:V31M('poulet','volaille','aucun','mijote','coq-au-vin','française','fondant-nappant','braisé au vin rouge','poulet en cocotte')}),
+  V39C({id:'v39-quiche-lorraine',n:'Quiche Lorraine',m:'Four',minutes:50,
+    i:[I(1,'','pâte brisée de 24 cm','pâtes brisées de 24 cm'),I(200,'g','lardons fumés'),I(3,'','œufs'),I(20,'cl','crème entière'),I(10,'cl','lait'),I(1,'pincée','muscade'),I(null,'','poivre selon le goût')],
+    p:['Préchauffer le four à 190 °C, foncer le moule avec la pâte et piquer le fond.','Faire dorer les lardons 5 minutes à feu moyen, puis les égoutter soigneusement.','Fouetter les œufs avec la crème, le lait, la muscade et du poivre ; ne pas saler, les lardons le sont déjà.','Répartir les lardons sur la pâte et verser l’appareil.','Cuire 32 à 35 minutes à 190 °C, jusqu’à ce que le centre soit pris et la surface bien dorée, puis attendre 8 minutes avant de couper.'],
+    meta:V31M('lardons','viande','pain','tarte-pizza','quiche-lorraine','française','fondant-dore','appareil pris au four','quiche à partager')}),
+  V39C({id:'v39-hachis-parmentier',n:'Hachis Parmentier classique',m:'Four',minutes:60,seasons:V39_COOL,
+    i:[I(350,'g','bœuf haché'),I(650,'g','pommes de terre'),I(12,'cl','lait'),I(40,'g','beurre'),I(1,'','oignon','oignons'),I(1,'','gousse d’ail','gousses d’ail'),I(10,'cl','bouillon de bœuf'),I(10,'g','persil'),I(20,'g','chapelure'),I(null,'','sel et poivre selon le goût')],
+    p:['Cuire les pommes de terre pelées 20 minutes dans l’eau salée, jusqu’à ce qu’un couteau les traverse facilement.','Faire fondre l’oignon 5 minutes, ajouter l’ail et le bœuf puis cuire 6 minutes à feu vif afin de bien dorer la viande.','Verser le bouillon, laisser réduire 5 minutes et ajouter le persil ; la farce doit rester moelleuse sans être liquide.','Écraser les pommes de terre avec le lait chaud et 30 g de beurre, puis rectifier le sel et le poivre.','Étaler la viande dans un plat, couvrir de purée, parsemer de chapelure et du reste de beurre, puis gratiner 20 minutes à 200 °C.'],
+    meta:V31M('boeuf','viande','pommes-de-terre','gratin','hachis-parmentier','française','moelleux-gratine','viande réduite puis gratin','hachis à partager')}),
+  V39C({id:'v39-cassoulet',n:'Cassoulet simplifié mais fidèle',m:'Four',minutes:95,seasons:['automne','hiver'],
+    i:[I(500,'g','haricots blancs cuits'),I(2,'','cuisses de canard confites'),I(2,'','saucisses de Toulouse'),I(100,'g','lardons'),I(1,'','carotte','carottes'),I(1,'','oignon','oignons'),I(2,'','gousses d’ail'),I(35,'cl','bouillon de volaille'),I(1,'c. à soupe','graisse de canard'),I(1,'c. à café','thym'),I(1,'','feuille de laurier','feuilles de laurier'),I(null,'','poivre selon le goût')],
+    p:['Faire dorer les saucisses 6 minutes dans la graisse de canard, puis les réserver avec les cuisses confites.','Faire fondre oignon, carotte et lardons 7 minutes, ajouter l’ail, le thym, le laurier et les haricots.','Verser le bouillon et laisser frémir 10 minutes ; le liquide doit arriver juste sous le niveau des haricots.','Verser dans un plat profond, enfoncer les saucisses et le canard parmi les haricots, puis cuire 50 minutes à 170 °C.','Enfoncer délicatement la croûte formée une fois pendant la cuisson et servir lorsque le dessus est brun doré et l’intérieur encore moelleux.'],
+    meta:V31M('canard','viande','legumineuses','mijote','cassoulet','française','fondant-croute','mijoté puis gratiné lentement','cassoulet en plat profond')}),
+  V39C({id:'v39-choucroute-garnie',n:'Choucroute garnie',m:'Casserole',minutes:90,seasons:['automne','hiver'],
+    i:[I(700,'g','choucroute cuite'),I(2,'','saucisses fumées'),I(2,'','knacks'),I(200,'g','palette de porc fumée cuite'),I(400,'g','pommes de terre'),I(1,'','oignon','oignons'),I(25,'cl','vin blanc sec'),I(6,'','baies de genièvre'),I(1,'','feuille de laurier','feuilles de laurier'),I(null,'','poivre selon le goût')],
+    p:['Rincer rapidement la choucroute si elle est très acide et bien la presser.','Faire fondre l’oignon 5 minutes, ajouter la moitié de la choucroute, la palette, le genièvre et le laurier, puis couvrir avec le reste de choucroute.','Verser le vin, couvrir et laisser frémir 45 minutes à feu doux.','Ajouter les saucisses fumées et poursuivre 20 minutes ; réchauffer les knacks dans la cocotte pendant les 8 dernières minutes sans faire bouillir.','Cuire les pommes de terre 20 minutes à l’eau salée et servir l’ensemble très chaud.'],
+    meta:V31M('porc','viande','pommes-de-terre','mijote','choucroute-garnie','alsacienne','fondant','cuisson douce au vin blanc','choucroute et viandes à partager')}),
+  V39C({id:'v39-tartiflette',n:'Tartiflette',m:'Four',minutes:55,seasons:['automne','hiver'],
+    i:[I(700,'g','pommes de terre'),I(250,'g','reblochon'),I(150,'g','lardons fumés'),I(1,'','oignon','oignons'),I(8,'cl','vin blanc sec'),I(1,'c. à soupe','huile'),I(null,'','poivre selon le goût')],
+    p:['Cuire les pommes de terre avec leur peau 18 minutes dans l’eau salée ; elles doivent rester légèrement fermes. Les tiédir, les peler et les couper en rondelles.','Faire revenir l’oignon et les lardons 7 minutes à feu moyen, retirer l’excès de graisse puis verser le vin et laisser réduire 2 minutes.','Mélanger délicatement pommes de terre, lardons et oignon dans un plat, puis poivrer.','Couper le reblochon en deux dans l’épaisseur et le déposer croûte vers le haut.','Cuire 20 à 25 minutes à 200 °C, jusqu’à ce que le fromage soit fondu et la surface bien dorée.'],
+    meta:V31M('lardons','viande','pommes-de-terre','gratin','tartiflette','savoyarde','fondant-gratine','pommes de terre puis gratin','tartiflette à partager')}),
+  V39C({id:'v39-endives-jambon',n:'Endives au jambon',m:'Four',minutes:60,seasons:['automne','hiver'],
+    i:[I(4,'','endives'),I(4,'','tranches de jambon blanc'),I(30,'g','beurre'),I(30,'g','farine'),I(40,'cl','lait'),I(80,'g','gruyère râpé'),I(0.5,'','citron','citrons'),I(1,'pincée','muscade'),I(null,'','sel et poivre selon le goût')],
+    p:['Retirer le cône amer des endives et les cuire 20 minutes à couvert avec 10 cl d’eau et le jus de citron.','Égoutter les endives tête en bas puis les presser délicatement afin qu’elles ne rendent pas d’eau dans le gratin.','Faire fondre le beurre, ajouter la farine 1 minute, puis verser le lait progressivement en fouettant ; cuire 5 minutes, jusqu’à ce que la béchamel nappe la cuillère. Ajouter muscade, sel et poivre.','Enrouler chaque endive dans une tranche de jambon, les ranger dans un plat et napper de béchamel.','Parsemer de gruyère et gratiner 20 minutes à 200 °C, jusqu’à ce que le dessus soit bien doré.'],
+    meta:V31M('jambon','viande','aucun','gratin','endives-jambon','française','fondant-gratine','endives étuvées puis gratin','roulés d’endives en plat')}),
+  V39C({id:'v39-gratin-chou-fleur',n:'Gratin de chou-fleur classique',m:'Four',minutes:45,seasons:['automne','hiver','printemps'],
+    i:[I(1,'','petit chou-fleur','petits choux-fleurs'),I(30,'g','beurre'),I(30,'g','farine'),I(40,'cl','lait'),I(100,'g','gruyère râpé'),I(1,'pincée','muscade'),I(null,'','sel et poivre selon le goût')],
+    p:['Détailler le chou-fleur en bouquets et le cuire 9 à 10 minutes à la vapeur ; il doit être tendre mais encore ferme.','Faire fondre le beurre, ajouter la farine et cuire 1 minute, puis verser le lait progressivement en fouettant.','Laisser épaissir 5 minutes à feu moyen, jusqu’à ce que la béchamel nappe la cuillère, puis ajouter muscade, sel, poivre et 40 g de gruyère.','Ranger le chou-fleur dans un plat, couvrir de béchamel et parsemer du reste de gruyère.','Gratiner 18 à 20 minutes à 200 °C, jusqu’à obtenir une surface uniformément dorée.'],
+    meta:V31M('vegetal','vegetal','aucun','gratin','gratin-chou-fleur-classique','française','fondant-gratine','vapeur puis gratin','gratin à partager')}),
+  V39C({id:'v39-roti-porc',n:'Rôti de porc traditionnel',m:'Four',minutes:75,seasons:ALL_SEASONS,
+    i:[I(550,'g','rôti de porc'),I(600,'g','pommes de terre'),I(3,'','carottes'),I(1,'','oignon','oignons'),I(2,'','gousses d’ail'),I(15,'cl','bouillon'),I(1,'c. à soupe','huile'),I(1,'c. à café','thym'),I(null,'','sel et poivre selon le goût')],
+    p:['Sortir le rôti 20 minutes avant la cuisson, le saler et le poivrer, puis le dorer 2 minutes sur chaque face dans une poêle avec l’huile.','Déposer dans un plat avec pommes de terre en quartiers, carottes, oignon, ail et thym ; verser le bouillon autour de la viande.','Cuire 45 à 50 minutes à 180 °C en retournant les légumes et en arrosant le rôti deux fois.','Vérifier que le jus qui s’écoule est clair et que les légumes sont tendres et dorés.','Laisser reposer le rôti 10 minutes sous une feuille de papier cuisson avant de le trancher.'],
+    meta:V31M('porc','viande','pommes-de-terre','roti-four','roti-porc-traditionnel','française','juteux-dore','saisi puis rôti','rôti tranché avec légumes')}),
+  V39C({id:'v39-sole-meuniere',n:'Sole meunière',m:'Poêle',minutes:25,seasons:ALL_SEASONS,
+    i:[I(2,'','soles préparées'),I(40,'g','farine'),I(70,'g','beurre'),I(1,'','citron','citrons'),I(12,'g','persil plat'),I(null,'','sel et poivre selon le goût')],
+    p:['Éponger soigneusement les soles, les saler, les poivrer puis les fariner légèrement en retirant l’excédent.','Faire fondre 35 g de beurre dans une grande poêle et cuire les soles 4 à 5 minutes par face à feu moyen ; la chair doit se détacher facilement et rester moelleuse.','Déposer les poissons sur des assiettes chaudes et essuyer rapidement la poêle.','Faire mousser le reste du beurre jusqu’à une couleur noisette claire, ajouter le jus d’un demi-citron et le persil haché.','Napper immédiatement les soles et servir avec le reste du citron.'],
+    meta:V31M('sole','poisson','aucun','poelee','sole-meuniere','française','moelleux-dore','fariné puis poêlé au beurre','sole entière nappée de beurre')}),
+  V39C({id:'v39-brandade-morue',n:'Brandade de morue',m:'Four',minutes:55,seasons:V39_COOL,
+    i:[I(350,'g','morue dessalée'),I(450,'g','pommes de terre'),I(15,'cl','lait'),I(6,'c. à soupe','huile d’olive'),I(2,'','gousses d’ail'),I(1,'','feuille de laurier','feuilles de laurier'),I(20,'g','chapelure'),I(10,'g','persil'),I(null,'','poivre selon le goût')],
+    p:['Cuire les pommes de terre pelées 20 minutes dans l’eau non salée, jusqu’à ce qu’elles soient tendres.','Déposer la morue dans une casserole avec le lait, l’ail et le laurier ; chauffer jusqu’au premier frémissement puis pocher 8 minutes à feu très doux.','Égoutter la morue en gardant le lait, retirer peau et arêtes, puis l’effeuiller finement.','Écraser les pommes de terre, incorporer la morue puis l’huile en filet et assez de lait de pochage pour obtenir une préparation souple mais non liquide. Ajouter persil et poivre.','Verser dans un plat, parsemer de chapelure et gratiner 15 minutes à 210 °C, jusqu’à ce que le dessus soit doré.'],
+    meta:V31M('morue','poisson','pommes-de-terre','gratin','brandade-morue','française','onctueux-gratine','poché puis émulsionné','brandade en plat à gratin')}),
+  V39C({id:'v39-moules-marinieres',n:'Moules marinières',m:'Casserole',minutes:20,seasons:['printemps','été','automne'],
+    i:[I(1.2,'kg','moules'),I(2,'','échalotes'),I(15,'cl','vin blanc sec'),I(20,'g','beurre'),I(15,'g','persil plat'),I(null,'','poivre selon le goût')],
+    p:['Gratter et rincer les moules à l’eau froide, puis jeter celles qui sont cassées ou restent ouvertes après une légère pression.','Faire fondre les échalotes ciselées 3 minutes dans le beurre à feu moyen, sans coloration.','Ajouter les moules et le vin, couvrir et cuire 5 à 7 minutes à feu vif en secouant la casserole deux fois.','Arrêter dès que les moules sont ouvertes, jeter celles restées fermées et poivrer.','Ajouter le persil haché et servir immédiatement avec le jus de cuisson.'],
+    meta:V31M('moules','poisson','aucun','mijote','moules-marinieres','française','juteux','ouverture vive au vin blanc','moules avec jus en cocotte')}),
+  V39C({id:'v39-paella',n:'Paella au poulet et fruits de mer',m:'Poêle',minutes:55,seasons:['printemps','été','automne'],
+    i:[I(180,'g','riz rond à paella'),I(220,'g','poulet en morceaux'),I(200,'g','crevettes crues'),I(400,'g','moules'),I(80,'g','chorizo'),I(1,'','poivron rouge','poivrons rouges'),I(2,'','tomates'),I(100,'g','petits pois'),I(60,'cl','bouillon de volaille'),I(1,'','gousse d’ail','gousses d’ail'),I(1,'c. à café','paprika'),I(1,'dose','safran'),I(1,'c. à soupe','huile d’olive'),I(null,'','sel et poivre selon le goût')],
+    p:['Faire dorer le poulet 7 minutes dans une large poêle avec l’huile, puis ajouter le chorizo, le poivron et l’ail et cuire encore 5 minutes.','Ajouter les tomates râpées et le paprika, puis cuire 4 minutes jusqu’à ce que le mélange soit concentré.','Verser le riz et remuer 1 minute, puis ajouter le bouillon chaud et le safran ; répartir régulièrement et ne plus remuer.','Cuire 12 minutes à feu moyen, disposer moules, crevettes et petits pois, puis poursuivre 8 à 10 minutes à feu doux.','Retirer du feu lorsque le riz est tendre et le liquide absorbé, jeter les moules restées fermées et laisser reposer 5 minutes sous un torchon propre.'],
+    meta:V31M('poulet-fruits-mer','poisson','riz','paella','paella-mixte','espagnole','moelleux-dore','cuisson par absorption sans remuer','grande poêle à partager')})
+];
+
+// Trois classiques existaient sous une forme proche : leur identifiant est
+// conservé pour ne perdre aucun favori, avis, historique ou note.
+const v39MeatballSpaghetti=noon.find(recipe=>recipe.id==='n19');
+if(v39MeatballSpaghetti)Object.assign(v39MeatballSpaghetti,{
+  n:'Spaghetti aux boulettes, sauce tomate',m:'Poêle',t:'45 min',s:ALL_SEASONS,servings:2,classic:true,
+  i:[I(180,'g','spaghetti'),I(250,'g','bœuf haché'),I(1,'','œuf','œufs'),I(30,'g','chapelure'),I(400,'g','tomates concassées'),I(1,'','oignon','oignons'),I(1,'','gousse d’ail','gousses d’ail'),I(1,'c. à soupe','huile d’olive'),I(1,'c. à café','origan'),I(30,'g','parmesan'),I(null,'','sel et poivre selon le goût')],
+  p:['Mélanger le bœuf avec l’œuf, la chapelure, la moitié du parmesan, du sel et du poivre, puis former huit boulettes.','Dorer les boulettes 6 minutes dans l’huile en les retournant, puis les réserver.','Faire fondre l’oignon 4 minutes, ajouter l’ail, les tomates et l’origan, puis remettre les boulettes et laisser frémir 20 minutes ; la sauce doit être nappante.','Cuire les spaghetti al dente selon le temps du paquet et réserver 5 cl d’eau de cuisson.','Mélanger pâtes, sauce et eau de cuisson si nécessaire, puis servir avec le reste de parmesan.']
+},V31M('boeuf','viande','pates','pates-nouilles','spaghetti-boulettes-tomate','italienne','moelleux-nappant','boulettes dorées puis mijotées','spaghetti et boulettes visibles'));
+const v39StuffedTomatoes=evening.find(recipe=>recipe.id==='e79');
+if(v39StuffedTomatoes)Object.assign(v39StuffedTomatoes,{
+  n:'Tomates farcies classiques',m:'Four',t:'60 min',s:['été','automne'],servings:2,classic:true,
+  i:[I(4,'','grosses tomates'),I(250,'g','chair à saucisse'),I(100,'g','bœuf haché'),I(40,'g','pain rassis'),I(5,'cl','lait'),I(1,'','oignon','oignons'),I(1,'','gousse d’ail','gousses d’ail'),I(10,'g','persil'),I(1,'c. à soupe','huile'),I(120,'g','riz'),I(null,'','sel et poivre selon le goût')],
+  p:['Couper le chapeau des tomates, les évider, saler légèrement l’intérieur et les laisser égoutter tête en bas pendant 15 minutes.','Faire tremper le pain dans le lait, puis le presser. Faire fondre l’oignon et l’ail 4 minutes dans l’huile.','Mélanger chair à saucisse, bœuf, pain, oignon, ail, persil, sel et poivre sans trop tasser.','Remplir les tomates, replacer les chapeaux et les déposer dans un plat avec la chair des tomates au fond.','Cuire 40 minutes à 180 °C, jusqu’à ce que la farce soit cuite et le dessus doré ; préparer le riz pendant la cuisson et le servir avec le jus du plat.']
+},V31M('porc-boeuf','viande','riz','legume-farci','tomates-farcies-classiques','française','juteux-dore','farci puis rôti','tomates entières avec riz'));
+const v39RoastChicken=noon.find(recipe=>recipe.id==='v31n-orzo-boulettes');
+if(v39RoastChicken)Object.assign(v39RoastChicken,{
+  n:'Poulet rôti traditionnel, pommes de terre',classic:true,servings:2,subFamily:'poulet-roti-traditionnel',
+  i:[I(2,'','cuisses de poulet'),I(650,'g','pommes de terre'),I(3,'','gousses d’ail'),I(1,'','citron','citrons'),I(10,'cl','bouillon'),I(30,'g','beurre'),I(1,'c. à café','thym'),I(1,'c. à café','romarin'),I(1,'','salade verte','salades vertes'),I(null,'','sel et poivre selon le goût')],
+  p:['Préchauffer le four à 195 °C. Frotter le poulet avec l’ail, le citron, le thym, le romarin, du sel et du poivre, puis le déposer dans un plat avec le bouillon.','Cuire 35 minutes à 195 °C en arrosant à mi-cuisson ; la peau doit être dorée et le jus qui s’écoule clair.','Pendant ce temps, cuire les pommes de terre 20 minutes dans l’eau salée, les égoutter puis les écraser grossièrement avec le beurre et un peu de jus du plat.','Laisser reposer le poulet 5 minutes avant de le servir avec l’écrasé de pommes de terre et la salade.']
+});
+
+// Fusion des trois doublons réellement confirmés lors de l’audit.
+const v39CurryShrimp=noon.find(recipe=>recipe.id==='n35');
+if(v39CurryShrimp)Object.assign(v39CurryShrimp,{
+  n:'Crevettes au curry, lait de coco et riz',m:'Poêle',t:'30 min',s:ALL_SEASONS,servings:2,
+  i:[I(300,'g','crevettes décortiquées'),I(120,'g','riz'),I(20,'cl','lait de coco'),I(1,'c. à café','curry doux'),I(1,'','courgette','courgettes'),I(1,'','gousse d’ail','gousses d’ail'),I(1,'c. à soupe','huile'),I(10,'g','coriandre'),I(null,'','sel selon le goût')],
+  p:['Cuire le riz 10 à 12 minutes dans l’eau salée selon le paquet, puis le garder couvert.','Couper la courgette en petits dés et la faire dorer 7 minutes à feu moyen dans l’huile ; elle doit rester légèrement ferme.','Ajouter l’ail et le curry 30 secondes, puis verser le lait de coco et laisser frémir 4 minutes.','Ajouter les crevettes et cuire 3 à 4 minutes, juste jusqu’à ce qu’elles soient roses et opaques ; la sauce doit légèrement napper.','Servir avec le riz et la coriandre.']
+});
+const v39BeefChili=noon.find(recipe=>recipe.id==='n39');
+if(v39BeefChili)Object.assign(v39BeefChili,{
+  n:'Chili con carne et riz',m:'Poêle',t:'35 min',s:ALL_SEASONS,servings:2,classic:true,
+  i:[I(350,'g','bœuf haché'),I(1,'boîte de 400 g','haricots rouges'),I(300,'g','tomates concassées'),I(120,'g','riz'),I(1,'','oignon','oignons'),I(1,'','gousse d’ail','gousses d’ail'),I(1,'c. à café','cumin'),I(1,'c. à café','paprika'),I(0.25,'c. à café','piment'),I(1,'c. à soupe','huile'),I(null,'','sel selon le goût')],
+  p:['Cuire le riz selon le temps du paquet et le garder couvert.','Faire fondre l’oignon 4 minutes dans l’huile, ajouter l’ail et le bœuf puis cuire 6 minutes à feu assez vif en l’émiettant, jusqu’à ce qu’il soit bien doré.','Ajouter cumin, paprika et piment et remuer 30 secondes.','Verser les tomates et laisser frémir 12 minutes à feu doux, puis ajouter les haricots rincés et poursuivre 5 minutes.','Servir lorsque la sauce est épaisse mais encore moelleuse, avec le riz.']
+});
+const v39SemolinaSalad=evening.find(recipe=>recipe.id==='e25');
+if(v39SemolinaSalad)Object.assign(v39SemolinaSalad,{
+  n:'Salade de semoule, pois chiches et feta',m:'Sans cuisson',t:'20 min',s:['printemps','été','automne'],servings:2,
+  i:[I(140,'g','semoule'),I(1,'boîte de 400 g','pois chiches'),I(2,'','tomates'),I(0.5,'','concombre','concombres'),I(100,'g','feta'),I(0.5,'','citron','citrons'),I(1,'c. à soupe','huile d’olive'),I(10,'g','menthe'),I(null,'','sel et poivre selon le goût')],
+  p:['Verser 14 cl d’eau bouillante salée sur la semoule, couvrir 5 minutes puis l’égrener à la fourchette et la laisser refroidir.','Rincer les pois chiches, couper tomates et concombre en petits dés et émietter la feta.','Mélanger jus de citron, huile, sel et poivre, puis enrober la semoule et les légumes.','Ajouter la feta et la menthe ; la salade doit rester légère et bien égrenée.']
+});
+const V39_RECIPE_ID_MIGRATIONS=Object.freeze({n87:'n35',n89:'n39',e69:'e25'});
+for(const [oldId] of Object.entries(V39_RECIPE_ID_MIGRATIONS)){
+  for(const list of [noon,evening]){
+    const index=list.findIndex(recipe=>recipe.id===oldId);
+    if(index>=0)list.splice(index,1);
+  }
+}
+noon.push(...v39Noon);
+evening.push(...v39Evening);
+
 const VEGETABLE_TAGS=['tomate','courgette','aubergine','poivron','concombre','carotte','poireau','champignon','épinard','brocoli','chou','courge','fenouil','asperge','petits pois','haricots verts','betterave','oignon','radis','avocat','maïs'];
 function metadataText(recipe){return `${recipe.n} ${(recipe.i||[]).map(item=>item.n).join(' ')}`.toLowerCase()}
 function metadataCuisine(recipe){
@@ -2321,11 +2516,11 @@ function metadataCuisine(recipe){
   if(/sushi|miso|donburi|teriyaki|yakitori|katsu|ramen/.test(text))return'japonaise';
   if(/curry|tandoori|dal|dahl/.test(text))return'indienne';
   if(/soja|nouilles|gingembre|wok/.test(text))return'asiatique';
-  if(/pesto|parmesan|mozzarella|risotto|gnocchi|pâtes|orzo/.test(text))return'italienne';
+  if(/currywurst|spätzle|spatzle|spaetzle|knack|schnitzel|rösti|allemand/.test(text))return'allemande';
+  if(recipeHasPasta(recipe)||/pesto|parmesan|mozzarella|risotto/.test(text))return'italienne';
   if(/paella|chorizo|tortilla|paprika/.test(text))return'espagnole';
   if(/feta|tzatziki|grec/.test(text))return'grecque';
   if(/couscous|tajine|harissa|semoule/.test(text))return'maghrébine';
-  if(/currywurst|spätzle|knack|schnitzel|rösti|allemand/.test(text))return'allemande';
   if(/breton|galette de sarrasin/.test(text))return'bretonne';
   if(/olive|basilic|aubergine|courgette|tomate/.test(text))return'méditerranéenne';
   return'française';
@@ -2341,8 +2536,8 @@ function metadataFamily(recipe){
   if(/soupe|velouté|bouillon/.test(name))return'soupe';
   if(/gratin/.test(name))return'gratin';
   if(/curry|cari/.test(name))return'curry';
-  if(/risotto|orzo/.test(name))return'risotto';
-  if(/pâtes|spaghetti|tagliatelle|gnocchi|nouilles/.test(name))return'pates-nouilles';
+  if(/risotto/.test(name))return'risotto';
+  if(recipeHasPasta(recipe)||/nouilles/.test(name))return'pates-nouilles';
   if(/brochette/.test(name))return'brochettes';
   if(/tarte|quiche|pizza/.test(name))return'tarte-pizza';
   if(/wrap|taco|pita|galette|tartine|croque/.test(name))return'pain-garni';
@@ -2645,7 +2840,8 @@ const dishLibrary=[...noon,...evening];
 const recipeLibrary=[...dishLibrary,...starters,...desserts];
 const recipeIndex=new Map(recipeLibrary.map(recipe=>[recipe.id,recipe]));
 $('libraryCount').textContent=`${dishLibrary.length} plats · ${starters.length} entrées · ${desserts.length} desserts`;
-$('versionLine').textContent='Clair Repas V3.8';
+$('libraryHint').textContent=`Explorer les ${dishLibrary.length} plats, ${starters.length} entrées et ${desserts.length} desserts`;
+$('versionLine').textContent='Clair Repas V3.9';
 const FAVORITES_KEY='crFavMeals';
 const RECENT_RECIPES_KEY='crRecentRecipesV25';
 const MAX_RECENT_RECIPES=10;
@@ -2655,6 +2851,62 @@ const RECIPE_NOTES_KEY='crRecipeNotesV31';
 const LEARNING_CHOICE_LIMIT=120;
 const CHOICE_DEDUPLICATION_MS=6*60*60*1000;
 const DISCOVERY_RATE=0.24;
+const V39_DATA_MIGRATION_KEY='crRecipeIdMigrationV39';
+function mergeV39MigratedValue(current,incoming,key=''){
+  if(current===undefined)return incoming;
+  if(Array.isArray(current)&&Array.isArray(incoming))return[...current,...incoming];
+  if(current&&incoming&&typeof current==='object'&&typeof incoming==='object'){
+    const merged={...current};
+    for(const [childKey,value] of Object.entries(incoming)){
+      merged[childKey]=mergeV39MigratedValue(merged[childKey],value,childKey);
+    }
+    return merged;
+  }
+  if(typeof current==='number'&&typeof incoming==='number'){
+    return /at$/i.test(key)?Math.max(current,incoming):current+incoming;
+  }
+  return current;
+}
+function remapV39RecipeData(value,key=''){
+  if(typeof value==='string')return V39_RECIPE_ID_MIGRATIONS[value]||value;
+  if(Array.isArray(value))return value.map(item=>remapV39RecipeData(item,key));
+  if(!value||typeof value!=='object')return value;
+  const result={};
+  for(const [entryKey,entryValue] of Object.entries(value)){
+    const targetKey=V39_RECIPE_ID_MIGRATIONS[entryKey]||entryKey;
+    const migrated=remapV39RecipeData(entryValue,targetKey);
+    result[targetKey]=mergeV39MigratedValue(result[targetKey],migrated,targetKey);
+  }
+  return result;
+}
+function migrateV39RecipeReferences(){
+  try{
+    if(localStorage.getItem(V39_DATA_MIGRATION_KEY)==='done')return;
+    const notes=JSON.parse(localStorage.getItem(RECIPE_NOTES_KEY)||'{}');
+    if(notes&&typeof notes==='object'&&!Array.isArray(notes)){
+      for(const [oldId,newId] of Object.entries(V39_RECIPE_ID_MIGRATIONS)){
+        if(typeof notes[oldId]!=='string'||!notes[oldId].trim())continue;
+        const oldNote=notes[oldId].trim();
+        const current=typeof notes[newId]==='string'?notes[newId].trim():'';
+        notes[newId]=current&&current!==oldNote?(current+'\n\n'+oldNote).slice(0,2000):oldNote;
+        delete notes[oldId];
+      }
+      localStorage.setItem(RECIPE_NOTES_KEY,JSON.stringify(notes));
+    }
+    const keys=[
+      FAVORITES_KEY,RECENT_RECIPES_KEY,REACTIONS_KEY,LEARNING_KEY,
+      'crMealUsageV19','crCourseUsageV37','crBrowserDiscoveryV35',
+      'crBrowserDiscoveryV34','crBrowserDecksV35','crStateV13','crHistoryV13'
+    ];
+    for(const key of keys){
+      const raw=localStorage.getItem(key);
+      if(!raw)continue;
+      try{localStorage.setItem(key,JSON.stringify(remapV39RecipeData(JSON.parse(raw))))}catch(e){}
+    }
+    localStorage.setItem(V39_DATA_MIGRATION_KEY,'done');
+  }catch(e){}
+}
+migrateV39RecipeReferences();
 function readIdList(key){
   let values=[];
   try{values=JSON.parse(localStorage.getItem(key)||'[]')}catch(e){values=[]}
@@ -3137,7 +3389,7 @@ function inferStarch(recipe){
   if(recipe.starch)return recipe.starch;
   const text=recipeText(recipe);
   if(/pomme[s]? de terre|grenailles|purée|rosti|rösti/.test(text))return'pommes-de-terre';
-  if(/pâtes|pates|tagliatelle|spaghetti|gnocchi|tortellini|raviole/.test(text))return'pates';
+  if(recipeHasPasta(recipe))return'pates';
   if(/riz/.test(text))return'riz';
   if(/semoule|couscous/.test(text))return'semoule';
   if(/nouille/.test(text))return'nouilles';
@@ -3155,7 +3407,7 @@ function inferFamily(recipe){
   if(name.includes('croque')||name.includes('sandwich'))return'croque';
   if(name.includes('wrap')||name.includes('galette'))return'wrap';
   if(name.includes('gratin'))return'gratin';
-  if(name.includes('pâtes')||name.includes('pates'))return'pates';
+  if(recipeHasPasta(recipe))return'pates';
   if(name.includes('poêlée'))return'poelee';
   return recipe.id;
 }
@@ -3935,7 +4187,7 @@ function browserFilterSummaryHTML(){
   const action=browserExploreAll
     ?'<button class="browser-filter-action" id="browserFilterAction" type="button">Revenir à mes filtres</button>'
     :(mode!=='Tous'||time!=='Tous')
-      ?'<button class="browser-filter-action" id="browserFilterAction" type="button">Explorer les 800 recettes</button>'
+      ?`<button class="browser-filter-action" id="browserFilterAction" type="button">Explorer les ${dishLibrary.length} recettes</button>`
       :'';
   return`<div class="browser-filter-info"><strong>${modeLabel} · ${timeLabel}</strong><br>${compatibleMid} recettes Midi + ${compatibleEvening} recettes Soir compatibles.${action}</div>`;
 }
@@ -4684,7 +4936,7 @@ function updateTimerUI(){
     if(timerInterval){clearInterval(timerInterval);timerInterval=null}
     bar.classList.remove('show','done');
     document.body.classList.remove('timer-running');
-    document.title='Clair Repas V3.8';
+    document.title='Clair Repas V3.9';
     return;
   }
   const remaining=Math.max(0,Math.ceil((kitchenTimer.endAt-Date.now())/1000));
@@ -5349,7 +5601,7 @@ $('timeAvailable').onchange=()=>{
   show('Temps enregistré pour le prochain programme');
 };
 $('resetPreferences').onclick=()=>{
-  if(confirm('Réinitialiser les avis et l’apprentissage de Clair Repas ?\n\nLes favoris, les notes personnelles, les 800 plats, les entrées et les desserts seront conservés.')){
+  if(confirm(`Réinitialiser les avis et l’apprentissage de Clair Repas ?\n\nLes favoris, les notes personnelles, les ${dishLibrary.length} plats, les entrées et les desserts seront conservés.`)){
     resetLearnedPreferences();
   }
 };
