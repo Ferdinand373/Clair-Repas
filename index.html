@@ -9,7 +9,7 @@
 <meta name="apple-mobile-web-app-title" content="Clair Repas">
 <link rel="manifest" href="./manifest.webmanifest">
 <link rel="apple-touch-icon" href="./icon-192.png">
-<title>Clair Repas V4.2</title>
+<title>Clair Repas V4.3</title>
 <style>
 :root{
   --bg:#f4efe7;--card:#fffdfa;--text:#27231f;--muted:#746c63;
@@ -237,7 +237,35 @@ body.timer-running .browser-content{padding-bottom:calc(105px + env(safe-area-in
 .ingredient-result-actions button{min-height:44px;padding:8px;border-radius:11px;font-size:12px;font-weight:850}
 .ingredient-result-open{border:1px solid var(--line);background:white;color:var(--text)}
 .ingredient-result-select{border:1px solid #b8d8c3;background:var(--green-soft);color:#24563b}
+.ingredient-result-shopping{width:100%;min-height:44px;margin-top:7px;padding:8px;border:1px solid #d9cec2;border-radius:11px;background:#fffaf4;color:var(--text);font-size:12px;font-weight:850}
 .ingredient-more{width:100%;min-height:48px;margin-top:1px;border:1px solid #cfded4;border-radius:14px;background:#edf6f0;color:#24563b;font-weight:850}
+.recipe-shopping{width:100%;min-height:48px;margin:11px 0 2px;padding:10px 12px;border:1px solid #d9cec2;border-radius:13px;background:#fffaf4;color:var(--text);font-weight:860;touch-action:manipulation}
+.small-btn.shopping-component-btn{grid-column:1/-1;border:1px solid #d9cec2;background:#fffaf4;color:var(--text)}
+.shopping-review{padding:2px 0 18px}
+.shopping-intro{margin:2px 0 11px;padding:14px;border:1px solid var(--line);border-radius:17px;background:var(--card)}
+.shopping-intro h2{margin:0 0 5px;color:var(--green);font-size:20px;line-height:1.2}
+.shopping-intro p{margin:0;color:var(--muted);font-size:13px;line-height:1.42}
+.shopping-safety{margin:8px 0 0;padding:9px 10px;border-radius:11px;background:#f3f7f2;color:#41624e;font-size:12px;line-height:1.4}
+.shopping-toolbar{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0 0 9px}
+.shopping-toolbar button{min-height:44px;padding:8px;border:1px solid var(--line);border-radius:12px;background:white;color:var(--text);font-size:12px;font-weight:820}
+.shopping-list{display:grid;gap:8px}
+.shopping-row{display:grid;grid-template-columns:30px minmax(0,1fr);gap:8px;align-items:start;padding:10px;border:1px solid var(--line);border-radius:14px;background:var(--card)}
+.shopping-row.unselected{background:#f1eee9;opacity:.72}
+.shopping-check{width:23px;height:23px;margin:11px 0 0;accent-color:var(--green)}
+.shopping-edit{width:100%;min-width:0;min-height:46px;padding:10px 11px;border:1px solid var(--line);border-radius:11px;background:white;color:var(--text);font-size:16px;line-height:1.25}
+.shopping-edit:focus{outline:0;border-color:var(--green);box-shadow:0 0 0 3px rgba(63,118,87,.12)}
+.shopping-row-meta{display:flex;flex-wrap:wrap;gap:5px;margin:5px 2px 0;color:var(--muted);font-size:10px;line-height:1.3}
+.shopping-pantry{color:#765415;font-weight:760}
+.shopping-summary{margin:10px 2px;color:var(--muted);font-size:12px;font-weight:760}
+.shopping-actions{display:grid;gap:8px;margin-top:12px}
+.shopping-actions button{width:100%;min-height:50px;padding:10px 12px;border-radius:14px;font-weight:860;touch-action:manipulation}
+.shopping-send{border:1px solid var(--green);background:var(--green);color:white;font-size:15px}
+.shopping-send:disabled{opacity:.55}
+.shopping-copy{border:1px solid #cfded4;background:var(--green-soft);color:#24563b}
+.shopping-cancel{border:1px solid var(--line);background:white;color:var(--muted)}
+.shopping-status{min-height:20px;margin:10px 2px 0;color:var(--muted);font-size:12px;line-height:1.4;text-align:center}
+.shopping-status.success{color:var(--green);font-weight:820}
+.shopping-status.warning{color:#8b5c22;font-weight:820}
 .book-home,.book-shelf-view,.book-target-view{padding:2px 0 18px}
 .book-intro{margin:2px 0 16px;padding:15px;border:1px solid var(--line);border-radius:18px;background:var(--card)}
 .book-intro h2{margin:0 0 6px;color:var(--green);font-size:20px;line-height:1.2}
@@ -299,6 +327,7 @@ body.timer-running .browser-content{padding-bottom:calc(105px + env(safe-area-in
   .ingredient-shortcuts{grid-template-columns:1fr}
   .ingredient-input-row{grid-template-columns:1fr}
   .ingredient-add{width:100%}
+  .shopping-toolbar{grid-template-columns:1fr}
 }
 </style>
 </head>
@@ -399,7 +428,7 @@ body.timer-running .browser-content{padding-bottom:calc(105px + env(safe-area-in
   <div id="daysContainer"></div>
 
   <div class="actions">
-    <button id="courses">🛒 Copier toutes les courses</button>
+    <button id="courses">🛒 Préparer les courses</button>
     <button id="favorite">☆ J’aime ces menus</button>
   </div>
 </section>
@@ -419,7 +448,7 @@ body.timer-running .browser-content{padding-bottom:calc(105px + env(safe-area-in
 
 <p class="note">La saison, le temps disponible et vos préférences guident les prochains choix. Le programme affiché reste conservé jusqu’à une action volontaire.</p>
 <p class="library-count" id="libraryCount">837 plats · 121 entrées · 100 desserts · 52 recettes complémentaires</p>
-<p class="version" id="versionLine">Clair Repas V4.2</p>
+<p class="version" id="versionLine">Clair Repas V4.3</p>
 </main>
 <div class="recipe-browser" id="recipeBrowser" hidden>
   <section class="browser-panel" role="dialog" aria-modal="true" aria-labelledby="browserTitle">
@@ -3068,7 +3097,7 @@ const recipeLibrary=[...dishLibrary,...starters,...desserts,...standaloneLibrary
 const recipeIndex=new Map(recipeLibrary.map(recipe=>[recipe.id,recipe]));
 $('libraryCount').textContent=`${dishLibrary.length} plats · ${starters.length} entrées · ${desserts.length} desserts · ${breakfastRecipes.length} petits-déjeuners · ${sauceRecipes.length} sauces · ${sideRecipes.length} accompagnements`;
 $('libraryHint').textContent=`Découvrir ${recipeLibrary.length} recettes dans le Livre`;
-$('versionLine').textContent='Clair Repas V4.2';
+$('versionLine').textContent='Clair Repas V4.3';
 const FAVORITES_KEY='crFavMeals';
 const RECENT_RECIPES_KEY='crRecentRecipesV25';
 const MAX_RECENT_RECIPES=10;
@@ -4832,6 +4861,7 @@ function ingredientAssistantResultHTML(entry){
       <button class="ingredient-result-open" type="button" data-recipe-id="${recipe.id}">📖 Voir la recette</button>
       <button class="ingredient-result-select" type="button" data-recipe-id="${recipe.id}">🍽️ Choisir</button>
     </div>
+    <button class="ingredient-result-shopping" type="button" data-recipe-id="${recipe.id}">🛒 Préparer les ingrédients manquants</button>
   </article>`;
 }
 function ingredientAssistantHTML(){
@@ -4867,6 +4897,317 @@ function ingredientAssistantHTML(){
     </div>
     ${results}
   </article>`;
+}
+
+// V4.3 — préparation contrôlée des courses. Aucun article n'est transmis
+// avant l'action explicite « Envoyer vers Clair Courses ».
+const CLAIR_COURSES_IMPORT_URL='https://ferdinand373.github.io/clair-courses/import.html';
+const SHOPPING_AISLES=['Eau','Épicerie','Fruits et légumes','Boucherie','Charcuterie','Poissonnerie','Boulangerie','Conserves','Crèmerie','Surgelés','Boissons','Hygiène','Maison','Divers'];
+const SHOPPING_COMMON_PATTERN=/^(?:sel|poivre|sel et poivre|huile|huile neutre|huile d olive|eau)$/;
+let shoppingContext=null;
+let shoppingDraft=[];
+let shoppingReturnState=null;
+let shoppingStatus='';
+let shoppingStatusTone='';
+
+function shoppingExactIdentity(item){
+  return String(item?.k||item?.n||'').normalize('NFC').toLocaleLowerCase('fr-FR').replace(/\s+/g,' ').trim();
+}
+function shoppingUnit(unit){return String(unit||'').normalize('NFC').toLocaleLowerCase('fr-FR').replace(/\s+/g,' ').trim()}
+function shoppingQuantity(item,recipe){
+  if(item?.q==null)return null;
+  if(recipeHasFixedYield(recipe))return Number(item.q);
+  const base=Math.max(1,Number(recipe?.servings)||2);
+  return Number(item.q)*(peopleCount()/base);
+}
+function shoppingIngredientAvailable(item,availableItems=[]){
+  if(!availableItems.length)return false;
+  const key=assistantIngredientKey(item?.n||item?.k||'');
+  return availableItems.some(available=>available&&available.key===key);
+}
+function shoppingPantryItem(item){return SHOPPING_COMMON_PATTERN.test(normalizeSearchText(item?.n||item?.k||''))}
+function shoppingLine(entry){
+  if(entry.q==null)return String(entry.item.n||entry.item.k||'').trim();
+  return ingredientText(entry.item,entry.q);
+}
+function shoppingAisle(name){
+  const raw=String(name||'').normalize('NFC').toLocaleLowerCase('fr-FR').trim();
+  const has=(word)=>new RegExp(`(^|[\\s’'/-])${word}($|[\\s’'/-])`,'u').test(raw);
+  // Ces trois familles sont volontairement distinguées avant toute
+  // normalisation sans accent ou sans pluriel.
+  if(has('pâtes')||/(^|[\s’'/-])(?:spaghetti|spaghettis|penne|tagliatelles|coquillettes|macaroni|fusilli|linguine|orzo)($|[\s’'/-])/u.test(raw))return'Épicerie';
+  if(has('pâte')&&/(brisée|feuilletée|sablée|à pizza|a pizza|à tarte|a tarte)/u.test(raw))return'Boulangerie';
+  if(has('pâté')||has('terrine')||has('rillettes')||has('rillette'))return'Charcuterie';
+  const n=normalizeSearchText(raw);
+  if(/\b(?:eau|eau gazeuse|eau petillante)\b/.test(n))return'Eau';
+  if(/\b(?:jambon|lardon|bacon|chorizo|andouillette|saucisson|boudin)\b/.test(n))return'Charcuterie';
+  if(/\b(?:cabillaud|saumon|poisson|dorade|daurade|truite|maquereau|sardine|moule|crevette|lieu|thon frais|saint jacques|calamar)\b/.test(n))return'Poissonnerie';
+  if(/\b(?:boeuf|porc|veau|agneau|poulet|dinde|canard|lapin|steak|escalope|bavette|filet mignon|saucisse|merguez|chair a saucisse)\b/.test(n))return'Boucherie';
+  if(/\b(?:beurre|creme|lait|fromage|yaourt|oeuf|parmesan|mozzarella|feta|emmental|gruyere|mascarpone|skyr|faisselle)\b/.test(n))return'Crèmerie';
+  if(/\b(?:pain|baguette|brioche|muffin anglais|pate brisee|pate feuilletee)\b/.test(n))return'Boulangerie';
+  if(/\b(?:surgel|glace)\b/.test(n))return'Surgelés';
+  if(/\b(?:vin|cidre|biere|limonade|soda|sirop|cognac|porto|armagnac|rhum)\b/.test(n))return'Boissons';
+  if(/\b(?:boite|conserve|thon en boite|mais en boite)\b/.test(n))return'Conserves';
+  if(/\b(?:ail|aubergine|avocat|carotte|celeri|champignon|chou|concombre|courgette|echalote|epinard|haricot vert|navet|oignon|poireau|poivron|pomme de terre|radis|salade|tomate|citron|orange|pomme|poire|banane|fraise|melon|raisin|brocoli|petits pois|asperge|betterave|endive|fenouil|framboise|myrtille|rhubarbe)\b/.test(n))return'Fruits et légumes';
+  if(/\b(?:huile|vinaigre|farine|sucre|riz|semoule|quinoa|boulgour|nouilles|chapelure|panko|paprika|curry|cumin|bouillon|moutarde|mayonnaise|ketchup|concentre|coulis|sel|poivre|epice|herbe|miel|levure|cacao|chocolat|lentille|pois chiche|haricot rouge|haricot blanc|polenta|flocon d avoine)\b/.test(n))return'Épicerie';
+  return'Divers';
+}
+function shoppingFNV(value){
+  let hash=0x811c9dc5;
+  for(const char of String(value||'')){hash^=char.charCodeAt(0);hash=Math.imul(hash,0x01000193)}
+  return(hash>>>0).toString(16).padStart(8,'0');
+}
+function shoppingProductKey(name){
+  const exact=String(name||'').normalize('NFC').toLocaleLowerCase('fr-FR').replace(/\s+/g,' ').trim();
+  return`clair-repas:${shoppingFNV(exact)}:${exact.slice(0,72)}`;
+}
+function shoppingBuildDraft(context){
+  const grouped=new Map();
+  for(const source of context.sources||[]){
+    const recipe=source.recipe;
+    if(!recipe)continue;
+    for(const item of recipe.i||[]){
+      if(shoppingIngredientAvailable(item,source.availableItems||[]))continue;
+      const q=shoppingQuantity(item,recipe);
+      const identity=shoppingExactIdentity(item);
+      const unit=shoppingUnit(item.u);
+      const quantityKind=q==null?'sans-quantite':'quantite';
+      const key=`${identity}\u241f${unit}\u241f${quantityKind}`;
+      if(!grouped.has(key)){
+        grouped.set(key,{item:{...item},q:q==null?null:q,identity,unit,sourceCount:1});
+      }else{
+        const current=grouped.get(key);
+        current.sourceCount+=1;
+        if(q!=null&&current.q!=null)current.q+=q;
+      }
+    }
+  }
+  const drafts=[...grouped.values()].map((entry,index)=>{
+    const text=shoppingLine(entry);
+    const pantry=shoppingPantryItem(entry.item);
+    return{
+      id:`shop-${index}-${shoppingFNV(`${entry.identity}|${entry.unit}`)}`,
+      item:entry.item,
+      q:entry.q,
+      unit:entry.unit,
+      identity:entry.identity,
+      sourceCount:entry.sourceCount,
+      originalText:text,
+      text,
+      pantry,
+      selected:!pantry,
+      aisle:shoppingAisle(entry.item.n)
+    };
+  });
+  const order=new Map(SHOPPING_AISLES.map((aisle,index)=>[aisle,index]));
+  return drafts.sort((a,b)=>(order.get(a.aisle)-order.get(b.aisle))||a.text.localeCompare(b.text,'fr'));
+}
+function shoppingContextText(){
+  if(!shoppingContext)return'';
+  if(shoppingContext.kind==='program'){
+    const count=shoppingContext.sources.length;
+    return`${count} recette${count===1?'':'s'} prévue${count===1?'':'s'} · quantités pour ${peopleCount()} ${peopleCount()===1?'personne':'personnes'}`;
+  }
+  const recipe=shoppingContext.sources[0]?.recipe;
+  if(shoppingContext.kind==='assistant')return`Uniquement les ingrédients manquants pour « ${recipe?.n||'cette recette'} ».`;
+  return`Ingrédients de « ${recipe?.n||'cette recette'} » · quantités pour ${peopleCount()} ${peopleCount()===1?'personne':'personnes'}.`;
+}
+function shoppingReviewHTML(){
+  const selected=shoppingDraft.filter(item=>item.selected).length;
+  return `<article class="shopping-review">
+    <div class="shopping-intro">
+      <h2>🛒 À ajouter aux courses</h2>
+      <p>${escapeHTML(shoppingContextText())}</p>
+      <div class="shopping-safety"><strong>Étape de vérification.</strong> Rien n’est envoyé tant que vous ne touchez pas « Envoyer vers Clair Courses ».</div>
+    </div>
+    <div class="shopping-toolbar" role="group" aria-label="Sélection des ingrédients">
+      <button id="shoppingSelectAll" type="button">Tout sélectionner</button>
+      <button id="shoppingSelectNone" type="button">Tout désélectionner</button>
+    </div>
+    <div class="shopping-list">
+      ${shoppingDraft.map((entry,index)=>`<div class="shopping-row${entry.selected?'':' unselected'}" data-shopping-row="${index}">
+        <input class="shopping-check" type="checkbox" data-shopping-check="${index}" aria-label="Conserver ${escapeHTML(entry.text)}" ${entry.selected?'checked':''}>
+        <div>
+          <input class="shopping-edit" type="text" data-shopping-edit="${index}" value="${escapeHTML(entry.text)}" maxlength="160" aria-label="Corriger cet ingrédient">
+          <div class="shopping-row-meta"><span>${escapeHTML(entry.aisle)}</span>${entry.sourceCount>1?`<span>· regroupé dans ${entry.sourceCount} recettes</span>`:''}${entry.pantry?'<span class="shopping-pantry">· produit courant décoché par défaut</span>':''}</div>
+        </div>
+      </div>`).join('')}
+    </div>
+    <p class="shopping-summary" id="shoppingSummary">${selected} produit${selected===1?'':'s'} sélectionné${selected===1?'':'s'} sur ${shoppingDraft.length}</p>
+    <div class="shopping-actions">
+      <button class="shopping-send" id="shoppingSend" type="button" ${selected?'':'disabled'}>Envoyer vers Clair Courses</button>
+      <button class="shopping-copy" id="shoppingCopy" type="button" ${selected?'':'disabled'}>📋 Copier la liste</button>
+      <button class="shopping-cancel" id="shoppingCancel" type="button">Annuler</button>
+    </div>
+    <p class="shopping-status ${shoppingStatusTone}" id="shoppingStatus" aria-live="polite">${escapeHTML(shoppingStatus)}</p>
+  </article>`;
+}
+function shoppingRememberReturn(){
+  shoppingReturnState={
+    wasOpen:!$('recipeBrowser').hidden,
+    mode:browserMode,
+    returnMode:browserReturnMode,
+    recipeId:browserRecipeId,
+    selection:browserSelection?{...browserSelection}:null,
+    shelfId:browserBookShelfId,
+    subcategoryId:browserBookSubcategoryId,
+    targetDirect:browserTargetDirect,
+    visibleCount:bookVisibleCount
+  };
+}
+function openShoppingReview(context){
+  if(!context||!Array.isArray(context.sources)||!context.sources.length){show('Aucune course à préparer');return}
+  shoppingRememberReturn();
+  shoppingContext=context;
+  shoppingDraft=shoppingBuildDraft(context);
+  shoppingStatus='';
+  shoppingStatusTone='';
+  if(!shoppingDraft.length){show(context.kind==='assistant'?'Vous avez déjà les ingrédients de cette recette':'Aucune course à préparer');shoppingContext=null;shoppingReturnState=null;return}
+  if($('recipeBrowser').hidden){browserLastFocus=document.activeElement||null;$('recipeBrowser').hidden=false;document.body.classList.add('browser-open')}
+  browserMode='shopping';
+  browserSelection=null;
+  browserRecipeId=null;
+  renderRecipeBrowser();
+}
+function openShoppingForRecipe(id,mode=browserReturnMode){
+  const recipe=recipeIndex.get(id);
+  if(!recipe)return;
+  const assistant=['ingredient-fridge','ingredient-leftovers'].includes(mode);
+  const availableItems=assistant?ingredientAssistantItems.map(item=>({...item})):[];
+  openShoppingReview({kind:assistant?'assistant':'recipe',sources:[{recipe,availableItems}]});
+}
+function openShoppingForProgram(){
+  recordPlanSelections();
+  const sources=activeAllRecipeEntries().map(entry=>({recipe:entry.recipe,availableItems:[]}));
+  openShoppingReview({kind:'program',sources});
+}
+function cancelShoppingReview(){
+  const state=shoppingReturnState;
+  shoppingContext=null;
+  shoppingDraft=[];
+  shoppingStatus='';
+  shoppingStatusTone='';
+  shoppingReturnState=null;
+  if(state?.wasOpen){
+    browserMode=state.mode;
+    browserReturnMode=state.returnMode;
+    browserRecipeId=state.recipeId;
+    browserSelection=state.selection;
+    browserBookShelfId=state.shelfId;
+    browserBookSubcategoryId=state.subcategoryId;
+    browserTargetDirect=state.targetDirect;
+    bookVisibleCount=state.visibleCount;
+    renderRecipeBrowser();
+    return;
+  }
+  closeRecipeBrowser();
+}
+function shoppingSyncDraftFromScreen(){
+  document.querySelectorAll('[data-shopping-edit]').forEach(input=>{
+    const entry=shoppingDraft[Number(input.dataset.shoppingEdit)];
+    if(entry)entry.text=String(input.value||'').replace(/\s+/g,' ').trim().slice(0,160);
+  });
+  document.querySelectorAll('[data-shopping-check]').forEach(input=>{
+    const entry=shoppingDraft[Number(input.dataset.shoppingCheck)];
+    if(entry)entry.selected=Boolean(input.checked);
+  });
+}
+function shoppingUpdateSummary(){
+  const selected=shoppingDraft.filter(item=>item.selected).length;
+  const summary=$('shoppingSummary');
+  if(summary)summary.textContent=`${selected} produit${selected===1?'':'s'} sélectionné${selected===1?'':'s'} sur ${shoppingDraft.length}`;
+  const send=$('shoppingSend'),copy=$('shoppingCopy');
+  if(send)send.disabled=!selected;
+  if(copy)copy.disabled=!selected;
+}
+function shoppingSetStatus(message,tone=''){
+  shoppingStatus=message;
+  shoppingStatusTone=tone;
+  const status=$('shoppingStatus');
+  if(status){status.textContent=message;status.className=`shopping-status ${tone}`.trim()}
+}
+const SHOPPING_FRACTIONS={'⅛':0.125,'¼':0.25,'⅓':1/3,'⅜':0.375,'½':0.5,'⅝':0.625,'⅔':2/3,'¾':0.75,'⅞':0.875};
+function shoppingParseEditedLine(entry){
+  if(entry.text===entry.originalText){
+    return{name:String(entry.item.n||entry.identity).trim(),quantity:entry.q,unit:entry.unit};
+  }
+  const text=String(entry.text||'').trim();
+  const match=text.match(/^(\d+(?:[.,]\d+)?|[⅛¼⅓⅜½⅝⅔¾⅞])\s*(kg|g|ml|cl|l|c\.\s*à\s*soupe|c\.\s*à\s*café|c\.\s*à\s*c|c\.\s*à\s*s|pincée|pincées|tranche|tranches|feuille|feuilles|gousse|gousses|boîte|boîtes|sachet|sachets)?\s*(?:de\s+|d[’']\s*)?(.+)$/i);
+  if(!match)return{name:text,quantity:null,unit:''};
+  const quantity=SHOPPING_FRACTIONS[match[1]]??Number(match[1].replace(',','.'));
+  return{name:String(match[3]||'').trim(),quantity:Number.isFinite(quantity)?quantity:null,unit:shoppingUnit(match[2]||'')};
+}
+function shoppingSelectedContractItems(){
+  shoppingSyncDraftFromScreen();
+  return shoppingDraft.filter(entry=>entry.selected&&entry.text).map(entry=>{
+    const parsed=shoppingParseEditedLine(entry);
+    const unit=parsed.unit||'';
+    return{
+      selected:true,
+      text:entry.text,
+      purchaseLabel:entry.text,
+      displayName:parsed.name,
+      exactQuantity:parsed.quantity,
+      exactUnit:unit||'unité',
+      aisle:shoppingAisle(parsed.name),
+      productKey:shoppingProductKey(parsed.name)
+    };
+  });
+}
+function shoppingContract(){
+  const items=shoppingSelectedContractItems();
+  const fingerprint=`fnv1a:${shoppingFNV(JSON.stringify(items))}`;
+  return{schemaVersion:1,source:'Clair Repas',sourceVersion:'4.3',createdAt:new Date().toISOString(),contentFingerprint:fingerprint,items};
+}
+async function shoppingCopySelected(){
+  const items=shoppingSelectedContractItems();
+  if(!items.length){shoppingSetStatus('Sélectionnez au moins un produit.','warning');return}
+  const text=items.map(item=>item.purchaseLabel).join('\n');
+  try{
+    await navigator.clipboard.writeText(text);
+    shoppingSetStatus(`✅ Liste copiée · ${items.length} produit${items.length===1?'':'s'}`,'success');
+  }catch(error){
+    prompt('Copiez cette liste :',text);
+    shoppingSetStatus('La liste est prête à être copiée.','warning');
+  }
+}
+function shoppingSendSelected(){
+  const contract=shoppingContract();
+  if(!contract.items.length){shoppingSetStatus('Sélectionnez au moins un produit.','warning');return}
+  const returnUrl=location.href.split('#')[0];
+  const url=`${CLAIR_COURSES_IMPORT_URL}?source=clair-repas&return=${encodeURIComponent(returnUrl)}#mcjson=${encodeURIComponent(JSON.stringify(contract))}`;
+  if(url.length>60000){
+    shoppingSetStatus('⚠️ La liste est trop longue pour un envoi fiable. Utilisez « Copier la liste ».','warning');
+    return;
+  }
+  try{
+    const opened=window.open(url,'_blank');
+    if(!opened){shoppingSetStatus('⚠️ Clair Courses ne s’est pas ouvert. Vous pouvez copier la liste.','warning');return}
+    try{opened.opener=null}catch(error){}
+    shoppingSetStatus(`Clair Courses s’ouvre avec ${contract.items.length} produit${contract.items.length===1?'':'s'}. Seul son message confirme l’ajout.`);
+  }catch(error){
+    shoppingSetStatus('⚠️ Impossible d’envoyer vers Clair Courses. Vous pouvez copier la liste.','warning');
+  }
+}
+function bindShoppingInteractions(){
+  document.querySelectorAll('[data-shopping-check]').forEach(input=>input.onchange=()=>{
+    const index=Number(input.dataset.shoppingCheck),entry=shoppingDraft[index];
+    if(entry)entry.selected=Boolean(input.checked);
+    const row=document.querySelector(`[data-shopping-row="${index}"]`);
+    if(row)row.classList.toggle('unselected',!input.checked);
+    shoppingUpdateSummary();
+  });
+  document.querySelectorAll('[data-shopping-edit]').forEach(input=>input.oninput=()=>{
+    const entry=shoppingDraft[Number(input.dataset.shoppingEdit)];
+    if(entry)entry.text=input.value;
+  });
+  const all=$('shoppingSelectAll'),none=$('shoppingSelectNone');
+  if(all)all.onclick=()=>{shoppingDraft.forEach(item=>item.selected=true);renderRecipeBrowser()};
+  if(none)none.onclick=()=>{shoppingDraft.forEach(item=>item.selected=false);renderRecipeBrowser()};
+  const send=$('shoppingSend'),copy=$('shoppingCopy'),cancel=$('shoppingCancel');
+  if(send)send.onclick=shoppingSendSelected;
+  if(copy)copy.onclick=shoppingCopySelected;
+  if(cancel)cancel.onclick=cancelShoppingReview;
 }
 function bookRecipeText(recipe){return recipeSearchData(recipe).all}
 function bookIsDish(recipe){return recipeRole(recipe)==='dish'}
@@ -5188,6 +5529,11 @@ function openMealRecipeChooser(dayIndex,type,component){
 function closeRecipeBrowser(){
   $('recipeBrowser').hidden=true;
   document.body.classList.remove('browser-open');
+  shoppingContext=null;
+  shoppingDraft=[];
+  shoppingReturnState=null;
+  shoppingStatus='';
+  shoppingStatusTone='';
   browserRecipeId=null;
   browserSelection=null;
   browserBookShelfId=null;
@@ -5286,6 +5632,9 @@ function bindBrowserInteractions(){
   document.querySelectorAll('.ingredient-result-select').forEach(button=>button.onclick=()=>{
     openIngredientRecipeTarget(button.dataset.recipeId);
   });
+  document.querySelectorAll('.ingredient-result-shopping').forEach(button=>button.onclick=()=>{
+    openShoppingForRecipe(button.dataset.recipeId,browserMode);
+  });
   document.querySelectorAll('[data-ingredient-remove]').forEach(button=>button.onclick=()=>{
     ingredientAssistantRemove(button.dataset.ingredientRemove);
   });
@@ -5304,6 +5653,8 @@ function bindBrowserInteractions(){
   if(detailSelect)detailSelect.onclick=()=>applyManualRecipe(detailSelect.dataset.recipeId);
   const bookSelect=$('browserChooseBookRecipe');
   if(bookSelect)bookSelect.onclick=()=>openBookRecipeTarget(bookSelect.dataset.recipeId);
+  const shoppingButton=$('browserPrepareCourses');
+  if(shoppingButton)shoppingButton.onclick=()=>openShoppingForRecipe(shoppingButton.dataset.recipeId,browserReturnMode);
   const more=$('bookMore');
   if(more)more.onclick=()=>{
     const scrollTop=$('browserContent').scrollTop;
@@ -5344,7 +5695,7 @@ function renderRecipeBrowser(){
   const content=$('browserContent');
   const choosing=Boolean(browserSelection);
   const bookSearching=browserMode==='book'&&Boolean(normalizeSearchText($('recipeSearch').value));
-  back.hidden=!(browserMode==='detail'||browserMode==='book-shelf'||browserMode==='book-target'||bookSearching);
+  back.hidden=!(browserMode==='detail'||browserMode==='book-shelf'||browserMode==='book-target'||browserMode==='shopping'||bookSearching);
   searchArea.hidden=!(browserMode==='search'||browserMode==='book');
   if(browserMode==='search'){
     const component=browserSelection?.component;
@@ -5360,7 +5711,10 @@ function renderRecipeBrowser(){
     $('recipeSearch').placeholder='Nom, ingrédient, famille ou cuisine…';
     $('browserHint').textContent='Exemples : spaghetti, poulet, champignons, italienne ou bourguignon.';
   }
-  if(browserMode==='detail'){
+  if(browserMode==='shopping'){
+    $('browserTitle').textContent='Préparer les courses';
+    content.innerHTML=shoppingReviewHTML();
+  }else if(browserMode==='detail'){
     const recipe=recipeIndex.get(browserRecipeId);
     if(!recipe){browserMode=browserReturnMode;renderRecipeBrowser();return}
     const fromBook=['book','book-shelf'].includes(browserReturnMode);
@@ -5371,6 +5725,7 @@ function renderRecipeBrowser(){
       <div class="meta">⏱️ ${recipe.t} · 🔥 ${recipe.m}${noteIndicatorHTML(recipe)}</div>
       ${choosing?`<button class="browser-select-recipe" id="browserSelectRecipe" data-recipe-id="${recipe.id}" type="button">Choisir cette recette</button>`:(fromBook||fromAssistant)&&bookRecipeCanTarget(recipe)?`<button class="browser-select-recipe" id="browserChooseBookRecipe" data-recipe-id="${recipe.id}" type="button">🍽️ Choisir cette recette</button>`:''}
       ${fromAssistant?assistantAdaptationHTML(recipe):''}
+      <button class="recipe-shopping" id="browserPrepareCourses" data-recipe-id="${recipe.id}" type="button">🛒 ${fromAssistant?'Préparer les ingrédients manquants':'Préparer les courses'}</button>
       <div class="recipe open">${recipeHTML(recipe)}</div>
     </article>`;
   }else if(browserMode==='book-target'){
@@ -5442,6 +5797,7 @@ function renderRecipeBrowser(){
     renderRecipeBrowser();
   };
   bindBrowserInteractions();
+  if(browserMode==='shopping')bindShoppingInteractions();
   bindRecipeControls();
   updateFavoriteUI();
   refreshPortionDisplays();
@@ -6041,7 +6397,7 @@ function updateTimerUI(){
     if(timerInterval){clearInterval(timerInterval);timerInterval=null}
     bar.classList.remove('show','done');
     document.body.classList.remove('timer-running');
-    document.title='Clair Repas V4.2';
+    document.title='Clair Repas V4.3';
     return;
   }
   const remaining=Math.max(0,Math.ceil((kitchenTimer.endAt-Date.now())/1000));
@@ -6129,6 +6485,7 @@ function mealRecipeBlockHTML(recipe,dayIndex,type,component){
       <button class="small-btn recipe-btn" data-day="${dayIndex}" data-type="${type}" data-component="${component}">📖 Voir la recette</button>
       <button class="small-btn secondary change-btn" data-day="${dayIndex}" data-type="${type}" data-component="${component}">🔄 Une autre idée</button>
       <button class="small-btn choose-component-btn" data-day="${dayIndex}" data-type="${type}" data-component="${component}">${chooseLabel}</button>
+      <button class="small-btn shopping-component-btn" data-recipe-id="${recipe.id}" type="button">🛒 Préparer les courses</button>
     </div>
     <div class="recipe" id="${mealRecipeElementId(dayIndex,type,component)}">${recipeHTML(recipe,{showFavorite:false})}</div>
   </section>`;
@@ -6198,6 +6555,7 @@ function render(){
       ${mealHTML(d,i,'mid')}
       ${mealHTML(d,i,'eve')}
     </section>`).join('');
+  $('courses').hidden=activeAllRecipeEntries().length===0;
   updateProgramSummary();
   syncDayChoice();
 
@@ -6218,6 +6576,9 @@ function render(){
     const component=b.dataset.component||'dish';
     if(component==='dish')changeMeal(Number(b.dataset.day),b.dataset.type);
     else changeCourse(Number(b.dataset.day),b.dataset.type,component);
+  });
+  document.querySelectorAll('.shopping-component-btn').forEach(button=>button.onclick=()=>{
+    openShoppingForRecipe(button.dataset.recipeId,'meal');
   });
   document.querySelectorAll('.companion-open').forEach(button=>button.onclick=()=>{
     openRecipeBrowser('book');
@@ -6756,18 +7117,7 @@ $('favorite').onclick=()=>{
   updateFavoriteUI();
   show(allLiked?'Menus retirés des favoris':'Menus enregistrés');
 };
-$('courses').onclick=async()=>{
-  recordPlanSelections();
-  const items=groupedCourses();
-  if(!items.length){show('Aucune course à ajouter');return}
-  const text=items.join('\n');
-  try{
-    await navigator.clipboard.writeText(text);
-    show('Toutes les courses ont été copiées');
-  }catch(e){
-    prompt('Copie cette liste :',text);
-  }
-};
+$('courses').onclick=openShoppingForProgram;
 
 $('chooseRecipe').onclick=()=>openRecipeBrowser('book');
 $('openFridge').onclick=()=>openIngredientAssistant('fridge');
@@ -6776,6 +7126,10 @@ $('openFavorites').onclick=()=>openRecipeBrowser('favorites');
 $('openRecent').onclick=()=>openRecipeBrowser('recent');
 $('browserClose').onclick=closeRecipeBrowser;
 $('browserBack').onclick=()=>{
+  if(browserMode==='shopping'){
+    cancelShoppingReview();
+    return;
+  }
   if(browserMode==='book-target'){
     browserMode=browserTargetDirect?browserReturnMode:'detail';
     browserTargetDirect=false;

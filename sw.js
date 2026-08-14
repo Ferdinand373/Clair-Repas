@@ -1,4 +1,4 @@
-const CACHE='clair-repas-v42-frigo-restes-20260814';
+const CACHE='clair-repas-v43-courses-controlees-20260814';
 const ASSETS=['./','./index.html','./manifest.webmanifest','./icon-192.png','./icon-512.png'];
 
 self.addEventListener('install',event=>{
