@@ -1,7 +1,7 @@
 {
   "name": "Clair Repas",
   "short_name": "Clair Repas",
-  "description": "Clair Repas propose les menus, enrichit son Livre et suggère avec discernement sauces et accompagnements.",
+  "description": "Clair Repas propose les menus et aide à cuisiner avec les ingrédients disponibles ou les restes déjà préparés.",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",

@@ -9,7 +9,7 @@
 <meta name="apple-mobile-web-app-title" content="Clair Repas">
 <link rel="manifest" href="./manifest.webmanifest">
 <link rel="apple-touch-icon" href="./icon-192.png">
-<title>Clair Repas V4.1</title>
+<title>Clair Repas V4.2</title>
 <style>
 :root{
   --bg:#f4efe7;--card:#fffdfa;--text:#27231f;--muted:#746c63;
@@ -46,6 +46,7 @@ select{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:1
 .plan-primary[aria-busy="true"]{cursor:progress}
 .recipe-shortcuts{padding:12px;margin-bottom:14px}
 .recipe-shortcuts-main,.recipe-shortcuts-secondary{display:grid;gap:8px}
+.ingredient-shortcuts{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}
 .recipe-shortcuts-secondary{grid-template-columns:1fr 1fr;margin-top:8px}
 .shortcut-btn{min-height:46px;padding:11px 12px;border:1px solid var(--line);border-radius:14px;background:white;color:var(--text);font-weight:820}
 .shortcut-btn.primary{border-color:#b8d8c3;background:var(--green-soft);color:#24563b;font-size:16px}
@@ -53,6 +54,9 @@ select{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:1
 .shortcut-title{font-size:16px;font-weight:880}
 .shortcut-hint{margin-top:3px;font-size:12px;font-weight:650;color:var(--muted)}
 .shortcut-count{display:inline-flex;justify-content:center;align-items:center;min-width:22px;height:22px;margin-left:4px;padding:0 6px;border-radius:999px;background:#fff1f1;color:#9a4141;font-size:11px}
+.ingredient-shortcuts .shortcut-btn{min-height:58px;text-align:left}
+.ingredient-shortcuts .shortcut-title{font-size:15px}
+.ingredient-shortcuts .shortcut-hint{font-size:11px;line-height:1.25}
 .program-results{margin-top:16px;scroll-margin-top:12px}
 .program-heading{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin:0 2px 8px}
 .program-heading h2{margin:0;font-size:21px;letter-spacing:-.2px}
@@ -205,6 +209,35 @@ body.timer-running .browser-content{padding-bottom:calc(105px + env(safe-area-in
 .browser-select-recipe{width:100%;min-height:48px;margin:13px 0 2px;padding:11px 13px;border:1px solid var(--green);border-radius:13px;background:var(--green);color:white;font-weight:880;touch-action:manipulation}
 .browser-recipe .recipe{display:block;margin-top:12px}
 .browser-search-label{display:block;margin:0 3px 8px;color:var(--text);font-size:15px;font-weight:880}
+.ingredient-assistant{padding:2px 0 18px}
+.ingredient-assistant-intro{margin:2px 0 12px;padding:14px;border:1px solid var(--line);border-radius:17px;background:var(--card)}
+.ingredient-assistant-intro h2{margin:0 0 5px;color:var(--green);font-size:20px;line-height:1.2}
+.ingredient-assistant-intro p{margin:0;color:var(--muted);font-size:13px;line-height:1.42}
+.ingredient-entry{padding:12px;border:1px solid var(--line);border-radius:17px;background:var(--card)}
+.ingredient-chips{display:flex;flex-wrap:wrap;gap:7px;min-height:34px;margin-bottom:9px}
+.ingredient-chip{display:inline-flex;align-items:center;gap:6px;min-height:36px;padding:7px 9px;border:1px solid #c9ded0;border-radius:999px;background:var(--green-soft);color:#24563b;font-size:13px;font-weight:820}
+.ingredient-chip button{width:24px;height:24px;padding:0;border:0;border-radius:50%;background:rgba(255,255,255,.8);color:#4d6656;font-size:17px;line-height:1}
+.ingredient-chip-empty{align-self:center;color:var(--muted);font-size:12px}
+.ingredient-input-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:7px}
+.ingredient-input{min-width:0;min-height:48px;padding:11px 12px;border:1px solid var(--line);border-radius:13px;background:white;color:var(--text);font-size:16px;outline:none}
+.ingredient-input:focus{border-color:var(--green);box-shadow:0 0 0 3px rgba(63,118,87,.12)}
+.ingredient-add{min-width:82px;min-height:48px;padding:9px 12px;border:1px solid #cfded4;border-radius:13px;background:#edf6f0;color:#24563b;font-weight:850}
+.ingredient-entry-hint{margin:8px 2px 0;color:var(--muted);font-size:11px;line-height:1.35}
+.ingredient-find{width:100%;min-height:50px;margin-top:10px;padding:11px 13px;border:1px solid var(--green);border-radius:14px;background:var(--green);color:white;font-size:16px;font-weight:880}
+.ingredient-results{margin-top:15px}
+.ingredient-results-heading{margin:0 2px 9px;font-size:18px;line-height:1.25}
+.ingredient-result{margin-bottom:9px;padding:12px;border:1px solid var(--line);border-radius:16px;background:var(--card)}
+.ingredient-match{display:inline-flex;min-height:25px;align-items:center;padding:4px 8px;border-radius:999px;background:var(--green-soft);color:var(--green);font-size:10px;font-weight:880;text-transform:uppercase;letter-spacing:.2px}
+.ingredient-result-title{margin:8px 0 4px;font-size:17px;line-height:1.2}
+.ingredient-result-meta{color:var(--muted);font-size:12px;line-height:1.35}
+.ingredient-result-use{margin:9px 0 0;padding-top:8px;border-top:1px dashed var(--line);font-size:12px;line-height:1.45}
+.ingredient-result-use strong{color:var(--green)}
+.ingredient-result-missing{margin:3px 0 0;color:var(--muted);font-size:12px;line-height:1.4}
+.ingredient-result-actions{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:10px}
+.ingredient-result-actions button{min-height:44px;padding:8px;border-radius:11px;font-size:12px;font-weight:850}
+.ingredient-result-open{border:1px solid var(--line);background:white;color:var(--text)}
+.ingredient-result-select{border:1px solid #b8d8c3;background:var(--green-soft);color:#24563b}
+.ingredient-more{width:100%;min-height:48px;margin-top:1px;border:1px solid #cfded4;border-radius:14px;background:#edf6f0;color:#24563b;font-weight:850}
 .book-home,.book-shelf-view,.book-target-view{padding:2px 0 18px}
 .book-intro{margin:2px 0 16px;padding:15px;border:1px solid var(--line);border-radius:18px;background:var(--card)}
 .book-intro h2{margin:0 0 6px;color:var(--green);font-size:20px;line-height:1.2}
@@ -263,6 +296,9 @@ body.timer-running .browser-content{padding-bottom:calc(105px + env(safe-area-in
   .companion-item{grid-template-columns:1fr}
   .companion-change{width:100%;min-height:42px}
   .book-quick-links,.book-subcategories{grid-template-columns:1fr}
+  .ingredient-shortcuts{grid-template-columns:1fr}
+  .ingredient-input-row{grid-template-columns:1fr}
+  .ingredient-add{width:100%}
 }
 </style>
 </head>
@@ -339,6 +375,16 @@ body.timer-running .browser-content{padding-bottom:calc(105px + env(safe-area-in
       <span class="shortcut-hint" id="libraryHint">Découvrir toutes les recettes dans le Livre</span>
     </button>
   </div>
+  <div class="ingredient-shortcuts" aria-label="Cuisiner avec ce que vous avez">
+    <button class="shortcut-btn" id="openFridge" type="button">
+      <span class="shortcut-title">🥕 J’ai ça dans mon frigo</span>
+      <span class="shortcut-hint">Trouver des idées avec quelques ingrédients</span>
+    </button>
+    <button class="shortcut-btn" id="openLeftovers" type="button">
+      <span class="shortcut-title">♻️ Il me reste…</span>
+      <span class="shortcut-hint">Réutiliser un aliment déjà préparé</span>
+    </button>
+  </div>
   <div class="recipe-shortcuts-secondary">
     <button class="shortcut-btn" id="openFavorites">❤️ Mes favoris <span class="shortcut-count" id="favoritesCount">0</span></button>
     <button class="shortcut-btn" id="openRecent">🕘 Recettes récentes</button>
@@ -373,7 +419,7 @@ body.timer-running .browser-content{padding-bottom:calc(105px + env(safe-area-in
 
 <p class="note">La saison, le temps disponible et vos préférences guident les prochains choix. Le programme affiché reste conservé jusqu’à une action volontaire.</p>
 <p class="library-count" id="libraryCount">837 plats · 121 entrées · 100 desserts · 52 recettes complémentaires</p>
-<p class="version" id="versionLine">Clair Repas V4.1</p>
+<p class="version" id="versionLine">Clair Repas V4.2</p>
 </main>
 <div class="recipe-browser" id="recipeBrowser" hidden>
   <section class="browser-panel" role="dialog" aria-modal="true" aria-labelledby="browserTitle">
@@ -2859,7 +2905,7 @@ const desserts=[
   D('d100','Crumble rhubarbe-fraise','Four','40 min',['printemps','été'],'gourmand',['rhubarbe','fraise'],[I(300,'g','rhubarbe'),I(220,'g','fraises'),I(55,'g','farine'),I(40,'g','beurre'),I(35,'g','sucre'),I(25,'g','poudre d’amande')],['Couper rhubarbe et fraises et les disposer dans un petit plat.','Sabler farine, beurre, sucre et poudre d’amande.','Répartir sur les fruits et cuire 28 minutes à 190 °C.'],'crumbles','chaud','française')
 ];
 
-// V4.1 — enrichissement du Livre. Toutes ces fiches utilisent la même
+// Enrichissement du Livre introduit par la version précédente. Toutes ces fiches utilisent la même
 // structure, les mêmes favoris, notes et avis que les recettes historiques.
 const V41R=({id,n,role,m,t,s=ALL_SEASONS,richness='normal',core=[],i,p,family,cuisine='française',hotCold='chaud',servings=2,yieldText='',balanced=false,pairWith=[],preferred=[],avoid=[]})=>({
   id,n,role,course:role==='terrine'?'starter':role,m,t,s,richness,core,i,p,family,cuisine,hotCold,
@@ -3022,7 +3068,7 @@ const recipeLibrary=[...dishLibrary,...starters,...desserts,...standaloneLibrary
 const recipeIndex=new Map(recipeLibrary.map(recipe=>[recipe.id,recipe]));
 $('libraryCount').textContent=`${dishLibrary.length} plats · ${starters.length} entrées · ${desserts.length} desserts · ${breakfastRecipes.length} petits-déjeuners · ${sauceRecipes.length} sauces · ${sideRecipes.length} accompagnements`;
 $('libraryHint').textContent=`Découvrir ${recipeLibrary.length} recettes dans le Livre`;
-$('versionLine').textContent='Clair Repas V4.1';
+$('versionLine').textContent='Clair Repas V4.2';
 const FAVORITES_KEY='crFavMeals';
 const RECENT_RECIPES_KEY='crRecentRecipesV25';
 const MAX_RECENT_RECIPES=10;
@@ -4497,6 +4543,331 @@ function searchRecipes(query){
   if(!normalizeSearchText(query))return seasonalSuggestions();
   return searchRecipePool(query,recipeLibrary);
 }
+
+const INGREDIENT_ASSISTANT_PAGE_SIZE=6;
+const INGREDIENT_ASSISTANT_MAX_ITEMS=6;
+const INGREDIENT_ALIAS_GROUPS=[
+  {key:'poulet',aliases:['poulet rôti','poulet roti','blanc de poulet','blancs de poulet','escalope de poulet','escalopes de poulet','poulet']},
+  {key:'dinde',aliases:['escalope de dinde','escalopes de dinde','dinde']},
+  {key:'porc',aliases:['rôti de porc','roti de porc','filet mignon','échine de porc','echine de porc','porc']},
+  {key:'boeuf',aliases:['bœuf','boeuf','steak haché','steak hache','steak']},
+  {key:'jambon',aliases:['jambon blanc','jambon cuit','jambon']},
+  {key:'saumon',aliases:['saumon cuit','pavé de saumon','pave de saumon','saumon']},
+  {key:'poisson',aliases:['poisson blanc','cabillaud','colin','merlu','poisson']},
+  {key:'thon',aliases:['thon en boîte','thon en boite','thon']},
+  {key:'oeuf',aliases:['œufs','oeufs','œuf','oeuf']},
+  {key:'pommes de terre',aliases:['pommes de terre cuites','pomme de terre cuite','pommes de terre','pomme de terre','pdt']},
+  {key:'riz',aliases:['riz déjà cuit','riz deja cuit','riz cuit','riz']},
+  {key:'pates',aliases:['pâtes déjà cuites','pates deja cuites','pâtes cuites','pates cuites','pâtes','pates']},
+  {key:'semoule',aliases:['semoule cuite','semoule']},
+  {key:'puree',aliases:['purée de pommes de terre','puree de pommes de terre','purée','puree']},
+  {key:'ratatouille',aliases:['ratatouille']},
+  {key:'legumes',aliases:['légumes cuits','legumes cuits','légumes','legumes']},
+  {key:'courgette',aliases:['courgettes','courgette']},
+  {key:'tomate',aliases:['tomates cerises','tomates','tomate']},
+  {key:'poireau',aliases:['poireaux','poireau']},
+  {key:'carotte',aliases:['carottes','carotte']},
+  {key:'aubergine',aliases:['aubergines','aubergine']},
+  {key:'poivron',aliases:['poivrons','poivron']},
+  {key:'champignon',aliases:['champignons','champignon']},
+  {key:'epinards',aliases:['épinards','epinards','épinard','epinard']},
+  {key:'haricots verts',aliases:['haricots verts','haricot vert']},
+  {key:'petits pois',aliases:['petits pois','petit pois']},
+  {key:'brocoli',aliases:['brocolis','brocoli']},
+  {key:'chou fleur',aliases:['chou-fleur','chou fleur']},
+  {key:'salade',aliases:['salade verte','salade']},
+  {key:'lentilles',aliases:['lentilles cuites','lentilles']},
+  {key:'pois chiches',aliases:['pois chiches','pois chiche']},
+  {key:'haricots blancs',aliases:['haricots blancs','haricot blanc']},
+  {key:'fromage',aliases:['fromage râpé','fromage rape','fromage']},
+  {key:'creme',aliases:['crème fraîche','creme fraiche','crème','creme']}
+].map(group=>({...group,aliases:group.aliases.map(normalizeSearchText).sort((a,b)=>b.length-a.length)}));
+const INGREDIENT_ALIAS_BY_KEY=new Map(INGREDIENT_ALIAS_GROUPS.map(group=>[group.key,group.aliases]));
+const INGREDIENT_PANTRY_PATTERN=/^(sel|poivre|sel et poivre|huile|huile d olive|eau|bouillon|épices|epices|herbes|herbes de provence|paprika|curry|cumin|muscade|thym|persil|basilic|aneth|ciboulette)$/;
+const LEFTOVER_FAMILY_PATTERN=/salade|gratin|quiche|tarte salee|omelette|tortilla|poelee|riz saute|pates|nouilles|wrap|croque|sandwich|hachis|parmentier|farci|soupe|veloute|galette|bowl|boulette|beignet/;
+let ingredientAssistantMode='fridge';
+let ingredientAssistantItems=[];
+let ingredientAssistantRanked=[];
+let ingredientAssistantOffset=0;
+let ingredientAssistantResultsReady=false;
+const assistantRecipeMatchCache=new WeakMap();
+const assistantLeftoverTextCache=new WeakMap();
+
+function escapeHTML(value){
+  return String(value??'').replace(/[&<>"']/g,char=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
+}
+function assistantPhraseVariants(value){
+  const normalized=normalizeSearchText(value);
+  if(!normalized)return[];
+  const values=new Set([normalized]);
+  const words=normalized.split(' ');
+  const last=words.at(-1);
+  if(last.length>3&&last.endsWith('s'))values.add([...words.slice(0,-1),last.slice(0,-1)].join(' '));
+  else if(last.length>3)values.add([...words.slice(0,-1),`${last}s`].join(' '));
+  return[...values];
+}
+function assistantTextHas(text,value){
+  const padded=` ${normalizeSearchText(text)} `;
+  return assistantPhraseVariants(value).some(variant=>padded.includes(` ${variant} `));
+}
+function assistantIngredientKey(value){
+  let normalized=normalizeSearchText(value)
+    .replace(/^(?:les? )?(?:restes? de |reste d |reste de )/,'')
+    .replace(/\b(?:deja |déjà )?(?:cuit|cuite|cuits|cuites|roti|rotie|rotis|roties|prepare|preparee|prepares|preparees)\b/g,' ')
+    .replace(/\s+/g,' ').trim();
+  for(const group of INGREDIENT_ALIAS_GROUPS){
+    if(group.aliases.some(alias=>assistantTextHas(normalized,alias)))return group.key;
+  }
+  const words=normalized.split(' ').filter(Boolean);
+  if(words.length===1&&words[0].length>4&&words[0].endsWith('s'))return words[0].slice(0,-1);
+  return normalized;
+}
+function assistantIngredientItem(label,mode=ingredientAssistantMode){
+  const clean=String(label||'').trim().replace(/\s+/g,' ').slice(0,42);
+  const normalized=normalizeSearchText(clean);
+  return{
+    label:clean,
+    key:assistantIngredientKey(clean),
+    prepared:mode==='leftovers',
+    roasted:/roti|rôti/.test(clean.toLowerCase()),
+    cooked:/cuit|cuite|cuits|cuites|roti|rôti|prepare|préparé/.test(clean.toLowerCase()),
+    smoked:/fumé|fume/.test(clean.toLowerCase()),
+    normalized
+  };
+}
+function assistantAliases(item){return INGREDIENT_ALIAS_BY_KEY.get(item.key)||[item.key]}
+function assistantRecipeMatchData(recipe){
+  const cached=assistantRecipeMatchCache.get(recipe);
+  if(cached)return cached;
+  const tags=tagsOf(recipe);
+  const data={
+    name:normalizeSearchText(recipe.n),
+    tagText:normalizeSearchText(`${tags.protein} ${tags.group} ${tags.starch} ${(tags.vegetables||[]).join(' ')}`),
+    ingredients:(recipe.i||[]).map((ingredient,index)=>({
+    index,
+    ingredient,
+    text:normalizeSearchText(`${ingredient.k||''} ${ingredient.n||''}`)
+    }))
+  };
+  assistantRecipeMatchCache.set(recipe,data);
+  return data;
+}
+function assistantLeftoverRecipeText(recipe){
+  const cached=assistantLeftoverTextCache.get(recipe);
+  if(cached)return cached;
+  const text=normalizeSearchText(`${recipe.n} ${recipe.family||''} ${(recipe.p||[]).join(' ')} ${(recipe.i||[]).map(entry=>entry.n).join(' ')}`);
+  assistantLeftoverTextCache.set(recipe,text);
+  return text;
+}
+function assistantMatchIngredient(recipe,item){
+  const aliases=assistantAliases(item);
+  const data=assistantRecipeMatchData(recipe);
+  const ingredientMatches=data.ingredients.filter(entry=>aliases.some(alias=>assistantTextHas(entry.text,alias)));
+  const nameMatch=aliases.some(alias=>assistantTextHas(data.name,alias));
+  let metadataMatch=aliases.some(alias=>assistantTextHas(data.tagText,alias));
+  if(item.key==='legumes')metadataMatch=(tagsOf(recipe).vegetables||[]).length>0;
+  if(item.key==='puree')metadataMatch=assistantTextHas(recipeSearchData(recipe).all,'puree');
+  const matched=ingredientMatches.length>0||nameMatch||metadataMatch;
+  let importance=0;
+  if(nameMatch)importance+=58;
+  if(ingredientMatches.some(entry=>entry.index===0))importance+=52;
+  else if(ingredientMatches.some(entry=>entry.index<3))importance+=30;
+  else if(ingredientMatches.length)importance+=18;
+  if(metadataMatch)importance+=24;
+  return{matched,importance,ingredientMatches,nameMatch,metadataMatch};
+}
+function assistantLeftoverCompatibility(recipe,item,match){
+  if(!match.matched)return 0;
+  const text=assistantLeftoverRecipeText(recipe);
+  const explicitCooked=match.ingredientMatches.some(entry=>/cuit|cuite|cuits|cuites|roti|rotie|fumé|fume/.test(entry.text));
+  const recoveryStyle=LEFTOVER_FAMILY_PATTERN.test(normalizeSearchText(`${recipe.n} ${recipe.family||''}`));
+  if(item.key==='saumon'&&/saumon fume/.test(text)&&!item.smoked)return 0;
+  if(explicitCooked)return 1.52;
+  if(item.key==='riz')return /riz saute|salade|poelee|farci|galette|bowl/.test(text)?1.42:0;
+  if(item.key==='pates')return /salade|poelee|gratin|omelette|galette/.test(text)?1.34:0;
+  if(item.key==='puree')return /hachis|parmentier|galette|croquette|gratin/.test(text)?1.48:0;
+  if(item.key==='pommes de terre')return /salade|omelette|tortilla|poelee|gratin|galette|hachis|parmentier|croquette/.test(text)?1.34:0;
+  if(['poulet','dinde','porc','boeuf','jambon','saumon','poisson','thon'].includes(item.key))return recoveryStyle?1.35:0;
+  if(item.key==='ratatouille')return /quiche|tarte|omelette|gratin|pates|riz|farci|soupe/.test(text)?1.42:recoveryStyle?1.2:0;
+  if(item.key==='legumes'||(tagsOf(recipe).vegetables||[]).length)return recoveryStyle?1.22:0.88;
+  return recoveryStyle?1.18:0.82;
+}
+function assistantCandidatePool(){
+  const time=$('timeAvailable').value;
+  const mode=$('mode').value;
+  let pool=dishLibrary.filter(recipe=>fitsTimeFilter(recipe,time));
+  if(!pool.length)pool=[...dishLibrary];
+  if(mode!=='Tous'){
+    const byMode=pool.filter(recipe=>recipe.m===mode);
+    if(byMode.length)pool=byMode;
+  }
+  return pool;
+}
+function assistantMissingIngredients(recipe,matchedItems){
+  const availableKeys=new Set(matchedItems.map(item=>item.key));
+  const missing=[];
+  const seen=new Set();
+  for(const ingredient of recipe.i||[]){
+    const label=String(ingredient.n||'').trim();
+    const normalized=normalizeSearchText(label);
+    if(!label||INGREDIENT_PANTRY_PATTERN.test(normalized)||/sel et poivre|huile et|vinaigrette|epices|herbes fraiches/.test(normalized))continue;
+    const key=assistantIngredientKey(label);
+    const supplied=[...availableKeys].some(value=>value===key||assistantTextHas(normalized,value)||assistantTextHas(value,normalized));
+    if(supplied||seen.has(key))continue;
+    seen.add(key);
+    missing.push(label.replace(/^(?:petit|petite|quelques)\s+/i,''));
+    if(missing.length===5)break;
+  }
+  return missing;
+}
+function assistantMatchLabel(matched,total){
+  if(matched===total)return'Très bonne correspondance';
+  if(matched>=2||matched/Math.max(1,total)>=0.66)return'Bonne correspondance';
+  return'Possible';
+}
+function assistantPreferredType(recipe){
+  const slots=recipe.mealSlots||[];
+  if(slots.includes('eve')&&!slots.includes('mid'))return'eve';
+  return'mid';
+}
+function ingredientAssistantRanking(items=ingredientAssistantItems,mode=ingredientAssistantMode){
+  if(!items.length)return[];
+  const reactions=reactionMap();
+  const recent=new Set([...recentUseIds('mid'),...recentUseIds('eve')]);
+  const seasonProfile=culinarySeasonProfile();
+  const personalizationByType={
+    mid:personalizationContext(false,'mid'),
+    eve:personalizationContext(false,'eve')
+  };
+  return assistantCandidatePool().map(recipe=>{
+    if(reactions[recipe.id]==='notForMe')return null;
+    const matches=items.map(item=>({item,match:assistantMatchIngredient(recipe,item)}));
+    const usable=matches.filter(entry=>{
+      if(!entry.match.matched)return false;
+      if(mode!=='leftovers')return true;
+      entry.compatibility=assistantLeftoverCompatibility(recipe,entry.item,entry.match);
+      return entry.compatibility>0;
+    });
+    if(!usable.length)return null;
+    const matchedItems=usable.map(entry=>entry.item);
+    const coverage=usable.length/items.length;
+    const type=assistantPreferredType(recipe);
+    const personalization=personalizationByType[type];
+    let score=usable.length*245+coverage*520+usable.reduce((sum,entry)=>sum+entry.match.importance,0);
+    if(mode==='leftovers')score+=usable.reduce((sum,entry)=>sum+(entry.compatibility||0)*75,0);
+    score+=seasonalAffinity(recipe,tagsOf(recipe),seasonProfile)*22;
+    score*=seasonMethodBoost(recipe,seasonProfile);
+    score*=explicitReactionMultiplier(recipe.id,reactions,false);
+    score*=observedPreferenceMultiplier(recipe,type,personalization.profile,false);
+    score*=Math.max(.48,Math.min(1.16,exposureMultiplier(recipe,personalization.learning,false)));
+    if(recent.has(recipe.id))score*=.58;
+    return{
+      recipe,
+      score,
+      coverage,
+      matchedItems,
+      missing:assistantMissingIngredients(recipe,matchedItems),
+      label:assistantMatchLabel(usable.length,items.length)
+    };
+  }).filter(Boolean).sort((a,b)=>b.score-a.score||b.coverage-a.coverage||a.recipe.n.localeCompare(b.recipe.n,'fr'));
+}
+function assistantAdaptationText(recipe){
+  if(ingredientAssistantMode!=='leftovers')return'';
+  const ranking=ingredientAssistantRanked.find(entry=>entry.recipe.id===recipe.id);
+  if(!ranking)return'';
+  const keys=new Set(ranking.matchedItems.map(item=>item.key));
+  if(keys.has('riz'))return'Utilisez le riz déjà cuit : ajoutez-le seulement au moment de le faire sauter ou de le réchauffer.';
+  if(keys.has('pates'))return'Utilisez les pâtes déjà cuites et supprimez leur cuisson initiale ; ajoutez-les juste le temps de les réchauffer.';
+  if(keys.has('puree'))return'Utilisez directement la purée restante pour le montage, sans la recuire avant la dernière étape.';
+  if(keys.has('pommes de terre'))return'Les pommes de terre étant déjà cuites, ajoutez-les à l’étape d’assemblage ou de coloration.';
+  if([...keys].some(key=>['poulet','dinde','porc','boeuf','jambon','saumon','poisson','thon'].includes(key)))return'La viande ou le poisson est déjà cuit : ajoutez-le pendant les dernières minutes, juste pour le réchauffer sans le dessécher.';
+  if(keys.has('ratatouille'))return'La ratatouille est déjà cuite : incorporez-la directement à l’assemblage et réduisez le temps de cuisson.';
+  return'Ajoutez les restes déjà cuits vers la fin de la préparation, uniquement le temps de les réchauffer.';
+}
+function assistantAdaptationHTML(recipe){
+  const text=assistantAdaptationText(recipe);
+  return text?`<div class="browser-filter-info"><strong>♻️ Adaptation pour vos restes</strong><br>${escapeHTML(text)}</div>`:'';
+}
+function ingredientAssistantAdd(value){
+  const pieces=String(value||'').split(/[,;\n]+/).map(item=>item.trim()).filter(Boolean);
+  if(!pieces.length)return;
+  for(const piece of pieces){
+    if(ingredientAssistantItems.length>=INGREDIENT_ASSISTANT_MAX_ITEMS){show('Six ingrédients suffisent pour garder la recherche simple');break}
+    const item=assistantIngredientItem(piece);
+    if(!item.key||ingredientAssistantItems.some(existing=>existing.key===item.key))continue;
+    ingredientAssistantItems.push(item);
+  }
+  ingredientAssistantResultsReady=false;
+  ingredientAssistantRanked=[];
+  ingredientAssistantOffset=0;
+  renderRecipeBrowser();
+}
+function ingredientAssistantRemove(index){
+  ingredientAssistantItems.splice(Number(index),1);
+  ingredientAssistantResultsReady=false;
+  ingredientAssistantRanked=[];
+  ingredientAssistantOffset=0;
+  renderRecipeBrowser();
+}
+function ingredientAssistantFind(){
+  if(!ingredientAssistantItems.length){show('Ajoutez au moins un ingrédient');return}
+  ingredientAssistantRanked=ingredientAssistantRanking();
+  ingredientAssistantOffset=0;
+  ingredientAssistantResultsReady=true;
+  renderRecipeBrowser();
+}
+function ingredientAssistantResultHTML(entry){
+  const recipe=entry.recipe;
+  const have=entry.matchedItems.map(item=>escapeHTML(item.label)).join(', ');
+  const missing=entry.missing.length?entry.missing.map(escapeHTML).join(', '):'rien d’essentiel';
+  const adaptation=ingredientAssistantMode==='leftovers'?assistantAdaptationText(recipe):'';
+  return `<article class="ingredient-result">
+    <span class="ingredient-match">${entry.label}</span>
+    <h3 class="ingredient-result-title">${recipe.n}</h3>
+    <div class="ingredient-result-meta">${bookCourseLabel(recipe)} · ⏱️ ${recipe.t} · 🔥 ${recipe.m}</div>
+    <p class="ingredient-result-use"><strong>Vous avez :</strong> ${have}</p>
+    <p class="ingredient-result-missing"><strong>À prévoir :</strong> ${missing}</p>
+    ${adaptation?`<p class="ingredient-result-missing"><strong>Astuce restes :</strong> ${escapeHTML(adaptation)}</p>`:''}
+    <div class="ingredient-result-actions">
+      <button class="ingredient-result-open" type="button" data-recipe-id="${recipe.id}">📖 Voir la recette</button>
+      <button class="ingredient-result-select" type="button" data-recipe-id="${recipe.id}">🍽️ Choisir</button>
+    </div>
+  </article>`;
+}
+function ingredientAssistantHTML(){
+  const leftovers=ingredientAssistantMode==='leftovers';
+  const icon=leftovers?'♻️':'🥕';
+  const title=leftovers?'Il me reste…':'J’ai ça dans mon frigo';
+  const intro=leftovers
+    ?'Indiquez un ou plusieurs aliments déjà préparés. Clair Repas privilégie les recettes qui peuvent réellement les réutiliser.'
+    :'Indiquez simplement quelques ingrédients que vous souhaitez utiliser. Les produits courants peuvent naturellement être ajoutés.';
+  const placeholder=leftovers?'Ex. poulet rôti, riz cuit…':'Ex. poulet, courgette…';
+  let results='';
+  if(ingredientAssistantResultsReady){
+    const page=ingredientAssistantRanked.slice(ingredientAssistantOffset,ingredientAssistantOffset+INGREDIENT_ASSISTANT_PAGE_SIZE);
+    results=ingredientAssistantRanked.length
+      ?`<section class="ingredient-results"><h2 class="ingredient-results-heading">${ingredientAssistantRanked.length} idées classées par pertinence</h2>
+        ${page.map(ingredientAssistantResultHTML).join('')}
+        ${ingredientAssistantRanked.length>INGREDIENT_ASSISTANT_PAGE_SIZE?'<button class="ingredient-more" id="ingredientMore" type="button">↻ Une autre idée</button>':''}
+      </section>`
+      :'<div class="browser-empty">Aucune recette suffisamment cohérente avec ces indications et vos filtres actuels. Essayez un ingrédient plus général ou un autre mode de cuisson.</div>';
+  }
+  return `<article class="ingredient-assistant">
+    <div class="ingredient-assistant-intro"><h2>${icon} ${title}</h2><p>${intro}</p></div>
+    <div class="ingredient-entry">
+      <div class="ingredient-chips">${ingredientAssistantItems.length
+        ?ingredientAssistantItems.map((item,index)=>`<span class="ingredient-chip">${escapeHTML(item.label)}<button type="button" data-ingredient-remove="${index}" aria-label="Retirer ${escapeHTML(item.label)}">×</button></span>`).join('')
+        :'<span class="ingredient-chip-empty">Ajoutez de 1 à 6 aliments, sans quantité obligatoire.</span>'}</div>
+      <div class="ingredient-input-row">
+        <input class="ingredient-input" id="ingredientInput" type="text" inputmode="text" autocomplete="off" maxlength="120" placeholder="${placeholder}" aria-label="Ajouter un ingrédient">
+        <button class="ingredient-add" id="ingredientAdd" type="button">Ajouter</button>
+      </div>
+      <p class="ingredient-entry-hint">Vous pouvez aussi saisir plusieurs éléments séparés par des virgules. Aucun inventaire n’est enregistré.</p>
+      <button class="ingredient-find" id="ingredientFind" type="button">Trouver des idées</button>
+    </div>
+    ${results}
+  </article>`;
+}
 function bookRecipeText(recipe){return recipeSearchData(recipe).all}
 function bookIsDish(recipe){return recipeRole(recipe)==='dish'}
 function bookHas(recipe,pattern){return pattern.test(bookRecipeText(recipe))}
@@ -4733,6 +5104,7 @@ let browserLastFocus=null;
 let browserSelection=null;
 let browserBookShelfId=null;
 let browserBookSubcategoryId='all';
+let browserTargetDirect=false;
 let bookVisibleCount=BOOK_PAGE_SIZE;
 function browserFilterSummaryHTML(){
   const {mode,time}=browserActiveFilters();
@@ -4765,6 +5137,25 @@ function openRecipeBrowser(mode='search'){
   }
   renderRecipeBrowser();
   if(browserMode==='search')setTimeout(()=>{try{$('recipeSearch').focus()}catch(e){}},60);
+}
+function openIngredientAssistant(mode){
+  ingredientAssistantMode=mode==='leftovers'?'leftovers':'fridge';
+  ingredientAssistantItems=[];
+  ingredientAssistantRanked=[];
+  ingredientAssistantOffset=0;
+  ingredientAssistantResultsReady=false;
+  browserSelection=null;
+  browserMode=ingredientAssistantMode==='leftovers'?'ingredient-leftovers':'ingredient-fridge';
+  browserReturnMode=browserMode;
+  browserRecipeId=null;
+  browserBookShelfId=null;
+  browserBookSubcategoryId='all';
+  browserTargetDirect=false;
+  browserLastFocus=document.activeElement||null;
+  $('recipeBrowser').hidden=false;
+  document.body.classList.add('browser-open');
+  renderRecipeBrowser();
+  setTimeout(()=>{try{$('ingredientInput').focus()}catch(e){}},60);
 }
 function openBookShelf(id){
   if(id!=='favorites'&&id!=='again'&&!bookShelfDefinition(id))return;
@@ -4801,13 +5192,14 @@ function closeRecipeBrowser(){
   browserSelection=null;
   browserBookShelfId=null;
   browserBookSubcategoryId='all';
+  browserTargetDirect=false;
   bookVisibleCount=BOOK_PAGE_SIZE;
   updateWakeLock();
   if(browserLastFocus&&typeof browserLastFocus.focus==='function')browserLastFocus.focus();
 }
 function showBrowserRecipe(id,fromMode=browserMode){
   if(!recipeIndex.has(id))return;
-  browserReturnMode=['book','book-shelf','search','favorites','recent'].includes(fromMode)?fromMode:'search';
+  browserReturnMode=['book','book-shelf','search','favorites','recent','ingredient-fridge','ingredient-leftovers'].includes(fromMode)?fromMode:'search';
   browserMode='detail';
   browserRecipeId=id;
   recordRecentRecipe(id);
@@ -4816,8 +5208,18 @@ function showBrowserRecipe(id,fromMode=browserMode){
 }
 function openBookRecipeTarget(id){
   const recipe=recipeIndex.get(id);
-  if(!recipe||!bookRecipeCanTarget(recipe)||!['book','book-shelf'].includes(browserReturnMode))return;
+  if(!recipe||!bookRecipeCanTarget(recipe)||!['book','book-shelf','ingredient-fridge','ingredient-leftovers'].includes(browserReturnMode))return;
   browserRecipeId=id;
+  browserTargetDirect=false;
+  browserMode='book-target';
+  renderRecipeBrowser();
+}
+function openIngredientRecipeTarget(id){
+  const recipe=recipeIndex.get(id);
+  if(!recipe||recipeRole(recipe)!=='dish'||!['ingredient-fridge','ingredient-leftovers'].includes(browserMode))return;
+  browserRecipeId=id;
+  browserReturnMode=browserMode;
+  browserTargetDirect=true;
   browserMode='book-target';
   renderRecipeBrowser();
 }
@@ -4844,7 +5246,7 @@ function applyBookRecipeToTarget(id,dayIndex,type){
   recordRecentRecipe(recipe.id);
   closeRecipeBrowser();
   render();
-  show(`${selectionComponentLabel(component)} choisi${component==='starter'?'e':''} depuis le Livre · votre choix est conservé`);
+  show(`${selectionComponentLabel(component)} choisi${component==='starter'?'e':''} · votre choix est conservé`);
 }
 function applyManualRecipe(id){
   const selection=browserSelection?{...browserSelection}:null;
@@ -4878,6 +5280,15 @@ function bindBrowserInteractions(){
   document.querySelectorAll('.recipe-result-select').forEach(button=>button.onclick=()=>{
     applyManualRecipe(button.dataset.recipeId);
   });
+  document.querySelectorAll('.ingredient-result-open').forEach(button=>button.onclick=()=>{
+    showBrowserRecipe(button.dataset.recipeId,browserMode);
+  });
+  document.querySelectorAll('.ingredient-result-select').forEach(button=>button.onclick=()=>{
+    openIngredientRecipeTarget(button.dataset.recipeId);
+  });
+  document.querySelectorAll('[data-ingredient-remove]').forEach(button=>button.onclick=()=>{
+    ingredientAssistantRemove(button.dataset.ingredientRemove);
+  });
   document.querySelectorAll('[data-book-shelf]').forEach(button=>button.onclick=()=>{
     openBookShelf(button.dataset.bookShelf);
   });
@@ -4897,6 +5308,31 @@ function bindBrowserInteractions(){
   if(more)more.onclick=()=>{
     const scrollTop=$('browserContent').scrollTop;
     bookVisibleCount+=BOOK_PAGE_SIZE;
+    renderRecipeBrowser();
+    $('browserContent').scrollTop=scrollTop;
+  };
+  const ingredientInput=$('ingredientInput');
+  const addIngredient=()=>{
+    if(!ingredientInput)return;
+    const value=ingredientInput.value;
+    ingredientInput.value='';
+    ingredientAssistantAdd(value);
+  };
+  const ingredientAdd=$('ingredientAdd');
+  if(ingredientAdd)ingredientAdd.onclick=addIngredient;
+  if(ingredientInput)ingredientInput.onkeydown=event=>{
+    if(event.key==='Enter'){
+      event.preventDefault();
+      addIngredient();
+    }
+  };
+  const ingredientFind=$('ingredientFind');
+  if(ingredientFind)ingredientFind.onclick=ingredientAssistantFind;
+  const ingredientMore=$('ingredientMore');
+  if(ingredientMore)ingredientMore.onclick=()=>{
+    const scrollTop=$('browserContent').scrollTop;
+    ingredientAssistantOffset+=INGREDIENT_ASSISTANT_PAGE_SIZE;
+    if(ingredientAssistantOffset>=ingredientAssistantRanked.length)ingredientAssistantOffset=0;
     renderRecipeBrowser();
     $('browserContent').scrollTop=scrollTop;
   };
@@ -4928,11 +5364,13 @@ function renderRecipeBrowser(){
     const recipe=recipeIndex.get(browserRecipeId);
     if(!recipe){browserMode=browserReturnMode;renderRecipeBrowser();return}
     const fromBook=['book','book-shelf'].includes(browserReturnMode);
-    $('browserTitle').textContent=choosing?`Choisir ${selectionComponentLabel(browserSelection.component,true)}`:fromBook?'Le Livre de Clair Repas':'Recette';
+    const fromAssistant=['ingredient-fridge','ingredient-leftovers'].includes(browserReturnMode);
+    $('browserTitle').textContent=choosing?`Choisir ${selectionComponentLabel(browserSelection.component,true)}`:fromBook?'Le Livre de Clair Repas':fromAssistant?(browserReturnMode==='ingredient-leftovers'?'Il me reste…':'J’ai ça dans mon frigo'):'Recette';
     content.innerHTML=`<article class="browser-recipe">
       <h2 class="browser-recipe-title">${recipe.n}</h2>
       <div class="meta">⏱️ ${recipe.t} · 🔥 ${recipe.m}${noteIndicatorHTML(recipe)}</div>
-      ${choosing?`<button class="browser-select-recipe" id="browserSelectRecipe" data-recipe-id="${recipe.id}" type="button">Choisir cette recette</button>`:fromBook&&bookRecipeCanTarget(recipe)?`<button class="browser-select-recipe" id="browserChooseBookRecipe" data-recipe-id="${recipe.id}" type="button">🍽️ Choisir cette recette</button>`:''}
+      ${choosing?`<button class="browser-select-recipe" id="browserSelectRecipe" data-recipe-id="${recipe.id}" type="button">Choisir cette recette</button>`:(fromBook||fromAssistant)&&bookRecipeCanTarget(recipe)?`<button class="browser-select-recipe" id="browserChooseBookRecipe" data-recipe-id="${recipe.id}" type="button">🍽️ Choisir cette recette</button>`:''}
+      ${fromAssistant?assistantAdaptationHTML(recipe):''}
       <div class="recipe open">${recipeHTML(recipe)}</div>
     </article>`;
   }else if(browserMode==='book-target'){
@@ -4956,6 +5394,9 @@ function renderRecipeBrowser(){
     }else{
       content.innerHTML=bookHomeHTML();
     }
+  }else if(browserMode==='ingredient-fridge'||browserMode==='ingredient-leftovers'){
+    $('browserTitle').textContent=browserMode==='ingredient-leftovers'?'Il me reste…':'J’ai ça dans mon frigo';
+    content.innerHTML=ingredientAssistantHTML();
   }else if(browserMode==='favorites'){
     $('browserTitle').textContent='Mes favoris';
     const recipes=favoriteIds().map(id=>recipeIndex.get(id)).filter(Boolean);
@@ -5600,7 +6041,7 @@ function updateTimerUI(){
     if(timerInterval){clearInterval(timerInterval);timerInterval=null}
     bar.classList.remove('show','done');
     document.body.classList.remove('timer-running');
-    document.title='Clair Repas V4.1';
+    document.title='Clair Repas V4.2';
     return;
   }
   const remaining=Math.max(0,Math.ceil((kitchenTimer.endAt-Date.now())/1000));
@@ -6329,12 +6770,15 @@ $('courses').onclick=async()=>{
 };
 
 $('chooseRecipe').onclick=()=>openRecipeBrowser('book');
+$('openFridge').onclick=()=>openIngredientAssistant('fridge');
+$('openLeftovers').onclick=()=>openIngredientAssistant('leftovers');
 $('openFavorites').onclick=()=>openRecipeBrowser('favorites');
 $('openRecent').onclick=()=>openRecipeBrowser('recent');
 $('browserClose').onclick=closeRecipeBrowser;
 $('browserBack').onclick=()=>{
   if(browserMode==='book-target'){
-    browserMode='detail';
+    browserMode=browserTargetDirect?browserReturnMode:'detail';
+    browserTargetDirect=false;
     renderRecipeBrowser();
     updateWakeLock();
     return;
