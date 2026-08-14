@@ -9,7 +9,7 @@
 <meta name="apple-mobile-web-app-title" content="Clair Repas">
 <link rel="manifest" href="./manifest.webmanifest">
 <link rel="apple-touch-icon" href="./icon-192.png">
-<title>Clair Repas V3.7</title>
+<title>Clair Repas V3.8</title>
 <style>
 :root{
   --bg:#f4efe7;--card:#fffdfa;--text:#27231f;--muted:#746c63;
@@ -66,13 +66,15 @@ select{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:1
 .meal-top{display:flex;justify-content:space-between;align-items:center;gap:10px}
 .meal-format{margin:11px 0 5px}
 .meal-format-label{display:block;margin:0 0 6px;color:var(--muted);font-size:11px;font-weight:780}
-.meal-format-options{display:grid;grid-template-columns:.72fr 1.12fr 1.16fr;gap:5px}
-.meal-format-option{min-width:0;min-height:46px;padding:7px 3px;border:1px solid var(--line);border-radius:11px;background:white;color:var(--text);font-size:clamp(9.5px,2.9vw,12px);font-weight:820;line-height:1.12;white-space:nowrap;touch-action:manipulation}
+.meal-format-options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}
+.meal-format-option{min-width:0;min-height:48px;padding:8px 5px;border:1px solid var(--line);border-radius:11px;background:white;color:var(--text);font-size:clamp(11px,3vw,12.5px);font-weight:820;line-height:1.15;white-space:normal;touch-action:manipulation}
 .meal-format-option:active{transform:scale(.985)}
 .meal-format-option[aria-pressed="true"]{border-color:var(--green);background:var(--green-soft);color:var(--green);box-shadow:inset 0 0 0 1px rgba(63,118,87,.12)}
 .course-block{padding-top:10px}
 .course-block+.course-block{margin-top:12px;border-top:1px dashed var(--line)}
-.course-label{margin:0 0 5px;color:var(--muted);font-size:11px;font-weight:880;letter-spacing:.25px;text-transform:uppercase}
+.course-label-row{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:0 0 5px}
+.course-label{color:var(--muted);font-size:11px;font-weight:880;letter-spacing:.25px;text-transform:uppercase}
+.manual-badge{display:inline-flex;align-items:center;min-height:24px;padding:4px 8px;border-radius:999px;background:#fff4da;color:#765415;font-size:10px;font-weight:850;white-space:nowrap}
 .course-block.starter .course-label{color:#4b785f}
 .course-block.dessert .course-label{color:var(--purple)}
 .course-block .meal-title-row{margin-top:4px}
@@ -87,8 +89,10 @@ select{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:1
 .meal-title-row .recipe-favorite{flex:0 0 42px;min-width:42px;width:42px;height:42px;padding:0}
 .meta{color:var(--muted);font-size:13px}
 .meal-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:11px}
-.small-btn{padding:10px 8px;border:0;border-radius:12px;background:var(--green-soft);color:var(--text);font-weight:760}
+.meal-actions.has-chooser .recipe-btn{grid-column:1/-1}
+.small-btn{min-height:44px;padding:10px 8px;border:0;border-radius:12px;background:var(--green-soft);color:var(--text);font-weight:760;touch-action:manipulation}
 .small-btn.secondary{background:#f2eee9}
+.small-btn.choose-component-btn{border:1px solid #cfded4;background:white;color:#24563b}
 .meal-status-action{width:100%;min-height:40px;margin-top:7px;padding:8px;border:0;background:transparent;color:var(--muted);font-weight:730}
 .meal-placeholder{margin-top:10px;padding:13px 14px;border-radius:15px;background:#f6f2ed;color:var(--muted)}
 .meal-placeholder.leftovers{background:#fff8e9;color:#715522}
@@ -178,13 +182,16 @@ body.timer-running .browser-content{padding-bottom:calc(105px + env(safe-area-in
 .browser-filter-action{display:block;width:100%;min-height:42px;margin-top:8px;border:1px solid #d9cec2;border-radius:11px;background:#fffaf4;color:var(--text);font-weight:800}
 .browser-refresh{width:100%;min-height:46px;margin:0 0 10px;border:1px solid #cfded4;border-radius:14px;background:#edf6f0;color:#24563b;font-weight:850}
 .recipe-result{display:grid;grid-template-columns:1fr 48px;gap:8px;margin-bottom:8px;padding:7px;border:1px solid var(--line);border-radius:16px;background:var(--card)}
+.recipe-result.selecting{grid-template-columns:minmax(0,1fr) 86px}
 .recipe-result-open{min-width:0;padding:7px 8px;border:0;background:transparent;color:var(--text);text-align:left}
 .recipe-result-title{display:block;font-size:16px;line-height:1.22;font-weight:850}
 .recipe-result-meta{display:block;margin-top:5px;color:var(--muted);font-size:12px}
 .recipe-result .recipe-favorite{align-self:center;width:44px;height:44px;padding:0}
+.recipe-result-select{align-self:center;min-height:44px;padding:8px;border:1px solid #b8d8c3;border-radius:12px;background:var(--green-soft);color:#24563b;font-size:12px;font-weight:850;touch-action:manipulation}
 .browser-empty{padding:30px 16px;text-align:center;color:var(--muted)}
 .browser-recipe{padding:3px 2px 16px}
 .browser-recipe-title{margin:4px 0 5px;font-size:23px;line-height:1.16}
+.browser-select-recipe{width:100%;min-height:48px;margin:13px 0 2px;padding:11px 13px;border:1px solid var(--green);border-radius:13px;background:var(--green);color:white;font-weight:880;touch-action:manipulation}
 .browser-recipe .recipe{display:block;margin-top:12px}
 @media(max-width:620px){
   .settings{grid-template-columns:1fr 1fr}
@@ -203,7 +210,9 @@ body.timer-running .browser-content{padding-bottom:calc(105px + env(safe-area-in
   .program-heading{display:block}
   .program-summary{display:block;margin-top:3px}
   .meal-title{font-size:20px}
-  .meal-actions{grid-template-columns:1fr}
+  .meal-actions:not(.has-chooser){grid-template-columns:1fr}
+  .meal-actions.has-chooser{grid-template-columns:1fr 1fr}
+  .meal-actions.has-chooser .recipe-btn{grid-column:1/-1}
   .meal-top{align-items:flex-start}
   .recipe-tools{align-items:stretch;flex-direction:column}
   .portion-control{justify-content:space-between}
@@ -281,7 +290,7 @@ body.timer-running .browser-content{padding-bottom:calc(105px + env(safe-area-in
   <div class="recipe-shortcuts-main">
     <button class="shortcut-btn primary" id="chooseRecipe" type="button">
       <span class="shortcut-title">🔎 Choisir une recette</span>
-      <span class="shortcut-hint">Explorer les 800 plats · rechercher aussi entrées et desserts</span>
+      <span class="shortcut-hint">Explorer les 800 plats, 100 entrées et 100 desserts</span>
     </button>
   </div>
   <div class="recipe-shortcuts-secondary">
@@ -318,7 +327,7 @@ body.timer-running .browser-content{padding-bottom:calc(105px + env(safe-area-in
 
 <p class="note">La saison, le temps disponible et vos préférences guident les prochains choix. Le programme affiché reste conservé jusqu’à une action volontaire.</p>
 <p class="library-count" id="libraryCount">800 plats · 100 entrées · 100 desserts</p>
-<p class="version" id="versionLine">Clair Repas V3.7</p>
+<p class="version" id="versionLine">Clair Repas V3.8</p>
 </main>
 <div class="recipe-browser" id="recipeBrowser" hidden>
   <section class="browser-panel" role="dialog" aria-modal="true" aria-labelledby="browserTitle">
@@ -329,7 +338,7 @@ body.timer-running .browser-content{padding-bottom:calc(105px + env(safe-area-in
     </div>
     <div class="browser-search" id="browserSearchArea">
       <input id="recipeSearch" type="search" inputmode="search" autocomplete="off" placeholder="Nom ou ingrédient : poulet, courgette…" aria-label="Rechercher par nom ou ingrédient">
-      <p class="browser-hint">Chaque recette compatible passe avant qu’une recette déjà montrée revienne.</p>
+      <p class="browser-hint" id="browserHint">Chaque recette compatible passe avant qu’une recette déjà montrée revienne.</p>
     </div>
     <div class="browser-content" id="browserContent"></div>
   </section>
@@ -2636,7 +2645,7 @@ const dishLibrary=[...noon,...evening];
 const recipeLibrary=[...dishLibrary,...starters,...desserts];
 const recipeIndex=new Map(recipeLibrary.map(recipe=>[recipe.id,recipe]));
 $('libraryCount').textContent=`${dishLibrary.length} plats · ${starters.length} entrées · ${desserts.length} desserts`;
-$('versionLine').textContent='Clair Repas V3.7';
+$('versionLine').textContent='Clair Repas V3.8';
 const FAVORITES_KEY='crFavMeals';
 const RECENT_RECIPES_KEY='crRecentRecipesV25';
 const MAX_RECENT_RECIPES=10;
@@ -2859,11 +2868,29 @@ const MEAL_LEFTOVERS='leftovers';
 const MEAL_FORMAT_DISH='dish';
 const MEAL_FORMAT_STARTER_DISH='starter-dish';
 const MEAL_FORMAT_DISH_DESSERT='dish-dessert';
-const MEAL_FORMATS=[MEAL_FORMAT_DISH,MEAL_FORMAT_STARTER_DISH,MEAL_FORMAT_DISH_DESSERT];
+const MEAL_FORMAT_FULL='starter-dish-dessert';
+const MEAL_FORMATS=[MEAL_FORMAT_DISH,MEAL_FORMAT_STARTER_DISH,MEAL_FORMAT_DISH_DESSERT,MEAL_FORMAT_FULL];
 function statusKey(type){return`${type}Status`}
 function formatKey(type){return`${type}Format`}
 function starterKey(type){return`${type}Starter`}
 function dessertKey(type){return`${type}Dessert`}
+function manualKey(type,component){
+  const suffix=component==='starter'?'Starter':component==='dessert'?'Dessert':'Dish';
+  return`${type}${suffix}Manual`;
+}
+function formatHasStarter(format){return format===MEAL_FORMAT_STARTER_DISH||format===MEAL_FORMAT_FULL}
+function formatHasDessert(format){return format===MEAL_FORMAT_DISH_DESSERT||format===MEAL_FORMAT_FULL}
+function componentKey(type,component){return component==='starter'?starterKey(type):component==='dessert'?dessertKey(type):type}
+function isManualChoice(day,type,component){return Boolean(day&&day[manualKey(type,component)])}
+function setManualChoice(day,type,component,value){
+  if(day)day[manualKey(type,component)]=Boolean(value);
+}
+function componentMatchesRecipe(component,recipe){
+  if(!recipe)return false;
+  if(component==='starter')return recipe.course==='starter';
+  if(component==='dessert')return recipe.course==='dessert';
+  return !recipe.course;
+}
 function normalizeMealFormat(value){return MEAL_FORMATS.includes(value)?value:MEAL_FORMAT_DISH}
 function mealFormat(day,type){return normalizeMealFormat(day&&day[formatKey(type)])}
 function normalizeMealStatus(value){
@@ -2875,7 +2902,7 @@ function mealStatus(day,type){
 function activeRecipeEntries(source=plan){
   return (source||[]).flatMap((day,dayIndex)=>MEAL_TYPES.flatMap(type=>{
     const recipe=day&&day[type];
-    return mealStatus(day,type)===MEAL_PLANNED&&recipe?[{dayIndex,type,recipe}]:[];
+    return mealStatus(day,type)===MEAL_PLANNED&&recipe?[{dayIndex,type,component:'dish',recipe,manual:isManualChoice(day,type,'dish')}]:[];
   }));
 }
 function activeCourseEntries(source=plan){
@@ -2885,8 +2912,8 @@ function activeCourseEntries(source=plan){
     const entries=[];
     const starter=day&&day[starterKey(slot)];
     const dessert=day&&day[dessertKey(slot)];
-    if(format===MEAL_FORMAT_STARTER_DISH&&starter)entries.push({dayIndex,slot,type:'starter',recipe:starter});
-    if(format===MEAL_FORMAT_DISH_DESSERT&&dessert)entries.push({dayIndex,slot,type:'dessert',recipe:dessert});
+    if(formatHasStarter(format)&&starter)entries.push({dayIndex,slot,type:'starter',component:'starter',recipe:starter,manual:isManualChoice(day,slot,'starter')});
+    if(formatHasDessert(format)&&dessert)entries.push({dayIndex,slot,type:'dessert',component:'dessert',recipe:dessert,manual:isManualChoice(day,slot,'dessert')});
     return entries;
   }));
 }
@@ -2898,9 +2925,9 @@ function activeAllRecipeEntries(source=plan){
     const starter=day&&day[starterKey(slot)];
     const dish=day&&day[slot];
     const dessert=day&&day[dessertKey(slot)];
-    if(format===MEAL_FORMAT_STARTER_DISH&&starter)entries.push({dayIndex,slot,type:'starter',recipe:starter});
-    if(dish)entries.push({dayIndex,slot,type:slot,recipe:dish});
-    if(format===MEAL_FORMAT_DISH_DESSERT&&dessert)entries.push({dayIndex,slot,type:'dessert',recipe:dessert});
+    if(formatHasStarter(format)&&starter)entries.push({dayIndex,slot,type:'starter',component:'starter',recipe:starter,manual:isManualChoice(day,slot,'starter')});
+    if(dish)entries.push({dayIndex,slot,type:slot,component:'dish',recipe:dish,manual:isManualChoice(day,slot,'dish')});
+    if(formatHasDessert(format)&&dessert)entries.push({dayIndex,slot,type:'dessert',component:'dessert',recipe:dessert,manual:isManualChoice(day,slot,'dessert')});
     return entries;
   }));
 }
@@ -3444,6 +3471,7 @@ function forgetMeal(type,id){
 }
 function rememberPlan(items){
   activeAllRecipeEntries(items).forEach(item=>{
+    if(item.manual)return;
     if(item.type==='starter'||item.type==='dessert')rememberCourseProposal(item.type,item.recipe.id);
     else rememberMeal(item.type,item.recipe.id);
   });
@@ -3822,11 +3850,11 @@ function refreshBrowserDiscoveryPage(){
 function seasonalSuggestions(){
   return browserDiscoveryPage.length?[...browserDiscoveryPage]:refreshBrowserDiscoveryPage();
 }
-function searchRecipes(query){
+function searchRecipePool(query,pool){
   const normalized=normalizeSearchText(query);
-  if(!normalized)return seasonalSuggestions();
+  if(!normalized)return[...(pool||[])];
   const tokens=normalized.split(/\s+/).filter(Boolean);
-  return recipeLibrary.map(recipe=>{
+  return (pool||[]).map(recipe=>{
     const data=recipeSearchData(recipe);
     const notes=normalizeSearchText(recipeNote(recipe.id));
     const searchable=`${data.all} ${notes}`;
@@ -3843,15 +3871,50 @@ function searchRecipes(query){
     return{recipe,score:relevance+seasonalRecipeScore(recipe)};
   }).filter(Boolean).sort((a,b)=>b.score-a.score||a.recipe.n.localeCompare(b.recipe.n,'fr')).map(item=>item.recipe);
 }
+function searchRecipes(query){
+  if(!normalizeSearchText(query))return seasonalSuggestions();
+  return searchRecipePool(query,recipeLibrary);
+}
+function selectionComponentLabel(component,article=false){
+  if(component==='starter')return article?'une entrée':'Entrée';
+  if(component==='dessert')return article?'un dessert':'Dessert';
+  return article?'un plat':'Plat';
+}
+function selectionRecipePool(component){
+  return component==='starter'?starters:component==='dessert'?desserts:dishLibrary;
+}
+function selectionPairingScore(recipe,selection){
+  const day=plan[selection.dayIndex];
+  if(!day)return 1;
+  if(selection.component==='dish')return mealDishPairingMultiplier(day,selection.type,recipe);
+  const dish=day[selection.type];
+  const companion=selection.component==='starter'?day[dessertKey(selection.type)]:day[starterKey(selection.type)];
+  return Math.max(.01,mealPairingMultiplier(recipe,dish,selection.component)*coursePairingMultiplier(recipe,companion));
+}
+function selectionSuggestions(selection){
+  const pool=selectionRecipePool(selection.component);
+  return[...pool].sort((a,b)=>{
+    const scoreA=(.5+seasonalRecipeScore(a))*selectionPairingScore(a,selection);
+    const scoreB=(.5+seasonalRecipeScore(b))*selectionPairingScore(b,selection);
+    return scoreB-scoreA||a.n.localeCompare(b.n,'fr');
+  }).slice(0,selection.component==='dish'?24:36);
+}
+function selectionSearchRecipes(query,selection){
+  if(!normalizeSearchText(query))return selectionSuggestions(selection);
+  return searchRecipePool(query,selectionRecipePool(selection.component));
+}
 function recipeResultHTML(recipe){
   const liked=isFavorite(recipe.id);
   const slot=recipe.mealSlots?.includes('starter')?'Entrée':recipe.mealSlots?.includes('dessert')?'Dessert':recipe.mealSlots?.includes('mid')?'Midi':'Soir';
-  return `<div class="recipe-result">
+  const selecting=Boolean(browserSelection);
+  return `<div class="recipe-result${selecting?' selecting':''}">
     <button class="recipe-result-open" type="button" data-recipe-id="${recipe.id}">
       <span class="recipe-result-title">${recipe.n}</span>
       <span class="recipe-result-meta">${slot} · ⏱️ ${recipe.t} · 🔥 ${recipe.m}${recipeNote(recipe.id).trim()?' · 📝 Note ✓':''}</span>
     </button>
-    <button class="recipe-favorite${liked?' active':''}" data-recipe-id="${recipe.id}" type="button" aria-pressed="${liked}" aria-label="${liked?'Retirer des favoris':'Ajouter aux favoris'}">${liked?'♥':'♡'}</button>
+    ${selecting
+      ?`<button class="recipe-result-select" data-recipe-id="${recipe.id}" type="button">Choisir</button>`
+      :`<button class="recipe-favorite${liked?' active':''}" data-recipe-id="${recipe.id}" type="button" aria-pressed="${liked}" aria-label="${liked?'Retirer des favoris':'Ajouter aux favoris'}">${liked?'♥':'♡'}</button>`}
   </div>`;
 }
 function recipeListHTML(recipes,emptyText,lead){
@@ -3862,6 +3925,7 @@ let browserMode='search';
 let browserReturnMode='search';
 let browserRecipeId=null;
 let browserLastFocus=null;
+let browserSelection=null;
 function browserFilterSummaryHTML(){
   const {mode,time}=browserActiveFilters();
   const timeLabel=time==='Tous'?'temps libre':time==='45plus'?'45 min ou plus':`${time} min maximum`;
@@ -3876,6 +3940,7 @@ function browserFilterSummaryHTML(){
   return`<div class="browser-filter-info"><strong>${modeLabel} · ${timeLabel}</strong><br>${compatibleMid} recettes Midi + ${compatibleEvening} recettes Soir compatibles.${action}</div>`;
 }
 function openRecipeBrowser(mode='search'){
+  browserSelection=null;
   browserMode=['search','favorites','recent'].includes(mode)?mode:'search';
   browserReturnMode=browserMode;
   browserRecipeId=null;
@@ -3890,10 +3955,28 @@ function openRecipeBrowser(mode='search'){
   renderRecipeBrowser();
   if(browserMode==='search')setTimeout(()=>{try{$('recipeSearch').focus()}catch(e){}},60);
 }
+function openMealRecipeChooser(dayIndex,type,component){
+  const index=Number(dayIndex);
+  const day=plan[index];
+  const format=mealFormat(day,type);
+  const visible=component==='dish'||(component==='starter'&&formatHasStarter(format))||(component==='dessert'&&formatHasDessert(format));
+  if(!day||mealStatus(day,type)!==MEAL_PLANNED||!MEAL_TYPES.includes(type)||!['starter','dish','dessert'].includes(component)||!visible)return;
+  browserSelection={dayIndex:index,type,component};
+  browserMode='search';
+  browserReturnMode='search';
+  browserRecipeId=null;
+  browserLastFocus=document.activeElement||null;
+  $('recipeBrowser').hidden=false;
+  document.body.classList.add('browser-open');
+  $('recipeSearch').value='';
+  renderRecipeBrowser();
+  setTimeout(()=>{try{$('recipeSearch').focus()}catch(e){}},60);
+}
 function closeRecipeBrowser(){
   $('recipeBrowser').hidden=true;
   document.body.classList.remove('browser-open');
   browserRecipeId=null;
+  browserSelection=null;
   updateWakeLock();
   if(browserLastFocus&&typeof browserLastFocus.focus==='function')browserLastFocus.focus();
 }
@@ -3906,25 +3989,62 @@ function showBrowserRecipe(id,fromMode=browserMode){
   renderRecipeBrowser();
   updateWakeLock();
 }
+function applyManualRecipe(id){
+  const selection=browserSelection?{...browserSelection}:null;
+  const recipe=recipeIndex.get(id);
+  if(!selection||!recipe||!componentMatchesRecipe(selection.component,recipe))return;
+  const day=plan[selection.dayIndex];
+  const format=mealFormat(day,selection.type);
+  const visible=selection.component==='dish'||(selection.component==='starter'&&formatHasStarter(format))||(selection.component==='dessert'&&formatHasDessert(format));
+  if(!day||mealStatus(day,selection.type)!==MEAL_PLANNED||!visible)return;
+  day[componentKey(selection.type,selection.component)]=recipe;
+  setManualChoice(day,selection.type,selection.component,true);
+  const trailKey=selection.component==='dish'
+    ?alternativeTrailKey(selection.dayIndex,selection.type)
+    :`${alternativeTrailKey(selection.dayIndex,selection.type)}:${selection.component}`;
+  alternativeTrails.delete(trailKey);
+  sessionRejectedIds.delete(recipe.id);
+  recordRecipeSelection(recipe.id,selection.component==='dish'?selection.type:selection.component);
+  recordRecentRecipe(recipe.id);
+  closeRecipeBrowser();
+  render();
+  show(`${selectionComponentLabel(selection.component)} choisi${selection.component==='starter'?'e':''} · votre choix est conservé`);
+}
 function bindBrowserInteractions(){
   document.querySelectorAll('.recipe-result-open').forEach(button=>button.onclick=()=>{
     showBrowserRecipe(button.dataset.recipeId,browserMode);
   });
+  document.querySelectorAll('.recipe-result-select').forEach(button=>button.onclick=()=>{
+    applyManualRecipe(button.dataset.recipeId);
+  });
+  const detailSelect=$('browserSelectRecipe');
+  if(detailSelect)detailSelect.onclick=()=>applyManualRecipe(detailSelect.dataset.recipeId);
 }
 function renderRecipeBrowser(){
   if($('recipeBrowser').hidden)return;
   const searchArea=$('browserSearchArea');
   const back=$('browserBack');
   const content=$('browserContent');
+  const choosing=Boolean(browserSelection);
   back.hidden=browserMode!=='detail';
   searchArea.hidden=browserMode!=='search';
+  if(browserMode==='search'){
+    const component=browserSelection?.component;
+    $('recipeSearch').placeholder=choosing
+      ?`Nom ou ingrédient pour ${selectionComponentLabel(component,true)}…`
+      :'Nom ou ingrédient : poulet, courgette…';
+    $('browserHint').textContent=choosing
+      ?`Recherchez par nom ou ingrédient parmi ${selectionRecipePool(component).length} recettes.`
+      :'Chaque recette compatible passe avant qu’une recette déjà montrée revienne.';
+  }
   if(browserMode==='detail'){
     const recipe=recipeIndex.get(browserRecipeId);
     if(!recipe){browserMode=browserReturnMode;renderRecipeBrowser();return}
-    $('browserTitle').textContent='Recette';
+    $('browserTitle').textContent=choosing?`Choisir ${selectionComponentLabel(browserSelection.component,true)}`:'Recette';
     content.innerHTML=`<article class="browser-recipe">
       <h2 class="browser-recipe-title">${recipe.n}</h2>
       <div class="meta">⏱️ ${recipe.t} · 🔥 ${recipe.m}${noteIndicatorHTML(recipe)}</div>
+      ${choosing?`<button class="browser-select-recipe" id="browserSelectRecipe" data-recipe-id="${recipe.id}" type="button">Choisir cette recette</button>`:''}
       <div class="recipe open">${recipeHTML(recipe)}</div>
     </article>`;
   }else if(browserMode==='favorites'){
@@ -3936,16 +4056,28 @@ function renderRecipeBrowser(){
     const recipes=recentRecipeIds().map(id=>recipeIndex.get(id)).filter(Boolean);
     content.innerHTML=recipeListHTML(recipes,'Aucune recette consultée pour le moment.');
   }else{
-    $('browserTitle').textContent='Choisir une recette';
     const query=$('recipeSearch').value;
-    const recipes=searchRecipes(query);
-    const lunches=recipes.filter(recipe=>recipe.mealSlots?.includes('mid')).length;
-    const dinners=recipes.filter(recipe=>recipe.mealSlots?.includes('eve')).length;
     const searching=Boolean(normalizeSearchText(query));
-    const lead=searching?`${recipes.length} résultat${recipes.length>1?'s':''}`:`Nouvelles découvertes · ${lunches} Midi + ${dinners} Soir`;
-    const refreshButton=searching?'':'<button class="browser-refresh" id="refreshDiscoveries" type="button">🔄 Afficher 12 autres idées</button>';
-    const filterSummary=searching?'':browserFilterSummaryHTML();
-    content.innerHTML=filterSummary+refreshButton+recipeListHTML(recipes,'Aucune recette trouvée. Essayez un autre nom ou ingrédient.',lead);
+    if(choosing){
+      const component=browserSelection.component;
+      const recipes=selectionSearchRecipes(query,browserSelection);
+      const total=selectionRecipePool(component).length;
+      $('browserTitle').textContent=`Choisir ${selectionComponentLabel(component,true)}`;
+      const lead=searching
+        ?`${recipes.length} résultat${recipes.length>1?'s':''} parmi ${total}`
+        :`${recipes.length} suggestions de saison · ${total} recettes disponibles`;
+      const emptyText=component==='starter'?'Aucune entrée trouvée.':component==='dessert'?'Aucun dessert trouvé.':'Aucun plat trouvé.';
+      content.innerHTML=recipeListHTML(recipes,`${emptyText} Essayez un autre nom ou ingrédient.`,lead);
+    }else{
+      $('browserTitle').textContent='Choisir une recette';
+      const recipes=searchRecipes(query);
+      const lunches=recipes.filter(recipe=>recipe.mealSlots?.includes('mid')).length;
+      const dinners=recipes.filter(recipe=>recipe.mealSlots?.includes('eve')).length;
+      const lead=searching?`${recipes.length} résultat${recipes.length>1?'s':''}`:`Nouvelles découvertes · ${lunches} Midi + ${dinners} Soir`;
+      const refreshButton=searching?'':'<button class="browser-refresh" id="refreshDiscoveries" type="button">🔄 Afficher 12 autres idées</button>';
+      const filterSummary=searching?'':browserFilterSummaryHTML();
+      content.innerHTML=filterSummary+refreshButton+recipeListHTML(recipes,'Aucune recette trouvée. Essayez un autre nom ou ingrédient.',lead);
+    }
   }
   content.scrollTop=0;
   const refreshButton=$('refreshDiscoveries');
@@ -4173,6 +4305,37 @@ function mealPairingMultiplier(course,dish,type=course?.course){
   if(course.cuisine&&course.cuisine===tagsOf(dish).cuisine)factor*=1.08;
   return Math.max(0.01,factor);
 }
+function courseCourseOverlap(left,right){
+  if(!left||!right)return 0;
+  const rightText=pairingRecipeText(right);
+  const leftText=pairingRecipeText(left);
+  const leftHits=(left.core||[]).map(pairingCoreValue).filter(Boolean).filter(core=>pairingTextHasCore(rightText,core)).length;
+  const rightHits=(right.core||[]).map(pairingCoreValue).filter(Boolean).filter(core=>pairingTextHasCore(leftText,core)).length;
+  return Math.max(leftHits,rightHits);
+}
+function naturalCoursePair(left,right){
+  if(!left||!right)return true;
+  return courseCourseOverlap(left,right)===0&&!(courseRichnessLevel(left)===3&&courseRichnessLevel(right)===3);
+}
+function coursePairingMultiplier(course,companion){
+  if(!course||!companion)return 1;
+  let factor=1;
+  const overlap=courseCourseOverlap(course,companion);
+  if(overlap>=2)factor*=.04;else if(overlap===1)factor*=.18;
+  if(courseRichnessLevel(course)===3&&courseRichnessLevel(companion)===3)factor*=.18;
+  if(course.hotCold==='froid'&&companion.hotCold==='froid')factor*=.92;
+  return Math.max(.01,factor);
+}
+function mealDishPairingMultiplier(day,type,dish){
+  if(!day||!dish)return 1;
+  const format=mealFormat(day,type);
+  const courses=[];
+  if(formatHasStarter(format)&&day[starterKey(type)])courses.push(day[starterKey(type)]);
+  if(formatHasDessert(format)&&day[dessertKey(type)])courses.push(day[dessertKey(type)]);
+  let factor=courses.reduce((value,course)=>value*mealPairingMultiplier(course,dish,course.course),1);
+  if(courses.length===2&&courses.every(course=>courseRichnessLevel(course)===3)&&dishRichnessLevel(dish)===3)factor*=.08;
+  return Math.max(.001,factor);
+}
 function pickCourse(list,type,dish,exclude=new Set(),options={}){
   let pool=list.filter(fitsAvailableTime);
   if(!pool.length)pool=[...list];
@@ -4182,7 +4345,8 @@ function pickCourse(list,type,dish,exclude=new Set(),options={}){
   const recent=recentCourseIds(type);
   const fresh=available.filter(recipe=>!recent.has(recipe.id));
   if(fresh.length)available=fresh;
-  const coherent=available.filter(recipe=>naturalMealPair(recipe,dish));
+  const companion=options.companion||null;
+  const coherent=available.filter(recipe=>naturalMealPair(recipe,dish)&&naturalCoursePair(recipe,companion));
   if(coherent.length)available=coherent;
   const personalization=personalizationContext(Math.random()<DISCOVERY_RATE,type);
   const avoidRecipes=(options.avoidIds||[]).map(id=>recipeIndex.get(id)).filter(Boolean);
@@ -4195,68 +4359,90 @@ function pickCourse(list,type,dish,exclude=new Set(),options={}){
       *observedPreferenceMultiplier(recipe,type,personalization.profile,personalization.discovery)
       *exposureMultiplier(recipe,personalization.learning,personalization.discovery)
       *mealPairingMultiplier(recipe,dish,type)
+      *coursePairingMultiplier(recipe,companion)
       *similarityPenalty(recipe,avoidRecipes,true)
       *alternativeTrailPenalty(recipe,avoidRecipes)
   })).filter(item=>item.score>0);
-  if(!weighted.length)weighted=available.map(recipe=>({recipe,score:mealPairingMultiplier(recipe,dish,type)}));
+  if(!weighted.length)weighted=available.map(recipe=>({recipe,score:mealPairingMultiplier(recipe,dish,type)*coursePairingMultiplier(recipe,companion)}));
   const total=weighted.reduce((sum,item)=>sum+item.score,0);
   let target=Math.random()*Math.max(total,Number.EPSILON);
   for(const item of weighted){target-=item.score;if(target<=0)return item.recipe}
   return weighted.at(-1).recipe;
 }
+function clearMealComponent(day,type,component){
+  day[componentKey(type,component)]=null;
+  setManualChoice(day,type,component,false);
+}
 function prepareMealCourse(day,type,usedStarters=new Set(),usedDesserts=new Set(),options={}){
   const format=mealFormat(day,type);
   const dish=day[type];
   day[formatKey(type)]=format;
-  if(!dish||format===MEAL_FORMAT_DISH){
-    day[starterKey(type)]=null;
-    day[dessertKey(type)]=null;
+  if(!dish){
+    clearMealComponent(day,type,'starter');
+    clearMealComponent(day,type,'dessert');
     return;
   }
-  if(format===MEAL_FORMAT_STARTER_DISH){
-    day[dessertKey(type)]=null;
-    if(!day[starterKey(type)]||options.regenerate){
-      day[starterKey(type)]=pickCourse(starters,'starter',dish,usedStarters,options);
-      if(options.record!==false)rememberCourseProposal('starter',day[starterKey(type)].id);
+  if(!formatHasStarter(format))clearMealComponent(day,type,'starter');
+  if(!formatHasDessert(format))clearMealComponent(day,type,'dessert');
+  if(formatHasStarter(format)){
+    const key=starterKey(type);
+    if(day[key]&&!componentMatchesRecipe('starter',day[key]))clearMealComponent(day,type,'starter');
+    const regenerate=Boolean(options.regenerate)&&!isManualChoice(day,type,'starter');
+    if(!day[key]||regenerate){
+      day[key]=pickCourse(starters,'starter',dish,usedStarters,{...options,companion:formatHasDessert(format)?day[dessertKey(type)]:null});
+      setManualChoice(day,type,'starter',false);
+      if(options.record!==false)rememberCourseProposal('starter',day[key].id);
     }
-    usedStarters.add(day[starterKey(type)].id);
-  }else{
-    day[starterKey(type)]=null;
-    if(!day[dessertKey(type)]||options.regenerate){
-      day[dessertKey(type)]=pickCourse(desserts,'dessert',dish,usedDesserts,options);
-      if(options.record!==false)rememberCourseProposal('dessert',day[dessertKey(type)].id);
+    usedStarters.add(day[key].id);
+  }
+  if(formatHasDessert(format)){
+    const key=dessertKey(type);
+    if(day[key]&&!componentMatchesRecipe('dessert',day[key]))clearMealComponent(day,type,'dessert');
+    const regenerate=Boolean(options.regenerate)&&!isManualChoice(day,type,'dessert');
+    if(!day[key]||regenerate){
+      day[key]=pickCourse(desserts,'dessert',dish,usedDesserts,{...options,companion:formatHasStarter(format)?day[starterKey(type)]:null});
+      setManualChoice(day,type,'dessert',false);
+      if(options.record!==false)rememberCourseProposal('dessert',day[key].id);
     }
-    usedDesserts.add(day[dessertKey(type)].id);
+    usedDesserts.add(day[key].id);
+  }
+}
+function restoreManualComponent(previous,day,type,component){
+  const format=mealFormat(day,type);
+  const visible=component==='dish'||(component==='starter'&&formatHasStarter(format))||(component==='dessert'&&formatHasDessert(format));
+  const recipe=previous&&previous[componentKey(type,component)];
+  if(visible&&isManualChoice(previous,type,component)&&componentMatchesRecipe(component,recipe)){
+    day[componentKey(type,component)]=recipe;
+    setManualChoice(day,type,component,true);
   }
 }
 function buildPlan(count,template=plan){
-  const mids=new Set(), eves=new Set(), usedStarters=new Set(), usedDesserts=new Set(), result=[], context=[];
+  const usedByType={mid:new Set(),eve:new Set()};
+  const usedStarters=new Set(), usedDesserts=new Set(), result=[], context=[];
   for(let i=0;i<count;i++){
     const previous=template[i]||{};
     const day={
-      mid:null,
-      eve:null,
+      mid:null,eve:null,midStarter:null,eveStarter:null,midDessert:null,eveDessert:null,
       midStatus:normalizeMealStatus(previous.midStatus),
       eveStatus:normalizeMealStatus(previous.eveStatus),
       midFormat:mealFormat(previous,'mid'),
       eveFormat:mealFormat(previous,'eve'),
-      midStarter:null,
-      eveStarter:null,
-      midDessert:null,
-      eveDessert:null
+      midDishManual:false,eveDishManual:false,
+      midStarterManual:false,eveStarterManual:false,
+      midDessertManual:false,eveDessertManual:false
     };
-    if(day.midStatus===MEAL_PLANNED){
-      day.mid=pick(noon,'mid',mids,context);
-      mids.add(day.mid.id);
-      context.push({type:'mid',recipe:day.mid});
-    }
-    if(day.eveStatus===MEAL_PLANNED){
-      day.eve=pick(evening,'eve',eves,context);
-      eves.add(day.eve.id);
-      context.push({type:'eve',recipe:day.eve});
-    }
-    prepareMealCourse(day,'mid',usedStarters,usedDesserts,{regenerate:true,record:false});
-    prepareMealCourse(day,'eve',usedStarters,usedDesserts,{regenerate:true,record:false});
+    MEAL_TYPES.forEach(type=>{
+      if(mealStatus(day,type)!==MEAL_PLANNED)return;
+      for(const component of ['dish','starter','dessert'])restoreManualComponent(previous,day,type,component);
+      const list=type==='mid'?noon:evening;
+      if(!day[type]){
+        day[type]=pick(list,type,usedByType[type],context,{scoreMultiplier:candidate=>mealDishPairingMultiplier(day,type,candidate)});
+        setManualChoice(day,type,'dish',false);
+      }
+      usedByType[type].add(day[type].id);
+      context.push({type,recipe:day[type]});
+      prepareMealCourse(day,type,usedStarters,usedDesserts,{regenerate:true,record:false});
+    });
     result.push(day);
   }
   rememberPlan(result);
@@ -4275,6 +4461,12 @@ function saveState(){
       eveStarterId:d.eveStarter?.id||null,
       midDessertId:d.midDessert?.id||null,
       eveDessertId:d.eveDessert?.id||null,
+      midDishManual:isManualChoice(d,'mid','dish'),
+      eveDishManual:isManualChoice(d,'eve','dish'),
+      midStarterManual:isManualChoice(d,'mid','starter'),
+      eveStarterManual:isManualChoice(d,'eve','starter'),
+      midDessertManual:isManualChoice(d,'mid','dessert'),
+      eveDessertManual:isManualChoice(d,'eve','dessert'),
       midFormat:mealFormat(d,'mid'),
       eveFormat:mealFormat(d,'eve'),
       midStatus:mealStatus(d,'mid'),
@@ -4318,9 +4510,9 @@ function renderHistory(){
       if(!p||!p[type])return'Repas à prévoir';
       const format=normalizeMealFormat(p[formatKey(type)]);
       const parts=[];
-      if(format===MEAL_FORMAT_STARTER_DISH&&p[`${type}Starter`])parts.push(p[`${type}Starter`]);
+      if(formatHasStarter(format)&&p[`${type}Starter`])parts.push(p[`${type}Starter`]);
       parts.push(p[type]);
-      if(format===MEAL_FORMAT_DISH_DESSERT&&p[`${type}Dessert`])parts.push(p[`${type}Dessert`]);
+      if(formatHasDessert(format)&&p[`${type}Dessert`])parts.push(p[`${type}Dessert`]);
       return parts.join(' + ');
     };
     const meals=(x.plan||[]).map((p,i)=>`<strong>J${i+1}</strong> · ${mealName(p,'mid')}<br>↳ ${mealName(p,'eve')}`).join('<br>');
@@ -4492,7 +4684,7 @@ function updateTimerUI(){
     if(timerInterval){clearInterval(timerInterval);timerInterval=null}
     bar.classList.remove('show','done');
     document.body.classList.remove('timer-running');
-    document.title='Clair Repas V3.7';
+    document.title='Clair Repas V3.8';
     return;
   }
   const remaining=Math.max(0,Math.ceil((kitchenTimer.endAt-Date.now())/1000));
@@ -4553,7 +4745,8 @@ function mealFormatSelectorHTML(day,dayIndex,type){
   const options=[
     [MEAL_FORMAT_DISH,'Plat'],
     [MEAL_FORMAT_STARTER_DISH,'Entrée + plat'],
-    [MEAL_FORMAT_DISH_DESSERT,'Plat + dessert']
+    [MEAL_FORMAT_DISH_DESSERT,'Plat + dessert'],
+    [MEAL_FORMAT_FULL,'Entrée + plat + dessert']
   ];
   return `<div class="meal-format">
     <span class="meal-format-label">Pour ce repas</span>
@@ -4565,17 +4758,20 @@ function mealFormatSelectorHTML(day,dayIndex,type){
 function mealRecipeBlockHTML(recipe,dayIndex,type,component){
   if(!recipe)return'';
   const liked=isFavorite(recipe.id);
+  const manual=isManualChoice(plan[dayIndex],type,component);
   const label=component==='starter'?'🥗 Entrée':component==='dessert'?'🍰 Dessert':'🍽️ Plat';
+  const chooseLabel=manual?'✏️ Changer mon choix':`🔎 Choisir ${selectionComponentLabel(component,true)}`;
   return `<section class="course-block ${component}">
-    <div class="course-label">${label}</div>
+    <div class="course-label-row"><div class="course-label">${label}</div>${manual?'<span class="manual-badge">✓ Votre choix</span>':''}</div>
     <div class="meal-title-row">
       <div class="meal-title">${recipe.n}</div>
       <button class="recipe-favorite${liked?' active':''}" data-recipe-id="${recipe.id}" type="button" aria-pressed="${liked}" aria-label="${liked?'Retirer des favoris':'Ajouter aux favoris'}">${liked?'♥':'♡'}</button>
     </div>
     <div class="meta">⏱️ ${recipe.t} · 🔥 ${recipe.m}</div>
-    <div class="meal-actions">
+    <div class="meal-actions has-chooser">
       <button class="small-btn recipe-btn" data-day="${dayIndex}" data-type="${type}" data-component="${component}">📖 Voir la recette</button>
       <button class="small-btn secondary change-btn" data-day="${dayIndex}" data-type="${type}" data-component="${component}">🔄 Une autre idée</button>
+      <button class="small-btn choose-component-btn" data-day="${dayIndex}" data-type="${type}" data-component="${component}">${chooseLabel}</button>
     </div>
     <div class="recipe" id="${mealRecipeElementId(dayIndex,type,component)}">${recipeHTML(recipe,{showFavorite:false})}</div>
   </section>`;
@@ -4602,9 +4798,9 @@ function mealHTML(day,dayIndex,type){
   }else if(recipe){
     const format=mealFormat(day,type);
     content=`${mealFormatSelectorHTML(day,dayIndex,type)}
-      ${format===MEAL_FORMAT_STARTER_DISH?mealRecipeBlockHTML(day[starterKey(type)],dayIndex,type,'starter'):''}
+      ${formatHasStarter(format)?mealRecipeBlockHTML(day[starterKey(type)],dayIndex,type,'starter'):''}
       ${mealRecipeBlockHTML(recipe,dayIndex,type,'dish')}
-      ${format===MEAL_FORMAT_DISH_DESSERT?mealRecipeBlockHTML(day[dessertKey(type)],dayIndex,type,'dessert'):''}
+      ${formatHasDessert(format)?mealRecipeBlockHTML(day[dessertKey(type)],dayIndex,type,'dessert'):''}
       <button class="meal-status-action leftovers-btn" data-day="${dayIndex}" data-type="${type}">🍲 Restes / déjà prévu</button>`;
   }
   return `<div class="meal">
@@ -4649,6 +4845,9 @@ function render(){
     if(component==='dish')changeMeal(Number(b.dataset.day),b.dataset.type);
     else changeCourse(Number(b.dataset.day),b.dataset.type,component);
   });
+  document.querySelectorAll('.choose-component-btn').forEach(b=>b.onclick=()=>{
+    openMealRecipeChooser(Number(b.dataset.day),b.dataset.type,b.dataset.component||'dish');
+  });
   document.querySelectorAll('.meal-format-option').forEach(button=>button.onclick=()=>{
     setMealFormat(Number(button.dataset.day),button.dataset.type,button.dataset.format);
   });
@@ -4671,12 +4870,13 @@ function changeMeal(index,type){
   const day=plan[index];
   if(!day||mealStatus(day,type)!==MEAL_PLANNED)return;
   const previous=day[type];
+  const wasManual=isManualChoice(day,type,'dish');
   const trailKey=alternativeTrailKey(index,type);
   const trail=alternativeTrails.get(trailKey)||[];
   if(previous){
     trail.push(previous.id);
     sessionRejectedIds.add(previous.id);
-    recordRecipeRejection(previous.id);
+    if(!wasManual)recordRecipeRejection(previous.id);
   }
   alternativeTrails.set(trailKey,trail.slice(-60));
   const used=new Set(activeRecipeEntries().filter(item=>item.type===type).map(item=>item.recipe.id));
@@ -4684,9 +4884,8 @@ function changeMeal(index,type){
   const context=activeRecipeEntries()
     .filter(item=>!(item.dayIndex===index&&item.type===type))
     .map(item=>({type:item.type,recipe:item.recipe}));
-  const format=mealFormat(day,type);
-  const paired=format===MEAL_FORMAT_STARTER_DISH?day[starterKey(type)]:format===MEAL_FORMAT_DISH_DESSERT?day[dessertKey(type)]:null;
-  const options={avoidIds:trail,scoreMultiplier:paired?candidate=>naturalMealPair(paired,candidate)?mealPairingMultiplier(paired,candidate,paired.course):0:undefined};
+  setManualChoice(day,type,'dish',false);
+  const options={avoidIds:trail,scoreMultiplier:candidate=>mealDishPairingMultiplier(day,type,candidate)};
   if(type==='mid'){
     day.mid=pick(noon,'mid',used,context,options);
     rememberMeal('mid',day.mid.id);
@@ -4702,17 +4901,20 @@ function changeCourse(index,type,component){
   if(!day||mealStatus(day,type)!==MEAL_PLANNED||!['starter','dessert'].includes(component))return;
   const key=component==='starter'?starterKey(type):dessertKey(type);
   const previous=day[key];
+  const wasManual=isManualChoice(day,type,component);
   const trailKey=`${alternativeTrailKey(index,type)}:${component}`;
   const trail=alternativeTrails.get(trailKey)||[];
   if(previous){
     trail.push(previous.id);
     sessionRejectedIds.add(previous.id);
-    recordRecipeRejection(previous.id);
+    if(!wasManual)recordRecipeRejection(previous.id);
   }
   alternativeTrails.set(trailKey,trail.slice(-60));
   const used=new Set(activeCourseEntries().filter(item=>item.type===component).map(item=>item.recipe.id));
   if(previous)used.add(previous.id);
-  day[key]=pickCourse(component==='starter'?starters:desserts,component,day[type],used,{avoidIds:trail});
+  setManualChoice(day,type,component,false);
+  const companion=component==='starter'?day[dessertKey(type)]:day[starterKey(type)];
+  day[key]=pickCourse(component==='starter'?starters:desserts,component,day[type],used,{avoidIds:trail,companion});
   rememberCourseProposal(component,day[key].id);
   render();
   show(component==='starter'?'Une autre entrée proposée':'Un autre dessert proposé');
@@ -4723,13 +4925,13 @@ function setMealFormat(index,type,nextFormat){
   const next=normalizeMealFormat(nextFormat);
   if(mealFormat(day,type)===next)return;
   day[formatKey(type)]=next;
-  day[starterKey(type)]=null;
-  day[dessertKey(type)]=null;
+  if(!formatHasStarter(next))clearMealComponent(day,type,'starter');
+  if(!formatHasDessert(next))clearMealComponent(day,type,'dessert');
   const usedStarters=new Set(activeCourseEntries().filter(item=>item.type==='starter').map(item=>item.recipe.id));
   const usedDesserts=new Set(activeCourseEntries().filter(item=>item.type==='dessert').map(item=>item.recipe.id));
   prepareMealCourse(day,type,usedStarters,usedDesserts);
   render();
-  show(next===MEAL_FORMAT_STARTER_DISH?'Entrée + plat préparé':next===MEAL_FORMAT_DISH_DESSERT?'Plat + dessert préparé':'Plat seul conservé');
+  show(next===MEAL_FORMAT_STARTER_DISH?'Entrée + plat préparé':next===MEAL_FORMAT_DISH_DESSERT?'Plat + dessert préparé':next===MEAL_FORMAT_FULL?'Entrée + plat + dessert préparé':'Plat seul conservé');
 }
 function setMealStatus(index,type,nextStatus){
   const day=plan[index];
@@ -4742,14 +4944,15 @@ function setMealStatus(index,type,nextStatus){
     const used=new Set(activeRecipeEntries().filter(item=>item.type===type).map(item=>item.recipe.id));
     const context=activeRecipeEntries().map(item=>({type:item.type,recipe:item.recipe}));
     day[type]=pick(type==='mid'?noon:evening,type,used,context);
+    setManualChoice(day,type,'dish',false);
     rememberMeal(type,day[type].id);
     const usedStarters=new Set(activeCourseEntries().filter(item=>item.type==='starter').map(item=>item.recipe.id));
     const usedDesserts=new Set(activeCourseEntries().filter(item=>item.type==='dessert').map(item=>item.recipe.id));
     prepareMealCourse(day,type,usedStarters,usedDesserts);
   }else{
-    day[type]=null;
-    day[starterKey(type)]=null;
-    day[dessertKey(type)]=null;
+    clearMealComponent(day,type,'dish');
+    clearMealComponent(day,type,'starter');
+    clearMealComponent(day,type,'dessert');
   }
   render();
   show(next===MEAL_OUTSIDE?'Repas noté à l’extérieur · courses mises à jour':next===MEAL_LEFTOVERS?'Restes / déjà prévu · courses mises à jour':'Repas ajouté · courses mises à jour');
@@ -4757,7 +4960,7 @@ function setMealStatus(index,type,nextStatus){
 function ensureDays(requestedCount=Number($('days').value)){
   const count=Math.max(1,Number(requestedCount)||1);
   if(plan.length>count)plan=plan.slice(0,count);
-  while(plan.length<count)plan.push({mid:null,eve:null,midStatus:MEAL_PLANNED,eveStatus:MEAL_PLANNED,midFormat:MEAL_FORMAT_DISH,eveFormat:MEAL_FORMAT_DISH,midStarter:null,eveStarter:null,midDessert:null,eveDessert:null});
+  while(plan.length<count)plan.push({mid:null,eve:null,midStatus:MEAL_PLANNED,eveStatus:MEAL_PLANNED,midFormat:MEAL_FORMAT_DISH,eveFormat:MEAL_FORMAT_DISH,midStarter:null,eveStarter:null,midDessert:null,eveDessert:null,midDishManual:false,eveDishManual:false,midStarterManual:false,eveStarterManual:false,midDessertManual:false,eveDessertManual:false});
   const mids=new Set(), eves=new Set(), usedStarters=new Set(), usedDesserts=new Set(), context=[];
   plan.forEach(day=>{
     MEAL_TYPES.forEach(type=>{
@@ -4767,28 +4970,30 @@ function ensureDays(requestedCount=Number($('days').value)){
     if(day.midStatus===MEAL_PLANNED){
       if(!day.mid){
         day.mid=pick(noon,'mid',mids,context);
+        setManualChoice(day,'mid','dish',false);
         rememberMeal('mid',day.mid.id);
       }
       mids.add(day.mid.id);
       context.push({type:'mid',recipe:day.mid});
       prepareMealCourse(day,'mid',usedStarters,usedDesserts,{record:false});
     }else{
-      day.mid=null;
-      day.midStarter=null;
-      day.midDessert=null;
+      clearMealComponent(day,'mid','dish');
+      clearMealComponent(day,'mid','starter');
+      clearMealComponent(day,'mid','dessert');
     }
     if(day.eveStatus===MEAL_PLANNED){
       if(!day.eve){
         day.eve=pick(evening,'eve',eves,context);
+        setManualChoice(day,'eve','dish',false);
         rememberMeal('eve',day.eve.id);
       }
       eves.add(day.eve.id);
       context.push({type:'eve',recipe:day.eve});
       prepareMealCourse(day,'eve',usedStarters,usedDesserts,{record:false});
     }else{
-      day.eve=null;
-      day.eveStarter=null;
-      day.eveDessert=null;
+      clearMealComponent(day,'eve','dish');
+      clearMealComponent(day,'eve','starter');
+      clearMealComponent(day,'eve','dessert');
     }
   });
 }
@@ -4799,12 +5004,18 @@ function loadSavedPlan(savedPlan){
     const midFormat=normalizeMealFormat(item&&item.midFormat);
     const eveFormat=normalizeMealFormat(item&&item.eveFormat);
     return{
-      mid:midStatus===MEAL_PLANNED?noon.find(recipe=>recipe.id===item.midId)||null:null,
-      eve:eveStatus===MEAL_PLANNED?evening.find(recipe=>recipe.id===item.eveId)||null:null,
-      midStarter:midStatus===MEAL_PLANNED&&midFormat===MEAL_FORMAT_STARTER_DISH?starters.find(recipe=>recipe.id===item.midStarterId)||null:null,
-      eveStarter:eveStatus===MEAL_PLANNED&&eveFormat===MEAL_FORMAT_STARTER_DISH?starters.find(recipe=>recipe.id===item.eveStarterId)||null:null,
-      midDessert:midStatus===MEAL_PLANNED&&midFormat===MEAL_FORMAT_DISH_DESSERT?desserts.find(recipe=>recipe.id===item.midDessertId)||null:null,
-      eveDessert:eveStatus===MEAL_PLANNED&&eveFormat===MEAL_FORMAT_DISH_DESSERT?desserts.find(recipe=>recipe.id===item.eveDessertId)||null:null,
+      mid:midStatus===MEAL_PLANNED?dishLibrary.find(recipe=>recipe.id===item.midId)||null:null,
+      eve:eveStatus===MEAL_PLANNED?dishLibrary.find(recipe=>recipe.id===item.eveId)||null:null,
+      midStarter:midStatus===MEAL_PLANNED&&formatHasStarter(midFormat)?starters.find(recipe=>recipe.id===item.midStarterId)||null:null,
+      eveStarter:eveStatus===MEAL_PLANNED&&formatHasStarter(eveFormat)?starters.find(recipe=>recipe.id===item.eveStarterId)||null:null,
+      midDessert:midStatus===MEAL_PLANNED&&formatHasDessert(midFormat)?desserts.find(recipe=>recipe.id===item.midDessertId)||null:null,
+      eveDessert:eveStatus===MEAL_PLANNED&&formatHasDessert(eveFormat)?desserts.find(recipe=>recipe.id===item.eveDessertId)||null:null,
+      midDishManual:Boolean(item&&item.midDishManual),
+      eveDishManual:Boolean(item&&item.eveDishManual),
+      midStarterManual:Boolean(item&&item.midStarterManual),
+      eveStarterManual:Boolean(item&&item.eveStarterManual),
+      midDessertManual:Boolean(item&&item.midDessertManual),
+      eveDessertManual:Boolean(item&&item.eveDessertManual),
       midStatus,
       eveStatus,
       midFormat,
@@ -5174,7 +5385,7 @@ $('browserBack').onclick=()=>{
   if(browserMode!=='detail'){closeRecipeBrowser();return}
   browserMode=browserReturnMode;
   browserRecipeId=null;
-  if(browserMode==='search'&&!normalizeSearchText($('recipeSearch').value))refreshBrowserDiscoveryPage();
+  if(browserMode==='search'&&!browserSelection&&!normalizeSearchText($('recipeSearch').value))refreshBrowserDiscoveryPage();
   renderRecipeBrowser();
   updateWakeLock();
 };

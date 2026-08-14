@@ -1,4 +1,4 @@
-const CACHE='clair-repas-v37-entrees-desserts-20260814';
+const CACHE='clair-repas-v38-choix-libres-20260814';
 const ASSETS=['./','./index.html','./manifest.webmanifest','./icon-192.png','./icon-512.png'];
 
 self.addEventListener('install',event=>{

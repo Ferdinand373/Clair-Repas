@@ -1,7 +1,7 @@
 {
   "name": "Clair Repas",
   "short_name": "Clair Repas",
-  "description": "Planification sur 1, 2 ou 3 jours avec 800 plats, 100 entrées et 100 desserts, sans perdre la simplicité de Clair Repas.",
+  "description": "Clair Repas propose les menus et permet de choisir librement chaque entrée, plat ou dessert.",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
