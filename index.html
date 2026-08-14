@@ -9,7 +9,7 @@
 <meta name="apple-mobile-web-app-title" content="Clair Repas">
 <link rel="manifest" href="./manifest.webmanifest">
 <link rel="apple-touch-icon" href="./icon-192.png">
-<title>Clair Repas V3.6</title>
+<title>Clair Repas V3.7</title>
 <style>
 :root{
   --bg:#f4efe7;--card:#fffdfa;--text:#27231f;--muted:#746c63;
@@ -64,6 +64,18 @@ select{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:1
 .meal{padding:14px 0 2px}
 .meal+.meal{border-top:1px dashed var(--line);margin-top:12px}
 .meal-top{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.meal-format{margin:11px 0 5px}
+.meal-format-label{display:block;margin:0 0 6px;color:var(--muted);font-size:11px;font-weight:780}
+.meal-format-options{display:grid;grid-template-columns:.72fr 1.12fr 1.16fr;gap:5px}
+.meal-format-option{min-width:0;min-height:46px;padding:7px 3px;border:1px solid var(--line);border-radius:11px;background:white;color:var(--text);font-size:clamp(9.5px,2.9vw,12px);font-weight:820;line-height:1.12;white-space:nowrap;touch-action:manipulation}
+.meal-format-option:active{transform:scale(.985)}
+.meal-format-option[aria-pressed="true"]{border-color:var(--green);background:var(--green-soft);color:var(--green);box-shadow:inset 0 0 0 1px rgba(63,118,87,.12)}
+.course-block{padding-top:10px}
+.course-block+.course-block{margin-top:12px;border-top:1px dashed var(--line)}
+.course-label{margin:0 0 5px;color:var(--muted);font-size:11px;font-weight:880;letter-spacing:.25px;text-transform:uppercase}
+.course-block.starter .course-label{color:#4b785f}
+.course-block.dessert .course-label{color:var(--purple)}
+.course-block .meal-title-row{margin-top:4px}
 .tag{font-size:12px;font-weight:850;color:var(--green);letter-spacing:.35px}
 .tag.evening{color:var(--purple)}
 .meal-toggle{display:inline-flex;align-items:center;gap:6px;min-height:36px;padding:7px 10px;border-radius:999px;background:var(--green-soft);color:var(--green);font-size:12px;font-weight:820;cursor:pointer;user-select:none}
@@ -269,7 +281,7 @@ body.timer-running .browser-content{padding-bottom:calc(105px + env(safe-area-in
   <div class="recipe-shortcuts-main">
     <button class="shortcut-btn primary" id="chooseRecipe" type="button">
       <span class="shortcut-title">🔎 Choisir une recette</span>
-      <span class="shortcut-hint">Explorer librement les 800 recettes</span>
+      <span class="shortcut-hint">Explorer les 800 plats · rechercher aussi entrées et desserts</span>
     </button>
   </div>
   <div class="recipe-shortcuts-secondary">
@@ -305,8 +317,8 @@ body.timer-running .browser-content{padding-bottom:calc(105px + env(safe-area-in
 </details>
 
 <p class="note">La saison, le temps disponible et vos préférences guident les prochains choix. Le programme affiché reste conservé jusqu’à une action volontaire.</p>
-<p class="library-count" id="libraryCount">800 vraies recettes différentes</p>
-<p class="version" id="versionLine">Clair Repas V3.6</p>
+<p class="library-count" id="libraryCount">800 plats · 100 entrées · 100 desserts</p>
+<p class="version" id="versionLine">Clair Repas V3.7</p>
 </main>
 <div class="recipe-browser" id="recipeBrowser" hidden>
   <section class="browser-panel" role="dialog" aria-modal="true" aria-labelledby="browserTitle">
@@ -2382,16 +2394,249 @@ function applyRecipeMetadata(recipe,slot){
   recipe.profile=recipe.profile||`${recipe.family}|${recipe.subFamily}|${recipe.cuisine}|${recipe.starch}|${recipe.texture}|${recipe.technique}|${recipe.presentation}`;
   recipe.season=[...(recipe.s||ALL_SEASONS)];
 }
+
+// Bibliothèques complémentaires V3.7. Chaque fiche est une vraie recette pour
+// deux personnes, indépendante des 800 plats historiques.
+const courseRecipe=(course,id,n,m,t,s,richness,core,i,p,family,hotCold='froid',cuisine='française')=>({
+  id,n,m,t,s,richness,core,i,p,course,family,hotCold,cuisine,kind:course,servings:2
+});
+const A=(...args)=>courseRecipe('starter',...args);
+const D=(...args)=>courseRecipe('dessert',...args);
+const starters=[
+  A('a001','Tomates au basilic et à l’échalote','Sans cuisson','10 min',['printemps','été'],'léger',['tomate'],[I(3,'','tomates'),I(1,'','échalote','échalotes'),I(null,'','basilic'),I(1,'c. à soupe','huile d’olive'),I(1,'c. à café','vinaigre balsamique')],['Couper les tomates en quartiers et émincer très finement l’échalote.','Assaisonner avec l’huile, le vinaigre, le sel et le poivre.','Ajouter le basilic juste avant de servir.'],'crudités','froid','méditerranéenne'),
+  A('a002','Concombre au yaourt et à la menthe','Sans cuisson','10 min',['printemps','été'],'léger',['concombre'],[I(1,'','concombre','concombres'),I(1,'','yaourt nature','yaourts nature'),I(0.5,'','citron','citrons'),I(null,'','menthe')],['Émincer finement le concombre et le saler très légèrement.','Mélanger le yaourt avec le citron, la menthe et du poivre.','Enrober le concombre et servir bien frais.'],'crudités','froid','grecque'),
+  A('a003','Radis, beurre citronné et ciboulette','Sans cuisson','10 min',['printemps'],'normal',['radis'],[I(1,'botte','radis'),I(30,'g','beurre'),I(0.5,'','citron','citrons'),I(null,'','ciboulette'),I(2,'','tranches de pain')],['Nettoyer les radis et les couper en deux.','Travailler le beurre avec le zeste de citron et la ciboulette.','Servir les radis avec le beurre citronné et le pain légèrement grillé.'],'crudités','froid','française'),
+  A('a004','Carottes râpées à l’orange et au cumin','Sans cuisson','12 min',ALL_SEASONS,'léger',['carotte'],[I(3,'','carottes'),I(1,'','orange','oranges'),I(0.5,'c. à café','cumin'),I(1,'c. à soupe','huile d’olive')],['Râper les carottes.','Mélanger le jus d’orange, le cumin, l’huile, le sel et le poivre.','Assaisonner les carottes et laisser reposer 5 minutes.'],'crudités','froid','maghrébine'),
+  A('a005','Betteraves, pomme et noix','Sans cuisson','12 min',['automne','hiver','printemps'],'normal',['betterave','pomme'],[I(250,'g','betteraves cuites'),I(1,'','pomme','pommes'),I(30,'g','noix'),I(1,'c. à soupe','vinaigre de cidre'),I(1,'c. à soupe','huile de noix')],['Couper les betteraves et la pomme en petits dés.','Concasser les noix.','Mélanger avec le vinaigre, l’huile, le sel et le poivre.'],'salade','froid','française'),
+  A('a006','Céleri rémoulade légère','Sans cuisson','15 min',['automne','hiver'],'normal',['céleri-rave'],[I(300,'g','céleri-rave'),I(1,'c. à soupe','moutarde'),I(2,'c. à soupe','fromage blanc'),I(0.5,'','citron','citrons'),I(null,'','persil')],['Râper le céleri-rave et l’arroser de citron.','Mélanger la moutarde et le fromage blanc.','Enrober le céleri de sauce, poivrer et ajouter le persil.'],'crudités','froid','française'),
+  A('a007','Chou rouge croquant à la pomme','Sans cuisson','15 min',['automne','hiver'],'léger',['chou rouge','pomme'],[I(250,'g','chou rouge'),I(1,'','pomme','pommes'),I(1,'c. à soupe','vinaigre de cidre'),I(1,'c. à soupe','huile'),I(1,'c. à café','miel')],['Émincer très finement le chou et couper la pomme en bâtonnets.','Fouetter le vinaigre, l’huile et le miel.','Mélanger et laisser s’attendrir 10 minutes avant de servir.'],'crudités','froid','française'),
+  A('a008','Endives, pomme et noix','Sans cuisson','12 min',['automne','hiver'],'normal',['endive','pomme'],[I(2,'','endives'),I(1,'','pomme','pommes'),I(30,'g','noix'),I(1,'c. à soupe','huile de noix'),I(1,'c. à café','moutarde')],['Émincer les endives et couper la pomme en dés.','Mélanger l’huile, la moutarde et une cuillerée d’eau.','Ajouter les noix, assaisonner et servir aussitôt.'],'salade','froid','française'),
+  A('a009','Fenouil, orange et olives','Sans cuisson','15 min',['automne','hiver','printemps'],'léger',['fenouil','orange'],[I(1,'','fenouil'),I(1,'','orange','oranges'),I(40,'g','olives'),I(1,'c. à soupe','huile d’olive')],['Émincer le fenouil le plus finement possible.','Peler l’orange à vif et récupérer les quartiers.','Mélanger avec les olives, l’huile, le sel et le poivre.'],'salade','froid','méditerranéenne'),
+  A('a010','Tagliatelles de courgette, citron et parmesan','Sans cuisson','12 min',['printemps','été'],'léger',['courgette'],[I(1,'','courgette','courgettes'),I(30,'g','parmesan'),I(0.5,'','citron','citrons'),I(1,'c. à soupe','huile d’olive')],['Tailler la courgette en rubans avec un économe.','Assaisonner de citron, d’huile, de sel et de poivre.','Ajouter les copeaux de parmesan au dernier moment.'],'crudités','froid','italienne'),
+  A('a011','Poivrons grillés à l’ail et au persil','Four','30 min',['été','automne'],'léger',['poivron'],[I(2,'','poivrons'),I(1,'','gousse d’ail','gousses d’ail'),I(null,'','persil'),I(1,'c. à soupe','huile d’olive')],['Griller les poivrons 20 minutes à 220 °C en les retournant.','Les laisser tiédir, retirer la peau et les couper en lanières.','Ajouter ail, persil, huile, sel et poivre.'],'légumes-marinés','froid','méditerranéenne'),
+  A('a012','Aubergines marinées au citron','Four','35 min',['été','automne'],'léger',['aubergine'],[I(1,'','aubergine','aubergines'),I(1,'','citron','citrons'),I(1,'','gousse d’ail','gousses d’ail'),I(null,'','menthe'),I(1,'c. à soupe','huile d’olive')],['Couper l’aubergine en rondelles et cuire 22 minutes à 200 °C.','Mélanger citron, ail, menthe et huile.','Verser sur les aubergines tièdes et laisser mariner 10 minutes.'],'légumes-marinés','froid','méditerranéenne'),
+  A('a013','Taboulé de chou-fleur aux herbes','Sans cuisson','15 min',['printemps','été'],'léger',['chou-fleur'],[I(300,'g','chou-fleur'),I(2,'','tomates'),I(0.5,'','concombre','concombres'),I(1,'','citron','citrons'),I(null,'','persil et menthe')],['Mixer brièvement le chou-fleur cru pour obtenir une semoule.','Couper tomate et concombre en petits dés.','Mélanger avec le citron et les herbes puis réserver au frais.'],'crudités','froid','libanaise'),
+  A('a014','Melon et jambon cru au poivre','Sans cuisson','8 min',['été'],'normal',['melon','jambon cru'],[I(0.5,'','melon','melons'),I(4,'','tranches de jambon cru'),I(null,'','poivre'),I(null,'','basilic')],['Couper le melon en quartiers ou en billes.','Disposer le jambon cru sans le tasser.','Poivrer et ajouter quelques feuilles de basilic.'],'fruits-salés','froid','italienne'),
+  A('a015','Pastèque, feta et menthe','Sans cuisson','10 min',['été'],'normal',['pastèque','feta'],[I(300,'g','pastèque'),I(80,'g','feta'),I(null,'','menthe'),I(0.5,'','citron','citrons')],['Couper la pastèque en cubes et émietter la feta.','Ajouter la menthe et un filet de citron.','Mélanger délicatement et servir très frais.'],'salade','froid','grecque'),
+  A('a016','Tomates, pêches et mozzarella','Sans cuisson','12 min',['été'],'normal',['tomate','pêche'],[I(2,'','tomates'),I(2,'','pêches'),I(125,'g','mozzarella'),I(null,'','basilic'),I(1,'c. à soupe','huile d’olive')],['Couper tomates, pêches et mozzarella en quartiers.','Les alterner dans les assiettes.','Assaisonner d’huile, de poivre et de basilic.'],'salade','froid','italienne'),
+  A('a017','Asperges vinaigrette et œuf mimosa','Casserole','25 min',['printemps'],'normal',['asperge','oeuf'],[I(350,'g','asperges'),I(1,'','œuf','œufs'),I(1,'c. à café','moutarde'),I(1,'c. à soupe','vinaigre'),I(2,'c. à soupe','huile')],['Cuire l’œuf 9 minutes et les asperges 8 à 12 minutes selon leur taille.','Écraser le jaune et hacher le blanc.','Napper les asperges de vinaigrette et parsemer d’œuf.'],'légumes-oeufs','tiède','française'),
+  A('a018','Petits pois à la menthe et au citron','Casserole','15 min',['printemps','été'],'léger',['petits pois'],[I(250,'g','petits pois'),I(0.5,'','citron','citrons'),I(null,'','menthe'),I(1,'c. à soupe','huile d’olive')],['Cuire les petits pois 5 minutes dans l’eau bouillante salée.','Les rafraîchir puis les égoutter.','Assaisonner de citron, d’huile et de menthe.'],'légumes','froid','française'),
+  A('a019','Fonds d’artichauts en vinaigrette','Casserole','25 min',['printemps','été'],'léger',['artichaut'],[I(4,'','fonds d’artichauts'),I(1,'','échalote','échalotes'),I(1,'c. à café','moutarde'),I(1,'c. à soupe','vinaigre'),I(null,'','persil')],['Cuire les fonds d’artichauts jusqu’à ce qu’ils soient tendres puis les laisser tiédir.','Préparer une vinaigrette à la moutarde et à l’échalote.','Napper et ajouter le persil.'],'légumes','tiède','française'),
+  A('a020','Avocat aux crevettes citronnées','Sans cuisson','12 min',['printemps','été'],'normal',['avocat','crevette'],[I(1,'','avocat','avocats'),I(120,'g','crevettes cuites'),I(0.5,'','citron','citrons'),I(1,'c. à soupe','fromage blanc'),I(null,'','ciboulette')],['Couper l’avocat en dés et arroser de citron.','Mélanger avec les crevettes, le fromage blanc et la ciboulette.','Poivrer et servir bien frais.'],'poisson-froid','froid','française'),
+  A('a021','Pamplemousse, avocat et crevettes','Sans cuisson','15 min',['hiver','printemps'],'léger',['pamplemousse','avocat','crevette'],[I(1,'','pamplemousse','pamplemousses'),I(1,'','avocat','avocats'),I(100,'g','crevettes cuites'),I(1,'c. à café','huile d’olive')],['Peler le pamplemousse à vif et récupérer les segments.','Couper l’avocat et ajouter les crevettes.','Mélanger délicatement avec l’huile et un tour de poivre.'],'poisson-froid','froid','française'),
+  A('a022','Tartare de saumon au concombre','Sans cuisson','20 min',['printemps','été'],'normal',['saumon','concombre'],[I(180,'g','saumon très frais'),I(0.5,'','concombre','concombres'),I(1,'','citron','citrons'),I(null,'','aneth'),I(1,'c. à café','huile d’olive')],['Couper le saumon et le concombre en petits dés avec un couteau propre.','Mélanger avec citron, huile, aneth, sel et poivre.','Réserver 10 minutes au frais puis servir immédiatement.'],'poisson-froid','froid','nordique'),
+  A('a023','Rillettes de thon au fromage blanc','Sans cuisson','10 min',ALL_SEASONS,'normal',['thon'],[I(1,'boîte','thon'),I(100,'g','fromage blanc'),I(0.5,'','citron','citrons'),I(null,'','ciboulette'),I(4,'','tranches de pain')],['Égoutter puis écraser le thon.','Mélanger avec le fromage blanc, le citron et la ciboulette.','Poivrer et servir avec le pain grillé.'],'poisson-froid','froid','française'),
+  A('a024','Sardines citronnées sur pain grillé','Sans cuisson','12 min',ALL_SEASONS,'normal',['sardine'],[I(1,'boîte','sardines'),I(0.5,'','citron','citrons'),I(1,'','échalote','échalotes'),I(null,'','persil'),I(4,'','tranches de pain')],['Égoutter les sardines et les écraser grossièrement avec le citron.','Ajouter l’échalote et le persil hachés.','Répartir sur le pain grillé et servir.'],'poisson-froid','froid','méditerranéenne'),
+  A('a025','Maquereau fumé, pomme et citron','Sans cuisson','12 min',['automne','hiver','printemps'],'normal',['maquereau','pomme'],[I(160,'g','maquereau fumé'),I(1,'','pomme','pommes'),I(0.5,'','citron','citrons'),I(2,'c. à soupe','fromage blanc'),I(null,'','aneth')],['Retirer la peau du maquereau et l’émietter.','Couper la pomme en petits dés et l’arroser de citron.','Mélanger avec le fromage blanc et l’aneth.'],'poisson-froid','froid','nordique'),
+  A('a026','Œufs mimosa légers','Casserole','15 min',ALL_SEASONS,'normal',['oeuf'],[I(3,'','œufs'),I(1,'c. à café','moutarde'),I(2,'c. à soupe','fromage blanc'),I(null,'','ciboulette')],['Cuire les œufs 9 minutes, les refroidir puis les écaler.','Mélanger les jaunes avec la moutarde et le fromage blanc.','Garnir les blancs et ajouter la ciboulette.'],'oeufs','froid','française'),
+  A('a027','Œuf poché sur épinards citronnés','Casserole','20 min',['printemps','automne','hiver'],'normal',['oeuf','épinard'],[I(2,'','œufs'),I(250,'g','épinards'),I(0.5,'','citron','citrons'),I(1,'','gousse d’ail','gousses d’ail')],['Faire tomber les épinards avec l’ail pendant 5 minutes.','Pocher les œufs 3 minutes dans une eau frémissante vinaigrée.','Déposer les œufs sur les épinards et ajouter le citron.'],'oeufs','chaud','française'),
+  A('a028','Œufs cocotte aux champignons','Four','25 min',['automne','hiver','printemps'],'gourmand',['oeuf','champignon'],[I(2,'','œufs'),I(150,'g','champignons'),I(8,'cl','crème légère'),I(1,'','échalote','échalotes'),I(null,'','persil')],['Faire revenir l’échalote et les champignons 7 minutes.','Répartir dans deux ramequins, ajouter la crème puis casser un œuf dans chacun.','Cuire 10 à 12 minutes au bain-marie à 180 °C.'],'oeufs','chaud','française'),
+  A('a029','Petits flans de courgette au parmesan','Four','35 min',['printemps','été'],'normal',['courgette'],[I(1,'','courgette','courgettes'),I(2,'','œufs'),I(10,'cl','lait'),I(35,'g','parmesan'),I(null,'','basilic')],['Râper la courgette et la presser pour retirer l’eau.','Mélanger avec les œufs, le lait, le parmesan et le basilic.','Verser dans deux ramequins et cuire 25 minutes à 180 °C.'],'flans-salés','chaud','italienne'),
+  A('a030','Terrine express aux trois légumes','Four','45 min',['printemps','été','automne'],'normal',['carotte','courgette','poivron'],[I(1,'','carotte','carottes'),I(0.5,'','courgette','courgettes'),I(0.5,'','poivron','poivrons'),I(2,'','œufs'),I(10,'cl','crème légère')],['Couper les légumes en petits dés et les précuire 8 minutes à la poêle.','Mélanger avec les œufs et la crème.','Verser dans un petit moule et cuire 30 minutes à 180 °C. Laisser tiédir avant de trancher.'],'terrines','tiède','française'),
+  A('a031','Salade de lentilles à l’échalote','Casserole','30 min',['automne','hiver','printemps'],'normal',['lentille'],[I(140,'g','lentilles'),I(1,'','carotte','carottes'),I(1,'','échalote','échalotes'),I(1,'c. à café','moutarde'),I(null,'','persil')],['Cuire les lentilles avec la carotte 22 à 25 minutes puis égoutter.','Mélanger moutarde, vinaigre et huile.','Ajouter l’échalote et le persil aux lentilles encore tièdes.'],'légumineuses','tiède','française'),
+  A('a032','Pois chiches, tomate et cumin','Sans cuisson','12 min',['printemps','été','automne'],'normal',['pois chiches','tomate'],[I(240,'g','pois chiches cuits'),I(2,'','tomates'),I(0.5,'','oignon rouge','oignons rouges'),I(0.5,'','citron','citrons'),I(0.5,'c. à café','cumin')],['Rincer les pois chiches et couper les tomates en dés.','Émincer l’oignon rouge.','Mélanger avec le citron, le cumin, un filet d’huile, le sel et le poivre.'],'légumineuses','froid','orientale'),
+  A('a033','Haricots blancs à la tomate et au persil','Sans cuisson','12 min',['printemps','été','automne'],'normal',['haricots blancs','tomate'],[I(240,'g','haricots blancs cuits'),I(2,'','tomates'),I(1,'','échalote','échalotes'),I(null,'','persil'),I(1,'c. à soupe','huile d’olive')],['Rincer les haricots blancs et couper les tomates.','Ajouter l’échalote et le persil hachés.','Assaisonner d’huile, de vinaigre, de sel et de poivre.'],'légumineuses','froid','méditerranéenne'),
+  A('a034','Houmous de betterave','Sans cuisson','15 min',ALL_SEASONS,'normal',['betterave','pois chiches'],[I(150,'g','betterave cuite'),I(180,'g','pois chiches cuits'),I(1,'c. à soupe','tahini'),I(0.5,'','citron','citrons'),I(1,'','gousse d’ail','gousses d’ail')],['Mixer betterave, pois chiches, tahini, citron et ail.','Ajouter un peu d’eau jusqu’à obtenir une texture souple.','Rectifier l’assaisonnement et servir frais.'],'tartinades','froid','orientale'),
+  A('a035','Caviar d’aubergine au cumin','Four','40 min',['été','automne'],'léger',['aubergine'],[I(1,'','aubergine','aubergines'),I(1,'','gousse d’ail','gousses d’ail'),I(0.5,'','citron','citrons'),I(0.5,'c. à café','cumin'),I(2,'','tranches de pain')],['Cuire l’aubergine entière 30 minutes à 210 °C.','Prélever la chair et la mixer avec ail, citron et cumin.','Saler, poivrer et servir avec le pain grillé.'],'tartinades','froid','orientale'),
+  A('a036','Tzatziki maison','Sans cuisson','12 min',['printemps','été'],'léger',['concombre'],[I(0.5,'','concombre','concombres'),I(200,'g','yaourt grec'),I(1,'','gousse d’ail','gousses d’ail'),I(0.5,'','citron','citrons'),I(null,'','aneth')],['Râper le concombre, le saler puis le presser.','Mélanger avec le yaourt, l’ail, le citron et l’aneth.','Réserver au frais jusqu’au service.'],'tartinades','froid','grecque'),
+  A('a037','Gaspacho tomate et poivron','Sans cuisson','15 min',['été'],'léger',['tomate','poivron'],[I(4,'','tomates'),I(0.5,'','poivron rouge','poivrons rouges'),I(0.5,'','concombre','concombres'),I(1,'c. à soupe','vinaigre'),I(1,'c. à soupe','huile d’olive')],['Couper grossièrement les légumes.','Mixer avec le vinaigre, l’huile, le sel et le poivre.','Réserver au moins 30 minutes au frais.'],'soupes-froides','froid','espagnole'),
+  A('a038','Gaspacho de concombre à l’aneth','Sans cuisson','12 min',['printemps','été'],'léger',['concombre'],[I(1,'','concombre','concombres'),I(150,'g','yaourt nature'),I(0.5,'','citron','citrons'),I(null,'','aneth'),I(1,'c. à café','huile d’olive')],['Couper le concombre en morceaux.','Mixer avec le yaourt, le citron, l’aneth, l’huile, le sel et le poivre.','Servir très frais.'],'soupes-froides','froid','nordique'),
+  A('a039','Soupe froide de melon au basilic','Sans cuisson','10 min',['été'],'léger',['melon'],[I(0.5,'','melon','melons'),I(0.5,'','citron','citrons'),I(null,'','basilic'),I(1,'c. à café','huile d’olive')],['Retirer les graines et prélever la chair du melon.','Mixer avec le citron, le basilic, l’huile et une pincée de sel.','Servir bien frais.'],'soupes-froides','froid','méditerranéenne'),
+  A('a040','Velouté froid de petits pois à la menthe','Casserole','20 min',['printemps','été'],'léger',['petits pois'],[I(300,'g','petits pois'),I(30,'cl','bouillon'),I(null,'','menthe'),I(2,'c. à soupe','fromage blanc')],['Cuire les petits pois 8 minutes dans le bouillon.','Mixer avec la menthe et laisser refroidir.','Ajouter le fromage blanc et servir frais.'],'soupes-froides','froid','française'),
+  A('a041','Velouté de carottes au cumin','Casserole','30 min',['automne','hiver','printemps'],'léger',['carotte'],[I(500,'g','carottes'),I(1,'','oignon','oignons'),I(50,'cl','bouillon'),I(0.5,'c. à café','cumin')],['Faire revenir l’oignon 3 minutes.','Ajouter les carottes, le cumin et le bouillon puis cuire 22 minutes.','Mixer finement et rectifier l’assaisonnement.'],'soupes','chaud','française'),
+  A('a042','Velouté de courge et châtaignes','Casserole','35 min',['automne','hiver'],'normal',['courge','châtaigne'],[I(450,'g','courge'),I(100,'g','châtaignes cuites'),I(1,'','oignon','oignons'),I(50,'cl','bouillon')],['Faire fondre l’oignon.','Ajouter la courge, les châtaignes et le bouillon puis cuire 25 minutes.','Mixer jusqu’à obtenir un velouté lisse.'],'soupes','chaud','française'),
+  A('a043','Velouté de poireaux et pomme de terre','Casserole','35 min',['automne','hiver','printemps'],'normal',['poireau','pomme de terre'],[I(2,'','poireaux'),I(250,'g','pommes de terre'),I(1,'','oignon','oignons'),I(60,'cl','bouillon')],['Émincer les poireaux et l’oignon, puis couper les pommes de terre.','Cuire tous les légumes 25 minutes dans le bouillon.','Mixer et poivrer généreusement.'],'soupes','chaud','française'),
+  A('a044','Crème de champignons au thym','Casserole','30 min',['automne','hiver'],'normal',['champignon'],[I(350,'g','champignons'),I(1,'','échalote','échalotes'),I(45,'cl','bouillon'),I(8,'cl','crème légère'),I(null,'','thym')],['Faire revenir l’échalote et les champignons 8 minutes.','Ajouter bouillon et thym puis cuire 15 minutes.','Mixer avec la crème et servir chaud.'],'soupes','chaud','française'),
+  A('a045','Soupe à l’oignon légèrement gratinée','Four','40 min',['automne','hiver'],'gourmand',['oignon'],[I(3,'','oignons'),I(50,'cl','bouillon'),I(4,'','tranches de pain'),I(50,'g','gruyère'),I(1,'c. à café','farine')],['Faire fondre les oignons 18 minutes sans les brûler.','Ajouter la farine puis le bouillon et cuire 12 minutes.','Répartir avec le pain et le gruyère, puis gratiner 5 minutes.'],'soupes','chaud','française'),
+  A('a046','Soupe de tomate au basilic','Casserole','30 min',['été','automne'],'léger',['tomate'],[I(600,'g','tomates'),I(1,'','oignon','oignons'),I(30,'cl','bouillon'),I(null,'','basilic'),I(1,'c. à soupe','huile d’olive')],['Faire revenir l’oignon puis ajouter les tomates en morceaux.','Verser le bouillon et cuire 20 minutes.','Mixer et ajouter le basilic.'],'soupes','chaud','italienne'),
+  A('a047','Bouillon de légumes aux vermicelles','Casserole','25 min',['automne','hiver','printemps'],'léger',['carotte','poireau'],[I(1,'','carotte','carottes'),I(1,'','poireau','poireaux'),I(0.5,'','courgette','courgettes'),I(60,'cl','bouillon'),I(40,'g','vermicelles')],['Tailler les légumes en très petits dés.','Les cuire 15 minutes dans le bouillon.','Ajouter les vermicelles et poursuivre selon le temps indiqué sur le paquet.'],'soupes','chaud','française'),
+  A('a048','Velouté de chou-fleur au curry doux','Casserole','30 min',['automne','hiver','printemps'],'léger',['chou-fleur'],[I(500,'g','chou-fleur'),I(1,'','oignon','oignons'),I(50,'cl','bouillon'),I(0.5,'c. à café','curry doux'),I(5,'cl','lait')],['Faire revenir l’oignon avec le curry.','Ajouter le chou-fleur et le bouillon puis cuire 20 minutes.','Mixer avec le lait.'],'soupes','chaud','française'),
+  A('a049','Velouté de brocoli aux amandes','Casserole','30 min',['automne','hiver','printemps'],'normal',['brocoli'],[I(500,'g','brocoli'),I(1,'','pomme de terre','pommes de terre'),I(50,'cl','bouillon'),I(25,'g','amandes effilées')],['Cuire le brocoli et la pomme de terre 20 minutes dans le bouillon.','Mixer finement.','Faire griller les amandes à sec et les déposer sur le velouté.'],'soupes','chaud','française'),
+  A('a050','Soupe de courgette à la menthe','Casserole','25 min',['printemps','été'],'léger',['courgette'],[I(2,'','courgettes'),I(1,'','oignon','oignons'),I(45,'cl','bouillon'),I(null,'','menthe'),I(2,'c. à soupe','fromage blanc')],['Faire revenir l’oignon et ajouter les courgettes.','Verser le bouillon et cuire 15 minutes.','Mixer avec la menthe et le fromage blanc.'],'soupes','chaud','française')
+  ,A('a051','Velouté de panais et pomme','Casserole','35 min',['automne','hiver'],'normal',['panais','pomme'],[I(450,'g','panais'),I(1,'','pomme','pommes'),I(1,'','oignon','oignons'),I(50,'cl','bouillon')],['Faire revenir l’oignon puis ajouter panais et pomme en dés.','Verser le bouillon et cuire 25 minutes.','Mixer finement et poivrer.'],'soupes','chaud','française'),
+  A('a052','Soupe de lentilles corail au lait de coco','Casserole','30 min',['automne','hiver','printemps'],'normal',['lentilles corail'],[I(160,'g','lentilles corail'),I(1,'','carotte','carottes'),I(1,'','oignon','oignons'),I(20,'cl','lait de coco'),I(35,'cl','bouillon'),I(0.5,'c. à café','curry')],['Faire revenir l’oignon, la carotte et le curry.','Ajouter lentilles et bouillon puis cuire 18 minutes.','Verser le lait de coco et mixer brièvement.'],'soupes','chaud','indienne'),
+  A('a053','Crème d’endives à la muscade','Casserole','30 min',['automne','hiver'],'normal',['endive'],[I(4,'','endives'),I(1,'','pomme de terre','pommes de terre'),I(45,'cl','bouillon'),I(8,'cl','crème légère'),I(null,'','muscade')],['Émincer les endives et couper la pomme de terre.','Cuire 20 minutes dans le bouillon.','Mixer avec la crème et une pincée de muscade.'],'soupes','chaud','française'),
+  A('a054','Velouté de céleri aux noisettes','Casserole','35 min',['automne','hiver'],'normal',['céleri-rave','noisette'],[I(450,'g','céleri-rave'),I(1,'','pomme de terre','pommes de terre'),I(50,'cl','bouillon'),I(25,'g','noisettes')],['Cuire le céleri et la pomme de terre 25 minutes dans le bouillon.','Mixer jusqu’à obtenir une texture lisse.','Concasser les noisettes, les griller à sec et les ajouter au service.'],'soupes','chaud','française'),
+  A('a055','Soupe de petits pois et laitue','Casserole','25 min',['printemps','été'],'léger',['petits pois','laitue'],[I(300,'g','petits pois'),I(0.5,'','laitue'),I(1,'','oignon nouveau','oignons nouveaux'),I(45,'cl','bouillon'),I(null,'','ciboulette')],['Faire fondre l’oignon nouveau.','Ajouter petits pois, laitue et bouillon puis cuire 15 minutes.','Mixer et terminer avec la ciboulette.'],'soupes','chaud','française'),
+  A('a056','Velouté d’asperges à la ciboulette','Casserole','30 min',['printemps'],'léger',['asperge'],[I(450,'g','asperges'),I(1,'','pomme de terre','pommes de terre'),I(50,'cl','bouillon'),I(5,'cl','crème légère'),I(null,'','ciboulette')],['Couper les asperges et réserver quelques pointes.','Cuire avec la pomme de terre 20 minutes dans le bouillon.','Mixer avec la crème puis ajouter les pointes poêlées et la ciboulette.'],'soupes','chaud','française'),
+  A('a057','Minestrone léger aux jeunes légumes','Casserole','35 min',['printemps','été'],'normal',['courgette','petits pois','tomate'],[I(1,'','carotte','carottes'),I(0.5,'','courgette','courgettes'),I(2,'','tomates'),I(100,'g','petits pois'),I(50,'g','petites pâtes'),I(60,'cl','bouillon')],['Couper les légumes en petits dés.','Les cuire 18 minutes dans le bouillon.','Ajouter les petites pâtes et poursuivre jusqu’à ce qu’elles soient tendres.'],'soupes','chaud','italienne'),
+  A('a058','Soupe de fenouil et tomate','Casserole','30 min',['printemps','été','automne'],'léger',['fenouil','tomate'],[I(1,'','fenouil'),I(3,'','tomates'),I(1,'','oignon','oignons'),I(45,'cl','bouillon'),I(null,'','basilic')],['Émincer le fenouil et l’oignon.','Ajouter les tomates et le bouillon puis cuire 20 minutes.','Mixer partiellement et ajouter le basilic.'],'soupes','chaud','méditerranéenne'),
+  A('a059','Consommé de volaille aux petits légumes','Casserole','30 min',['automne','hiver','printemps'],'léger',['carotte','poireau'],[I(60,'cl','bouillon de volaille'),I(1,'','carotte','carottes'),I(0.5,'','poireau','poireaux'),I(80,'g','petits pois'),I(null,'','cerfeuil')],['Tailler carotte et poireau en fine julienne.','Les cuire 18 minutes dans le bouillon avec les petits pois.','Ajouter le cerfeuil juste avant de servir.'],'bouillons','chaud','française'),
+  A('a060','Velouté de patate douce au gingembre','Casserole','30 min',['automne','hiver'],'normal',['patate douce'],[I(450,'g','patate douce'),I(1,'','oignon','oignons'),I(50,'cl','bouillon'),I(1,'c. à café','gingembre'),I(5,'cl','lait de coco')],['Faire revenir l’oignon et le gingembre.','Ajouter la patate douce et le bouillon puis cuire 20 minutes.','Mixer avec le lait de coco.'],'soupes','chaud','asiatique'),
+  A('a061','Champignons à l’ail sur pain grillé','Poêle','20 min',['automne','hiver','printemps'],'normal',['champignon'],[I(250,'g','champignons'),I(1,'','gousse d’ail','gousses d’ail'),I(4,'','tranches de pain'),I(null,'','persil'),I(1,'c. à café','huile')],['Faire griller les tranches de pain.','Sauter les champignons 8 minutes avec l’ail.','Ajouter le persil et répartir sur le pain.'],'tartines-salées','chaud','française'),
+  A('a062','Poireaux tièdes à la vinaigrette','Casserole','25 min',['automne','hiver','printemps'],'léger',['poireau'],[I(3,'','poireaux'),I(1,'c. à café','moutarde'),I(1,'c. à soupe','vinaigre'),I(2,'c. à soupe','huile'),I(null,'','ciboulette')],['Cuire les poireaux 15 à 18 minutes à la vapeur ou dans l’eau.','Fouetter moutarde, vinaigre et huile.','Napper les poireaux tièdes et ajouter la ciboulette.'],'légumes','tiède','française'),
+  A('a063','Croustillants de feta et épinards','Four','30 min',['printemps','automne','hiver'],'gourmand',['feta','épinard'],[I(4,'','feuilles de brick'),I(150,'g','épinards'),I(100,'g','feta'),I(1,'','œuf','œufs'),I(null,'','menthe')],['Faire tomber les épinards puis les mélanger avec feta, œuf et menthe.','Garnir et plier les feuilles de brick.','Cuire 15 minutes à 190 °C en les retournant à mi-cuisson.'],'feuilletés','chaud','grecque'),
+  A('a064','Bruschetta tomate et basilic','Four','18 min',['printemps','été'],'normal',['tomate'],[I(4,'','tranches de pain'),I(3,'','tomates'),I(1,'','gousse d’ail','gousses d’ail'),I(null,'','basilic'),I(1,'c. à soupe','huile d’olive')],['Frotter le pain avec l’ail et le griller 5 minutes à 200 °C.','Couper les tomates en dés et les assaisonner.','Répartir les tomates et le basilic sur le pain chaud.'],'tartines-salées','tiède','italienne'),
+  A('a065','Tartines de champignons à la moutarde','Four','25 min',['automne','hiver'],'normal',['champignon'],[I(4,'','tranches de pain'),I(250,'g','champignons'),I(1,'c. à café','moutarde'),I(60,'g','fromage râpé'),I(1,'','échalote','échalotes')],['Faire revenir échalote et champignons 8 minutes.','Ajouter la moutarde et répartir sur le pain.','Parsemer de fromage et gratiner 8 minutes à 200 °C.'],'tartines-salées','chaud','française'),
+  A('a066','Mini-flans de carotte à la coriandre','Four','35 min',ALL_SEASONS,'normal',['carotte'],[I(300,'g','carottes'),I(2,'','œufs'),I(10,'cl','lait'),I(null,'','coriandre'),I(0.5,'c. à café','cumin')],['Cuire les carottes puis les écraser grossièrement.','Mélanger avec les œufs, le lait, le cumin et la coriandre.','Verser dans deux ramequins et cuire 22 minutes à 180 °C.'],'flans-salés','chaud','orientale'),
+  A('a067','Mini-quiches sans pâte aux poireaux','Four','35 min',['automne','hiver','printemps'],'normal',['poireau'],[I(1,'','poireau','poireaux'),I(2,'','œufs'),I(12,'cl','lait'),I(50,'g','gruyère'),I(null,'','muscade')],['Faire fondre le poireau émincé 8 minutes.','Mélanger œufs, lait, gruyère et muscade.','Ajouter le poireau et cuire 22 minutes dans deux ramequins à 180 °C.'],'flans-salés','chaud','française'),
+  A('a068','Clafoutis salé aux tomates cerises','Four','35 min',['printemps','été'],'normal',['tomate'],[I(250,'g','tomates cerises'),I(2,'','œufs'),I(12,'cl','lait'),I(45,'g','farine'),I(null,'','basilic')],['Répartir les tomates dans un petit plat.','Fouetter œufs, lait, farine, sel et poivre.','Verser sur les tomates et cuire 25 minutes à 180 °C, puis ajouter le basilic.'],'clafoutis-salés','chaud','française'),
+  A('a069','Galettes de courgette aux herbes','Poêle','25 min',['printemps','été'],'normal',['courgette'],[I(1,'','courgette','courgettes'),I(1,'','œuf','œufs'),I(45,'g','farine'),I(null,'','persil et ciboulette'),I(1,'c. à café','huile')],['Râper la courgette, la saler puis la presser.','Mélanger avec l’œuf, la farine et les herbes.','Former de petites galettes et les dorer 3 minutes par face.'],'galettes-légumes','chaud','française'),
+  A('a070','Falafels aux herbes, sauce yaourt','Air Fryer','30 min',ALL_SEASONS,'normal',['pois chiches'],[I(240,'g','pois chiches cuits'),I(1,'','gousse d’ail','gousses d’ail'),I(null,'','persil et coriandre'),I(0.5,'c. à café','cumin'),I(1,'','yaourt nature','yaourts nature')],['Mixer grossièrement pois chiches, ail, herbes et cumin.','Former six petites boulettes et cuire 15 minutes à 190 °C en les retournant.','Servir avec le yaourt citronné.'],'bouchées','chaud','orientale'),
+  A('a071','Accras légers de poisson','Air Fryer','30 min',ALL_SEASONS,'normal',['poisson'],[I(200,'g','poisson blanc cuit'),I(70,'g','farine'),I(1,'','œuf','œufs'),I(1,'','oignon nouveau','oignons nouveaux'),I(null,'','persil'),I(0.5,'c. à café','paprika')],['Émietter le poisson et mélanger avec farine, œuf, oignon, persil et paprika.','Former de petites bouchées.','Cuire 12 à 14 minutes à 190 °C en les retournant à mi-cuisson.'],'bouchées-poisson','chaud','antillaise'),
+  A('a072','Crevettes à l’ail et au persil','Poêle','12 min',['printemps','été','automne'],'normal',['crevette'],[I(220,'g','crevettes décortiquées'),I(2,'','gousses d’ail'),I(null,'','persil'),I(0.5,'','citron','citrons'),I(1,'c. à café','huile d’olive')],['Chauffer l’huile avec l’ail sans le colorer.','Ajouter les crevettes et saisir 3 à 4 minutes.','Terminer avec le citron et le persil.'],'fruits-de-mer','chaud','méditerranéenne'),
+  A('a073','Noix de Saint-Jacques sur fondue de poireaux','Poêle','25 min',['automne','hiver'],'gourmand',['saint-jacques','poireau'],[I(6,'','noix de Saint-Jacques'),I(1,'','poireau','poireaux'),I(8,'cl','crème légère'),I(1,'','échalote','échalotes'),I(1,'c. à café','beurre')],['Faire fondre le poireau et l’échalote 12 minutes puis ajouter la crème.','Saisir les Saint-Jacques 1 à 2 minutes par face.','Servir trois noix sur chaque portion de poireaux.'],'fruits-de-mer','chaud','française'),
+  A('a074','Petite marinière de moules','Casserole','20 min',['été','automne','hiver'],'normal',['moule'],[I(600,'g','moules'),I(1,'','échalote','échalotes'),I(10,'cl','vin blanc'),I(null,'','persil'),I(1,'c. à café','beurre')],['Nettoyer soigneusement les moules.','Faire fondre l’échalote, ajouter vin et moules puis couvrir 5 à 7 minutes.','Jeter les moules restées fermées et ajouter le persil.'],'fruits-de-mer','chaud','française'),
+  A('a075','Calamars minute à la persillade','Poêle','15 min',['printemps','été','automne'],'normal',['calamar'],[I(250,'g','anneaux de calamar'),I(2,'','gousses d’ail'),I(null,'','persil'),I(0.5,'','citron','citrons'),I(1,'c. à café','huile d’olive')],['Sécher soigneusement les calamars.','Les saisir 3 à 4 minutes à feu vif avec l’huile.','Ajouter ail et persil une minute, puis le citron hors du feu.'],'fruits-de-mer','chaud','méditerranéenne'),
+  A('a076','Samoussas de légumes au four','Four','35 min',['printemps','été','automne'],'normal',['carotte','courgette'],[I(4,'','feuilles de brick'),I(1,'','carotte','carottes'),I(0.5,'','courgette','courgettes'),I(0.5,'','oignon','oignons'),I(0.5,'c. à café','curry')],['Râper les légumes et les faire revenir 8 minutes avec le curry.','Garnir et plier les feuilles de brick.','Cuire 15 minutes à 190 °C en les retournant une fois.'],'bouchées','chaud','indienne'),
+  A('a077','Bricks au thon et à l’œuf','Poêle','25 min',ALL_SEASONS,'gourmand',['thon','oeuf'],[I(4,'','feuilles de brick'),I(1,'boîte','thon'),I(2,'','œufs'),I(null,'','persil'),I(0.5,'','citron','citrons')],['Cuire les œufs 9 minutes puis les hacher avec le thon, le persil et le citron.','Garnir et plier les feuilles de brick.','Dorer 3 minutes par face dans une poêle légèrement huilée.'],'bouchées-poisson','chaud','maghrébine'),
+  A('a078','Nems de légumes au four','Four','35 min',ALL_SEASONS,'normal',['chou','carotte'],[I(6,'','galettes de riz'),I(150,'g','chou blanc'),I(1,'','carotte','carottes'),I(60,'g','vermicelles de riz'),I(1,'c. à soupe','sauce soja')],['Réhydrater les vermicelles et faire sauter chou et carotte 6 minutes.','Mélanger avec soja et vermicelles puis rouler dans les galettes humidifiées.','Cuire 18 minutes à 200 °C en retournant à mi-cuisson.'],'bouchées','chaud','asiatique'),
+  A('a079','Croquettes de chou-fleur au parmesan','Air Fryer','30 min',['automne','hiver','printemps'],'normal',['chou-fleur'],[I(350,'g','chou-fleur'),I(1,'','œuf','œufs'),I(45,'g','chapelure'),I(35,'g','parmesan'),I(null,'','persil')],['Cuire le chou-fleur et l’écraser.','Mélanger avec œuf, chapelure, parmesan et persil puis former des croquettes.','Cuire 14 minutes à 190 °C en les retournant.'],'croquettes','chaud','italienne'),
+  A('a080','Grenailles tièdes, sauce yaourt aux herbes','Air Fryer','30 min',['printemps','été','automne'],'normal',['pomme de terre'],[I(350,'g','pommes de terre grenaille'),I(1,'','yaourt nature','yaourts nature'),I(0.5,'','citron','citrons'),I(null,'','ciboulette et persil'),I(1,'c. à café','huile')],['Cuire les grenailles 22 minutes à 190 °C avec l’huile, le sel et le poivre.','Mélanger le yaourt, le citron et les herbes.','Servir les pommes de terre tièdes avec la sauce fraîche.'],'légumes','tiède','française'),
+  A('a081','Haricots verts, œuf dur et échalote','Casserole','25 min',['printemps','été','automne'],'normal',['haricots verts','oeuf'],[I(300,'g','haricots verts'),I(2,'','œufs'),I(1,'','échalote','échalotes'),I(1,'c. à café','moutarde'),I(null,'','persil')],['Cuire les haricots 8 à 10 minutes et les œufs 9 minutes.','Préparer une vinaigrette à la moutarde et à l’échalote.','Mélanger les haricots tièdes et ajouter les œufs en quartiers.'],'salade','tiède','française'),
+  A('a082','Champignons crus au citron et parmesan','Sans cuisson','12 min',['automne','hiver','printemps'],'léger',['champignon'],[I(250,'g','champignons de Paris'),I(40,'g','parmesan'),I(1,'','citron','citrons'),I(1,'c. à soupe','huile d’olive'),I(null,'','persil')],['Émincer très finement les champignons.','Les arroser aussitôt de citron et d’huile.','Ajouter parmesan, persil, sel et poivre.'],'crudités','froid','italienne'),
+  A('a083','Chou-fleur rôti, sauce tahini','Four','35 min',['automne','hiver','printemps'],'normal',['chou-fleur'],[I(400,'g','chou-fleur'),I(1,'c. à soupe','tahini'),I(1,'','citron','citrons'),I(0.5,'c. à café','paprika'),I(null,'','persil')],['Rôtir les fleurettes 25 minutes à 210 °C avec le paprika.','Délayer le tahini avec le citron et un peu d’eau.','Napper légèrement le chou-fleur et ajouter le persil.'],'légumes-rôtis','tiède','orientale'),
+  A('a084','Courge rôtie aux noisettes','Four','35 min',['automne','hiver'],'normal',['courge','noisette'],[I(450,'g','courge'),I(30,'g','noisettes'),I(1,'c. à café','miel'),I(null,'','thym'),I(1,'c. à café','huile')],['Couper la courge en petits quartiers et l’assaisonner.','Rôtir 25 minutes à 200 °C.','Ajouter miel, thym et noisettes concassées pour les 5 dernières minutes.'],'légumes-rôtis','tiède','française'),
+  A('a085','Poireaux et saumon fumé, sauce citron','Casserole','25 min',['automne','hiver','printemps'],'normal',['poireau','saumon fumé'],[I(2,'','poireaux'),I(100,'g','saumon fumé'),I(2,'c. à soupe','fromage blanc'),I(0.5,'','citron','citrons'),I(null,'','aneth')],['Cuire les poireaux 15 minutes à la vapeur puis les laisser tiédir.','Mélanger fromage blanc, citron et aneth.','Ajouter le saumon fumé en lanières et servir avec la sauce.'],'poisson-froid','tiède','nordique'),
+  A('a086','Avocat aux agrumes et graines','Sans cuisson','12 min',['hiver','printemps'],'léger',['avocat','orange','pamplemousse'],[I(1,'','avocat','avocats'),I(1,'','orange','oranges'),I(0.5,'','pamplemousse','pamplemousses'),I(1,'c. à soupe','graines de courge'),I(1,'c. à café','huile d’olive')],['Peler les agrumes à vif et couper l’avocat.','Répartir dans deux assiettes.','Ajouter les graines, l’huile, le sel et le poivre.'],'salade','froid','méditerranéenne'),
+  A('a087','Concombre, radis et pomme verte','Sans cuisson','12 min',['printemps','été'],'léger',['concombre','radis','pomme'],[I(0.5,'','concombre','concombres'),I(0.5,'botte','radis'),I(1,'','pomme verte','pommes vertes'),I(0.5,'','citron','citrons'),I(null,'','ciboulette')],['Émincer concombre et radis, puis couper la pomme en bâtonnets.','Arroser de citron.','Ajouter ciboulette, sel, poivre et un filet d’huile.'],'crudités','froid','française'),
+  A('a088','Quinoa aux herbes et légumes croquants','Casserole','25 min',['printemps','été'],'normal',['quinoa','concombre','tomate'],[I(100,'g','quinoa'),I(0.5,'','concombre','concombres'),I(1,'','tomate','tomates'),I(0.5,'','citron','citrons'),I(null,'','persil et menthe')],['Cuire le quinoa, l’égoutter puis le laisser refroidir.','Couper les légumes en petits dés.','Mélanger avec citron et herbes.'],'salade','froid','méditerranéenne'),
+  A('a089','Taboulé de boulgour au persil','Casserole','25 min',['printemps','été'],'normal',['boulgour','tomate'],[I(110,'g','boulgour'),I(2,'','tomates'),I(0.5,'','concombre','concombres'),I(1,'','citron','citrons'),I(null,'','persil et menthe')],['Cuire le boulgour puis le refroidir.','Couper tomate et concombre en petits dés.','Mélanger avec citron, herbes et un filet d’huile.'],'salade','froid','libanaise'),
+  A('a090','Caponata d’aubergine aux câpres','Poêle','35 min',['été','automne'],'normal',['aubergine','tomate'],[I(1,'','aubergine','aubergines'),I(2,'','tomates'),I(1,'','oignon','oignons'),I(1,'c. à soupe','câpres'),I(40,'g','olives'),I(1,'c. à soupe','vinaigre')],['Faire revenir aubergine et oignon 15 minutes.','Ajouter tomates, câpres, olives et vinaigre puis mijoter 10 minutes.','Laisser tiédir avant de servir.'],'légumes-marinés','tiède','italienne'),
+  A('a091','Piperade en petite verrine','Poêle','30 min',['été','automne'],'léger',['poivron','tomate'],[I(2,'','poivrons'),I(3,'','tomates'),I(1,'','oignon','oignons'),I(1,'','gousse d’ail','gousses d’ail'),I(0.5,'c. à café','piment doux')],['Faire fondre oignon et poivrons 15 minutes.','Ajouter tomates, ail et piment doux puis cuire 10 minutes.','Servir tiède ou froid en petite portion.'],'légumes','tiède','basque'),
+  A('a092','Ratatouille froide au basilic','Poêle','35 min',['été','automne'],'léger',['courgette','aubergine','tomate'],[I(0.5,'','aubergine','aubergines'),I(1,'','courgette','courgettes'),I(1,'','poivron','poivrons'),I(3,'','tomates'),I(null,'','basilic')],['Couper les légumes en petits dés et les cuire séparément pour garder leurs textures.','Réunir avec les tomates et mijoter 10 minutes.','Laisser refroidir et ajouter le basilic.'],'légumes','froid','provençale'),
+  A('a093','Terrine de saumon à l’aneth','Four','45 min',ALL_SEASONS,'gourmand',['saumon'],[I(250,'g','saumon'),I(2,'','œufs'),I(10,'cl','crème légère'),I(0.5,'','citron','citrons'),I(null,'','aneth')],['Mixer grossièrement le saumon avec œufs, crème, citron et aneth.','Verser dans un petit moule chemisé.','Cuire 30 minutes au bain-marie à 170 °C et laisser refroidir avant de trancher.'],'terrines-poisson','froid','française'),
+  A('a094','Mousse de truite fumée au citron','Sans cuisson','12 min',ALL_SEASONS,'normal',['truite fumée'],[I(140,'g','truite fumée'),I(120,'g','fromage frais'),I(0.5,'','citron','citrons'),I(null,'','aneth'),I(4,'','tranches de pain')],['Mixer la truite avec le fromage frais et le citron.','Poivrer et ajouter l’aneth.','Servir frais avec le pain grillé.'],'poisson-froid','froid','nordique'),
+  A('a095','Avocat garni à l’œuf dur','Casserole','18 min',['printemps','été'],'normal',['avocat','oeuf'],[I(1,'','avocat','avocats'),I(2,'','œufs'),I(1,'c. à café','moutarde'),I(1,'c. à soupe','fromage blanc'),I(0.5,'','citron','citrons')],['Cuire les œufs 9 minutes puis les hacher.','Mélanger avec moutarde, fromage blanc et citron.','Garnir les demi-avocats et poivrer.'],'oeufs','froid','française'),
+  A('a096','Tomates farcies au thon et aux herbes','Sans cuisson','15 min',['été'],'normal',['tomate','thon'],[I(4,'','petites tomates','petites tomates'),I(1,'boîte','thon'),I(80,'g','fromage blanc'),I(0.5,'','citron','citrons'),I(null,'','ciboulette')],['Évider les tomates et saler légèrement l’intérieur.','Mélanger thon, fromage blanc, citron et ciboulette.','Garnir les tomates et réserver au frais.'],'poisson-froid','froid','française'),
+  A('a097','Champignons farcis à la persillade','Four','25 min',['automne','hiver','printemps'],'normal',['champignon'],[I(8,'','gros champignons'),I(2,'','gousses d’ail'),I(45,'g','chapelure'),I(null,'','persil'),I(1,'c. à soupe','huile d’olive')],['Retirer les pieds et les hacher avec ail, persil et chapelure.','Farcir les chapeaux et arroser d’un filet d’huile.','Cuire 17 minutes à 190 °C.'],'légumes-farcis','chaud','française'),
+  A('a098','Barquettes d’endive au jambon cru','Sans cuisson','10 min',['automne','hiver'],'normal',['endive','jambon cru'],[I(2,'','endives'),I(4,'','tranches de jambon cru'),I(80,'g','fromage frais'),I(1,'','pomme','pommes'),I(null,'','ciboulette')],['Détacher les plus belles feuilles d’endive.','Mélanger fromage frais, pomme en petits dés et ciboulette.','Garnir les feuilles et ajouter des lanières de jambon cru.'],'bouchées-froides','froid','française'),
+  A('a099','Asperges au saumon fumé et citron','Casserole','25 min',['printemps'],'normal',['asperge','saumon fumé'],[I(350,'g','asperges'),I(100,'g','saumon fumé'),I(0.5,'','citron','citrons'),I(2,'c. à soupe','fromage blanc'),I(null,'','aneth')],['Cuire les asperges 8 à 12 minutes puis les refroidir.','Mélanger fromage blanc, citron et aneth.','Servir avec le saumon fumé en lanières.'],'poisson-froid','froid','nordique'),
+  A('a100','Salade de pommes de terre aux cornichons','Casserole','30 min',ALL_SEASONS,'normal',['pomme de terre','cornichon'],[I(450,'g','pommes de terre'),I(4,'','cornichons'),I(1,'','échalote','échalotes'),I(1,'c. à café','moutarde'),I(null,'','persil')],['Cuire les pommes de terre 20 minutes puis les couper encore tièdes.','Mélanger moutarde, vinaigre, huile et échalote.','Ajouter les cornichons et le persil.'],'salade','tiède','française')
+];
+
+const desserts=[
+  D('d001','Fraises à la menthe et au citron','Sans cuisson','10 min',['printemps','été'],'léger',['fraise'],[I(300,'g','fraises'),I(0.5,'','citron','citrons'),I(null,'','menthe'),I(1,'c. à café','sucre')],['Équeuter et couper les fraises.','Les mélanger avec le citron et le sucre.','Ajouter la menthe juste avant de servir.'],'fruits-frais','froid','française'),
+  D('d002','Salade de fruits rouges au basilic','Sans cuisson','10 min',['printemps','été'],'léger',['fruits rouges'],[I(120,'g','fraises'),I(100,'g','framboises'),I(100,'g','myrtilles'),I(0.5,'','citron','citrons'),I(null,'','basilic')],['Rincer délicatement les fruits.','Couper les fraises et ajouter le citron.','Mélanger sans écraser et terminer avec le basilic.'],'fruits-frais','froid','française'),
+  D('d003','Melon au citron vert','Sans cuisson','8 min',['été'],'léger',['melon'],[I(0.5,'','melon','melons'),I(1,'','citron vert','citrons verts'),I(null,'','menthe')],['Couper le melon en cubes ou en billes.','Ajouter le zeste et le jus de citron vert.','Parsemer de menthe et servir frais.'],'fruits-frais','froid','méditerranéenne'),
+  D('d004','Pastèque au citron et à la menthe','Sans cuisson','8 min',['été'],'léger',['pastèque'],[I(450,'g','pastèque'),I(0.5,'','citron','citrons'),I(null,'','menthe')],['Retirer les pépins et couper la pastèque.','Arroser de citron.','Ajouter la menthe et réserver au frais.'],'fruits-frais','froid','méditerranéenne'),
+  D('d005','Pêches et framboises au jus de citron','Sans cuisson','10 min',['été'],'léger',['pêche','framboise'],[I(3,'','pêches'),I(120,'g','framboises'),I(0.5,'','citron','citrons'),I(1,'c. à café','miel')],['Couper les pêches en quartiers.','Ajouter les framboises, le citron et le miel.','Mélanger délicatement et servir frais.'],'fruits-frais','froid','française'),
+  D('d006','Nectarines au thym citron','Sans cuisson','10 min',['été'],'léger',['nectarine'],[I(3,'','nectarines'),I(0.5,'','citron','citrons'),I(1,'c. à café','miel'),I(null,'','thym citron')],['Couper les nectarines en fines tranches.','Mélanger miel et citron puis verser sur les fruits.','Ajouter quelques feuilles de thym citron.'],'fruits-frais','froid','française'),
+  D('d007','Abricots au miel et à la lavande','Sans cuisson','10 min',['été'],'normal',['abricot'],[I(8,'','abricots'),I(1,'c. à café','miel'),I(0.5,'','citron','citrons'),I(1,'pincée','lavande alimentaire')],['Couper les abricots en quartiers.','Délayer le miel avec le citron.','Verser sur les fruits et ajouter très peu de lavande.'],'fruits-frais','froid','provençale'),
+  D('d008','Carpaccio d’ananas au citron vert','Sans cuisson','12 min',ALL_SEASONS,'léger',['ananas'],[I(0.5,'','ananas','ananas'),I(1,'','citron vert','citrons verts'),I(null,'','menthe')],['Retirer la peau et le cœur de l’ananas.','Le couper en tranches très fines.','Ajouter citron vert et menthe puis servir frais.'],'fruits-frais','froid','tropicale'),
+  D('d009','Oranges à la cannelle','Sans cuisson','10 min',['automne','hiver','printemps'],'léger',['orange'],[I(3,'','oranges'),I(0.5,'c. à café','cannelle'),I(1,'c. à café','miel'),I(null,'','menthe')],['Peler les oranges à vif et les couper en rondelles.','Arroser d’un peu de miel.','Saupoudrer de cannelle et ajouter la menthe.'],'fruits-frais','froid','maghrébine'),
+  D('d010','Agrumes au miel et au gingembre','Sans cuisson','12 min',['automne','hiver','printemps'],'léger',['orange','pamplemousse','clémentine'],[I(1,'','orange','oranges'),I(1,'','pamplemousse','pamplemousses'),I(2,'','clémentines'),I(1,'c. à café','miel'),I(0.5,'c. à café','gingembre')],['Peler les agrumes à vif et récupérer les segments.','Mélanger miel et gingembre avec une cuillerée de jus.','Verser sur les fruits et servir frais.'],'fruits-frais','froid','française'),
+  D('d011','Kiwi, pomme et citron','Sans cuisson','10 min',['automne','hiver','printemps'],'léger',['kiwi','pomme'],[I(3,'','kiwis'),I(1,'','pomme','pommes'),I(0.5,'','citron','citrons'),I(1,'c. à café','miel')],['Peler les kiwis et couper la pomme.','Ajouter aussitôt le citron.','Mélanger avec le miel.'],'fruits-frais','froid','française'),
+  D('d012','Poire au chocolat noir râpé','Sans cuisson','8 min',['automne','hiver'],'normal',['poire','chocolat'],[I(2,'','poires'),I(25,'g','chocolat noir'),I(0.5,'','citron','citrons')],['Couper les poires en fines lamelles et les citronner.','Râper le chocolat noir.','Parsemer les poires juste avant de servir.'],'fruits-frais','froid','française'),
+  D('d013','Pomme, cannelle et raisins secs','Sans cuisson','10 min',['automne','hiver'],'normal',['pomme'],[I(2,'','pommes'),I(25,'g','raisins secs'),I(0.5,'c. à café','cannelle'),I(0.5,'','citron','citrons')],['Couper les pommes en petits dés et les citronner.','Ajouter raisins secs et cannelle.','Mélanger et laisser reposer 5 minutes.'],'fruits-frais','froid','française'),
+  D('d014','Raisin frais et noix','Sans cuisson','8 min',['automne'],'normal',['raisin','noix'],[I(300,'g','raisin'),I(30,'g','noix'),I(1,'c. à café','miel')],['Couper les gros grains de raisin en deux et retirer les pépins si nécessaire.','Concasser les noix.','Mélanger avec un filet de miel.'],'fruits-frais','froid','française'),
+  D('d015','Mangue et fruit de la passion','Sans cuisson','10 min',ALL_SEASONS,'léger',['mangue','passion'],[I(1,'','mangue','mangues'),I(2,'','fruits de la passion'),I(0.5,'','citron vert','citrons verts')],['Couper la mangue en cubes.','Prélever la pulpe des fruits de la passion.','Mélanger avec le citron vert.'],'fruits-frais','froid','tropicale'),
+  D('d016','Banane citronnée au cacao','Sans cuisson','7 min',ALL_SEASONS,'normal',['banane','cacao'],[I(2,'','bananes'),I(0.5,'','citron','citrons'),I(1,'c. à café','cacao non sucré')],['Couper les bananes en rondelles et les citronner.','Répartir dans deux coupelles.','Saupoudrer légèrement de cacao.'],'fruits-frais','froid','française'),
+  D('d017','Fraises au balsamique','Sans cuisson','10 min',['printemps','été'],'normal',['fraise'],[I(300,'g','fraises'),I(1,'c. à café','vinaigre balsamique'),I(1,'c. à café','sucre'),I(null,'','basilic')],['Couper les fraises.','Ajouter sucre et balsamique puis laisser reposer 10 minutes.','Terminer avec le basilic.'],'fruits-frais','froid','italienne'),
+  D('d018','Framboises au citron et aux amandes','Sans cuisson','8 min',['été'],'normal',['framboise','amande'],[I(250,'g','framboises'),I(0.5,'','citron','citrons'),I(25,'g','amandes effilées'),I(1,'c. à café','miel')],['Faire griller les amandes à sec.','Répartir les framboises et les arroser de citron et de miel.','Ajouter les amandes refroidies.'],'fruits-frais','froid','française'),
+  D('d019','Cerises et amandes fraîches','Sans cuisson','10 min',['été'],'normal',['cerise','amande'],[I(350,'g','cerises'),I(25,'g','amandes'),I(0.5,'','citron','citrons')],['Dénoyauter les cerises et les couper en deux.','Concasser les amandes.','Mélanger avec un trait de citron.'],'fruits-frais','froid','française'),
+  D('d020','Prunes à la menthe','Sans cuisson','8 min',['été','automne'],'léger',['prune'],[I(6,'','prunes'),I(0.5,'','citron','citrons'),I(null,'','menthe'),I(1,'c. à café','miel')],['Couper les prunes en quartiers.','Mélanger citron et miel.','Verser sur les fruits et ajouter la menthe.'],'fruits-frais','froid','française'),
+  D('d021','Figues fraîches aux noix','Sans cuisson','8 min',['été','automne'],'normal',['figue','noix'],[I(6,'','figues'),I(30,'g','noix'),I(1,'c. à café','miel')],['Couper les figues en quartiers.','Concasser les noix.','Ajouter un filet de miel et servir.'],'fruits-frais','froid','méditerranéenne'),
+  D('d022','Kaki et quartiers d’orange','Sans cuisson','10 min',['automne','hiver'],'léger',['kaki','orange'],[I(2,'','kakis'),I(1,'','orange','oranges'),I(0.5,'','citron','citrons')],['Peler les kakis et l’orange.','Couper les fruits en morceaux.','Ajouter un filet de citron et mélanger délicatement.'],'fruits-frais','froid','française'),
+  D('d023','Clémentines et graines de grenade','Sans cuisson','10 min',['automne','hiver'],'léger',['clémentine','grenade'],[I(4,'','clémentines'),I(0.5,'','grenade','grenades'),I(null,'','menthe')],['Peler les clémentines et séparer les quartiers.','Prélever les graines de grenade.','Mélanger et ajouter la menthe.'],'fruits-frais','froid','méditerranéenne'),
+  D('d024','Rhubarbe et fraises marinées','Casserole','20 min',['printemps','été'],'normal',['rhubarbe','fraise'],[I(250,'g','rhubarbe'),I(200,'g','fraises'),I(35,'g','sucre'),I(1,'c. à soupe','eau')],['Cuire la rhubarbe avec le sucre et l’eau pendant 10 minutes.','Laisser tiédir puis ajouter les fraises coupées.','Réserver au frais avant de servir.'],'fruits-cuits','froid','française'),
+  D('d025','Salade tropicale ananas, mangue et banane','Sans cuisson','12 min',ALL_SEASONS,'léger',['ananas','mangue','banane'],[I(250,'g','ananas'),I(1,'','mangue','mangues'),I(1,'','banane','bananes'),I(1,'','citron vert','citrons verts')],['Couper tous les fruits en morceaux réguliers.','Ajouter le jus et le zeste de citron vert.','Mélanger et servir frais.'],'fruits-frais','froid','tropicale'),
+  D('d026','Pommes au four à la cannelle','Four','35 min',['automne','hiver'],'normal',['pomme'],[I(2,'','pommes'),I(1,'c. à café','miel'),I(0.5,'c. à café','cannelle'),I(2,'c. à soupe','eau')],['Évider les pommes sans les percer.','Ajouter miel et cannelle au centre.','Verser l’eau dans le plat et cuire 28 minutes à 180 °C.'],'fruits-rôtis','chaud','française'),
+  D('d027','Poires rôties au miel','Four','30 min',['automne','hiver'],'normal',['poire'],[I(2,'','poires'),I(1,'c. à soupe','miel'),I(0.5,'c. à café','vanille'),I(2,'c. à soupe','eau')],['Couper les poires en deux et retirer le cœur.','Déposer dans un plat avec miel, vanille et eau.','Cuire 22 minutes à 190 °C.'],'fruits-rôtis','chaud','française'),
+  D('d028','Pêches rôties au romarin','Four','25 min',['été'],'normal',['pêche'],[I(3,'','pêches'),I(1,'c. à café','miel'),I(1,'branche','romarin'),I(1,'c. à café','jus de citron')],['Couper les pêches en deux et retirer les noyaux.','Ajouter miel, citron et romarin.','Cuire 18 minutes à 190 °C.'],'fruits-rôtis','chaud','provençale'),
+  D('d029','Abricots rôtis aux amandes','Four','25 min',['été'],'normal',['abricot','amande'],[I(8,'','abricots'),I(25,'g','amandes effilées'),I(1,'c. à café','miel'),I(1,'c. à soupe','eau')],['Couper les abricots en deux.','Ajouter miel et eau puis cuire 15 minutes à 190 °C.','Parsemer d’amandes et poursuivre 3 minutes.'],'fruits-rôtis','chaud','française'),
+  D('d030','Ananas rôti à la vanille','Poêle','15 min',ALL_SEASONS,'normal',['ananas'],[I(350,'g','ananas'),I(1,'c. à café','sucre'),I(0.5,'c. à café','vanille'),I(0.5,'','citron vert','citrons verts')],['Couper l’ananas en tranches ou en cubes.','Le faire dorer 6 à 8 minutes avec le sucre et la vanille.','Ajouter le citron vert hors du feu.'],'fruits-rôtis','chaud','tropicale'),
+  D('d031','Bananes rôties au chocolat noir','Four','20 min',ALL_SEASONS,'gourmand',['banane','chocolat'],[I(2,'','bananes'),I(40,'g','chocolat noir'),I(1,'c. à café','noix de coco râpée')],['Fendre les bananes dans leur peau.','Glisser le chocolat dans l’ouverture.','Cuire 12 minutes à 190 °C puis ajouter la noix de coco.'],'fruits-rôtis','chaud','française'),
+  D('d032','Prunes rôties à la cannelle','Four','25 min',['été','automne'],'normal',['prune'],[I(6,'','prunes'),I(1,'c. à café','miel'),I(0.5,'c. à café','cannelle'),I(2,'c. à soupe','eau')],['Couper les prunes en deux et les disposer dans un plat.','Ajouter miel, cannelle et eau.','Cuire 18 minutes à 190 °C.'],'fruits-rôtis','chaud','française'),
+  D('d033','Figues rôties au miel et aux noix','Four','20 min',['été','automne'],'gourmand',['figue','noix'],[I(6,'','figues'),I(1,'c. à soupe','miel'),I(30,'g','noix'),I(1,'pincée','cannelle')],['Inciser les figues en croix sans les séparer.','Ajouter miel, cannelle et noix concassées.','Cuire 12 minutes à 190 °C.'],'fruits-rôtis','chaud','méditerranéenne'),
+  D('d034','Compote de pommes maison','Casserole','25 min',['automne','hiver'],'léger',['pomme'],[I(4,'','pommes'),I(5,'cl','eau'),I(0.5,'c. à café','cannelle')],['Peler, épépiner et couper les pommes.','Cuire à couvert 18 minutes avec l’eau.','Écraser ou mixer et ajouter la cannelle.'],'compotes','tiède','française'),
+  D('d035','Compote pomme-poire à la vanille','Casserole','25 min',['automne','hiver'],'léger',['pomme','poire'],[I(2,'','pommes'),I(2,'','poires'),I(5,'cl','eau'),I(0.5,'c. à café','vanille')],['Peler et couper les fruits.','Cuire 18 minutes à couvert avec l’eau et la vanille.','Écraser selon la texture souhaitée.'],'compotes','tiède','française'),
+  D('d036','Compote pomme-rhubarbe','Casserole','25 min',['printemps','été'],'normal',['pomme','rhubarbe'],[I(2,'','pommes'),I(300,'g','rhubarbe'),I(35,'g','sucre'),I(5,'cl','eau')],['Couper pommes et rhubarbe.','Cuire à couvert 18 minutes avec sucre et eau.','Écraser et laisser refroidir.'],'compotes','tiède','française'),
+  D('d037','Compote d’abricots à la vanille','Casserole','20 min',['été'],'normal',['abricot'],[I(600,'g','abricots'),I(30,'g','sucre'),I(0.5,'c. à café','vanille'),I(3,'cl','eau')],['Dénoyauter et couper les abricots.','Cuire 12 à 15 minutes avec eau, sucre et vanille.','Écraser grossièrement.'],'compotes','tiède','française'),
+  D('d038','Compote de prunes à la cannelle','Casserole','20 min',['été','automne'],'normal',['prune'],[I(700,'g','prunes'),I(25,'g','sucre'),I(0.5,'c. à café','cannelle')],['Dénoyauter les prunes.','Cuire 15 minutes à feu doux avec le sucre.','Ajouter la cannelle et laisser tiédir.'],'compotes','tiède','française'),
+  D('d039','Compote de pêches à la verveine','Casserole','20 min',['été'],'léger',['pêche'],[I(5,'','pêches'),I(20,'g','sucre'),I(1,'sachet','verveine'),I(3,'cl','eau')],['Peler et couper les pêches.','Cuire 12 minutes avec eau, sucre et verveine.','Retirer la verveine et écraser légèrement.'],'compotes','tiède','française'),
+  D('d040','Poires pochées à la vanille','Casserole','30 min',['automne','hiver'],'normal',['poire'],[I(2,'','poires'),I(40,'g','sucre'),I(40,'cl','eau'),I(0.5,'c. à café','vanille'),I(0.5,'','citron','citrons')],['Peler les poires en gardant la queue.','Porter eau, sucre, citron et vanille à frémissement.','Pocher les poires 20 minutes puis laisser tiédir dans le sirop.'],'fruits-pochés','tiède','française'),
+  D('d041','Agrumes rôtis au miel','Four','20 min',['automne','hiver','printemps'],'normal',['orange','pamplemousse'],[I(2,'','oranges'),I(1,'','pamplemousse','pamplemousses'),I(1,'c. à soupe','miel'),I(0.5,'c. à café','cannelle')],['Peler les agrumes à vif et les disposer dans un plat.','Ajouter miel et cannelle.','Rôtir 10 minutes à 200 °C.'],'fruits-rôtis','tiède','française'),
+  D('d042','Crumble léger aux pommes','Four','35 min',['automne','hiver'],'gourmand',['pomme'],[I(3,'','pommes'),I(45,'g','farine'),I(30,'g','flocons d’avoine'),I(30,'g','beurre'),I(25,'g','sucre'),I(0.5,'c. à café','cannelle')],['Couper les pommes et les répartir dans un petit plat.','Sabler farine, avoine, beurre, sucre et cannelle.','Couvrir les fruits et cuire 25 minutes à 190 °C.'],'crumbles','chaud','française'),
+  D('d043','Crumble aux fruits rouges','Four','35 min',['printemps','été'],'gourmand',['fruits rouges'],[I(400,'g','fruits rouges'),I(50,'g','farine'),I(35,'g','beurre'),I(30,'g','sucre'),I(25,'g','poudre d’amande')],['Répartir les fruits rouges dans un petit plat.','Sabler farine, beurre, sucre et poudre d’amande.','Couvrir et cuire 25 minutes à 190 °C.'],'crumbles','chaud','française'),
+  D('d044','Crumble poire et chocolat','Four','35 min',['automne','hiver'],'gourmand',['poire','chocolat'],[I(3,'','poires'),I(40,'g','chocolat noir'),I(50,'g','farine'),I(35,'g','beurre'),I(30,'g','sucre')],['Couper les poires et ajouter le chocolat haché.','Sabler farine, beurre et sucre.','Répartir la pâte et cuire 25 minutes à 190 °C.'],'crumbles','chaud','française'),
+  D('d045','Papillotes de banane à l’orange','Four','20 min',ALL_SEASONS,'normal',['banane','orange'],[I(2,'','bananes'),I(1,'','orange','oranges'),I(20,'g','raisins secs'),I(0.5,'c. à café','cannelle')],['Déposer chaque banane en rondelles sur un papier cuisson.','Ajouter jus d’orange, raisins et cannelle.','Fermer les papillotes et cuire 12 minutes à 190 °C.'],'fruits-rôtis','chaud','française'),
+  D('d046','Yaourt au miel et aux noix','Sans cuisson','5 min',ALL_SEASONS,'normal',['yaourt','noix'],[I(2,'','yaourts nature'),I(1,'c. à soupe','miel'),I(30,'g','noix')],['Répartir les yaourts dans deux coupelles.','Ajouter le miel.','Concasser les noix et les parsemer au dernier moment.'],'desserts-laitiers','froid','française'),
+  D('d047','Yaourt citron et graines de pavot','Sans cuisson','7 min',ALL_SEASONS,'léger',['yaourt','citron'],[I(2,'','yaourts nature'),I(1,'','citron','citrons'),I(1,'c. à café','graines de pavot'),I(1,'c. à café','miel')],['Mélanger les yaourts avec le zeste et un peu de jus de citron.','Ajouter le miel.','Parsemer de pavot.'],'desserts-laitiers','froid','française'),
+  D('d048','Fromage blanc aux fraises','Sans cuisson','8 min',['printemps','été'],'léger',['fromage blanc','fraise'],[I(250,'g','fromage blanc'),I(250,'g','fraises'),I(1,'c. à café','sucre'),I(null,'','menthe')],['Couper les fraises.','Répartir le fromage blanc et ajouter les fruits.','Saupoudrer très légèrement de sucre et ajouter la menthe.'],'desserts-laitiers','froid','française'),
+  D('d049','Fromage blanc, poire et vanille','Sans cuisson','8 min',['automne','hiver'],'léger',['fromage blanc','poire'],[I(250,'g','fromage blanc'),I(2,'','poires'),I(0.5,'c. à café','vanille'),I(1,'c. à café','miel')],['Couper les poires en petits dés.','Mélanger le fromage blanc avec la vanille.','Ajouter poires et miel.'],'desserts-laitiers','froid','française'),
+  D('d050','Yaourt grec à la pêche','Sans cuisson','8 min',['été'],'normal',['yaourt','pêche'],[I(250,'g','yaourt grec'),I(2,'','pêches'),I(1,'c. à café','miel'),I(20,'g','amandes effilées')],['Couper les pêches.','Répartir le yaourt et ajouter les fruits.','Terminer avec miel et amandes.'],'desserts-laitiers','froid','grecque')
+  ,D('d051','Faisselle au coulis de fruits rouges','Sans cuisson','10 min',['printemps','été'],'léger',['faisselle','fruits rouges'],[I(250,'g','faisselle'),I(200,'g','fruits rouges'),I(1,'c. à café','miel')],['Mixer la moitié des fruits avec le miel.','Égoutter la faisselle et la répartir.','Ajouter le coulis et les fruits restants.'],'desserts-laitiers','froid','française'),
+  D('d052','Skyr à la pomme et à la cannelle','Sans cuisson','8 min',['automne','hiver'],'léger',['skyr','pomme'],[I(250,'g','skyr'),I(1,'','pomme','pommes'),I(0.5,'c. à café','cannelle'),I(1,'c. à café','miel')],['Couper la pomme en petits dés.','Répartir le skyr.','Ajouter pomme, cannelle et un filet de miel.'],'desserts-laitiers','froid','nordique'),
+  D('d053','Petits-suisses aux abricots','Sans cuisson','8 min',['été'],'normal',['petit-suisse','abricot'],[I(4,'','petits-suisses'),I(6,'','abricots'),I(1,'c. à café','miel')],['Couper les abricots en petits morceaux.','Démouler les petits-suisses.','Ajouter les fruits et le miel.'],'desserts-laitiers','froid','française'),
+  D('d054','Verrines de yaourt à la mangue','Sans cuisson','10 min',ALL_SEASONS,'léger',['yaourt','mangue'],[I(2,'','yaourts nature'),I(1,'','mangue','mangues'),I(0.5,'','citron vert','citrons verts')],['Mixer la moitié de la mangue avec le citron vert.','Alterner yaourt, coulis et dés de mangue.','Réserver au frais.'],'verrines','froid','tropicale'),
+  D('d055','Yaourt aux framboises et granola','Sans cuisson','8 min',['printemps','été'],'normal',['yaourt','framboise'],[I(2,'','yaourts nature'),I(200,'g','framboises'),I(50,'g','granola'),I(1,'c. à café','miel')],['Répartir les yaourts et les framboises.','Ajouter le miel.','Parsemer de granola juste avant de servir.'],'desserts-laitiers','froid','française'),
+  D('d056','Fromage blanc au kiwi et citron vert','Sans cuisson','8 min',['automne','hiver','printemps'],'léger',['fromage blanc','kiwi'],[I(250,'g','fromage blanc'),I(3,'','kiwis'),I(0.5,'','citron vert','citrons verts'),I(1,'c. à café','miel')],['Peler et couper les kiwis.','Mélanger le fromage blanc avec le zeste de citron vert.','Ajouter fruits et miel.'],'desserts-laitiers','froid','française'),
+  D('d057','Crème de yaourt au citron','Sans cuisson','10 min',ALL_SEASONS,'léger',['yaourt','citron'],[I(250,'g','yaourt grec'),I(1,'','citron','citrons'),I(1,'c. à soupe','miel'),I(1,'','blanc d’œuf','blancs d’œufs')],['Mélanger le yaourt avec citron et miel.','Monter le blanc en neige et l’incorporer délicatement.','Réserver au frais 20 minutes.'],'mousses-légères','froid','française'),
+  D('d058','Panna cotta légère au yaourt','Casserole','20 min',ALL_SEASONS,'normal',['yaourt','vanille'],[I(20,'cl','crème légère'),I(150,'g','yaourt nature'),I(30,'g','sucre'),I(1,'feuille','gélatine'),I(0.5,'c. à café','vanille')],['Faire tremper la gélatine.','Chauffer crème, sucre et vanille puis dissoudre la gélatine.','Laisser tiédir, incorporer le yaourt et réfrigérer au moins 3 heures.'],'panna-cotta','froid','italienne'),
+  D('d059','Mousse de fromage blanc au chocolat','Sans cuisson','15 min',ALL_SEASONS,'normal',['fromage blanc','chocolat'],[I(250,'g','fromage blanc'),I(60,'g','chocolat noir'),I(1,'','blanc d’œuf','blancs d’œufs'),I(1,'c. à café','sucre')],['Faire fondre le chocolat et le mélanger au fromage blanc.','Monter le blanc en neige avec le sucre.','Incorporer délicatement et réfrigérer 2 heures.'],'mousses','froid','française'),
+  D('d060','Verrines poire, fromage blanc et spéculoos','Sans cuisson','10 min',['automne','hiver'],'gourmand',['poire','fromage blanc','spéculoos'],[I(2,'','poires'),I(250,'g','fromage blanc'),I(4,'','spéculoos'),I(0.5,'c. à café','vanille')],['Couper les poires en dés et émietter les spéculoos.','Mélanger le fromage blanc avec la vanille.','Alterner les trois éléments dans des verrines.'],'verrines','froid','française'),
+  D('d061','Crème dessert à la vanille','Casserole','20 min',ALL_SEASONS,'normal',['lait','vanille'],[I(40,'cl','lait'),I(35,'g','sucre'),I(25,'g','fécule de maïs'),I(0.5,'c. à café','vanille')],['Délayer la fécule dans un peu de lait froid.','Chauffer le reste avec sucre et vanille.','Ajouter la fécule et remuer jusqu’à épaississement, puis refroidir.'],'crèmes','froid','française'),
+  D('d062','Crème dessert au chocolat','Casserole','20 min',ALL_SEASONS,'gourmand',['lait','chocolat'],[I(40,'cl','lait'),I(80,'g','chocolat noir'),I(25,'g','fécule de maïs'),I(20,'g','sucre')],['Délayer la fécule dans un peu de lait.','Chauffer le reste avec sucre et chocolat.','Ajouter la fécule, épaissir en remuant puis refroidir.'],'crèmes','froid','française'),
+  D('d063','Petites crèmes caramel','Four','45 min',ALL_SEASONS,'gourmand',['oeuf','lait','caramel'],[I(35,'cl','lait'),I(2,'','œufs'),I(45,'g','sucre'),I(0.5,'c. à café','vanille'),I(2,'c. à soupe','caramel')],['Répartir le caramel dans deux ramequins.','Fouetter œufs et sucre puis ajouter lait chaud et vanille.','Cuire 30 minutes au bain-marie à 160 °C et refroidir.'],'crèmes','froid','française'),
+  D('d064','Crème douce au citron','Casserole','20 min',ALL_SEASONS,'normal',['citron','lait'],[I(35,'cl','lait'),I(1,'','citron','citrons'),I(30,'g','sucre'),I(25,'g','fécule de maïs'),I(1,'','jaune d’œuf','jaunes d’œufs')],['Délayer fécule et jaune dans un peu de lait.','Chauffer le reste avec sucre et zeste de citron.','Ajouter le mélange, épaissir puis incorporer un peu de jus hors du feu.'],'crèmes','froid','française'),
+  D('d065','Mousse au chocolat noir','Sans cuisson','20 min',ALL_SEASONS,'gourmand',['chocolat','oeuf'],[I(100,'g','chocolat noir'),I(3,'','œufs'),I(1,'pincée','sel')],['Faire fondre le chocolat et le laisser tiédir.','Séparer les œufs, mélanger les jaunes au chocolat puis monter les blancs en neige.','Incorporer délicatement et réfrigérer au moins 3 heures.'],'mousses','froid','française'),
+  D('d066','Mousse légère au citron','Sans cuisson','15 min',ALL_SEASONS,'normal',['citron','fromage blanc'],[I(250,'g','fromage blanc'),I(1,'','citron','citrons'),I(2,'','blancs d’œufs'),I(30,'g','sucre')],['Mélanger fromage blanc, sucre, zeste et jus de citron.','Monter les blancs en neige.','Incorporer délicatement et réfrigérer 2 heures.'],'mousses','froid','française'),
+  D('d067','Mousse aux framboises','Sans cuisson','15 min',['printemps','été'],'normal',['framboise','fromage blanc'],[I(250,'g','framboises'),I(200,'g','fromage blanc'),I(2,'','blancs d’œufs'),I(30,'g','sucre')],['Mixer les framboises et les mélanger au fromage blanc.','Monter les blancs en neige avec le sucre.','Incorporer et réserver 2 heures au frais.'],'mousses','froid','française'),
+  D('d068','Mousse de mangue au citron vert','Sans cuisson','15 min',ALL_SEASONS,'normal',['mangue'],[I(1,'','mangue','mangues'),I(20,'cl','crème entière froide'),I(1,'','citron vert','citrons verts'),I(20,'g','sucre')],['Mixer la mangue avec citron vert et sucre.','Fouetter la crème en chantilly souple.','Incorporer la purée et réfrigérer 2 heures.'],'mousses','froid','tropicale'),
+  D('d069','Flan vanille maison','Four','45 min',ALL_SEASONS,'normal',['oeuf','lait','vanille'],[I(40,'cl','lait'),I(3,'','œufs'),I(50,'g','sucre'),I(0.5,'c. à café','vanille')],['Chauffer le lait avec la vanille.','Fouetter œufs et sucre puis verser le lait chaud.','Cuire 30 minutes au bain-marie à 170 °C.'],'flans','froid','française'),
+  D('d070','Flan coco','Four','45 min',ALL_SEASONS,'gourmand',['noix de coco','oeuf'],[I(25,'cl','lait de coco'),I(15,'cl','lait'),I(3,'','œufs'),I(45,'g','sucre'),I(35,'g','noix de coco râpée')],['Mélanger tous les ingrédients sans trop fouetter.','Verser dans un petit moule.','Cuire 30 minutes au bain-marie à 170 °C puis refroidir.'],'flans','froid','tropicale'),
+  D('d071','Flan aux pommes','Four','45 min',['automne','hiver'],'normal',['pomme','oeuf'],[I(2,'','pommes'),I(3,'','œufs'),I(30,'cl','lait'),I(45,'g','sucre'),I(35,'g','farine')],['Couper les pommes en lamelles et les disposer dans un plat.','Fouetter œufs, lait, sucre et farine.','Verser sur les pommes et cuire 30 minutes à 180 °C.'],'flans','tiède','française'),
+  D('d072','Œufs au lait','Four','45 min',ALL_SEASONS,'normal',['oeuf','lait'],[I(40,'cl','lait'),I(3,'','œufs'),I(45,'g','sucre'),I(0.5,'c. à café','vanille')],['Chauffer le lait avec la vanille.','Battre œufs et sucre puis verser le lait chaud doucement.','Cuire 30 minutes au bain-marie à 160 °C.'],'entremets','froid','française'),
+  D('d073','Riz au lait crémeux','Casserole','40 min',ALL_SEASONS,'gourmand',['riz','lait'],[I(80,'g','riz rond'),I(50,'cl','lait'),I(40,'g','sucre'),I(0.5,'c. à café','vanille')],['Rincer le riz et le blanchir 2 minutes dans l’eau.','Le cuire 30 à 35 minutes à feu doux dans le lait vanillé.','Ajouter le sucre en fin de cuisson et laisser tiédir.'],'entremets','tiède','française'),
+  D('d074','Semoule au lait à la fleur d’oranger','Casserole','20 min',ALL_SEASONS,'normal',['semoule','lait'],[I(50,'g','semoule fine'),I(40,'cl','lait'),I(35,'g','sucre'),I(1,'c. à café','fleur d’oranger')],['Chauffer le lait avec le sucre.','Verser la semoule en pluie et cuire 6 à 8 minutes en remuant.','Ajouter la fleur d’oranger et répartir dans des coupelles.'],'entremets','tiède','maghrébine'),
+  D('d075','Perles de tapioca à la vanille','Casserole','30 min',ALL_SEASONS,'normal',['tapioca','lait'],[I(45,'g','perles de tapioca'),I(40,'cl','lait'),I(35,'g','sucre'),I(0.5,'c. à café','vanille')],['Chauffer le lait avec sucre et vanille.','Ajouter le tapioca et cuire selon le paquet en remuant souvent.','Répartir et laisser refroidir.'],'entremets','froid','française'),
+  D('d076','Panna cotta aux fruits rouges','Casserole','20 min',['printemps','été'],'gourmand',['crème','fruits rouges'],[I(30,'cl','crème liquide'),I(35,'g','sucre'),I(1.5,'feuilles','gélatine'),I(180,'g','fruits rouges'),I(0.5,'c. à café','vanille')],['Faire tremper la gélatine.','Chauffer crème, sucre et vanille puis dissoudre la gélatine.','Réfrigérer 3 heures et servir avec les fruits légèrement écrasés.'],'panna-cotta','froid','italienne'),
+  D('d077','Îles flottantes faciles','Casserole','35 min',ALL_SEASONS,'gourmand',['oeuf','lait'],[I(3,'','œufs'),I(40,'cl','lait'),I(60,'g','sucre'),I(0.5,'c. à café','vanille'),I(2,'c. à soupe','caramel')],['Préparer une crème anglaise avec lait, jaunes, la moitié du sucre et vanille.','Monter les blancs avec le reste du sucre et les pocher par cuillerées dans l’eau frémissante.','Déposer sur la crème refroidie et ajouter le caramel.'],'entremets','froid','française'),
+  D('d078','Crèmes brûlées simplifiées','Four','50 min',ALL_SEASONS,'gourmand',['crème','oeuf'],[I(30,'cl','crème liquide'),I(3,'','jaunes d’œufs'),I(45,'g','sucre'),I(0.5,'c. à café','vanille'),I(2,'c. à café','cassonade')],['Chauffer la crème et la vanille.','Fouetter jaunes et sucre puis ajouter la crème.','Cuire 35 minutes à 120 °C, refroidir puis caraméliser la cassonade.'],'crèmes','froid','française'),
+  D('d079','Blanc-manger aux amandes','Casserole','20 min',ALL_SEASONS,'normal',['amande','lait'],[I(35,'cl','lait'),I(60,'g','poudre d’amande'),I(35,'g','sucre'),I(20,'g','fécule de maïs'),I(1,'feuille','gélatine')],['Faire tremper la gélatine et délayer la fécule dans un peu de lait.','Chauffer le reste avec amande et sucre puis épaissir avec la fécule.','Ajouter la gélatine, verser en coupelles et refroidir.'],'entremets','froid','française'),
+  D('d080','Tiramisu léger aux fraises','Sans cuisson','20 min',['printemps','été'],'gourmand',['fraise','mascarpone'],[I(250,'g','fraises'),I(150,'g','mascarpone'),I(150,'g','fromage blanc'),I(6,'','biscuits à la cuillère'),I(25,'g','sucre'),I(0.5,'','citron','citrons')],['Mélanger mascarpone, fromage blanc, sucre et zeste de citron.','Alterner biscuits légèrement citronnés, crème et fraises.','Réfrigérer au moins 2 heures.'],'tiramisus','froid','italienne'),
+  D('d081','Tarte fine aux pommes','Four','35 min',['automne','hiver'],'gourmand',['pomme'],[I(1,'','pâte feuilletée'),I(3,'','pommes'),I(20,'g','sucre'),I(15,'g','beurre'),I(0.5,'c. à café','cannelle')],['Étaler un petit rectangle de pâte et le piquer.','Disposer les pommes très finement tranchées, puis ajouter sucre, beurre et cannelle.','Cuire 25 minutes à 200 °C.'],'tartes','tiède','française'),
+  D('d082','Tarte poire-amande','Four','45 min',['automne','hiver'],'gourmand',['poire','amande'],[I(1,'','pâte brisée'),I(3,'','poires'),I(60,'g','poudre d’amande'),I(40,'g','sucre'),I(1,'','œuf','œufs'),I(40,'g','beurre')],['Foncer un petit moule avec la pâte.','Mélanger beurre, sucre, œuf et poudre d’amande puis étaler.','Ajouter les poires et cuire 32 minutes à 180 °C.'],'tartes','tiède','française'),
+  D('d083','Tarte rustique aux abricots','Four','45 min',['été'],'gourmand',['abricot'],[I(1,'','pâte brisée'),I(10,'','abricots'),I(35,'g','sucre'),I(25,'g','poudre d’amande')],['Étaler la pâte sur une plaque et parsemer le centre de poudre d’amande.','Ajouter les abricots et le sucre en laissant un bord.','Replier le bord et cuire 32 minutes à 190 °C.'],'tartes','tiède','française'),
+  D('d084','Tartelettes aux fraises et fromage blanc','Four','35 min',['printemps','été'],'normal',['fraise','fromage blanc'],[I(1,'','pâte sablée'),I(250,'g','fraises'),I(150,'g','fromage blanc'),I(20,'g','sucre'),I(0.5,'','citron','citrons')],['Découper deux fonds de pâte et les cuire à blanc 15 minutes à 180 °C.','Mélanger fromage blanc, sucre et zeste de citron.','Garnir les fonds refroidis et ajouter les fraises.'],'tartes','froid','française'),
+  D('d085','Clafoutis aux cerises','Four','45 min',['été'],'gourmand',['cerise'],[I(400,'g','cerises'),I(2,'','œufs'),I(25,'cl','lait'),I(60,'g','farine'),I(50,'g','sucre')],['Dénoyauter les cerises si souhaité et les disposer dans un plat.','Fouetter œufs, lait, farine et sucre.','Verser et cuire 35 minutes à 180 °C.'],'clafoutis','tiède','française'),
+  D('d086','Clafoutis aux poires','Four','45 min',['automne','hiver'],'normal',['poire'],[I(3,'','poires'),I(2,'','œufs'),I(25,'cl','lait'),I(60,'g','farine'),I(45,'g','sucre'),I(0.5,'c. à café','vanille')],['Couper les poires et les répartir dans un plat.','Mélanger œufs, lait, farine, sucre et vanille.','Verser et cuire 35 minutes à 180 °C.'],'clafoutis','tiède','française'),
+  D('d087','Gâteau au yaourt et au citron','Four','45 min',ALL_SEASONS,'gourmand',['yaourt','citron'],[I(1,'','yaourt nature','yaourts nature'),I(2,'','œufs'),I(120,'g','farine'),I(75,'g','sucre'),I(5,'cl','huile'),I(1,'','citron','citrons'),I(0.5,'sachet','levure')],['Mélanger yaourt, œufs, sucre, huile, zeste et jus de citron.','Incorporer farine et levure.','Verser dans un petit moule et cuire 30 minutes à 180 °C.'],'gâteaux','tiède','française'),
+  D('d088','Gâteau moelleux aux pommes','Four','45 min',['automne','hiver'],'gourmand',['pomme'],[I(3,'','pommes'),I(2,'','œufs'),I(110,'g','farine'),I(70,'g','sucre'),I(60,'g','beurre'),I(0.5,'sachet','levure')],['Fouetter œufs et sucre puis ajouter beurre fondu, farine et levure.','Incorporer les pommes en dés.','Cuire 30 minutes à 180 °C.'],'gâteaux','tiède','française'),
+  D('d089','Moelleux au chocolat','Four','30 min',ALL_SEASONS,'gourmand',['chocolat'],[I(120,'g','chocolat noir'),I(70,'g','beurre'),I(2,'','œufs'),I(55,'g','sucre'),I(35,'g','farine')],['Faire fondre chocolat et beurre.','Ajouter sucre, œufs puis farine.','Verser dans un petit moule et cuire 18 à 20 minutes à 180 °C.'],'gâteaux','tiède','française'),
+  D('d090','Fondant à l’orange','Four','40 min',['automne','hiver','printemps'],'gourmand',['orange'],[I(2,'','oranges'),I(2,'','œufs'),I(100,'g','farine'),I(70,'g','sucre'),I(60,'g','beurre'),I(0.5,'sachet','levure')],['Fouetter œufs et sucre, puis ajouter beurre, farine et levure.','Ajouter zeste et jus d’une orange.','Cuire 28 minutes à 180 °C et arroser d’un peu de jus de la seconde orange.'],'gâteaux','tiède','française'),
+  D('d091','Petit marbré vanille-chocolat','Four','45 min',ALL_SEASONS,'gourmand',['chocolat','vanille'],[I(2,'','œufs'),I(120,'g','farine'),I(80,'g','sucre'),I(70,'g','beurre'),I(40,'g','chocolat noir'),I(0.5,'c. à café','vanille'),I(0.5,'sachet','levure')],['Préparer une pâte avec œufs, sucre, beurre, farine et levure.','Diviser en deux, ajouter chocolat fondu d’un côté et vanille de l’autre.','Alterner dans un petit moule et cuire 30 minutes à 180 °C.'],'gâteaux','tiède','française'),
+  D('d092','Madeleines au citron','Four','35 min',ALL_SEASONS,'gourmand',['citron'],[I(2,'','œufs'),I(100,'g','farine'),I(75,'g','sucre'),I(80,'g','beurre'),I(1,'','citron','citrons'),I(0.5,'sachet','levure')],['Mélanger œufs, sucre, farine et levure.','Ajouter beurre fondu, zeste et jus de citron puis reposer 20 minutes.','Cuire 10 à 12 minutes à 200 °C dans des moules à madeleines.'],'petits-gâteaux','tiède','française'),
+  D('d093','Financiers aux amandes','Four','30 min',ALL_SEASONS,'gourmand',['amande'],[I(2,'','blancs d’œufs'),I(70,'g','poudre d’amande'),I(55,'g','sucre glace'),I(30,'g','farine'),I(60,'g','beurre')],['Faire fondre le beurre jusqu’à une légère couleur noisette.','Mélanger poudre d’amande, sucre, farine et blancs non montés, puis ajouter le beurre.','Cuire 14 minutes à 190 °C.'],'petits-gâteaux','tiède','française'),
+  D('d094','Cookies avoine et chocolat','Four','30 min',ALL_SEASONS,'gourmand',['avoine','chocolat'],[I(80,'g','flocons d’avoine'),I(70,'g','farine'),I(55,'g','beurre'),I(45,'g','sucre'),I(1,'','œuf','œufs'),I(50,'g','chocolat noir')],['Mélanger beurre mou et sucre puis ajouter l’œuf.','Incorporer farine, avoine et chocolat haché.','Former des cookies et cuire 12 minutes à 180 °C.'],'biscuits','tiède','française'),
+  D('d095','Muffins aux myrtilles','Four','35 min',['été','automne'],'gourmand',['myrtille'],[I(180,'g','myrtilles'),I(120,'g','farine'),I(60,'g','sucre'),I(1,'','œuf','œufs'),I(10,'cl','lait'),I(45,'g','beurre'),I(0.5,'sachet','levure')],['Mélanger farine, sucre et levure.','Ajouter œuf, lait et beurre fondu sans trop travailler, puis les myrtilles.','Cuire 20 minutes à 180 °C.'],'petits-gâteaux','tiède','française'),
+  D('d096','Cake banane et noix','Four','45 min',ALL_SEASONS,'gourmand',['banane','noix'],[I(2,'','bananes mûres'),I(2,'','œufs'),I(120,'g','farine'),I(50,'g','sucre'),I(50,'g','beurre'),I(40,'g','noix'),I(0.5,'sachet','levure')],['Écraser les bananes et mélanger avec œufs, sucre et beurre fondu.','Ajouter farine, levure et noix.','Cuire 30 minutes à 180 °C dans un petit moule.'],'cakes','tiède','française'),
+  D('d097','Pain d’épices simple au miel','Four','50 min',['automne','hiver'],'gourmand',['miel','épices'],[I(140,'g','farine'),I(100,'g','miel'),I(10,'cl','lait'),I(1,'','œuf','œufs'),I(1,'c. à café','épices à pain d’épices'),I(0.5,'sachet','levure')],['Tiédir lait et miel.','Ajouter œuf, farine, levure et épices.','Verser dans un petit moule et cuire 35 minutes à 170 °C.'],'cakes','tiède','française'),
+  D('d098','Far breton aux pruneaux','Four','50 min',ALL_SEASONS,'gourmand',['pruneau'],[I(180,'g','pruneaux'),I(2,'','œufs'),I(35,'cl','lait'),I(80,'g','farine'),I(55,'g','sucre'),I(0.5,'c. à café','vanille')],['Répartir les pruneaux dans un petit plat beurré.','Fouetter œufs, sucre, farine, lait et vanille.','Verser et cuire 38 minutes à 180 °C.'],'flans','tiède','bretonne'),
+  D('d099','Gâteau de semoule au caramel','Casserole','35 min',ALL_SEASONS,'gourmand',['semoule','caramel'],[I(60,'g','semoule fine'),I(45,'cl','lait'),I(45,'g','sucre'),I(1,'','œuf','œufs'),I(3,'c. à soupe','caramel'),I(0.5,'c. à café','vanille')],['Cuire la semoule 7 minutes dans le lait avec sucre et vanille.','Hors du feu, ajouter l’œuf battu.','Verser sur le caramel dans un petit moule et laisser prendre au frais.'],'entremets','froid','française'),
+  D('d100','Crumble rhubarbe-fraise','Four','40 min',['printemps','été'],'gourmand',['rhubarbe','fraise'],[I(300,'g','rhubarbe'),I(220,'g','fraises'),I(55,'g','farine'),I(40,'g','beurre'),I(35,'g','sucre'),I(25,'g','poudre d’amande')],['Couper rhubarbe et fraises et les disposer dans un petit plat.','Sabler farine, beurre, sucre et poudre d’amande.','Répartir sur les fruits et cuire 28 minutes à 190 °C.'],'crumbles','chaud','française')
+];
+
+function applyCourseMetadata(recipe){
+  const declaredTemperature=recipe.hotCold;
+  applyRecipeMetadata(recipe,recipe.course);
+  const family=String(recipe.family||'');
+  if(recipe.course==='starter'){
+    recipe.group=/poisson|fruits-de-mer|moule|calamar/.test(family)?'poisson':/oeufs/.test(family)?'oeufs':/légumineuses|tartinades|falafel/.test(family)?'vegetal':'legumes';
+  }else{
+    recipe.group=/fruits|compote/.test(family)?'fruits':/laitier|crème|creme|flan|entremets|panna|mousse/.test(family)?'laitier':'patisserie';
+  }
+  recipe.protein=recipe.group;
+  recipe.starch=recipe.course==='starter'?'entrée':recipe.group==='fruits'?'fruit':'dessert';
+  recipe.hotCold=declaredTemperature;
+  recipe.lightness=recipe.richness;
+  recipe.profile=`${recipe.course}|${recipe.family}|${recipe.cuisine}|${recipe.richness}|${recipe.hotCold}`;
+  recipe.mealSlots=[recipe.course];
+}
 noon.forEach(recipe=>applyRecipeMetadata(recipe,'mid'));
 evening.forEach(recipe=>applyRecipeMetadata(recipe,'eve'));
+starters.forEach(applyCourseMetadata);
+desserts.forEach(applyCourseMetadata);
 
 const $=id=>document.getElementById(id);
 noon.forEach(recipe=>{recipe.mealSlots=['mid']});
 evening.forEach(recipe=>{recipe.mealSlots=['eve']});
-const recipeLibrary=[...noon,...evening];
+const dishLibrary=[...noon,...evening];
+const recipeLibrary=[...dishLibrary,...starters,...desserts];
 const recipeIndex=new Map(recipeLibrary.map(recipe=>[recipe.id,recipe]));
-$('libraryCount').textContent=`${recipeLibrary.length} vraies recettes différentes`;
-$('versionLine').textContent='Clair Repas V3.6';
+$('libraryCount').textContent=`${dishLibrary.length} plats · ${starters.length} entrées · ${desserts.length} desserts`;
+$('versionLine').textContent='Clair Repas V3.7';
 const FAVORITES_KEY='crFavMeals';
 const RECENT_RECIPES_KEY='crRecentRecipesV25';
 const MAX_RECENT_RECIPES=10;
@@ -2457,6 +2702,8 @@ function writeReactionMap(values){
   const clean=Object.fromEntries(Object.entries(values||{}).filter(([id,value])=>recipeIndex.has(id)&&['again','notForMe'].includes(value)));
   localStorage.setItem(REACTIONS_KEY,JSON.stringify(clean));
 }
+const RECIPE_USAGE_TYPES=['mid','eve','starter','dessert'];
+function normalizeRecipeUsageType(type){return RECIPE_USAGE_TYPES.includes(type)?type:'mid'}
 function learningData(){
   let raw=null;
   try{raw=JSON.parse(localStorage.getItem(LEARNING_KEY)||'null')}catch(e){raw=null}
@@ -2468,7 +2715,7 @@ function learningData(){
   }
   if(Array.isArray(raw.selections)){
     data.selections=raw.selections.filter(item=>item&&recipeIndex.has(item.id)&&Number.isFinite(Number(item.at)))
-      .map(item=>({id:item.id,type:item.type==='eve'?'eve':'mid',at:Number(item.at)})).slice(-LEARNING_CHOICE_LIMIT);
+      .map(item=>({id:item.id,type:normalizeRecipeUsageType(item.type),at:Number(item.at)})).slice(-LEARNING_CHOICE_LIMIT);
   }
   if(raw.stats&&typeof raw.stats==='object'&&!Array.isArray(raw.stats)){
     Object.entries(raw.stats).forEach(([id,value])=>{
@@ -2527,7 +2774,7 @@ function recordRecipeSelection(id,type){
   if(!recipeIndex.has(id))return;
   const data=learningData();
   const now=Date.now();
-  const normalizedType=type==='eve'?'eve':'mid';
+  const normalizedType=normalizeRecipeUsageType(type);
   const lastSame=[...(data.selections||[])].reverse().find(item=>item.id===id&&item.type===normalizedType);
   if(lastSame&&now-lastSame.at<CHOICE_DEDUPLICATION_MS)return;
   data.selections.push({id,type:normalizedType,at:now});
@@ -2535,7 +2782,8 @@ function recordRecipeSelection(id,type){
   stats.selected+=1;
   stats.lastSelectedAt=now;
   saveLearningData(data);
-  rememberSelectedMeal(normalizedType,id,now);
+  if(normalizedType==='starter'||normalizedType==='dessert')rememberSelectedCourse(normalizedType,id,now);
+  else rememberSelectedMeal(normalizedType,id,now);
 }
 function setRecipeReaction(id,value){
   if(!recipeIndex.has(id)||!['again','notForMe'].includes(value))return;
@@ -2608,7 +2856,16 @@ const MEAL_TYPES=['mid','eve'];
 const MEAL_PLANNED='planned';
 const MEAL_OUTSIDE='outside';
 const MEAL_LEFTOVERS='leftovers';
+const MEAL_FORMAT_DISH='dish';
+const MEAL_FORMAT_STARTER_DISH='starter-dish';
+const MEAL_FORMAT_DISH_DESSERT='dish-dessert';
+const MEAL_FORMATS=[MEAL_FORMAT_DISH,MEAL_FORMAT_STARTER_DISH,MEAL_FORMAT_DISH_DESSERT];
 function statusKey(type){return`${type}Status`}
+function formatKey(type){return`${type}Format`}
+function starterKey(type){return`${type}Starter`}
+function dessertKey(type){return`${type}Dessert`}
+function normalizeMealFormat(value){return MEAL_FORMATS.includes(value)?value:MEAL_FORMAT_DISH}
+function mealFormat(day,type){return normalizeMealFormat(day&&day[formatKey(type)])}
 function normalizeMealStatus(value){
   return [MEAL_PLANNED,MEAL_OUTSIDE,MEAL_LEFTOVERS].includes(value)?value:MEAL_PLANNED;
 }
@@ -2619,6 +2876,32 @@ function activeRecipeEntries(source=plan){
   return (source||[]).flatMap((day,dayIndex)=>MEAL_TYPES.flatMap(type=>{
     const recipe=day&&day[type];
     return mealStatus(day,type)===MEAL_PLANNED&&recipe?[{dayIndex,type,recipe}]:[];
+  }));
+}
+function activeCourseEntries(source=plan){
+  return (source||[]).flatMap((day,dayIndex)=>MEAL_TYPES.flatMap(slot=>{
+    if(mealStatus(day,slot)!==MEAL_PLANNED)return[];
+    const format=mealFormat(day,slot);
+    const entries=[];
+    const starter=day&&day[starterKey(slot)];
+    const dessert=day&&day[dessertKey(slot)];
+    if(format===MEAL_FORMAT_STARTER_DISH&&starter)entries.push({dayIndex,slot,type:'starter',recipe:starter});
+    if(format===MEAL_FORMAT_DISH_DESSERT&&dessert)entries.push({dayIndex,slot,type:'dessert',recipe:dessert});
+    return entries;
+  }));
+}
+function activeAllRecipeEntries(source=plan){
+  return (source||[]).flatMap((day,dayIndex)=>MEAL_TYPES.flatMap(slot=>{
+    if(mealStatus(day,slot)!==MEAL_PLANNED)return[];
+    const format=mealFormat(day,slot);
+    const entries=[];
+    const starter=day&&day[starterKey(slot)];
+    const dish=day&&day[slot];
+    const dessert=day&&day[dessertKey(slot)];
+    if(format===MEAL_FORMAT_STARTER_DISH&&starter)entries.push({dayIndex,slot,type:'starter',recipe:starter});
+    if(dish)entries.push({dayIndex,slot,type:slot,recipe:dish});
+    if(format===MEAL_FORMAT_DISH_DESSERT&&dessert)entries.push({dayIndex,slot,type:'dessert',recipe:dessert});
+    return entries;
   }));
 }
 
@@ -2925,7 +3208,7 @@ function recipeSimilarity(left,right){
   return score;
 }
 // Métadonnées et vecteurs préparés une seule fois au démarrage : les sélections
-// suivantes ne retraitent jamais les 800 fiches.
+// suivantes ne retraitent jamais les 800 fiches de plats.
 recipeLibrary.forEach(recipe=>{
   tagsOf(recipe);
   similarityVector(recipe);
@@ -2937,20 +3220,21 @@ const baselineShareCache=new Map();
 function baselineTagShare(type,axis,value){
   const key=`${type}|${axis}|${value}`;
   if(baselineShareCache.has(key))return baselineShareCache.get(key);
-  const list=type==='eve'?evening:noon;
+  const list=type==='eve'?evening:type==='starter'?starters:type==='dessert'?desserts:noon;
   const share=list.filter(recipe=>tagsOf(recipe)[axis]===value).length/Math.max(1,list.length);
   baselineShareCache.set(key,share);
   return share;
 }
-function buildPreferenceProfile(data=learningData(),reactions=reactionMap()){
+function buildPreferenceProfile(data=learningData(),reactions=reactionMap(),type='mid'){
   const choiceCounts=Object.fromEntries(HABIT_AXES.map(axis=>[axis,new Map()]));
   const reactionScores=Object.fromEntries(HABIT_AXES.map(axis=>[axis,new Map()]));
   let choiceWeight=0;
   const now=Date.now();
+  const matchesType=recipe=>type==='starter'||type==='dessert'?recipe?.course===type:!recipe?.course;
   const addEvent=(item,importance)=>{
     if(reactions[item.id]==='notForMe')return;
     const recipe=recipeIndex.get(item.id);
-    if(!recipe)return;
+    if(!recipe||!matchesType(recipe))return;
     const ageDays=Math.max(0,(now-Number(item.at))/DAY_MS);
     const weight=importance*Math.max(0.35,1-ageDays/180);
     const tags=tagsOf(recipe);
@@ -2965,7 +3249,7 @@ function buildPreferenceProfile(data=learningData(),reactions=reactionMap()){
   (data.selections||[]).forEach(item=>addEvent(item,1));
   Object.entries(reactions).forEach(([id,value])=>{
     const recipe=recipeIndex.get(id);
-    if(!recipe)return;
+    if(!recipe||!matchesType(recipe))return;
     const direction=value==='again'?1:-1;
     const tags=tagsOf(recipe);
     HABIT_AXES.forEach(axis=>{
@@ -3035,14 +3319,14 @@ function exposureMultiplier(recipe,data,discovery=false){
   }
   return novelty*committedRecency*proposalRecency*rejectionRecency;
 }
-function personalizationContext(discovery=false){
+function personalizationContext(discovery=false,type='mid'){
   const learning=learningData();
   const reactions=reactionMap();
   return{
     discovery,
     learning,
     reactions,
-    profile:buildPreferenceProfile(learning,reactions)
+    profile:buildPreferenceProfile(learning,reactions,type)
   };
 }
 function historyItem(recipe,type,at=Date.now()){
@@ -3096,6 +3380,45 @@ function usageData(){
   localStorage.setItem(USAGE_KEY,JSON.stringify(data));
   return data;
 }
+const COURSE_USAGE_KEY='crCourseUsageV37';
+const COURSE_RECENT_LIMIT=30;
+function courseUsageData(){
+  let raw=null;
+  try{raw=JSON.parse(localStorage.getItem(COURSE_USAGE_KEY)||'null')}catch(e){raw=null}
+  const data={version:1,selected:{starter:[],dessert:[]},recent:{starter:[],dessert:[]}};
+  if(raw&&typeof raw==='object'){
+    for(const type of ['starter','dessert']){
+      const selected=raw.selected&&Array.isArray(raw.selected[type])?raw.selected[type]:[];
+      data.selected[type]=selected.filter(item=>item&&recipeIndex.has(item.id)&&Number.isFinite(Number(item.at)))
+        .map(item=>({id:item.id,at:Number(item.at)}));
+      const recent=raw.recent&&Array.isArray(raw.recent[type])?raw.recent[type]:[];
+      const seen=new Set();
+      data.recent[type]=recent.filter(id=>recipeIndex.has(id)&&!seen.has(id)&&seen.add(id)).slice(-COURSE_RECENT_LIMIT);
+    }
+  }
+  const cutoff=Date.now()-ANTI_REPEAT_DAYS*DAY_MS;
+  for(const type of ['starter','dessert'])data.selected[type]=data.selected[type].filter(item=>item.at>=cutoff);
+  return data;
+}
+function saveCourseUsageData(data){localStorage.setItem(COURSE_USAGE_KEY,JSON.stringify(data))}
+function rememberCourseProposal(type,id){
+  if(!['starter','dessert'].includes(type)||!recipeIndex.has(id))return;
+  const data=courseUsageData();
+  data.recent[type]=[...data.recent[type].filter(value=>value!==id),id].slice(-COURSE_RECENT_LIMIT);
+  saveCourseUsageData(data);
+  recordAutomaticProposal(id);
+}
+function rememberSelectedCourse(type,id,at=Date.now()){
+  if(!['starter','dessert'].includes(type)||!recipeIndex.has(id))return;
+  const data=courseUsageData();
+  data.selected[type]=data.selected[type].filter(item=>item.id!==id);
+  data.selected[type].push({id,at});
+  saveCourseUsageData(data);
+}
+function recentCourseIds(type){
+  const data=courseUsageData();
+  return new Set([...data.recent[type],...data.selected[type].map(item=>item.id)]);
+}
 function rememberMeal(type,id){
   // Une recette affichée est une proposition, pas encore un repas retenu.
   recordAutomaticProposal(id);
@@ -3120,10 +3443,13 @@ function forgetMeal(type,id){
   localStorage.setItem(USAGE_KEY,JSON.stringify(data));
 }
 function rememberPlan(items){
-  activeRecipeEntries(items).forEach(item=>rememberMeal(item.type,item.recipe.id));
+  activeAllRecipeEntries(items).forEach(item=>{
+    if(item.type==='starter'||item.type==='dessert')rememberCourseProposal(item.type,item.recipe.id);
+    else rememberMeal(item.type,item.recipe.id);
+  });
 }
 function recordPlanSelections(items=plan){
-  activeRecipeEntries(items).forEach(item=>recordRecipeSelection(item.recipe.id,item.type));
+  activeAllRecipeEntries(items).forEach(item=>recordRecipeSelection(item.recipe.id,item.type));
 }
 function recentUseIds(type){
   return new Set(usageData()[type].map(item=>item.id));
@@ -3427,7 +3753,7 @@ function selectBrowserDiscoveries(list,type,count,discoveryData,deckData){
   const trailIds=new Set([...recentSet,...immediateSet]);
   const context={
     seasonProfile:culinarySeasonProfile(),
-    personalization:personalizationContext(false),
+    personalization:personalizationContext(false,type),
     discoveryData,
     exposureProfile:browserExposureProfile(discoveryData,pool),
     trailIds
@@ -3519,7 +3845,7 @@ function searchRecipes(query){
 }
 function recipeResultHTML(recipe){
   const liked=isFavorite(recipe.id);
-  const slot=recipe.mealSlots?.includes('mid')?'Midi':'Soir';
+  const slot=recipe.mealSlots?.includes('starter')?'Entrée':recipe.mealSlots?.includes('dessert')?'Dessert':recipe.mealSlots?.includes('mid')?'Midi':'Soir';
   return `<div class="recipe-result">
     <button class="recipe-result-open" type="button" data-recipe-id="${recipe.id}">
       <span class="recipe-result-title">${recipe.n}</span>
@@ -3680,7 +4006,7 @@ function alternativeTrailPenalty(recipe,trailRecipes){
   }
   return factor;
 }
-function candidateScore(recipe,type,context,data,favorites,prepared,personalization=personalizationContext(false)){
+function candidateScore(recipe,type,context,data,favorites,prepared,personalization=personalizationContext(false,type)){
   const tags=tagsOf(recipe);
   const scoring=prepared||prepareScoringContext(context,data);
   let score=0.75+seasonalAffinity(recipe,tags,scoring.seasonProfile)*3.15;
@@ -3780,13 +4106,15 @@ function pick(list,type,exclude,context=[],options={}){
   const favs=favoriteSet();
   const data=usageData();
   const scoring=prepareScoringContext(context,data);
-  const personalization=personalizationContext(Math.random()<DISCOVERY_RATE);
+  const personalization=personalizationContext(Math.random()<DISCOVERY_RATE,type);
   const avoidRecipes=(options.avoidIds||[]).map(id=>recipeIndex.get(id)).filter(Boolean);
+  const scoreMultiplier=typeof options.scoreMultiplier==='function'?options.scoreMultiplier:()=>1;
   let weighted=pool.map(recipe=>({
     recipe,
     score:candidateScore(recipe,type,context,data,favs,scoring,personalization)
       *similarityPenalty(recipe,avoidRecipes,true)
       *alternativeTrailPenalty(recipe,avoidRecipes)
+      *Math.max(0,Number(scoreMultiplier(recipe))||0)
   }))
     .filter(item=>item.score>0);
   if(!weighted.length&&type==='eve'){
@@ -3801,15 +4129,121 @@ function pick(list,type,exclude,context=[],options={}){
   }
   return weighted.at(-1).recipe;
 }
+function pairingRecipeText(recipe){
+  return normalizeSearchText(`${recipe.n} ${(recipe.i||[]).map(item=>item.k||item.n).join(' ')}`)
+    .replace(/pommes? de terre/g,'tubercule');
+}
+function pairingCoreValue(value){
+  return normalizeSearchText(value).replace(/pommes? de terre/g,'tubercule');
+}
+function dishRichnessLevel(recipe){
+  const text=pairingRecipeText(recipe);
+  const tags=tagsOf(recipe);
+  if(/gratin|creme|fromage|beurre|frit|pane|croustill|charcuterie|saucisse|merguez|chorizo|canard|filet mignon|carbonara|raclette|burger|pizza|quiche/.test(text))return 3;
+  if(tags.kind==='salad'||tags.hotCold==='froid'||(tags.starch==='sans-feculent'&&['poisson','vegetal'].includes(tags.group)))return 1;
+  return 2;
+}
+function courseRichnessLevel(recipe){return recipe.richness==='léger'?1:recipe.richness==='gourmand'?3:2}
+function pairingTextHasCore(text,core){
+  const words=core.split(/\s+/).filter(Boolean).map(word=>word.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'));
+  if(!words.length)return false;
+  return new RegExp(`(?:^|\\s)${words.join('\\s+')}[sx]?(?:\\s|$)`).test(text);
+}
+function courseDishOverlap(course,dish){
+  const dishText=pairingRecipeText(dish);
+  return (course.core||[]).map(pairingCoreValue).filter(Boolean).filter(core=>pairingTextHasCore(dishText,core)).length;
+}
+function naturalMealPair(course,dish){
+  if(!course||!dish||courseDishOverlap(course,dish)>0)return false;
+  return !(dishRichnessLevel(dish)===3&&courseRichnessLevel(course)===3);
+}
+function mealPairingMultiplier(course,dish,type=course?.course){
+  if(!course||!dish)return 0;
+  const dishRichness=dishRichnessLevel(dish);
+  const courseRichness=courseRichnessLevel(course);
+  let factor=1;
+  if(dishRichness===3)factor*=courseRichness===1?1.75:courseRichness===2?0.72:0.16;
+  else if(dishRichness===1)factor*=courseRichness===3?1.20:courseRichness===2?1.12:0.90;
+  else factor*=courseRichness===1?1.16:courseRichness===2?1.05:0.68;
+  const overlap=courseDishOverlap(course,dish);
+  if(overlap>=2)factor*=0.04;else if(overlap===1)factor*=0.20;
+  if(dishRichness===3&&course.hotCold==='chaud')factor*=0.74;
+  if(type==='dessert'&&dishRichness===3&&course.group==='fruits')factor*=1.35;
+  if(type==='starter'&&dishRichness===3&&course.richness==='léger')factor*=1.18;
+  if(course.cuisine&&course.cuisine===tagsOf(dish).cuisine)factor*=1.08;
+  return Math.max(0.01,factor);
+}
+function pickCourse(list,type,dish,exclude=new Set(),options={}){
+  let pool=list.filter(fitsAvailableTime);
+  if(!pool.length)pool=[...list];
+  let available=pool.filter(recipe=>!exclude.has(recipe.id)&&!sessionRejectedIds.has(recipe.id));
+  if(!available.length)available=pool.filter(recipe=>!exclude.has(recipe.id));
+  if(!available.length)available=pool;
+  const recent=recentCourseIds(type);
+  const fresh=available.filter(recipe=>!recent.has(recipe.id));
+  if(fresh.length)available=fresh;
+  const coherent=available.filter(recipe=>naturalMealPair(recipe,dish));
+  if(coherent.length)available=coherent;
+  const personalization=personalizationContext(Math.random()<DISCOVERY_RATE,type);
+  const avoidRecipes=(options.avoidIds||[]).map(id=>recipeIndex.get(id)).filter(Boolean);
+  const profile=culinarySeasonProfile();
+  let weighted=available.map(recipe=>({
+    recipe,
+    score:(0.72+seasonalAffinity(recipe,tagsOf(recipe),profile)*3.3)
+      *seasonMethodBoost(recipe,profile)
+      *explicitReactionMultiplier(recipe.id,personalization.reactions,personalization.discovery)
+      *observedPreferenceMultiplier(recipe,type,personalization.profile,personalization.discovery)
+      *exposureMultiplier(recipe,personalization.learning,personalization.discovery)
+      *mealPairingMultiplier(recipe,dish,type)
+      *similarityPenalty(recipe,avoidRecipes,true)
+      *alternativeTrailPenalty(recipe,avoidRecipes)
+  })).filter(item=>item.score>0);
+  if(!weighted.length)weighted=available.map(recipe=>({recipe,score:mealPairingMultiplier(recipe,dish,type)}));
+  const total=weighted.reduce((sum,item)=>sum+item.score,0);
+  let target=Math.random()*Math.max(total,Number.EPSILON);
+  for(const item of weighted){target-=item.score;if(target<=0)return item.recipe}
+  return weighted.at(-1).recipe;
+}
+function prepareMealCourse(day,type,usedStarters=new Set(),usedDesserts=new Set(),options={}){
+  const format=mealFormat(day,type);
+  const dish=day[type];
+  day[formatKey(type)]=format;
+  if(!dish||format===MEAL_FORMAT_DISH){
+    day[starterKey(type)]=null;
+    day[dessertKey(type)]=null;
+    return;
+  }
+  if(format===MEAL_FORMAT_STARTER_DISH){
+    day[dessertKey(type)]=null;
+    if(!day[starterKey(type)]||options.regenerate){
+      day[starterKey(type)]=pickCourse(starters,'starter',dish,usedStarters,options);
+      if(options.record!==false)rememberCourseProposal('starter',day[starterKey(type)].id);
+    }
+    usedStarters.add(day[starterKey(type)].id);
+  }else{
+    day[starterKey(type)]=null;
+    if(!day[dessertKey(type)]||options.regenerate){
+      day[dessertKey(type)]=pickCourse(desserts,'dessert',dish,usedDesserts,options);
+      if(options.record!==false)rememberCourseProposal('dessert',day[dessertKey(type)].id);
+    }
+    usedDesserts.add(day[dessertKey(type)].id);
+  }
+}
 function buildPlan(count,template=plan){
-  const mids=new Set(), eves=new Set(), result=[], context=[];
+  const mids=new Set(), eves=new Set(), usedStarters=new Set(), usedDesserts=new Set(), result=[], context=[];
   for(let i=0;i<count;i++){
     const previous=template[i]||{};
     const day={
       mid:null,
       eve:null,
       midStatus:normalizeMealStatus(previous.midStatus),
-      eveStatus:normalizeMealStatus(previous.eveStatus)
+      eveStatus:normalizeMealStatus(previous.eveStatus),
+      midFormat:mealFormat(previous,'mid'),
+      eveFormat:mealFormat(previous,'eve'),
+      midStarter:null,
+      eveStarter:null,
+      midDessert:null,
+      eveDessert:null
     };
     if(day.midStatus===MEAL_PLANNED){
       day.mid=pick(noon,'mid',mids,context);
@@ -3821,6 +4255,8 @@ function buildPlan(count,template=plan){
       eves.add(day.eve.id);
       context.push({type:'eve',recipe:day.eve});
     }
+    prepareMealCourse(day,'mid',usedStarters,usedDesserts,{regenerate:true,record:false});
+    prepareMealCourse(day,'eve',usedStarters,usedDesserts,{regenerate:true,record:false});
     result.push(day);
   }
   rememberPlan(result);
@@ -3835,6 +4271,12 @@ function saveState(){
     plan:plan.map(d=>({
       midId:d.mid?.id||null,
       eveId:d.eve?.id||null,
+      midStarterId:d.midStarter?.id||null,
+      eveStarterId:d.eveStarter?.id||null,
+      midDessertId:d.midDessert?.id||null,
+      eveDessertId:d.eveDessert?.id||null,
+      midFormat:mealFormat(d,'mid'),
+      eveFormat:mealFormat(d,'eve'),
       midStatus:mealStatus(d,'mid'),
       eveStatus:mealStatus(d,'eve')
     }))
@@ -3850,6 +4292,12 @@ function saveHistory(){
       eveId:d.eve?.id||null,
       mid:d.mid?.n||null,
       eve:d.eve?.n||null,
+      midStarter:d.midStarter?.n||null,
+      eveStarter:d.eveStarter?.n||null,
+      midDessert:d.midDessert?.n||null,
+      eveDessert:d.eveDessert?.n||null,
+      midFormat:mealFormat(d,'mid'),
+      eveFormat:mealFormat(d,'eve'),
       midStatus:mealStatus(d,'mid'),
       eveStatus:mealStatus(d,'eve')
     }))
@@ -3867,7 +4315,13 @@ function renderHistory(){
       const status=normalizeMealStatus(p&&p[statusKey(type)]);
       if(status===MEAL_OUTSIDE)return'Extérieur';
       if(status===MEAL_LEFTOVERS)return'Restes / Déjà prévu';
-      return p&&p[type]?p[type]:'Repas à prévoir';
+      if(!p||!p[type])return'Repas à prévoir';
+      const format=normalizeMealFormat(p[formatKey(type)]);
+      const parts=[];
+      if(format===MEAL_FORMAT_STARTER_DISH&&p[`${type}Starter`])parts.push(p[`${type}Starter`]);
+      parts.push(p[type]);
+      if(format===MEAL_FORMAT_DISH_DESSERT&&p[`${type}Dessert`])parts.push(p[`${type}Dessert`]);
+      return parts.join(' + ');
     };
     const meals=(x.plan||[]).map((p,i)=>`<strong>J${i+1}</strong> · ${mealName(p,'mid')}<br>↳ ${mealName(p,'eve')}`).join('<br>');
     return `<div class="history-item"><div class="history-date">${date}</div><div class="history-meals">${meals}</div></div>`;
@@ -3875,7 +4329,7 @@ function renderHistory(){
 }
 function updateLikedButton(){
   const favs=favoriteSet();
-  const ids=activeRecipeEntries().map(item=>item.recipe.id);
+  const ids=activeAllRecipeEntries().map(item=>item.recipe.id);
   const allLiked=ids.length>0&&ids.every(id=>favs.has(id));
   $('favorite').classList.toggle('liked',allLiked);
   $('favorite').disabled=ids.length===0;
@@ -4038,7 +4492,7 @@ function updateTimerUI(){
     if(timerInterval){clearInterval(timerInterval);timerInterval=null}
     bar.classList.remove('show','done');
     document.body.classList.remove('timer-running');
-    document.title='Clair Repas V3.6';
+    document.title='Clair Repas V3.7';
     return;
   }
   const remaining=Math.max(0,Math.ceil((kitchenTimer.endAt-Date.now())/1000));
@@ -4088,6 +4542,44 @@ try{
 if(kitchenTimer&&Number(kitchenTimer.endAt)>Date.now())startTimerTick();
 updateTimerUI();
 
+function mealComponentRecipe(day,type,component){
+  if(component==='starter')return day&&day[starterKey(type)];
+  if(component==='dessert')return day&&day[dessertKey(type)];
+  return day&&day[type];
+}
+function mealRecipeElementId(dayIndex,type,component){return component==='dish'?`recipe-${dayIndex}-${type}`:`recipe-${dayIndex}-${type}-${component}`}
+function mealFormatSelectorHTML(day,dayIndex,type){
+  const selected=mealFormat(day,type);
+  const options=[
+    [MEAL_FORMAT_DISH,'Plat'],
+    [MEAL_FORMAT_STARTER_DISH,'Entrée + plat'],
+    [MEAL_FORMAT_DISH_DESSERT,'Plat + dessert']
+  ];
+  return `<div class="meal-format">
+    <span class="meal-format-label">Pour ce repas</span>
+    <div class="meal-format-options" role="group" aria-label="Formule du repas">
+      ${options.map(([value,label])=>`<button class="meal-format-option" type="button" data-day="${dayIndex}" data-type="${type}" data-format="${value}" aria-pressed="${selected===value}">${label}</button>`).join('')}
+    </div>
+  </div>`;
+}
+function mealRecipeBlockHTML(recipe,dayIndex,type,component){
+  if(!recipe)return'';
+  const liked=isFavorite(recipe.id);
+  const label=component==='starter'?'🥗 Entrée':component==='dessert'?'🍰 Dessert':'🍽️ Plat';
+  return `<section class="course-block ${component}">
+    <div class="course-label">${label}</div>
+    <div class="meal-title-row">
+      <div class="meal-title">${recipe.n}</div>
+      <button class="recipe-favorite${liked?' active':''}" data-recipe-id="${recipe.id}" type="button" aria-pressed="${liked}" aria-label="${liked?'Retirer des favoris':'Ajouter aux favoris'}">${liked?'♥':'♡'}</button>
+    </div>
+    <div class="meta">⏱️ ${recipe.t} · 🔥 ${recipe.m}</div>
+    <div class="meal-actions">
+      <button class="small-btn recipe-btn" data-day="${dayIndex}" data-type="${type}" data-component="${component}">📖 Voir la recette</button>
+      <button class="small-btn secondary change-btn" data-day="${dayIndex}" data-type="${type}" data-component="${component}">🔄 Une autre idée</button>
+    </div>
+    <div class="recipe" id="${mealRecipeElementId(dayIndex,type,component)}">${recipeHTML(recipe,{showFavorite:false})}</div>
+  </section>`;
+}
 function mealHTML(day,dayIndex,type){
   const status=mealStatus(day,type);
   const recipe=day[type];
@@ -4108,18 +4600,12 @@ function mealHTML(day,dayIndex,type){
       <button class="plan-meal-btn" data-day="${dayIndex}" data-type="${type}">🎲 Prévoir une recette</button>
     </div>`;
   }else if(recipe){
-    const liked=isFavorite(recipe.id);
-    content=`<div class="meal-title-row">
-        <div class="meal-title">${recipe.n}</div>
-        <button class="recipe-favorite${liked?' active':''}" data-recipe-id="${recipe.id}" type="button" aria-pressed="${liked}" aria-label="${liked?'Retirer des favoris':'Ajouter aux favoris'}">${liked?'♥':'♡'}</button>
-      </div>
-      <div class="meta">⏱️ ${recipe.t} · 🔥 ${recipe.m}</div>
-      <div class="meal-actions">
-        <button class="small-btn recipe-btn" data-day="${dayIndex}" data-type="${type}">📖 Voir la recette</button>
-        <button class="small-btn secondary change-btn" data-day="${dayIndex}" data-type="${type}">🔄 Une autre idée</button>
-      </div>
-      <button class="meal-status-action leftovers-btn" data-day="${dayIndex}" data-type="${type}">🍲 Restes / déjà prévu</button>
-      <div class="recipe" id="recipe-${dayIndex}-${type}">${recipeHTML(recipe,{showFavorite:false})}</div>`;
+    const format=mealFormat(day,type);
+    content=`${mealFormatSelectorHTML(day,dayIndex,type)}
+      ${format===MEAL_FORMAT_STARTER_DISH?mealRecipeBlockHTML(day[starterKey(type)],dayIndex,type,'starter'):''}
+      ${mealRecipeBlockHTML(recipe,dayIndex,type,'dish')}
+      ${format===MEAL_FORMAT_DISH_DESSERT?mealRecipeBlockHTML(day[dessertKey(type)],dayIndex,type,'dessert'):''}
+      <button class="meal-status-action leftovers-btn" data-day="${dayIndex}" data-type="${type}">🍲 Restes / déjà prévu</button>`;
   }
   return `<div class="meal">
     <div class="meal-top">
@@ -4146,18 +4632,25 @@ function render(){
   syncDayChoice();
 
   document.querySelectorAll('.recipe-btn').forEach(b=>b.onclick=()=>{
-    const el=$(`recipe-${b.dataset.day}-${b.dataset.type}`);
+    const component=b.dataset.component||'dish';
+    const el=$(mealRecipeElementId(b.dataset.day,b.dataset.type,component));
+    if(!el)return;
     const open=el.classList.toggle('open');
     b.textContent=open?'📕 Masquer la recette':'📖 Voir la recette';
     if(open){
-      const recipe=plan[Number(b.dataset.day)]?.[b.dataset.type];
+      const recipe=mealComponentRecipe(plan[Number(b.dataset.day)],b.dataset.type,component);
       if(recipe)recordRecentRecipe(recipe.id);
     }
     updateWakeLock();
   });
 
   document.querySelectorAll('.change-btn').forEach(b=>b.onclick=()=>{
-    changeMeal(Number(b.dataset.day),b.dataset.type);
+    const component=b.dataset.component||'dish';
+    if(component==='dish')changeMeal(Number(b.dataset.day),b.dataset.type);
+    else changeCourse(Number(b.dataset.day),b.dataset.type,component);
+  });
+  document.querySelectorAll('.meal-format-option').forEach(button=>button.onclick=()=>{
+    setMealFormat(Number(button.dataset.day),button.dataset.type,button.dataset.format);
   });
   document.querySelectorAll('.meal-active').forEach(input=>input.onchange=()=>{
     setMealStatus(Number(input.dataset.day),input.dataset.type,input.checked?MEAL_PLANNED:MEAL_OUTSIDE);
@@ -4191,15 +4684,52 @@ function changeMeal(index,type){
   const context=activeRecipeEntries()
     .filter(item=>!(item.dayIndex===index&&item.type===type))
     .map(item=>({type:item.type,recipe:item.recipe}));
+  const format=mealFormat(day,type);
+  const paired=format===MEAL_FORMAT_STARTER_DISH?day[starterKey(type)]:format===MEAL_FORMAT_DISH_DESSERT?day[dessertKey(type)]:null;
+  const options={avoidIds:trail,scoreMultiplier:paired?candidate=>naturalMealPair(paired,candidate)?mealPairingMultiplier(paired,candidate,paired.course):0:undefined};
   if(type==='mid'){
-    day.mid=pick(noon,'mid',used,context,{avoidIds:trail});
+    day.mid=pick(noon,'mid',used,context,options);
     rememberMeal('mid',day.mid.id);
   }else{
-    day.eve=pick(evening,'eve',used,context,{avoidIds:trail});
+    day.eve=pick(evening,'eve',used,context,options);
     rememberMeal('eve',day.eve.id);
   }
   render();
   show('Une autre idée proposée');
+}
+function changeCourse(index,type,component){
+  const day=plan[index];
+  if(!day||mealStatus(day,type)!==MEAL_PLANNED||!['starter','dessert'].includes(component))return;
+  const key=component==='starter'?starterKey(type):dessertKey(type);
+  const previous=day[key];
+  const trailKey=`${alternativeTrailKey(index,type)}:${component}`;
+  const trail=alternativeTrails.get(trailKey)||[];
+  if(previous){
+    trail.push(previous.id);
+    sessionRejectedIds.add(previous.id);
+    recordRecipeRejection(previous.id);
+  }
+  alternativeTrails.set(trailKey,trail.slice(-60));
+  const used=new Set(activeCourseEntries().filter(item=>item.type===component).map(item=>item.recipe.id));
+  if(previous)used.add(previous.id);
+  day[key]=pickCourse(component==='starter'?starters:desserts,component,day[type],used,{avoidIds:trail});
+  rememberCourseProposal(component,day[key].id);
+  render();
+  show(component==='starter'?'Une autre entrée proposée':'Un autre dessert proposé');
+}
+function setMealFormat(index,type,nextFormat){
+  const day=plan[index];
+  if(!day||!MEAL_TYPES.includes(type)||mealStatus(day,type)!==MEAL_PLANNED)return;
+  const next=normalizeMealFormat(nextFormat);
+  if(mealFormat(day,type)===next)return;
+  day[formatKey(type)]=next;
+  day[starterKey(type)]=null;
+  day[dessertKey(type)]=null;
+  const usedStarters=new Set(activeCourseEntries().filter(item=>item.type==='starter').map(item=>item.recipe.id));
+  const usedDesserts=new Set(activeCourseEntries().filter(item=>item.type==='dessert').map(item=>item.recipe.id));
+  prepareMealCourse(day,type,usedStarters,usedDesserts);
+  render();
+  show(next===MEAL_FORMAT_STARTER_DISH?'Entrée + plat préparé':next===MEAL_FORMAT_DISH_DESSERT?'Plat + dessert préparé':'Plat seul conservé');
 }
 function setMealStatus(index,type,nextStatus){
   const day=plan[index];
@@ -4213,8 +4743,13 @@ function setMealStatus(index,type,nextStatus){
     const context=activeRecipeEntries().map(item=>({type:item.type,recipe:item.recipe}));
     day[type]=pick(type==='mid'?noon:evening,type,used,context);
     rememberMeal(type,day[type].id);
+    const usedStarters=new Set(activeCourseEntries().filter(item=>item.type==='starter').map(item=>item.recipe.id));
+    const usedDesserts=new Set(activeCourseEntries().filter(item=>item.type==='dessert').map(item=>item.recipe.id));
+    prepareMealCourse(day,type,usedStarters,usedDesserts);
   }else{
     day[type]=null;
+    day[starterKey(type)]=null;
+    day[dessertKey(type)]=null;
   }
   render();
   show(next===MEAL_OUTSIDE?'Repas noté à l’extérieur · courses mises à jour':next===MEAL_LEFTOVERS?'Restes / déjà prévu · courses mises à jour':'Repas ajouté · courses mises à jour');
@@ -4222,10 +4757,13 @@ function setMealStatus(index,type,nextStatus){
 function ensureDays(requestedCount=Number($('days').value)){
   const count=Math.max(1,Number(requestedCount)||1);
   if(plan.length>count)plan=plan.slice(0,count);
-  while(plan.length<count)plan.push({mid:null,eve:null,midStatus:MEAL_PLANNED,eveStatus:MEAL_PLANNED});
-  const mids=new Set(), eves=new Set(), context=[];
+  while(plan.length<count)plan.push({mid:null,eve:null,midStatus:MEAL_PLANNED,eveStatus:MEAL_PLANNED,midFormat:MEAL_FORMAT_DISH,eveFormat:MEAL_FORMAT_DISH,midStarter:null,eveStarter:null,midDessert:null,eveDessert:null});
+  const mids=new Set(), eves=new Set(), usedStarters=new Set(), usedDesserts=new Set(), context=[];
   plan.forEach(day=>{
-    MEAL_TYPES.forEach(type=>day[statusKey(type)]=mealStatus(day,type));
+    MEAL_TYPES.forEach(type=>{
+      day[statusKey(type)]=mealStatus(day,type);
+      day[formatKey(type)]=mealFormat(day,type);
+    });
     if(day.midStatus===MEAL_PLANNED){
       if(!day.mid){
         day.mid=pick(noon,'mid',mids,context);
@@ -4233,7 +4771,12 @@ function ensureDays(requestedCount=Number($('days').value)){
       }
       mids.add(day.mid.id);
       context.push({type:'mid',recipe:day.mid});
-    }else day.mid=null;
+      prepareMealCourse(day,'mid',usedStarters,usedDesserts,{record:false});
+    }else{
+      day.mid=null;
+      day.midStarter=null;
+      day.midDessert=null;
+    }
     if(day.eveStatus===MEAL_PLANNED){
       if(!day.eve){
         day.eve=pick(evening,'eve',eves,context);
@@ -4241,18 +4784,31 @@ function ensureDays(requestedCount=Number($('days').value)){
       }
       eves.add(day.eve.id);
       context.push({type:'eve',recipe:day.eve});
-    }else day.eve=null;
+      prepareMealCourse(day,'eve',usedStarters,usedDesserts,{record:false});
+    }else{
+      day.eve=null;
+      day.eveStarter=null;
+      day.eveDessert=null;
+    }
   });
 }
 function loadSavedPlan(savedPlan){
   return savedPlan.map(item=>{
     const midStatus=normalizeMealStatus(item&&item.midStatus);
     const eveStatus=normalizeMealStatus(item&&item.eveStatus);
+    const midFormat=normalizeMealFormat(item&&item.midFormat);
+    const eveFormat=normalizeMealFormat(item&&item.eveFormat);
     return{
       mid:midStatus===MEAL_PLANNED?noon.find(recipe=>recipe.id===item.midId)||null:null,
       eve:eveStatus===MEAL_PLANNED?evening.find(recipe=>recipe.id===item.eveId)||null:null,
+      midStarter:midStatus===MEAL_PLANNED&&midFormat===MEAL_FORMAT_STARTER_DISH?starters.find(recipe=>recipe.id===item.midStarterId)||null:null,
+      eveStarter:eveStatus===MEAL_PLANNED&&eveFormat===MEAL_FORMAT_STARTER_DISH?starters.find(recipe=>recipe.id===item.eveStarterId)||null:null,
+      midDessert:midStatus===MEAL_PLANNED&&midFormat===MEAL_FORMAT_DISH_DESSERT?desserts.find(recipe=>recipe.id===item.midDessertId)||null:null,
+      eveDessert:eveStatus===MEAL_PLANNED&&eveFormat===MEAL_FORMAT_DISH_DESSERT?desserts.find(recipe=>recipe.id===item.eveDessertId)||null:null,
       midStatus,
-      eveStatus
+      eveStatus,
+      midFormat,
+      eveFormat
     };
   });
 }
@@ -4349,7 +4905,24 @@ function purchaseText(x){
     'poireaux':['poireau','poireaux'],
     'salades vertes':['salade','salades'],
     'aubergines':['aubergine','aubergines'],
-    'épis de maïs':['épi de maïs','épis de maïs']
+    'épis de maïs':['épi de maïs','épis de maïs'],
+    'pommes':['pomme','pommes'],
+    'poires':['poire','poires'],
+    'oranges':['orange','oranges'],
+    'pamplemousses':['pamplemousse','pamplemousses'],
+    'clémentines':['clémentine','clémentines'],
+    'kiwis':['kiwi','kiwis'],
+    'kakis':['kaki','kakis'],
+    'pêches':['pêche','pêches'],
+    'nectarines':['nectarine','nectarines'],
+    'abricots':['abricot','abricots'],
+    'prunes':['prune','prunes'],
+    'figues':['figue','figues'],
+    'bananes':['banane','bananes'],
+    'mangues':['mangue','mangues'],
+    'melons':['melon','melons'],
+    'citrons verts':['citron vert','citrons verts'],
+    'grenades':['grenade','grenades']
   };
   if(q!=null&&pieces[key])return countText(q,pieces[key][0],pieces[key][1]);
 
@@ -4420,6 +4993,9 @@ function purchaseText(x){
   if(key==='fromage'&&q!=null)return'1 sachet de fromage râpé';
   if(key==='feta'&&q!=null)return'1 paquet de feta';
   if(key==='fromage frais'&&q!=null)return'1 pot de fromage frais';
+  if((key==='yaourts nature'||key==='yaourt nature')&&q!=null)return'1 pack de yaourts nature';
+  if((key==='fromage blanc'||key==='skyr'||key==='faisselle'||key==='yaourt grec')&&q!=null)return`1 pot de ${key}`;
+  if(key==='petits-suisses'&&q!=null)return'1 pack de petits-suisses';
   if(key==='thon')return q==null?'1 boîte de thon':`${wholeCount(q)} boîte${wholeCount(q)>1?'s':''} de thon`;
   if(key==='maïs')return q==null?'1 petite boîte de maïs':`${wholeCount(q)} petite${wholeCount(q)>1?'s':''} boîte${wholeCount(q)>1?'s':''} de maïs`;
 
@@ -4489,7 +5065,7 @@ function purchaseText(x){
 }
 function groupedCourses(){
   const map=new Map();
-  const all=activeRecipeEntries().flatMap(item=>item.recipe.i);
+  const all=activeAllRecipeEntries().flatMap(item=>item.recipe.i);
   all.forEach(item=>{
     const q=qtyForPeople(item.q);
     const key=`${String(item.k).toLowerCase()}|${item.u||''}`;
@@ -4562,14 +5138,14 @@ $('timeAvailable').onchange=()=>{
   show('Temps enregistré pour le prochain programme');
 };
 $('resetPreferences').onclick=()=>{
-  if(confirm('Réinitialiser les avis et l’apprentissage de Clair Repas ?\n\nLes favoris, les notes personnelles et les 800 recettes seront conservés.')){
+  if(confirm('Réinitialiser les avis et l’apprentissage de Clair Repas ?\n\nLes favoris, les notes personnelles, les 800 plats, les entrées et les desserts seront conservés.')){
     resetLearnedPreferences();
   }
 };
 $('favorite').onclick=()=>{
   recordPlanSelections();
   const favs=favoriteSet();
-  const ids=activeRecipeEntries().map(item=>item.recipe.id);
+  const ids=activeAllRecipeEntries().map(item=>item.recipe.id);
   if(!ids.length){show('Aucun repas à enregistrer');return}
   const allLiked=ids.every(id=>favs.has(id));
   ids.forEach(id=>allLiked?favs.delete(id):favs.add(id));

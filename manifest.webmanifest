@@ -1,7 +1,7 @@
 {
   "name": "Clair Repas",
   "short_name": "Clair Repas",
-  "description": "Planification évidente sur 1, 2 ou 3 jours, 800 recettes différentes, découverte sans boucle courte et cuisine simple au quotidien.",
+  "description": "Planification sur 1, 2 ou 3 jours avec 800 plats, 100 entrées et 100 desserts, sans perdre la simplicité de Clair Repas.",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
