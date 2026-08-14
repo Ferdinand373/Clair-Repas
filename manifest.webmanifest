@@ -1,7 +1,7 @@
 {
   "name": "Clair Repas",
   "short_name": "Clair Repas",
-  "description": "Clair Repas propose les menus et permet de feuilleter toute sa bibliothèque dans le Livre de Clair Repas.",
+  "description": "Clair Repas propose les menus, enrichit son Livre et suggère avec discernement sauces et accompagnements.",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",

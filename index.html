@@ -9,7 +9,7 @@
 <meta name="apple-mobile-web-app-title" content="Clair Repas">
 <link rel="manifest" href="./manifest.webmanifest">
 <link rel="apple-touch-icon" href="./icon-192.png">
-<title>Clair Repas V4.0</title>
+<title>Clair Repas V4.1</title>
 <style>
 :root{
   --bg:#f4efe7;--card:#fffdfa;--text:#27231f;--muted:#746c63;
@@ -99,6 +99,14 @@ select{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:1
 .meal-placeholder strong{display:block;color:var(--text);font-size:17px}
 .meal-placeholder span{display:block;margin-top:3px;font-size:12px}
 .meal-placeholder button{width:100%;min-height:40px;margin-top:9px;padding:8px 10px;border:0;border-radius:11px;background:white;color:var(--text);font-weight:780}
+.companion-suggestions{margin:13px 0 4px;padding:11px;border:1px solid #d8e3da;border-radius:15px;background:#f4f8f4}
+.companion-heading{margin:0 1px 8px;color:#41624e;font-size:12px;font-weight:850;line-height:1.35}
+.companion-list{display:grid;gap:8px}
+.companion-item{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:7px;align-items:stretch;padding:7px;border:1px solid #dce6de;border-radius:12px;background:white}
+.companion-open{min-width:0;min-height:48px;padding:6px 7px;border:0;background:transparent;color:var(--text);text-align:left}
+.companion-label{display:block;color:var(--green);font-size:11px;font-weight:880;text-transform:uppercase;letter-spacing:.2px}
+.companion-name{display:block;margin-top:3px;font-size:15px;font-weight:850;line-height:1.2}
+.companion-change{min-width:92px;min-height:46px;padding:8px 9px;border:0;border-radius:10px;background:#eef3ef;color:#41624e;font-size:11px;font-weight:820;line-height:1.15}
 .recipe{display:none;margin-top:12px;padding-top:10px;border-top:1px solid var(--line)}
 .recipe.open{display:block}
 .recipe h3{margin:10px 0 5px;font-size:16px}
@@ -106,8 +114,11 @@ select{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:1
 .recipe ol>li{margin-bottom:10px}
 .recipe-tools{display:flex;align-items:center;justify-content:space-between;gap:9px;margin:2px 0 12px}
 .portion-control{display:flex;align-items:center;gap:7px;padding:4px;border:1px solid var(--line);border-radius:13px;background:white}
+.portion-control.fixed-yield{min-height:46px;padding:8px 11px}
 .portion-control button{width:38px;height:38px;border:0;border-radius:10px;background:var(--green-soft);color:var(--green);font-size:22px;font-weight:850;line-height:1}
 .portion-label{min-width:94px;text-align:center;font-size:13px;font-weight:820}
+.portion-label.fixed{min-width:0;text-align:left;line-height:1.25}
+.recipe-yield{margin:-3px 0 12px;padding:8px 10px;border-radius:11px;background:#f5f1eb;color:var(--muted);font-size:12px;line-height:1.35}
 .recipe-favorite{min-width:44px;height:46px;padding:0 12px;border:1px solid var(--line);border-radius:13px;background:white;color:#9a4141;font-size:20px;font-weight:850}
 .recipe-favorite.active{border-color:#efcaca;background:#fff1f1}
 .recipe-feedback{margin:0 0 13px;padding:10px;border:1px solid var(--line);border-radius:14px;background:#faf7f2}
@@ -249,6 +260,8 @@ body.timer-running .browser-content{padding-bottom:calc(105px + env(safe-area-in
   .recipe-tools{align-items:stretch;flex-direction:column}
   .portion-control{justify-content:space-between}
   .recipe-favorite{width:100%}
+  .companion-item{grid-template-columns:1fr}
+  .companion-change{width:100%;min-height:42px}
   .book-quick-links,.book-subcategories{grid-template-columns:1fr}
 }
 </style>
@@ -323,7 +336,7 @@ body.timer-running .browser-content{padding-bottom:calc(105px + env(safe-area-in
   <div class="recipe-shortcuts-main">
     <button class="shortcut-btn primary" id="chooseRecipe" type="button">
       <span class="shortcut-title">📚 Le Livre de Clair Repas</span>
-      <span class="shortcut-hint" id="libraryHint">Découvrir les 827 plats, 100 entrées et 100 desserts</span>
+      <span class="shortcut-hint" id="libraryHint">Découvrir toutes les recettes dans le Livre</span>
     </button>
   </div>
   <div class="recipe-shortcuts-secondary">
@@ -359,8 +372,8 @@ body.timer-running .browser-content{padding-bottom:calc(105px + env(safe-area-in
 </details>
 
 <p class="note">La saison, le temps disponible et vos préférences guident les prochains choix. Le programme affiché reste conservé jusqu’à une action volontaire.</p>
-<p class="library-count" id="libraryCount">827 plats · 100 entrées · 100 desserts</p>
-<p class="version" id="versionLine">Clair Repas V4.0</p>
+<p class="library-count" id="libraryCount">837 plats · 121 entrées · 100 desserts · 52 recettes complémentaires</p>
+<p class="version" id="versionLine">Clair Repas V4.1</p>
 </main>
 <div class="recipe-browser" id="recipeBrowser" hidden>
   <section class="browser-panel" role="dialog" aria-modal="true" aria-labelledby="browserTitle">
@@ -2846,12 +2859,124 @@ const desserts=[
   D('d100','Crumble rhubarbe-fraise','Four','40 min',['printemps','été'],'gourmand',['rhubarbe','fraise'],[I(300,'g','rhubarbe'),I(220,'g','fraises'),I(55,'g','farine'),I(40,'g','beurre'),I(35,'g','sucre'),I(25,'g','poudre d’amande')],['Couper rhubarbe et fraises et les disposer dans un petit plat.','Sabler farine, beurre, sucre et poudre d’amande.','Répartir sur les fruits et cuire 28 minutes à 190 °C.'],'crumbles','chaud','française')
 ];
 
+// V4.1 — enrichissement du Livre. Toutes ces fiches utilisent la même
+// structure, les mêmes favoris, notes et avis que les recettes historiques.
+const V41R=({id,n,role,m,t,s=ALL_SEASONS,richness='normal',core=[],i,p,family,cuisine='française',hotCold='chaud',servings=2,yieldText='',balanced=false,pairWith=[],preferred=[],avoid=[]})=>({
+  id,n,role,course:role==='terrine'?'starter':role,m,t,s,richness,core,i,p,family,cuisine,hotCold,
+  kind:role,servings,yieldText,balanced,pairWith,preferred,avoid
+});
+const V41Dish=({id,n,m,t,s=ALL_SEASONS,i,p,meta={}})=>({id,n,m,t,s,i,p,servings:2,balanced:true,...meta});
+
+const breakfastRecipes=[
+  V41R({id:'b401',n:'Pancakes classiques',role:'breakfast',m:'Poêle',t:'25 min',family:'pancakes',yieldText:'8 pancakes · pour 2 personnes',i:[I(150,'g','farine'),I(20,'g','sucre'),I(1,'c. à café','levure chimique'),I(1,'','œuf','œufs'),I(18,'cl','lait'),I(20,'g','beurre'),I(1,'pincée','sel')],p:['Mélanger farine, sucre, levure et sel dans un saladier. Fouetter l’œuf avec le lait et 10 g de beurre fondu.','Verser le liquide sur les poudres et mélanger juste assez pour ne plus voir de farine ; laisser reposer 10 minutes.','Chauffer une poêle à feu moyen, la graisser avec le reste de beurre et verser de petites louches de pâte.','Cuire environ 2 minutes, jusqu’à la formation de bulles, retourner puis cuire 1 minute ; les pancakes doivent être souples et dorés.']}),
+  V41R({id:'b402',n:'Crêpes du petit-déjeuner',role:'breakfast',m:'Poêle',t:'35 min',family:'crêpes',yieldText:'6 grandes crêpes · pour 2 personnes',i:[I(125,'g','farine'),I(2,'','œufs'),I(30,'cl','lait'),I(15,'g','beurre'),I(1,'c. à café','sucre'),I(1,'pincée','sel')],p:['Fouetter farine, sucre, sel et œufs, puis verser le lait progressivement afin d’obtenir une pâte lisse.','Incorporer le beurre fondu et laisser reposer la pâte 20 minutes à température ambiante.','Chauffer une poêle de 24 cm à feu moyen-vif, la graisser très légèrement et verser une petite louche de pâte.','Cuire 1 minute environ, retourner et cuire encore 30 secondes ; empiler les crêpes sous une assiette pour les garder moelleuses.']}),
+  V41R({id:'b403',n:'Pain perdu à la vanille',role:'breakfast',m:'Poêle',t:'20 min',family:'pain-perdu',yieldText:'4 tranches · pour 2 personnes',richness:'gourmand',i:[I(4,'','tranches épaisses de pain rassis'),I(2,'','œufs'),I(18,'cl','lait'),I(20,'g','sucre'),I(15,'g','beurre'),I(0.5,'c. à café','vanille')],p:['Fouetter les œufs avec le lait, le sucre et la vanille dans un plat creux.','Tremper le pain 30 à 45 secondes de chaque côté : il doit être imbibé sans se défaire.','Faire mousser le beurre dans une poêle à feu moyen et cuire les tranches 3 minutes par face.','Servir lorsque le cœur est chaud et moelleux et que les deux faces sont bien caramélisées.']}),
+  V41R({id:'b404',n:'Porridge pomme-cannelle',role:'breakfast',m:'Casserole',t:'15 min',family:'porridge',yieldText:'2 bols',richness:'léger',i:[I(90,'g','flocons d’avoine'),I(35,'cl','lait'),I(1,'','pomme','pommes'),I(1,'c. à café','miel'),I(0.5,'c. à café','cannelle'),I(15,'g','noix')],p:['Couper la pomme en petits dés et en réserver un quart pour la finition.','Mettre avoine, lait, reste de pomme et cannelle dans une casserole ; porter doucement au frémissement.','Cuire 6 à 8 minutes à feu doux en remuant, jusqu’à une texture crémeuse mais encore souple.','Répartir dans deux bols, ajouter miel, pomme réservée et noix concassées.']}),
+  V41R({id:'b405',n:'Overnight oats aux fruits rouges',role:'breakfast',m:'Sans cuisson',t:'10 min + 8 h de repos',family:'overnight-oats',yieldText:'2 pots',richness:'léger',hotCold:'froid',i:[I(90,'g','flocons d’avoine'),I(20,'cl','lait'),I(150,'g','yaourt nature'),I(160,'g','fruits rouges'),I(1,'c. à café','miel'),I(1,'c. à soupe','graines de chia')],p:['Mélanger avoine, lait, yaourt, miel et graines de chia dans un récipient.','Répartir dans deux pots fermés et placer 8 heures au réfrigérateur.','Le lendemain, remuer : la texture doit être épaisse et crémeuse ; détendre avec une cuillerée de lait si nécessaire.','Ajouter les fruits rouges juste avant de servir bien frais.']}),
+  V41R({id:'b406',n:'Granola maison aux amandes',role:'breakfast',m:'Four',t:'35 min',family:'granola',yieldText:'1 bocal d’environ 450 g',richness:'normal',servings:6,i:[I(250,'g','flocons d’avoine'),I(70,'g','amandes'),I(40,'g','graines de courge'),I(45,'g','miel'),I(35,'g','huile neutre'),I(1,'c. à café','cannelle'),I(1,'pincée','sel')],p:['Préchauffer le four à 160 °C. Mélanger avoine, amandes grossièrement hachées, graines, cannelle et sel.','Tiédir miel et huile puis les verser sur le mélange ; remuer pour enrober uniformément.','Étaler en couche régulière sur une plaque et cuire 22 à 25 minutes à 160 °C en remuant à mi-cuisson.','Laisser refroidir complètement sans couvrir : le granola devient croustillant en refroidissant, puis le conserver dans un bocal sec.']}),
+  V41R({id:'b407',n:'Fromage blanc, fruits et céréales',role:'breakfast',m:'Sans cuisson',t:'8 min',family:'bol-laitier',yieldText:'2 bols',richness:'léger',hotCold:'froid',i:[I(300,'g','fromage blanc'),I(1,'','banane','bananes'),I(1,'','pomme','pommes'),I(50,'g','muesli sans sucre'),I(1,'c. à café','miel')],p:['Répartir le fromage blanc dans deux bols.','Couper la banane et la pomme en petits morceaux réguliers.','Déposer les fruits sur le fromage blanc puis ajouter le muesli.','Verser un fin filet de miel juste avant de servir afin que les céréales restent croquantes.']}),
+  V41R({id:'b408',n:'Bowl yaourt, banane et kiwi',role:'breakfast',m:'Sans cuisson',t:'8 min',family:'bol-laitier',yieldText:'2 bols',richness:'léger',hotCold:'froid',i:[I(300,'g','yaourt grec'),I(1,'','banane','bananes'),I(2,'','kiwis'),I(30,'g','flocons d’avoine'),I(20,'g','noisettes')],p:['Répartir le yaourt grec dans deux bols froids.','Peler et trancher banane et kiwis sans les écraser.','Disposer les fruits, les flocons d’avoine et les noisettes concassées en zones distinctes.','Servir immédiatement pour conserver le contraste entre yaourt crémeux et garniture croquante.']}),
+  V41R({id:'b409',n:'Tartines avocat et œuf mollet',role:'breakfast',m:'Casserole',t:'20 min',family:'tartines-brunch',yieldText:'4 tartines · pour 2 personnes',richness:'normal',i:[I(4,'','tranches de pain complet'),I(1,'','avocat','avocats'),I(2,'','œufs'),I(0.5,'','citron','citrons'),I(1,'c. à café','huile d’olive'),I(null,'','sel et poivre')],p:['Plonger les œufs dans l’eau bouillante et les cuire exactement 6 minutes, puis les refroidir dans l’eau froide.','Griller le pain. Écraser l’avocat avec le jus de citron, l’huile, du sel et du poivre.','Écaler délicatement les œufs et les couper en deux.','Étaler l’avocat sur les tartines et poser les œufs dessus ; le blanc doit être pris et le jaune encore coulant.']}),
+  V41R({id:'b410',n:'Œufs brouillés à la ciboulette',role:'breakfast',m:'Poêle',t:'12 min',family:'œufs-brunch',yieldText:'2 portions',richness:'normal',i:[I(4,'','œufs'),I(20,'g','beurre'),I(2,'c. à soupe','lait'),I(10,'g','ciboulette'),I(2,'','tranches de pain complet'),I(null,'','sel et poivre')],p:['Battre les œufs avec le lait, une pincée de sel et du poivre sans faire mousser.','Faire fondre le beurre dans une poêle à feu doux et verser les œufs.','Remuer constamment avec une spatule pendant 4 à 5 minutes en ramenant les bords vers le centre.','Retirer du feu lorsque les œufs sont encore brillants et crémeux, ajouter la ciboulette et servir avec le pain grillé.']}),
+  V41R({id:'b411',n:'Œufs à la coque et mouillettes',role:'breakfast',m:'Casserole',t:'12 min',family:'œufs-brunch',yieldText:'2 portions',richness:'normal',i:[I(4,'','œufs'),I(4,'','tranches de pain'),I(20,'g','beurre'),I(null,'','sel et poivre')],p:['Sortir les œufs du réfrigérateur 10 minutes avant la cuisson pour limiter le choc thermique.','Porter une casserole d’eau à ébullition, déposer les œufs avec une cuillère et compter 3 minutes 30 dès la reprise du bouillon.','Pendant ce temps, griller le pain, le beurrer et le couper en mouillettes.','Placer les œufs dans des coquetiers, ouvrir le sommet et servir aussitôt : le blanc doit être à peine pris et le jaune liquide.']}),
+  V41R({id:'b412',n:'Omelette du petit-déjeuner aux champignons',role:'breakfast',m:'Poêle',t:'20 min',family:'œufs-brunch',yieldText:'1 grande omelette · pour 2 personnes',richness:'normal',i:[I(4,'','œufs'),I(180,'g','champignons'),I(1,'','échalote','échalotes'),I(20,'g','beurre'),I(10,'g','persil'),I(null,'','sel et poivre')],p:['Émincer les champignons et l’échalote, puis les poêler 7 minutes à feu moyen dans la moitié du beurre jusqu’à évaporation de leur eau.','Battre les œufs avec sel, poivre et persil.','Ajouter le reste du beurre, verser les œufs et cuire 3 à 4 minutes à feu moyen-doux en ramenant les bords vers le centre.','Plier l’omelette lorsqu’elle est prise dessous mais encore légèrement baveuse au centre.']}),
+  V41R({id:'b413',n:'Œufs Bénédicte',role:'breakfast',m:'Casserole',t:'35 min',family:'œufs-brunch',yieldText:'4 demi-muffins · pour 2 personnes',richness:'gourmand',i:[I(2,'','muffins anglais'),I(4,'','œufs'),I(4,'','tranches de jambon'),I(2,'','jaunes d’œufs'),I(100,'g','beurre'),I(1,'c. à soupe','jus de citron'),I(1,'c. à soupe','vinaigre'),I(null,'','sel et poivre')],p:['Faire fondre le beurre. Fouetter les jaunes avec le citron et une cuillerée d’eau au bain-marie très doux, puis incorporer le beurre en filet ; la hollandaise doit être lisse et nappante. La garder tiède hors du feu.','Porter une casserole d’eau avec le vinaigre à léger frémissement, créer un tourbillon et pocher les œufs un à un pendant 3 minutes.','Fendre et griller les muffins, puis réchauffer rapidement le jambon dans une poêle sèche.','Poser jambon et œuf poché sur chaque demi-muffin, napper de hollandaise et servir immédiatement.']}),
+  V41R({id:'b414',n:'Saumon fumé, œufs et pain de seigle',role:'breakfast',m:'Poêle',t:'18 min',family:'assiette-brunch',yieldText:'2 assiettes',richness:'normal',hotCold:'tiède',i:[I(120,'g','saumon fumé'),I(4,'','œufs'),I(4,'','tranches de pain de seigle'),I(1,'c. à café','huile'),I(0.5,'','citron','citrons'),I(10,'g','aneth')],p:['Griller le pain de seigle et le garder tiède.','Chauffer l’huile à feu moyen dans une poêle, casser les œufs et cuire 3 à 4 minutes, jusqu’à ce que les blancs soient pris et les jaunes encore souples.','Répartir saumon, œufs et pain dans deux assiettes sans chauffer le saumon.','Ajouter citron, aneth et poivre juste avant de servir.']}),
+  V41R({id:'b415',n:'Pancakes salés courgette-parmesan',role:'breakfast',m:'Poêle',t:'30 min',family:'pancakes-salés',yieldText:'8 petits pancakes · pour 2 personnes',richness:'normal',i:[I(1,'','petite courgette','petites courgettes'),I(100,'g','farine'),I(1,'','œuf','œufs'),I(10,'cl','lait'),I(40,'g','parmesan'),I(1,'c. à café','levure chimique'),I(1,'c. à soupe','huile')],p:['Râper la courgette, la saler légèrement, attendre 5 minutes puis la presser soigneusement dans un torchon.','Mélanger farine et levure, puis incorporer œuf, lait, parmesan et courgette pour obtenir une pâte épaisse.','Chauffer l’huile dans une poêle à feu moyen et déposer huit petites portions.','Cuire 3 minutes par face ; les pancakes doivent être dorés dehors et cuits, sans humidité, au centre.']}),
+  V41R({id:'b416',n:'Tartines complètes jambon-tomate',role:'breakfast',m:'Four',t:'18 min',family:'tartines-brunch',yieldText:'4 tartines · pour 2 personnes',richness:'normal',i:[I(4,'','tranches de pain complet'),I(2,'','tranches de jambon'),I(2,'','tomates'),I(60,'g','emmental'),I(1,'c. à café','moutarde'),I(null,'','poivre')],p:['Préchauffer le four à 200 °C et poser le pain sur une plaque.','Étaler une fine couche de moutarde, puis répartir jambon, tomates tranchées et emmental.','Cuire 8 à 10 minutes à 200 °C, jusqu’à ce que le fromage soit fondu et les bords du pain croustillants.','Poivrer et laisser reposer 1 minute avant de servir.']}),
+  V41R({id:'b417',n:'Shakshuka simple pour le brunch',role:'breakfast',m:'Poêle',t:'30 min',family:'œufs-brunch',yieldText:'2 portions',richness:'normal',i:[I(4,'','œufs'),I(400,'g','tomates concassées'),I(1,'','poivron rouge','poivrons rouges'),I(1,'','oignon','oignons'),I(1,'','gousse d’ail','gousses d’ail'),I(1,'c. à café','paprika'),I(1,'c. à soupe','huile d’olive'),I(4,'','tranches de pain')],p:['Émincer oignon et poivron, puis les faire fondre 8 minutes à feu moyen dans l’huile.','Ajouter ail et paprika 30 secondes, verser les tomates et laisser réduire 10 minutes à feu doux ; la sauce doit être épaisse.','Creuser quatre puits, casser les œufs, couvrir et cuire 5 à 7 minutes, jusqu’à ce que les blancs soient pris.','Servir très chaud avec le pain grillé, en gardant les jaunes encore moelleux.']}),
+  V41R({id:'b418',n:'Brunch complet simple',role:'breakfast',m:'Poêle',t:'35 min',family:'assiette-brunch',yieldText:'2 grandes assiettes',richness:'gourmand',i:[I(4,'','œufs'),I(4,'','tranches de poitrine fumée'),I(200,'g','champignons'),I(2,'','tomates'),I(4,'','tranches de pain complet'),I(1,'c. à soupe','huile'),I(null,'','sel et poivre')],p:['Couper les tomates en deux, les poser face coupée dans une poêle avec la moitié de l’huile et cuire 6 minutes à feu moyen.','Ajouter les champignons émincés et la poitrine fumée, puis poursuivre 8 minutes en retournant la poitrine jusqu’à ce qu’elle soit croustillante.','Dans une seconde poêle légèrement huilée, cuire les œufs 3 à 4 minutes ; griller le pain en parallèle.','Répartir aussitôt tous les éléments dans deux assiettes chaudes, sans les empiler, et assaisonner les œufs.']})
+];
+
+const terrineRecipes=[
+  V41R({id:'t401',n:'Terrine de campagne traditionnelle',role:'terrine',m:'Four',t:'1 h 35 + 12 h de repos',family:'terrines-viande',yieldText:'1 terrine de 750 g · 8 entrées',servings:8,core:['porc'],i:[I(450,'g','épaule de porc'),I(180,'g','foie de porc'),I(120,'g','poitrine de porc'),I(2,'','œufs'),I(8,'cl','lait'),I(40,'g','pain rassis'),I(1,'','échalote','échalotes'),I(1,'','gousse d’ail','gousses d’ail'),I(2,'c. à soupe','cognac'),I(1,'c. à café','thym'),I(11,'g','sel'),I(2,'g','poivre')],p:['Hacher les viandes à grille moyenne. Faire tremper le pain dans le lait, puis le presser.','Mélanger viandes, pain, œufs, échalote, ail, cognac, thym, sel et poivre pendant 2 minutes afin d’obtenir une farce homogène mais non pâteuse.','Tasser dans une terrine, couvrir et cuire au bain-marie 1 h 10 à 160 °C ; le centre doit atteindre 70 à 72 °C.','Refroidir, poser un léger poids sur la terrine et réserver au moins 12 heures au réfrigérateur avant de trancher.'],hotCold:'froid'}),
+  V41R({id:'t402',n:'Terrine de porc au cognac',role:'terrine',m:'Four',t:'1 h 30 + 12 h de repos',family:'terrines-viande',yieldText:'1 terrine de 700 g · 8 entrées',servings:8,core:['porc'],i:[I(500,'g','échine de porc'),I(180,'g','foie de volaille'),I(100,'g','poitrine fumée'),I(2,'','œufs'),I(6,'cl','cognac'),I(1,'','échalote','échalotes'),I(1,'c. à café','quatre-épices'),I(11,'g','sel'),I(2,'g','poivre')],p:['Couper 100 g d’échine en petits dés et hacher grossièrement le reste avec le foie et la poitrine.','Mélanger avec œufs, cognac, échalote, quatre-épices, sel et poivre ; couvrir et laisser mariner 1 heure au frais.','Tasser dans une terrine, poser le couvercle et cuire 1 h 05 au bain-marie dans un four à 160 °C.','Vérifier 70 °C à cœur, refroidir rapidement puis laisser maturer 12 heures au réfrigérateur.'],hotCold:'froid'}),
+  V41R({id:'t403',n:'Terrine de porc aux noisettes',role:'terrine',m:'Four',t:'1 h 35 + 12 h de repos',family:'terrines-viande',yieldText:'1 terrine de 750 g · 8 entrées',servings:8,core:['porc','noisette'],i:[I(480,'g','échine de porc'),I(180,'g','poitrine de porc'),I(80,'g','foie de volaille'),I(70,'g','noisettes'),I(2,'','œufs'),I(5,'cl','porto'),I(1,'','échalote','échalotes'),I(11,'g','sel'),I(2,'g','poivre')],p:['Torréfier les noisettes 8 minutes à 160 °C, les laisser refroidir puis en concasser la moitié.','Hacher grossièrement les viandes et les mélanger avec œufs, porto, échalote, noisettes, sel et poivre.','Tasser la farce dans une terrine et cuire au bain-marie 1 h 10 à 160 °C, jusqu’à 70 °C au centre.','Laisser refroidir sous un poids léger et attendre 12 heures au frais pour obtenir des tranches nettes.'],hotCold:'froid'}),
+  V41R({id:'t404',n:'Terrine de volaille aux herbes',role:'terrine',m:'Four',t:'1 h 15 + 8 h de repos',family:'terrines-volaille',yieldText:'1 terrine de 650 g · 6 entrées',servings:6,core:['volaille'],i:[I(450,'g','blancs de poulet'),I(180,'g','chair à saucisse'),I(2,'','œufs'),I(12,'cl','crème liquide'),I(1,'','échalote','échalotes'),I(15,'g','persil'),I(8,'g','ciboulette'),I(9,'g','sel'),I(2,'g','poivre')],p:['Couper 120 g de poulet en dés et hacher le reste avec la chair à saucisse.','Mélanger avec œufs, crème, échalote, persil, ciboulette, sel et poivre, puis incorporer les dés de poulet.','Verser dans une terrine chemisée, couvrir et cuire 55 minutes au bain-marie à 165 °C ; le centre doit atteindre 72 °C.','Refroidir puis réserver au moins 8 heures au réfrigérateur avant de servir.'],hotCold:'froid'}),
+  V41R({id:'t405',n:'Terrine de canard au porto',role:'terrine',m:'Four',t:'1 h 35 + 12 h de repos',family:'terrines-volaille',yieldText:'1 terrine de 750 g · 8 entrées',servings:8,core:['canard'],i:[I(420,'g','magret de canard'),I(220,'g','gorge de porc'),I(120,'g','foie de volaille'),I(2,'','œufs'),I(6,'cl','porto rouge'),I(1,'','échalote','échalotes'),I(1,'c. à café','thym'),I(11,'g','sel'),I(2,'g','poivre')],p:['Retirer la peau du magret, couper 120 g de chair en lanières et hacher le reste avec gorge et foie.','Mélanger la farce avec œufs, porto, échalote, thym, sel et poivre, puis ajouter les lanières de canard.','Tasser dans une terrine et cuire au bain-marie 1 h 10 à 160 °C, jusqu’à 70 °C au cœur.','Refroidir sous un léger poids et laisser reposer 12 heures au frais avant de trancher.'],hotCold:'froid'}),
+  V41R({id:'t406',n:'Terrine de lapin au thym',role:'terrine',m:'Four',t:'1 h 40 + 12 h de repos',family:'terrines-viande',yieldText:'1 terrine de 750 g · 8 entrées',servings:8,core:['lapin'],i:[I(450,'g','chair de lapin désossée'),I(230,'g','poitrine de porc'),I(100,'g','foie de volaille'),I(2,'','œufs'),I(8,'cl','vin blanc sec'),I(2,'','échalotes'),I(1,'c. à café','thym'),I(11,'g','sel'),I(2,'g','poivre')],p:['Couper 120 g de lapin en dés et hacher le reste avec la poitrine et le foie.','Mélanger avec œufs, vin, échalotes, thym, sel et poivre ; incorporer les dés puis laisser mariner 1 heure au frais.','Tasser dans une terrine, couvrir et cuire au bain-marie 1 h 15 à 160 °C, jusqu’à 70 °C au centre.','Refroidir, presser légèrement et attendre 12 heures au réfrigérateur.'],hotCold:'froid'}),
+  V41R({id:'t407',n:'Terrine de lapin aux pruneaux',role:'terrine',m:'Four',t:'1 h 45 + 12 h de repos',family:'terrines-viande',yieldText:'1 terrine de 800 g · 8 entrées',servings:8,core:['lapin','pruneau'],i:[I(450,'g','chair de lapin désossée'),I(220,'g','poitrine de porc'),I(100,'g','pruneaux dénoyautés'),I(2,'','œufs'),I(6,'cl','armagnac'),I(2,'','échalotes'),I(1,'c. à café','thym'),I(11,'g','sel'),I(2,'g','poivre')],p:['Faire tremper les pruneaux dans l’armagnac 30 minutes, puis les égoutter en conservant le liquide.','Hacher lapin et poitrine à grille moyenne, puis mélanger avec œufs, échalotes, thym, armagnac, sel et poivre.','Tasser la moitié de la farce, aligner les pruneaux, couvrir du reste et cuire au bain-marie 1 h 15 à 160 °C.','Lorsque le cœur atteint 70 °C, refroidir sous un poids léger et laisser reposer 12 heures au frais.'],hotCold:'froid'}),
+  V41R({id:'t408',n:'Terrine de foies de volaille',role:'terrine',m:'Four',t:'1 h + 8 h de repos',family:'terrines-volaille',yieldText:'1 terrine de 550 g · 6 entrées',servings:6,core:['foie de volaille'],i:[I(400,'g','foies de volaille'),I(120,'g','beurre'),I(2,'','œufs'),I(10,'cl','crème liquide'),I(1,'','échalote','échalotes'),I(3,'cl','cognac'),I(8,'g','sel'),I(2,'g','poivre')],p:['Parer les foies et faire fondre l’échalote 4 minutes dans 20 g de beurre à feu moyen. Ajouter les foies et les saisir 3 minutes : ils doivent rester rosés.','Déglacer au cognac 30 secondes puis mixer finement avec œufs, crème, reste de beurre, sel et poivre.','Passer au tamis, verser dans une terrine et cuire 35 à 40 minutes au bain-marie à 150 °C ; le centre doit rester souple mais pris.','Refroidir et réserver 8 heures au réfrigérateur avant de servir.'],hotCold:'froid'}),
+  V41R({id:'t409',n:'Pâté de campagne en croûte',role:'terrine',m:'Four',t:'2 h + 12 h de repos',family:'pâtés',yieldText:'1 pâté de 900 g · 10 tranches',servings:10,core:['porc'],i:[I(500,'g','échine de porc'),I(180,'g','foie de porc'),I(120,'g','poitrine de porc'),I(1,'','pâte brisée rectangulaire'),I(2,'','œufs'),I(5,'cl','cognac'),I(1,'','échalote','échalotes'),I(1,'c. à café','quatre-épices'),I(12,'g','sel'),I(2,'g','poivre')],p:['Hacher grossièrement les viandes et les mélanger avec un œuf, cognac, échalote, épices, sel et poivre.','Chemiser un moule à cake avec la pâte en gardant assez de pâte pour le couvercle ; tasser la farce, fermer et pratiquer une petite cheminée.','Dorer avec le second œuf et cuire 20 minutes à 200 °C puis 55 minutes à 165 °C ; la farce doit atteindre 70 °C.','Refroidir complètement dans le moule puis attendre 12 heures au frais avant de couper des tranches nettes.'],hotCold:'froid'}),
+  V41R({id:'t410',n:'Jambon persillé bourguignon',role:'terrine',m:'Casserole',t:'3 h + 12 h de repos',family:'terrines-viande',yieldText:'1 terrine de 800 g · 8 entrées',servings:8,core:['jambon'],i:[I(700,'g','jambonneau demi-sel'),I(20,'cl','vin blanc sec'),I(60,'cl','eau'),I(1,'','carotte','carottes'),I(1,'','oignon','oignons'),I(2,'','gousses d’ail'),I(1,'','bouquet garni'),I(25,'g','persil plat'),I(3,'feuilles','gélatine'),I(2,'c. à soupe','vinaigre de vin')],p:['Dessaler le jambonneau 2 heures dans l’eau froide en changeant l’eau une fois. Le couvrir ensuite d’eau, vin, carotte, oignon, ail et bouquet garni.','Porter au frémissement et cuire 2 h 15 à feu très doux ; la viande doit se détacher facilement. Filtrer 40 cl de bouillon.','Effilocher la viande. Dissoudre la gélatine ramollie dans le bouillon chaud, puis ajouter vinaigre et persil haché.','Alterner viande et gelée dans une terrine, presser légèrement et réfrigérer au moins 12 heures, jusqu’à prise complète.'],hotCold:'froid'}),
+  V41R({id:'t411',n:'Terrine de poissons blancs aux herbes',role:'terrine',m:'Four',t:'1 h 10 + 6 h de repos',family:'terrines-poisson',yieldText:'1 terrine de 600 g · 6 entrées',servings:6,core:['poisson'],i:[I(500,'g','filets de poisson blanc'),I(3,'','œufs'),I(18,'cl','crème liquide'),I(1,'','citron','citrons'),I(15,'g','ciboulette'),I(10,'g','persil'),I(8,'g','sel'),I(1,'g','poivre')],p:['Éponger le poisson, le couper en cubes et le placer 15 minutes au congélateur avec la crème.','Mixer le poisson froid par impulsions, ajouter œufs, crème, zeste de citron, herbes, sel et poivre ; la farce doit rester froide et lisse.','Verser dans une terrine chemisée et cuire 45 à 50 minutes au bain-marie à 155 °C ; le centre doit atteindre 63 °C.','Refroidir puis réserver 6 heures au frais avant de démouler et trancher.'],hotCold:'froid'}),
+  V41R({id:'t412',n:'Terrine de saumon et Saint-Jacques',role:'terrine',m:'Four',t:'1 h 15 + 6 h de repos',family:'terrines-poisson',yieldText:'1 terrine de 650 g · 6 entrées',servings:6,core:['saumon','saint-jacques'],i:[I(350,'g','saumon frais'),I(180,'g','noix de Saint-Jacques'),I(3,'','œufs'),I(18,'cl','crème liquide'),I(1,'','citron','citrons'),I(10,'g','aneth'),I(8,'g','sel'),I(1,'g','poivre')],p:['Garder poissons, bol et crème très froids. Couper les Saint-Jacques en deux et réserver.','Mixer brièvement le saumon, ajouter œufs, crème, zeste de citron, aneth, sel et poivre.','Verser la moitié dans une terrine, disposer les Saint-Jacques au centre puis couvrir du reste de farce. Cuire 50 minutes au bain-marie à 155 °C.','Arrêter à 63 °C au cœur, refroidir et laisser prendre 6 heures au réfrigérateur.'],hotCold:'froid'}),
+  V41R({id:'t413',n:'Terrine de courgettes au basilic',role:'terrine',m:'Four',t:'1 h + 6 h de repos',family:'terrines-légumes',yieldText:'1 terrine de 550 g · 6 entrées',servings:6,core:['courgette'],richness:'léger',s:['printemps','été','automne'],i:[I(650,'g','courgettes'),I(4,'','œufs'),I(12,'cl','crème liquide'),I(50,'g','parmesan'),I(15,'g','basilic'),I(1,'','gousse d’ail','gousses d’ail'),I(1,'c. à soupe','huile d’olive'),I(7,'g','sel'),I(1,'g','poivre')],p:['Râper les courgettes, les saler légèrement puis les laisser dégorger 15 minutes et les presser fortement.','Les faire revenir 8 minutes à feu moyen avec huile et ail, jusqu’à évaporation complète de l’eau, puis laisser tiédir.','Mélanger œufs, crème, parmesan, basilic et courgettes ; verser dans une terrine chemisée.','Cuire 40 minutes à 175 °C, jusqu’à ce que le centre soit ferme, puis refroidir et réserver 6 heures avant de trancher.'],hotCold:'froid'}),
+  V41R({id:'t414',n:'Rillettes de porc traditionnelles',role:'terrine',m:'Casserole',t:'3 h 20 + 12 h de repos',family:'rillettes-viande',yieldText:'2 pots de 300 g',servings:8,core:['porc'],i:[I(700,'g','épaule de porc'),I(250,'g','poitrine de porc'),I(15,'cl','eau'),I(2,'','gousses d’ail'),I(1,'','feuille de laurier','feuilles de laurier'),I(1,'c. à café','thym'),I(12,'g','sel'),I(2,'g','poivre')],p:['Couper les viandes en cubes de 3 cm et les placer dans une cocotte avec eau, ail, laurier, thym, sel et poivre.','Porter au frémissement, couvrir et cuire 3 heures à feu très doux en remuant toutes les 40 minutes ; la viande doit se défaire seule.','Retirer les aromates, effilocher à la fourchette et incorporer progressivement assez de graisse de cuisson pour obtenir une texture souple.','Mettre en pots, tasser, couvrir d’une fine couche de graisse et réfrigérer 12 heures.'],hotCold:'froid'}),
+  V41R({id:'t415',n:'Rillettes de canard',role:'terrine',m:'Casserole',t:'2 h 50 + 12 h de repos',family:'rillettes-volaille',yieldText:'2 pots de 250 g',servings:8,core:['canard'],i:[I(4,'','cuisses de canard'),I(150,'g','graisse de canard'),I(10,'cl','eau'),I(2,'','gousses d’ail'),I(1,'','feuille de laurier','feuilles de laurier'),I(1,'c. à café','thym'),I(9,'g','sel'),I(2,'g','poivre')],p:['Saler et poivrer les cuisses, puis les déposer dans une cocotte avec graisse, eau, ail, laurier et thym.','Couvrir et cuire 2 h 30 à feu très doux ; la chair doit se détacher sans résistance des os.','Retirer peau, os et aromates, puis effilocher la chair encore chaude avec 8 à 10 cl de graisse de cuisson.','Tasser dans deux pots, lisser, couvrir d’un peu de graisse et laisser prendre 12 heures au réfrigérateur.'],hotCold:'froid'}),
+  V41R({id:'t416',n:'Rillettes de lapin à la moutarde',role:'terrine',m:'Casserole',t:'2 h 20 + 8 h de repos',family:'rillettes-viande',yieldText:'2 pots de 220 g',servings:6,core:['lapin'],i:[I(650,'g','lapin en morceaux'),I(120,'g','graisse de canard'),I(15,'cl','vin blanc sec'),I(1,'','échalote','échalotes'),I(1,'c. à soupe','moutarde à l’ancienne'),I(1,'c. à café','thym'),I(8,'g','sel'),I(2,'g','poivre')],p:['Faire fondre l’échalote 4 minutes dans 20 g de graisse, ajouter le lapin et le colorer légèrement.','Verser le vin, ajouter thym, sel et poivre, couvrir et cuire 1 h 50 à feu très doux.','Désosser soigneusement, effilocher la chair et incorporer moutarde et assez de graisse restante pour obtenir des rillettes moelleuses.','Mettre en pots et réfrigérer au moins 8 heures avant de servir.'],hotCold:'froid'}),
+  V41R({id:'t417',n:'Rillettes de poulet au citron',role:'terrine',m:'Casserole',t:'1 h 20 + 6 h de repos',family:'rillettes-volaille',yieldText:'2 pots de 200 g',servings:6,core:['poulet'],i:[I(500,'g','cuisses de poulet désossées'),I(100,'g','graisse de canard'),I(12,'cl','bouillon'),I(1,'','citron','citrons'),I(1,'','échalote','échalotes'),I(1,'c. à café','thym'),I(7,'g','sel'),I(1,'g','poivre')],p:['Faire fondre l’échalote 4 minutes dans 20 g de graisse, ajouter le poulet et le saisir 5 minutes à feu moyen.','Verser le bouillon, ajouter thym, sel et poivre, couvrir et cuire 55 minutes à feu doux.','Effilocher très finement le poulet, puis incorporer zeste de citron et assez de jus de cuisson et de graisse pour une texture souple.','Tasser dans deux pots et laisser prendre 6 heures au réfrigérateur.'],hotCold:'froid'}),
+  V41R({id:'t418',n:'Rillettes de saumon à l’aneth',role:'terrine',m:'Casserole',t:'25 min + 2 h de repos',family:'rillettes-poisson',yieldText:'1 pot de 320 g',servings:4,core:['saumon'],i:[I(250,'g','saumon frais'),I(80,'g','saumon fumé'),I(80,'g','fromage frais'),I(1,'','citron','citrons'),I(10,'g','aneth'),I(1,'c. à café','huile d’olive'),I(null,'','poivre')],p:['Cuire le saumon frais 8 minutes à la vapeur ; le cœur doit être juste opaque. Le laisser tiédir.','L’effeuiller à la fourchette puis ajouter le saumon fumé finement coupé.','Incorporer fromage frais, zeste et une cuillerée de jus de citron, aneth, huile et poivre sans mixer.','Réfrigérer 2 heures ; la texture doit rester tartinable avec des morceaux visibles.'],hotCold:'froid'}),
+  V41R({id:'t419',n:'Rillettes de maquereau fumé',role:'terrine',m:'Sans cuisson',t:'15 min + 1 h de repos',family:'rillettes-poisson',yieldText:'1 pot de 300 g',servings:4,core:['maquereau'],i:[I(220,'g','filets de maquereau fumé'),I(100,'g','fromage frais'),I(1,'','citron','citrons'),I(1,'','échalote','échalotes'),I(10,'g','ciboulette'),I(1,'c. à café','moutarde'),I(null,'','poivre')],p:['Retirer soigneusement peau et arêtes du maquereau, puis l’émietter à la fourchette.','Ajouter fromage frais, moutarde, échalote très finement ciselée et zeste de citron.','Incorporer une à deux cuillerées de jus de citron et la ciboulette ; poivrer sans saler.','Réfrigérer 1 heure et servir lorsque la préparation est fraîche mais encore souple.'],hotCold:'froid'}),
+  V41R({id:'t420',n:'Rillettes de sardines au citron',role:'terrine',m:'Sans cuisson',t:'12 min + 1 h de repos',family:'rillettes-poisson',yieldText:'1 pot de 260 g',servings:4,core:['sardine'],i:[I(2,'boîtes de 100 g','sardines à l’huile'),I(80,'g','fromage frais'),I(1,'','citron','citrons'),I(1,'','échalote','échalotes'),I(10,'g','persil'),I(null,'','poivre')],p:['Égoutter les sardines en conservant une cuillerée d’huile et retirer les arêtes centrales si elles sont épaisses.','Écraser à la fourchette avec le fromage frais et l’huile réservée.','Ajouter échalote, persil, zeste et une cuillerée de jus de citron ; poivrer.','Réfrigérer 1 heure afin que la texture se raffermisse légèrement.'],hotCold:'froid'}),
+  V41R({id:'t421',n:'Rillettes de truite fumée',role:'terrine',m:'Sans cuisson',t:'12 min + 1 h de repos',family:'rillettes-poisson',yieldText:'1 pot de 280 g',servings:4,core:['truite'],i:[I(180,'g','truite fumée'),I(100,'g','fromage frais'),I(1,'','citron','citrons'),I(10,'g','aneth'),I(1,'c. à café','raifort doux'),I(null,'','poivre')],p:['Couper la truite fumée au couteau en très petits morceaux sans la réduire en pâte.','Mélanger délicatement avec fromage frais, raifort, zeste de citron et aneth.','Ajouter une cuillerée de jus de citron et du poivre, puis vérifier la texture : elle doit rester souple et fibreuse.','Couvrir et réfrigérer 1 heure avant de servir.'],hotCold:'froid'})
+];
+
+const sauceRecipes=[
+  V41R({id:'s401',n:'Sauce béchamel',role:'sauce',m:'Casserole',t:'15 min',family:'sauces-chaudes',yieldText:'environ 40 cl · 4 portions',servings:4,pairWith:['vegetal','volaille','oeufs'],preferred:['gratin','chou-fleur','endive'],i:[I(40,'g','beurre'),I(40,'g','farine'),I(50,'cl','lait'),I(1,'pincée','muscade'),I(4,'g','sel'),I(1,'g','poivre')],p:['Faire fondre le beurre à feu moyen-doux sans le colorer. Ajouter la farine et cuire 1 minute en fouettant.','Verser le lait froid en trois fois, en fouettant jusqu’à disparition complète des grumeaux.','Porter à léger frémissement puis cuire 5 à 6 minutes à feu doux en remuant ; la sauce doit napper la cuillère.','Ajouter muscade, sel et poivre. Si elle attend, couvrir sa surface pour éviter la formation d’une peau.']}),
+  V41R({id:'s402',n:'Sauce tomate maison',role:'sauce',m:'Casserole',t:'35 min',family:'sauces-chaudes',yieldText:'environ 45 cl · 4 portions',servings:4,pairWith:['viande','volaille','poisson','vegetal','oeufs'],preferred:['boulette','pâte','aubergine'],i:[I(600,'g','tomates concassées'),I(1,'','oignon','oignons'),I(1,'','gousse d’ail','gousses d’ail'),I(1,'c. à soupe','huile d’olive'),I(1,'c. à café','origan'),I(5,'g','sel'),I(1,'g','poivre')],p:['Faire fondre l’oignon ciselé 6 minutes à feu moyen-doux dans l’huile, sans coloration.','Ajouter l’ail 30 secondes puis les tomates, l’origan, le sel et le poivre.','Laisser frémir 25 minutes à feu doux, sans couvercle, en remuant trois fois.','Mixer si une texture lisse est souhaitée ; la sauce terminée doit être épaisse et nappante.']}),
+  V41R({id:'s403',n:'Sauce au poivre',role:'sauce',m:'Poêle',t:'15 min',family:'sauces-chaudes',yieldText:'environ 20 cl · 2 portions',pairWith:['viande'],preferred:['steak','boeuf','bœuf','entrecôte'],i:[I(1,'c. à soupe','poivre noir concassé'),I(1,'','échalote','échalotes'),I(5,'cl','cognac'),I(12,'cl','fond de veau'),I(10,'cl','crème liquide'),I(15,'g','beurre'),I(2,'g','sel')],p:['Faire fondre l’échalote 3 minutes à feu moyen dans le beurre, sans la brunir. Ajouter le poivre et chauffer 30 secondes.','Verser le cognac hors de la flamme, remettre sur feu moyen et laisser réduire presque à sec pendant 2 minutes.','Ajouter le fond de veau et réduire de moitié, puis verser la crème.','Laisser frémir 3 à 4 minutes à feu doux ; la sauce doit napper le dos d’une cuillère. Saler avec prudence.']}),
+  V41R({id:'s404',n:'Sauce à l’échalote',role:'sauce',m:'Poêle',t:'18 min',family:'sauces-chaudes',yieldText:'environ 18 cl · 2 portions',pairWith:['viande','volaille'],preferred:['steak','boeuf','bœuf','entrecôte','magret'],i:[I(3,'','échalotes'),I(15,'g','beurre'),I(10,'cl','vin rouge'),I(12,'cl','fond de veau'),I(1,'c. à café','vinaigre balsamique'),I(null,'','sel et poivre')],p:['Ciseler très finement les échalotes et les faire fondre 5 minutes à feu moyen-doux dans 5 g de beurre.','Verser le vin et le vinaigre, puis réduire aux deux tiers à feu moyen pendant 5 à 6 minutes.','Ajouter le fond de veau et laisser frémir encore 4 minutes, jusqu’à obtenir une consistance légèrement sirupeuse.','Hors du feu, incorporer le reste du beurre froid en fouettant ; la sauce doit être brillante et nappante.']}),
+  V41R({id:'s405',n:'Sauce moutarde',role:'sauce',m:'Poêle',t:'12 min',family:'sauces-chaudes',yieldText:'environ 20 cl · 2 portions',pairWith:['viande','volaille'],preferred:['porc','poulet','saucisse','lapin'],i:[I(1,'','échalote','échalotes'),I(10,'g','beurre'),I(8,'cl','bouillon'),I(12,'cl','crème liquide'),I(1,'c. à soupe','moutarde de Dijon'),I(1,'c. à café','moutarde à l’ancienne'),I(null,'','poivre')],p:['Faire fondre l’échalote 3 minutes à feu moyen-doux dans le beurre.','Ajouter le bouillon et réduire de moitié pendant 3 minutes à feu moyen.','Verser la crème et laisser frémir 3 minutes à feu doux.','Retirer du feu, incorporer les deux moutardes et poivrer ; ne plus faire bouillir afin de garder une saveur nette et une texture lisse.']}),
+  V41R({id:'s406',n:'Sauce aux champignons',role:'sauce',m:'Poêle',t:'20 min',family:'sauces-chaudes',yieldText:'environ 25 cl · 2 portions',pairWith:['viande','volaille','vegetal'],preferred:['poulet','veau','porc','steak'],i:[I(220,'g','champignons'),I(1,'','échalote','échalotes'),I(15,'g','beurre'),I(8,'cl','bouillon'),I(12,'cl','crème liquide'),I(10,'g','persil'),I(null,'','sel et poivre')],p:['Émincer les champignons et les saisir 6 minutes à feu assez vif dans le beurre, jusqu’à évaporation de leur eau.','Ajouter l’échalote et cuire 3 minutes à feu moyen.','Verser le bouillon et réduire de moitié, puis ajouter la crème et frémir 4 minutes à feu doux.','Saler, poivrer et ajouter le persil ; la sauce doit être onctueuse avec des morceaux de champignons encore visibles.']}),
+  V41R({id:'s407',n:'Beurre blanc',role:'sauce',m:'Casserole',t:'20 min',family:'sauces-chaudes',yieldText:'environ 18 cl · 2 portions',richness:'gourmand',pairWith:['poisson'],preferred:['cabillaud','colin','merlu','sole','bar','saint-jacques'],i:[I(2,'','échalotes'),I(8,'cl','vin blanc sec'),I(2,'cl','vinaigre de vin blanc'),I(140,'g','beurre très froid'),I(1,'c. à soupe','crème liquide'),I(null,'','sel et poivre blanc')],p:['Ciseler les échalotes et les faire réduire avec vin et vinaigre à feu moyen jusqu’à ce qu’il reste environ 2 cuillerées de liquide.','Ajouter la crème, baisser à feu très doux et incorporer le beurre froid en petits cubes en fouettant constamment.','Retirer régulièrement la casserole du feu : la sauce ne doit jamais bouillir, sinon elle se sépare.','Filtrer ou garder les échalotes, saler légèrement et servir aussitôt ; la texture doit être brillante et crémeuse.']}),
+  V41R({id:'s408',n:'Sauce hollandaise',role:'sauce',m:'Casserole',t:'18 min',family:'sauces-chaudes',yieldText:'environ 20 cl · 2 à 3 portions',richness:'gourmand',pairWith:['poisson','oeufs','vegetal'],preferred:['asperge','oeuf','saumon','cabillaud'],i:[I(2,'','jaunes d’œufs'),I(120,'g','beurre'),I(1,'c. à soupe','jus de citron'),I(1,'c. à soupe','eau'),I(2,'g','sel'),I(1,'pincée','poivre blanc')],p:['Faire fondre le beurre puis le garder tiède. Fouetter les jaunes avec l’eau dans un bol au bain-marie très doux.','Continuer à fouetter 3 à 4 minutes : le mélange doit épaissir sans dépasser environ 65 °C.','Verser le beurre tiède en filet en fouettant constamment, puis ajouter le citron.','Saler et poivrer ; servir immédiatement. La sauce doit être lisse, mousseuse et nappante, jamais huileuse.']}),
+  V41R({id:'s409',n:'Sauce béarnaise',role:'sauce',m:'Casserole',t:'25 min',family:'sauces-chaudes',yieldText:'environ 20 cl · 2 à 3 portions',richness:'gourmand',pairWith:['viande'],preferred:['steak','boeuf','bœuf','entrecôte','grillade'],i:[I(2,'','jaunes d’œufs'),I(120,'g','beurre'),I(2,'','échalotes'),I(5,'cl','vinaigre de vin blanc'),I(5,'cl','vin blanc sec'),I(1,'c. à soupe','estragon'),I(1,'c. à soupe','cerfeuil'),I(1,'c. à café','poivre concassé'),I(2,'g','sel')],p:['Réduire échalotes, vinaigre, vin et poivre à feu moyen jusqu’à obtenir environ 2 cuillerées de liquide ; filtrer et tiédir.','Fouetter les jaunes avec la réduction au bain-marie très doux pendant 3 minutes, jusqu’à épaississement.','Incorporer le beurre fondu tiède en filet sans cesser de fouetter ; la température doit rester douce pour éviter que les œufs coagulent.','Ajouter estragon, cerfeuil et sel. Servir aussitôt : la béarnaise doit être épaisse, brillante et stable.']}),
+  V41R({id:'s410',n:'Sauce bordelaise',role:'sauce',m:'Casserole',t:'30 min',family:'sauces-chaudes',yieldText:'environ 20 cl · 2 portions',pairWith:['viande'],preferred:['boeuf','bœuf','entrecôte','steak','roti'],i:[I(2,'','échalotes'),I(20,'cl','vin rouge corsé'),I(20,'cl','fond de veau'),I(1,'c. à café','thym'),I(1,'','feuille de laurier','feuilles de laurier'),I(25,'g','beurre froid'),I(null,'','sel et poivre')],p:['Faire suer les échalotes 3 minutes à feu moyen avec 5 g de beurre, sans coloration.','Ajouter vin, thym et laurier et réduire aux deux tiers pendant 10 à 12 minutes à feu moyen.','Verser le fond de veau et laisser frémir 8 à 10 minutes, jusqu’à consistance nappante ; filtrer.','Hors du feu, incorporer le beurre froid au fouet, saler et poivrer. La sauce doit être sombre, brillante et concentrée.']}),
+  V41R({id:'s411',n:'Mayonnaise maison',role:'sauce',m:'Sans cuisson',t:'10 min',family:'sauces-froides',yieldText:'environ 25 cl · 4 portions',servings:4,hotCold:'froid',pairWith:['poisson','oeufs','vegetal'],preferred:['oeuf','crevette','poisson froid'],i:[I(1,'','jaune d’œuf','jaunes d’œufs'),I(1,'c. à café','moutarde de Dijon'),I(20,'cl','huile neutre'),I(1,'c. à café','vinaigre'),I(2,'g','sel'),I(1,'g','poivre')],p:['Sortir tous les ingrédients 15 minutes avant afin qu’ils soient à température proche.','Fouetter jaune, moutarde, sel et poivre dans un bol stable.','Verser l’huile d’abord goutte à goutte puis en fin filet, en fouettant constamment jusqu’à épaississement.','Ajouter le vinaigre pour détendre et rectifier l’assaisonnement ; la mayonnaise doit former un bec ferme sur le fouet.']}),
+  V41R({id:'s412',n:'Aïoli',role:'sauce',m:'Sans cuisson',t:'15 min',family:'sauces-froides',yieldText:'environ 25 cl · 4 portions',servings:4,hotCold:'froid',pairWith:['poisson','vegetal'],preferred:['cabillaud','morue','legume vapeur'],i:[I(1,'','jaune d’œuf','jaunes d’œufs'),I(3,'','gousses d’ail'),I(20,'cl','huile d’olive douce'),I(1,'c. à café','jus de citron'),I(2,'g','sel')],p:['Écraser l’ail avec le sel au mortier jusqu’à obtenir une pâte parfaitement lisse.','Ajouter le jaune et mélanger 30 secondes.','Incorporer l’huile très progressivement, d’abord goutte à goutte puis en filet, en fouettant sans interruption.','Ajouter le citron ; la sauce doit être très épaisse, lisse et tenir à la cuillère.']}),
+  V41R({id:'s413',n:'Sauce tartare',role:'sauce',m:'Sans cuisson',t:'12 min',family:'sauces-froides',yieldText:'environ 25 cl · 4 portions',servings:4,hotCold:'froid',pairWith:['poisson'],preferred:['poisson pane','friture','cabillaud'],i:[I(20,'cl','mayonnaise'),I(2,'','cornichons'),I(1,'c. à soupe','câpres'),I(1,'','échalote','échalotes'),I(10,'g','persil'),I(8,'g','ciboulette'),I(1,'c. à café','jus de citron'),I(null,'','poivre')],p:['Égoutter puis hacher très finement cornichons et câpres. Ciseler échalote et herbes.','Mélanger la mayonnaise avec le citron et le poivre.','Incorporer tous les éléments sans trop battre afin de garder une texture épaisse.','Réserver 30 minutes au réfrigérateur si possible ; la sauce doit être fraîche, acidulée et riche en petits morceaux.']}),
+  V41R({id:'s414',n:'Sauce cocktail',role:'sauce',m:'Sans cuisson',t:'8 min',family:'sauces-froides',yieldText:'environ 22 cl · 4 portions',servings:4,hotCold:'froid',pairWith:['poisson'],preferred:['crevette','crabe','fruit de mer'],i:[I(15,'cl','mayonnaise'),I(5,'cl','ketchup'),I(1,'c. à café','cognac'),I(1,'c. à café','jus de citron'),I(3,'gouttes','Tabasco'),I(1,'pincée','paprika')],p:['Mélanger mayonnaise et ketchup jusqu’à obtenir une couleur uniforme.','Ajouter cognac, citron, Tabasco et paprika.','Fouetter 20 secondes pour lisser sans rendre la sauce liquide.','Réserver au froid jusqu’au service ; la texture doit rester épaisse et la saveur légèrement relevée.']}),
+  V41R({id:'s415',n:'Sauce vierge',role:'sauce',m:'Sans cuisson',t:'15 min',family:'sauces-froides',yieldText:'environ 25 cl · 4 portions',servings:4,hotCold:'froid',richness:'léger',pairWith:['poisson','volaille','vegetal'],preferred:['poisson grille','saumon','cabillaud','courgette'],i:[I(3,'','tomates'),I(1,'','échalote','échalotes'),I(8,'cl','huile d’olive'),I(1,'','citron','citrons'),I(15,'g','basilic'),I(1,'c. à café','câpres'),I(null,'','sel et poivre')],p:['Monder les tomates si souhaité, les épépiner puis les couper en dés de 5 mm.','Ciseler très finement échalote et basilic.','Mélanger tomates, échalote, câpres, huile, deux cuillerées de jus de citron, sel et poivre.','Laisser reposer 10 minutes à température ambiante ; la sauce doit rester fraîche, fluide et non mixée.']}),
+  V41R({id:'s416',n:'Pesto génois',role:'sauce',m:'Sans cuisson',t:'15 min',family:'sauces-froides',yieldText:'environ 20 cl · 4 portions',servings:4,hotCold:'froid',pairWith:['vegetal','volaille'],preferred:['pate','tomate','courgette','poulet'],i:[I(50,'g','basilic frais'),I(35,'g','pignons de pin'),I(50,'g','parmesan'),I(1,'','gousse d’ail','gousses d’ail'),I(10,'cl','huile d’olive'),I(2,'g','sel')],p:['Laver puis sécher parfaitement le basilic pour éviter d’oxyder la sauce.','Piler ail, sel et pignons au mortier jusqu’à obtenir une pâte.','Ajouter le basilic par petites poignées, puis le parmesan.','Incorporer l’huile progressivement ; le pesto doit rester épais, granuleux et vert, sans être chauffé.']}),
+  V41R({id:'s417',n:'Vinaigrette classique',role:'sauce',m:'Sans cuisson',t:'5 min',family:'vinaigrettes',yieldText:'environ 10 cl · 4 portions',servings:4,hotCold:'froid',richness:'léger',pairWith:['vegetal'],preferred:['salade','crudite'],i:[I(2,'c. à soupe','vinaigre de vin'),I(6,'c. à soupe','huile neutre'),I(1,'c. à café','moutarde'),I(2,'g','sel'),I(1,'g','poivre')],p:['Dissoudre le sel dans le vinaigre dans un petit bol.','Ajouter la moutarde et le poivre, puis mélanger.','Verser l’huile en filet en fouettant pendant 30 secondes.','Utiliser aussitôt ou secouer avant service ; la vinaigrette doit être homogène mais reste une émulsion temporaire.']}),
+  V41R({id:'s418',n:'Vinaigrette à la moutarde',role:'sauce',m:'Sans cuisson',t:'5 min',family:'vinaigrettes',yieldText:'environ 10 cl · 4 portions',servings:4,hotCold:'froid',richness:'léger',pairWith:['vegetal'],preferred:['salade','lentille','haricot vert'],i:[I(1.5,'c. à soupe','vinaigre de cidre'),I(5,'c. à soupe','huile'),I(1,'c. à soupe','moutarde de Dijon'),I(1,'c. à café','miel'),I(2,'g','sel'),I(1,'g','poivre')],p:['Mélanger vinaigre, moutarde, miel, sel et poivre jusqu’à dissolution du sel.','Verser l’huile lentement en fouettant.','Continuer 30 secondes pour obtenir une émulsion épaisse et homogène.','Goûter et ajuster avec une cuillerée d’eau si la vinaigrette paraît trop vive.']}),
+  V41R({id:'s419',n:'Sauce yaourt et herbes',role:'sauce',m:'Sans cuisson',t:'10 min + 20 min de repos',family:'sauces-froides',yieldText:'environ 25 cl · 4 portions',servings:4,hotCold:'froid',richness:'léger',pairWith:['poisson','volaille','vegetal'],preferred:['poulet grille','falafel','crudite','saumon'],i:[I(250,'g','yaourt grec'),I(1,'','citron','citrons'),I(10,'g','ciboulette'),I(10,'g','persil'),I(1,'c. à café','huile d’olive'),I(2,'g','sel'),I(1,'g','poivre')],p:['Mélanger le yaourt avec zeste et une cuillerée de jus de citron.','Ciseler très finement les herbes et les incorporer avec l’huile.','Saler, poivrer et mélanger jusqu’à une texture lisse.','Réserver 20 minutes au frais afin que les parfums se diffusent ; la sauce doit rester épaisse et fraîche.']}),
+  V41R({id:'s420',n:'Sauce citronnée légère',role:'sauce',m:'Casserole',t:'12 min',family:'sauces-chaudes',yieldText:'environ 20 cl · 2 portions',richness:'léger',pairWith:['poisson','volaille','vegetal'],preferred:['cabillaud','colin','truite','poulet','asperge'],i:[I(12,'cl','bouillon'),I(1,'','citron','citrons'),I(8,'cl','crème légère'),I(1,'c. à café','fécule de maïs'),I(8,'g','ciboulette'),I(null,'','sel et poivre')],p:['Délayer la fécule dans deux cuillerées de bouillon froid. Porter le reste du bouillon au frémissement.','Verser la fécule et cuire 2 minutes à feu doux en fouettant.','Ajouter la crème et laisser frémir encore 2 minutes, puis retirer du feu.','Incorporer zeste, deux cuillerées de jus de citron et ciboulette ; la sauce doit être fluide mais légèrement nappante.']})
+];
+
+const sideRecipes=[
+  V41R({id:'c401',n:'Purée de pommes de terre',role:'side',m:'Casserole',t:'35 min',family:'accompagnements-pommes-de-terre',yieldText:'2 portions',pairWith:['viande','volaille','poisson'],preferred:['roti','saucisse','boeuf'],i:[I(500,'g','pommes de terre farineuses'),I(12,'cl','lait'),I(40,'g','beurre'),I(1,'pincée','muscade'),I(5,'g','sel'),I(1,'g','poivre')],p:['Peler et couper les pommes de terre en morceaux réguliers, puis les cuire 20 minutes dans l’eau salée à léger frémissement.','Les égoutter soigneusement et les remettre 1 minute dans la casserole à feu doux pour les sécher.','Les écraser au presse-purée, puis incorporer le lait chaud progressivement.','Ajouter beurre, muscade et poivre ; la purée doit être lisse, souple et jamais collante.']}),
+  V41R({id:'c402',n:'Pommes de terre vapeur',role:'side',m:'Casserole',t:'30 min',family:'accompagnements-pommes-de-terre',yieldText:'2 portions',richness:'léger',pairWith:['viande','volaille','poisson'],preferred:['poisson','saumon','cabillaud'],i:[I(500,'g','pommes de terre à chair ferme'),I(5,'g','sel'),I(10,'g','persil'),I(10,'g','beurre')],p:['Peler les pommes de terre ou les brosser, puis les couper de taille égale si nécessaire.','Les placer dans un panier vapeur au-dessus d’une eau frémissante et couvrir.','Cuire 20 à 25 minutes selon la taille ; la pointe d’un couteau doit entrer sans résistance.','Saler et ajouter persil et beurre juste avant de servir, sans écraser les pommes de terre.']}),
+  V41R({id:'c403',n:'Pommes sautées',role:'side',m:'Poêle',t:'35 min',family:'accompagnements-pommes-de-terre',yieldText:'2 portions',pairWith:['viande','volaille'],preferred:['steak','boeuf','bœuf','magret','grillade'],i:[I(500,'g','pommes de terre à chair ferme'),I(2,'c. à soupe','huile'),I(20,'g','beurre'),I(1,'','gousse d’ail','gousses d’ail'),I(1,'c. à café','thym'),I(5,'g','sel'),I(1,'g','poivre')],p:['Couper les pommes de terre en cubes de 2 cm, les rincer puis les sécher parfaitement.','Chauffer l’huile à feu moyen-vif, ajouter les pommes de terre en une seule couche et les cuire 10 minutes sans trop remuer.','Baisser à feu moyen, couvrir 8 minutes puis découvrir, ajouter beurre, ail et thym.','Poursuivre 8 à 10 minutes en retournant régulièrement ; elles doivent être tendres à cœur et bien dorées dehors.']}),
+  V41R({id:'c404',n:'Frites maison au four',role:'side',m:'Four',t:'45 min',family:'accompagnements-pommes-de-terre',yieldText:'2 portions',pairWith:['viande','poisson'],preferred:['steak','burger','poisson pane'],i:[I(600,'g','pommes de terre'),I(2,'c. à soupe','huile'),I(1,'c. à café','paprika'),I(5,'g','sel')],p:['Préchauffer le four et une plaque à 220 °C. Couper les pommes de terre en bâtonnets de 1 cm.','Les rincer, les sécher très soigneusement puis les mélanger avec huile et paprika.','Étaler sur la plaque chaude sans les superposer et cuire 35 à 40 minutes à 220 °C en retournant à mi-cuisson.','Saler à la sortie ; les frites doivent être dorées et croustillantes dehors, tendres à cœur.']}),
+  V41R({id:'c405',n:'Riz pilaf',role:'side',m:'Casserole',t:'25 min',family:'accompagnements-céréales',yieldText:'2 portions',pairWith:['viande','volaille','poisson','vegetal'],preferred:['poulet','poisson','brochette'],i:[I(140,'g','riz long'),I(1,'','petit oignon','petits oignons'),I(15,'g','beurre'),I(28,'cl','bouillon chaud'),I(1,'','feuille de laurier','feuilles de laurier'),I(3,'g','sel')],p:['Faire fondre l’oignon ciselé 4 minutes à feu moyen-doux dans le beurre sans le colorer.','Ajouter le riz et le nacrer 2 minutes en remuant : les grains doivent devenir translucides.','Verser le bouillon chaud, ajouter laurier et sel, couvrir et cuire 14 minutes à feu très doux sans soulever le couvercle.','Retirer du feu, laisser reposer 5 minutes couvert puis égrener à la fourchette.']}),
+  V41R({id:'c406',n:'Semoule légère et bien égrenée',role:'side',m:'Casserole',t:'12 min',family:'accompagnements-céréales',yieldText:'2 portions',pairWith:['viande','volaille','poisson','vegetal'],preferred:['tajine','brochette','kefta','legume'],i:[I(140,'g','semoule moyenne'),I(14,'cl','eau'),I(1,'c. à soupe','huile d’olive'),I(4,'g','sel'),I(10,'g','beurre')],p:['Mettre la semoule, le sel et l’huile dans un saladier et mélanger pour enrober les grains.','Porter l’eau à ébullition, la verser sur la semoule, couvrir et attendre exactement 5 minutes.','Égrener soigneusement à la fourchette, ajouter le beurre puis couvrir encore 2 minutes.','Égrener une seconde fois ; les grains doivent être gonflés, séparés et sans paquet.']}),
+  V41R({id:'c407',n:'Polenta crémeuse',role:'side',m:'Casserole',t:'20 min',family:'accompagnements-céréales',yieldText:'2 portions',pairWith:['viande','volaille','vegetal'],preferred:['boeuf','veau','champignon','tomate'],i:[I(120,'g','polenta'),I(45,'cl','bouillon'),I(10,'cl','lait'),I(30,'g','parmesan'),I(20,'g','beurre'),I(null,'','sel et poivre')],p:['Porter bouillon et lait au frémissement dans une casserole à fond épais.','Verser la polenta en pluie en fouettant pour éviter les grumeaux.','Cuire à feu doux selon le temps du paquet, généralement 6 à 10 minutes, en remuant constamment.','Hors du feu, incorporer parmesan et beurre ; la polenta doit couler lentement de la cuillère et rester crémeuse.']}),
+  V41R({id:'c408',n:'Haricots verts persillés',role:'side',m:'Casserole',t:'22 min',family:'accompagnements-légumes',yieldText:'2 portions',richness:'léger',pairWith:['viande','volaille','poisson'],preferred:['cabillaud','sole','saumon','steak'],i:[I(400,'g','haricots verts'),I(20,'g','beurre'),I(1,'','gousse d’ail','gousses d’ail'),I(15,'g','persil'),I(5,'g','sel'),I(1,'g','poivre')],p:['Équeuter les haricots et les plonger dans une grande casserole d’eau bouillante salée.','Cuire 8 à 10 minutes afin qu’ils soient tendres mais encore légèrement fermes, puis les égoutter.','Faire mousser le beurre avec l’ail 30 secondes à feu moyen, ajouter les haricots et les sauter 2 minutes.','Poivrer et ajouter le persil hors du feu ; les haricots doivent rester verts et non détrempés.']}),
+  V41R({id:'c409',n:'Légumes rôtis au four',role:'side',m:'Four',t:'45 min',family:'accompagnements-légumes',yieldText:'2 portions',richness:'léger',s:['printemps','été','automne'],pairWith:['viande','volaille','poisson','vegetal'],preferred:['roti','grillade'],i:[I(1,'','courgette','courgettes'),I(1,'','poivron','poivrons'),I(2,'','carottes'),I(1,'','oignon rouge','oignons rouges'),I(1.5,'c. à soupe','huile d’olive'),I(1,'c. à café','thym'),I(5,'g','sel'),I(1,'g','poivre')],p:['Préchauffer le four à 210 °C et couper tous les légumes en morceaux d’environ 2 cm.','Les mélanger avec huile, thym, sel et poivre, puis les étaler sans les superposer.','Cuire 30 à 35 minutes à 210 °C en les retournant après 18 minutes.','Servir lorsque les bords sont dorés et le cœur tendre, sans que les légumes soient mous.']}),
+  V41R({id:'c410',n:'Légumes vapeur',role:'side',m:'Casserole',t:'25 min',family:'accompagnements-légumes',yieldText:'2 portions',richness:'léger',pairWith:['viande','volaille','poisson','vegetal'],preferred:['poisson','poulet'],i:[I(2,'','carottes'),I(1,'','courgette','courgettes'),I(250,'g','brocoli'),I(1,'c. à soupe','huile d’olive'),I(0.5,'','citron','citrons'),I(4,'g','sel')],p:['Couper carottes en bâtonnets, courgette en demi-rondelles épaisses et brocoli en petits bouquets.','Cuire d’abord les carottes 6 minutes dans le panier vapeur au-dessus d’une eau frémissante.','Ajouter brocoli et courgette, couvrir et poursuivre 7 à 8 minutes ; les légumes doivent être tendres mais encore fermes.','Assaisonner immédiatement avec huile, citron et sel, sans noyer les légumes.']}),
+  V41R({id:'c411',n:'Ratatouille traditionnelle',role:'side',m:'Casserole',t:'55 min',family:'accompagnements-légumes',yieldText:'4 portions',servings:4,richness:'léger',s:['été','automne'],pairWith:['viande','volaille','poisson','vegetal'],preferred:['agneau','poisson grille','poulet'],i:[I(1,'','aubergine','aubergines'),I(2,'','courgettes'),I(1,'','poivron rouge','poivrons rouges'),I(1,'','poivron jaune','poivrons jaunes'),I(5,'','tomates'),I(1,'','oignon','oignons'),I(2,'','gousses d’ail'),I(3,'c. à soupe','huile d’olive'),I(1,'c. à café','thym'),I(7,'g','sel'),I(2,'g','poivre')],p:['Couper tous les légumes en cubes séparés. Faire dorer l’aubergine 8 minutes avec une cuillerée d’huile puis la réserver.','Cuire courgettes et poivrons 8 minutes avec une seconde cuillerée d’huile, puis les réserver.','Faire fondre oignon et ail dans le reste d’huile, ajouter les tomates et le thym et laisser compoter 10 minutes à feu moyen.','Réunir tous les légumes, couvrir à moitié et mijoter 20 minutes à feu doux ; chaque légume doit être tendre tout en gardant sa forme.']}),
+  V41R({id:'c412',n:'Poêlée de légumes de saison',role:'side',m:'Poêle',t:'25 min',family:'accompagnements-légumes',yieldText:'2 portions',richness:'léger',pairWith:['viande','volaille','poisson','vegetal'],preferred:['poelee','grillade'],i:[I(2,'','carottes'),I(1,'','courgette','courgettes'),I(1,'','poivron','poivrons'),I(150,'g','champignons'),I(1,'','échalote','échalotes'),I(1,'c. à soupe','huile'),I(10,'g','persil'),I(5,'g','sel'),I(1,'g','poivre')],p:['Tailler carottes en fins bâtonnets et les autres légumes en morceaux de taille régulière.','Chauffer l’huile à feu assez vif et saisir carottes et poivron 5 minutes.','Ajouter échalote, courgette et champignons et poursuivre 8 à 10 minutes en remuant régulièrement.','Saler, poivrer et ajouter le persil ; les légumes doivent être dorés et encore légèrement croquants.']}),
+  V41R({id:'c413',n:'Salade verte assaisonnée',role:'side',m:'Sans cuisson',t:'10 min',family:'accompagnements-légumes',yieldText:'2 portions',richness:'léger',hotCold:'froid',pairWith:['viande','volaille','oeufs','vegetal'],preferred:['quiche','gratin','omelette','grillade'],i:[I(1,'','petite laitue','petites laitues'),I(1,'','échalote','échalotes'),I(1,'c. à soupe','vinaigre de vin'),I(2.5,'c. à soupe','huile'),I(1,'c. à café','moutarde'),I(2,'g','sel'),I(1,'g','poivre')],p:['Laver la laitue dans deux eaux, l’essorer parfaitement puis déchirer les grandes feuilles.','Dissoudre le sel dans le vinaigre, ajouter moutarde et poivre puis fouetter avec l’huile.','Ciseler très finement l’échalote et l’ajouter à la vinaigrette.','Assaisonner la salade seulement au moment de servir et mélanger 20 secondes ; les feuilles doivent rester fermes et brillantes.']}),
+  V41R({id:'c414',n:'Carottes glacées',role:'side',m:'Poêle',t:'30 min',family:'accompagnements-légumes',yieldText:'2 portions',pairWith:['viande','volaille','poisson'],preferred:['veau','poulet','canard'],i:[I(450,'g','carottes'),I(20,'g','beurre'),I(1,'c. à café','sucre'),I(15,'cl','eau'),I(4,'g','sel'),I(10,'g','persil')],p:['Peler les carottes et les couper en bâtonnets réguliers ou en rondelles épaisses.','Les placer dans une sauteuse avec beurre, sucre, sel et eau juste à hauteur.','Couvrir avec un disque de papier cuisson percé et cuire 18 à 22 minutes à feu moyen-doux.','Retirer le papier et faire réduire le liquide 2 à 3 minutes en roulant les carottes ; elles doivent être tendres, brillantes et légèrement enrobées.']})
+];
+
+const v41BalancedNoon=[
+  V41Dish({id:'q401',n:'Orge perlé, lentilles et légumes rôtis',m:'Four',t:'50 min',s:['automne','hiver','printemps'],i:[I(100,'g','orge perlé'),I(120,'g','lentilles cuites'),I(2,'','carottes'),I(1,'','poireau','poireaux'),I(250,'g','courge'),I(1,'c. à soupe','huile d’olive'),I(0.5,'','citron','citrons'),I(10,'g','persil')],p:['Préchauffer le four à 200 °C. Couper carottes, poireau et courge, les mélanger avec l’huile et les rôtir 30 minutes en retournant à mi-cuisson.','Cuire l’orge 28 à 30 minutes dans une eau frémissante salée ; il doit être tendre mais encore ferme, puis l’égoutter.','Réchauffer les lentilles 3 minutes avec deux cuillerées d’eau et mélanger avec l’orge.','Ajouter légumes rôtis, citron et persil ; servir chaud avec des grains bien séparés.'],meta:{protein:'lentilles',group:'vegetal',starch:'cereales',family:'céréales-légumineuses',cuisine:'française',lightness:'léger-rassasiant',vegetables:['carotte','poireau','courge']}}),
+  V41Dish({id:'q402',n:'Truite vapeur, poireaux et quinoa citronné',m:'Casserole',t:'35 min',s:['automne','hiver','printemps'],i:[I(2,'','filets de truite'),I(130,'g','quinoa'),I(2,'','poireaux'),I(1,'','citron','citrons'),I(1,'c. à soupe','huile d’olive'),I(10,'g','aneth'),I(null,'','sel et poivre')],p:['Rincer le quinoa puis le cuire 14 minutes dans deux fois son volume d’eau salée ; couvrir et laisser reposer 5 minutes.','Émincer les poireaux et les cuire 8 minutes à la vapeur.','Déposer la truite au-dessus et poursuivre la cuisson 8 à 10 minutes ; la chair doit devenir nacrée et se détacher en lamelles.','Égrener le quinoa avec huile, zeste et jus de citron, puis servir avec poireaux, truite et aneth.'],meta:{protein:'truite',group:'poisson',starch:'cereales',family:'poisson-vapeur',cuisine:'française',lightness:'léger-rassasiant',vegetables:['poireau']}}),
+  V41Dish({id:'q403',n:'Poivrons farcis au boulgour et pois chiches',m:'Four',t:'50 min',s:['été','automne'],i:[I(2,'','gros poivrons'),I(120,'g','boulgour'),I(180,'g','pois chiches cuits'),I(2,'','tomates'),I(1,'','oignon','oignons'),I(1,'c. à café','cumin'),I(1,'c. à soupe','huile d’olive'),I(10,'g','persil')],p:['Préchauffer le four à 190 °C. Couper les poivrons en deux, retirer graines et membranes et les précuire 12 minutes.','Cuire le boulgour 10 minutes dans l’eau salée puis l’égoutter.','Faire fondre l’oignon 5 minutes, ajouter tomates en dés, pois chiches et cumin et cuire 6 minutes ; incorporer boulgour et persil.','Garnir les poivrons et cuire 22 minutes à 190 °C ; ils doivent être tendres et la farce rester moelleuse.'],meta:{protein:'pois-chiches',group:'vegetal',starch:'cereales',family:'légumes-farcis',cuisine:'méditerranéenne',lightness:'léger-rassasiant',vegetables:['poivron','tomate','oignon']}}),
+  V41Dish({id:'q404',n:'Cabillaud en bouillon de légumes et orge',m:'Casserole',t:'40 min',s:['automne','hiver','printemps'],i:[I(2,'','dos de cabillaud'),I(100,'g','orge perlé'),I(2,'','carottes'),I(1,'','poireau','poireaux'),I(1,'','branche de céleri','branches de céleri'),I(70,'cl','bouillon de légumes'),I(1,'','citron','citrons'),I(10,'g','persil')],p:['Cuire l’orge 25 minutes dans le bouillon à léger frémissement.','Ajouter carottes en fines rondelles, poireau et céleri émincés, puis poursuivre 8 minutes.','Déposer le cabillaud dans le bouillon, couvrir et pocher 7 à 9 minutes à feu très doux ; la chair doit être nacrée.','Ajouter citron et persil et servir en assiettes creuses avec l’orge et les légumes.'],meta:{protein:'cabillaud',group:'poisson',starch:'cereales',family:'poisson-bouillon',cuisine:'française',lightness:'léger-rassasiant',vegetables:['carotte','poireau']}}),
+  V41Dish({id:'q405',n:'Poulet vapeur au gingembre, riz complet et pak-choï',m:'Casserole',t:'45 min',s:ALL_SEASONS,i:[I(320,'g','blancs de poulet'),I(130,'g','riz complet'),I(2,'','pak-choï'),I(2,'','carottes'),I(1,'c. à café','gingembre'),I(1,'c. à soupe','sauce soja'),I(1,'c. à café','huile de sésame'),I(1,'','citron vert','citrons verts')],p:['Cuire le riz complet selon le paquet, généralement 30 à 35 minutes, puis le garder couvert.','Couper le poulet en lanières, le mélanger avec gingembre, soja et huile de sésame et laisser reposer 10 minutes.','Cuire carottes et pak-choï 5 minutes à la vapeur, ajouter le poulet au-dessus et poursuivre 8 minutes ; le centre doit être entièrement opaque.','Servir sur le riz avec le jus de citron vert, sans ajouter de sauce grasse.'],meta:{protein:'poulet',group:'volaille',starch:'riz',family:'volaille-vapeur',cuisine:'asiatique',lightness:'léger-rassasiant',vegetables:['carotte','chou']}})
+];
+const v41BalancedEvening=[
+  V41Dish({id:'q406',n:'Salade tiède de haricots blancs, fenouil et œuf mollet',m:'Casserole',t:'30 min',s:['automne','hiver','printemps'],i:[I(300,'g','haricots blancs cuits'),I(1,'','fenouil'),I(2,'','œufs'),I(1,'','orange','oranges'),I(1,'','échalote','échalotes'),I(1,'c. à soupe','huile d’olive'),I(1,'c. à soupe','vinaigre de cidre'),I(10,'g','persil')],p:['Émincer le fenouil et le cuire 8 minutes à la vapeur afin qu’il reste légèrement ferme.','Cuire les œufs 6 minutes dans l’eau bouillante, les refroidir puis les écaler délicatement.','Réchauffer les haricots 3 minutes à feu doux avec une cuillerée d’eau, puis les mélanger avec fenouil, échalote, huile et vinaigre.','Ajouter quartiers d’orange, persil et œufs coupés en deux ; servir tiède avec le jaune encore coulant.'],meta:{protein:'haricots',group:'vegetal',starch:'legumineuses',family:'salade-complète',kind:'salad',hotCold:'tiède',cuisine:'française',lightness:'léger-rassasiant',vegetables:['fenouil','échalote']}}),
+  V41Dish({id:'q407',n:'Dinde grillée, chou rouge et pomme',m:'Poêle',t:'35 min',s:['automne','hiver'],i:[I(320,'g','escalopes de dinde'),I(350,'g','chou rouge'),I(1,'','pomme','pommes'),I(1,'','oignon','oignons'),I(1,'c. à soupe','vinaigre de cidre'),I(1,'c. à café','miel'),I(1,'c. à soupe','huile'),I(null,'','sel et poivre')],p:['Émincer très finement chou et oignon. Les faire revenir 5 minutes dans la moitié de l’huile à feu moyen.','Ajouter pomme en dés, vinaigre, miel et 8 cl d’eau, couvrir et cuire 18 minutes à feu doux ; le chou doit être tendre mais non réduit en purée.','Saler et poivrer la dinde et la saisir dans le reste d’huile 4 à 5 minutes par face à feu moyen-vif.','Laisser reposer la viande 3 minutes puis la servir avec le chou acidulé.'],meta:{protein:'dinde',group:'volaille',starch:'sans-feculent',family:'volaille-grillée',cuisine:'française',lightness:'léger-rassasiant',vegetables:['chou','oignon']}}),
+  V41Dish({id:'q408',n:'Bowl de sarrasin, champignons et épinards',m:'Poêle',t:'35 min',s:['automne','hiver','printemps'],i:[I(140,'g','graines de sarrasin'),I(250,'g','champignons'),I(250,'g','épinards'),I(2,'','œufs'),I(1,'','échalote','échalotes'),I(1,'c. à soupe','huile'),I(1,'c. à café','vinaigre'),I(null,'','sel et poivre')],p:['Rincer le sarrasin et le cuire 15 minutes dans l’eau frémissante salée ; égoutter et laisser reposer 5 minutes.','Saisir champignons et échalote 7 minutes à feu assez vif dans l’huile, puis ajouter les épinards 3 minutes.','Pocher les œufs 3 minutes dans une eau frémissante légèrement vinaigrée.','Répartir sarrasin et légumes dans deux bols et poser les œufs dessus ; le grain doit rester ferme et le jaune coulant.'],meta:{protein:'oeufs',group:'oeufs',starch:'cereales',family:'bowl-céréales',cuisine:'française',lightness:'léger-rassasiant',vegetables:['champignon','épinard','échalote']}}),
+  V41Dish({id:'q409',n:'Salade de lentilles, betterave et truite fumée',m:'Casserole',t:'30 min',s:['automne','hiver','printemps'],i:[I(140,'g','lentilles vertes'),I(200,'g','betterave cuite'),I(120,'g','truite fumée'),I(1,'','échalote','échalotes'),I(1,'c. à soupe','vinaigre de cidre'),I(1,'c. à soupe','huile de noix'),I(10,'g','aneth'),I(null,'','poivre')],p:['Rincer les lentilles et les cuire 22 à 25 minutes dans une eau frémissante non salée ; elles doivent rester entières.','Les égoutter puis les assaisonner encore tièdes avec vinaigre, huile et échalote ciselée.','Couper la betterave en petits dés et la truite en lanières.','Mélanger lentilles et betterave, ajouter la truite et l’aneth au dernier moment et servir tiède ou frais.'],meta:{protein:'truite',group:'poisson',starch:'legumineuses',family:'salade-complète',kind:'salad',hotCold:'tiède',cuisine:'française',lightness:'léger-rassasiant',vegetables:['betterave','échalote']}}),
+  V41Dish({id:'q410',n:'Courgettes farcies au quinoa et saumon',m:'Four',t:'50 min',s:['printemps','été','automne'],i:[I(2,'','grosses courgettes'),I(220,'g','saumon frais'),I(100,'g','quinoa'),I(2,'','tomates'),I(1,'','échalote','échalotes'),I(1,'c. à soupe','huile d’olive'),I(10,'g','aneth'),I(0.5,'','citron','citrons')],p:['Préchauffer le four à 190 °C. Couper les courgettes en deux, les évider et les précuire 12 minutes.','Rincer le quinoa et le cuire 13 minutes dans l’eau salée, puis l’égoutter.','Couper saumon et chair de courgette en petits dés, les mélanger avec quinoa, tomates, échalote, aneth et citron.','Garnir les courgettes, arroser d’huile et cuire 20 minutes à 190 °C ; le saumon doit être juste cuit et la farce moelleuse.'],meta:{protein:'saumon',group:'poisson',starch:'cereales',family:'légumes-farcis',cuisine:'française',lightness:'léger-rassasiant',vegetables:['courgette','tomate','échalote']}})
+];
+
 function applyCourseMetadata(recipe){
   const declaredTemperature=recipe.hotCold;
   applyRecipeMetadata(recipe,recipe.course);
   const family=String(recipe.family||'');
   if(recipe.course==='starter'){
-    recipe.group=/poisson|fruits-de-mer|moule|calamar/.test(family)?'poisson':/oeufs/.test(family)?'oeufs':/légumineuses|tartinades|falafel/.test(family)?'vegetal':'legumes';
+    recipe.group=/poisson|fruits-de-mer|moule|calamar/.test(family)?'poisson'
+      :/terrines-volaille|rillettes-volaille/.test(family)?'volaille'
+      :/terrines-viande|rillettes-viande|pâtés/.test(family)?'viande'
+      :/oeufs/.test(family)?'oeufs'
+      :/légumineuses|tartinades|falafel|terrines-légumes/.test(family)?'vegetal':'legumes';
   }else{
     recipe.group=/fruits|compote/.test(family)?'fruits':/laitier|crème|creme|flan|entremets|panna|mousse/.test(family)?'laitier':'patisserie';
   }
@@ -2862,20 +2987,42 @@ function applyCourseMetadata(recipe){
   recipe.profile=`${recipe.course}|${recipe.family}|${recipe.cuisine}|${recipe.richness}|${recipe.hotCold}`;
   recipe.mealSlots=[recipe.course];
 }
+noon.push(...v41BalancedNoon);
+evening.push(...v41BalancedEvening);
+starters.push(...terrineRecipes);
+for(const id of ['a023','a030','a093']){
+  const existing=starters.find(recipe=>recipe.id===id);
+  if(existing)existing.role='terrine';
+}
 noon.forEach(recipe=>applyRecipeMetadata(recipe,'mid'));
 evening.forEach(recipe=>applyRecipeMetadata(recipe,'eve'));
 starters.forEach(applyCourseMetadata);
 desserts.forEach(applyCourseMetadata);
+function applyStandaloneMetadata(recipe){
+  const declaredTemperature=recipe.hotCold;
+  applyRecipeMetadata(recipe,recipe.role);
+  recipe.group=recipe.role==='sauce'?'sauce':recipe.role==='side'?'accompagnement':'petit-déjeuner';
+  recipe.protein=recipe.group;
+  recipe.starch=recipe.role;
+  recipe.hotCold=declaredTemperature;
+  recipe.lightness=recipe.richness;
+  recipe.profile=`${recipe.role}|${recipe.family}|${recipe.cuisine}|${recipe.richness}|${recipe.hotCold}`;
+  recipe.mealSlots=[recipe.role];
+}
+breakfastRecipes.forEach(applyStandaloneMetadata);
+sauceRecipes.forEach(applyStandaloneMetadata);
+sideRecipes.forEach(applyStandaloneMetadata);
 
 const $=id=>document.getElementById(id);
 noon.forEach(recipe=>{recipe.mealSlots=['mid']});
 evening.forEach(recipe=>{recipe.mealSlots=['eve']});
 const dishLibrary=[...noon,...evening];
-const recipeLibrary=[...dishLibrary,...starters,...desserts];
+const standaloneLibrary=[...breakfastRecipes,...sauceRecipes,...sideRecipes];
+const recipeLibrary=[...dishLibrary,...starters,...desserts,...standaloneLibrary];
 const recipeIndex=new Map(recipeLibrary.map(recipe=>[recipe.id,recipe]));
-$('libraryCount').textContent=`${dishLibrary.length} plats · ${starters.length} entrées · ${desserts.length} desserts`;
-$('libraryHint').textContent=`Découvrir les ${dishLibrary.length} plats, ${starters.length} entrées et ${desserts.length} desserts`;
-$('versionLine').textContent='Clair Repas V4.0';
+$('libraryCount').textContent=`${dishLibrary.length} plats · ${starters.length} entrées · ${desserts.length} desserts · ${breakfastRecipes.length} petits-déjeuners · ${sauceRecipes.length} sauces · ${sideRecipes.length} accompagnements`;
+$('libraryHint').textContent=`Découvrir ${recipeLibrary.length} recettes dans le Livre`;
+$('versionLine').textContent='Clair Repas V4.1';
 const FAVORITES_KEY='crFavMeals';
 const RECENT_RECIPES_KEY='crRecentRecipesV25';
 const MAX_RECENT_RECIPES=10;
@@ -3088,7 +3235,14 @@ function setRecipeReaction(id,value){
   else reactions[id]=value;
   writeReactionMap(reactions);
   updateReactionUI();
-  if(!removing&&value==='again')recordRecipeSelection(id,recipeIndex.get(id)?.mealSlots?.[0]);
+  if(!removing&&value==='again'){
+    const recipe=recipeIndex.get(id);
+    const role=recipeRole(recipe);
+    if(role==='dish')recordRecipeSelection(id,recipe?.mealSlots?.[0]);
+    else if(role==='starter'||role==='terrine')recordRecipeSelection(id,'starter');
+    else if(role==='dessert')recordRecipeSelection(id,'dessert');
+    else recordRecipeChoice(id);
+  }
   if(!removing&&value==='notForMe')recordRecipeRejection(id);
   if(removing)show('Avis retiré · recette redevenue neutre');
   else show(value==='again'?'À refaire · Clair Repas le retiendra':'Pas pour moi · recette fortement défavorisée');
@@ -3173,9 +3327,126 @@ function setManualChoice(day,type,component,value){
 }
 function componentMatchesRecipe(component,recipe){
   if(!recipe)return false;
-  if(component==='starter')return recipe.course==='starter';
-  if(component==='dessert')return recipe.course==='dessert';
-  return !recipe.course;
+  const role=recipeRole(recipe);
+  if(component==='starter')return role==='starter'||role==='terrine';
+  if(component==='dessert')return role==='dessert';
+  return role==='dish';
+}
+function companionKey(type,kind){return`${type}${kind==='sauce'?'Sauce':'Side'}`}
+function companionRecipe(day,type,kind){return day&&day[companionKey(type,kind)]||null}
+function clearMealCompanions(day,type){
+  if(!day)return;
+  day[companionKey(type,'sauce')]=null;
+  day[companionKey(type,'side')]=null;
+}
+const companionDishTextCache=new WeakMap();
+function companionDishText(recipe){
+  if(recipe&&companionDishTextCache.has(recipe))return companionDishTextCache.get(recipe);
+  const text=normalizeSearchText(`${recipe?.n||''} ${(recipe?.i||[]).map(item=>item.n).join(' ')} ${(recipe?.p||[]).join(' ')} ${recipe?.family||''} ${recipe?.technique||''}`);
+  if(recipe&&typeof recipe==='object')companionDishTextCache.set(recipe,text);
+  return text;
+}
+const dishCompanionNeedsCache=new WeakMap();
+function dishCompanionNeeds(recipe){
+  if(!recipe||recipeRole(recipe)!=='dish')return{sauce:false,side:false};
+  if(dishCompanionNeedsCache.has(recipe))return dishCompanionNeedsCache.get(recipe);
+  const text=companionDishText(recipe);
+  const tags=tagsOf(recipe);
+  const family=normalizeSearchText(tags.family||'');
+  const completeStyle=/salade|soupe|veloute|bouillon|gratin|curry|risotto|pates|nouilles|pizza|quiche|tarte|sandwich|croque|wrap|taco|burger|couscous|tajine|paella|chili|bowl|hachis|parmentier|farci|ragout|mijote|blanquette|cassoulet|choucroute/.test(`${family} ${text}`);
+  if(completeStyle){const result={sauce:false,side:false};dishCompanionNeedsCache.set(recipe,result);return result}
+  const hasSauce=/\bsauce\b|creme|bechamel|coulis|pesto|mayonnaise|aioli|hollandaise|bearnaise|beurre blanc|lait de coco|jus de cuisson|mariniere|meuniere|laque|vinaigrette/.test(text);
+  const starch=normalizeSearchText(tags.starch||'');
+  const hasStarch=Boolean(starch&&!['sans feculent','aucun','autre'].includes(starch));
+  const vegetables=Array.isArray(tags.vegetables)?tags.vegetables.length:0;
+  const eveningDish=Array.isArray(recipe.mealSlots)&&recipe.mealSlots.includes('eve');
+  const vegetableSide=eveningDish?vegetables>=1:vegetables>=2;
+  const hasSide=hasStarch||vegetableSide||/ratatouille|haricots verts|legumes rotis|legumes vapeur|salade verte/.test(text);
+  if(hasSauce&&hasSide){const result={sauce:false,side:false};dishCompanionNeedsCache.set(recipe,result);return result}
+  const suitable=/steak|entrecote|filet|pave|escalope|cote|magret|roti|grille|grillade|plancha|barbecue|poele|poelee|papillote|vapeur|cabillaud|colin|merlu|sole|saumon|truite|poisson|brochette|saucisse|poulet|dinde/.test(`${family} ${text}`);
+  if(!suitable){const result={sauce:false,side:false};dishCompanionNeedsCache.set(recipe,result);return result}
+  const group=tags.group;
+  const acceptsSauce=['viande','volaille','poisson','oeufs','vegetal'].includes(group);
+  const acceptsSide=['viande','volaille','poisson','oeufs','vegetal'].includes(group);
+  const result={sauce:acceptsSauce&&!hasSauce,side:acceptsSide&&!hasSide};
+  dishCompanionNeedsCache.set(recipe,result);
+  return result;
+}
+function companionCompatible(companion,dish,kind){
+  if(!companion||recipeRole(companion)!==kind||!dish)return false;
+  const dishText=companionDishText(dish);
+  const group=tagsOf(dish).group;
+  const pairWith=Array.isArray(companion.pairWith)?companion.pairWith:[];
+  if(pairWith.length&&!pairWith.includes('all')&&!pairWith.includes(group))return false;
+  if((companion.avoid||[]).some(token=>dishText.includes(normalizeSearchText(token))))return false;
+  if(tagsOf(dish).hotCold==='froid'&&companion.hotCold==='chaud')return false;
+  return true;
+}
+function companionScore(companion,dish,kind){
+  if(!companionCompatible(companion,dish,kind))return-Infinity;
+  const text=companionDishText(dish);
+  const tags=tagsOf(dish);
+  let score=40;
+  for(const token of companion.preferred||[]){if(text.includes(normalizeSearchText(token)))score+=35}
+  if(companion.cuisine&&companion.cuisine===tags.cuisine)score+=4;
+  if((companion.s||ALL_SEASONS).includes(culinarySeasonProfile().official))score+=2;
+  if(kind==='sauce'&&/steak|entrecote|boeuf|bœuf/.test(text)){
+    if(companion.id==='s404')score+=22;
+    if(companion.id==='s403')score+=16;
+    if(companion.id==='s409')score+=10;
+  }
+  if(kind==='sauce'&&/cabillaud|colin|merlu|sole|poisson blanc/.test(text)){
+    if(companion.id==='s407')score+=24;
+    if(companion.id==='s420')score+=16;
+  }
+  if(kind==='side'&&/steak|entrecote|boeuf|bœuf/.test(text)&&companion.id==='c403')score+=24;
+  if(kind==='side'&&/cabillaud|colin|merlu|sole|poisson blanc/.test(text)&&companion.id==='c408')score+=24;
+  if(tags.lightness&&String(tags.lightness).includes('léger')&&companion.richness==='léger')score+=5;
+  return score;
+}
+const companionRankingCache=new WeakMap();
+function companionRanking(dish,kind){
+  let ranked=companionRankingCache.get(dish);
+  if(!ranked){ranked={};companionRankingCache.set(dish,ranked)}
+  if(!ranked[kind]){
+    const pool=kind==='sauce'?sauceRecipes:sideRecipes;
+    ranked[kind]=pool.map(recipe=>({recipe,score:companionScore(recipe,dish,kind)}))
+      .filter(item=>Number.isFinite(item.score))
+      .sort((a,b)=>b.score-a.score||a.recipe.n.localeCompare(b.recipe.n,'fr'))
+      .map(item=>item.recipe);
+  }
+  return ranked[kind];
+}
+function pickCompanion(dish,kind,excludeIds=[]){
+  const excluded=new Set(excludeIds);
+  return companionRanking(dish,kind).find(recipe=>!excluded.has(recipe.id))||null;
+}
+function prepareMealCompanions(day,type,{force=false}={}){
+  if(!day||!MEAL_TYPES.includes(type)||mealStatus(day,type)!==MEAL_PLANNED||!day[type]){
+    clearMealCompanions(day,type);
+    return;
+  }
+  const needs=dishCompanionNeeds(day[type]);
+  for(const kind of ['sauce','side']){
+    const key=companionKey(type,kind);
+    const current=day[key];
+    if(!needs[kind]){day[key]=null;continue}
+    if(!force&&current&&companionCompatible(current,day[type],kind))continue;
+    day[key]=pickCompanion(day[type],kind);
+  }
+}
+function changeMealCompanion(index,type,kind){
+  const day=plan[index];
+  if(!day||!['sauce','side'].includes(kind)||mealStatus(day,type)!==MEAL_PLANNED)return;
+  const needs=dishCompanionNeeds(day[type]);
+  if(!needs[kind])return;
+  const key=companionKey(type,kind);
+  const current=day[key];
+  const next=pickCompanion(day[type],kind,current?[current.id]:[]);
+  if(!next)return;
+  day[key]=next;
+  render();
+  show(kind==='sauce'?'Une autre sauce proposée':'Un autre accompagnement proposé');
 }
 function normalizeMealFormat(value){return MEAL_FORMATS.includes(value)?value:MEAL_FORMAT_DISH}
 function mealFormat(day,type){return normalizeMealFormat(day&&day[formatKey(type)])}
@@ -3325,6 +3596,13 @@ function ingredientText(x,qOverride){
   const name=ingredientNameForQuantity(x,q);
   return [formatQty(q),x.u,name].filter(Boolean).join(' ');
 }
+function recipeHasFixedYield(recipe){return recipeRole(recipe)==='terrine'||recipe?.id==='b406'}
+function ingredientTextForRecipe(item,recipe){
+  if(!recipe||recipeHasFixedYield(recipe))return ingredientText(item,item.q);
+  const base=Math.max(1,Number(recipe.servings)||2);
+  const quantity=item.q==null?null:Number(item.q)*(peopleCount()/base);
+  return ingredientText(item,quantity);
+}
 function stepTimerDurations(step){
   const text=String(step||'');
   const timedAction=/(cuire|cuisson|précuire|poursuivre|mijoter|frémir|gratiner|griller|rôtir|poêler|saisir|réchauffer|chauffer|dorer|revenir|sauter|fondre|reposer|repos|laisser|mariner|attendre|réserver|refroidir|sortir|enfourner)/i;
@@ -3382,17 +3660,22 @@ function recipeHTML(x,{showFavorite=true}={}){
   }).join('');
   const count=peopleCount();
   const liked=isFavorite(x.id);
-  return `<div class="recipe-tools">
-    <div class="portion-control" aria-label="Nombre de personnes">
+  const fixedYield=recipeHasFixedYield(x);
+  const portionControl=fixedYield
+    ?`<div class="portion-control fixed-yield"><span class="portion-label fixed">📏 ${x.yieldText}</span></div>`
+    :`<div class="portion-control" aria-label="Nombre de personnes">
       <button class="portion-adjust" data-delta="-1" type="button" aria-label="Une personne en moins" ${count<=1?'disabled':''}>−</button>
       <span class="portion-label"><span class="portion-count">${count}</span> ${count===1?'personne':'personnes'}</span>
       <button class="portion-adjust" data-delta="1" type="button" aria-label="Une personne en plus" ${count>=8?'disabled':''}>+</button>
-    </div>
+    </div>`;
+  return `<div class="recipe-tools">
+    ${portionControl}
     ${showFavorite?`<button class="recipe-favorite${liked?' active':''}" data-recipe-id="${x.id}" type="button" aria-pressed="${liked}" aria-label="${liked?'Retirer des favoris':'Ajouter aux favoris'}">${liked?'♥':'♡'}</button>`:''}
   </div>
+  ${x.yieldText&&!fixedYield?`<p class="recipe-yield">📏 Rendement de base : ${x.yieldText}</p>`:''}
   ${recipeFeedbackHTML(x)}
   ${recipePersonalNoteHTML(x)}
-  <h3>Ingrédients</h3><ul>${x.i.map((v,index)=>`<li class="ingredient-line" data-recipe-id="${x.id}" data-ingredient-index="${index}">${ingredientText(v)}</li>`).join('')}</ul>
+  <h3>Ingrédients</h3><ul>${x.i.map((v,index)=>`<li class="ingredient-line" data-recipe-id="${x.id}" data-ingredient-index="${index}">${ingredientTextForRecipe(v,x)}</li>`).join('')}</ul>
   <h3>Préparation</h3><p class="wake-note">☀️ Mode cuisine · écran maintenu allumé</p><ol>${steps}</ol>`;
 }
 function recipeText(recipe){
@@ -3543,7 +3826,12 @@ function buildPreferenceProfile(data=learningData(),reactions=reactionMap(),type
   const reactionScores=Object.fromEntries(HABIT_AXES.map(axis=>[axis,new Map()]));
   let choiceWeight=0;
   const now=Date.now();
-  const matchesType=recipe=>type==='starter'||type==='dessert'?recipe?.course===type:!recipe?.course;
+  const matchesType=recipe=>{
+    const role=recipeRole(recipe);
+    if(type==='starter')return role==='starter'||role==='terrine';
+    if(type==='dessert')return role==='dessert';
+    return role==='dish';
+  };
   const addEvent=(item,importance)=>{
     if(reactions[item.id]==='notForMe')return;
     const recipe=recipeIndex.get(item.id);
@@ -3842,25 +4130,38 @@ function seasonMethodBoost(recipe,dateOrProfile=new Date()){
   return seasonBlendValue(values,dateOrProfile);
 }
 const recipeSearchCache=new WeakMap();
+function recipeRole(recipe){
+  if(!recipe)return'unknown';
+  if(recipe.role)return recipe.role;
+  if(recipe.course==='starter')return'starter';
+  if(recipe.course==='dessert')return'dessert';
+  return'dish';
+}
 function recipeSearchCategories(recipe){
+  const role=recipeRole(recipe);
   const values=[
-    recipe.family,recipe.cuisine,recipe.course,recipe.group,recipe.protein,recipe.starch,
+    recipe.family,recipe.cuisine,recipe.course,role,recipe.group,recipe.protein,recipe.starch,
     recipe.method,recipe.m,recipe.subFamily,recipe.kind,recipe.technique,recipe.presentation
   ];
   if(recipe.classic===true)values.push('grand classique','grands classiques');
-  if(recipe.course==='starter')values.push('entrée','entrées');
-  else if(recipe.course==='dessert')values.push('dessert','desserts');
+  if(role==='starter')values.push('entrée','entrées');
+  else if(role==='terrine')values.push('entrée','entrées','terrine','terrines','pâté','pâtés','rillettes');
+  else if(role==='dessert')values.push('dessert','desserts');
+  else if(role==='breakfast')values.push('petit déjeuner','petits déjeuners','brunch','brunchs');
+  else if(role==='sauce')values.push('sauce','sauces','accompagnement');
+  else if(role==='side')values.push('accompagnement','accompagnements','garniture');
   else values.push('plat','plats');
+  if(recipe.balanced===true)values.push('diététique','dietetique','équilibré','equilibre','léger','leger');
   const text=normalizeSearchText(`${recipe.n} ${(recipe.i||[]).map(item=>item.n).join(' ')}`);
-  if(!recipe.course&&(recipeHasPasta(recipe)||recipe.cuisine==='italienne'))values.push('pâtes','pates','cuisine italienne');
-  if(!recipe.course&&(recipe.group==='volaille'||/poulet|dinde|canard|volaille/.test(text)))values.push('poulet','volaille','volailles');
-  if(!recipe.course&&(recipe.group==='viande'||/boeuf|veau|porc|agneau/.test(text)))values.push('viande','viandes');
-  if(!recipe.course&&(recipe.group==='poisson'||/poisson|saumon|crevette|moule|morue|sole|fruit de mer/.test(text)))values.push('poisson','poissons','fruits de mer');
-  if(!recipe.course&&(recipe.starch==='pommes-de-terre'||/pomme de terre|gratin/.test(text)))values.push('pommes de terre','gratins');
-  if(!recipe.course&&(/riz|semoule|cereale|quinoa|boulgour|orge|ble/.test(text)||['riz','semoule','cereales'].includes(recipe.starch)))values.push('riz','semoule','céréales','cereales');
-  if(!recipe.course&&(/salade|repas leger/.test(text)||String(recipe.family).includes('salade')))values.push('salades','repas légers','repas legers');
-  if(!recipe.course&&(recipe.m==='Casserole'||/mijote|bourguignon|blanquette|pot au feu|cassoulet/.test(text)))values.push('plats mijotés','plats mijotes');
-  if(!recipe.course&&(recipe.group==='oeufs'||/oeuf|omelette|quiche|tarte salee/.test(text)))values.push('œufs','oeufs','quiches','tartes salées','tartes salees');
+  if(role==='dish'&&(recipeHasPasta(recipe)||recipe.cuisine==='italienne'))values.push('pâtes','pates','cuisine italienne');
+  if(role==='dish'&&(recipe.group==='volaille'||/poulet|dinde|canard|volaille/.test(text)))values.push('poulet','volaille','volailles');
+  if(role==='dish'&&(recipe.group==='viande'||/boeuf|veau|porc|agneau/.test(text)))values.push('viande','viandes');
+  if(role==='dish'&&(recipe.group==='poisson'||/poisson|saumon|crevette|moule|morue|sole|fruit de mer/.test(text)))values.push('poisson','poissons','fruits de mer');
+  if(role==='dish'&&(recipe.starch==='pommes-de-terre'||/pomme de terre|gratin/.test(text)))values.push('pommes de terre','gratins');
+  if(role==='dish'&&(/riz|semoule|cereale|quinoa|boulgour|orge|ble/.test(text)||['riz','semoule','cereales'].includes(recipe.starch)))values.push('riz','semoule','céréales','cereales');
+  if(role==='dish'&&(/salade|repas leger/.test(text)||String(recipe.family).includes('salade')))values.push('salades','repas légers','repas legers');
+  if(role==='dish'&&(recipe.m==='Casserole'||/mijote|bourguignon|blanquette|pot au feu|cassoulet/.test(text)))values.push('plats mijotés','plats mijotes');
+  if(role==='dish'&&(recipe.group==='oeufs'||/oeuf|omelette|quiche|tarte salee/.test(text)))values.push('œufs','oeufs','quiches','tartes salées','tartes salees');
   return values.filter(Boolean).join(' ');
 }
 function recipeSearchData(recipe){
@@ -4197,10 +4498,27 @@ function searchRecipes(query){
   return searchRecipePool(query,recipeLibrary);
 }
 function bookRecipeText(recipe){return recipeSearchData(recipe).all}
-function bookIsDish(recipe){return Boolean(recipe&&!recipe.course)}
+function bookIsDish(recipe){return recipeRole(recipe)==='dish'}
 function bookHas(recipe,pattern){return pattern.test(bookRecipeText(recipe))}
+function bookBalancedRecipe(recipe){
+  if(!bookIsDish(recipe))return false;
+  if(recipe.balanced===true)return true;
+  const text=bookRecipeText(recipe);
+  if(/friture|frit|tartiflette|raclette|cassoulet|choucroute|carbonara|cremeux|creme|bechamel|fromage fondu/.test(text))return false;
+  const family=String(recipe.family||'');
+  const vegetables=Array.isArray(recipe.vegetables)?recipe.vegetables.length:0;
+  const light=String(recipe.lightness||'').includes('léger')||recipe.kind==='salad'||family.includes('salade');
+  const gentle=['Sans cuisson','Casserole','Four','Air Fryer','Plancha'].includes(recipe.m);
+  const balancedGroup=['poisson','vegetal','oeufs'].includes(recipe.group);
+  const usefulStarch=['riz','semoule','cereales','legumineuses','quinoa','boulgour','sans-feculent'].includes(String(recipe.starch||''));
+  return (light&&vegetables>=1)||(balancedGroup&&gentle&&vegetables>=1&&usefulStarch);
+}
 const BOOK_SHELVES=[
   {id:'classics',icon:'📕',title:'Les grands classiques',description:'Les recettes de référence de Clair Repas.',filter:recipe=>recipe.classic===true},
+  {id:'breakfast',icon:'☕',title:'Petits-déjeuners & brunchs',description:'Classiques, bols équilibrés et brunchs à ouvrir quand vous en avez envie.',filter:recipe=>recipeRole(recipe)==='breakfast'},
+  {id:'balanced',icon:'🌿',title:'Recettes diététiques & équilibrées',description:'Des recettes déjà présentes et quelques nouvelles assiettes plus légères, sans calcul ni promesse santé.',filter:bookBalancedRecipe},
+  {id:'terrines',icon:'🥖',title:'Terrines, pâtés & rillettes',description:'Les recettes traditionnelles et les tartinables de poisson dans leur identité culinaire.',filter:recipe=>recipeRole(recipe)==='terrine'},
+  {id:'companions',icon:'🥣',title:'Sauces & accompagnements',description:'Les grandes sauces et garnitures de référence, à cuisiner séparément.',filter:recipe=>['sauce','side'].includes(recipeRole(recipe))},
   {id:'pasta',icon:'🍝',title:'Pâtes & cuisine italienne',description:'Spaghetti, lasagnes, penne et cuisine italienne.',filter:recipe=>bookIsDish(recipe)&&(recipeHasPasta(recipe)||recipe.cuisine==='italienne')},
   {id:'poultry',icon:'🍗',title:'Poulet & volailles',description:'Poulet, dinde, canard et autres volailles.',filter:recipe=>bookIsDish(recipe)&&(recipe.group==='volaille'||bookHas(recipe,/poulet|dinde|canard|volaille/))},
   {id:'meat',icon:'🥩',title:'Bœuf, veau, porc & agneau',description:'Les plats de viande, rôtis ou cuisinés.',filter:recipe=>bookIsDish(recipe)&&(recipe.group==='viande'||bookHas(recipe,/boeuf|veau|porc|agneau|filet mignon/))},
@@ -4233,6 +4551,17 @@ const BOOK_DESSERT_SUBCATEGORIES=[
   {id:'cakes',title:'Gâteaux',filter:recipe=>bookHas(recipe,/gateau|cake|fondant|moelleux|brownie|clafoutis/)},
   {id:'indulgent',title:'Desserts gourmands',filter:recipe=>recipe.richness==='gourmand'}
 ];
+const BOOK_COMPANION_SUBCATEGORIES=[
+  {id:'all',title:'Sauces & accompagnements',filter:()=>true},
+  {id:'sauces',title:'Sauces',filter:recipe=>recipeRole(recipe)==='sauce'},
+  {id:'sides',title:'Accompagnements',filter:recipe=>recipeRole(recipe)==='side'}
+];
+function bookSubcategories(id){
+  if(id==='starters')return BOOK_STARTER_SUBCATEGORIES;
+  if(id==='desserts')return BOOK_DESSERT_SUBCATEGORIES;
+  if(id==='companions')return BOOK_COMPANION_SUBCATEGORIES;
+  return null;
+}
 const bookShelfCache=new Map();
 function bookShelfDefinition(id){return BOOK_SHELVES.find(shelf=>shelf.id===id)||null}
 function bookShelfRecipes(id,subcategoryId='all'){
@@ -4247,7 +4576,7 @@ function bookShelfRecipes(id,subcategoryId='all'){
     bookShelfCache.set(id,recipeLibrary.filter(shelf.filter).sort((a,b)=>a.n.localeCompare(b.n,'fr')));
   }
   let recipes=bookShelfCache.get(id);
-  const subcategories=id==='starters'?BOOK_STARTER_SUBCATEGORIES:id==='desserts'?BOOK_DESSERT_SUBCATEGORIES:null;
+  const subcategories=bookSubcategories(id);
   if(subcategories){
     const selected=subcategories.find(item=>item.id===subcategoryId)||subcategories[0];
     recipes=recipes.filter(selected.filter);
@@ -4259,7 +4588,17 @@ function bookShelfMeta(id){
   if(id==='again')return{icon:'⭐',title:'À refaire',description:'Les recettes que vous avez envie de retrouver.'};
   return bookShelfDefinition(id)||{icon:'📚',title:'Recettes',description:''};
 }
-function bookCourseLabel(recipe){return recipe.course==='starter'?'Entrée':recipe.course==='dessert'?'Dessert':'Plat'}
+function bookCourseLabel(recipe){
+  const role=recipeRole(recipe);
+  if(role==='starter')return'Entrée';
+  if(role==='terrine')return'Terrine / rillettes';
+  if(role==='dessert')return'Dessert';
+  if(role==='breakfast')return'Petit-déjeuner / brunch';
+  if(role==='sauce')return'Sauce';
+  if(role==='side')return'Accompagnement';
+  return'Plat';
+}
+function bookRecipeCanTarget(recipe){return['dish','starter','terrine','dessert'].includes(recipeRole(recipe))}
 const BOOK_PAGE_SIZE=40;
 function selectionComponentLabel(component,article=false){
   if(component==='starter')return article?'une entrée':'Entrée';
@@ -4291,7 +4630,7 @@ function selectionSearchRecipes(query,selection){
 }
 function recipeResultHTML(recipe){
   const liked=isFavorite(recipe.id);
-  const slot=recipe.mealSlots?.includes('starter')?'Entrée':recipe.mealSlots?.includes('dessert')?'Dessert':recipe.mealSlots?.includes('mid')?'Midi':'Soir';
+  const slot=bookCourseLabel(recipe);
   const selecting=Boolean(browserSelection);
   return `<div class="recipe-result${selecting?' selecting':''}">
     <button class="recipe-result-open" type="button" data-recipe-id="${recipe.id}">
@@ -4350,7 +4689,7 @@ function bookRecipeListHTML(recipes,emptyText,lead){
 }
 function bookShelfViewHTML(){
   const meta=bookShelfMeta(browserBookShelfId);
-  const subcategories=browserBookShelfId==='starters'?BOOK_STARTER_SUBCATEGORIES:browserBookShelfId==='desserts'?BOOK_DESSERT_SUBCATEGORIES:null;
+  const subcategories=bookSubcategories(browserBookShelfId);
   const recipes=bookShelfRecipes(browserBookShelfId,browserBookSubcategoryId);
   const subcategory=Boolean(subcategories)&&subcategories.find(item=>item.id===browserBookSubcategoryId);
   return `<article class="book-shelf-view">
@@ -4361,8 +4700,16 @@ function bookShelfViewHTML(){
     ${bookRecipeListHTML(recipes,`Aucune recette dans ce rayon pour le moment.`,subcategory?`${recipes.length} recette${recipes.length>1?'s':''} · ${subcategory.title}`:undefined)}
   </article>`;
 }
+function bookRecipeComponent(recipe){
+  const role=recipeRole(recipe);
+  if(role==='starter'||role==='terrine')return'starter';
+  if(role==='dessert')return'dessert';
+  if(role==='dish')return'dish';
+  return null;
+}
 function bookTargetEntries(recipe){
-  const component=recipe.course==='starter'?'starter':recipe.course==='dessert'?'dessert':'dish';
+  const component=bookRecipeComponent(recipe);
+  if(!component)return[];
   return plan.flatMap((day,dayIndex)=>MEAL_TYPES.flatMap(type=>mealStatus(day,type)===MEAL_PLANNED?[{day,dayIndex,type,component}]:[]));
 }
 function bookTargetHTML(recipe){
@@ -4468,7 +4815,8 @@ function showBrowserRecipe(id,fromMode=browserMode){
   updateWakeLock();
 }
 function openBookRecipeTarget(id){
-  if(!recipeIndex.has(id)||!['book','book-shelf'].includes(browserReturnMode))return;
+  const recipe=recipeIndex.get(id);
+  if(!recipe||!bookRecipeCanTarget(recipe)||!['book','book-shelf'].includes(browserReturnMode))return;
   browserRecipeId=id;
   browserMode='book-target';
   renderRecipeBrowser();
@@ -4483,11 +4831,12 @@ function applyBookRecipeToTarget(id,dayIndex,type){
   const recipe=recipeIndex.get(id);
   const index=Number(dayIndex);
   const day=plan[index];
-  if(!recipe||!day||!MEAL_TYPES.includes(type)||mealStatus(day,type)!==MEAL_PLANNED)return;
-  const component=recipe.course==='starter'?'starter':recipe.course==='dessert'?'dessert':'dish';
+  const component=bookRecipeComponent(recipe);
+  if(!recipe||!component||!day||!MEAL_TYPES.includes(type)||mealStatus(day,type)!==MEAL_PLANNED)return;
   day[formatKey(type)]=formatIncludingComponent(mealFormat(day,type),component);
   day[componentKey(type,component)]=recipe;
   setManualChoice(day,type,component,true);
+  if(component==='dish')prepareMealCompanions(day,type,{force:true});
   const trailKey=component==='dish'?alternativeTrailKey(index,type):`${alternativeTrailKey(index,type)}:${component}`;
   alternativeTrails.delete(trailKey);
   sessionRejectedIds.delete(recipe.id);
@@ -4507,6 +4856,7 @@ function applyManualRecipe(id){
   if(!day||mealStatus(day,selection.type)!==MEAL_PLANNED||!visible)return;
   day[componentKey(selection.type,selection.component)]=recipe;
   setManualChoice(day,selection.type,selection.component,true);
+  if(selection.component==='dish')prepareMealCompanions(day,selection.type,{force:true});
   const trailKey=selection.component==='dish'
     ?alternativeTrailKey(selection.dayIndex,selection.type)
     :`${alternativeTrailKey(selection.dayIndex,selection.type)}:${selection.component}`;
@@ -4582,7 +4932,7 @@ function renderRecipeBrowser(){
     content.innerHTML=`<article class="browser-recipe">
       <h2 class="browser-recipe-title">${recipe.n}</h2>
       <div class="meta">⏱️ ${recipe.t} · 🔥 ${recipe.m}${noteIndicatorHTML(recipe)}</div>
-      ${choosing?`<button class="browser-select-recipe" id="browserSelectRecipe" data-recipe-id="${recipe.id}" type="button">Choisir cette recette</button>`:fromBook?`<button class="browser-select-recipe" id="browserChooseBookRecipe" data-recipe-id="${recipe.id}" type="button">🍽️ Choisir cette recette</button>`:''}
+      ${choosing?`<button class="browser-select-recipe" id="browserSelectRecipe" data-recipe-id="${recipe.id}" type="button">Choisir cette recette</button>`:fromBook&&bookRecipeCanTarget(recipe)?`<button class="browser-select-recipe" id="browserChooseBookRecipe" data-recipe-id="${recipe.id}" type="button">🍽️ Choisir cette recette</button>`:''}
       <div class="recipe open">${recipeHTML(recipe)}</div>
     </article>`;
   }else if(browserMode==='book-target'){
@@ -4982,6 +5332,8 @@ function buildPlan(count,template=plan){
     const previous=template[i]||{};
     const day={
       mid:null,eve:null,midStarter:null,eveStarter:null,midDessert:null,eveDessert:null,
+      midSauce:companionRecipe(previous,'mid','sauce'),eveSauce:companionRecipe(previous,'eve','sauce'),
+      midSide:companionRecipe(previous,'mid','side'),eveSide:companionRecipe(previous,'eve','side'),
       midStatus:normalizeMealStatus(previous.midStatus),
       eveStatus:normalizeMealStatus(previous.eveStatus),
       midFormat:mealFormat(previous,'mid'),
@@ -5001,6 +5353,7 @@ function buildPlan(count,template=plan){
       usedByType[type].add(day[type].id);
       context.push({type,recipe:day[type]});
       prepareMealCourse(day,type,usedStarters,usedDesserts,{regenerate:true,record:false});
+      prepareMealCompanions(day,type);
     });
     result.push(day);
   }
@@ -5020,6 +5373,10 @@ function saveState(){
       eveStarterId:d.eveStarter?.id||null,
       midDessertId:d.midDessert?.id||null,
       eveDessertId:d.eveDessert?.id||null,
+      midSauceId:d.midSauce?.id||null,
+      eveSauceId:d.eveSauce?.id||null,
+      midSideId:d.midSide?.id||null,
+      eveSideId:d.eveSide?.id||null,
       midDishManual:isManualChoice(d,'mid','dish'),
       eveDishManual:isManualChoice(d,'eve','dish'),
       midStarterManual:isManualChoice(d,'mid','starter'),
@@ -5110,7 +5467,7 @@ function toggleFavorite(id){
 }
 function refreshPortionDisplays(){
   const count=peopleCount();
-  document.querySelectorAll('.portion-label').forEach(label=>{
+  document.querySelectorAll('.portion-label:not(.fixed)').forEach(label=>{
     label.innerHTML=`<span class="portion-count">${count}</span> ${count===1?'personne':'personnes'}`;
   });
   document.querySelectorAll('.portion-adjust').forEach(button=>{
@@ -5120,7 +5477,7 @@ function refreshPortionDisplays(){
   document.querySelectorAll('.ingredient-line').forEach(line=>{
     const recipe=recipeIndex.get(line.dataset.recipeId);
     const ingredient=recipe&&recipe.i[Number(line.dataset.ingredientIndex)];
-    if(ingredient)line.textContent=ingredientText(ingredient);
+    if(ingredient)line.textContent=ingredientTextForRecipe(ingredient,recipe);
   });
 }
 function setPeopleCount(value,announce=true){
@@ -5243,7 +5600,7 @@ function updateTimerUI(){
     if(timerInterval){clearInterval(timerInterval);timerInterval=null}
     bar.classList.remove('show','done');
     document.body.classList.remove('timer-running');
-    document.title='Clair Repas V4.0';
+    document.title='Clair Repas V4.1';
     return;
   }
   const remaining=Math.max(0,Math.ceil((kitchenTimer.endAt-Date.now())/1000));
@@ -5335,6 +5692,22 @@ function mealRecipeBlockHTML(recipe,dayIndex,type,component){
     <div class="recipe" id="${mealRecipeElementId(dayIndex,type,component)}">${recipeHTML(recipe,{showFavorite:false})}</div>
   </section>`;
 }
+function mealCompanionSuggestionsHTML(day,dayIndex,type){
+  const entries=[
+    {kind:'sauce',recipe:companionRecipe(day,type,'sauce'),label:'🥣 Sauce conseillée',change:'↻ Une autre sauce'},
+    {kind:'side',recipe:companionRecipe(day,type,'side'),label:'🥔 Accompagnement',change:'↻ Un autre accompagnement'}
+  ].filter(entry=>entry.recipe);
+  if(!entries.length)return'';
+  return `<aside class="companion-suggestions" aria-label="Suggestions facultatives avec ce plat">
+    <p class="companion-heading">💡 Avec ce plat, si vous le souhaitez</p>
+    <div class="companion-list">${entries.map(entry=>`<div class="companion-item">
+      <button class="companion-open" type="button" data-recipe-id="${entry.recipe.id}">
+        <span class="companion-label">${entry.label}</span><span class="companion-name">${entry.recipe.n}</span>
+      </button>
+      <button class="companion-change" type="button" data-day="${dayIndex}" data-type="${type}" data-kind="${entry.kind}">${entry.change}</button>
+    </div>`).join('')}</div>
+  </aside>`;
+}
 function mealHTML(day,dayIndex,type){
   const status=mealStatus(day,type);
   const recipe=day[type];
@@ -5359,6 +5732,7 @@ function mealHTML(day,dayIndex,type){
     content=`${mealFormatSelectorHTML(day,dayIndex,type)}
       ${formatHasStarter(format)?mealRecipeBlockHTML(day[starterKey(type)],dayIndex,type,'starter'):''}
       ${mealRecipeBlockHTML(recipe,dayIndex,type,'dish')}
+      ${mealCompanionSuggestionsHTML(day,dayIndex,type)}
       ${formatHasDessert(format)?mealRecipeBlockHTML(day[dessertKey(type)],dayIndex,type,'dessert'):''}
       <button class="meal-status-action leftovers-btn" data-day="${dayIndex}" data-type="${type}">🍲 Restes / déjà prévu</button>`;
   }
@@ -5403,6 +5777,13 @@ function render(){
     const component=b.dataset.component||'dish';
     if(component==='dish')changeMeal(Number(b.dataset.day),b.dataset.type);
     else changeCourse(Number(b.dataset.day),b.dataset.type,component);
+  });
+  document.querySelectorAll('.companion-open').forEach(button=>button.onclick=()=>{
+    openRecipeBrowser('book');
+    showBrowserRecipe(button.dataset.recipeId,'book');
+  });
+  document.querySelectorAll('.companion-change').forEach(button=>button.onclick=()=>{
+    changeMealCompanion(Number(button.dataset.day),button.dataset.type,button.dataset.kind);
   });
   document.querySelectorAll('.choose-component-btn').forEach(b=>b.onclick=()=>{
     openMealRecipeChooser(Number(b.dataset.day),b.dataset.type,b.dataset.component||'dish');
@@ -5452,6 +5833,7 @@ function changeMeal(index,type){
     day.eve=pick(evening,'eve',used,context,options);
     rememberMeal('eve',day.eve.id);
   }
+  prepareMealCompanions(day,type,{force:true});
   render();
   show('Une autre idée proposée');
 }
@@ -5508,10 +5890,12 @@ function setMealStatus(index,type,nextStatus){
     const usedStarters=new Set(activeCourseEntries().filter(item=>item.type==='starter').map(item=>item.recipe.id));
     const usedDesserts=new Set(activeCourseEntries().filter(item=>item.type==='dessert').map(item=>item.recipe.id));
     prepareMealCourse(day,type,usedStarters,usedDesserts);
+    prepareMealCompanions(day,type,{force:true});
   }else{
     clearMealComponent(day,type,'dish');
     clearMealComponent(day,type,'starter');
     clearMealComponent(day,type,'dessert');
+    clearMealCompanions(day,type);
   }
   render();
   show(next===MEAL_OUTSIDE?'Repas noté à l’extérieur · courses mises à jour':next===MEAL_LEFTOVERS?'Restes / déjà prévu · courses mises à jour':'Repas ajouté · courses mises à jour');
@@ -5519,7 +5903,7 @@ function setMealStatus(index,type,nextStatus){
 function ensureDays(requestedCount=Number($('days').value)){
   const count=Math.max(1,Number(requestedCount)||1);
   if(plan.length>count)plan=plan.slice(0,count);
-  while(plan.length<count)plan.push({mid:null,eve:null,midStatus:MEAL_PLANNED,eveStatus:MEAL_PLANNED,midFormat:MEAL_FORMAT_DISH,eveFormat:MEAL_FORMAT_DISH,midStarter:null,eveStarter:null,midDessert:null,eveDessert:null,midDishManual:false,eveDishManual:false,midStarterManual:false,eveStarterManual:false,midDessertManual:false,eveDessertManual:false});
+  while(plan.length<count)plan.push({mid:null,eve:null,midStatus:MEAL_PLANNED,eveStatus:MEAL_PLANNED,midFormat:MEAL_FORMAT_DISH,eveFormat:MEAL_FORMAT_DISH,midStarter:null,eveStarter:null,midDessert:null,eveDessert:null,midSauce:null,eveSauce:null,midSide:null,eveSide:null,midDishManual:false,eveDishManual:false,midStarterManual:false,eveStarterManual:false,midDessertManual:false,eveDessertManual:false});
   const mids=new Set(), eves=new Set(), usedStarters=new Set(), usedDesserts=new Set(), context=[];
   plan.forEach(day=>{
     MEAL_TYPES.forEach(type=>{
@@ -5535,10 +5919,12 @@ function ensureDays(requestedCount=Number($('days').value)){
       mids.add(day.mid.id);
       context.push({type:'mid',recipe:day.mid});
       prepareMealCourse(day,'mid',usedStarters,usedDesserts,{record:false});
+      prepareMealCompanions(day,'mid');
     }else{
       clearMealComponent(day,'mid','dish');
       clearMealComponent(day,'mid','starter');
       clearMealComponent(day,'mid','dessert');
+      clearMealCompanions(day,'mid');
     }
     if(day.eveStatus===MEAL_PLANNED){
       if(!day.eve){
@@ -5549,10 +5935,12 @@ function ensureDays(requestedCount=Number($('days').value)){
       eves.add(day.eve.id);
       context.push({type:'eve',recipe:day.eve});
       prepareMealCourse(day,'eve',usedStarters,usedDesserts,{record:false});
+      prepareMealCompanions(day,'eve');
     }else{
       clearMealComponent(day,'eve','dish');
       clearMealComponent(day,'eve','starter');
       clearMealComponent(day,'eve','dessert');
+      clearMealCompanions(day,'eve');
     }
   });
 }
@@ -5569,6 +5957,10 @@ function loadSavedPlan(savedPlan){
       eveStarter:eveStatus===MEAL_PLANNED&&formatHasStarter(eveFormat)?starters.find(recipe=>recipe.id===item.eveStarterId)||null:null,
       midDessert:midStatus===MEAL_PLANNED&&formatHasDessert(midFormat)?desserts.find(recipe=>recipe.id===item.midDessertId)||null:null,
       eveDessert:eveStatus===MEAL_PLANNED&&formatHasDessert(eveFormat)?desserts.find(recipe=>recipe.id===item.eveDessertId)||null:null,
+      midSauce:midStatus===MEAL_PLANNED?sauceRecipes.find(recipe=>recipe.id===item.midSauceId)||null:null,
+      eveSauce:eveStatus===MEAL_PLANNED?sauceRecipes.find(recipe=>recipe.id===item.eveSauceId)||null:null,
+      midSide:midStatus===MEAL_PLANNED?sideRecipes.find(recipe=>recipe.id===item.midSideId)||null:null,
+      eveSide:eveStatus===MEAL_PLANNED?sideRecipes.find(recipe=>recipe.id===item.eveSideId)||null:null,
       midDishManual:Boolean(item&&item.midDishManual),
       eveDishManual:Boolean(item&&item.eveDishManual),
       midStarterManual:Boolean(item&&item.midStarterManual),

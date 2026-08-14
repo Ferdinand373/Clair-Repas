@@ -1,4 +1,4 @@
-const CACHE='clair-repas-v40-livre-20260814';
+const CACHE='clair-repas-v41-enrichissement-20260814';
 const ASSETS=['./','./index.html','./manifest.webmanifest','./icon-192.png','./icon-512.png'];
 
 self.addEventListener('install',event=>{
