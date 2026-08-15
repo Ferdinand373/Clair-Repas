@@ -1,4 +1,4 @@
-const CACHE='clair-repas-v57-petits-gourmands-20260815';
+const CACHE='clair-repas-v58-bistrot-brasserie-enrichi-20260815';
 const ASSETS=['./','./index.html','./manifest.webmanifest','./icon-192.png','./icon-512.png'];
 
 self.addEventListener('install',event=>{
