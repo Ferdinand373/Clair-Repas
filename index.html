@@ -9,7 +9,7 @@
 <meta name="apple-mobile-web-app-title" content="Clair Repas">
 <link rel="manifest" href="./manifest.webmanifest">
 <link rel="apple-touch-icon" href="./icon-192.png">
-<title>Clair Repas V7.0</title>
+<title>Clair Repas V7.1</title>
 <style>
 :root{
   --bg:#f4efe7;--card:#fffdfa;--text:#27231f;--muted:#746c63;
@@ -659,6 +659,83 @@ select{min-height:48px;border:1px solid #deebf2;border-radius:16px;background:#f
 @media(max-width:620px){main{padding-left:11px;padding-right:11px}.premium-hero{padding:16px 14px 17px;border-radius:27px}.premium-hero-copy{padding:22px 0 13px}.premium-hero h1{font-size:43px}.premium-hero .subtitle{font-size:14px}.premium-manifesto{font-size:11px}.trust-strip{grid-template-columns:repeat(3,minmax(0,1fr));gap:5px}.trust-pill{padding:8px 6px;column-gap:4px}.trust-icon{width:22px;height:22px;font-size:12px}.trust-pill strong{font-size:9.5px}.trust-pill small{font-size:7.3px}.planning-card{padding:17px}.planning-heading h2{font-size:23px}.shortcut-btn.primary{min-height:108px;padding:18px}.shortcut-btn.primary .shortcut-title{font-size:21px}.ingredient-shortcuts{grid-template-columns:1fr 1fr}.browser-panel{height:94vh}.book-shelves{grid-template-columns:1fr}}
 @media(max-width:390px){.premium-edition{font-size:7.5px;padding:5px 7px}.premium-role{display:none}.premium-mark{width:36px;height:36px;flex-basis:36px}.premium-hero h1{font-size:40px}.premium-eyebrow{font-size:9px}.trust-pill{grid-template-columns:1fr;text-align:center}.trust-icon{display:none}.trust-pill strong{font-size:9px}.trust-pill small{font-size:7px}.ingredient-shortcuts{grid-template-columns:1fr}.premium-dock{width:calc(100% - 16px)}.premium-dock-btn small{font-size:7.5px}.browser-recipe-title{font-size:26px}}
 
+
+
+/* ========================================================================== */
+/* V7.1 — JOURNÉES PREMIUM                                                    */
+/* Fiches éditoriales Entrée / Plat / Dessert, sans changement métier.        */
+/* ========================================================================== */
+.meal{padding:17px 0 4px}
+.meal+.meal{margin-top:16px;padding-top:19px;border-top:1px solid rgba(62,111,142,.12)}
+.meal-top{margin-bottom:2px}
+.tag{font-size:9px;font-weight:950;letter-spacing:1.15px;text-transform:uppercase;color:#5d849c}
+.tag.evening{color:#7b7192}
+.meal-toggle{min-height:34px;padding:6px 10px;border:1px solid rgba(71,125,160,.11);background:rgba(236,247,253,.78);color:#477590;font-size:10px;font-weight:850}
+.meal-toggle.leftovers{border-color:rgba(179,138,70,.13);background:#fbf4e8;color:#8a6932}
+.meal-toggle.outside{border-color:#e5e8ea;background:#f4f5f5;color:#7f8a91}
+
+.meal-composer{margin:13px 0 12px;padding:10px;border:1px solid rgba(68,121,155,.10);border-radius:18px;background:rgba(246,251,254,.78)}
+.meal-composer-label{margin:0 2px 8px;color:#80929e;font-size:8px;font-weight:950;letter-spacing:1.15px;text-transform:uppercase}
+.meal-composer-options{gap:5px;padding:3px;border-radius:15px;background:#edf6fb}
+.meal-component-toggle{min-height:42px;padding:7px 5px;border:0;border-radius:12px;background:transparent;color:#718692;font-size:10.5px;font-weight:860;box-shadow:none}
+.meal-component-toggle[aria-pressed="true"],.meal-component-toggle.dish-fixed{border:0;background:rgba(255,255,255,.94);color:#2f6f97;box-shadow:0 5px 15px rgba(44,91,120,.08)}
+.meal-component-state{display:grid;place-items:center;width:16px;height:16px;border-radius:50%;background:rgba(79,139,177,.09);font-size:9px}
+.meal-composer-help{margin:7px 2px 0;color:#95a3ac;font-size:8.8px;line-height:1.35}
+
+.course-block{position:relative;overflow:hidden;margin:11px 0 0;padding:16px 15px 15px;border:1px solid rgba(66,115,146,.12);border-radius:21px;background:rgba(255,255,255,.91);box-shadow:0 9px 27px rgba(34,75,101,.055)}
+.course-block+.course-block{margin-top:10px;border-top:1px solid rgba(66,115,146,.12)}
+.course-block::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:#b9dcee}
+.course-block.starter::before{background:#9bcbdc}
+.course-block.dessert::before{background:#d8bc8c}
+.course-block.dish{border-color:rgba(59,125,168,.18);background:linear-gradient(145deg,rgba(245,251,255,.98),rgba(255,255,255,.96) 62%,rgba(250,247,241,.86));box-shadow:0 12px 34px rgba(39,91,125,.09)}
+.course-block.dish::before{width:4px;background:linear-gradient(180deg,#72b4d8,#347da8 72%,#c69b57)}
+.course-block.dish::after{content:'PLAT';position:absolute;right:-4px;bottom:-17px;color:rgba(54,123,166,.035);font-size:70px;font-weight:950;letter-spacing:-4px;pointer-events:none}
+
+.course-label-row{position:relative;z-index:1;margin:0 0 8px}
+.course-label{display:inline-flex;align-items:center;min-height:23px;padding:4px 8px;border:1px solid rgba(68,125,160,.11);border-radius:999px;background:#eef7fc;color:#4a7b99;font-size:8px;font-weight:950;letter-spacing:1.15px;text-transform:uppercase}
+.course-block.starter .course-label{border-color:rgba(83,141,157,.13);background:#eef8fa;color:#4f8290}
+.course-block.dish .course-label{border-color:rgba(56,124,168,.17);background:#e8f4fb;color:#2d6f98}
+.course-block.dessert .course-label{border-color:rgba(177,139,78,.15);background:#faf3e8;color:#8b672f}
+.manual-badge{min-height:22px;padding:4px 8px;border:1px solid rgba(183,143,74,.14);background:rgba(251,246,235,.85);color:#8a6b36;font-size:8px;font-weight:900;letter-spacing:.2px}
+.course-block .meal-title-row{position:relative;z-index:1;align-items:flex-start;margin:0 0 9px}
+.course-block .meal-title{padding-top:1px;color:#17384d;font-size:22px;line-height:1.11;font-weight:920;letter-spacing:-.6px;text-wrap:balance}
+.course-block.dish .meal-title{color:#123449;font-size:24px;letter-spacing:-.8px}
+.course-block .recipe-favorite{width:38px!important;min-width:38px!important;height:38px!important;flex-basis:38px!important;border:1px solid rgba(70,119,150,.12);border-radius:13px;background:rgba(255,255,255,.84);color:#6e8b9c;box-shadow:0 4px 13px rgba(44,84,108,.05)}
+.course-block .recipe-favorite.active{border-color:rgba(181,137,69,.18);background:#fcf5e9;color:#b47d2d}
+
+.course-meta{position:relative;z-index:1;display:flex;gap:7px;flex-wrap:wrap;margin:0 0 7px;color:inherit}
+.course-meta-chip{display:grid;gap:1px;min-width:88px;padding:7px 9px;border:1px solid rgba(69,119,150,.10);border-radius:12px;background:rgba(248,252,254,.82)}
+.course-meta-chip small{color:#8c9aa3;font-size:7px;font-weight:950;letter-spacing:.85px;text-transform:uppercase}
+.course-meta-chip strong{color:#496b80;font-size:10.5px;font-weight:860;line-height:1.2}
+.course-block.dish .course-meta-chip{background:rgba(235,247,253,.82)}
+.course-block.dessert .course-meta-chip:last-child{border-color:rgba(177,139,78,.11);background:#fcf8f1}
+.meal-spirit{position:relative;z-index:1;margin-top:2px;padding:5px 8px;border-color:rgba(71,126,160,.10);background:rgba(255,255,255,.62);color:#6c8290;font-size:8.5px;font-weight:850;letter-spacing:.15px}
+.why-choice{position:relative;z-index:1;min-height:28px;margin-top:3px;color:#4b7e9d;font-size:9px;font-weight:850}
+
+.meal-actions{position:relative;z-index:1;grid-template-columns:1fr 1fr;gap:7px;margin-top:12px;padding-top:12px;border-top:1px solid rgba(71,121,151,.085)}
+.meal-actions.has-chooser .recipe-btn{grid-column:1/-1}
+.course-block .small-btn{min-height:42px;padding:9px 8px;border:1px solid rgba(72,123,153,.10);border-radius:13px;background:rgba(250,252,253,.82);color:#587486;font-size:9.5px;font-weight:850;box-shadow:none}
+.course-block .small-btn.recipe-btn{min-height:47px;border:0;background:linear-gradient(135deg,#e8f5fc,#dceff9);color:#2d6d94;font-size:11px;font-weight:920;box-shadow:0 6px 16px rgba(46,106,143,.10)}
+.course-block.dish .small-btn.recipe-btn{background:linear-gradient(135deg,#3f88b3,#2b6b93);color:white;box-shadow:0 8px 20px rgba(42,105,145,.19)}
+.course-block .small-btn.secondary{background:#f7f9fa;color:#72838d}
+.course-block .small-btn.choose-component-btn{border-color:rgba(70,121,151,.12);background:white;color:#4d7085}
+.course-block .recipe{position:relative;z-index:1;margin-top:14px;padding-top:14px;border-top:1px solid rgba(71,121,151,.10)}
+.course-block .recipe h3{color:#315f79}
+.course-block .recipe ol>li{margin-bottom:12px}
+
+.companion-suggestions{margin:10px 0 2px;padding:10px 11px;border:1px solid rgba(70,124,157,.10);border-radius:17px;background:rgba(239,248,252,.62)}
+.companion-heading{color:#638095;font-size:9.5px;letter-spacing:.2px}
+.companion-open{border-radius:12px}.companion-label{color:#8a9aa4}.companion-name{color:#315f79}
+.meal-status-action{margin-top:9px;color:#8c9aa3;font-size:9px}
+
+@media(max-width:430px){
+  .course-block{padding:15px 13px 14px;border-radius:20px}
+  .course-block .meal-title{font-size:21px}.course-block.dish .meal-title{font-size:23px}
+  .course-meta-chip{min-width:0;flex:1}
+  .meal-actions{gap:6px}
+  .course-block .small-btn{font-size:9px;padding-left:5px;padding-right:5px}
+}
+
 </style>
 </head>
 <body>
@@ -816,7 +893,7 @@ select{min-height:48px;border:1px solid #deebf2;border-radius:16px;background:#f
   <summary><span class="premium-info-mark">CR</span> Clair Repas · Réglages & confiance</summary>
   <div class="product-panel">
     <div class="product-identity">
-      <strong>Clair Repas V7.0</strong>
+      <strong>Clair Repas V7.1</strong>
       <span>Votre assistant culinaire personnel. L’intelligence derrière, la simplicité devant.</span>
     </div>
     <div class="product-new">
@@ -835,7 +912,7 @@ select{min-height:48px;border:1px solid #deebf2;border-radius:16px;background:#f
 
 <p class="note">Clair Repas tient compte du moment, de vos goûts et des derniers repas. Les réglages avancés restent facultatifs.</p>
 <p class="library-count" id="libraryCount">837 plats · 121 entrées · 100 desserts · 52 recettes complémentaires</p>
-<p class="version" id="versionLine">Clair Repas V7.0</p>
+<p class="version" id="versionLine">Clair Repas V7.1</p>
 </main>
 <div class="recipe-browser" id="recipeBrowser" hidden>
   <section class="browser-panel" role="dialog" aria-modal="true" aria-labelledby="browserTitle">
@@ -3637,7 +3714,7 @@ for(const r of [...noon,...evening,...starters,...desserts]){if(r.n==="Œufs en 
 for(const r of [...noon,...evening,...starters,...desserts]){if(r.n==="Quenelles de brochet sauce Nantua")crAddCollection(r,"bistrot-brasserie")}
 for(const r of [...noon,...evening,...starters,...desserts]){if(r.n==="Choucroute garnie alsacienne")crAddCollection(r,"bistrot-brasserie")}
 for(const r of [...noon,...evening,...starters,...desserts]){if(r.n==="Quiche Lorraine")crAddCollection(r,"bistrot-brasserie")}
-window.__CLAIR_REPAS_EDITORIAL_VERSION="7.0";
+window.__CLAIR_REPAS_EDITORIAL_VERSION="7.1";
 const $=id=>document.getElementById(id);
 noon.forEach(recipe=>{recipe.mealSlots=['mid']});
 evening.forEach(recipe=>{recipe.mealSlots=['eve']});
@@ -3647,7 +3724,8 @@ const recipeLibrary=[...dishLibrary,...starters,...desserts,...standaloneLibrary
 const recipeIndex=new Map(recipeLibrary.map(recipe=>[recipe.id,recipe]));
 $('libraryCount').textContent=`${dishLibrary.length} plats · ${starters.length} entrées · ${desserts.length} desserts · ${breakfastRecipes.length} petits-déjeuners · ${sauceRecipes.length} sauces · ${sideRecipes.length} accompagnements`;
 $('libraryHint').textContent=`Découvrir ${recipeLibrary.length} recettes dans le Livre`;
-$('versionLine').textContent='Clair Repas V7.0';
+$('versionLine').textContent='Clair Repas V7.1';
+// V7.1 — Journées Premium : Entrée / Plat / Dessert deviennent des fiches éditoriales plus lisibles et hiérarchisées.
 // V7.0 — Refonte Premium : nouvelle identité visuelle et navigation, moteur et données préservés.
 // V6.1 — Élégance : finition visuelle premium, sans changement fonctionnel.
 // V6.0 — finition produit : prise en main, confiance, sauvegarde et mise à jour manuelle.
@@ -3736,7 +3814,7 @@ async function manualAppUpdateCheck(){
       setProductStatus('Une mise à jour est prête. Clair Repas va l’activer.','success');
       registration.waiting.postMessage({type:'SKIP_WAITING'});
     }else{
-      setProductStatus('Clair Repas V7.0 est à jour.','success');
+      setProductStatus('Clair Repas V7.1 est à jour.','success');
     }
   }catch(e){
     setProductStatus('Vérification impossible hors connexion. Réessayez lorsque le réseau est disponible.','warning');
@@ -6007,7 +6085,7 @@ function shoppingSelectedContractItems(){
 function shoppingContract(){
   const items=shoppingSelectedContractItems();
   const fingerprint=`fnv1a:${shoppingFNV(JSON.stringify(items))}`;
-  return{schemaVersion:1,source:'Clair Repas',sourceVersion:'7.0',createdAt:new Date().toISOString(),contentFingerprint:fingerprint,items};
+  return{schemaVersion:1,source:'Clair Repas',sourceVersion:'7.1',createdAt:new Date().toISOString(),contentFingerprint:fingerprint,items};
 }
 async function shoppingCopySelected(){
   const items=shoppingSelectedContractItems();
@@ -7549,7 +7627,7 @@ function updateTimerUI(){
     if(timerInterval){clearInterval(timerInterval);timerInterval=null}
     bar.classList.remove('show','done');
     document.body.classList.remove('timer-running');
-    document.title='Clair Repas V7.0';
+    document.title='Clair Repas V7.1';
     return;
   }
   const remaining=Math.max(0,Math.ceil((kitchenTimer.endAt-Date.now())/1000));
@@ -7623,20 +7701,23 @@ function mealRecipeBlockHTML(recipe,dayIndex,type,component){
   if(!recipe)return'';
   const liked=isFavorite(recipe.id);
   const manual=isManualChoice(plan[dayIndex],type,component);
-  const label=component==='starter'?'🥗 Entrée':component==='dessert'?'🍰 Dessert':'🍽️ Plat';
-  const chooseLabel=manual?'✏️ Changer mon choix':`🔎 Choisir ${selectionComponentLabel(component,true)}`;
+  const label=component==='starter'?'Entrée':component==='dessert'?'Dessert':'Plat principal';
+  const chooseLabel=manual?'Changer mon choix':`Choisir ${selectionComponentLabel(component,true)}`;
   return `<section class="course-block ${component}">
-    <div class="course-label-row"><div class="course-label">${label}</div>${manual?'<span class="manual-badge">✓ Votre choix</span>':''}</div>
+    <div class="course-label-row"><div class="course-label">${label}</div>${manual?'<span class="manual-badge">Votre choix</span>':''}</div>
     <div class="meal-title-row">
       <div class="meal-title">${recipe.n}</div>
       <button class="recipe-favorite${liked?' active':''}" data-recipe-id="${recipe.id}" type="button" aria-pressed="${liked}" aria-label="${liked?'Retirer des favoris':'Ajouter aux favoris'}">${liked?'♥':'♡'}</button>
     </div>
-    <div class="meta">⏱️ ${recipe.t} · 🔥 ${recipe.m}</div>
+    <div class="course-meta" aria-label="Informations de la recette">
+      <span class="course-meta-chip"><small>Temps</small><strong>${recipe.t}</strong></span>
+      <span class="course-meta-chip"><small>Cuisson</small><strong>${recipe.m}</strong></span>
+    </div>
     ${component==='dish'&&!manual?`<div class="meal-spirit">${mealPersonalityLabel(recipe,type)}</div>`:''}
-    ${component==='dish'&&!manual?`<button class="why-choice" data-recipe-id="${recipe.id}" data-type="${type}" type="button">💡 Pourquoi cette idée ?</button>`:''}
+    ${component==='dish'&&!manual?`<button class="why-choice" data-recipe-id="${recipe.id}" data-type="${type}" type="button">✦ Pourquoi ce choix ?</button>`:''}
     <div class="meal-actions has-chooser">
-      <button class="small-btn recipe-btn" data-day="${dayIndex}" data-type="${type}" data-component="${component}">📖 Voir la recette</button>
-      <button class="small-btn secondary change-btn" data-day="${dayIndex}" data-type="${type}" data-component="${component}">🔄 Une autre idée</button>
+      <button class="small-btn recipe-btn" data-day="${dayIndex}" data-type="${type}" data-component="${component}">Ouvrir la recette</button>
+      <button class="small-btn secondary change-btn" data-day="${dayIndex}" data-type="${type}" data-component="${component}">Autre idée</button>
       <button class="small-btn choose-component-btn" data-day="${dayIndex}" data-type="${type}" data-component="${component}">${chooseLabel}</button>
     </div>
     <div class="recipe" id="${mealRecipeElementId(dayIndex,type,component)}">${recipeHTML(recipe,{showFavorite:false})}</div>
