@@ -9,7 +9,7 @@
 <meta name="apple-mobile-web-app-title" content="Clair Repas">
 <link rel="manifest" href="./manifest.webmanifest">
 <link rel="apple-touch-icon" href="./icon-192.png">
-<title>Clair Repas V5.4</title>
+<title>Clair Repas V5.4.1</title>
 <style>
 :root{
   --bg:#f4efe7;--card:#fffdfa;--text:#27231f;--muted:#746c63;
@@ -482,7 +482,7 @@ body.timer-running .browser-content{padding-bottom:calc(105px + env(safe-area-in
 
 <p class="note">Clair Repas tient compte du moment, de vos goûts et des derniers repas. Les réglages avancés restent facultatifs.</p>
 <p class="library-count" id="libraryCount">837 plats · 121 entrées · 100 desserts · 52 recettes complémentaires</p>
-<p class="version" id="versionLine">Clair Repas V5.4</p>
+<p class="version" id="versionLine">Clair Repas V5.4.1</p>
 </main>
 <div class="recipe-browser" id="recipeBrowser" hidden>
   <section class="browser-panel" role="dialog" aria-modal="true" aria-labelledby="browserTitle">
@@ -3124,11 +3124,9 @@ sideRecipes.forEach(applyStandaloneMetadata);
 
 /* Collections éditoriales Clair Repas — recettes détaillées, 2 personnes, pas à pas. */
 const CR_THEME_SUBCATEGORIES=[{id:'all',title:'Tout le chapitre',filter:()=>true},{id:'starters',title:'Entrées',filter:r=>r.course==='starter'},{id:'dishes',title:'Plats',filter:r=>!r.course},{id:'desserts',title:'Desserts',filter:r=>r.course==='dessert'}];
-const crOriginalBookSubcategories=bookSubcategories;bookSubcategories=function(id){if(['bistrot-brasserie','cuisine-regionale','famille-dimanche'].includes(id))return CR_THEME_SUBCATEGORIES;return crOriginalBookSubcategories(id)};
 function crAddCollection(recipe,theme){const previous=Array.isArray(recipe.collections)?recipe.collections:[];recipe.collections=[...new Set([...previous,theme])];return recipe}
 function crUpsertCourse(list,recipe,theme){const found=list.find(r=>r.n===recipe.n);if(found){const keepId=found.id;const previousCollections=Array.isArray(found.collections)?found.collections:[];Object.assign(found,recipe,{id:keepId,collections:[...new Set([...previousCollections,theme])]});return found}crAddCollection(recipe,theme);list.push(recipe);return recipe}
 function crUpsertDish(recipe,theme,slot='noon'){const found=[...noon,...evening].find(r=>r.n===recipe.n);if(found){const keepId=found.id;const previousCollections=Array.isArray(found.collections)?found.collections:[];Object.assign(found,recipe,{id:keepId,collections:[...new Set([...previousCollections,theme])]});return found}crAddCollection(recipe,theme);(slot==='evening'?evening:noon).push(recipe);return recipe}
-BOOK_SHELVES.splice(Math.min(BOOK_SHELVES.length,1+BOOK_SHELVES.filter(s=>['bistrot-brasserie','cuisine-regionale','famille-dimanche'].includes(s.id)).length),0,{id:"bistrot-brasserie",icon:"🍷",title:"Cuisine de bistrot & brasserie",description:"Les grands classiques des bistrots et brasseries françaises, expliqués pas à pas.",filter:recipe=>Array.isArray(recipe.collections)&&recipe.collections.includes("bistrot-brasserie")});
 crUpsertCourse(starters,Object.assign(A("theme-bistrot-brasserie-01","Œufs mayonnaise","Casserole","20 min",ALL_SEASONS,"normal",["œufs","mayonnaise","moutarde"],[I(4,"","œufs"),I(3,"c. à soupe","mayonnaise"),I(1,"c. à café","moutarde"),I(1,"c. à café","vinaigre de vin"),I(null,"","ciboulette"),I(null,"","sel et poivre")],["Sortez les œufs du réfrigérateur pendant que vous portez une petite casserole d’eau à ébullition. Déposez-les délicatement dans l’eau bouillante avec une cuillère et comptez 9 minutes à partir de la reprise de l’ébullition.","Préparez un saladier d’eau très froide. À la fin des 9 minutes, plongez-y les œufs 5 minutes : le refroidissement arrête la cuisson et facilite l’écalage.","Écalez les œufs sans les abîmer puis coupez-les en deux dans la longueur. Disposez 2 moitiés par personne sur les assiettes.","Mélangez la mayonnaise, la moutarde et le vinaigre. La sauce doit être souple mais tenir sur la cuillère ; ajoutez 1 cuillère à café d’eau si elle est trop épaisse.","Nappez les œufs de sauce, poivrez légèrement et parsemez de ciboulette. Servez frais, mais pas glacé."],"oeufs-bistrot","froid","française"),{collections:["bistrot-brasserie"],editorial:'pas-a-pas-debutant'}),"bistrot-brasserie");
 crUpsertCourse(starters,Object.assign(A("theme-bistrot-brasserie-02","Poireaux vinaigrette","Casserole","35 min",["automne","hiver","printemps"],"léger",["poireaux","moutarde","vinaigre de vin"],[I(4,"","poireaux"),I(1,"c. à soupe","moutarde"),I(2,"c. à soupe","vinaigre de vin"),I(4,"c. à soupe","huile"),I(1,"","échalote","échalotes"),I(null,"","persil"),I(null,"","sel et poivre")],["Coupez les racines et la partie vert foncé des poireaux. Fendez le haut en deux sur quelques centimètres puis rincez soigneusement entre les feuilles pour retirer toute trace de terre.","Portez une grande casserole d’eau salée à frémissement. Plongez les poireaux et laissez-les cuire 18 à 22 minutes selon leur grosseur. La pointe d’un couteau doit entrer facilement dans la partie blanche.","Égouttez les poireaux sans les presser puis laissez-les tiédir dans une passoire pendant 10 minutes. Trop d’eau diluerait la vinaigrette.","Émincez très finement l’échalote. Dans un bol, mélangez moutarde, vinaigre, une pincée de sel et du poivre, puis versez l’huile progressivement en fouettant à la fourchette.","Disposez 2 poireaux par personne, nappez généreusement de vinaigrette et ajoutez échalote et persil. Servez tiède ou à température ambiante."],"legumes-bistrot","tiède","française"),{collections:["bistrot-brasserie"],editorial:'pas-a-pas-debutant'}),"bistrot-brasserie");
 crUpsertCourse(starters,Object.assign(A("theme-bistrot-brasserie-03","Salade de lentilles aux échalotes","Casserole","40 min",ALL_SEASONS,"normal",["lentilles vertes","carotte","échalote"],[I(160,"g","lentilles vertes"),I(1,"","carotte","carottes"),I(1,"","échalote","échalotes"),I(1,"","feuille de laurier","feuilles de laurier"),I(1,"c. à café","moutarde"),I(1.5,"c. à soupe","vinaigre de vin"),I(3,"c. à soupe","huile"),I(null,"","persil"),I(null,"","sel et poivre")],["Rincez les lentilles à l’eau froide. Mettez-les dans une casserole avec la carotte coupée en petits dés et le laurier, puis couvrez largement d’eau froide non salée.","Portez à petite ébullition et laissez cuire 22 à 25 minutes. Goûtez : les lentilles doivent être tendres mais encore entières. Salez seulement 5 minutes avant la fin.","Pendant la cuisson, hachez finement l’échalote et le persil. Mélangez dans un saladier la moutarde, le vinaigre, du poivre puis l’huile.","Égouttez très soigneusement les lentilles et retirez le laurier. Versez-les encore chaudes dans le saladier : elles absorberont mieux l’assaisonnement.","Ajoutez l’échalote et le persil, mélangez délicatement et laissez tiédir 10 minutes. Rectifiez en sel et en vinaigre avant de servir."],"salade-lentilles","tiède","française"),{collections:["bistrot-brasserie"],editorial:'pas-a-pas-debutant'}),"bistrot-brasserie");
@@ -3148,7 +3146,7 @@ crUpsertCourse(desserts,Object.assign(D("theme-bistrot-brasserie-16","Mousse au 
 crUpsertCourse(desserts,Object.assign(D("theme-bistrot-brasserie-17","Crème brûlée à la vanille","Four","55 min",ALL_SEASONS,"gourmand",["jaunes d’œufs","crème liquide entière","gousse de vanille"],[I(4,"","jaunes d’œufs"),I(40,"g","sucre"),I(35,"cl","crème liquide entière"),I(1,"","gousse de vanille"),I(30,"g","cassonade")],["Préchauffez le four à 150 °C, chaleur traditionnelle. Posez deux ou trois ramequins larges dans un plat à gratin.","Fendez la gousse de vanille et grattez les graines. Chauffez la crème avec graines et gousse jusqu’aux premiers frémissements puis retirez du feu et laissez infuser 10 minutes.","Dans un saladier, mélangez les jaunes et le sucre au fouet juste assez pour homogénéiser, sans chercher à faire mousser.","Retirez la gousse puis versez la crème chaude progressivement sur les jaunes en mélangeant doucement. Répartissez dans les ramequins.","Versez de l’eau chaude dans le plat à gratin jusqu’à mi-hauteur des ramequins. Enfournez 30 à 40 minutes. Le bord doit être pris et le centre encore légèrement tremblotant quand on bouge le ramequin.","Sortez du bain-marie, laissez refroidir puis réfrigérez au moins 3 heures.","Juste avant de servir, saupoudrez une fine couche régulière de cassonade. Caramélisez au chalumeau, ou très brièvement sous un gril très chaud en surveillant sans quitter le four. Laissez durcir 1 minute."],"creme-brulee","froid","française"),{collections:["bistrot-brasserie"],editorial:'pas-a-pas-debutant'}),"bistrot-brasserie");
 crUpsertCourse(desserts,Object.assign(D("theme-bistrot-brasserie-18","Île flottante, crème anglaise","Casserole","45 min",ALL_SEASONS,"normal",["œufs","lait","gousse de vanille"],[I(4,"","œufs"),I(50,"cl","lait"),I(70,"g","sucre"),I(1,"","gousse de vanille"),I(20,"g","amandes effilées"),I(30,"g","sucre pour caramel")],["Séparez soigneusement les blancs des jaunes. Faites chauffer le lait avec la vanille fendue jusqu’aux premiers frémissements, puis retirez du feu 5 minutes.","Fouettez les jaunes avec 40 g de sucre jusqu’à ce que le mélange soit homogène. Versez progressivement le lait chaud dessus en fouettant, puis remettez tout dans la casserole.","Cuisez la crème anglaise sur feu doux en remuant constamment avec une spatule. Ne laissez jamais bouillir. Elle est prête vers 82 °C, ou lorsque la trace du doigt reste nette sur le dos de la spatule. Versez immédiatement dans un saladier froid.","Montez les blancs en neige. Quand ils commencent à tenir, ajoutez les 30 g de sucre restants et fouettez jusqu’à obtenir une neige ferme et brillante.","Faites frémir une grande casserole d’eau. Formez de grosses quenelles de blanc avec deux cuillères et pochez-les environ 1 minute par face. Égouttez sur du papier absorbant.","Faites griller les amandes 2 à 3 minutes à sec. Pour le caramel, chauffez les 30 g de sucre dans une petite casserole sans remuer jusqu’à couleur ambrée, puis retirez du feu.","Répartissez la crème anglaise bien froide, posez les blancs dessus, ajoutez les amandes et quelques filets de caramel. Attention : le caramel chaud peut provoquer de graves brûlures, ne le touchez jamais avec les doigts."],"ile-flottante","froid","française"),{collections:["bistrot-brasserie"],editorial:'pas-a-pas-debutant'}),"bistrot-brasserie");
 crUpsertCourse(desserts,Object.assign(D("theme-bistrot-brasserie-19","Tarte Tatin","Four","70 min",ALL_SEASONS,"gourmand",["pommes","pâte feuilletée"],[I(5,"","pommes"),I(1,"","pâte feuilletée"),I(80,"g","sucre"),I(50,"g","beurre"),I(1,"pincée","sel")],["Préchauffez le four à 190 °C. Épluchez les pommes, coupez-les en quartiers et retirez les pépins. Choisissez un moule ou une poêle de 22 à 24 cm pouvant aller au four.","Répartissez le sucre dans le moule et chauffez sur feu moyen sans remuer avec une cuillère. Faites simplement tourner légèrement le moule quand le sucre commence à fondre. Arrêtez dès que le caramel est ambré.","Hors du feu, ajoutez le beurre en morceaux avec prudence : le mélange peut mousser. Ajoutez une petite pincée de sel.","Rangez les quartiers de pommes très serrés, côté bombé contre le fond. Remettez sur feu doux 10 minutes pour commencer à les attendrir et les enrober de caramel.","Déroulez la pâte sur les pommes, rentrez délicatement le bord entre les fruits et le moule puis piquez 4 ou 5 fois la pâte avec la pointe d’un couteau.","Enfournez 30 à 35 minutes, jusqu’à ce que la pâte soit bien dorée. Laissez reposer seulement 5 minutes à la sortie du four.","Posez un grand plat sur le moule, protégez vos mains avec des maniques et retournez d’un mouvement franc. Ne laissez pas refroidir complètement avant de démouler, sinon le caramel durcirait. Servez tiède."],"tarte-pommes","tiède","française"),{collections:["bistrot-brasserie"],editorial:'pas-a-pas-debutant'}),"bistrot-brasserie");
-window.__CLAIR_REPAS_EDITORIAL_VERSION="5.4";
+window.__CLAIR_REPAS_EDITORIAL_VERSION="5.4.1";
 const $=id=>document.getElementById(id);
 noon.forEach(recipe=>{recipe.mealSlots=['mid']});
 evening.forEach(recipe=>{recipe.mealSlots=['eve']});
@@ -3158,7 +3156,7 @@ const recipeLibrary=[...dishLibrary,...starters,...desserts,...standaloneLibrary
 const recipeIndex=new Map(recipeLibrary.map(recipe=>[recipe.id,recipe]));
 $('libraryCount').textContent=`${dishLibrary.length} plats · ${starters.length} entrées · ${desserts.length} desserts · ${breakfastRecipes.length} petits-déjeuners · ${sauceRecipes.length} sauces · ${sideRecipes.length} accompagnements`;
 $('libraryHint').textContent=`Découvrir ${recipeLibrary.length} recettes dans le Livre`;
-$('versionLine').textContent='Clair Repas V5.4';
+$('versionLine').textContent='Clair Repas V5.4.1';
 const FAVORITES_KEY='crFavMeals';
 const RECENT_RECIPES_KEY='crRecentRecipesV25';
 const MAX_RECENT_RECIPES=10;
@@ -5043,6 +5041,7 @@ function ingredientAssistantHTML(){
 }
 
 // V5.4 — cuisine de bistrot & brasserie : grands classiques expliqués pour tous.
+// V5.4.1 — correctif iPhone : initialisation du chapitre Bistrot après création du Livre, boutons actifs.
 // V5.3 — conditionnements d’achat intelligents : la recette garde ses mesures, la liste indique ce qu’il faut réellement acheter.
 // V5.2 — courses intelligentes : ingrédients d’achat normalisés, rayons renforcés et regroupement cru/cuit des féculents.
 // V5.1 — interface courses simplifiée : un seul accès global sous le programme, sans boutons répétés sous chaque recette.
@@ -5399,7 +5398,7 @@ function shoppingSelectedContractItems(){
 function shoppingContract(){
   const items=shoppingSelectedContractItems();
   const fingerprint=`fnv1a:${shoppingFNV(JSON.stringify(items))}`;
-  return{schemaVersion:1,source:'Clair Repas',sourceVersion:'5.4',createdAt:new Date().toISOString(),contentFingerprint:fingerprint,items};
+  return{schemaVersion:1,source:'Clair Repas',sourceVersion:'5.4.1',createdAt:new Date().toISOString(),contentFingerprint:fingerprint,items};
 }
 async function shoppingCopySelected(){
   const items=shoppingSelectedContractItems();
@@ -5469,6 +5468,7 @@ function bookBalancedRecipe(recipe){
 }
 const BOOK_SHELVES=[
   {id:'classics',icon:'📕',title:'Les grands classiques',description:'Les recettes de référence de Clair Repas.',filter:recipe=>recipe.classic===true},
+  {id:'bistrot-brasserie',icon:'🍷',title:'Cuisine de bistrot & brasserie',description:'Les grands classiques des bistrots et brasseries françaises, expliqués pas à pas.',filter:recipe=>Array.isArray(recipe.collections)&&recipe.collections.includes('bistrot-brasserie')},
   {id:'breakfast',icon:'☕',title:'Petits-déjeuners & brunchs',description:'Classiques, bols équilibrés et brunchs à ouvrir quand vous en avez envie.',filter:recipe=>recipeRole(recipe)==='breakfast'},
   {id:'balanced',icon:'🌿',title:'Recettes diététiques & équilibrées',description:'Des recettes déjà présentes et quelques nouvelles assiettes plus légères, sans calcul ni promesse santé.',filter:bookBalancedRecipe},
   {id:'terrines',icon:'🥖',title:'Terrines, pâtés & rillettes',description:'Les recettes traditionnelles et les tartinables de poisson dans leur identité culinaire.',filter:recipe=>recipeRole(recipe)==='terrine'},
@@ -5511,6 +5511,7 @@ const BOOK_COMPANION_SUBCATEGORIES=[
   {id:'sides',title:'Accompagnements',filter:recipe=>recipeRole(recipe)==='side'}
 ];
 function bookSubcategories(id){
+  if(['bistrot-brasserie','cuisine-regionale','famille-dimanche'].includes(id))return CR_THEME_SUBCATEGORIES;
   if(id==='starters')return BOOK_STARTER_SUBCATEGORIES;
   if(id==='desserts')return BOOK_DESSERT_SUBCATEGORIES;
   if(id==='companions')return BOOK_COMPANION_SUBCATEGORIES;
@@ -6934,7 +6935,7 @@ function updateTimerUI(){
     if(timerInterval){clearInterval(timerInterval);timerInterval=null}
     bar.classList.remove('show','done');
     document.body.classList.remove('timer-running');
-    document.title='Clair Repas V5.4';
+    document.title='Clair Repas V5.4.1';
     return;
   }
   const remaining=Math.max(0,Math.ceil((kitchenTimer.endAt-Date.now())/1000));
