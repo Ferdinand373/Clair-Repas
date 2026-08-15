@@ -9,7 +9,7 @@
 <meta name="apple-mobile-web-app-title" content="Clair Repas">
 <link rel="manifest" href="./manifest.webmanifest">
 <link rel="apple-touch-icon" href="./icon-192.png">
-<title>Clair Repas V5.0</title>
+<title>Clair Repas V5.1</title>
 <style>
 :root{
   --bg:#f4efe7;--card:#fffdfa;--text:#27231f;--muted:#746c63;
@@ -257,7 +257,6 @@ body.timer-running .browser-content{padding-bottom:calc(105px + env(safe-area-in
 .ingredient-result-shopping{width:100%;min-height:44px;margin-top:7px;padding:8px;border:1px solid #d9cec2;border-radius:11px;background:#fffaf4;color:var(--text);font-size:12px;font-weight:850}
 .ingredient-more{width:100%;min-height:48px;margin-top:1px;border:1px solid #cfded4;border-radius:14px;background:#edf6f0;color:#24563b;font-weight:850}
 .recipe-shopping{width:100%;min-height:48px;margin:11px 0 2px;padding:10px 12px;border:1px solid #d9cec2;border-radius:13px;background:#fffaf4;color:var(--text);font-weight:860;touch-action:manipulation}
-.small-btn.shopping-component-btn{grid-column:1/-1;border:1px solid #d9cec2;background:#fffaf4;color:var(--text)}
 .shopping-review{padding:2px 0 18px}
 .shopping-intro{margin:2px 0 11px;padding:14px;border:1px solid var(--line);border-radius:17px;background:var(--card)}
 .shopping-intro h2{margin:0 0 5px;color:var(--green);font-size:20px;line-height:1.2}
@@ -483,7 +482,7 @@ body.timer-running .browser-content{padding-bottom:calc(105px + env(safe-area-in
 
 <p class="note">Clair Repas tient compte du moment, de vos goûts et des derniers repas. Les réglages avancés restent facultatifs.</p>
 <p class="library-count" id="libraryCount">837 plats · 121 entrées · 100 desserts · 52 recettes complémentaires</p>
-<p class="version" id="versionLine">Clair Repas V5.0</p>
+<p class="version" id="versionLine">Clair Repas V5.1</p>
 </main>
 <div class="recipe-browser" id="recipeBrowser" hidden>
   <section class="browser-panel" role="dialog" aria-modal="true" aria-labelledby="browserTitle">
@@ -3132,7 +3131,7 @@ const recipeLibrary=[...dishLibrary,...starters,...desserts,...standaloneLibrary
 const recipeIndex=new Map(recipeLibrary.map(recipe=>[recipe.id,recipe]));
 $('libraryCount').textContent=`${dishLibrary.length} plats · ${starters.length} entrées · ${desserts.length} desserts · ${breakfastRecipes.length} petits-déjeuners · ${sauceRecipes.length} sauces · ${sideRecipes.length} accompagnements`;
 $('libraryHint').textContent=`Découvrir ${recipeLibrary.length} recettes dans le Livre`;
-$('versionLine').textContent='Clair Repas V5.0';
+$('versionLine').textContent='Clair Repas V5.1';
 const FAVORITES_KEY='crFavMeals';
 const RECENT_RECIPES_KEY='crRecentRecipesV25';
 const MAX_RECENT_RECIPES=10;
@@ -5016,6 +5015,7 @@ function ingredientAssistantHTML(){
   </article>`;
 }
 
+// V5.1 — interface courses simplifiée : un seul accès global sous le programme, sans boutons répétés sous chaque recette.
 // V5.0 — version de référence stabilisée : consolidation de V4.4 à V4.9, sans nouvelle fonction ni migration destructive.
 // V4.9 — interface finale simplifiée : essentiel visible, réglages avancés en divulgation progressive.
 // V4.8 — personnalité culinaire : valeur sûre, découverte, familial, équilibré et petit plaisir.
@@ -5279,7 +5279,7 @@ function shoppingSelectedContractItems(){
 function shoppingContract(){
   const items=shoppingSelectedContractItems();
   const fingerprint=`fnv1a:${shoppingFNV(JSON.stringify(items))}`;
-  return{schemaVersion:1,source:'Clair Repas',sourceVersion:'5.0',createdAt:new Date().toISOString(),contentFingerprint:fingerprint,items};
+  return{schemaVersion:1,source:'Clair Repas',sourceVersion:'5.1',createdAt:new Date().toISOString(),contentFingerprint:fingerprint,items};
 }
 async function shoppingCopySelected(){
   const items=shoppingSelectedContractItems();
@@ -6814,7 +6814,7 @@ function updateTimerUI(){
     if(timerInterval){clearInterval(timerInterval);timerInterval=null}
     bar.classList.remove('show','done');
     document.body.classList.remove('timer-running');
-    document.title='Clair Repas V5.0';
+    document.title='Clair Repas V5.1';
     return;
   }
   const remaining=Math.max(0,Math.ceil((kitchenTimer.endAt-Date.now())/1000));
@@ -6903,7 +6903,6 @@ function mealRecipeBlockHTML(recipe,dayIndex,type,component){
       <button class="small-btn recipe-btn" data-day="${dayIndex}" data-type="${type}" data-component="${component}">📖 Voir la recette</button>
       <button class="small-btn secondary change-btn" data-day="${dayIndex}" data-type="${type}" data-component="${component}">🔄 Une autre idée</button>
       <button class="small-btn choose-component-btn" data-day="${dayIndex}" data-type="${type}" data-component="${component}">${chooseLabel}</button>
-      <button class="small-btn shopping-component-btn" data-recipe-id="${recipe.id}" type="button">🛒 Préparer les courses</button>
     </div>
     <div class="recipe" id="${mealRecipeElementId(dayIndex,type,component)}">${recipeHTML(recipe,{showFavorite:false})}</div>
   </section>`;
@@ -6997,9 +6996,6 @@ function render(){
   });
   document.querySelectorAll('.why-choice').forEach(button=>button.onclick=()=>{
     show(choiceExplanation(recipeIndex.get(button.dataset.recipeId),button.dataset.type),4300);
-  });
-  document.querySelectorAll('.shopping-component-btn').forEach(button=>button.onclick=()=>{
-    openShoppingForRecipe(button.dataset.recipeId,'meal');
   });
   document.querySelectorAll('.companion-open').forEach(button=>button.onclick=()=>{
     openRecipeBrowser('book');
