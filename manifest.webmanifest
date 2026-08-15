@@ -1,7 +1,7 @@
 {
   "name": "Clair Repas",
   "short_name": "Clair Repas",
-  "description": "Clair Repas propose les menus et prépare une liste contrôlée avant tout envoi manuel vers Clair Courses.",
+  "description": "Clair Repas, assistant culinaire personnel : menus, Livre de recettes détaillées et préparation des courses.",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",

@@ -9,7 +9,7 @@
 <meta name="apple-mobile-web-app-title" content="Clair Repas">
 <link rel="manifest" href="./manifest.webmanifest">
 <link rel="apple-touch-icon" href="./icon-192.png">
-<title>Clair Repas V5.8</title>
+<title>Clair Repas V6.0</title>
 <style>
 :root{
   --bg:#f4efe7;--card:#fffdfa;--text:#27231f;--muted:#746c63;
@@ -184,6 +184,45 @@ body.wake-active .wake-note{display:block}
 .reset-preferences{min-height:42px;padding:9px 12px;border:1px solid #e2c5c0;border-radius:11px;background:#fff7f5;color:#80433b;font-weight:780}
 .note{text-align:center;color:var(--muted);font-size:12px;margin:13px 0 0}
 .version{text-align:center;color:#9a9187;font-size:11px;margin-top:7px}
+
+/* V6.0 — couche produit professionnelle : identité, confiance, aide et centre de données. */
+.brand-kicker{display:inline-flex;align-items:center;gap:6px;margin:0 0 7px;padding:5px 9px;border:1px solid #d9e6dd;border-radius:999px;background:rgba(255,255,255,.68);color:var(--green);font-size:10px;font-weight:900;letter-spacing:.55px;text-transform:uppercase}
+header h1{font-size:32px;letter-spacing:-.7px}
+header .subtitle{font-size:14px;line-height:1.35}
+.trust-strip{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px;margin:12px auto 0;max-width:620px}
+.trust-pill{min-width:0;padding:8px 6px;border:1px solid var(--line);border-radius:12px;background:rgba(255,253,250,.82);color:var(--muted);font-size:10px;font-weight:780;line-height:1.22;text-align:center}
+.trust-pill strong{display:block;margin-bottom:2px;color:var(--text);font-size:12px;font-weight:900;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.product-center{margin:14px 0 0;border:1px solid var(--line);border-radius:18px;background:var(--card);overflow:hidden;box-shadow:0 6px 18px rgba(45,35,25,.035)}
+.product-center>summary{display:flex;align-items:center;justify-content:space-between;gap:8px;min-height:48px;padding:11px 13px;cursor:pointer;list-style:none;color:var(--text);font-size:13px;font-weight:880}
+.product-center>summary::-webkit-details-marker{display:none}
+.product-center>summary::after{content:'›';font-size:20px;color:var(--muted);transform:rotate(90deg);transition:transform .15s}
+.product-center[open]>summary::after{transform:rotate(-90deg)}
+.product-panel{padding:0 13px 14px;border-top:1px solid var(--line)}
+.product-identity{padding:12px 0 10px}
+.product-identity strong{display:block;color:var(--green);font-size:16px}
+.product-identity span{display:block;margin-top:4px;color:var(--muted);font-size:12px;line-height:1.45}
+.product-new{margin:0 0 11px;padding:11px;border-radius:13px;background:#f4f8f4;color:#41624e;font-size:12px;line-height:1.45}
+.product-new strong{display:block;margin-bottom:3px;color:#31533e}
+.product-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.product-actions button{min-height:46px;padding:9px;border:1px solid var(--line);border-radius:12px;background:white;color:var(--text);font-size:12px;font-weight:830;touch-action:manipulation}
+.product-actions .product-primary{grid-column:1/-1;border-color:#b8d8c3;background:var(--green-soft);color:#24563b}
+.product-status{min-height:18px;margin:9px 1px 0;color:var(--muted);font-size:11px;line-height:1.35;text-align:center}
+.product-status.success{color:var(--green);font-weight:820}
+.product-status.warning{color:#8b5c22;font-weight:820}
+.welcome-overlay[hidden]{display:none}
+.welcome-overlay{position:fixed;inset:0;z-index:50;display:flex;align-items:center;justify-content:center;padding:calc(18px + env(safe-area-inset-top)) 16px calc(18px + env(safe-area-inset-bottom));background:rgba(31,27,23,.56);backdrop-filter:blur(5px)}
+.welcome-card{width:min(520px,100%);max-height:90vh;overflow:auto;padding:21px;border:1px solid rgba(255,255,255,.55);border-radius:25px;background:var(--card);box-shadow:0 22px 60px rgba(28,22,18,.28)}
+.welcome-mark{display:inline-flex;padding:6px 10px;border-radius:999px;background:var(--green-soft);color:var(--green);font-size:11px;font-weight:900}
+.welcome-card h2{margin:11px 0 5px;font-size:25px;line-height:1.12;letter-spacing:-.4px}
+.welcome-lead{margin:0;color:var(--muted);font-size:13px;line-height:1.45}
+.welcome-steps{display:grid;gap:8px;margin:15px 0}
+.welcome-step{padding:11px 12px;border:1px solid var(--line);border-radius:14px;background:#fff}
+.welcome-step strong{display:block;font-size:13px}
+.welcome-step span{display:block;margin-top:3px;color:var(--muted);font-size:11.5px;line-height:1.4}
+.welcome-actions{display:grid;gap:8px}
+.welcome-start{min-height:50px;border:1px solid var(--green);border-radius:14px;background:var(--green);color:white;font-size:15px;font-weight:900}
+.welcome-more{min-height:43px;border:1px solid var(--line);border-radius:12px;background:white;color:var(--text);font-weight:800}
+@media(max-width:390px){.trust-strip{grid-template-columns:1fr}.product-actions{grid-template-columns:1fr}.product-actions .product-primary{grid-column:auto}.welcome-card{padding:17px}.welcome-card h2{font-size:23px}}
 .kitchen-timer{position:fixed;left:50%;bottom:calc(18px + env(safe-area-inset-bottom));transform:translateX(-50%);width:min(440px,calc(100% - 24px));padding:10px 11px 10px 14px;border-radius:16px;background:#28231f;color:white;box-shadow:0 12px 30px rgba(30,24,19,.28);display:none;align-items:center;gap:11px;z-index:30}
 .kitchen-timer.show{display:flex}
 .kitchen-timer.done{background:var(--green)}
@@ -353,9 +392,15 @@ body.timer-running .browser-content{padding-bottom:calc(105px + env(safe-area-in
 <body>
 <main>
 <header>
+  <div class="brand-kicker">Assistant culinaire personnel</div>
   <h1>🍽️ Clair Repas</h1>
-  <div class="subtitle">Les repas et les courses, simplement.</div>
+  <div class="subtitle">Choisir. Cuisiner. Faire les courses. Simplement.</div>
   <div class="season-line" id="seasonLine"></div>
+  <div class="trust-strip" aria-label="État de Clair Repas">
+    <div class="trust-pill"><strong id="professionalRecipeCount">— recettes</strong>Le Livre</div>
+    <div class="trust-pill"><strong id="professionalFavoriteCount">0 favori</strong>Votre sélection</div>
+    <div class="trust-pill"><strong id="professionalDataStatus">Données locales</strong>Privées sur cet appareil</div>
+  </div>
 </header>
 
 <section class="planning-card" aria-labelledby="planningTitle">
@@ -480,9 +525,30 @@ body.timer-running .browser-content{padding-bottom:calc(105px + env(safe-area-in
   </div>
 </details>
 
+<details class="product-center" id="productCenter">
+  <summary>ℹ️ Clair Repas · À propos, sauvegarde & mise à jour</summary>
+  <div class="product-panel">
+    <div class="product-identity">
+      <strong>Clair Repas V6.0</strong>
+      <span>Votre assistant culinaire personnel. L’intelligence derrière, la simplicité devant.</span>
+    </div>
+    <div class="product-new">
+      <strong>Nouveautés V6</strong>
+      Interface affinée, prise en main guidée, état de l’application visible et sauvegarde/restauration de vos favoris, notes, historique, préférences et apprentissage.
+    </div>
+    <div class="product-actions">
+      <button class="product-primary" id="backupData" type="button">💾 Sauvegarder mes données</button>
+      <button id="restoreData" type="button">📂 Restaurer une sauvegarde</button>
+      <button id="checkUpdate" type="button">↻ Vérifier la mise à jour</button>
+    </div>
+    <input id="restoreDataFile" type="file" accept="application/json,.json" hidden>
+    <div class="product-status" id="productStatus" aria-live="polite">Vos données Clair Repas restent enregistrées localement sur cet appareil.</div>
+  </div>
+</details>
+
 <p class="note">Clair Repas tient compte du moment, de vos goûts et des derniers repas. Les réglages avancés restent facultatifs.</p>
 <p class="library-count" id="libraryCount">837 plats · 121 entrées · 100 desserts · 52 recettes complémentaires</p>
-<p class="version" id="versionLine">Clair Repas V5.8</p>
+<p class="version" id="versionLine">Clair Repas V6.0</p>
 </main>
 <div class="recipe-browser" id="recipeBrowser" hidden>
   <section class="browser-panel" role="dialog" aria-modal="true" aria-labelledby="browserTitle">
@@ -507,6 +573,22 @@ body.timer-running .browser-content{padding-bottom:calc(105px + env(safe-area-in
   <button class="timer-stop" id="timerStop">Arrêter</button>
 </div>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
+<div class="welcome-overlay" id="welcomeV6" hidden>
+  <section class="welcome-card" role="dialog" aria-modal="true" aria-labelledby="welcomeV6Title">
+    <span class="welcome-mark">Clair Repas V6</span>
+    <h2 id="welcomeV6Title">Bienvenue dans Clair Repas</h2>
+    <p class="welcome-lead">La même application, plus aboutie. Rien n’a été compliqué : les fonctions essentielles restent au même endroit.</p>
+    <div class="welcome-steps">
+      <div class="welcome-step"><strong>1 · Préparer les repas</strong><span>Choisissez les jours et le nombre de personnes. Clair Repas propose Midi et Soir.</span></div>
+      <div class="welcome-step"><strong>2 · Ouvrir Le Livre</strong><span>Retrouvez les classiques, le bistrot, les régions, les repas de famille et les Petits gourmands.</span></div>
+      <div class="welcome-step"><strong>3 · Préparer les courses</strong><span>Contrôlez la liste puis envoyez-la volontairement vers Clair Courses.</span></div>
+    </div>
+    <div class="welcome-actions">
+      <button class="welcome-start" id="welcomeV6Start" type="button">Commencer</button>
+      <button class="welcome-more" id="welcomeV6More" type="button">Voir les nouveautés V6</button>
+    </div>
+  </section>
+</div>
 
 <script>
 const I=(q,u,n,k)=>({q,u,n,k:k||n});
@@ -3261,7 +3343,7 @@ for(const r of [...noon,...evening,...starters,...desserts]){if(r.n==="Œufs en 
 for(const r of [...noon,...evening,...starters,...desserts]){if(r.n==="Quenelles de brochet sauce Nantua")crAddCollection(r,"bistrot-brasserie")}
 for(const r of [...noon,...evening,...starters,...desserts]){if(r.n==="Choucroute garnie alsacienne")crAddCollection(r,"bistrot-brasserie")}
 for(const r of [...noon,...evening,...starters,...desserts]){if(r.n==="Quiche Lorraine")crAddCollection(r,"bistrot-brasserie")}
-window.__CLAIR_REPAS_EDITORIAL_VERSION="5.8";
+window.__CLAIR_REPAS_EDITORIAL_VERSION="6.0";
 const $=id=>document.getElementById(id);
 noon.forEach(recipe=>{recipe.mealSlots=['mid']});
 evening.forEach(recipe=>{recipe.mealSlots=['eve']});
@@ -3271,7 +3353,118 @@ const recipeLibrary=[...dishLibrary,...starters,...desserts,...standaloneLibrary
 const recipeIndex=new Map(recipeLibrary.map(recipe=>[recipe.id,recipe]));
 $('libraryCount').textContent=`${dishLibrary.length} plats · ${starters.length} entrées · ${desserts.length} desserts · ${breakfastRecipes.length} petits-déjeuners · ${sauceRecipes.length} sauces · ${sideRecipes.length} accompagnements`;
 $('libraryHint').textContent=`Découvrir ${recipeLibrary.length} recettes dans le Livre`;
-$('versionLine').textContent='Clair Repas V5.8';
+$('versionLine').textContent='Clair Repas V6.0';
+// V6.0 — finition produit : prise en main, confiance, sauvegarde et mise à jour manuelle.
+const V6_WELCOME_KEY='crWelcomeV6';
+const V6_BACKUP_KEYS=[
+  'crFavMeals','crRecentRecipesV25','crRecipeReactionsV3','crRecipeLearningV3','crRecipeNotesV31','crRecipeIdMigrationV39',
+  'crPeople','crDays','crMode','crTimeAvailable','crMealContext','crMealUsageV19','crCourseUsageV37',
+  'crBrowserDiscoveryV35','crBrowserDecksV35','crStateV13','crHistoryV13'
+];
+function setProductStatus(message,type=''){
+  const el=$('productStatus');
+  if(!el)return;
+  el.textContent=message;
+  el.classList.remove('success','warning');
+  if(type)el.classList.add(type);
+}
+function refreshProfessionalStatus(){
+  const recipes=$('professionalRecipeCount');
+  if(recipes)recipes.textContent=`${recipeLibrary.length} recettes`;
+  const favs=$('professionalFavoriteCount');
+  if(favs){
+    const count=favoriteIds().length;
+    favs.textContent=`${count} ${count===1?'favori':'favoris'}`;
+  }
+  const data=$('professionalDataStatus');
+  if(data)data.textContent='Données locales';
+}
+function clairRepasBackupPayload(){
+  const data={};
+  for(const key of V6_BACKUP_KEYS){
+    const value=localStorage.getItem(key);
+    if(value!==null)data[key]=value;
+  }
+  return{app:'Clair Repas',schemaVersion:1,appVersion:'6.0',exportedAt:new Date().toISOString(),data};
+}
+function backupFilename(){
+  const d=new Date();
+  const pad=n=>String(n).padStart(2,'0');
+  return`Clair-Repas-sauvegarde-${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}.json`;
+}
+async function exportClairRepasData(){
+  try{
+    const content=JSON.stringify(clairRepasBackupPayload(),null,2);
+    const file=new File([content],backupFilename(),{type:'application/json'});
+    if(navigator.share&&navigator.canShare&&navigator.canShare({files:[file]})){
+      try{
+        await navigator.share({title:'Sauvegarde Clair Repas',text:'Sauvegarde des données personnelles de Clair Repas.',files:[file]});
+        setProductStatus('Sauvegarde prête à être conservée dans Fichiers ou partagée.','success');
+        return;
+      }catch(e){if(e&&e.name==='AbortError')return;}
+    }
+    const url=URL.createObjectURL(file);
+    const a=document.createElement('a');
+    a.href=url;a.download=file.name;document.body.appendChild(a);a.click();a.remove();
+    setTimeout(()=>URL.revokeObjectURL(url),1500);
+    setProductStatus('Sauvegarde créée. Conservez ce fichier en lieu sûr.','success');
+  }catch(e){
+    setProductStatus('Impossible de créer la sauvegarde sur cet appareil.','warning');
+  }
+}
+async function restoreClairRepasData(file){
+  if(!file)return;
+  try{
+    const raw=await file.text();
+    const payload=JSON.parse(raw);
+    if(!payload||payload.app!=='Clair Repas'||payload.schemaVersion!==1||!payload.data||typeof payload.data!=='object')throw new Error('invalid');
+    const keys=Object.keys(payload.data).filter(key=>V6_BACKUP_KEYS.includes(key));
+    if(!keys.length)throw new Error('empty');
+    if(!window.confirm(`Restaurer ${keys.length} éléments de Clair Repas ? Les données actuelles correspondantes seront remplacées.`))return;
+    for(const key of keys)localStorage.setItem(key,String(payload.data[key]));
+    localStorage.setItem(V6_WELCOME_KEY,'seen');
+    setProductStatus('Sauvegarde restaurée. Clair Repas va se recharger.','success');
+    setTimeout(()=>window.location.reload(),350);
+  }catch(e){
+    setProductStatus('Ce fichier ne semble pas être une sauvegarde Clair Repas valide.','warning');
+  }
+}
+async function manualAppUpdateCheck(){
+  setProductStatus('Vérification de la version en cours…');
+  try{
+    if(!('serviceWorker' in navigator))throw new Error('unsupported');
+    let registration=await navigator.serviceWorker.getRegistration('./');
+    if(!registration)registration=await navigator.serviceWorker.register('./sw.js',{updateViaCache:'none'});
+    await registration.update();
+    if(registration.waiting){
+      setProductStatus('Une mise à jour est prête. Clair Repas va l’activer.','success');
+      registration.waiting.postMessage({type:'SKIP_WAITING'});
+    }else{
+      setProductStatus('Clair Repas V6.0 est à jour.','success');
+    }
+  }catch(e){
+    setProductStatus('Vérification impossible hors connexion. Réessayez lorsque le réseau est disponible.','warning');
+  }
+}
+function closeV6Welcome(openNews=false){
+  localStorage.setItem(V6_WELCOME_KEY,'seen');
+  const overlay=$('welcomeV6');
+  if(overlay)overlay.hidden=true;
+  document.body.classList.remove('browser-open');
+  if(openNews){
+    const details=$('productCenter');
+    if(details){details.open=true;setTimeout(()=>details.scrollIntoView({behavior:'smooth',block:'center'}),30)}
+  }else{
+    setTimeout(()=>{const primary=$('newPlan');if(primary)primary.focus()},20);
+  }
+}
+function maybeShowV6Welcome(){
+  if(localStorage.getItem(V6_WELCOME_KEY)==='seen')return;
+  const overlay=$('welcomeV6');
+  if(!overlay)return;
+  overlay.hidden=false;
+  document.body.classList.add('browser-open');
+}
 const FAVORITES_KEY='crFavMeals';
 const RECENT_RECIPES_KEY='crRecentRecipesV25';
 const MAX_RECENT_RECIPES=10;
@@ -5518,7 +5711,7 @@ function shoppingSelectedContractItems(){
 function shoppingContract(){
   const items=shoppingSelectedContractItems();
   const fingerprint=`fnv1a:${shoppingFNV(JSON.stringify(items))}`;
-  return{schemaVersion:1,source:'Clair Repas',sourceVersion:'5.8',createdAt:new Date().toISOString(),contentFingerprint:fingerprint,items};
+  return{schemaVersion:1,source:'Clair Repas',sourceVersion:'6.0',createdAt:new Date().toISOString(),contentFingerprint:fingerprint,items};
 }
 async function shoppingCopySelected(){
   const items=shoppingSelectedContractItems();
@@ -6911,6 +7104,8 @@ function updateFavoriteUI(){
     button.setAttribute('aria-label',liked?'Retirer des favoris':'Ajouter aux favoris');
   });
   $('favoritesCount').textContent=String(favorites.size);
+  const professional=$('professionalFavoriteCount');
+  if(professional)professional.textContent=`${favorites.size} ${favorites.size===1?'favori':'favoris'}`;
   updateLikedButton();
 }
 function toggleFavorite(id){
@@ -7058,7 +7253,7 @@ function updateTimerUI(){
     if(timerInterval){clearInterval(timerInterval);timerInterval=null}
     bar.classList.remove('show','done');
     document.body.classList.remove('timer-running');
-    document.title='Clair Repas V5.8';
+    document.title='Clair Repas V6.0';
     return;
   }
   const remaining=Math.max(0,Math.ceil((kitchenTimer.endAt-Date.now())/1000));
@@ -7882,7 +8077,17 @@ document.addEventListener('keydown',event=>{
   if(event.key==='Escape'&&!$('recipeBrowser').hidden)closeRecipeBrowser();
 });
 
+$('backupData').onclick=exportClairRepasData;
+$('restoreData').onclick=()=>{$('restoreDataFile').value='';$('restoreDataFile').click()};
+$('restoreDataFile').onchange=event=>restoreClairRepasData(event.target.files&&event.target.files[0]);
+$('checkUpdate').onclick=manualAppUpdateCheck;
+$('welcomeV6Start').onclick=()=>closeV6Welcome(false);
+$('welcomeV6More').onclick=()=>closeV6Welcome(true);
+$('welcomeV6').onclick=event=>{if(event.target===$('welcomeV6'))closeV6Welcome(false)};
+
 loadOrCreate();
+refreshProfessionalStatus();
+setTimeout(maybeShowV6Welcome,120);
 // V5.0 — mise à jour PWA fiabilisée.
 // iOS peut conserver longtemps une instance installée en mémoire. On force une
 // vérification raisonnable du service worker au démarrage et au retour dans
