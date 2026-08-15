@@ -1,4 +1,4 @@
-const CACHE='clair-repas-v45-variete-multijours-20260815';
+const CACHE='clair-repas-v46-contexte-repas-20260815';
 const ASSETS=['./','./index.html','./manifest.webmanifest','./icon-192.png','./icon-512.png'];
 
 self.addEventListener('install',event=>{
