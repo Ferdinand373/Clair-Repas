@@ -9,7 +9,7 @@
 <meta name="apple-mobile-web-app-title" content="Clair Repas">
 <link rel="manifest" href="./manifest.webmanifest">
 <link rel="apple-touch-icon" href="./icon-192.png">
-<title>Clair Repas V5.1</title>
+<title>Clair Repas V5.2</title>
 <style>
 :root{
   --bg:#f4efe7;--card:#fffdfa;--text:#27231f;--muted:#746c63;
@@ -482,7 +482,7 @@ body.timer-running .browser-content{padding-bottom:calc(105px + env(safe-area-in
 
 <p class="note">Clair Repas tient compte du moment, de vos goûts et des derniers repas. Les réglages avancés restent facultatifs.</p>
 <p class="library-count" id="libraryCount">837 plats · 121 entrées · 100 desserts · 52 recettes complémentaires</p>
-<p class="version" id="versionLine">Clair Repas V5.1</p>
+<p class="version" id="versionLine">Clair Repas V5.2</p>
 </main>
 <div class="recipe-browser" id="recipeBrowser" hidden>
   <section class="browser-panel" role="dialog" aria-modal="true" aria-labelledby="browserTitle">
@@ -3131,7 +3131,7 @@ const recipeLibrary=[...dishLibrary,...starters,...desserts,...standaloneLibrary
 const recipeIndex=new Map(recipeLibrary.map(recipe=>[recipe.id,recipe]));
 $('libraryCount').textContent=`${dishLibrary.length} plats · ${starters.length} entrées · ${desserts.length} desserts · ${breakfastRecipes.length} petits-déjeuners · ${sauceRecipes.length} sauces · ${sideRecipes.length} accompagnements`;
 $('libraryHint').textContent=`Découvrir ${recipeLibrary.length} recettes dans le Livre`;
-$('versionLine').textContent='Clair Repas V5.1';
+$('versionLine').textContent='Clair Repas V5.2';
 const FAVORITES_KEY='crFavMeals';
 const RECENT_RECIPES_KEY='crRecentRecipesV25';
 const MAX_RECENT_RECIPES=10;
@@ -5015,6 +5015,7 @@ function ingredientAssistantHTML(){
   </article>`;
 }
 
+// V5.2 — courses intelligentes : ingrédients d’achat normalisés, rayons renforcés et regroupement cru/cuit des féculents.
 // V5.1 — interface courses simplifiée : un seul accès global sous le programme, sans boutons répétés sous chaque recette.
 // V5.0 — version de référence stabilisée : consolidation de V4.4 à V4.9, sans nouvelle fonction ni migration destructive.
 // V4.9 — interface finale simplifiée : essentiel visible, réglages avancés en divulgation progressive.
@@ -5052,26 +5053,69 @@ function shoppingLine(entry){
   if(entry.q==null)return String(entry.item.n||entry.item.k||'').trim();
   return ingredientText(entry.item,entry.q);
 }
+function shoppingRoundConvertedGrams(value){
+  const q=Number(value);
+  if(!Number.isFinite(q))return value;
+  return Math.max(10,Math.round(q/10)*10);
+}
+function shoppingNormalizePurchaseItem(item,q){
+  const sourceName=String(item?.n||item?.k||'').normalize('NFC').trim();
+  const n=normalizeSearchText(sourceName);
+  const unit=shoppingUnit(item?.u);
+  let name=sourceName;
+  let quantity=q;
+  let converted=false;
+  // Une liste de courses doit exprimer ce que l'on achète. Les quantités de
+  // céréales déjà cuites sont donc ramenées à une quantité sèche pratique.
+  const cookedGrains=[
+    [/\briz cuits?\b/,'riz',1/3],
+    [/\bpates? cuites?\b/,'pâtes',0.43],
+    [/\bquinoa cuits?\b/,'quinoa',1/3],
+    [/\bboulgour cuits?\b/,'boulgour',0.4],
+    [/\bsemoule cuites?\b/,'semoule',0.4]
+  ];
+  if(unit==='g'&&q!=null){
+    for(const [pattern,purchaseName,factor] of cookedGrains){
+      if(pattern.test(n)){
+        name=purchaseName;
+        quantity=shoppingRoundConvertedGrams(Number(q)*factor);
+        converted=true;
+        break;
+      }
+    }
+  }
+  // Les pommes de terre gardent leur poids : seul l'état « cuit » disparaît.
+  if(!converted&&/\bpommes? de terre cuites?\b/.test(n)){
+    name='pommes de terre';
+    converted=true;
+  }
+  const purchaseItem=converted?{...item,n:name,k:name}:item;
+  return{item:purchaseItem,q:quantity,unit:shoppingUnit(purchaseItem?.u)};
+}
 function shoppingAisle(name){
   const raw=String(name||'').normalize('NFC').toLocaleLowerCase('fr-FR').trim();
   const has=(word)=>new RegExp(`(^|[\\s’'/-])${word}($|[\\s’'/-])`,'u').test(raw);
-  // Ces trois familles sont volontairement distinguées avant toute
-  // normalisation sans accent ou sans pluriel.
+  // Les homonymes pâte / pâtes / pâté restent distingués avant normalisation.
   if(has('pâtes')||/(^|[\s’'/-])(?:spaghetti|spaghettis|penne|tagliatelles|coquillettes|macaroni|fusilli|linguine|orzo)($|[\s’'/-])/u.test(raw))return'Épicerie';
   if(has('pâte')&&/(brisée|feuilletée|sablée|à pizza|a pizza|à tarte|a tarte)/u.test(raw))return'Boulangerie';
   if(has('pâté')||has('terrine')||has('rillettes')||has('rillette'))return'Charcuterie';
   const n=normalizeSearchText(raw);
-  if(/\b(?:eau|eau gazeuse|eau petillante)\b/.test(n))return'Eau';
-  if(/\b(?:jambon|lardon|bacon|chorizo|andouillette|saucisson|boudin)\b/.test(n))return'Charcuterie';
-  if(/\b(?:cabillaud|saumon|poisson|dorade|daurade|truite|maquereau|sardine|moule|crevette|lieu|thon frais|saint jacques|calamar)\b/.test(n))return'Poissonnerie';
-  if(/\b(?:boeuf|porc|veau|agneau|poulet|dinde|canard|lapin|steak|escalope|bavette|filet mignon|saucisse|merguez|chair a saucisse)\b/.test(n))return'Boucherie';
-  if(/\b(?:beurre|creme|lait|fromage|yaourt|oeuf|parmesan|mozzarella|feta|emmental|gruyere|mascarpone|skyr|faisselle)\b/.test(n))return'Crèmerie';
-  if(/\b(?:pain|baguette|brioche|muffin anglais|pate brisee|pate feuilletee)\b/.test(n))return'Boulangerie';
-  if(/\b(?:surgel|glace)\b/.test(n))return'Surgelés';
-  if(/\b(?:vin|cidre|biere|limonade|soda|sirop|cognac|porto|armagnac|rhum)\b/.test(n))return'Boissons';
-  if(/\b(?:boite|conserve|thon en boite|mais en boite)\b/.test(n))return'Conserves';
-  if(/\b(?:ail|aubergine|avocat|carotte|celeri|champignon|chou|concombre|courgette|echalote|epinard|haricot vert|navet|oignon|poireau|poivron|pomme de terre|radis|salade|tomate|citron|orange|pomme|poire|banane|fraise|melon|raisin|brocoli|petits pois|asperge|betterave|endive|fenouil|framboise|myrtille|rhubarbe)\b/.test(n))return'Fruits et légumes';
-  if(/\b(?:huile|vinaigre|farine|sucre|riz|semoule|quinoa|boulgour|nouilles|chapelure|panko|paprika|curry|cumin|bouillon|moutarde|mayonnaise|ketchup|concentre|coulis|sel|poivre|epice|herbe|miel|levure|cacao|chocolat|lentille|pois chiche|haricot rouge|haricot blanc|polenta|flocon d avoine)\b/.test(n))return'Épicerie';
+  if(/\b(?:eau|eaux|eau gazeuse|eau petillante)\b/.test(n))return'Eau';
+  // Les tomates transformées sont achetées au rayon conserves, même si le mot
+  // « boîte » n'est pas écrit dans la recette.
+  if(/\b(?:tomates? concassees?|tomates? pelees?|pulpe de tomates?|passata)\b/.test(n))return'Conserves';
+  if(/\b(?:boites?|conserves?|thon en boite|mais en boite)\b/.test(n))return'Conserves';
+  if(/\b(?:jambons?|lardons?|bacons?|chorizos?|andouillettes?|saucissons?|boudins?)\b/.test(n))return'Charcuterie';
+  if(/\b(?:cabillauds?|saumons?|poissons?|dorades?|daurades?|truites?|maquereaux?|sardines?|moules?|crevettes?|gambas?|lieu(?:x)?|thons? frais?|saint jacques|coquilles? saint jacques|calamars?|encornets?|huitres?|crabes?|langoustines?)\b/.test(n))return'Poissonnerie';
+  if(/\b(?:boeufs?|porcs?|veaux?|agneaux?|poulets?|dindes?|canards?|lapins?|steaks?|escalopes?|bavettes?|filets? mignons?|saucisses?|merguez|chair a saucisse)\b/.test(n))return'Boucherie';
+  if(/\b(?:beurres?|cremes?|laits?|fromages?|yaourts?|oeufs?|parmesans?|mozzarellas?|fetas?|emmentals?|gruyeres?|mascarpones?|skyrs?|faisselles?)\b/.test(n))return'Crèmerie';
+  if(/\b(?:pains?|baguettes?|brioches?|muffins? anglais|pate brisee|pate feuilletee)\b/.test(n))return'Boulangerie';
+  if(/\b(?:surgeles?|glaces?)\b/.test(n))return'Surgelés';
+  if(/\b(?:vins?|cidres?|bieres?|limonades?|sodas?|sirops?|cognacs?|portos?|armagnacs?|rhums?)\b/.test(n))return'Boissons';
+  // Herbes sèches = épicerie ; herbes fraîches = fruits et légumes.
+  if(/\b(?:basilic|coriandre|persil|ciboulette|menthe|aneth)\b.*\b(?:sec|seche|seches|deshydrate|poudre)\b/.test(n))return'Épicerie';
+  if(/\b(?:ails?|aubergines?|avocats?|carottes?|celeris?|champignons?|chou(?:x)?|concombres?|courgettes?|echalotes?|epinards?|haricots? verts?|navets?|oignons?|poireaux?|poivrons?|pommes? de terre|radis|salades?|tomates?|citrons?|oranges?|pommes?|poires?|bananes?|fraises?|melons?|raisins?|brocolis?|petits pois|asperges?|betteraves?|endives?|fenouils?|framboises?|myrtilles?|rhubarbes?|basilic|coriandre|persil|ciboulette|menthe|aneth)\b/.test(n))return'Fruits et légumes';
+  if(/\b(?:huiles?|vinaigres?|farines?|sucres?|riz|semoules?|quinoas?|boulgours?|nouilles?|chapelures?|panko|paprikas?|currys?|cumins?|bouillons?|moutardes?|mayonnaises?|ketchups?|concentres?|coulis|sels?|poivres?|epices?|herbes?|miels?|levures?|cacaos?|chocolats?|lentilles?|pois chiches?|haricots? rouges?|haricots? blancs?|polenta|flocons? d avoine)\b/.test(n))return'Épicerie';
   return'Divers';
 }
 function shoppingFNV(value){
@@ -5090,13 +5134,15 @@ function shoppingBuildDraft(context){
     if(!recipe)continue;
     for(const item of recipe.i||[]){
       if(shoppingIngredientAvailable(item,source.availableItems||[]))continue;
-      const q=shoppingQuantity(item,recipe);
-      const identity=shoppingExactIdentity(item);
-      const unit=shoppingUnit(item.u);
+      const normalized=shoppingNormalizePurchaseItem(item,shoppingQuantity(item,recipe));
+      const purchaseItem=normalized.item;
+      const q=normalized.q;
+      const identity=shoppingExactIdentity(purchaseItem);
+      const unit=normalized.unit;
       const quantityKind=q==null?'sans-quantite':'quantite';
       const key=`${identity}\u241f${unit}\u241f${quantityKind}`;
       if(!grouped.has(key)){
-        grouped.set(key,{item:{...item},q:q==null?null:q,identity,unit,sourceCount:1});
+        grouped.set(key,{item:{...purchaseItem},q:q==null?null:q,identity,unit,sourceCount:1});
       }else{
         const current=grouped.get(key);
         current.sourceCount+=1;
@@ -5279,7 +5325,7 @@ function shoppingSelectedContractItems(){
 function shoppingContract(){
   const items=shoppingSelectedContractItems();
   const fingerprint=`fnv1a:${shoppingFNV(JSON.stringify(items))}`;
-  return{schemaVersion:1,source:'Clair Repas',sourceVersion:'5.1',createdAt:new Date().toISOString(),contentFingerprint:fingerprint,items};
+  return{schemaVersion:1,source:'Clair Repas',sourceVersion:'5.2',createdAt:new Date().toISOString(),contentFingerprint:fingerprint,items};
 }
 async function shoppingCopySelected(){
   const items=shoppingSelectedContractItems();
@@ -6814,7 +6860,7 @@ function updateTimerUI(){
     if(timerInterval){clearInterval(timerInterval);timerInterval=null}
     bar.classList.remove('show','done');
     document.body.classList.remove('timer-running');
-    document.title='Clair Repas V5.1';
+    document.title='Clair Repas V5.2';
     return;
   }
   const remaining=Math.max(0,Math.ceil((kitchenTimer.endAt-Date.now())/1000));
