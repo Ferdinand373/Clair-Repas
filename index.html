@@ -9,7 +9,7 @@
 <meta name="apple-mobile-web-app-title" content="Clair Repas">
 <link rel="manifest" href="./manifest.webmanifest">
 <link rel="apple-touch-icon" href="./icon-192.png">
-<title>Clair Repas V4.3</title>
+<title>Clair Repas V4.3.1</title>
 <style>
 :root{
   --bg:#f4efe7;--card:#fffdfa;--text:#27231f;--muted:#746c63;
@@ -448,7 +448,7 @@ body.timer-running .browser-content{padding-bottom:calc(105px + env(safe-area-in
 
 <p class="note">La saison, le temps disponible et vos préférences guident les prochains choix. Le programme affiché reste conservé jusqu’à une action volontaire.</p>
 <p class="library-count" id="libraryCount">837 plats · 121 entrées · 100 desserts · 52 recettes complémentaires</p>
-<p class="version" id="versionLine">Clair Repas V4.3</p>
+<p class="version" id="versionLine">Clair Repas V4.3.1</p>
 </main>
 <div class="recipe-browser" id="recipeBrowser" hidden>
   <section class="browser-panel" role="dialog" aria-modal="true" aria-labelledby="browserTitle">
@@ -3097,7 +3097,7 @@ const recipeLibrary=[...dishLibrary,...starters,...desserts,...standaloneLibrary
 const recipeIndex=new Map(recipeLibrary.map(recipe=>[recipe.id,recipe]));
 $('libraryCount').textContent=`${dishLibrary.length} plats · ${starters.length} entrées · ${desserts.length} desserts · ${breakfastRecipes.length} petits-déjeuners · ${sauceRecipes.length} sauces · ${sideRecipes.length} accompagnements`;
 $('libraryHint').textContent=`Découvrir ${recipeLibrary.length} recettes dans le Livre`;
-$('versionLine').textContent='Clair Repas V4.3';
+$('versionLine').textContent='Clair Repas V4.3.1';
 const FAVORITES_KEY='crFavMeals';
 const RECENT_RECIPES_KEY='crRecentRecipesV25';
 const MAX_RECENT_RECIPES=10;
@@ -4205,6 +4205,13 @@ function seasonMethodBoost(recipe,dateOrProfile=new Date()){
   return seasonBlendValue(values,dateOrProfile);
 }
 const recipeSearchCache=new WeakMap();
+const FISH_SEAFOOD_PATTERN=/\b(?:poissons?|saumons?|cabillauds?|colins?|lieu|lieux|merlus?|soles?|daurades?|dorades?|bars?|truites?|thons?|sardines?|maquereau|maquereaux|crevettes?|gambas?|moules?|huitres?|coquilles? (?:saint|st) jacques|calamars?|encornets?|poulpes?|crabes?|homards?|langoustines?|morues?|fruits? de mer)\b/;
+function recipeHasFishOrSeafood(recipe){
+  if(!recipe)return false;
+  if(recipe.group==='poisson')return true;
+  const text=normalizeSearchText(`${recipe.n||''} ${(recipe.i||[]).map(item=>item.n).join(' ')}`);
+  return FISH_SEAFOOD_PATTERN.test(text);
+}
 function recipeRole(recipe){
   if(!recipe)return'unknown';
   if(recipe.role)return recipe.role;
@@ -4231,7 +4238,7 @@ function recipeSearchCategories(recipe){
   if(role==='dish'&&(recipeHasPasta(recipe)||recipe.cuisine==='italienne'))values.push('pâtes','pates','cuisine italienne');
   if(role==='dish'&&(recipe.group==='volaille'||/poulet|dinde|canard|volaille/.test(text)))values.push('poulet','volaille','volailles');
   if(role==='dish'&&(recipe.group==='viande'||/boeuf|veau|porc|agneau/.test(text)))values.push('viande','viandes');
-  if(role==='dish'&&(recipe.group==='poisson'||/poisson|saumon|crevette|moule|morue|sole|fruit de mer/.test(text)))values.push('poisson','poissons','fruits de mer');
+  if(role==='dish'&&recipeHasFishOrSeafood(recipe))values.push('poisson','poissons','fruits de mer');
   if(role==='dish'&&(recipe.starch==='pommes-de-terre'||/pomme de terre|gratin/.test(text)))values.push('pommes de terre','gratins');
   if(role==='dish'&&(/riz|semoule|cereale|quinoa|boulgour|orge|ble/.test(text)||['riz','semoule','cereales'].includes(recipe.starch)))values.push('riz','semoule','céréales','cereales');
   if(role==='dish'&&(/salade|repas leger/.test(text)||String(recipe.family).includes('salade')))values.push('salades','repas légers','repas legers');
@@ -4899,7 +4906,8 @@ function ingredientAssistantHTML(){
   </article>`;
 }
 
-// V4.3 — préparation contrôlée des courses. Aucun article n'est transmis
+// V4.3.1 — correction ciblée du filtre Poissons & fruits de mer.
+// La préparation contrôlée des courses de la V4.3 reste inchangée. Aucun article n'est transmis
 // avant l'action explicite « Envoyer vers Clair Courses ».
 const CLAIR_COURSES_IMPORT_URL='https://ferdinand373.github.io/clair-courses/import.html';
 const SHOPPING_AISLES=['Eau','Épicerie','Fruits et légumes','Boucherie','Charcuterie','Poissonnerie','Boulangerie','Conserves','Crèmerie','Surgelés','Boissons','Hygiène','Maison','Divers'];
@@ -5157,7 +5165,7 @@ function shoppingSelectedContractItems(){
 function shoppingContract(){
   const items=shoppingSelectedContractItems();
   const fingerprint=`fnv1a:${shoppingFNV(JSON.stringify(items))}`;
-  return{schemaVersion:1,source:'Clair Repas',sourceVersion:'4.3',createdAt:new Date().toISOString(),contentFingerprint:fingerprint,items};
+  return{schemaVersion:1,source:'Clair Repas',sourceVersion:'4.3.1',createdAt:new Date().toISOString(),contentFingerprint:fingerprint,items};
 }
 async function shoppingCopySelected(){
   const items=shoppingSelectedContractItems();
@@ -5234,7 +5242,7 @@ const BOOK_SHELVES=[
   {id:'pasta',icon:'🍝',title:'Pâtes & cuisine italienne',description:'Spaghetti, lasagnes, penne et cuisine italienne.',filter:recipe=>bookIsDish(recipe)&&(recipeHasPasta(recipe)||recipe.cuisine==='italienne')},
   {id:'poultry',icon:'🍗',title:'Poulet & volailles',description:'Poulet, dinde, canard et autres volailles.',filter:recipe=>bookIsDish(recipe)&&(recipe.group==='volaille'||bookHas(recipe,/poulet|dinde|canard|volaille/))},
   {id:'meat',icon:'🥩',title:'Bœuf, veau, porc & agneau',description:'Les plats de viande, rôtis ou cuisinés.',filter:recipe=>bookIsDish(recipe)&&(recipe.group==='viande'||bookHas(recipe,/boeuf|veau|porc|agneau|filet mignon/))},
-  {id:'fish',icon:'🐟',title:'Poissons & fruits de mer',description:'Poissons, coquillages et crustacés.',filter:recipe=>bookIsDish(recipe)&&(recipe.group==='poisson'||bookHas(recipe,/poisson|saumon|cabillaud|colin|truite|thon|sardine|maquereau|crevette|moule|morue|sole|calamar|fruit de mer/))},
+  {id:'fish',icon:'🐟',title:'Poissons & fruits de mer',description:'Poissons, coquillages et crustacés.',filter:recipe=>bookIsDish(recipe)&&recipeHasFishOrSeafood(recipe)},
   {id:'potatoes',icon:'🥔',title:'Pommes de terre & gratins',description:'Gratins, purées et pommes de terre sous toutes leurs formes.',filter:recipe=>bookIsDish(recipe)&&(recipe.starch==='pommes-de-terre'||String(recipe.family).includes('gratin')||bookHas(recipe,/pomme de terre|gratin|purée|puree|rösti|rosti/))},
   {id:'cereals',icon:'🍚',title:'Riz, semoule & céréales',description:'Riz, semoule, quinoa, boulgour et autres céréales.',filter:recipe=>bookIsDish(recipe)&&(['riz','semoule','cereales'].includes(recipe.starch)||bookHas(recipe,/riz|semoule|couscous|quinoa|boulgour|orge|cereale|blé|ble/))},
   {id:'light',icon:'🥗',title:'Salades & repas légers',description:'Des assiettes fraîches et des plats légers mais rassasiants.',filter:recipe=>bookIsDish(recipe)&&(String(recipe.family).includes('salade')||recipe.kind==='salad'||bookHas(recipe,/salade|repas leger/))},
@@ -5250,7 +5258,7 @@ const BOOK_STARTER_SUBCATEGORIES=[
   {id:'salads',title:'Salades',filter:recipe=>String(recipe.family).includes('salade')},
   {id:'eggs',title:'Œufs',filter:recipe=>bookHas(recipe,/oeuf|mimosa/)},
   {id:'vegetables',title:'Légumes',filter:recipe=>!bookHas(recipe,/poisson|saumon|truite|thon|crevette|crabe|moule|oeuf|soupe|veloute/)},
-  {id:'seafood',title:'Poissons & fruits de mer',filter:recipe=>bookHas(recipe,/poisson|saumon|truite|thon|sardine|crevette|crabe|moule|fruit de mer/)},
+  {id:'seafood',title:'Poissons & fruits de mer',filter:recipe=>recipeHasFishOrSeafood(recipe)},
   {id:'soups',title:'Soupes & veloutés',filter:recipe=>bookHas(recipe,/soupe|veloute|gaspacho|bouillon/)},
   {id:'warm',title:'Entrées chaudes',filter:recipe=>recipe.hotCold==='chaud'}
 ];
@@ -6397,7 +6405,7 @@ function updateTimerUI(){
     if(timerInterval){clearInterval(timerInterval);timerInterval=null}
     bar.classList.remove('show','done');
     document.body.classList.remove('timer-running');
-    document.title='Clair Repas V4.3';
+    document.title='Clair Repas V4.3.1';
     return;
   }
   const remaining=Math.max(0,Math.ceil((kitchenTimer.endAt-Date.now())/1000));
