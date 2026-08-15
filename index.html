@@ -9,7 +9,7 @@
 <meta name="apple-mobile-web-app-title" content="Clair Repas">
 <link rel="manifest" href="./manifest.webmanifest">
 <link rel="apple-touch-icon" href="./icon-192.png">
-<title>Clair Repas V4.8</title>
+<title>Clair Repas V4.9</title>
 <style>
 :root{
   --bg:#f4efe7;--card:#fffdfa;--text:#27231f;--muted:#746c63;
@@ -38,7 +38,18 @@ h1{font-size:30px;margin:0 0 3px;letter-spacing:-.5px}
 .day-option:active{transform:scale(.98)}
 .day-option[aria-pressed="true"]{border-color:var(--green);background:var(--green);color:white;box-shadow:0 5px 14px rgba(63,118,87,.2)}
 .days-select-fallback{display:none}
-.settings{padding:0;margin:0 0 13px;display:grid;grid-template-columns:repeat(4,1fr);gap:10px;align-items:end}
+.planning-basics{display:grid;grid-template-columns:minmax(0,1fr) 150px;gap:10px;align-items:end;margin:0 0 11px}
+.planning-basics .day-segments{margin:0}
+.people-setting{min-width:0}
+.people-setting label{font-weight:760}
+.planning-options{margin:0 0 12px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.58);overflow:hidden}
+.planning-options summary{display:flex;align-items:center;justify-content:space-between;gap:10px;min-height:46px;padding:10px 12px;cursor:pointer;list-style:none;color:var(--text);font-size:12.5px;font-weight:830}
+.planning-options summary::-webkit-details-marker{display:none}
+.planning-options summary::after{content:'›';flex:0 0 auto;color:var(--muted);font-size:20px;line-height:1;transform:rotate(90deg);transition:transform .15s}
+.planning-options[open] summary::after{transform:rotate(-90deg)}
+.planning-options-summary{margin-left:auto;color:var(--muted);font-size:11px;font-weight:720;text-align:right;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:55%}
+.planning-options[open] .planning-options-summary{display:none}
+.settings{padding:0 12px 12px;margin:0;display:grid;grid-template-columns:repeat(3,1fr);gap:10px;align-items:end}
 label{display:block;font-size:12px;color:var(--muted);margin:0 0 6px}
 select{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:13px;background:white;color:var(--text)}
 .plan-primary{position:relative;z-index:1;width:100%;min-height:56px;padding:14px;border:1px solid var(--green);border-radius:15px;background:var(--green);color:white;font-size:17px;font-weight:880;box-shadow:0 8px 18px rgba(63,118,87,.2);touch-action:manipulation}
@@ -303,19 +314,22 @@ body.timer-running .browser-content{padding-bottom:calc(105px + env(safe-area-in
 .book-target strong{display:block;font-size:15px}
 .book-target span{display:block;margin-top:4px;color:var(--muted);font-size:12px}
 @media(max-width:620px){
+  .planning-basics{grid-template-columns:1fr}
   .settings{grid-template-columns:1fr 1fr}
+  .settings .context-setting{grid-column:1/-1}
   .settings .mode-setting{grid-column:auto}
   .book-shelves{grid-template-columns:1fr}
 }
 @media(max-width:390px){
+  .planning-options-summary{max-width:48%}
   main{padding-left:12px;padding-right:12px}
   .planning-card{padding:14px}
   .planning-heading h2{font-size:20px}
   .day-segments{gap:6px}
   .day-option{min-height:52px;padding-left:3px;padding-right:3px;font-size:14px}
-  .settings{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+  .settings{display:grid;grid-template-columns:1fr;gap:9px}
   .settings>div+div{margin-top:0}
-  .settings .mode-setting{grid-column:auto}
+  .settings .mode-setting,.settings .context-setting{grid-column:auto}
   .recipe-shortcuts-secondary{grid-template-columns:1fr}
   .program-heading{display:block}
   .program-summary{display:block;margin-top:3px}
@@ -351,20 +365,14 @@ body.timer-running .browser-content{padding-bottom:calc(105px + env(safe-area-in
     <p class="planning-intro">Clair Repas choisit automatiquement le Midi et le Soir.</p>
   </div>
 
-  <div class="day-segments" id="daySegments" role="group" aria-label="Nombre de jours à planifier">
-    <button class="day-option" type="button" data-days="1" aria-pressed="false">1 jour</button>
-    <button class="day-option" type="button" data-days="2" aria-pressed="true">2 jours</button>
-    <button class="day-option" type="button" data-days="3" aria-pressed="false">3 jours</button>
-  </div>
-  <select class="days-select-fallback" id="days" tabindex="-1" aria-hidden="true">
-    <option value="1">1 jour</option>
-    <option value="2" selected>2 jours</option>
-    <option value="3">3 jours</option>
-  </select>
-
-  <div class="settings">
-    <div>
-      <label for="people">Nombre de personnes</label>
+  <div class="planning-basics">
+    <div class="day-segments" id="daySegments" role="group" aria-label="Nombre de jours à planifier">
+      <button class="day-option" type="button" data-days="1" aria-pressed="false">1 jour</button>
+      <button class="day-option" type="button" data-days="2" aria-pressed="true">2 jours</button>
+      <button class="day-option" type="button" data-days="3" aria-pressed="false">3 jours</button>
+    </div>
+    <div class="people-setting">
+      <label for="people">Pour combien ?</label>
       <select id="people">
         <option value="1">1 personne</option>
         <option value="2" selected>2 personnes</option>
@@ -376,39 +384,50 @@ body.timer-running .browser-content{padding-bottom:calc(105px + env(safe-area-in
         <option value="8">8 personnes</option>
       </select>
     </div>
-    <div>
-      <label for="timeAvailable">Temps disponible</label>
-      <select id="timeAvailable">
-        <option value="Tous">Peu importe</option>
-        <option value="20">20 min maximum</option>
-        <option value="30">30 min maximum</option>
-        <option value="45plus">45 min ou plus</option>
-      </select>
-    </div>
-    <div class="mode-setting">
-      <label for="mode">Mode de cuisson</label>
-      <select id="mode">
-        <option value="Tous">Toutes</option>
-        <option>Poêle</option>
-        <option>Casserole</option>
-        <option>Air Fryer</option>
-        <option>Four</option>
-        <option>Plancha</option>
-        <option>Barbecue</option>
-        <option>Sans cuisson</option>
-      </select>
-    </div>
-    <div class="context-setting">
-      <label for="mealContext">Contexte du repas</label>
-      <select id="mealContext">
-        <option value="auto">Automatique</option>
-        <option value="light">Léger & frais</option>
-        <option value="heat">Grande chaleur</option>
-        <option value="comfort">Réconfortant</option>
-        <option value="gourmand">Gourmand</option>
-      </select>
-    </div>
   </div>
+  <select class="days-select-fallback" id="days" tabindex="-1" aria-hidden="true">
+    <option value="1">1 jour</option>
+    <option value="2" selected>2 jours</option>
+    <option value="3">3 jours</option>
+  </select>
+
+  <details class="planning-options" id="planningOptions">
+    <summary><span>⚙️ Affiner les propositions</span><span class="planning-options-summary" id="planningOptionsSummary">Automatique</span></summary>
+    <div class="settings">
+      <div>
+        <label for="timeAvailable">Temps disponible</label>
+        <select id="timeAvailable">
+          <option value="Tous">Peu importe</option>
+          <option value="20">20 min maximum</option>
+          <option value="30">30 min maximum</option>
+          <option value="45plus">45 min ou plus</option>
+        </select>
+      </div>
+      <div class="mode-setting">
+        <label for="mode">Mode de cuisson</label>
+        <select id="mode">
+          <option value="Tous">Toutes</option>
+          <option>Poêle</option>
+          <option>Casserole</option>
+          <option>Air Fryer</option>
+          <option>Four</option>
+          <option>Plancha</option>
+          <option>Barbecue</option>
+          <option>Sans cuisson</option>
+        </select>
+      </div>
+      <div class="context-setting">
+        <label for="mealContext">Contexte du repas</label>
+        <select id="mealContext">
+          <option value="auto">Automatique</option>
+          <option value="light">Léger & frais</option>
+          <option value="heat">Grande chaleur</option>
+          <option value="comfort">Réconfortant</option>
+          <option value="gourmand">Gourmand</option>
+        </select>
+      </div>
+    </div>
+  </details>
 
   <button class="plan-primary" id="newPlan" type="button">🎲 Préparer mon programme</button>
 </section>
@@ -462,9 +481,9 @@ body.timer-running .browser-content{padding-bottom:calc(105px + env(safe-area-in
   </div>
 </details>
 
-<p class="note">Midi ou soir, saison, temps, cuisson et contexte du moment guident les prochains choix. En mode Automatique, Clair Repas décide seul.</p>
+<p class="note">Clair Repas tient compte du moment, de vos goûts et des derniers repas. Les réglages avancés restent facultatifs.</p>
 <p class="library-count" id="libraryCount">837 plats · 121 entrées · 100 desserts · 52 recettes complémentaires</p>
-<p class="version" id="versionLine">Clair Repas V4.8</p>
+<p class="version" id="versionLine">Clair Repas V4.9</p>
 </main>
 <div class="recipe-browser" id="recipeBrowser" hidden>
   <section class="browser-panel" role="dialog" aria-modal="true" aria-labelledby="browserTitle">
@@ -3113,7 +3132,7 @@ const recipeLibrary=[...dishLibrary,...starters,...desserts,...standaloneLibrary
 const recipeIndex=new Map(recipeLibrary.map(recipe=>[recipe.id,recipe]));
 $('libraryCount').textContent=`${dishLibrary.length} plats · ${starters.length} entrées · ${desserts.length} desserts · ${breakfastRecipes.length} petits-déjeuners · ${sauceRecipes.length} sauces · ${sideRecipes.length} accompagnements`;
 $('libraryHint').textContent=`Découvrir ${recipeLibrary.length} recettes dans le Livre`;
-$('versionLine').textContent='Clair Repas V4.8';
+$('versionLine').textContent='Clair Repas V4.9';
 const FAVORITES_KEY='crFavMeals';
 const RECENT_RECIPES_KEY='crRecentRecipesV25';
 const MAX_RECENT_RECIPES=10;
@@ -3602,7 +3621,21 @@ $('days').value=localStorage.getItem('crDays')||'2';
 $('mode').value=localStorage.getItem('crMode')||'Tous';
 $('timeAvailable').value=localStorage.getItem('crTimeAvailable')||'Tous';
 $('mealContext').value=localStorage.getItem('crMealContext')||'auto';
+function updatePlanningOptionsSummary(){
+  const parts=[];
+  const time=$('timeAvailable')?.value||'Tous';
+  const mode=$('mode')?.value||'Tous';
+  const context=$('mealContext')?.value||'auto';
+  if(time==='20')parts.push('20 min');
+  else if(time==='30')parts.push('30 min');
+  else if(time==='45plus')parts.push('45 min+');
+  if(mode!=='Tous')parts.push(mode);
+  const contextLabels={light:'Léger & frais',heat:'Grande chaleur',comfort:'Réconfortant',gourmand:'Gourmand'};
+  if(contextLabels[context])parts.push(contextLabels[context]);
+  if($('planningOptionsSummary'))$('planningOptionsSummary').textContent=parts.length?parts.join(' · '):'Automatique';
+}
 syncDayChoice();
+updatePlanningOptionsSummary();
 
 const seasonInfo={
   printemps:{icon:'🌱',label:'Menus de printemps'},
@@ -4983,6 +5016,7 @@ function ingredientAssistantHTML(){
   </article>`;
 }
 
+// V4.9 — interface finale simplifiée : essentiel visible, réglages avancés en divulgation progressive.
 // V4.8 — personnalité culinaire : valeur sûre, découverte, familial, équilibré et petit plaisir.
 // V4.7 — composition Entrée / Plat / Dessert plus fluide, sur la base du contexte V4.6, de la variété V4.5 et de la mémoire V4.4.
 // V4.3.1 — correction ciblée du filtre Poissons & fruits de mer.
@@ -5244,7 +5278,7 @@ function shoppingSelectedContractItems(){
 function shoppingContract(){
   const items=shoppingSelectedContractItems();
   const fingerprint=`fnv1a:${shoppingFNV(JSON.stringify(items))}`;
-  return{schemaVersion:1,source:'Clair Repas',sourceVersion:'4.8',createdAt:new Date().toISOString(),contentFingerprint:fingerprint,items};
+  return{schemaVersion:1,source:'Clair Repas',sourceVersion:'4.9',createdAt:new Date().toISOString(),contentFingerprint:fingerprint,items};
 }
 async function shoppingCopySelected(){
   const items=shoppingSelectedContractItems();
@@ -6779,7 +6813,7 @@ function updateTimerUI(){
     if(timerInterval){clearInterval(timerInterval);timerInterval=null}
     bar.classList.remove('show','done');
     document.body.classList.remove('timer-running');
-    document.title='Clair Repas V4.8';
+    document.title='Clair Repas V4.9';
     return;
   }
   const remaining=Math.max(0,Math.ceil((kitchenTimer.endAt-Date.now())/1000));
@@ -7520,14 +7554,17 @@ $('people').onchange=()=>{
 };
 $('mode').onchange=()=>{
   localStorage.setItem('crMode',$('mode').value);
+  updatePlanningOptionsSummary();
   show('Préférence enregistrée pour le prochain programme');
 };
 $('timeAvailable').onchange=()=>{
   localStorage.setItem('crTimeAvailable',$('timeAvailable').value);
+  updatePlanningOptionsSummary();
   show('Temps enregistré pour le prochain programme');
 };
 $('mealContext').onchange=()=>{
   localStorage.setItem('crMealContext',$('mealContext').value);
+  updatePlanningOptionsSummary();
   show($('mealContext').value==='auto'?'Contexte automatique réactivé':'Contexte enregistré pour le prochain programme');
 };
 $('resetPreferences').onclick=()=>{
