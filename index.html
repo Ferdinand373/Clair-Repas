@@ -9,7 +9,7 @@
 <meta name="apple-mobile-web-app-title" content="Clair Repas">
 <link rel="manifest" href="./manifest.webmanifest">
 <link rel="apple-touch-icon" href="./icon-192.png">
-<title>Clair Repas V4.4</title>
+<title>Clair Repas V4.5</title>
 <style>
 :root{
   --bg:#f4efe7;--card:#fffdfa;--text:#27231f;--muted:#746c63;
@@ -450,7 +450,7 @@ body.timer-running .browser-content{padding-bottom:calc(105px + env(safe-area-in
 
 <p class="note">La saison, le temps disponible et vos préférences guident les prochains choix. Le programme affiché reste conservé jusqu’à une action volontaire.</p>
 <p class="library-count" id="libraryCount">837 plats · 121 entrées · 100 desserts · 52 recettes complémentaires</p>
-<p class="version" id="versionLine">Clair Repas V4.4</p>
+<p class="version" id="versionLine">Clair Repas V4.5</p>
 </main>
 <div class="recipe-browser" id="recipeBrowser" hidden>
   <section class="browser-panel" role="dialog" aria-modal="true" aria-labelledby="browserTitle">
@@ -3099,7 +3099,7 @@ const recipeLibrary=[...dishLibrary,...starters,...desserts,...standaloneLibrary
 const recipeIndex=new Map(recipeLibrary.map(recipe=>[recipe.id,recipe]));
 $('libraryCount').textContent=`${dishLibrary.length} plats · ${starters.length} entrées · ${desserts.length} desserts · ${breakfastRecipes.length} petits-déjeuners · ${sauceRecipes.length} sauces · ${sideRecipes.length} accompagnements`;
 $('libraryHint').textContent=`Découvrir ${recipeLibrary.length} recettes dans le Livre`;
-$('versionLine').textContent='Clair Repas V4.4';
+$('versionLine').textContent='Clair Repas V4.5';
 const FAVORITES_KEY='crFavMeals';
 const RECENT_RECIPES_KEY='crRecentRecipesV25';
 const MAX_RECENT_RECIPES=10;
@@ -4035,9 +4035,17 @@ function choiceExplanation(recipe,type){
   else if(favoriteSet().has(recipe.id))reasons.push('elle fait partie de vos favoris');
   const preference=observedPreferenceMultiplier(recipe,type,personalization.profile,false);
   if(preference>1.025&&reasons.length<2)reasons.push('elle correspond à des choix que vous faites souvent');
-  const history=usageData().sequence.slice(-6).map(item=>recipeIndex.get(item.id)).filter(Boolean);
-  const maxSimilarity=history.length?Math.max(...history.map(item=>recipeSimilarity(recipe,item))):0;
-  if(history.length&&maxSimilarity<0.64&&reasons.length<2)reasons.push('elle apporte de la variété par rapport aux derniers repas');
+  const usage=usageData();
+  const history=usage.sequence.slice(-8).map(item=>({item,recipe:recipeIndex.get(item.id)})).filter(entry=>entry.recipe);
+  const maxSimilarity=history.length?Math.max(...history.map(entry=>recipeSimilarity(recipe,entry.recipe))):0;
+  const recipeTags=tagsOf(recipe);
+  const recentSameSlot=history.filter(entry=>entry.item.type===type).slice(-3);
+  const rotatesSlot=!recentSameSlot.length||recentSameSlot.every(entry=>{
+    const previous=tagsOf(entry.recipe);
+    return previous.protein!==recipeTags.protein&&previous.family!==recipeTags.family;
+  });
+  if(history.length&&maxSimilarity<0.64&&rotatesSlot&&reasons.length<2)reasons.push('elle change agréablement des repas proposés ces derniers jours');
+  else if(history.length&&maxSimilarity<0.64&&reasons.length<2)reasons.push('elle apporte de la variété par rapport aux derniers repas');
   if(seasonalAffinity(recipe,tags,culinarySeasonProfile())>=0.65&&reasons.length<2)reasons.push('elle est bien adaptée à la saison');
   if(type==='eve'&&(tags.lightness==='leger'||tags.kind==='salad')&&reasons.length<2)reasons.push('son profil convient bien au soir');
   if(!reasons.length)reasons.push('elle respecte la saison, votre temps disponible et la variété des derniers repas');
@@ -4945,7 +4953,7 @@ function ingredientAssistantHTML(){
   </article>`;
 }
 
-// V4.4 — mémoire culinaire active : apprentissage contextuel, favoris et explications.
+// V4.5 — variété intelligente multi-jours, sur la base de la mémoire culinaire active V4.4.
 // V4.3.1 — correction ciblée du filtre Poissons & fruits de mer.
 // La préparation contrôlée des courses de la V4.3 reste inchangée. Aucun article n'est transmis
 // avant l'action explicite « Envoyer vers Clair Courses ».
@@ -5205,7 +5213,7 @@ function shoppingSelectedContractItems(){
 function shoppingContract(){
   const items=shoppingSelectedContractItems();
   const fingerprint=`fnv1a:${shoppingFNV(JSON.stringify(items))}`;
-  return{schemaVersion:1,source:'Clair Repas',sourceVersion:'4.4',createdAt:new Date().toISOString(),contentFingerprint:fingerprint,items};
+  return{schemaVersion:1,source:'Clair Repas',sourceVersion:'4.5',createdAt:new Date().toISOString(),contentFingerprint:fingerprint,items};
 }
 async function shoppingCopySelected(){
   const items=shoppingSelectedContractItems();
@@ -5868,6 +5876,75 @@ function similarityPenalty(recipe,items,strict=false){
   if(maximum>=0.54)return strict?0.34:0.68;
   return 1;
 }
+
+// V4.5 — variété intelligente sur plusieurs jours.
+// Le moteur regarde à la fois les derniers repas toutes plages confondues et
+// les derniers repas du même créneau (midi avec midi, soir avec soir). Il ne
+// cherche pas une alternance rigide : il réduit progressivement les répétitions
+// de protéines, familles, féculents, cuissons et cuisines, puis récompense une
+// rotation naturelle quand plusieurs univers sont possibles.
+function multiDayVarietyMultiplier(recipe,type,scoring){
+  const tags=tagsOf(recipe);
+  const recent=(scoring?.history||[]).concat(scoring?.selected||[]).slice(-8);
+  if(!recent.length)return 1;
+  const sameSlot=recent.filter(item=>item.type===type).slice(-4);
+  const recent4=recent.slice(-4);
+  const recent6=recent.slice(-6);
+  const same=(item,axis)=>item&&tags[axis]&&item[axis]===tags[axis];
+  const count=(items,axis)=>items.reduce((n,item)=>n+(same(item,axis)?1:0),0);
+  let factor=1;
+
+  // Le repas précédent compte le plus, particulièrement au sein de la même journée.
+  const last=recent.at(-1);
+  if(last){
+    if(same(last,'protein'))factor*=0.16;
+    else if(same(last,'group'))factor*=0.46;
+    if(same(last,'family'))factor*=0.24;
+    if(same(last,'subFamily'))factor*=0.34;
+    if(same(last,'starch'))factor*=0.48;
+    if(same(last,'method'))factor*=0.58;
+    if(same(last,'cuisine'))factor*=0.78;
+  }
+
+  // Éviter que deux ou trois jours successifs tournent autour du même univers.
+  const protein4=count(recent4,'protein');
+  const group4=count(recent4,'group');
+  const family4=count(recent4,'family');
+  const starch4=count(recent4,'starch');
+  const method4=count(recent4,'method');
+  const cuisine6=count(recent6,'cuisine');
+  if(protein4>=2)factor*=0.34;
+  if(group4>=3)factor*=0.26;
+  if(family4>=2)factor*=0.42;
+  if(starch4>=2)factor*=0.52;
+  if(method4>=2)factor*=0.56;
+  if(cuisine6>=3)factor*=0.68;
+
+  // Comparaison avec les précédents déjeuners/dîners : on évite les habitudes
+  // mécaniques du type « poulet tous les midis » ou « pâtes tous les soirs ».
+  const previousSameSlot=sameSlot.at(-1);
+  if(previousSameSlot){
+    if(same(previousSameSlot,'protein'))factor*=0.30;
+    else if(same(previousSameSlot,'group'))factor*=0.58;
+    if(same(previousSameSlot,'family'))factor*=0.38;
+    if(same(previousSameSlot,'starch'))factor*=0.62;
+    if(same(previousSameSlot,'method'))factor*=0.70;
+  }
+  if(sameSlot.length>=3){
+    const sameSlotProtein=count(sameSlot,'protein');
+    const sameSlotGroup=count(sameSlot,'group');
+    if(sameSlotProtein>=2)factor*=0.40;
+    if(sameSlotGroup>=3)factor*=0.45;
+  }
+
+  // Petite récompense pour une vraie rotation, sans transformer le moteur en
+  // tableau nutritionnel rigide. La mémoire des goûts reste prioritaire.
+  if(count(recent4,'protein')===0)factor*=1.16;
+  if(count(recent4,'family')===0)factor*=1.11;
+  if(count(recent4,'starch')===0)factor*=1.07;
+  if(count(recent6,'cuisine')===0)factor*=1.05;
+  return Math.max(0.015,Math.min(1.35,factor));
+}
 function alternativeTrailPenalty(recipe,trailRecipes){
   const recent=(trailRecipes||[]).slice(-6);
   if(!recent.length)return 1;
@@ -5907,6 +5984,7 @@ function candidateScore(recipe,type,context,data,favorites,prepared,personalizat
 
   const {history,selected,last,lastSix}=scoring;
   score*=similarityPenalty(recipe,lastSix,false);
+  score*=multiDayVarietyMultiplier(recipe,type,scoring);
 
   if(last){
     if(tags.protein===last.protein)score*=0.08;
@@ -6446,7 +6524,7 @@ function updateTimerUI(){
     if(timerInterval){clearInterval(timerInterval);timerInterval=null}
     bar.classList.remove('show','done');
     document.body.classList.remove('timer-running');
-    document.title='Clair Repas V4.4';
+    document.title='Clair Repas V4.5';
     return;
   }
   const remaining=Math.max(0,Math.ceil((kitchenTimer.endAt-Date.now())/1000));
