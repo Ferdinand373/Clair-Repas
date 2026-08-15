@@ -3,13 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#f4efe7">
+<meta name="theme-color" content="#f7f3ec">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="Clair Repas">
 <link rel="manifest" href="./manifest.webmanifest">
 <link rel="apple-touch-icon" href="./icon-192.png">
-<title>Clair Repas V6.0</title>
+<title>Clair Repas V6.1</title>
 <style>
 :root{
   --bg:#f4efe7;--card:#fffdfa;--text:#27231f;--muted:#746c63;
@@ -387,6 +387,139 @@ body.timer-running .browser-content{padding-bottom:calc(105px + env(safe-area-in
   .ingredient-add{width:100%}
   .shopping-toolbar{grid-template-columns:1fr}
 }
+
+
+/* V6.1 — Élégance : finition visuelle premium, sans changement fonctionnel. */
+:root{
+  --bg:#f7f3ec;--card:#fffefa;--text:#24211d;--muted:#746d64;
+  --green:#326a4b;--green-soft:#e9f2ec;--line:#e7dfd5;
+  --purple:#675881;--gold:#9a6a18;
+  --shadow-card:0 10px 30px rgba(53,43,33,.065);
+  --shadow-soft:0 5px 16px rgba(53,43,33,.045)
+}
+html{background:#f7f3ec}
+body{
+  background:
+    radial-gradient(circle at 50% -120px,rgba(206,226,213,.72),transparent 370px),
+    linear-gradient(180deg,#fbf8f2 0,#f7f3ec 38%,#f5f0e8 100%);
+  background-attachment:fixed
+}
+main{max-width:760px;padding-top:calc(18px + env(safe-area-inset-top));padding-bottom:calc(34px + env(safe-area-inset-bottom))}
+header{
+  position:relative;isolation:isolate;overflow:hidden;
+  margin:0 0 16px;padding:24px 18px 18px;
+  border:1px solid rgba(212,224,216,.92);border-radius:28px;
+  background:linear-gradient(145deg,rgba(255,255,255,.92),rgba(243,249,245,.82));
+  box-shadow:0 16px 44px rgba(45,70,55,.085)
+}
+header::before{content:'';position:absolute;z-index:-1;width:190px;height:190px;right:-75px;top:-95px;border-radius:50%;background:radial-gradient(circle,rgba(114,161,132,.22),rgba(114,161,132,0) 70%)}
+header::after{content:'';position:absolute;z-index:-1;width:145px;height:145px;left:-65px;bottom:-100px;border-radius:50%;background:radial-gradient(circle,rgba(223,190,128,.16),rgba(223,190,128,0) 72%)}
+.brand-kicker{margin-bottom:9px;padding:6px 10px;border-color:#d2e3d7;background:rgba(246,251,247,.9);font-size:9.5px;letter-spacing:.85px}
+header h1{font-size:36px;line-height:1.02;letter-spacing:-1.25px;margin-bottom:7px;color:#22251f}
+header .subtitle{max-width:500px;margin:auto;color:#676e66;font-size:14px;line-height:1.45}
+.season-line{margin-top:11px;padding:6px 11px;border:1px solid #d7e7dc;background:rgba(237,247,240,.9);font-size:11.5px}
+.trust-strip{gap:8px;margin-top:15px}
+.trust-pill{padding:10px 7px;border-color:rgba(224,218,209,.9);border-radius:14px;background:rgba(255,255,255,.76);box-shadow:0 3px 10px rgba(62,51,41,.025);font-size:9.5px}
+.trust-pill strong{font-size:12.5px;color:#30332e}
+.planning-card,.day-card,.history,.product-center{border-color:rgba(226,217,207,.92);box-shadow:var(--shadow-card)}
+.planning-card{position:relative;padding:19px;border-radius:25px;background:linear-gradient(180deg,#fffefa 0,#fffdfa 100%)}
+.planning-card::before{content:'';position:absolute;left:22px;right:22px;top:0;height:3px;border-radius:0 0 3px 3px;background:linear-gradient(90deg,transparent,#79a98a,transparent);opacity:.75}
+.planning-heading h2{font-size:21px;color:#315f46;letter-spacing:-.45px}
+.planning-intro{font-size:12.5px;line-height:1.5}
+.day-segments{gap:7px}
+.day-option{min-height:52px;border-color:#e3ddd4;border-radius:15px;background:#fffdfa;box-shadow:0 2px 7px rgba(46,38,31,.025);font-weight:820}
+.day-option[aria-pressed="true"]{border-color:#356d4e;background:linear-gradient(145deg,#3c7656,#2f6848);box-shadow:0 8px 20px rgba(50,106,75,.22)}
+select{border-color:#e1dad0;border-radius:14px;background:#fffefa;box-shadow:inset 0 1px 0 rgba(255,255,255,.75)}
+.planning-options{border-color:#e4ddd4;border-radius:15px;background:#fbf9f5}
+.plan-primary{min-height:58px;border:0;border-radius:17px;background:linear-gradient(135deg,#3f7b59 0,#2f6648 100%);box-shadow:0 10px 24px rgba(48,104,73,.23),inset 0 1px 0 rgba(255,255,255,.16);font-size:16.5px;letter-spacing:-.1px}
+.plan-primary:active{transform:translateY(1px);box-shadow:0 5px 14px rgba(48,104,73,.18)}
+.recipe-shortcuts{padding:0;margin-bottom:17px;border:0;background:transparent;box-shadow:none}
+.recipe-shortcuts-main,.ingredient-shortcuts,.recipe-shortcuts-secondary{gap:9px}
+.shortcut-btn{border-color:#e4ddd4;border-radius:18px;background:rgba(255,254,250,.94);box-shadow:var(--shadow-soft);transition:transform .08s,box-shadow .15s}
+.shortcut-btn:active{transform:scale(.988)}
+.shortcut-btn.primary{min-height:78px;padding:15px 16px;border:0;background:linear-gradient(135deg,#376f50 0,#2d6144 100%);color:white;box-shadow:0 12px 28px rgba(47,101,71,.22);text-align:left}
+.shortcut-btn.primary .shortcut-title{font-size:18px;letter-spacing:-.25px}
+.shortcut-btn.primary .shortcut-hint{color:rgba(255,255,255,.78)}
+.ingredient-shortcuts .shortcut-btn{min-height:66px;padding:13px 14px}
+.ingredient-shortcuts .shortcut-title{font-size:14.5px}
+.recipe-shortcuts-secondary .shortcut-btn{min-height:48px;font-size:12.5px}
+.program-heading{margin:20px 3px 9px}
+.program-heading h2{font-size:20px;letter-spacing:-.4px}
+.program-summary{padding:5px 8px;border-radius:999px;background:rgba(255,255,255,.6);font-size:10.5px}
+.day-card{border-radius:24px;padding:18px;background:#fffefa}
+.day-head{padding-bottom:11px}
+.day-title{font-size:17px;color:#315f46}
+.meal-title{font-size:20px;letter-spacing:-.3px}
+.small-btn,.meal-component-toggle{border-radius:13px}
+.actions button{min-height:50px;border-radius:16px;box-shadow:0 3px 10px rgba(47,39,31,.025)}
+.history{border-radius:20px;background:rgba(255,254,250,.91)}
+.history summary{padding:15px 16px}
+.learning-settings summary{padding:9px 11px}
+.product-center{margin-top:13px;border-radius:20px;background:rgba(255,254,250,.94)}
+.product-center>summary{min-height:52px;padding:12px 15px;font-size:12.5px}
+.product-new{border:1px solid #dce9df;border-radius:14px;background:linear-gradient(145deg,#f2f8f4,#edf5f0)}
+.product-actions button{border-radius:13px}
+.note{margin-top:16px;line-height:1.4}.library-count{font-size:11px}.version{opacity:.8}
+.recipe-browser{background:rgba(28,25,22,.48);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.browser-panel{height:min(90vh,850px);border-radius:28px 28px 0 0;background:#f8f4ed;box-shadow:0 -18px 55px rgba(28,24,20,.28)}
+.browser-header{padding:13px 14px 10px;border-color:#e7dfd5;background:rgba(255,254,250,.94);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+.browser-title{font-size:16.5px;letter-spacing:-.2px}
+.browser-back,.browser-close{border:1px solid #e8e1d8;background:#f7f3ed}
+.browser-search{padding:13px 15px 8px;background:#f8f4ed}
+.browser-search input{border-radius:17px;border-color:#e3dbd1;background:#fffefa;box-shadow:0 3px 12px rgba(45,37,30,.03)}
+.browser-content{padding-left:15px;padding-right:15px}
+.book-intro{padding:18px;border:1px solid #d6e4da;border-radius:22px;background:linear-gradient(145deg,#f5faf6 0,#edf5f0 100%);box-shadow:0 6px 18px rgba(55,88,66,.04)}
+.book-intro h2{font-size:21px;letter-spacing:-.35px;color:#315f46}
+.book-section-heading{margin:21px 3px 10px;font-size:15px;color:#514c45;letter-spacing:.1px}
+.book-quick,.book-shelf,.book-subcategory,.book-target{border-color:#e4ddd4;background:#fffefa;box-shadow:0 5px 15px rgba(52,43,35,.04)}
+.book-quick{border-radius:17px;padding:13px 14px}
+.book-shelf{grid-template-columns:48px minmax(0,1fr);gap:10px;min-height:76px;padding:13px;border-radius:19px;transition:transform .08s,box-shadow .15s}
+.book-shelf:active{transform:scale(.988)}
+.book-shelf-icon{display:flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:14px;background:linear-gradient(145deg,#f0f6f2,#e5efe8);font-size:23px}
+.book-shelf-title{font-size:14.5px;letter-spacing:-.15px}
+.book-shelf-count{margin-top:5px;font-size:10.5px}
+.book-shelf-heading{padding:3px 2px 4px}
+.book-shelf-heading h2{font-size:23px;letter-spacing:-.55px}
+.book-subcategories{gap:7px}
+.book-subcategory{min-height:44px;border-radius:14px;background:#fffefa;box-shadow:none}
+.book-subcategory[aria-pressed="true"]{border-color:#8db49b;background:#e9f2ec;color:#2f6648;box-shadow:inset 0 0 0 1px rgba(50,106,75,.08)}
+.book-recipe-result{margin-bottom:9px;border-color:#e4ddd4;border-radius:18px;background:#fffefa;box-shadow:0 5px 16px rgba(52,43,35,.035)}
+.book-recipe-open{min-height:68px;padding:14px 15px}
+.book-recipe-title{font-size:15.5px;letter-spacing:-.12px}
+.book-recipe-meta{font-size:11.5px}
+.book-more{border:0;border-radius:16px;background:linear-gradient(145deg,#eaf3ed,#e1eee6);color:#315f46}
+.recipe-result,.ingredient-result,.shopping-row{border-color:#e4ddd4;border-radius:18px;background:#fffefa;box-shadow:0 5px 16px rgba(52,43,35,.035)}
+.browser-recipe-title{font-size:25px;letter-spacing:-.6px}
+.browser-recipe .recipe{padding-top:14px}
+.browser-recipe .recipe h3{margin-top:16px;color:#315f46;font-size:15px;letter-spacing:.05px}
+.browser-recipe .recipe ul,.browser-recipe .recipe ol{line-height:1.55}
+.browser-recipe .recipe ol>li{margin-bottom:13px;padding-left:2px}
+.portion-control,.recipe-favorite{border-color:#e3dbd1;border-radius:14px;background:#fffefa}
+.recipe-yield,.recipe-feedback,.recipe-personal-note{border-radius:15px}
+.recipe-feedback{background:#fbf8f4}.recipe-personal-note{background:#fbf9fc}
+.shopping-intro,.ingredient-assistant-intro{border-radius:21px;background:#fffefa;box-shadow:0 5px 16px rgba(52,43,35,.035)}
+.shopping-send,.ingredient-find,.browser-select-recipe{border:0;border-radius:16px;background:linear-gradient(135deg,#3d7856,#2f6648);box-shadow:0 8px 19px rgba(48,104,73,.18)}
+.toast{border-radius:14px;background:rgba(37,33,29,.94);box-shadow:0 10px 30px rgba(0,0,0,.16);backdrop-filter:blur(8px)}
+@media(min-width:621px){.book-shelves{gap:11px}.book-shelf{min-height:82px}}
+@media(max-width:620px){
+  main{padding-left:13px;padding-right:13px}
+  header{padding:21px 14px 16px;border-radius:25px}
+  header h1{font-size:33px}
+  .trust-strip{grid-template-columns:repeat(3,minmax(0,1fr));gap:5px}
+  .trust-pill{padding:8px 4px;font-size:8.5px}.trust-pill strong{font-size:11px}
+  .planning-card{padding:16px;border-radius:23px}
+  .ingredient-shortcuts{grid-template-columns:1fr 1fr}
+}
+@media(max-width:390px){
+  header h1{font-size:31px}
+  header .subtitle{font-size:13px}
+  .trust-strip{grid-template-columns:1fr 1fr 1fr}
+  .trust-pill{line-height:1.12}
+  .shortcut-btn.primary{min-height:74px}
+  .ingredient-shortcuts{grid-template-columns:1fr}
+  .book-shelf{min-height:70px}
+}
+
 </style>
 </head>
 <body>
@@ -529,12 +662,12 @@ body.timer-running .browser-content{padding-bottom:calc(105px + env(safe-area-in
   <summary>ℹ️ Clair Repas · À propos, sauvegarde & mise à jour</summary>
   <div class="product-panel">
     <div class="product-identity">
-      <strong>Clair Repas V6.0</strong>
+      <strong>Clair Repas V6.1</strong>
       <span>Votre assistant culinaire personnel. L’intelligence derrière, la simplicité devant.</span>
     </div>
     <div class="product-new">
-      <strong>Nouveautés V6</strong>
-      Interface affinée, prise en main guidée, état de l’application visible et sauvegarde/restauration de vos favoris, notes, historique, préférences et apprentissage.
+      <strong>Nouveautés V6.1 · Élégance</strong>
+      Présentation plus raffinée, accueil plus lisible, cartes plus aérées et Livre modernisé, sans changer vos habitudes ni les fonctions de Clair Repas.
     </div>
     <div class="product-actions">
       <button class="product-primary" id="backupData" type="button">💾 Sauvegarder mes données</button>
@@ -548,7 +681,7 @@ body.timer-running .browser-content{padding-bottom:calc(105px + env(safe-area-in
 
 <p class="note">Clair Repas tient compte du moment, de vos goûts et des derniers repas. Les réglages avancés restent facultatifs.</p>
 <p class="library-count" id="libraryCount">837 plats · 121 entrées · 100 desserts · 52 recettes complémentaires</p>
-<p class="version" id="versionLine">Clair Repas V6.0</p>
+<p class="version" id="versionLine">Clair Repas V6.1</p>
 </main>
 <div class="recipe-browser" id="recipeBrowser" hidden>
   <section class="browser-panel" role="dialog" aria-modal="true" aria-labelledby="browserTitle">
@@ -3343,7 +3476,7 @@ for(const r of [...noon,...evening,...starters,...desserts]){if(r.n==="Œufs en 
 for(const r of [...noon,...evening,...starters,...desserts]){if(r.n==="Quenelles de brochet sauce Nantua")crAddCollection(r,"bistrot-brasserie")}
 for(const r of [...noon,...evening,...starters,...desserts]){if(r.n==="Choucroute garnie alsacienne")crAddCollection(r,"bistrot-brasserie")}
 for(const r of [...noon,...evening,...starters,...desserts]){if(r.n==="Quiche Lorraine")crAddCollection(r,"bistrot-brasserie")}
-window.__CLAIR_REPAS_EDITORIAL_VERSION="6.0";
+window.__CLAIR_REPAS_EDITORIAL_VERSION="6.1";
 const $=id=>document.getElementById(id);
 noon.forEach(recipe=>{recipe.mealSlots=['mid']});
 evening.forEach(recipe=>{recipe.mealSlots=['eve']});
@@ -3353,7 +3486,8 @@ const recipeLibrary=[...dishLibrary,...starters,...desserts,...standaloneLibrary
 const recipeIndex=new Map(recipeLibrary.map(recipe=>[recipe.id,recipe]));
 $('libraryCount').textContent=`${dishLibrary.length} plats · ${starters.length} entrées · ${desserts.length} desserts · ${breakfastRecipes.length} petits-déjeuners · ${sauceRecipes.length} sauces · ${sideRecipes.length} accompagnements`;
 $('libraryHint').textContent=`Découvrir ${recipeLibrary.length} recettes dans le Livre`;
-$('versionLine').textContent='Clair Repas V6.0';
+$('versionLine').textContent='Clair Repas V6.1';
+// V6.1 — Élégance : finition visuelle premium, sans changement fonctionnel.
 // V6.0 — finition produit : prise en main, confiance, sauvegarde et mise à jour manuelle.
 const V6_WELCOME_KEY='crWelcomeV6';
 const V6_BACKUP_KEYS=[
@@ -3440,7 +3574,7 @@ async function manualAppUpdateCheck(){
       setProductStatus('Une mise à jour est prête. Clair Repas va l’activer.','success');
       registration.waiting.postMessage({type:'SKIP_WAITING'});
     }else{
-      setProductStatus('Clair Repas V6.0 est à jour.','success');
+      setProductStatus('Clair Repas V6.1 est à jour.','success');
     }
   }catch(e){
     setProductStatus('Vérification impossible hors connexion. Réessayez lorsque le réseau est disponible.','warning');
@@ -5711,7 +5845,7 @@ function shoppingSelectedContractItems(){
 function shoppingContract(){
   const items=shoppingSelectedContractItems();
   const fingerprint=`fnv1a:${shoppingFNV(JSON.stringify(items))}`;
-  return{schemaVersion:1,source:'Clair Repas',sourceVersion:'6.0',createdAt:new Date().toISOString(),contentFingerprint:fingerprint,items};
+  return{schemaVersion:1,source:'Clair Repas',sourceVersion:'6.1',createdAt:new Date().toISOString(),contentFingerprint:fingerprint,items};
 }
 async function shoppingCopySelected(){
   const items=shoppingSelectedContractItems();
@@ -7253,7 +7387,7 @@ function updateTimerUI(){
     if(timerInterval){clearInterval(timerInterval);timerInterval=null}
     bar.classList.remove('show','done');
     document.body.classList.remove('timer-running');
-    document.title='Clair Repas V6.0';
+    document.title='Clair Repas V6.1';
     return;
   }
   const remaining=Math.max(0,Math.ceil((kitchenTimer.endAt-Date.now())/1000));
