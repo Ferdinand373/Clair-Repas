@@ -9,7 +9,7 @@
 <meta name="apple-mobile-web-app-title" content="Clair Repas">
 <link rel="manifest" href="./manifest.webmanifest">
 <link rel="apple-touch-icon" href="./icon-192.png">
-<title>Clair Repas V7.1</title>
+<title>Clair Repas V7.2</title>
 <style>
 :root{
   --bg:#f4efe7;--card:#fffdfa;--text:#27231f;--muted:#746c63;
@@ -736,6 +736,75 @@ select{min-height:48px;border:1px solid #deebf2;border-radius:16px;background:#f
   .course-block .small-btn{font-size:9px;padding-left:5px;padding-right:5px}
 }
 
+
+
+/* ========================================================================== */
+/* V7.2 — LE LIVRE PREMIUM                                                    */
+/* Une bibliothèque culinaire éditoriale : désir de feuilleter avant chercher. */
+/* ========================================================================== */
+.book-home{padding-bottom:16px}
+.book-intro.book-premium-cover{position:relative;overflow:hidden;margin:1px 0 18px;padding:25px 21px 22px;border:1px solid rgba(69,124,159,.15);border-radius:28px;background:linear-gradient(138deg,#f7fcff 0,#e4f4fd 44%,#f8f3e9 100%);box-shadow:0 17px 43px rgba(35,83,114,.105)}
+.book-intro.book-premium-cover::before{content:'';position:absolute;width:210px;height:210px;right:-84px;top:-105px;border-radius:50%;background:radial-gradient(circle,rgba(94,164,207,.23),transparent 69%)}
+.book-intro.book-premium-cover::after{content:'LE LIVRE';position:absolute;right:-8px;bottom:-17px;color:rgba(42,106,147,.052);font-size:62px;font-weight:960;letter-spacing:-4px;pointer-events:none}
+.book-cover-kicker{position:relative;z-index:1;display:inline-flex;align-items:center;gap:6px;margin:0 0 12px;color:#6b8798;font-size:8.5px;font-weight:950;letter-spacing:1.45px;text-transform:uppercase}
+.book-cover-kicker::before{content:'';width:23px;height:1px;background:#8abbd8}
+.book-intro.book-premium-cover h2{position:relative;z-index:1;margin:0;color:#173b52;font-size:31px;line-height:1.03;letter-spacing:-1.15px;font-weight:930}
+.book-intro.book-premium-cover h2 span{color:#397da8;font-weight:520}
+.book-intro.book-premium-cover p{position:relative;z-index:1;max-width:530px;margin:10px 0 0;color:#6f8491;font-size:12px;line-height:1.55}
+.book-cover-stats{position:relative;z-index:1;display:flex;gap:7px;flex-wrap:wrap;margin-top:16px}
+.book-cover-stat{display:grid;gap:1px;min-width:92px;padding:8px 10px;border:1px solid rgba(255,255,255,.84);border-radius:13px;background:rgba(255,255,255,.55);box-shadow:0 4px 14px rgba(50,88,111,.035)}
+.book-cover-stat strong{color:#254d65;font-size:12px;font-weight:920}.book-cover-stat small{color:#8697a1;font-size:7.5px;font-weight:850;letter-spacing:.75px;text-transform:uppercase}
+.book-editorial-heading{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;margin:23px 3px 10px}
+.book-editorial-heading>div{min-width:0}.book-editorial-kicker{display:block;margin-bottom:3px;color:#8c9da7;font-size:7.5px;font-weight:950;letter-spacing:1.25px;text-transform:uppercase}
+.book-editorial-heading h2{margin:0;color:#284b61;font-size:18px;line-height:1.15;letter-spacing:-.35px}.book-editorial-heading p{margin:4px 0 0;color:#8a99a2;font-size:9.5px;line-height:1.35}
+.book-editorial-count{flex:0 0 auto;padding:5px 8px;border:1px solid rgba(64,119,153,.10);border-radius:999px;background:rgba(255,255,255,.6);color:#6d8898;font-size:8px;font-weight:900}
+
+/* Découvertes du jour */
+.book-daily-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.book-daily-card{position:relative;overflow:hidden;min-width:0;min-height:142px;padding:0;border:1px solid rgba(70,122,155,.12);border-radius:21px;background:linear-gradient(148deg,#ffffff,#eef8fd);box-shadow:0 9px 25px rgba(39,82,108,.065);text-align:left}
+.book-daily-card:nth-child(2){background:linear-gradient(148deg,#fffefa,#f6efe4)}.book-daily-card:nth-child(3){background:linear-gradient(148deg,#fafdff,#edf3f6)}
+.book-daily-card::after{content:'';position:absolute;width:88px;height:88px;right:-34px;bottom:-38px;border-radius:50%;background:rgba(78,147,189,.075)}
+.book-daily-open{position:relative;z-index:1;display:flex;flex-direction:column;width:100%;height:100%;min-height:142px;padding:14px 13px;border:0;background:transparent;color:inherit;text-align:left}
+.book-daily-number{display:inline-flex;align-items:center;justify-content:center;width:25px;height:25px;margin-bottom:auto;border:1px solid rgba(72,127,161,.11);border-radius:9px;background:rgba(255,255,255,.63);color:#4d7d99;font-size:8px;font-weight:950;letter-spacing:.55px}
+.book-daily-role{margin-top:14px;color:#8496a1;font-size:7.5px;font-weight:950;letter-spacing:1px;text-transform:uppercase}.book-daily-title{display:block;margin-top:4px;color:#21475e;font-size:13.5px;line-height:1.18;font-weight:920;letter-spacing:-.15px}.book-daily-meta{display:block;margin-top:7px;color:#7f919c;font-size:8.5px;line-height:1.3}
+
+/* Selon l'envie */
+.book-moods{display:flex;gap:7px;margin:0 -2px;padding:2px 2px 5px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}.book-moods::-webkit-scrollbar{display:none}
+.book-mood{flex:0 0 auto;min-height:42px;padding:8px 12px;border:1px solid rgba(73,123,154,.11);border-radius:15px;background:rgba(255,255,255,.79);box-shadow:0 5px 15px rgba(40,80,105,.04);color:#496d83;text-align:left}
+.book-mood strong{display:block;font-size:10.5px;font-weight:900}.book-mood span{display:block;margin-top:2px;color:#93a1aa;font-size:7.5px;font-weight:750}
+
+/* Favoris / à refaire deviennent des signets de bibliothèque */
+.book-quick-links.book-premium-bookmarks{gap:8px}.book-quick-links.book-premium-bookmarks .book-quick{position:relative;overflow:hidden;min-height:67px;padding:13px 14px 12px;border:1px solid rgba(76,125,155,.11);border-radius:19px;background:rgba(255,255,255,.82);box-shadow:0 7px 20px rgba(39,80,104,.05);color:#2c5269;font-size:12px;font-weight:920}
+.book-quick-links.book-premium-bookmarks .book-quick::before{content:'';position:absolute;left:0;top:10px;bottom:10px;width:3px;border-radius:0 4px 4px 0;background:#76b5d8}.book-quick-links.book-premium-bookmarks .book-quick:nth-child(2)::before{background:#c9a366}
+.book-quick-links.book-premium-bookmarks .book-quick-count{margin-top:5px;color:#8a9aa4;font-size:8.5px;font-weight:800}
+
+/* Collections signature */
+.book-signature-shelves{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.book-signature-card{position:relative;overflow:hidden;min-height:154px;padding:0;border:1px solid rgba(66,118,151,.12);border-radius:24px;background:linear-gradient(145deg,#edf8fe,#dfeff9);box-shadow:0 12px 31px rgba(36,82,111,.08);text-align:left}
+.book-signature-card:nth-child(2){background:linear-gradient(145deg,#fffaf1,#f5ead8)}.book-signature-card:nth-child(3){background:linear-gradient(145deg,#f7fbfd,#eaf2f6)}.book-signature-card:nth-child(4){background:linear-gradient(145deg,#fffefd,#f5f1eb)}
+.book-signature-card::after{content:'';position:absolute;width:140px;height:140px;right:-65px;top:-70px;border-radius:50%;background:rgba(255,255,255,.36)}
+.book-signature-inner{position:relative;z-index:1;display:flex;flex-direction:column;width:100%;height:100%;min-height:154px;padding:15px;border:0;background:transparent;color:inherit;text-align:left}
+.book-signature-top{display:flex;align-items:center;justify-content:space-between;gap:8px}.book-signature-icon{display:grid;place-items:center;width:39px;height:39px;border:1px solid rgba(255,255,255,.82);border-radius:14px;background:rgba(255,255,255,.55);font-size:20px;box-shadow:0 5px 14px rgba(40,79,103,.045)}.book-signature-count{padding:4px 7px;border-radius:999px;background:rgba(255,255,255,.55);color:#6d8696;font-size:7.5px;font-weight:900}
+.book-signature-title{display:block;margin-top:auto;color:#21475d;font-size:15px;line-height:1.15;font-weight:930;letter-spacing:-.25px}.book-signature-description{display:block;margin-top:5px;color:#778d9a;font-size:9px;line-height:1.37}.book-signature-arrow{position:absolute;right:14px;bottom:13px;color:rgba(47,111,151,.4);font-size:18px}
+
+/* Toute la bibliothèque : cartes plus sobres, descriptives */
+.book-shelves.book-library-shelves{grid-template-columns:1fr 1fr;gap:8px}.book-shelves.book-library-shelves .book-shelf{grid-template-columns:43px minmax(0,1fr) auto;gap:9px;min-height:80px;padding:12px 11px;border-radius:19px;background:rgba(255,255,255,.78);box-shadow:0 6px 18px rgba(39,79,104,.045)}
+.book-shelves.book-library-shelves .book-shelf:nth-child(n){background:rgba(255,255,255,.78)}.book-shelves.book-library-shelves .book-shelf-icon{width:40px;height:40px;border-radius:13px;font-size:19px}.book-shelf-copy{min-width:0}.book-shelves.book-library-shelves .book-shelf-title{display:block;color:#31566c;font-size:11.5px;line-height:1.2;font-weight:900}.book-shelf-description{display:block;margin-top:3px;color:#8b9aa3;font-size:7.5px;line-height:1.25;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}.book-shelves.book-library-shelves .book-shelf-count{align-self:center;margin:0;padding:4px 6px;border-radius:999px;background:#f0f6f9;color:#78909f;font-size:7px;font-weight:900;white-space:nowrap}
+
+/* Rayon ouvert */
+.book-shelf-view{padding-bottom:9px}.book-shelf-heading.book-premium-shelf-heading{position:relative;overflow:hidden;margin:0 0 13px;padding:20px 18px;border:1px solid rgba(70,122,155,.13);border-radius:24px;background:linear-gradient(142deg,#f6fbfe,#e9f5fb 61%,#faf7f1);box-shadow:0 11px 29px rgba(39,82,108,.07)}
+.book-shelf-heading.book-premium-shelf-heading::after{content:'';position:absolute;width:135px;height:135px;right:-60px;top:-72px;border-radius:50%;background:rgba(91,157,197,.11)}.book-shelf-eyebrow{position:relative;z-index:1;color:#8297a3;font-size:7.5px;font-weight:950;letter-spacing:1.2px;text-transform:uppercase}.book-shelf-title-line{position:relative;z-index:1;display:flex;align-items:center;gap:10px;margin-top:7px}.book-shelf-title-icon{display:grid;place-items:center;width:42px;height:42px;flex:0 0 42px;border-radius:14px;background:rgba(255,255,255,.66);font-size:21px;box-shadow:0 5px 15px rgba(39,81,106,.045)}.book-shelf-heading.book-premium-shelf-heading h2{margin:0;color:#1e465e;font-size:22px;line-height:1.1;letter-spacing:-.6px}.book-shelf-heading.book-premium-shelf-heading p{position:relative;z-index:1;margin:9px 0 0;color:#7c909c;font-size:10.5px;line-height:1.45}.book-shelf-total{position:relative;z-index:1;display:inline-flex;margin-top:10px;padding:5px 8px;border:1px solid rgba(69,123,155,.10);border-radius:999px;background:rgba(255,255,255,.58);color:#66879a;font-size:8px;font-weight:900}
+.book-subcategories{display:flex;gap:6px;margin:0 -1px 14px;padding:1px 1px 4px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}.book-subcategories::-webkit-scrollbar{display:none}.book-subcategory{flex:0 0 auto;min-height:38px;padding:7px 11px;border-radius:13px;font-size:9px;font-weight:850}.book-subcategory[aria-pressed="true"]{box-shadow:0 5px 14px rgba(49,111,150,.09)}
+
+/* Cartes recette dans Le Livre */
+.book-recipe-result{position:relative;overflow:hidden;margin-bottom:8px;border-radius:19px;background:rgba(255,255,255,.86)}.book-recipe-result::before{content:'';position:absolute;left:0;top:12px;bottom:12px;width:2px;border-radius:0 3px 3px 0;background:#b8dcec}.book-recipe-open{display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-areas:'role arrow' 'title arrow' 'meta arrow';align-items:center;column-gap:10px;width:100%;min-height:86px;padding:13px 14px 13px 16px;border:0;background:transparent;text-align:left}.book-recipe-role{grid-area:role;color:#8ca0ab;font-size:7px;font-weight:950;letter-spacing:1px;text-transform:uppercase}.book-recipe-title{grid-area:title;margin-top:3px;color:#244b62;font-size:14.5px;line-height:1.18;font-weight:920;letter-spacing:-.15px}.book-recipe-meta{grid-area:meta;display:flex;gap:5px;flex-wrap:wrap;margin-top:7px;color:inherit}.book-meta-pill{display:inline-flex;padding:4px 6px;border-radius:9px;background:#f1f7fa;color:#708998;font-size:7.5px;font-weight:850}.book-recipe-arrow{grid-area:arrow;display:grid;place-items:center;width:29px;height:29px;border-radius:50%;background:#eef7fc;color:#4c86a8;font-size:16px}
+
+/* Détail recette ouvert depuis Le Livre */
+.browser-recipe.book-premium-detail{padding-bottom:14px}.book-detail-hero{position:relative;overflow:hidden;margin:0 0 13px;padding:19px 17px 17px;border:1px solid rgba(70,122,154,.13);border-radius:23px;background:linear-gradient(143deg,#f8fcff,#e9f6fc 62%,#fbf7f0);box-shadow:0 11px 28px rgba(40,82,108,.065)}.book-detail-kicker{color:#7d96a5;font-size:7.5px;font-weight:950;letter-spacing:1.25px;text-transform:uppercase}.book-detail-hero .browser-recipe-title{margin:7px 0 0;color:#173f58;font-size:28px;line-height:1.04;letter-spacing:-.9px}.book-detail-badges{display:flex;gap:5px;flex-wrap:wrap;margin-top:11px}.book-detail-badge{padding:5px 7px;border:1px solid rgba(71,123,153,.09);border-radius:10px;background:rgba(255,255,255,.62);color:#648397;font-size:7.5px;font-weight:880}.book-detail-hero::after{content:'CR';position:absolute;right:-8px;bottom:-25px;color:rgba(53,121,164,.045);font-size:82px;font-weight:960;letter-spacing:-7px}.browser-recipe.book-premium-detail>.meta{display:none}.browser-recipe.book-premium-detail .recipe-shopping,.browser-recipe.book-premium-detail .browser-select-recipe{border-radius:15px}.browser-recipe.book-premium-detail .recipe.open{margin-top:14px}.browser-recipe.book-premium-detail .recipe h3{margin-top:20px;color:#2b6689;font-size:13px;font-weight:930;letter-spacing:.55px;text-transform:uppercase}.browser-recipe.book-premium-detail .recipe ul,.browser-recipe.book-premium-detail .recipe ol{line-height:1.6}.browser-recipe.book-premium-detail .recipe ol{counter-reset:bookstep;list-style:none;padding-left:0}.browser-recipe.book-premium-detail .recipe ol>li{position:relative;min-height:36px;margin:0 0 10px;padding:10px 10px 10px 43px;border:1px solid rgba(71,121,151,.08);border-radius:14px;background:rgba(250,253,254,.72)}.browser-recipe.book-premium-detail .recipe ol>li::before{counter-increment:bookstep;content:counter(bookstep);position:absolute;left:10px;top:9px;display:grid;place-items:center;width:23px;height:23px;border-radius:8px;background:#e6f3fa;color:#357ba5;font-size:9px;font-weight:950}
+
+@media(max-width:620px){.book-daily-grid{grid-template-columns:1fr 1fr}.book-daily-card:nth-child(3){grid-column:1/-1;min-height:112px}.book-daily-card:nth-child(3) .book-daily-open{min-height:112px}.book-signature-shelves{grid-template-columns:1fr 1fr}.book-shelves.book-library-shelves{grid-template-columns:1fr}.book-intro.book-premium-cover h2{font-size:28px}}
+@media(max-width:390px){.book-signature-shelves{grid-template-columns:1fr}.book-signature-card,.book-signature-inner{min-height:132px}.book-daily-grid{grid-template-columns:1fr}.book-daily-card:nth-child(3){grid-column:auto}.book-daily-card,.book-daily-open,.book-daily-card:nth-child(3) .book-daily-open{min-height:112px}.book-cover-stat{min-width:0;flex:1}.book-intro.book-premium-cover{padding:21px 17px}.book-intro.book-premium-cover h2{font-size:26px}}
+
 </style>
 </head>
 <body>
@@ -893,11 +962,11 @@ select{min-height:48px;border:1px solid #deebf2;border-radius:16px;background:#f
   <summary><span class="premium-info-mark">CR</span> Clair Repas · Réglages & confiance</summary>
   <div class="product-panel">
     <div class="product-identity">
-      <strong>Clair Repas V7.1</strong>
+      <strong>Clair Repas V7.2</strong>
       <span>Votre assistant culinaire personnel. L’intelligence derrière, la simplicité devant.</span>
     </div>
     <div class="product-new">
-      <strong>Nouveautés V7 · Refonte Premium</strong>
+      <strong>Nouveautés V7.2 · Le Livre Premium</strong>
       Nouvelle identité visuelle, navigation plus immersive, accueil éditorial, Livre entièrement rhabillé et fiches recettes premium. Vos fonctions, recettes et données restent préservées.
     </div>
     <div class="product-actions">
@@ -912,7 +981,7 @@ select{min-height:48px;border:1px solid #deebf2;border-radius:16px;background:#f
 
 <p class="note">Clair Repas tient compte du moment, de vos goûts et des derniers repas. Les réglages avancés restent facultatifs.</p>
 <p class="library-count" id="libraryCount">837 plats · 121 entrées · 100 desserts · 52 recettes complémentaires</p>
-<p class="version" id="versionLine">Clair Repas V7.1</p>
+<p class="version" id="versionLine">Clair Repas V7.2</p>
 </main>
 <div class="recipe-browser" id="recipeBrowser" hidden>
   <section class="browser-panel" role="dialog" aria-modal="true" aria-labelledby="browserTitle">
@@ -3714,7 +3783,7 @@ for(const r of [...noon,...evening,...starters,...desserts]){if(r.n==="Œufs en 
 for(const r of [...noon,...evening,...starters,...desserts]){if(r.n==="Quenelles de brochet sauce Nantua")crAddCollection(r,"bistrot-brasserie")}
 for(const r of [...noon,...evening,...starters,...desserts]){if(r.n==="Choucroute garnie alsacienne")crAddCollection(r,"bistrot-brasserie")}
 for(const r of [...noon,...evening,...starters,...desserts]){if(r.n==="Quiche Lorraine")crAddCollection(r,"bistrot-brasserie")}
-window.__CLAIR_REPAS_EDITORIAL_VERSION="7.1";
+window.__CLAIR_REPAS_EDITORIAL_VERSION="7.2";
 const $=id=>document.getElementById(id);
 noon.forEach(recipe=>{recipe.mealSlots=['mid']});
 evening.forEach(recipe=>{recipe.mealSlots=['eve']});
@@ -3724,7 +3793,8 @@ const recipeLibrary=[...dishLibrary,...starters,...desserts,...standaloneLibrary
 const recipeIndex=new Map(recipeLibrary.map(recipe=>[recipe.id,recipe]));
 $('libraryCount').textContent=`${dishLibrary.length} plats · ${starters.length} entrées · ${desserts.length} desserts · ${breakfastRecipes.length} petits-déjeuners · ${sauceRecipes.length} sauces · ${sideRecipes.length} accompagnements`;
 $('libraryHint').textContent=`Découvrir ${recipeLibrary.length} recettes dans le Livre`;
-$('versionLine').textContent='Clair Repas V7.1';
+$('versionLine').textContent='Clair Repas V7.2';
+// V7.2 — Le Livre Premium : couverture éditoriale, découvertes, envies, collections signature et lecture raffinée.
 // V7.1 — Journées Premium : Entrée / Plat / Dessert deviennent des fiches éditoriales plus lisibles et hiérarchisées.
 // V7.0 — Refonte Premium : nouvelle identité visuelle et navigation, moteur et données préservés.
 // V6.1 — Élégance : finition visuelle premium, sans changement fonctionnel.
@@ -3814,7 +3884,7 @@ async function manualAppUpdateCheck(){
       setProductStatus('Une mise à jour est prête. Clair Repas va l’activer.','success');
       registration.waiting.postMessage({type:'SKIP_WAITING'});
     }else{
-      setProductStatus('Clair Repas V7.1 est à jour.','success');
+      setProductStatus('Clair Repas V7.2 est à jour.','success');
     }
   }catch(e){
     setProductStatus('Vérification impossible hors connexion. Réessayez lorsque le réseau est disponible.','warning');
@@ -6085,7 +6155,7 @@ function shoppingSelectedContractItems(){
 function shoppingContract(){
   const items=shoppingSelectedContractItems();
   const fingerprint=`fnv1a:${shoppingFNV(JSON.stringify(items))}`;
-  return{schemaVersion:1,source:'Clair Repas',sourceVersion:'7.1',createdAt:new Date().toISOString(),contentFingerprint:fingerprint,items};
+  return{schemaVersion:1,source:'Clair Repas',sourceVersion:'7.2',createdAt:new Date().toISOString(),contentFingerprint:fingerprint,items};
 }
 async function shoppingCopySelected(){
   const items=shoppingSelectedContractItems();
@@ -6176,6 +6246,48 @@ const BOOK_SHELVES=[
   {id:'starters',icon:'🥗',title:'Entrées',description:'Crudités, salades, soupes et entrées chaudes.',filter:recipe=>recipe.course==='starter'},
   {id:'desserts',icon:'🍰',title:'Desserts',description:'Fruits, crèmes, tartes, gâteaux et douceurs.',filter:recipe=>recipe.course==='dessert'}
 ];
+
+const BOOK_MOODS=[
+  {id:'envie-rapide',icon:'30',title:'Rapide',description:'Des recettes qui vont droit à l’essentiel, sans sacrifier le plaisir.',filter:recipe=>recipeMinutes(recipe)<=30&&['dish','starter','dessert'].includes(recipeRole(recipe))},
+  {id:'envie-dimanche',icon:'D',title:'Dimanche',description:'Les plats généreux, les classiques et les grandes tablées.',filter:recipe=>(Array.isArray(recipe.collections)&&recipe.collections.includes('famille-dimanche'))||recipe.classic===true},
+  {id:'envie-leger',icon:'L',title:'Léger',description:'Des assiettes fraîches ou équilibrées, choisies sans calcul compliqué.',filter:recipe=>bookBalancedRecipe(recipe)||String(recipe.lightness||'').includes('léger')||recipe.kind==='salad'},
+  {id:'envie-reconfort',icon:'R',title:'Réconfortant',description:'Mijotés, gratins et recettes chaleureuses pour prendre son temps.',filter:recipe=>bookIsDish(recipe)&&(String(recipe.richness||'').includes('gourmand')||recipe.m==='Casserole'||bookHas(recipe,/gratin|mijot|bourguignon|blanquette|parmentier|tartiflette/))},
+  {id:'envie-partager',icon:'P',title:'À partager',description:'Des recettes pensées pour la table, la famille et les bons moments.',filter:recipe=>Number(recipe.servings||0)>=4&&['dish','starter','terrine','dessert'].includes(recipeRole(recipe))},
+  {id:'envie-desserts',icon:'D',title:'Desserts',description:'Crèmes, tartes, fruits et douceurs pour finir le repas.',filter:recipe=>recipeRole(recipe)==='dessert'}
+];
+const BOOK_SIGNATURE_IDS=['bistrot-brasserie','cuisine-regionale','famille-dimanche','petits-gourmands'];
+function bookMoodDefinition(id){return BOOK_MOODS.find(mood=>mood.id===id)||null}
+function bookStableHash(text){let h=2166136261;for(let i=0;i<text.length;i++){h^=text.charCodeAt(i);h=Math.imul(h,16777619)}return h>>>0}
+function bookStablePick(pool,seed,used){
+  const available=pool.filter(recipe=>!used.has(recipe.id));
+  if(!available.length)return null;
+  const recipe=available[bookStableHash(seed)%available.length];
+  used.add(recipe.id);return recipe;
+}
+function bookDailyDiscoveries(){
+  const d=new Date();
+  const dayKey=`${d.getFullYear()}-${d.getMonth()+1}-${d.getDate()}`;
+  const used=new Set();
+  const signaturePool=recipeLibrary.filter(recipe=>['dish','starter','terrine'].includes(recipeRole(recipe))&&(recipe.classic===true||(Array.isArray(recipe.collections)&&recipe.collections.length)));
+  const seasonalPool=recipeLibrary.filter(recipe=>['dish','starter'].includes(recipeRole(recipe))&&seasonalRecipeScore(recipe)>.9);
+  const dessertPool=recipeLibrary.filter(recipe=>recipeRole(recipe)==='dessert');
+  return[
+    bookStablePick(signaturePool,dayKey+':signature',used),
+    bookStablePick(seasonalPool,dayKey+':season',used),
+    bookStablePick(dessertPool,dayKey+':dessert',used)
+  ].filter(Boolean);
+}
+function bookRecipeCollectionBadges(recipe){
+  const labels=[];
+  if(recipe.classic===true)labels.push('Grand classique');
+  const collections=Array.isArray(recipe.collections)?recipe.collections:[];
+  if(collections.includes('bistrot-brasserie'))labels.push('Bistrot & brasserie');
+  if(collections.includes('cuisine-regionale'))labels.push('Cuisine régionale');
+  if(collections.includes('famille-dimanche'))labels.push('Cuisine familiale');
+  if(collections.includes('petits-gourmands'))labels.push('Petits gourmands');
+  return labels.slice(0,2);
+}
+
 const BOOK_STARTER_SUBCATEGORIES=[
   {id:'all',title:'Toutes les entrées',filter:()=>true},
   {id:'crudites',title:'Crudités',filter:recipe=>bookHas(recipe,/crudite|legume cru|carotte rapee|concombre|radis/)},
@@ -6208,7 +6320,7 @@ function bookSubcategories(id){
   return null;
 }
 const bookShelfCache=new Map();
-function bookShelfDefinition(id){return BOOK_SHELVES.find(shelf=>shelf.id===id)||null}
+function bookShelfDefinition(id){return BOOK_SHELVES.find(shelf=>shelf.id===id)||bookMoodDefinition(id)||null}
 function bookShelfRecipes(id,subcategoryId='all'){
   if(id==='favorites')return favoriteIds().map(recipeId=>recipeIndex.get(recipeId)).filter(Boolean);
   if(id==='again'){
@@ -6294,33 +6406,55 @@ function recipeListHTML(recipes,emptyText,lead){
 function bookHomeHTML(){
   const favorites=favoriteIds().length;
   const again=Object.values(reactionMap()).filter(value=>value==='again').length;
+  const discoveries=bookDailyDiscoveries();
+  const signature=BOOK_SHELVES.filter(shelf=>BOOK_SIGNATURE_IDS.includes(shelf.id));
+  const library=BOOK_SHELVES.filter(shelf=>!BOOK_SIGNATURE_IDS.includes(shelf.id));
   return `<article class="book-home">
-    <div class="book-intro">
-      <h2>📚 Parcourir les recettes</h2>
-      <p>Feuilletez toute la bibliothèque de Clair Repas. Une recette n’existe qu’une seule fois, même lorsqu’elle apparaît dans plusieurs rayons.</p>
+    <div class="book-intro book-premium-cover">
+      <span class="book-cover-kicker">Bibliothèque culinaire Clair Repas</span>
+      <h2>Le Livre <span>à feuilleter</span></h2>
+      <p>Des recettes choisies pour être réellement cuisinées : classiques, régions, maison, bistrot et découvertes. Une recette n’existe qu’une seule fois, même lorsqu’elle appartient à plusieurs univers.</p>
+      <div class="book-cover-stats">
+        <span class="book-cover-stat"><strong>${recipeLibrary.length}</strong><small>recettes</small></span>
+        <span class="book-cover-stat"><strong>${BOOK_SHELVES.length}</strong><small>rayons</small></span>
+        <span class="book-cover-stat"><strong>${favorites}</strong><small>favori${favorites===1?'':'s'}</small></span>
+      </div>
     </div>
-    <h2 class="book-section-heading">Mes recettes</h2>
-    <div class="book-quick-links">
-      <button class="book-quick" type="button" data-book-shelf="favorites">❤️ Mes favoris<span class="book-quick-count">${favorites} recette${favorites===1?'':'s'}</span></button>
-      <button class="book-quick" type="button" data-book-shelf="again">⭐ À refaire<span class="book-quick-count">${again} recette${again===1?'':'s'}</span></button>
+
+    <div class="book-editorial-heading"><div><span class="book-editorial-kicker">Sélection du jour</span><h2>À découvrir aujourd’hui</h2><p>Trois idées pour donner envie d’ouvrir le Livre.</p></div><span class="book-editorial-count">Renouvelé chaque jour</span></div>
+    <div class="book-daily-grid">
+      ${discoveries.map((recipe,index)=>`<article class="book-daily-card"><button class="book-daily-open book-recipe-open" type="button" data-recipe-id="${recipe.id}"><span class="book-daily-number">0${index+1}</span><span class="book-daily-role">${bookCourseLabel(recipe)}</span><span class="book-daily-title">${recipe.n}</span><span class="book-daily-meta">${recipe.t} · ${recipe.m}</span></button></article>`).join('')}
     </div>
-    <h2 class="book-section-heading">Les rayons</h2>
-    <div class="book-shelves">
-      ${BOOK_SHELVES.map(shelf=>{
-        const count=bookShelfRecipes(shelf.id).length;
-        return `<button class="book-shelf" type="button" data-book-shelf="${shelf.id}">
-          <span class="book-shelf-icon" aria-hidden="true">${shelf.icon}</span>
-          <span><span class="book-shelf-title">${shelf.title}</span><span class="book-shelf-count">${count} recette${count===1?'':'s'}</span></span>
-        </button>`;
-      }).join('')}
+
+    <div class="book-editorial-heading"><div><span class="book-editorial-kicker">Choisir par sensation</span><h2>Selon l’envie</h2></div></div>
+    <div class="book-moods" role="group" aria-label="Choisir une envie">
+      ${BOOK_MOODS.map(mood=>{const count=bookShelfRecipes(mood.id).length;return `<button class="book-mood" type="button" data-book-shelf="${mood.id}"><strong>${mood.title}</strong><span>${count} recette${count===1?'':'s'}</span></button>`}).join('')}
+    </div>
+
+    <div class="book-editorial-heading"><div><span class="book-editorial-kicker">Vos signets</span><h2>Mes recettes</h2></div></div>
+    <div class="book-quick-links book-premium-bookmarks">
+      <button class="book-quick" type="button" data-book-shelf="favorites">Mes favoris<span class="book-quick-count">${favorites} recette${favorites===1?'':'s'} enregistrée${favorites===1?'':'s'}</span></button>
+      <button class="book-quick" type="button" data-book-shelf="again">À refaire<span class="book-quick-count">${again} recette${again===1?'':'s'} à retrouver</span></button>
+    </div>
+
+    <div class="book-editorial-heading"><div><span class="book-editorial-kicker">Les univers Clair Repas</span><h2>Collections signature</h2><p>Les chapitres qui donnent son caractère au Livre.</p></div></div>
+    <div class="book-signature-shelves">
+      ${signature.map(shelf=>{const count=bookShelfRecipes(shelf.id).length;return `<article class="book-signature-card"><button class="book-signature-inner" type="button" data-book-shelf="${shelf.id}"><span class="book-signature-top"><span class="book-signature-icon" aria-hidden="true">${shelf.icon}</span><span class="book-signature-count">${count} recettes</span></span><span class="book-signature-title">${shelf.title}</span><span class="book-signature-description">${shelf.description}</span><span class="book-signature-arrow">›</span></button></article>`}).join('')}
+    </div>
+
+    <div class="book-editorial-heading"><div><span class="book-editorial-kicker">Explorer librement</span><h2>Toute la bibliothèque</h2><p>Par ingrédient, technique ou famille de cuisine.</p></div></div>
+    <div class="book-shelves book-library-shelves">
+      ${library.map(shelf=>{const count=bookShelfRecipes(shelf.id).length;return `<button class="book-shelf" type="button" data-book-shelf="${shelf.id}"><span class="book-shelf-icon" aria-hidden="true">${shelf.icon}</span><span class="book-shelf-copy"><span class="book-shelf-title">${shelf.title}</span><span class="book-shelf-description">${shelf.description}</span></span><span class="book-shelf-count">${count}</span></button>`}).join('')}
     </div>
   </article>`;
 }
 function bookRecipeResultHTML(recipe){
   return `<div class="book-recipe-result">
     <button class="book-recipe-open" type="button" data-recipe-id="${recipe.id}">
+      <span class="book-recipe-role">${bookCourseLabel(recipe)}</span>
       <span class="book-recipe-title">${recipe.n}</span>
-      <span class="book-recipe-meta">${bookCourseLabel(recipe)} · ${recipe.t} · ${recipe.m}${recipeNote(recipe.id).trim()?' · 📝 Note ✓':''}</span>
+      <span class="book-recipe-meta"><span class="book-meta-pill">${recipe.t}</span><span class="book-meta-pill">${recipe.m}</span>${recipeNote(recipe.id).trim()?'<span class="book-meta-pill">Note personnelle</span>':''}</span>
+      <span class="book-recipe-arrow" aria-hidden="true">›</span>
     </button>
   </div>`;
 }
@@ -6338,7 +6472,11 @@ function bookShelfViewHTML(){
   const recipes=bookShelfRecipes(browserBookShelfId,browserBookSubcategoryId);
   const subcategory=Boolean(subcategories)&&subcategories.find(item=>item.id===browserBookSubcategoryId);
   return `<article class="book-shelf-view">
-    <div class="book-shelf-heading"><h2>${meta.icon} ${meta.title}</h2><p>${meta.description}</p></div>
+    <div class="book-shelf-heading book-premium-shelf-heading">
+      <span class="book-shelf-eyebrow">Le Livre · Clair Repas</span>
+      <div class="book-shelf-title-line"><span class="book-shelf-title-icon" aria-hidden="true">${meta.icon}</span><h2>${meta.title}</h2></div>
+      <p>${meta.description}</p><span class="book-shelf-total">${recipes.length} recette${recipes.length===1?'':'s'}${subcategory?' · '+subcategory.title:''}</span>
+    </div>
     ${subcategories?`<div class="book-subcategories" role="group" aria-label="Sous-catégories">
       ${subcategories.map(item=>`<button class="book-subcategory" type="button" data-book-subcategory="${item.id}" aria-pressed="${item.id===browserBookSubcategoryId}">${item.title}</button>`).join('')}
     </div>`:''}
@@ -6371,6 +6509,11 @@ function bookTargetHTML(recipe){
     </div>
   </article>`;
 }
+function bookDetailBadgesHTML(recipe){
+  const labels=[bookCourseLabel(recipe),...bookRecipeCollectionBadges(recipe)];
+  return labels.slice(0,3).map(label=>`<span class="book-detail-badge">${label}</span>`).join('');
+}
+
 let browserMode='search';
 let browserReturnMode='search';
 let browserRecipeId=null;
@@ -6642,7 +6785,7 @@ function renderRecipeBrowser(){
   }else if(browserMode==='book'){
     $('browserSearchLabel').textContent='🔍 Rechercher une recette';
     $('recipeSearch').placeholder='Nom, ingrédient, famille ou cuisine…';
-    $('browserHint').textContent='Exemples : spaghetti, poulet, champignons, italienne ou bourguignon.';
+    $('browserHint').textContent='Cherchez un nom, un ingrédient, une région, une famille ou une envie.';
   }
   if(browserMode==='shopping'){
     $('browserTitle').textContent='Préparer les courses';
@@ -6653,8 +6796,8 @@ function renderRecipeBrowser(){
     const fromBook=['book','book-shelf'].includes(browserReturnMode);
     const fromAssistant=['ingredient-fridge','ingredient-leftovers'].includes(browserReturnMode);
     $('browserTitle').textContent=choosing?`Choisir ${selectionComponentLabel(browserSelection.component,true)}`:fromBook?'Le Livre de Clair Repas':fromAssistant?(browserReturnMode==='ingredient-leftovers'?'Il me reste…':'J’ai ça dans mon frigo'):'Recette';
-    content.innerHTML=`<article class="browser-recipe">
-      <h2 class="browser-recipe-title">${recipe.n}</h2>
+    content.innerHTML=`<article class="browser-recipe${fromBook?' book-premium-detail':''}">
+      ${fromBook?`<div class="book-detail-hero"><span class="book-detail-kicker">Le Livre · recette</span><h2 class="browser-recipe-title">${recipe.n}</h2><div class="book-detail-badges">${bookDetailBadgesHTML(recipe)}<span class="book-detail-badge">${recipe.t}</span><span class="book-detail-badge">${recipe.m}</span></div></div>`:`<h2 class="browser-recipe-title">${recipe.n}</h2>`}
       <div class="meta">⏱️ ${recipe.t} · 🔥 ${recipe.m}${noteIndicatorHTML(recipe)}</div>
       ${choosing?`<button class="browser-select-recipe" id="browserSelectRecipe" data-recipe-id="${recipe.id}" type="button">Choisir cette recette</button>`:(fromBook||fromAssistant)&&bookRecipeCanTarget(recipe)?`<button class="browser-select-recipe" id="browserChooseBookRecipe" data-recipe-id="${recipe.id}" type="button">🍽️ Choisir cette recette</button>`:''}
       ${fromAssistant?assistantAdaptationHTML(recipe):''}
@@ -6671,7 +6814,7 @@ function renderRecipeBrowser(){
     $('browserTitle').textContent=meta.title;
     content.innerHTML=bookShelfViewHTML();
   }else if(browserMode==='book'){
-    $('browserTitle').textContent='Le Livre de Clair Repas';
+    $('browserTitle').textContent='Le Livre';
     const query=$('recipeSearch').value;
     if(normalizeSearchText(query)){
       const recipes=searchRecipePool(query,recipeLibrary);
@@ -7627,7 +7770,7 @@ function updateTimerUI(){
     if(timerInterval){clearInterval(timerInterval);timerInterval=null}
     bar.classList.remove('show','done');
     document.body.classList.remove('timer-running');
-    document.title='Clair Repas V7.1';
+    document.title='Clair Repas V7.2';
     return;
   }
   const remaining=Math.max(0,Math.ceil((kitchenTimer.endAt-Date.now())/1000));

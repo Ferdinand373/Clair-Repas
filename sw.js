@@ -1,4 +1,4 @@
-const CACHE='clair-repas-v71-journees-premium-20260816';
+const CACHE='clair-repas-v72-livre-premium-20260816';
 const ASSETS=['./','./index.html','./manifest.webmanifest','./icon-192.png','./icon-512.png'];
 
 self.addEventListener('install',event=>{
