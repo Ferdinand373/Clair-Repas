@@ -9,7 +9,7 @@
 <meta name="apple-mobile-web-app-title" content="Clair Repas">
 <link rel="manifest" href="./manifest.webmanifest">
 <link rel="apple-touch-icon" href="./icon-192.png">
-<title>Clair Repas V4.6</title>
+<title>Clair Repas V4.7</title>
 <style>
 :root{
   --bg:#f4efe7;--card:#fffdfa;--text:#27231f;--muted:#746c63;
@@ -68,12 +68,15 @@ select{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:1
 .meal{padding:14px 0 2px}
 .meal+.meal{border-top:1px dashed var(--line);margin-top:12px}
 .meal-top{display:flex;justify-content:space-between;align-items:center;gap:10px}
-.meal-format{margin:11px 0 5px}
-.meal-format-label{display:block;margin:0 0 6px;color:var(--muted);font-size:11px;font-weight:780}
-.meal-format-options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}
-.meal-format-option{min-width:0;min-height:48px;padding:8px 5px;border:1px solid var(--line);border-radius:11px;background:white;color:var(--text);font-size:clamp(11px,3vw,12.5px);font-weight:820;line-height:1.15;white-space:normal;touch-action:manipulation}
-.meal-format-option:active{transform:scale(.985)}
-.meal-format-option[aria-pressed="true"]{border-color:var(--green);background:var(--green-soft);color:var(--green);box-shadow:inset 0 0 0 1px rgba(63,118,87,.12)}
+.meal-composer{margin:11px 0 7px}
+.meal-composer-label{display:block;margin:0 0 6px;color:var(--muted);font-size:11px;font-weight:780}
+.meal-composer-options{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
+.meal-component-toggle{display:flex;align-items:center;justify-content:center;gap:5px;min-width:0;min-height:45px;padding:8px 5px;border:1px solid var(--line);border-radius:11px;background:white;color:var(--text);font-size:clamp(11px,3vw,12.5px);font-weight:820;line-height:1.15;white-space:normal;touch-action:manipulation}
+button.meal-component-toggle:active{transform:scale(.985)}
+.meal-component-toggle[aria-pressed="true"],.meal-component-toggle.dish-fixed{border-color:var(--green);background:var(--green-soft);color:var(--green);box-shadow:inset 0 0 0 1px rgba(63,118,87,.12)}
+.meal-component-toggle.dish-fixed{cursor:default}
+.meal-component-state{font-size:11px;font-weight:950}
+.meal-composer-help{display:block;margin-top:5px;color:var(--muted);font-size:10px;line-height:1.25}
 .course-block{padding-top:10px}
 .course-block+.course-block{margin-top:12px;border-top:1px dashed var(--line)}
 .course-label-row{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:0 0 5px}
@@ -460,7 +463,7 @@ body.timer-running .browser-content{padding-bottom:calc(105px + env(safe-area-in
 
 <p class="note">Midi ou soir, saison, temps, cuisson et contexte du moment guident les prochains choix. En mode Automatique, Clair Repas décide seul.</p>
 <p class="library-count" id="libraryCount">837 plats · 121 entrées · 100 desserts · 52 recettes complémentaires</p>
-<p class="version" id="versionLine">Clair Repas V4.6</p>
+<p class="version" id="versionLine">Clair Repas V4.7</p>
 </main>
 <div class="recipe-browser" id="recipeBrowser" hidden>
   <section class="browser-panel" role="dialog" aria-modal="true" aria-labelledby="browserTitle">
@@ -3109,7 +3112,7 @@ const recipeLibrary=[...dishLibrary,...starters,...desserts,...standaloneLibrary
 const recipeIndex=new Map(recipeLibrary.map(recipe=>[recipe.id,recipe]));
 $('libraryCount').textContent=`${dishLibrary.length} plats · ${starters.length} entrées · ${desserts.length} desserts · ${breakfastRecipes.length} petits-déjeuners · ${sauceRecipes.length} sauces · ${sideRecipes.length} accompagnements`;
 $('libraryHint').textContent=`Découvrir ${recipeLibrary.length} recettes dans le Livre`;
-$('versionLine').textContent='Clair Repas V4.6';
+$('versionLine').textContent='Clair Repas V4.7';
 const FAVORITES_KEY='crFavMeals';
 const RECENT_RECIPES_KEY='crRecentRecipesV25';
 const MAX_RECENT_RECIPES=10;
@@ -4969,7 +4972,7 @@ function ingredientAssistantHTML(){
   </article>`;
 }
 
-// V4.6 — contexte du repas, sur la base de la variété intelligente V4.5 et de la mémoire active V4.4.
+// V4.7 — composition Entrée / Plat / Dessert plus fluide, sur la base du contexte V4.6, de la variété V4.5 et de la mémoire V4.4.
 // V4.3.1 — correction ciblée du filtre Poissons & fruits de mer.
 // La préparation contrôlée des courses de la V4.3 reste inchangée. Aucun article n'est transmis
 // avant l'action explicite « Envoyer vers Clair Courses ».
@@ -5229,7 +5232,7 @@ function shoppingSelectedContractItems(){
 function shoppingContract(){
   const items=shoppingSelectedContractItems();
   const fingerprint=`fnv1a:${shoppingFNV(JSON.stringify(items))}`;
-  return{schemaVersion:1,source:'Clair Repas',sourceVersion:'4.6',createdAt:new Date().toISOString(),contentFingerprint:fingerprint,items};
+  return{schemaVersion:1,source:'Clair Repas',sourceVersion:'4.7',createdAt:new Date().toISOString(),contentFingerprint:fingerprint,items};
 }
 async function shoppingCopySelected(){
   const items=shoppingSelectedContractItems();
@@ -6127,6 +6130,7 @@ function dishRichnessLevel(recipe){
 }
 function courseRichnessLevel(recipe){return recipe.richness==='léger'?1:recipe.richness==='gourmand'?3:2}
 
+// V4.7 — composition du repas simplifiée : Entrée / Plat / Dessert en trois gestes directs.
 // V4.6 — contexte du repas.
 // L'intelligence reste derrière l'écran : midi/soir et saison sont automatiques.
 // Le sélecteur « Contexte du repas » sert uniquement à orienter ponctuellement
@@ -6645,7 +6649,7 @@ function updateTimerUI(){
     if(timerInterval){clearInterval(timerInterval);timerInterval=null}
     bar.classList.remove('show','done');
     document.body.classList.remove('timer-running');
-    document.title='Clair Repas V4.6';
+    document.title='Clair Repas V4.7';
     return;
   }
   const remaining=Math.max(0,Math.ceil((kitchenTimer.endAt-Date.now())/1000));
@@ -6702,18 +6706,17 @@ function mealComponentRecipe(day,type,component){
 }
 function mealRecipeElementId(dayIndex,type,component){return component==='dish'?`recipe-${dayIndex}-${type}`:`recipe-${dayIndex}-${type}-${component}`}
 function mealFormatSelectorHTML(day,dayIndex,type){
-  const selected=mealFormat(day,type);
-  const options=[
-    [MEAL_FORMAT_DISH,'Plat'],
-    [MEAL_FORMAT_STARTER_DISH,'Entrée + plat'],
-    [MEAL_FORMAT_DISH_DESSERT,'Plat + dessert'],
-    [MEAL_FORMAT_FULL,'Entrée + plat + dessert']
-  ];
-  return `<div class="meal-format">
-    <span class="meal-format-label">Pour ce repas</span>
-    <div class="meal-format-options" role="group" aria-label="Formule du repas">
-      ${options.map(([value,label])=>`<button class="meal-format-option" type="button" data-day="${dayIndex}" data-type="${type}" data-format="${value}" aria-pressed="${selected===value}">${label}</button>`).join('')}
+  const format=mealFormat(day,type);
+  const starterOn=formatHasStarter(format);
+  const dessertOn=formatHasDessert(format);
+  return `<div class="meal-composer">
+    <span class="meal-composer-label">Composer ce repas</span>
+    <div class="meal-composer-options" role="group" aria-label="Composer le repas">
+      <button class="meal-component-toggle" type="button" data-day="${dayIndex}" data-type="${type}" data-component="starter" aria-pressed="${starterOn}">🥗 Entrée <span class="meal-component-state">${starterOn?'✓':'+'}</span></button>
+      <div class="meal-component-toggle dish-fixed" aria-label="Plat toujours inclus">🍽️ Plat <span class="meal-component-state">✓</span></div>
+      <button class="meal-component-toggle" type="button" data-day="${dayIndex}" data-type="${type}" data-component="dessert" aria-pressed="${dessertOn}">🍰 Dessert <span class="meal-component-state">${dessertOn?'✓':'+'}</span></button>
     </div>
+    <span class="meal-composer-help">Touchez Entrée ou Dessert pour l’ajouter ou le retirer. Le plat reste inchangé.</span>
   </div>`;
 }
 function mealRecipeBlockHTML(recipe,dayIndex,type,component){
@@ -6842,8 +6845,8 @@ function render(){
   document.querySelectorAll('.choose-component-btn').forEach(b=>b.onclick=()=>{
     openMealRecipeChooser(Number(b.dataset.day),b.dataset.type,b.dataset.component||'dish');
   });
-  document.querySelectorAll('.meal-format-option').forEach(button=>button.onclick=()=>{
-    setMealFormat(Number(button.dataset.day),button.dataset.type,button.dataset.format);
+  document.querySelectorAll('button.meal-component-toggle').forEach(button=>button.onclick=()=>{
+    toggleMealCourseComponent(Number(button.dataset.day),button.dataset.type,button.dataset.component);
   });
   document.querySelectorAll('.meal-active').forEach(input=>input.onchange=()=>{
     setMealStatus(Number(input.dataset.day),input.dataset.type,input.checked?MEAL_PLANNED:MEAL_OUTSIDE);
@@ -6914,6 +6917,43 @@ function changeCourse(index,type,component){
   render();
   show(component==='starter'?'Une autre entrée proposée':'Un autre dessert proposé');
 }
+function formatWithoutComponent(format,component){
+  const current=normalizeMealFormat(format);
+  if(component==='starter')return formatHasDessert(current)?MEAL_FORMAT_DISH_DESSERT:MEAL_FORMAT_DISH;
+  if(component==='dessert')return formatHasStarter(current)?MEAL_FORMAT_STARTER_DISH:MEAL_FORMAT_DISH;
+  return current;
+}
+function ensureMealCourseComponent(day,type,component){
+  if(!day||!day[type]||!['starter','dessert'].includes(component))return;
+  const key=componentKey(type,component);
+  if(day[key]&&!componentMatchesRecipe(component,day[key]))clearMealComponent(day,type,component);
+  if(day[key])return;
+  const used=new Set(activeCourseEntries().filter(item=>item.type===component).map(item=>item.recipe.id));
+  const companion=component==='starter'?day[dessertKey(type)]:day[starterKey(type)];
+  day[key]=pickCourse(component==='starter'?starters:desserts,component,day[type],used,{mealType:type,companion});
+  setManualChoice(day,type,component,false);
+  rememberCourseProposal(component,day[key].id);
+}
+function toggleMealCourseComponent(index,type,component){
+  const day=plan[index];
+  if(!day||!MEAL_TYPES.includes(type)||mealStatus(day,type)!==MEAL_PLANNED||!['starter','dessert'].includes(component))return;
+  const current=mealFormat(day,type);
+  const enabled=component==='starter'?formatHasStarter(current):formatHasDessert(current);
+  if(enabled){
+    day[formatKey(type)]=formatWithoutComponent(current,component);
+    // Un choix personnel est gardé en mémoire : il réapparaît si l'utilisateur
+    // réactive le composant. Une proposition automatique peut être libérée.
+    if(!isManualChoice(day,type,component))clearMealComponent(day,type,component);
+    render();
+    show(component==='starter'?'Entrée retirée · plat conservé':'Dessert retiré · plat conservé');
+    return;
+  }
+  day[formatKey(type)]=formatIncludingComponent(current,component);
+  ensureMealCourseComponent(day,type,component);
+  render();
+  show(component==='starter'?'Entrée ajoutée · plat conservé':'Dessert ajouté · plat conservé');
+}
+
 function setMealFormat(index,type,nextFormat){
   const day=plan[index];
   if(!day||!MEAL_TYPES.includes(type)||mealStatus(day,type)!==MEAL_PLANNED)return;
