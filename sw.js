@@ -1,4 +1,4 @@
-const CACHE='clair-repas-v541-bistrot-buttons-fix-20260815';
+const CACHE='clair-repas-v55-cuisine-regionale-20260815';
 const ASSETS=['./','./index.html','./manifest.webmanifest','./icon-192.png','./icon-512.png'];
 
 self.addEventListener('install',event=>{
