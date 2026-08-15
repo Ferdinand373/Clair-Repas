@@ -1,4 +1,4 @@
-const CACHE='clair-repas-v52-courses-intelligentes-20260815';
+const CACHE='clair-repas-v53-conditionnements-achats-20260815';
 const ASSETS=['./','./index.html','./manifest.webmanifest','./icon-192.png','./icon-512.png'];
 
 self.addEventListener('install',event=>{

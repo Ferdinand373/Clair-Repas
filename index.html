@@ -9,7 +9,7 @@
 <meta name="apple-mobile-web-app-title" content="Clair Repas">
 <link rel="manifest" href="./manifest.webmanifest">
 <link rel="apple-touch-icon" href="./icon-192.png">
-<title>Clair Repas V5.2</title>
+<title>Clair Repas V5.3</title>
 <style>
 :root{
   --bg:#f4efe7;--card:#fffdfa;--text:#27231f;--muted:#746c63;
@@ -482,7 +482,7 @@ body.timer-running .browser-content{padding-bottom:calc(105px + env(safe-area-in
 
 <p class="note">Clair Repas tient compte du moment, de vos goûts et des derniers repas. Les réglages avancés restent facultatifs.</p>
 <p class="library-count" id="libraryCount">837 plats · 121 entrées · 100 desserts · 52 recettes complémentaires</p>
-<p class="version" id="versionLine">Clair Repas V5.2</p>
+<p class="version" id="versionLine">Clair Repas V5.3</p>
 </main>
 <div class="recipe-browser" id="recipeBrowser" hidden>
   <section class="browser-panel" role="dialog" aria-modal="true" aria-labelledby="browserTitle">
@@ -3131,7 +3131,7 @@ const recipeLibrary=[...dishLibrary,...starters,...desserts,...standaloneLibrary
 const recipeIndex=new Map(recipeLibrary.map(recipe=>[recipe.id,recipe]));
 $('libraryCount').textContent=`${dishLibrary.length} plats · ${starters.length} entrées · ${desserts.length} desserts · ${breakfastRecipes.length} petits-déjeuners · ${sauceRecipes.length} sauces · ${sideRecipes.length} accompagnements`;
 $('libraryHint').textContent=`Découvrir ${recipeLibrary.length} recettes dans le Livre`;
-$('versionLine').textContent='Clair Repas V5.2';
+$('versionLine').textContent='Clair Repas V5.3';
 const FAVORITES_KEY='crFavMeals';
 const RECENT_RECIPES_KEY='crRecentRecipesV25';
 const MAX_RECENT_RECIPES=10;
@@ -5015,6 +5015,7 @@ function ingredientAssistantHTML(){
   </article>`;
 }
 
+// V5.3 — conditionnements d’achat intelligents : la recette garde ses mesures, la liste indique ce qu’il faut réellement acheter.
 // V5.2 — courses intelligentes : ingrédients d’achat normalisés, rayons renforcés et regroupement cru/cuit des féculents.
 // V5.1 — interface courses simplifiée : un seul accès global sous le programme, sans boutons répétés sous chaque recette.
 // V5.0 — version de référence stabilisée : consolidation de V4.4 à V4.9, sans nouvelle fonction ni migration destructive.
@@ -5051,6 +5052,10 @@ function shoppingIngredientAvailable(item,availableItems=[]){
 function shoppingPantryItem(item){return SHOPPING_COMMON_PATTERN.test(normalizeSearchText(item?.n||item?.k||''))}
 function shoppingLine(entry){
   if(entry.q==null)return String(entry.item.n||entry.item.k||'').trim();
+  if(entry.purchasePackage){
+    const name=String(entry.item.n||entry.item.k||'').trim();
+    return `${formatQty(entry.q)} ${entry.unit} de ${name}`;
+  }
   return ingredientText(entry.item,entry.q);
 }
 function shoppingRoundConvertedGrams(value){
@@ -5127,6 +5132,45 @@ function shoppingProductKey(name){
   const exact=String(name||'').normalize('NFC').toLocaleLowerCase('fr-FR').replace(/\s+/g,' ').trim();
   return`clair-repas:${shoppingFNV(exact)}:${exact.slice(0,72)}`;
 }
+function shoppingPackageWord(unit,count){
+  const words={paquet:'paquets',pot:'pots',bouteille:'bouteilles',flacon:'flacons',tube:'tubes',bocal:'bocaux'};
+  return Number(count)>1?(words[unit]||`${unit}s`):unit;
+}
+function shoppingPurchasePackage(entry){
+  const sourceName=String(entry?.item?.n||entry?.item?.k||'').normalize('NFC').trim();
+  const n=normalizeSearchText(sourceName);
+  const q=entry?.q==null?null:Number(entry.q);
+  const unit=shoppingUnit(entry?.unit||entry?.item?.u);
+  let packageUnit='';
+  let packageSize=null;
+
+  // Condiments : une mesure de recette devient le contenant à acheter.
+  if(/\bmiel\b/.test(n))packageUnit='pot';
+  else if(/\bmoutarde\b/.test(n))packageUnit='pot';
+  else if(/\bmayonnaise\b/.test(n))packageUnit='pot';
+  else if(/\bketchup\b/.test(n))packageUnit='flacon';
+  else if(/\bconcentre de tomate\b/.test(n))packageUnit='tube';
+  else if(/\b(?:sauce soja|mirin|vinaigre|huile d olive|huile neutre)\b/.test(n))packageUnit='bouteille';
+  else if(/\b(?:paprika|curry|cumin|curcuma|cannelle|muscade|epices?)\b/.test(n))packageUnit='pot';
+
+  // Épicerie sèche : on achète un paquet, pas les grammes exacts de la recette.
+  else if(/\briz\b/.test(n)){packageUnit='paquet';packageSize=1000;}
+  else if(/\b(?:pates|spaghetti|spaghettis|penne|tagliatelles|coquillettes|macaroni|fusilli|linguine|orzo)\b/.test(n)){packageUnit='paquet';packageSize=500;}
+  else if(/\bsemoule\b/.test(n)){packageUnit='paquet';packageSize=500;}
+  else if(/\bquinoa\b/.test(n)){packageUnit='paquet';packageSize=500;}
+  else if(/\bboulgour\b/.test(n)){packageUnit='paquet';packageSize=500;}
+  else if(/\bpolenta\b/.test(n)){packageUnit='paquet';packageSize=500;}
+  else if(/\bfarine\b/.test(n)){packageUnit='paquet';packageSize=1000;}
+  else if(/\bsucre\b/.test(n)){packageUnit='paquet';packageSize=1000;}
+  else if(/\b(?:chapelure|panko)\b/.test(n)){packageUnit='paquet';packageSize=250;}
+  else if(/\bflocons? d avoine\b/.test(n)){packageUnit='paquet';packageSize=500;}
+
+  if(!packageUnit)return{...entry,purchasePackage:false};
+  let count=1;
+  if(packageSize&&unit==='g'&&Number.isFinite(q)&&q>0)count=Math.max(1,Math.ceil(q/packageSize));
+  const item={...entry.item,u:shoppingPackageWord(packageUnit,count)};
+  return{...entry,item,q:count,unit:item.u,purchasePackage:true};
+}
 function shoppingBuildDraft(context){
   const grouped=new Map();
   for(const source of context.sources||[]){
@@ -5150,7 +5194,8 @@ function shoppingBuildDraft(context){
       }
     }
   }
-  const drafts=[...grouped.values()].map((entry,index)=>{
+  const drafts=[...grouped.values()].map((rawEntry,index)=>{
+    const entry=shoppingPurchasePackage(rawEntry);
     const text=shoppingLine(entry);
     const pantry=shoppingPantryItem(entry.item);
     return{
@@ -5160,6 +5205,7 @@ function shoppingBuildDraft(context){
       unit:entry.unit,
       identity:entry.identity,
       sourceCount:entry.sourceCount,
+      purchasePackage:Boolean(entry.purchasePackage),
       originalText:text,
       text,
       pantry,
@@ -5300,7 +5346,7 @@ function shoppingParseEditedLine(entry){
     return{name:String(entry.item.n||entry.identity).trim(),quantity:entry.q,unit:entry.unit};
   }
   const text=String(entry.text||'').trim();
-  const match=text.match(/^(\d+(?:[.,]\d+)?|[⅛¼⅓⅜½⅝⅔¾⅞])\s*(kg|g|ml|cl|l|c\.\s*à\s*soupe|c\.\s*à\s*café|c\.\s*à\s*c|c\.\s*à\s*s|pincée|pincées|tranche|tranches|feuille|feuilles|gousse|gousses|boîte|boîtes|sachet|sachets)?\s*(?:de\s+|d[’']\s*)?(.+)$/i);
+  const match=text.match(/^(\d+(?:[.,]\d+)?|[⅛¼⅓⅜½⅝⅔¾⅞])\s*(kg|g|ml|cl|l|c\.\s*à\s*soupe|c\.\s*à\s*café|c\.\s*à\s*c|c\.\s*à\s*s|pincée|pincées|tranche|tranches|feuille|feuilles|gousse|gousses|boîte|boîtes|sachet|sachets|paquet|paquets|pot|pots|bocal|bocaux|bouteille|bouteilles|flacon|flacons|tube|tubes)?\s*(?:de\s+|d[’']\s*)?(.+)$/i);
   if(!match)return{name:text,quantity:null,unit:''};
   const quantity=SHOPPING_FRACTIONS[match[1]]??Number(match[1].replace(',','.'));
   return{name:String(match[3]||'').trim(),quantity:Number.isFinite(quantity)?quantity:null,unit:shoppingUnit(match[2]||'')};
@@ -5325,7 +5371,7 @@ function shoppingSelectedContractItems(){
 function shoppingContract(){
   const items=shoppingSelectedContractItems();
   const fingerprint=`fnv1a:${shoppingFNV(JSON.stringify(items))}`;
-  return{schemaVersion:1,source:'Clair Repas',sourceVersion:'5.2',createdAt:new Date().toISOString(),contentFingerprint:fingerprint,items};
+  return{schemaVersion:1,source:'Clair Repas',sourceVersion:'5.3',createdAt:new Date().toISOString(),contentFingerprint:fingerprint,items};
 }
 async function shoppingCopySelected(){
   const items=shoppingSelectedContractItems();
@@ -6860,7 +6906,7 @@ function updateTimerUI(){
     if(timerInterval){clearInterval(timerInterval);timerInterval=null}
     bar.classList.remove('show','done');
     document.body.classList.remove('timer-running');
-    document.title='Clair Repas V5.2';
+    document.title='Clair Repas V5.3';
     return;
   }
   const remaining=Math.max(0,Math.ceil((kitchenTimer.endAt-Date.now())/1000));
