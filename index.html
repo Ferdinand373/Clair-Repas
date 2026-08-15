@@ -9,7 +9,7 @@
 <meta name="apple-mobile-web-app-title" content="Clair Repas">
 <link rel="manifest" href="./manifest.webmanifest">
 <link rel="apple-touch-icon" href="./icon-192.png">
-<title>Clair Repas V4.7</title>
+<title>Clair Repas V4.8</title>
 <style>
 :root{
   --bg:#f4efe7;--card:#fffdfa;--text:#27231f;--muted:#746c63;
@@ -97,6 +97,7 @@ button.meal-component-toggle:active{transform:scale(.985)}
 .meta{color:var(--muted);font-size:13px}
 .why-choice{display:inline-flex;align-items:center;min-height:30px;margin-top:4px;padding:3px 0;border:0;background:transparent;color:var(--green);font-size:11px;font-weight:790;text-align:left;touch-action:manipulation}
 .why-choice:active{opacity:.68}
+.meal-spirit{display:inline-flex;align-items:center;gap:5px;margin-top:5px;padding:4px 8px;border:1px solid var(--line);border-radius:999px;background:#fff;color:var(--muted);font-size:10.5px;font-weight:800;line-height:1.2}
 .meal-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:11px}
 .meal-actions.has-chooser .recipe-btn{grid-column:1/-1}
 .small-btn{min-height:44px;padding:10px 8px;border:0;border-radius:12px;background:var(--green-soft);color:var(--text);font-weight:760;touch-action:manipulation}
@@ -463,7 +464,7 @@ body.timer-running .browser-content{padding-bottom:calc(105px + env(safe-area-in
 
 <p class="note">Midi ou soir, saison, temps, cuisson et contexte du moment guident les prochains choix. En mode Automatique, Clair Repas décide seul.</p>
 <p class="library-count" id="libraryCount">837 plats · 121 entrées · 100 desserts · 52 recettes complémentaires</p>
-<p class="version" id="versionLine">Clair Repas V4.7</p>
+<p class="version" id="versionLine">Clair Repas V4.8</p>
 </main>
 <div class="recipe-browser" id="recipeBrowser" hidden>
   <section class="browser-panel" role="dialog" aria-modal="true" aria-labelledby="browserTitle">
@@ -3112,7 +3113,7 @@ const recipeLibrary=[...dishLibrary,...starters,...desserts,...standaloneLibrary
 const recipeIndex=new Map(recipeLibrary.map(recipe=>[recipe.id,recipe]));
 $('libraryCount').textContent=`${dishLibrary.length} plats · ${starters.length} entrées · ${desserts.length} desserts · ${breakfastRecipes.length} petits-déjeuners · ${sauceRecipes.length} sauces · ${sideRecipes.length} accompagnements`;
 $('libraryHint').textContent=`Découvrir ${recipeLibrary.length} recettes dans le Livre`;
-$('versionLine').textContent='Clair Repas V4.7';
+$('versionLine').textContent='Clair Repas V4.8';
 const FAVORITES_KEY='crFavMeals';
 const RECENT_RECIPES_KEY='crRecentRecipesV25';
 const MAX_RECENT_RECIPES=10;
@@ -4034,6 +4035,7 @@ function personalizationContext(discovery=false,type='mid'){
   const reactions=reactionMap();
   return{
     discovery,
+    personality:chooseMealPersonality(type,discovery),
     learning,
     reactions,
     profile:buildPreferenceProfile(learning,reactions,type)
@@ -4047,6 +4049,15 @@ function choiceExplanation(recipe,type){
   const reaction=personalization.reactions[recipe.id];
   if(reaction==='again')reasons.push('vous l’avez marquée « À refaire »');
   else if(favoriteSet().has(recipe.id))reasons.push('elle fait partie de vos favoris');
+  const personality=mealPersonalityForRecipe(recipe,type);
+  const personalityReason={
+    safe:'Clair Repas la considère comme une valeur sûre',
+    discovery:'elle apporte une vraie découverte',
+    family:'elle a un esprit familial et convivial',
+    balanced:'elle apporte un repas léger et équilibré',
+    treat:'elle correspond à un petit plaisir'
+  }[personality];
+  if(personalityReason&&reasons.length<2)reasons.push(personalityReason);
   const contextPref=mealContextPreference();
   if(contextPref==='light'&&reasons.length<2)reasons.push('elle correspond à votre envie de léger');
   else if(contextPref==='heat'&&reasons.length<2&&isFreshDish(recipe,tags))reasons.push('elle convient bien à une journée de grande chaleur');
@@ -4972,6 +4983,7 @@ function ingredientAssistantHTML(){
   </article>`;
 }
 
+// V4.8 — personnalité culinaire : valeur sûre, découverte, familial, équilibré et petit plaisir.
 // V4.7 — composition Entrée / Plat / Dessert plus fluide, sur la base du contexte V4.6, de la variété V4.5 et de la mémoire V4.4.
 // V4.3.1 — correction ciblée du filtre Poissons & fruits de mer.
 // La préparation contrôlée des courses de la V4.3 reste inchangée. Aucun article n'est transmis
@@ -5232,7 +5244,7 @@ function shoppingSelectedContractItems(){
 function shoppingContract(){
   const items=shoppingSelectedContractItems();
   const fingerprint=`fnv1a:${shoppingFNV(JSON.stringify(items))}`;
-  return{schemaVersion:1,source:'Clair Repas',sourceVersion:'4.7',createdAt:new Date().toISOString(),contentFingerprint:fingerprint,items};
+  return{schemaVersion:1,source:'Clair Repas',sourceVersion:'4.8',createdAt:new Date().toISOString(),contentFingerprint:fingerprint,items};
 }
 async function shoppingCopySelected(){
   const items=shoppingSelectedContractItems();
@@ -5988,6 +6000,122 @@ function alternativeTrailPenalty(recipe,trailRecipes){
   }
   return factor;
 }
+// V4.8 — personnalité culinaire.
+// Aucun nouveau réglage : Clair Repas choisit un registre discret pour chaque
+// proposition automatique, puis le fait dialoguer avec la mémoire, la variété
+// multi-jours et le contexte du repas. L'objectif est un assistant reconnaissable,
+// pas un carrousel de modes imposés.
+const MEAL_PERSONALITIES={
+  safe:{label:'Valeur sûre',emoji:'♥'},
+  discovery:{label:'Découverte',emoji:'✨'},
+  family:{label:'Repas familial',emoji:'🏡'},
+  balanced:{label:'Léger & équilibré',emoji:'🌿'},
+  treat:{label:'Petit plaisir',emoji:'🍽️'}
+};
+function validMealPersonality(value){return Object.prototype.hasOwnProperty.call(MEAL_PERSONALITIES,value)?value:null}
+function recipeLooksFamilyFriendly(recipe){
+  const text=pairingRecipeText(recipe);
+  return /gratin|lasagne|hachis|parmentier|boulette|poulet|roti|rôti|blanquette|quiche|pizza|pates|pâtes|curry|tajine|couscous|saucisse|filet mignon|omelette/.test(text);
+}
+function inferredMealPersonality(recipe,type='mid'){
+  if(!recipe)return'safe';
+  const reaction=reactionMap()[recipe.id];
+  if(reaction==='again'||isFavorite(recipe.id))return'safe';
+  const learning=learningData();
+  const stats=learning.stats[recipe.id]||{};
+  if((Number(stats.proposed)||0)<=1&&(Number(stats.selected)||0)===0)return'discovery';
+  const richness=dishRichnessLevel(recipe);
+  if(richness===1)return'balanced';
+  if(richness===3)return'treat';
+  if(recipeLooksFamilyFriendly(recipe))return'family';
+  return type==='eve'?'balanced':'safe';
+}
+function recentMealPersonalities(limit=6){
+  return usageData().sequence.slice(-limit).map(item=>{
+    const recipe=recipeIndex.get(item.id);
+    return recipe?inferredMealPersonality(recipe,item.type):null;
+  }).filter(Boolean);
+}
+function chooseMealPersonality(type,discovery=false){
+  const preference=mealContextPreference();
+  if(preference==='light'||preference==='heat')return'balanced';
+  if(preference==='gourmand')return'treat';
+  if(preference==='comfort')return'family';
+  if(discovery)return'discovery';
+  const recent=recentMealPersonalities(6);
+  const last=recent.at(-1)||null;
+  const counts=recent.reduce((map,key)=>(map[key]=(map[key]||0)+1,map),{});
+  const weights={safe:0.34,family:0.25,balanced:type==='eve'?0.30:0.22,treat:type==='eve'?0.11:0.19};
+  Object.keys(weights).forEach(key=>{
+    if(last===key)weights[key]*=0.28;
+    if((counts[key]||0)>=2)weights[key]*=0.55;
+    if(!(counts[key]||0))weights[key]*=1.18;
+  });
+  const total=Object.values(weights).reduce((sum,value)=>sum+value,0);
+  let target=Math.random()*Math.max(total,Number.EPSILON);
+  for(const [key,value] of Object.entries(weights)){
+    target-=value;
+    if(target<=0)return key;
+  }
+  return'safe';
+}
+function personalityMultiplier(recipe,type,scoring,personalization){
+  const personality=validMealPersonality(personalization?.personality)||'safe';
+  const tags=tagsOf(recipe);
+  const learning=personalization?.learning||learningData();
+  const reactions=personalization?.reactions||reactionMap();
+  const stats=learning.stats[recipe.id]||{};
+  const richness=dishRichnessLevel(recipe);
+  const recent=(scoring?.history||[]).concat(scoring?.selected||[]).slice(-6);
+  let factor=1;
+  if(personality==='safe'){
+    if(reactions[recipe.id]==='again')factor*=1.52;
+    else if(isFavorite(recipe.id))factor*=1.38;
+    else if((Number(stats.selected)||0)>0||(Number(stats.viewed)||0)>1)factor*=1.18;
+    factor*=observedPreferenceMultiplier(recipe,type,personalization.profile,false)>1.02?1.12:0.98;
+  }else if(personality==='discovery'){
+    const proposed=Number(stats.proposed)||0;
+    const selected=Number(stats.selected)||0;
+    factor*=proposed===0?1.62:proposed===1?1.35:selected===0?1.14:0.86;
+    const familySeen=recent.some(item=>item.family===tags.family);
+    const cuisineSeen=recent.some(item=>item.cuisine===tags.cuisine);
+    if(!familySeen)factor*=1.20;
+    if(!cuisineSeen)factor*=1.13;
+    if(isFavorite(recipe.id)||reactions[recipe.id]==='again')factor*=0.92;
+  }else if(personality==='family'){
+    if(recipeLooksFamilyFriendly(recipe))factor*=1.48;
+    if(richness===2)factor*=1.20;
+    else if(richness===3)factor*=1.08;
+    if(['Four','Casserole','Poêle'].includes(recipe.m))factor*=1.10;
+    if(tags.kind==='salad'&&type==='mid')factor*=0.78;
+  }else if(personality==='balanced'){
+    factor*=richness===1?1.55:richness===2?1.06:0.54;
+    if(['poisson','vegetal'].includes(tags.group))factor*=1.16;
+    if((tags.vegetables||[]).length>=2)factor*=1.14;
+    if(isFreshDish(recipe,tags))factor*=1.10;
+  }else if(personality==='treat'){
+    factor*=richness===3?1.62:richness===2?1.12:0.72;
+    if(isFavorite(recipe.id)||reactions[recipe.id]==='again')factor*=1.12;
+    if(/gratin|creme|crème|fromage|croustill|burger|pizza|carbonara|canard|filet mignon|risotto/.test(pairingRecipeText(recipe)))factor*=1.18;
+  }
+  return Math.max(0.32,Math.min(1.85,factor));
+}
+function mealPersonalityForRecipe(recipe,type='mid'){
+  return validMealPersonality(recipe&&recipe._clairRepasPersonality)||inferredMealPersonality(recipe,type);
+}
+function mealPersonalityLabel(recipe,type='mid'){
+  const key=mealPersonalityForRecipe(recipe,type);
+  const item=MEAL_PERSONALITIES[key]||MEAL_PERSONALITIES.safe;
+  return `${item.emoji} Esprit du repas · ${item.label}`;
+}
+function markPickedPersonality(recipe,personality){
+  if(recipe&&typeof recipe==='object'){
+    try{Object.defineProperty(recipe,'_clairRepasPersonality',{value:validMealPersonality(personality)||'safe',writable:true,configurable:true,enumerable:false})}
+    catch(e){recipe._clairRepasPersonality=validMealPersonality(personality)||'safe'}
+  }
+  return recipe;
+}
+
 function candidateScore(recipe,type,context,data,favorites,prepared,personalization=personalizationContext(false,type)){
   const tags=tagsOf(recipe);
   const scoring=prepared||prepareScoringContext(context,data);
@@ -6001,6 +6129,7 @@ function candidateScore(recipe,type,context,data,favorites,prepared,personalizat
   score*=observedPreferenceMultiplier(recipe,type,personalization.profile,personalization.discovery);
   score*=exposureMultiplier(recipe,personalization.learning,personalization.discovery);
   score*=mealContextMultiplier(recipe,type,scoring.seasonProfile);
+  score*=personalityMultiplier(recipe,type,scoring,personalization);
 
   const {history,selected,last,lastSix}=scoring;
   score*=similarityPenalty(recipe,lastSix,false);
@@ -6110,9 +6239,9 @@ function pick(list,type,exclude,context=[],options={}){
   let target=Math.random()*total;
   for(const item of weighted){
     target-=item.score;
-    if(target<=0)return item.recipe;
+    if(target<=0)return markPickedPersonality(item.recipe,personalization.personality);
   }
-  return weighted.at(-1).recipe;
+  return markPickedPersonality(weighted.at(-1).recipe,personalization.personality);
 }
 function pairingRecipeText(recipe){
   return normalizeSearchText(`${recipe.n} ${(recipe.i||[]).map(item=>item.k||item.n).join(' ')}`)
@@ -6130,6 +6259,7 @@ function dishRichnessLevel(recipe){
 }
 function courseRichnessLevel(recipe){return recipe.richness==='léger'?1:recipe.richness==='gourmand'?3:2}
 
+// V4.8 — personnalité culinaire automatique, sans nouveau réglage utilisateur.
 // V4.7 — composition du repas simplifiée : Entrée / Plat / Dessert en trois gestes directs.
 // V4.6 — contexte du repas.
 // L'intelligence reste derrière l'écran : midi/soir et saison sont automatiques.
@@ -6649,7 +6779,7 @@ function updateTimerUI(){
     if(timerInterval){clearInterval(timerInterval);timerInterval=null}
     bar.classList.remove('show','done');
     document.body.classList.remove('timer-running');
-    document.title='Clair Repas V4.7';
+    document.title='Clair Repas V4.8';
     return;
   }
   const remaining=Math.max(0,Math.ceil((kitchenTimer.endAt-Date.now())/1000));
@@ -6732,6 +6862,7 @@ function mealRecipeBlockHTML(recipe,dayIndex,type,component){
       <button class="recipe-favorite${liked?' active':''}" data-recipe-id="${recipe.id}" type="button" aria-pressed="${liked}" aria-label="${liked?'Retirer des favoris':'Ajouter aux favoris'}">${liked?'♥':'♡'}</button>
     </div>
     <div class="meta">⏱️ ${recipe.t} · 🔥 ${recipe.m}</div>
+    ${component==='dish'&&!manual?`<div class="meal-spirit">${mealPersonalityLabel(recipe,type)}</div>`:''}
     ${component==='dish'&&!manual?`<button class="why-choice" data-recipe-id="${recipe.id}" data-type="${type}" type="button">💡 Pourquoi cette idée ?</button>`:''}
     <div class="meal-actions has-chooser">
       <button class="small-btn recipe-btn" data-day="${dayIndex}" data-type="${type}" data-component="${component}">📖 Voir la recette</button>
