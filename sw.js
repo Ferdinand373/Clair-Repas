@@ -1,5 +1,5 @@
 "use strict";
-const CACHE='clair-repas-v73-consolidation-technique-20260816';
+const CACHE='clair-repas-v74-tables-de-france-20260816';
 const ASSETS=['./','./index.html','./manifest.webmanifest','./icon-192.png','./icon-512.png'];
 
 async function cacheCore(){
