@@ -9,7 +9,7 @@
 <meta name="apple-mobile-web-app-title" content="Clair Repas">
 <link rel="manifest" href="./manifest.webmanifest">
 <link rel="apple-touch-icon" href="./icon-192.png">
-<title>Clair Repas V7.2</title>
+<title>Clair Repas V7.3</title>
 <style>
 :root{
   --bg:#f4efe7;--card:#fffdfa;--text:#27231f;--muted:#746c63;
@@ -962,12 +962,12 @@ select{min-height:48px;border:1px solid #deebf2;border-radius:16px;background:#f
   <summary><span class="premium-info-mark">CR</span> Clair Repas · Réglages & confiance</summary>
   <div class="product-panel">
     <div class="product-identity">
-      <strong>Clair Repas V7.2</strong>
+      <strong>Clair Repas V7.3</strong>
       <span>Votre assistant culinaire personnel. L’intelligence derrière, la simplicité devant.</span>
     </div>
     <div class="product-new">
-      <strong>Nouveautés V7.2 · Le Livre Premium</strong>
-      Nouvelle identité visuelle, navigation plus immersive, accueil éditorial, Livre entièrement rhabillé et fiches recettes premium. Vos fonctions, recettes et données restent préservées.
+      <strong>Nouveautés V7.3 · Consolidation technique</strong>
+      Mises à jour plus fiables, sauvegardes plus complètes, contrôle interne de la bibliothèque et moteur plus réactif. L’apparence, les recettes et vos habitudes restent inchangées.
     </div>
     <div class="product-actions">
       <button class="product-primary" id="backupData" type="button">💾 Sauvegarder mes données</button>
@@ -981,7 +981,7 @@ select{min-height:48px;border:1px solid #deebf2;border-radius:16px;background:#f
 
 <p class="note">Clair Repas tient compte du moment, de vos goûts et des derniers repas. Les réglages avancés restent facultatifs.</p>
 <p class="library-count" id="libraryCount">837 plats · 121 entrées · 100 desserts · 52 recettes complémentaires</p>
-<p class="version" id="versionLine">Clair Repas V7.2</p>
+<p class="version" id="versionLine">Clair Repas V7.3</p>
 </main>
 <div class="recipe-browser" id="recipeBrowser" hidden>
   <section class="browser-panel" role="dialog" aria-modal="true" aria-labelledby="browserTitle">
@@ -3783,7 +3783,7 @@ for(const r of [...noon,...evening,...starters,...desserts]){if(r.n==="Œufs en 
 for(const r of [...noon,...evening,...starters,...desserts]){if(r.n==="Quenelles de brochet sauce Nantua")crAddCollection(r,"bistrot-brasserie")}
 for(const r of [...noon,...evening,...starters,...desserts]){if(r.n==="Choucroute garnie alsacienne")crAddCollection(r,"bistrot-brasserie")}
 for(const r of [...noon,...evening,...starters,...desserts]){if(r.n==="Quiche Lorraine")crAddCollection(r,"bistrot-brasserie")}
-window.__CLAIR_REPAS_EDITORIAL_VERSION="7.2";
+window.__CLAIR_REPAS_EDITORIAL_VERSION="7.3";
 const $=id=>document.getElementById(id);
 noon.forEach(recipe=>{recipe.mealSlots=['mid']});
 evening.forEach(recipe=>{recipe.mealSlots=['eve']});
@@ -3791,9 +3791,70 @@ const dishLibrary=[...noon,...evening];
 const standaloneLibrary=[...breakfastRecipes,...sauceRecipes,...sideRecipes];
 const recipeLibrary=[...dishLibrary,...starters,...desserts,...standaloneLibrary];
 const recipeIndex=new Map(recipeLibrary.map(recipe=>[recipe.id,recipe]));
+const CR_APP_VERSION='7.3';
+const CR_DATA_SCHEMA_VERSION=2;
+const V73_RECOVERY_KEY='crRecoveryV73';
+const V73_RUNTIME={recoveredKeys:[]};
+function v73RememberCorruptStorage(key,raw){
+  if(!key||raw==null)return;
+  if(!V73_RUNTIME.recoveredKeys.includes(key))V73_RUNTIME.recoveredKeys.push(key);
+  try{
+    let recovery=[];
+    try{recovery=JSON.parse(localStorage.getItem(V73_RECOVERY_KEY)||'[]')}catch(e){recovery=[]}
+    if(!Array.isArray(recovery))recovery=[];
+    const snapshot=String(raw).slice(0,12000);
+    if(!recovery.some(item=>item&&item.key===key&&item.raw===snapshot)){
+      recovery.push({key,raw:snapshot,at:new Date().toISOString()});
+      localStorage.setItem(V73_RECOVERY_KEY,JSON.stringify(recovery.slice(-8)));
+    }
+  }catch(e){}
+}
+function safeStoredJSON(key,fallback){
+  let raw=null;
+  try{raw=localStorage.getItem(key)}catch(e){return fallback}
+  if(raw===null)return fallback;
+  try{return JSON.parse(raw)}catch(e){v73RememberCorruptStorage(key,raw);return fallback}
+}
+function v73RecipeDiagnostics(){
+  const seen=new Set(),duplicates=[],invalid=[];
+  for(const recipe of recipeLibrary){
+    if(!recipe||typeof recipe.id!=='string'||!recipe.id||typeof recipe.n!=='string'||!recipe.n||!Array.isArray(recipe.i)||!recipe.i.length||!Array.isArray(recipe.p)||!recipe.p.length){
+      invalid.push(recipe&&recipe.id?recipe.id:'sans-identifiant');
+      continue;
+    }
+    if(seen.has(recipe.id))duplicates.push(recipe.id);else seen.add(recipe.id);
+  }
+  return{count:recipeLibrary.length,indexCount:recipeIndex.size,duplicates:[...new Set(duplicates)],invalid:[...new Set(invalid)]};
+}
+function v73StorageAvailable(){
+  const probe='crHealthProbeV73';
+  try{localStorage.setItem(probe,'1');localStorage.removeItem(probe);return true}catch(e){return false}
+}
+function refreshV73HealthStatus(){
+  const recipes=v73RecipeDiagnostics();
+  const storage=v73StorageAvailable();
+  const report={
+    release:CR_APP_VERSION,
+    recipeCount:recipes.count,
+    recipeIndexCount:recipes.indexCount,
+    duplicateRecipeIds:recipes.duplicates,
+    invalidRecipes:recipes.invalid,
+    storageAvailable:storage,
+    recoveredKeys:[...V73_RUNTIME.recoveredKeys],
+    ok:storage&&recipes.count===recipes.indexCount&&!recipes.duplicates.length&&!recipes.invalid.length
+  };
+  window.__CLAIR_REPAS_HEALTH=Object.freeze(report);
+  if(typeof setProductStatus==='function'){
+    if(!storage)setProductStatus('Le stockage local de Clair Repas n’est pas disponible sur cet appareil.','warning');
+    else if(!report.ok)setProductStatus('Clair Repas a détecté une incohérence interne. Conservez une sauvegarde avant toute modification.','warning');
+    else if(report.recoveredKeys.length)setProductStatus('Clair Repas a isolé une donnée locale illisible sans effacer vos autres informations. Pensez à créer une sauvegarde.','warning');
+  }
+  return report;
+}
 $('libraryCount').textContent=`${dishLibrary.length} plats · ${starters.length} entrées · ${desserts.length} desserts · ${breakfastRecipes.length} petits-déjeuners · ${sauceRecipes.length} sauces · ${sideRecipes.length} accompagnements`;
 $('libraryHint').textContent=`Découvrir ${recipeLibrary.length} recettes dans le Livre`;
-$('versionLine').textContent='Clair Repas V7.2';
+$('versionLine').textContent='Clair Repas V7.3';
+// V7.3 — Consolidation technique : robustesse PWA, sauvegarde évolutive, intégrité des données et optimisation des lectures locales.
 // V7.2 — Le Livre Premium : couverture éditoriale, découvertes, envies, collections signature et lecture raffinée.
 // V7.1 — Journées Premium : Entrée / Plat / Dessert deviennent des fiches éditoriales plus lisibles et hiérarchisées.
 // V7.0 — Refonte Premium : nouvelle identité visuelle et navigation, moteur et données préservés.
@@ -3805,6 +3866,17 @@ const V6_BACKUP_KEYS=[
   'crPeople','crDays','crMode','crTimeAvailable','crMealContext','crMealUsageV19','crCourseUsageV37',
   'crBrowserDiscoveryV35','crBrowserDecksV35','crStateV13','crHistoryV13'
 ];
+function clairRepasBackupKeys(){
+  const keys=new Set(V6_BACKUP_KEYS);
+  try{
+    for(let index=0;index<localStorage.length;index+=1){
+      const key=localStorage.key(index);
+      if(key&&/^cr[A-Za-z0-9_.-]+$/.test(key))keys.add(key);
+    }
+  }catch(e){}
+  return[...keys].sort();
+}
+function isClairRepasStorageKey(key){return V6_BACKUP_KEYS.includes(key)||/^cr[A-Za-z0-9_.-]+$/.test(String(key||''))}
 function setProductStatus(message,type=''){
   const el=$('productStatus');
   if(!el)return;
@@ -3825,11 +3897,13 @@ function refreshProfessionalStatus(){
 }
 function clairRepasBackupPayload(){
   const data={};
-  for(const key of V6_BACKUP_KEYS){
-    const value=localStorage.getItem(key);
-    if(value!==null)data[key]=value;
+  for(const key of clairRepasBackupKeys()){
+    try{
+      const value=localStorage.getItem(key);
+      if(value!==null)data[key]=value;
+    }catch(e){}
   }
-  return{app:'Clair Repas',schemaVersion:1,appVersion:'6.0',exportedAt:new Date().toISOString(),data};
+  return{app:'Clair Repas',schemaVersion:CR_DATA_SCHEMA_VERSION,appVersion:CR_APP_VERSION,recipeCount:recipeLibrary.length,exportedAt:new Date().toISOString(),data};
 }
 function backupFilename(){
   const d=new Date();
@@ -3861,8 +3935,8 @@ async function restoreClairRepasData(file){
   try{
     const raw=await file.text();
     const payload=JSON.parse(raw);
-    if(!payload||payload.app!=='Clair Repas'||payload.schemaVersion!==1||!payload.data||typeof payload.data!=='object')throw new Error('invalid');
-    const keys=Object.keys(payload.data).filter(key=>V6_BACKUP_KEYS.includes(key));
+    if(!payload||payload.app!=='Clair Repas'||![1,CR_DATA_SCHEMA_VERSION].includes(Number(payload.schemaVersion))||!payload.data||typeof payload.data!=='object')throw new Error('invalid');
+    const keys=Object.keys(payload.data).filter(isClairRepasStorageKey);
     if(!keys.length)throw new Error('empty');
     if(!window.confirm(`Restaurer ${keys.length} éléments de Clair Repas ? Les données actuelles correspondantes seront remplacées.`))return;
     for(const key of keys)localStorage.setItem(key,String(payload.data[key]));
@@ -3873,19 +3947,41 @@ async function restoreClairRepasData(file){
     setProductStatus('Ce fichier ne semble pas être une sauvegarde Clair Repas valide.','warning');
   }
 }
+function clairRepasVersionFromMarker(value){
+  const match=String(value||'').match(/Clair Repas V(\d+(?:\.\d+){1,2})/i);
+  return match?match[1]:null;
+}
 async function manualAppUpdateCheck(){
   setProductStatus('Vérification de la version en cours…');
   try{
-    if(!('serviceWorker' in navigator))throw new Error('unsupported');
+    let remoteVersion=null;
+    try{
+      const marker=await fetch(`./refresh.text?check=${Date.now()}`,{cache:'no-store'});
+      if(marker.ok)remoteVersion=clairRepasVersionFromMarker(await marker.text());
+    }catch(e){}
+    if(!('serviceWorker' in navigator)){
+      if(remoteVersion&&remoteVersion!==CR_APP_VERSION){
+        setProductStatus(`Clair Repas V${remoteVersion} est publiée. Rechargez l’application pour l’installer.`,'success');
+        return;
+      }
+      throw new Error('unsupported');
+    }
     let registration=await navigator.serviceWorker.getRegistration('./');
     if(!registration)registration=await navigator.serviceWorker.register('./sw.js',{updateViaCache:'none'});
     await registration.update();
-    if(registration.waiting){
-      setProductStatus('Une mise à jour est prête. Clair Repas va l’activer.','success');
-      registration.waiting.postMessage({type:'SKIP_WAITING'});
-    }else{
-      setProductStatus('Clair Repas V7.2 est à jour.','success');
+    const candidate=registration.waiting||registration.installing;
+    if(candidate){
+      setProductStatus(`Une mise à jour${remoteVersion?` V${remoteVersion}`:''} est en préparation…`,'success');
+      const activate=()=>{try{candidate.postMessage({type:'SKIP_WAITING'})}catch(e){}};
+      if(candidate.state==='installed')activate();
+      else candidate.addEventListener('statechange',()=>{if(candidate.state==='installed')activate()});
+      return;
     }
+    if(remoteVersion&&remoteVersion!==CR_APP_VERSION){
+      setProductStatus(`Clair Repas V${remoteVersion} est publiée. Rechargez l’application pour l’installer.`,'success');
+      return;
+    }
+    setProductStatus(`Clair Repas V${CR_APP_VERSION} est à jour.`,'success');
   }catch(e){
     setProductStatus('Vérification impossible hors connexion. Réessayez lorsque le réseau est disponible.','warning');
   }
@@ -3980,12 +4076,27 @@ function readIdList(key){
   if(!Array.isArray(values))return[];
   return [...new Set(values.filter(value=>typeof value==='string'))];
 }
+let V73_FAVORITES_RAW=null;
+let V73_FAVORITES_IDS=[];
+let V73_FAVORITES_SET=new Set();
+function refreshFavoriteCache(){
+  let raw='[]';
+  try{raw=localStorage.getItem(FAVORITES_KEY)||'[]'}catch(e){}
+  if(raw===V73_FAVORITES_RAW)return;
+  let values=[];
+  try{values=JSON.parse(raw)}catch(e){values=[]}
+  if(!Array.isArray(values))values=[];
+  V73_FAVORITES_IDS=[...new Set(values.filter(value=>typeof value==='string'&&recipeIndex.has(value)))];
+  V73_FAVORITES_SET=new Set(V73_FAVORITES_IDS);
+  V73_FAVORITES_RAW=raw;
+}
 function writeIdList(key,values){
   localStorage.setItem(key,JSON.stringify([...new Set(values)]));
+  if(key===FAVORITES_KEY)V73_FAVORITES_RAW=null;
 }
-function favoriteIds(){return readIdList(FAVORITES_KEY).filter(id=>recipeIndex.has(id))}
-function favoriteSet(){return new Set(favoriteIds())}
-function isFavorite(id){return favoriteSet().has(id)}
+function favoriteIds(){refreshFavoriteCache();return[...V73_FAVORITES_IDS]}
+function favoriteSet(){refreshFavoriteCache();return new Set(V73_FAVORITES_SET)}
+function isFavorite(id){refreshFavoriteCache();return V73_FAVORITES_SET.has(id)}
 function recentRecipeIds(){return readIdList(RECENT_RECIPES_KEY).filter(id=>recipeIndex.has(id)).slice(0,MAX_RECENT_RECIPES)}
 function recordRecentRecipe(id,type=null){
   if(!recipeIndex.has(id))return;
@@ -3997,21 +4108,29 @@ function escapeHTML(value){
     '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
   }[char]));
 }
-function recipeNoteMap(){
+let V73_NOTES_RAW=null;
+let V73_NOTES_MAP={};
+function refreshRecipeNoteCache(){
+  let raw='{}';
+  try{raw=localStorage.getItem(RECIPE_NOTES_KEY)||'{}'}catch(e){}
+  if(raw===V73_NOTES_RAW)return;
   let values={};
-  try{values=JSON.parse(localStorage.getItem(RECIPE_NOTES_KEY)||'{}')}catch(e){values={}}
-  if(!values||Array.isArray(values)||typeof values!=='object')return{};
-  return Object.fromEntries(Object.entries(values)
+  try{values=JSON.parse(raw)}catch(e){values={}}
+  if(!values||Array.isArray(values)||typeof values!=='object')values={};
+  V73_NOTES_MAP=Object.fromEntries(Object.entries(values)
     .filter(([id,value])=>recipeIndex.has(id)&&typeof value==='string'&&value.trim())
     .map(([id,value])=>[id,value.slice(0,2000)]));
+  V73_NOTES_RAW=raw;
 }
-function recipeNote(id){return recipeNoteMap()[id]||''}
+function recipeNoteMap(){refreshRecipeNoteCache();return{...V73_NOTES_MAP}}
+function recipeNote(id){refreshRecipeNoteCache();return V73_NOTES_MAP[id]||''}
 function saveRecipeNote(id,value){
   if(!recipeIndex.has(id))return;
   const notes=recipeNoteMap();
   const clean=String(value??'').slice(0,2000);
   if(clean.trim())notes[id]=clean;else delete notes[id];
   localStorage.setItem(RECIPE_NOTES_KEY,JSON.stringify(notes));
+  V73_NOTES_RAW=null;
   updateNoteIndicators(id);
 }
 function deleteRecipeNote(id){
@@ -4019,16 +4138,24 @@ function deleteRecipeNote(id){
   document.querySelectorAll(`.recipe-note-input[data-recipe-id="${id}"]`).forEach(input=>{input.value=''});
   show('Note supprimée');
 }
-function reactionMap(){
+let V73_REACTIONS_RAW=null;
+let V73_REACTIONS_MAP={};
+function refreshReactionCache(){
+  let raw='{}';
+  try{raw=localStorage.getItem(REACTIONS_KEY)||'{}'}catch(e){}
+  if(raw===V73_REACTIONS_RAW)return;
   let values={};
-  try{values=JSON.parse(localStorage.getItem(REACTIONS_KEY)||'{}')}catch(e){values={}}
-  if(!values||Array.isArray(values)||typeof values!=='object')return{};
-  return Object.fromEntries(Object.entries(values).filter(([id,value])=>recipeIndex.has(id)&&['again','notForMe'].includes(value)));
+  try{values=JSON.parse(raw)}catch(e){values={}}
+  if(!values||Array.isArray(values)||typeof values!=='object')values={};
+  V73_REACTIONS_MAP=Object.fromEntries(Object.entries(values).filter(([id,value])=>recipeIndex.has(id)&&['again','notForMe'].includes(value)));
+  V73_REACTIONS_RAW=raw;
 }
-function recipeReaction(id){return reactionMap()[id]||null}
+function reactionMap(){refreshReactionCache();return{...V73_REACTIONS_MAP}}
+function recipeReaction(id){refreshReactionCache();return V73_REACTIONS_MAP[id]||null}
 function writeReactionMap(values){
   const clean=Object.fromEntries(Object.entries(values||{}).filter(([id,value])=>recipeIndex.has(id)&&['again','notForMe'].includes(value)));
   localStorage.setItem(REACTIONS_KEY,JSON.stringify(clean));
+  V73_REACTIONS_RAW=null;
 }
 const RECIPE_USAGE_TYPES=['mid','eve','starter','dessert'];
 function normalizeRecipeUsageType(type){return RECIPE_USAGE_TYPES.includes(type)?type:'mid'}
@@ -6155,7 +6282,7 @@ function shoppingSelectedContractItems(){
 function shoppingContract(){
   const items=shoppingSelectedContractItems();
   const fingerprint=`fnv1a:${shoppingFNV(JSON.stringify(items))}`;
-  return{schemaVersion:1,source:'Clair Repas',sourceVersion:'7.2',createdAt:new Date().toISOString(),contentFingerprint:fingerprint,items};
+  return{schemaVersion:1,source:'Clair Repas',sourceVersion:CR_APP_VERSION,createdAt:new Date().toISOString(),contentFingerprint:fingerprint,items};
 }
 async function shoppingCopySelected(){
   const items=shoppingSelectedContractItems();
@@ -7559,8 +7686,9 @@ function saveState(){
   }));
 }
 function saveHistory(){
-  let h=JSON.parse(localStorage.getItem('crHistoryV13')||'[]');
-  h=h.filter(x=>x.date!==todayKey());
+  let h=safeStoredJSON('crHistoryV13',[]);
+  if(!Array.isArray(h))h=[];
+  h=h.filter(x=>x&&x.date!==todayKey());
   h.unshift({
     date:todayKey(),
     plan:plan.map(d=>({
@@ -7582,7 +7710,8 @@ function saveHistory(){
   renderHistory();
 }
 function renderHistory(){
-  const h=JSON.parse(localStorage.getItem('crHistoryV13')||'[]');
+  const hRaw=safeStoredJSON('crHistoryV13',[]);
+  const h=Array.isArray(hRaw)?hRaw:[];
   if(!h.length){$('historyContent').innerHTML='<div class="empty">Aucun ancien programme pour le moment.</div>';return}
   $('historyContent').innerHTML=h.slice(0,5).map(x=>{
     const d=new Date(x.date+'T12:00:00');
@@ -7770,7 +7899,7 @@ function updateTimerUI(){
     if(timerInterval){clearInterval(timerInterval);timerInterval=null}
     bar.classList.remove('show','done');
     document.body.classList.remove('timer-running');
-    document.title='Clair Repas V7.2';
+    document.title=`Clair Repas V${CR_APP_VERSION}`;
     return;
   }
   const remaining=Math.max(0,Math.ceil((kitchenTimer.endAt-Date.now())/1000));
@@ -8607,6 +8736,7 @@ $('welcomeV6').onclick=event=>{if(event.target===$('welcomeV6'))closeV6Welcome(f
 
 loadOrCreate();
 refreshProfessionalStatus();
+refreshV73HealthStatus();
 setTimeout(maybeShowV6Welcome,120);
 // V5.0 — mise à jour PWA fiabilisée.
 // iOS peut conserver longtemps une instance installée en mémoire. On force une
