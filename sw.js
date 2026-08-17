@@ -1,7 +1,7 @@
 "use strict";
 
 /*
- * Clair V8 Fondation — FOUNDATION.8 STABLE LAB
+ * Clair V8 Fondation — FOUNDATION.9 CANDIDATE PRODUCTION
  *
  * Objectifs :
  * - mise à jour atomique ;
@@ -12,7 +12,7 @@
  */
 
 const APP_ID = "clair-repas";
-const RELEASE = "8.0.0-foundation.8";
+const RELEASE = "8.0.0-foundation.9";
 const DATA_SCHEMA = 2;
 const BOOT_GRACE_MS = 18000;
 
@@ -38,6 +38,10 @@ const STATUS_URL = new URL("./__clair_v8_status__", self.registration.scope).toS
 const LEGACY_APP_PREFIX = "clair-repas-app-";
 const LEGACY_META_CACHE = "clair-repas-v8-meta";
 const LEGACY_META_URL = META_URL;
+
+// Cache de la V7.5 actuellement utilisée en production.
+// Il est copié avant activation de V8 afin de conserver un parachute réel.
+const PRE_V8_STABLE_CACHES = ["clair-repas-v75-grands-chefs-20260816"];
 
 const CORE_FILES = [
   "./",
@@ -181,6 +185,15 @@ async function chooseLegacyHealthyCache(legacyState = {}) {
   return null;
 }
 
+async function choosePreV8StableCache() {
+  const names = await caches.keys();
+  for (const candidate of PRE_V8_STABLE_CACHES) {
+    if (!names.includes(candidate)) continue;
+    if (await cacheHasIndex(candidate)) return candidate;
+  }
+  return null;
+}
+
 async function migrateLegacyFallback() {
   let state = await readState();
 
@@ -189,16 +202,32 @@ async function migrateLegacyFallback() {
   }
 
   const legacyState = await readLegacyState();
-  const legacyHealthy = await chooseLegacyHealthyCache(legacyState);
-  if (!legacyHealthy) return state;
+  let migrationSource = await chooseLegacyHealthyCache(legacyState);
+  let migrationKind = "v8-legacy";
 
-  const migratedCache = `${CACHE_PREFIX}${legacyReleaseFromCache(legacyHealthy)}`;
-  const copied = await copyCache(legacyHealthy, migratedCache);
+  // Première arrivée de V8 en production : si aucun ancien cache V8 n'existe,
+  // on conserve explicitement la V7.5 stable actuellement active.
+  if (!migrationSource) {
+    migrationSource = await choosePreV8StableCache();
+    migrationKind = "v7.5-stable";
+  }
+
+  if (!migrationSource) return state;
+
+  const migratedRelease =
+    migrationKind === "v7.5-stable"
+      ? "7.5-stable"
+      : legacyReleaseFromCache(migrationSource);
+
+  const migratedCache = `${CACHE_PREFIX}${migratedRelease}`;
+  const copied = await copyCache(migrationSource, migratedCache);
   if (!copied) return state;
 
   state = await writeState({
     ...state,
-    release: state.release || legacyState.release || null,
+    release:
+      state.release ||
+      (migrationKind === "v7.5-stable" ? "7.5" : legacyState.release || null),
     activeCache:
       state.activeCache && (await cacheHasIndex(state.activeCache))
         ? state.activeCache
@@ -208,7 +237,8 @@ async function migrateLegacyFallback() {
     failedCache: state.failedCache || null,
     probation: Boolean(state.probation),
     bootFailures: Number(state.bootFailures || 0),
-    migratedFromLegacy: legacyHealthy,
+    migratedFromLegacy: migrationSource,
+    migratedFromKind: migrationKind,
     migratedAt: new Date().toISOString()
   });
 
@@ -462,7 +492,7 @@ async function statusResponse() {
   );
 
   const title = currentHealthy
-    ? "FOUNDATION.8 SAINE — mise à jour validée"
+    ? "FOUNDATION.9 SAINE — production prête"
     : rolledBack
       ? "RETOUR AUTOMATIQUE — version précédente restaurée"
       : "MISE À JOUR EN COURS OU À VÉRIFIER";
@@ -489,7 +519,7 @@ async function statusResponse() {
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Clair V8 — statut foundation.8</title>
+<title>Clair V8 — statut foundation.9</title>
 <style>
   body { font-family: system-ui, sans-serif; margin: 0; padding: 32px; background: #f5f7f9; color: #173042; }
   .card { max-width: 800px; margin: 40px auto; background: white; border-radius: 18px; padding: 28px; box-shadow: 0 10px 35px rgba(0,0,0,.08); }
@@ -503,7 +533,7 @@ async function statusResponse() {
     <h1>${escapeHtml(title)}</h1>
     <p class="lead">${escapeHtml(
       currentHealthy
-        ? "La fondation stable est active. Les caches sont désormais isolés par application et par chemin, avec une version saine précédente conservée comme secours."
+        ? "La fondation production est active. La V7.5 précédente reste conservée comme secours lors de la première migration, puis chaque mise à jour saine devient le nouveau point de retour."
         : rolledBack
           ? "La candidate a été refusée et Clair Repas sert automatiquement la dernière version saine."
           : "Le navigateur n’a pas encore terminé la validation de la nouvelle fondation."
