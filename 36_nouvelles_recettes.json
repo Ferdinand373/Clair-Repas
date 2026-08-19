@@ -1,0 +1,2815 @@
+[
+  {
+    "id": "bourgeois-01",
+    "n": "Consommé Célestine",
+    "course": "starter",
+    "kind": "starter",
+    "m": "Casserole",
+    "t": "55 min",
+    "s": [
+      "printemps",
+      "été",
+      "automne",
+      "hiver"
+    ],
+    "servings": 4,
+    "family": "consomme-classique",
+    "cuisine": "française",
+    "hotCold": "chaud",
+    "richness": "léger",
+    "core": [
+      "bouillon",
+      "crêpes"
+    ],
+    "i": [
+      {
+        "q": 1,
+        "u": "l",
+        "n": "bouillon de volaille très clair"
+      },
+      {
+        "q": 1,
+        "u": "",
+        "n": "carotte"
+      },
+      {
+        "q": 1,
+        "u": "",
+        "n": "branche de céleri"
+      },
+      {
+        "q": 1,
+        "u": "",
+        "n": "poireau"
+      },
+      {
+        "q": 2,
+        "u": "",
+        "n": "œufs"
+      },
+      {
+        "q": 60,
+        "u": "g",
+        "n": "farine"
+      },
+      {
+        "q": 12,
+        "u": "cl",
+        "n": "lait"
+      },
+      {
+        "q": 10,
+        "u": "g",
+        "n": "beurre"
+      },
+      {
+        "q": null,
+        "u": "",
+        "n": "cerfeuil, sel et poivre"
+      }
+    ],
+    "p": [
+      "Faire frémir le bouillon avec carotte, céleri et poireau finement émincés pendant 20 minutes, puis filtrer très soigneusement.",
+      "Préparer une pâte à crêpes lisse avec œufs, farine, lait et beurre fondu ; laisser reposer 10 minutes.",
+      "Cuire deux crêpes très fines dans une poêle légèrement beurrée.",
+      "Rouler les crêpes refroidies puis les tailler en julienne très fine.",
+      "Réchauffer le consommé sans forte ébullition et rectifier l’assaisonnement.",
+      "Répartir la julienne de crêpes dans quatre tasses ou assiettes chaudes, verser le consommé et terminer avec du cerfeuil."
+    ],
+    "collections": [
+      "cuisine-bourgeoise-recevoir"
+    ],
+    "editorial": "pas-a-pas-debutant"
+  },
+  {
+    "id": "bourgeois-02",
+    "n": "Velouté Dubarry",
+    "course": "starter",
+    "kind": "starter",
+    "m": "Casserole",
+    "t": "45 min",
+    "s": [
+      "printemps",
+      "été",
+      "automne",
+      "hiver"
+    ],
+    "servings": 4,
+    "family": "veloute-chou-fleur",
+    "cuisine": "française",
+    "hotCold": "chaud",
+    "richness": "gourmand",
+    "core": [
+      "chou-fleur",
+      "crème"
+    ],
+    "i": [
+      {
+        "q": 1,
+        "u": "",
+        "n": "petit chou-fleur"
+      },
+      {
+        "q": 1,
+        "u": "",
+        "n": "poireau"
+      },
+      {
+        "q": 30,
+        "u": "g",
+        "n": "beurre"
+      },
+      {
+        "q": 25,
+        "u": "g",
+        "n": "farine"
+      },
+      {
+        "q": 75,
+        "u": "cl",
+        "n": "bouillon de volaille"
+      },
+      {
+        "q": 15,
+        "u": "cl",
+        "n": "crème"
+      },
+      {
+        "q": 1,
+        "u": "",
+        "n": "jaune d’œuf"
+      },
+      {
+        "q": null,
+        "u": "",
+        "n": "muscade, sel et poivre"
+      }
+    ],
+    "p": [
+      "Prélever quelques petits bouquets de chou-fleur pour la garniture et émincer le reste avec le poireau.",
+      "Faire fondre le poireau au beurre 5 minutes sans coloration, ajouter la farine et cuire 1 minute.",
+      "Verser progressivement le bouillon, ajouter le chou-fleur et laisser frémir 25 minutes.",
+      "Mixer très finement puis passer au tamis pour une texture de réception.",
+      "Mélanger crème et jaune d’œuf, incorporer hors du feu sans faire bouillir.",
+      "Servir avec les petits bouquets cuits à part et une pointe de muscade."
+    ],
+    "collections": [
+      "cuisine-bourgeoise-recevoir"
+    ],
+    "editorial": "pas-a-pas-debutant"
+  },
+  {
+    "id": "bourgeois-03",
+    "n": "Crème d’asperges aux morilles",
+    "course": "starter",
+    "kind": "starter",
+    "m": "Casserole",
+    "t": "50 min",
+    "s": [
+      "printemps"
+    ],
+    "servings": 4,
+    "family": "creme-asperges-morilles",
+    "cuisine": "française",
+    "hotCold": "chaud",
+    "richness": "gourmand",
+    "core": [
+      "asperges",
+      "morilles"
+    ],
+    "i": [
+      {
+        "q": 700,
+        "u": "g",
+        "n": "asperges vertes ou blanches"
+      },
+      {
+        "q": 20,
+        "u": "g",
+        "n": "morilles séchées"
+      },
+      {
+        "q": 1,
+        "u": "",
+        "n": "échalote"
+      },
+      {
+        "q": 25,
+        "u": "g",
+        "n": "beurre"
+      },
+      {
+        "q": 60,
+        "u": "cl",
+        "n": "bouillon de volaille"
+      },
+      {
+        "q": 15,
+        "u": "cl",
+        "n": "crème"
+      },
+      {
+        "q": 1,
+        "u": "c. à café",
+        "n": "jus de citron"
+      },
+      {
+        "q": null,
+        "u": "",
+        "n": "sel et poivre"
+      }
+    ],
+    "p": [
+      "Réhydrater les morilles 20 minutes dans de l’eau tiède, les rincer soigneusement puis filtrer leur eau de trempage.",
+      "Couper les pointes d’asperges et les cuire 4 minutes à part ; réserver.",
+      "Faire fondre l’échalote au beurre, ajouter les tiges d’asperges en morceaux puis le bouillon et 10 cl d’eau de morilles filtrée.",
+      "Cuire 20 minutes, mixer très finement puis ajouter la crème.",
+      "Poêler les morilles 5 minutes avec une noisette de beurre et quelques gouttes de citron.",
+      "Servir la crème d’asperges avec pointes et morilles réparties dans les assiettes."
+    ],
+    "collections": [
+      "cuisine-bourgeoise-recevoir"
+    ],
+    "editorial": "pas-a-pas-debutant"
+  },
+  {
+    "id": "bourgeois-04",
+    "n": "Œufs pochés Florentine",
+    "course": "starter",
+    "kind": "starter",
+    "m": "Casserole + Four",
+    "t": "40 min",
+    "s": [
+      "printemps",
+      "été",
+      "automne",
+      "hiver"
+    ],
+    "servings": 4,
+    "family": "oeufs-florentine",
+    "cuisine": "française",
+    "hotCold": "chaud",
+    "richness": "gourmand",
+    "core": [
+      "œufs",
+      "épinards"
+    ],
+    "i": [
+      {
+        "q": 4,
+        "u": "",
+        "n": "œufs très frais"
+      },
+      {
+        "q": 500,
+        "u": "g",
+        "n": "épinards frais"
+      },
+      {
+        "q": 25,
+        "u": "g",
+        "n": "beurre"
+      },
+      {
+        "q": 25,
+        "u": "g",
+        "n": "farine"
+      },
+      {
+        "q": 30,
+        "u": "cl",
+        "n": "lait"
+      },
+      {
+        "q": 40,
+        "u": "g",
+        "n": "parmesan"
+      },
+      {
+        "q": 1,
+        "u": "pincée",
+        "n": "muscade"
+      },
+      {
+        "q": 2,
+        "u": "c. à soupe",
+        "n": "vinaigre blanc"
+      },
+      {
+        "q": null,
+        "u": "",
+        "n": "sel et poivre"
+      }
+    ],
+    "p": [
+      "Faire tomber les épinards dans 10 g de beurre, les égoutter puis les hacher grossièrement.",
+      "Préparer une béchamel légère avec beurre, farine et lait ; assaisonner de muscade.",
+      "Pocher les œufs 3 minutes dans une eau frémissante vinaigrée, puis les égoutter sur un linge.",
+      "Répartir les épinards dans quatre petits plats, poser un œuf poché sur chacun.",
+      "Napper légèrement de béchamel et parsemer de parmesan.",
+      "Passer 5 minutes sous le gril jusqu’à légère coloration, en gardant le jaune coulant."
+    ],
+    "collections": [
+      "cuisine-bourgeoise-recevoir"
+    ],
+    "editorial": "pas-a-pas-debutant"
+  },
+  {
+    "id": "bourgeois-05",
+    "n": "Foie gras poêlé aux pommes",
+    "course": "starter",
+    "kind": "starter",
+    "m": "Poêle",
+    "t": "30 min",
+    "s": [
+      "automne",
+      "hiver"
+    ],
+    "servings": 4,
+    "family": "foie-gras-pommes",
+    "cuisine": "française",
+    "hotCold": "chaud",
+    "richness": "gourmand",
+    "core": [
+      "foie gras",
+      "pommes"
+    ],
+    "i": [
+      {
+        "q": 4,
+        "u": "",
+        "n": "escalopes de foie gras cru de 60 g"
+      },
+      {
+        "q": 2,
+        "u": "",
+        "n": "pommes acidulées"
+      },
+      {
+        "q": 20,
+        "u": "g",
+        "n": "beurre"
+      },
+      {
+        "q": 2,
+        "u": "c. à soupe",
+        "n": "calvados"
+      },
+      {
+        "q": 1,
+        "u": "c. à café",
+        "n": "miel"
+      },
+      {
+        "q": 1,
+        "u": "c. à soupe",
+        "n": "vinaigre de cidre"
+      },
+      {
+        "q": null,
+        "u": "",
+        "n": "fleur de sel et poivre"
+      }
+    ],
+    "p": [
+      "Éplucher les pommes, les couper en quartiers puis les dorer doucement au beurre 8 à 10 minutes.",
+      "Ajouter le miel et le vinaigre, laisser légèrement caraméliser puis garder au chaud.",
+      "Chauffer une poêle sèche très fortement et saisir les escalopes de foie gras 45 à 60 secondes par face.",
+      "Les déposer immédiatement sur du papier absorbant et assaisonner de fleur de sel.",
+      "Déglacer la poêle avec le calvados hors de la flamme et laisser réduire quelques secondes.",
+      "Servir une escalope par personne avec les pommes et quelques gouttes du jus réduit."
+    ],
+    "collections": [
+      "cuisine-bourgeoise-recevoir"
+    ],
+    "editorial": "pas-a-pas-debutant"
+  },
+  {
+    "id": "bourgeois-06",
+    "n": "Saumon Bellevue",
+    "course": "starter",
+    "kind": "starter",
+    "m": "Casserole",
+    "t": "1 h + refroidissement",
+    "s": [
+      "printemps",
+      "été"
+    ],
+    "servings": 4,
+    "family": "saumon-froid-reception",
+    "cuisine": "française",
+    "hotCold": "froid",
+    "richness": "gourmand",
+    "core": [
+      "saumon"
+    ],
+    "i": [
+      {
+        "q": 700,
+        "u": "g",
+        "n": "filet de saumon entier sans peau"
+      },
+      {
+        "q": 75,
+        "u": "cl",
+        "n": "court-bouillon"
+      },
+      {
+        "q": 1,
+        "u": "",
+        "n": "concombre"
+      },
+      {
+        "q": 2,
+        "u": "",
+        "n": "œufs"
+      },
+      {
+        "q": 150,
+        "u": "g",
+        "n": "mayonnaise maison"
+      },
+      {
+        "q": 1,
+        "u": "",
+        "n": "citron"
+      },
+      {
+        "q": 10,
+        "u": "g",
+        "n": "aneth"
+      },
+      {
+        "q": 4,
+        "u": "",
+        "n": "feuilles de laitue"
+      },
+      {
+        "q": null,
+        "u": "",
+        "n": "sel et poivre"
+      }
+    ],
+    "p": [
+      "Pocher le saumon dans le court-bouillon à peine frémissant 10 à 12 minutes puis le laisser refroidir dans le liquide.",
+      "Cuire les œufs 9 minutes, les refroidir puis les couper en quartiers.",
+      "Égoutter parfaitement le saumon et le déposer entier sur un plat froid.",
+      "Décorer harmonieusement avec concombre finement tranché, œufs, citron et laitue.",
+      "Détendre la mayonnaise avec quelques gouttes de citron et l’aneth ciselé.",
+      "Servir le saumon bien frais, entier à table, avec la sauce à part."
+    ],
+    "collections": [
+      "cuisine-bourgeoise-recevoir"
+    ],
+    "editorial": "pas-a-pas-debutant"
+  },
+  {
+    "id": "bourgeois-07",
+    "n": "Feuilleté de Saint-Jacques à la fondue de poireaux",
+    "course": "starter",
+    "kind": "starter",
+    "m": "Four + Poêle",
+    "t": "50 min",
+    "s": [
+      "automne",
+      "hiver",
+      "printemps"
+    ],
+    "servings": 4,
+    "family": "feuillete-saint-jacques",
+    "cuisine": "française",
+    "hotCold": "chaud",
+    "richness": "gourmand",
+    "core": [
+      "Saint-Jacques",
+      "poireaux"
+    ],
+    "i": [
+      {
+        "q": 12,
+        "u": "",
+        "n": "noix de Saint-Jacques"
+      },
+      {
+        "q": 1,
+        "u": "",
+        "n": "pâte feuilletée"
+      },
+      {
+        "q": 2,
+        "u": "",
+        "n": "poireaux"
+      },
+      {
+        "q": 20,
+        "u": "g",
+        "n": "beurre"
+      },
+      {
+        "q": 10,
+        "u": "cl",
+        "n": "crème"
+      },
+      {
+        "q": 5,
+        "u": "cl",
+        "n": "vin blanc sec"
+      },
+      {
+        "q": 1,
+        "u": "",
+        "n": "jaune d’œuf"
+      },
+      {
+        "q": null,
+        "u": "",
+        "n": "sel, poivre et ciboulette"
+      }
+    ],
+    "p": [
+      "Découper quatre rectangles de pâte, les dorer au jaune et les cuire 15 à 18 minutes à 200 °C.",
+      "Émincer les poireaux et les faire fondre au beurre 12 minutes à feu doux.",
+      "Ajouter vin blanc puis crème, réduire 3 minutes et assaisonner.",
+      "Saisir les Saint-Jacques 1 minute à 1 minute 30 par face dans une poêle très chaude.",
+      "Ouvrir délicatement les feuilletés en deux et garnir de fondue de poireaux.",
+      "Ajouter trois Saint-Jacques par feuilleté, refermer légèrement et servir aussitôt."
+    ],
+    "collections": [
+      "cuisine-bourgeoise-recevoir"
+    ],
+    "editorial": "pas-a-pas-debutant"
+  },
+  {
+    "id": "bourgeois-08",
+    "n": "Bœuf Wellington",
+    "m": "Four + Poêle",
+    "t": "1 h 25",
+    "s": [
+      "printemps",
+      "été",
+      "automne",
+      "hiver"
+    ],
+    "servings": 4,
+    "classic": true,
+    "group": "viande",
+    "protein": "boeuf",
+    "starch": "pate-feuilletee",
+    "kind": "warm",
+    "family": "boeuf-wellington",
+    "cuisine": "française",
+    "texture": "feuilleté-tendre",
+    "technique": "saisie, duxelles et cuisson en croûte",
+    "presentation": "assiette de réception",
+    "vegetables": [
+      "champignon"
+    ],
+    "lightness": "classique",
+    "i": [
+      {
+        "q": 800,
+        "u": "g",
+        "n": "filet de bœuf"
+      },
+      {
+        "q": 500,
+        "u": "g",
+        "n": "champignons"
+      },
+      {
+        "q": 2,
+        "u": "",
+        "n": "échalotes"
+      },
+      {
+        "q": 1,
+        "u": "",
+        "n": "pâte feuilletée rectangulaire"
+      },
+      {
+        "q": 8,
+        "u": "",
+        "n": "tranches fines de jambon cru"
+      },
+      {
+        "q": 2,
+        "u": "c. à soupe",
+        "n": "moutarde"
+      },
+      {
+        "q": 1,
+        "u": "",
+        "n": "œuf"
+      },
+      {
+        "q": 20,
+        "u": "g",
+        "n": "beurre"
+      },
+      {
+        "q": null,
+        "u": "",
+        "n": "sel et poivre"
+      }
+    ],
+    "p": [
+      "Saisir le filet assaisonné sur toutes ses faces dans une poêle très chaude puis le laisser refroidir complètement.",
+      "Hacher champignons et échalotes puis les cuire au beurre jusqu’à évaporation totale de leur eau ; refroidir.",
+      "Badigeonner le filet de moutarde, l’envelopper de jambon cru puis de duxelles en serrant dans un film ; réfrigérer 20 minutes.",
+      "Envelopper dans la pâte feuilletée, souder dessous et dorer à l’œuf.",
+      "Cuire 30 à 35 minutes à 200 °C pour une viande rosée, selon l’épaisseur.",
+      "Laisser reposer 10 minutes avant de trancher avec un couteau très affûté."
+    ],
+    "collections": [
+      "cuisine-bourgeoise-recevoir"
+    ],
+    "editorial": "pas-a-pas-debutant"
+  },
+  {
+    "id": "bourgeois-09",
+    "n": "Rôti de veau Orloff",
+    "m": "Four",
+    "t": "1 h 35",
+    "s": [
+      "automne",
+      "hiver",
+      "printemps"
+    ],
+    "servings": 4,
+    "classic": true,
+    "group": "viande",
+    "protein": "veau",
+    "starch": "aucun",
+    "kind": "warm",
+    "family": "veau-orloff",
+    "cuisine": "française",
+    "texture": "moelleux-nappant",
+    "technique": "rôtissage puis montage Orloff",
+    "presentation": "assiette de réception",
+    "vegetables": [
+      "champignon"
+    ],
+    "lightness": "classique",
+    "i": [
+      {
+        "q": 1,
+        "u": "kg",
+        "n": "rôti de veau"
+      },
+      {
+        "q": 8,
+        "u": "",
+        "n": "tranches de jambon blanc"
+      },
+      {
+        "q": 8,
+        "u": "",
+        "n": "tranches fines de comté"
+      },
+      {
+        "q": 250,
+        "u": "g",
+        "n": "champignons"
+      },
+      {
+        "q": 20,
+        "u": "cl",
+        "n": "crème"
+      },
+      {
+        "q": 20,
+        "u": "cl",
+        "n": "fond de veau"
+      },
+      {
+        "q": 30,
+        "u": "g",
+        "n": "beurre"
+      },
+      {
+        "q": null,
+        "u": "",
+        "n": "sel et poivre"
+      }
+    ],
+    "p": [
+      "Colorer le rôti au beurre sur toutes ses faces puis le cuire 45 minutes à 180 °C.",
+      "Le laisser reposer 10 minutes puis pratiquer des entailles profondes sans séparer complètement les tranches.",
+      "Glisser alternativement jambon et comté dans chaque entaille.",
+      "Faire revenir les champignons, ajouter fond de veau et crème puis réduire 5 minutes.",
+      "Remettre le rôti au four 15 minutes pour faire fondre le fromage.",
+      "Servir en tranches épaisses avec la sauce aux champignons."
+    ],
+    "collections": [
+      "cuisine-bourgeoise-recevoir"
+    ],
+    "editorial": "pas-a-pas-debutant"
+  },
+  {
+    "id": "bourgeois-10",
+    "n": "Grenadins de veau sauce Madère",
+    "m": "Poêle",
+    "t": "45 min",
+    "s": [
+      "printemps",
+      "été",
+      "automne",
+      "hiver"
+    ],
+    "servings": 4,
+    "classic": true,
+    "group": "viande",
+    "protein": "veau",
+    "starch": "aucun",
+    "kind": "warm",
+    "family": "grenadins-madere",
+    "cuisine": "française",
+    "texture": "fondant-nappant",
+    "technique": "saisie minute et réduction",
+    "presentation": "assiette de réception",
+    "vegetables": [
+      "champignon"
+    ],
+    "lightness": "classique",
+    "i": [
+      {
+        "q": 4,
+        "u": "",
+        "n": "grenadins de veau"
+      },
+      {
+        "q": 20,
+        "u": "g",
+        "n": "beurre"
+      },
+      {
+        "q": 1,
+        "u": "c. à soupe",
+        "n": "huile"
+      },
+      {
+        "q": 8,
+        "u": "cl",
+        "n": "madère"
+      },
+      {
+        "q": 20,
+        "u": "cl",
+        "n": "fond de veau"
+      },
+      {
+        "q": 1,
+        "u": "",
+        "n": "échalote"
+      },
+      {
+        "q": 200,
+        "u": "g",
+        "n": "champignons"
+      },
+      {
+        "q": null,
+        "u": "",
+        "n": "sel et poivre"
+      }
+    ],
+    "p": [
+      "Saisir les grenadins dans huile et beurre 3 à 4 minutes par face puis les réserver au chaud.",
+      "Faire fondre l’échalote dans la poêle, ajouter les champignons et cuire 5 minutes.",
+      "Déglacer au madère et réduire de moitié.",
+      "Ajouter le fond de veau et réduire jusqu’à une sauce nappante.",
+      "Remettre les grenadins 2 minutes dans la sauce sans les surcuire.",
+      "Servir avec pommes duchesse ou légumes glacés."
+    ],
+    "collections": [
+      "cuisine-bourgeoise-recevoir"
+    ],
+    "editorial": "pas-a-pas-debutant"
+  },
+  {
+    "id": "bourgeois-11",
+    "n": "Poularde demi-deuil",
+    "m": "Casserole",
+    "t": "2 h",
+    "s": [
+      "automne",
+      "hiver"
+    ],
+    "servings": 4,
+    "classic": true,
+    "group": "volaille",
+    "protein": "poularde",
+    "starch": "aucun",
+    "kind": "warm",
+    "family": "poularde-demi-deuil",
+    "cuisine": "française",
+    "texture": "très-moelleux",
+    "technique": "truffage sous peau et pochage doux",
+    "presentation": "assiette de réception",
+    "vegetables": [
+      "carotte",
+      "poireau"
+    ],
+    "lightness": "classique",
+    "i": [
+      {
+        "q": 1,
+        "u": "",
+        "n": "poularde d’environ 1,6 kg"
+      },
+      {
+        "q": 30,
+        "u": "g",
+        "n": "truffe noire ou brisures de truffe"
+      },
+      {
+        "q": 1.5,
+        "u": "l",
+        "n": "fond blanc de volaille"
+      },
+      {
+        "q": 2,
+        "u": "",
+        "n": "carottes"
+      },
+      {
+        "q": 1,
+        "u": "",
+        "n": "poireau"
+      },
+      {
+        "q": 1,
+        "u": "",
+        "n": "oignon"
+      },
+      {
+        "q": 15,
+        "u": "cl",
+        "n": "crème"
+      },
+      {
+        "q": 30,
+        "u": "g",
+        "n": "beurre"
+      },
+      {
+        "q": null,
+        "u": "",
+        "n": "sel et poivre"
+      }
+    ],
+    "p": [
+      "Décoller délicatement la peau de la poitrine et glisser de fines lamelles de truffe dessous.",
+      "Ficeler la poularde puis la laisser reposer 30 minutes au frais.",
+      "La pocher très doucement dans le fond de volaille avec carotte, poireau et oignon pendant environ 1 h 15.",
+      "Sortir la poularde et la garder au chaud ; filtrer 40 cl de bouillon et le réduire de moitié.",
+      "Ajouter crème et beurre au bouillon réduit puis rectifier l’assaisonnement.",
+      "Découper la poularde à table ou en cuisine et servir avec la sauce truffée."
+    ],
+    "collections": [
+      "cuisine-bourgeoise-recevoir"
+    ],
+    "editorial": "pas-a-pas-debutant"
+  },
+  {
+    "id": "bourgeois-12",
+    "n": "Poularde aux morilles, sauce suprême",
+    "m": "Casserole",
+    "t": "1 h 30",
+    "s": [
+      "automne",
+      "hiver",
+      "printemps"
+    ],
+    "servings": 4,
+    "classic": true,
+    "group": "volaille",
+    "protein": "poularde",
+    "starch": "aucun",
+    "kind": "warm",
+    "family": "poularde-morilles-supreme",
+    "cuisine": "française",
+    "texture": "fondant-nappant",
+    "technique": "fricassée et sauce suprême",
+    "presentation": "assiette de réception",
+    "vegetables": [
+      "morille"
+    ],
+    "lightness": "classique",
+    "i": [
+      {
+        "q": 1,
+        "u": "",
+        "n": "poularde découpée en 8 morceaux"
+      },
+      {
+        "q": 30,
+        "u": "g",
+        "n": "morilles séchées"
+      },
+      {
+        "q": 40,
+        "u": "g",
+        "n": "beurre"
+      },
+      {
+        "q": 35,
+        "u": "g",
+        "n": "farine"
+      },
+      {
+        "q": 60,
+        "u": "cl",
+        "n": "fond blanc de volaille"
+      },
+      {
+        "q": 20,
+        "u": "cl",
+        "n": "crème"
+      },
+      {
+        "q": 5,
+        "u": "cl",
+        "n": "vin jaune facultatif"
+      },
+      {
+        "q": null,
+        "u": "",
+        "n": "sel et poivre"
+      }
+    ],
+    "p": [
+      "Réhydrater puis rincer très soigneusement les morilles.",
+      "Faire revenir doucement les morceaux de poularde au beurre sans forte coloration.",
+      "Singer avec la farine, verser le fond de volaille puis cuire 45 minutes à petit frémissement.",
+      "Retirer la volaille, filtrer la sauce et la réduire avec la crème.",
+      "Ajouter morilles et éventuellement vin jaune puis cuire 10 minutes.",
+      "Remettre la poularde dans la sauce 5 minutes et servir très chaud."
+    ],
+    "collections": [
+      "cuisine-bourgeoise-recevoir"
+    ],
+    "editorial": "pas-a-pas-debutant"
+  },
+  {
+    "id": "bourgeois-13",
+    "n": "Cailles aux raisins",
+    "m": "Poêle + Four",
+    "t": "45 min",
+    "s": [
+      "été",
+      "automne"
+    ],
+    "servings": 4,
+    "classic": true,
+    "group": "volaille",
+    "protein": "caille",
+    "starch": "aucun",
+    "kind": "warm",
+    "family": "cailles-raisins",
+    "cuisine": "française",
+    "texture": "rôti-nappant",
+    "technique": "rôtissage court et sauce",
+    "presentation": "assiette de réception",
+    "vegetables": [
+      "raisin"
+    ],
+    "lightness": "classique",
+    "i": [
+      {
+        "q": 4,
+        "u": "",
+        "n": "cailles"
+      },
+      {
+        "q": 250,
+        "u": "g",
+        "n": "raisins blancs"
+      },
+      {
+        "q": 20,
+        "u": "g",
+        "n": "beurre"
+      },
+      {
+        "q": 8,
+        "u": "cl",
+        "n": "cognac"
+      },
+      {
+        "q": 15,
+        "u": "cl",
+        "n": "fond de volaille"
+      },
+      {
+        "q": 8,
+        "u": "cl",
+        "n": "crème"
+      },
+      {
+        "q": null,
+        "u": "",
+        "n": "sel et poivre"
+      }
+    ],
+    "p": [
+      "Colorer les cailles au beurre sur toutes leurs faces.",
+      "Les enfourner 15 minutes à 190 °C puis les laisser reposer sous une feuille d’aluminium.",
+      "Dans la poêle, faire sauter les raisins 2 minutes.",
+      "Déglacer avec le cognac hors de la flamme puis ajouter le fond de volaille.",
+      "Réduire de moitié, ajouter la crème et remettre les cailles 3 minutes.",
+      "Servir une caille par personne avec raisins et sauce."
+    ],
+    "collections": [
+      "cuisine-bourgeoise-recevoir"
+    ],
+    "editorial": "pas-a-pas-debutant"
+  },
+  {
+    "id": "bourgeois-14",
+    "n": "Pigeonneaux rôtis, petits pois à la française",
+    "m": "Four",
+    "t": "55 min",
+    "s": [
+      "printemps",
+      "été"
+    ],
+    "servings": 4,
+    "classic": true,
+    "group": "volaille",
+    "protein": "pigeon",
+    "starch": "aucun",
+    "kind": "warm",
+    "family": "pigeonneaux-petits-pois",
+    "cuisine": "française",
+    "texture": "fondant-nappant",
+    "technique": "rôtissage et garniture classique",
+    "presentation": "assiette de réception",
+    "vegetables": [
+      "petits pois",
+      "laitue"
+    ],
+    "lightness": "classique",
+    "i": [
+      {
+        "q": 2,
+        "u": "",
+        "n": "pigeonneaux prêts à cuire"
+      },
+      {
+        "q": 25,
+        "u": "g",
+        "n": "beurre"
+      },
+      {
+        "q": 450,
+        "u": "g",
+        "n": "petits pois"
+      },
+      {
+        "q": 8,
+        "u": "",
+        "n": "petits oignons"
+      },
+      {
+        "q": 1,
+        "u": "",
+        "n": "petite laitue"
+      },
+      {
+        "q": 15,
+        "u": "cl",
+        "n": "fond de volaille"
+      },
+      {
+        "q": null,
+        "u": "",
+        "n": "sel et poivre"
+      }
+    ],
+    "p": [
+      "Assaisonner les pigeonneaux et les colorer au beurre dans une cocotte.",
+      "Cuire 18 à 22 minutes à 190 °C selon la cuisson souhaitée puis laisser reposer.",
+      "Faire fondre les petits oignons dans une sauteuse, ajouter petits pois et laitue émincée.",
+      "Verser 8 cl d’eau, couvrir et cuire 12 minutes.",
+      "Déglacer la cocotte des pigeonneaux avec le fond de volaille et réduire rapidement.",
+      "Couper chaque pigeonneau en deux et servir avec petits pois et jus réduit."
+    ],
+    "collections": [
+      "cuisine-bourgeoise-recevoir"
+    ],
+    "editorial": "pas-a-pas-debutant"
+  },
+  {
+    "id": "bourgeois-15",
+    "n": "Pintade braisée au chou",
+    "m": "Cocotte",
+    "t": "1 h 20",
+    "s": [
+      "automne",
+      "hiver"
+    ],
+    "servings": 4,
+    "classic": true,
+    "group": "volaille",
+    "protein": "pintade",
+    "starch": "aucun",
+    "kind": "warm",
+    "family": "pintade-chou",
+    "cuisine": "française",
+    "texture": "fondant-nappant",
+    "technique": "braisage en cocotte",
+    "presentation": "assiette de réception",
+    "vegetables": [
+      "chou",
+      "carotte"
+    ],
+    "lightness": "classique",
+    "i": [
+      {
+        "q": 1,
+        "u": "",
+        "n": "pintade d’environ 1,4 kg"
+      },
+      {
+        "q": 0.5,
+        "u": "",
+        "n": "chou vert"
+      },
+      {
+        "q": 150,
+        "u": "g",
+        "n": "lard fumé"
+      },
+      {
+        "q": 2,
+        "u": "",
+        "n": "carottes"
+      },
+      {
+        "q": 1,
+        "u": "",
+        "n": "oignon"
+      },
+      {
+        "q": 30,
+        "u": "cl",
+        "n": "fond de volaille"
+      },
+      {
+        "q": 25,
+        "u": "g",
+        "n": "beurre"
+      },
+      {
+        "q": null,
+        "u": "",
+        "n": "sel et poivre"
+      }
+    ],
+    "p": [
+      "Blanchir le chou 5 minutes, l’égoutter puis le couper en larges lanières.",
+      "Colorer la pintade au beurre dans une cocotte puis la réserver.",
+      "Faire revenir lard, carottes et oignon 5 minutes, ajouter le chou.",
+      "Poser la pintade dessus, verser le fond et couvrir.",
+      "Braiser 50 à 55 minutes à 175 °C en arrosant deux fois.",
+      "Découper la pintade et servir avec le chou bien fondant et le jus dégraissé."
+    ],
+    "collections": [
+      "cuisine-bourgeoise-recevoir"
+    ],
+    "editorial": "pas-a-pas-debutant"
+  },
+  {
+    "id": "bourgeois-16",
+    "n": "Canard aux navets",
+    "m": "Cocotte",
+    "t": "1 h 30",
+    "s": [
+      "automne",
+      "hiver"
+    ],
+    "servings": 4,
+    "classic": true,
+    "group": "volaille",
+    "protein": "canard",
+    "starch": "aucun",
+    "kind": "warm",
+    "family": "canard-navets",
+    "cuisine": "française",
+    "texture": "fondant-nappant",
+    "technique": "braisage et glaçage",
+    "presentation": "assiette de réception",
+    "vegetables": [
+      "navet"
+    ],
+    "lightness": "classique",
+    "i": [
+      {
+        "q": 1,
+        "u": "",
+        "n": "canard d’environ 1,6 kg"
+      },
+      {
+        "q": 700,
+        "u": "g",
+        "n": "petits navets"
+      },
+      {
+        "q": 30,
+        "u": "g",
+        "n": "beurre"
+      },
+      {
+        "q": 1,
+        "u": "c. à soupe",
+        "n": "sucre"
+      },
+      {
+        "q": 30,
+        "u": "cl",
+        "n": "fond de volaille"
+      },
+      {
+        "q": 10,
+        "u": "cl",
+        "n": "vin blanc"
+      },
+      {
+        "q": null,
+        "u": "",
+        "n": "sel et poivre"
+      }
+    ],
+    "p": [
+      "Colorer le canard sur toutes ses faces dans une cocotte sans excès de matière grasse.",
+      "Retirer une partie du gras, déglacer au vin blanc puis ajouter le fond.",
+      "Couvrir et cuire 50 minutes à 175 °C.",
+      "Glacer séparément les navets au beurre avec sucre et un peu d’eau pendant 20 minutes.",
+      "Ajouter les navets autour du canard pour les 15 dernières minutes.",
+      "Découper le canard et servir avec navets brillants et jus réduit."
+    ],
+    "collections": [
+      "cuisine-bourgeoise-recevoir"
+    ],
+    "editorial": "pas-a-pas-debutant"
+  },
+  {
+    "id": "bourgeois-17",
+    "n": "Caneton aux cerises",
+    "m": "Poêle + Four",
+    "t": "1 h",
+    "s": [
+      "été"
+    ],
+    "servings": 4,
+    "classic": true,
+    "group": "volaille",
+    "protein": "canard",
+    "starch": "aucun",
+    "kind": "warm",
+    "family": "caneton-cerises",
+    "cuisine": "française",
+    "texture": "fondant-nappant",
+    "technique": "cuisson rosée et sauce fruitée",
+    "presentation": "assiette de réception",
+    "vegetables": [
+      "cerise"
+    ],
+    "lightness": "classique",
+    "i": [
+      {
+        "q": 4,
+        "u": "",
+        "n": "filets de caneton ou magrets"
+      },
+      {
+        "q": 300,
+        "u": "g",
+        "n": "cerises dénoyautées"
+      },
+      {
+        "q": 10,
+        "u": "cl",
+        "n": "porto rouge"
+      },
+      {
+        "q": 20,
+        "u": "cl",
+        "n": "fond de volaille"
+      },
+      {
+        "q": 1,
+        "u": "c. à café",
+        "n": "vinaigre balsamique"
+      },
+      {
+        "q": 15,
+        "u": "g",
+        "n": "beurre"
+      },
+      {
+        "q": null,
+        "u": "",
+        "n": "sel et poivre"
+      }
+    ],
+    "p": [
+      "Quadriller la peau des filets de caneton et les saisir côté peau 6 à 8 minutes à feu moyen.",
+      "Retourner 2 minutes puis terminer 5 minutes au four à 180 °C ; laisser reposer.",
+      "Dégraisser la poêle, ajouter le porto et réduire de moitié.",
+      "Ajouter fond de volaille et vinaigre puis réduire jusqu’à texture nappante.",
+      "Ajouter les cerises 3 minutes puis monter au beurre hors du feu.",
+      "Trancher le caneton et servir avec les cerises et la sauce."
+    ],
+    "collections": [
+      "cuisine-bourgeoise-recevoir"
+    ],
+    "editorial": "pas-a-pas-debutant"
+  },
+  {
+    "id": "bourgeois-18",
+    "n": "Carré d’agneau en croûte d’herbes",
+    "m": "Four",
+    "t": "55 min",
+    "s": [
+      "printemps",
+      "été",
+      "automne",
+      "hiver"
+    ],
+    "servings": 4,
+    "classic": true,
+    "group": "viande",
+    "protein": "agneau",
+    "starch": "aucun",
+    "kind": "warm",
+    "family": "carre-agneau-herbes",
+    "cuisine": "française",
+    "texture": "rosé-croustillant",
+    "technique": "saisie, croûte d’herbes et rôtissage",
+    "presentation": "assiette de réception",
+    "vegetables": [
+      "herbes"
+    ],
+    "lightness": "classique",
+    "i": [
+      {
+        "q": 1,
+        "u": "",
+        "n": "carré d’agneau de 8 côtes"
+      },
+      {
+        "q": 60,
+        "u": "g",
+        "n": "chapelure"
+      },
+      {
+        "q": 20,
+        "u": "g",
+        "n": "persil"
+      },
+      {
+        "q": 10,
+        "u": "g",
+        "n": "thym"
+      },
+      {
+        "q": 1,
+        "u": "",
+        "n": "gousse d’ail"
+      },
+      {
+        "q": 2,
+        "u": "c. à soupe",
+        "n": "moutarde"
+      },
+      {
+        "q": 25,
+        "u": "g",
+        "n": "beurre"
+      },
+      {
+        "q": null,
+        "u": "",
+        "n": "sel et poivre"
+      }
+    ],
+    "p": [
+      "Colorer le carré d’agneau sur toutes les faces dans une poêle avec le beurre.",
+      "Mélanger chapelure, persil, thym et ail très finement haché.",
+      "Badigeonner le dessus du carré de moutarde puis presser la chapelure aux herbes.",
+      "Cuire 18 à 25 minutes à 190 °C selon la cuisson souhaitée.",
+      "Laisser reposer 10 minutes avant de découper entre les côtes.",
+      "Servir avec jus d’agneau et légumes de saison."
+    ],
+    "collections": [
+      "cuisine-bourgeoise-recevoir"
+    ],
+    "editorial": "pas-a-pas-debutant"
+  },
+  {
+    "id": "bourgeois-19",
+    "n": "Selle d’agneau rôtie, jus au thym",
+    "m": "Four",
+    "t": "1 h 05",
+    "s": [
+      "printemps",
+      "été",
+      "automne",
+      "hiver"
+    ],
+    "servings": 4,
+    "classic": true,
+    "group": "viande",
+    "protein": "agneau",
+    "starch": "aucun",
+    "kind": "warm",
+    "family": "selle-agneau-thym",
+    "cuisine": "française",
+    "texture": "rosé-juteux",
+    "technique": "rôtissage et jus court",
+    "presentation": "assiette de réception",
+    "vegetables": [
+      "thym"
+    ],
+    "lightness": "classique",
+    "i": [
+      {
+        "q": 1,
+        "u": "kg",
+        "n": "selle d’agneau désossée et ficelée"
+      },
+      {
+        "q": 25,
+        "u": "g",
+        "n": "beurre"
+      },
+      {
+        "q": 1,
+        "u": "c. à soupe",
+        "n": "huile"
+      },
+      {
+        "q": 2,
+        "u": "",
+        "n": "gousses d’ail"
+      },
+      {
+        "q": 5,
+        "u": "",
+        "n": "branches de thym"
+      },
+      {
+        "q": 20,
+        "u": "cl",
+        "n": "fond d’agneau ou de veau"
+      },
+      {
+        "q": null,
+        "u": "",
+        "n": "sel et poivre"
+      }
+    ],
+    "p": [
+      "Sortir la selle 30 minutes à l’avance et l’assaisonner.",
+      "La colorer vivement dans huile et beurre sur toutes ses faces.",
+      "Ajouter ail et thym puis cuire 25 à 35 minutes à 190 °C selon l’épaisseur.",
+      "Laisser reposer 12 minutes sous une feuille d’aluminium.",
+      "Dégraisser le plat, ajouter le fond et gratter les sucs puis réduire.",
+      "Trancher la selle et servir avec le jus au thym."
+    ],
+    "collections": [
+      "cuisine-bourgeoise-recevoir"
+    ],
+    "editorial": "pas-a-pas-debutant"
+  },
+  {
+    "id": "bourgeois-20",
+    "n": "Noisettes d’agneau sauce porto",
+    "m": "Poêle",
+    "t": "35 min",
+    "s": [
+      "printemps",
+      "été",
+      "automne",
+      "hiver"
+    ],
+    "servings": 4,
+    "classic": true,
+    "group": "viande",
+    "protein": "agneau",
+    "starch": "aucun",
+    "kind": "warm",
+    "family": "noisettes-agneau-porto",
+    "cuisine": "française",
+    "texture": "fondant-nappant",
+    "technique": "saisie minute et réduction au porto",
+    "presentation": "assiette de réception",
+    "vegetables": [],
+    "lightness": "classique",
+    "i": [
+      {
+        "q": 8,
+        "u": "",
+        "n": "noisettes d’agneau"
+      },
+      {
+        "q": 15,
+        "u": "g",
+        "n": "beurre"
+      },
+      {
+        "q": 1,
+        "u": "c. à soupe",
+        "n": "huile"
+      },
+      {
+        "q": 8,
+        "u": "cl",
+        "n": "porto rouge"
+      },
+      {
+        "q": 18,
+        "u": "cl",
+        "n": "fond de veau"
+      },
+      {
+        "q": 1,
+        "u": "",
+        "n": "échalote"
+      },
+      {
+        "q": null,
+        "u": "",
+        "n": "sel et poivre"
+      }
+    ],
+    "p": [
+      "Saisir les noisettes d’agneau dans huile et beurre 2 à 3 minutes par face puis réserver.",
+      "Faire fondre l’échalote dans la poêle 2 minutes.",
+      "Déglacer au porto et réduire de moitié.",
+      "Ajouter le fond et réduire jusqu’à consistance nappante.",
+      "Remettre la viande 1 minute dans la sauce.",
+      "Servir immédiatement avec pommes fondantes ou purée de céleri."
+    ],
+    "collections": [
+      "cuisine-bourgeoise-recevoir"
+    ],
+    "editorial": "pas-a-pas-debutant"
+  },
+  {
+    "id": "bourgeois-21",
+    "n": "Filet mignon de porc en croûte, duxelles de champignons",
+    "m": "Four + Poêle",
+    "t": "1 h 10",
+    "s": [
+      "printemps",
+      "été",
+      "automne",
+      "hiver"
+    ],
+    "servings": 4,
+    "classic": true,
+    "group": "viande",
+    "protein": "porc",
+    "starch": "pate-feuilletee",
+    "kind": "warm",
+    "family": "filet-mignon-croute",
+    "cuisine": "française",
+    "texture": "feuilleté-moelleux",
+    "technique": "duxelles et cuisson en croûte",
+    "presentation": "assiette de réception",
+    "vegetables": [
+      "champignon"
+    ],
+    "lightness": "classique",
+    "i": [
+      {
+        "q": 1,
+        "u": "",
+        "n": "filet mignon de porc de 650 g"
+      },
+      {
+        "q": 350,
+        "u": "g",
+        "n": "champignons"
+      },
+      {
+        "q": 2,
+        "u": "",
+        "n": "échalotes"
+      },
+      {
+        "q": 1,
+        "u": "",
+        "n": "pâte feuilletée"
+      },
+      {
+        "q": 1,
+        "u": "c. à soupe",
+        "n": "moutarde"
+      },
+      {
+        "q": 1,
+        "u": "",
+        "n": "œuf"
+      },
+      {
+        "q": 20,
+        "u": "g",
+        "n": "beurre"
+      },
+      {
+        "q": null,
+        "u": "",
+        "n": "sel et poivre"
+      }
+    ],
+    "p": [
+      "Saisir rapidement le filet mignon assaisonné sur toutes ses faces puis refroidir.",
+      "Hacher champignons et échalotes et les cuire au beurre jusqu’à évaporation complète de l’eau.",
+      "Badigeonner la viande de moutarde et la couvrir de duxelles froide.",
+      "Envelopper dans la pâte feuilletée, souder dessous et dorer à l’œuf.",
+      "Cuire 30 à 35 minutes à 195 °C.",
+      "Laisser reposer 8 minutes avant de couper en tranches épaisses."
+    ],
+    "collections": [
+      "cuisine-bourgeoise-recevoir"
+    ],
+    "editorial": "pas-a-pas-debutant"
+  },
+  {
+    "id": "bourgeois-22",
+    "n": "Ballottine de volaille forestière",
+    "m": "Casserole",
+    "t": "1 h 15",
+    "s": [
+      "printemps",
+      "été",
+      "automne",
+      "hiver"
+    ],
+    "servings": 4,
+    "classic": true,
+    "group": "volaille",
+    "protein": "volaille",
+    "starch": "aucun",
+    "kind": "warm",
+    "family": "ballottine-volaille",
+    "cuisine": "française",
+    "texture": "fondant-nappant",
+    "technique": "farce, roulage et pochage",
+    "presentation": "assiette de réception",
+    "vegetables": [
+      "champignon"
+    ],
+    "lightness": "classique",
+    "i": [
+      {
+        "q": 4,
+        "u": "",
+        "n": "grands blancs de poulet ouverts en portefeuille"
+      },
+      {
+        "q": 250,
+        "u": "g",
+        "n": "champignons forestiers"
+      },
+      {
+        "q": 1,
+        "u": "",
+        "n": "échalote"
+      },
+      {
+        "q": 80,
+        "u": "g",
+        "n": "chair fine de volaille ou fromage frais"
+      },
+      {
+        "q": 40,
+        "u": "cl",
+        "n": "fond de volaille"
+      },
+      {
+        "q": 10,
+        "u": "cl",
+        "n": "crème"
+      },
+      {
+        "q": 20,
+        "u": "g",
+        "n": "beurre"
+      },
+      {
+        "q": null,
+        "u": "",
+        "n": "sel et poivre"
+      }
+    ],
+    "p": [
+      "Hacher la moitié des champignons avec l’échalote et les cuire au beurre jusqu’à sec.",
+      "Mélanger avec la chair fine ou le fromage frais et assaisonner.",
+      "Garnir les blancs de volaille, les rouler serrés dans du film cuisson adapté puis les pocher 20 minutes dans le fond frémissant.",
+      "Retirer le film et colorer les ballottines rapidement au beurre.",
+      "Poêler le reste des champignons, ajouter 15 cl de fond et la crème puis réduire.",
+      "Trancher les ballottines et servir avec la sauce forestière."
+    ],
+    "collections": [
+      "cuisine-bourgeoise-recevoir"
+    ],
+    "editorial": "pas-a-pas-debutant"
+  },
+  {
+    "id": "bourgeois-23",
+    "n": "Fricassée de volaille aux écrevisses",
+    "m": "Cocotte",
+    "t": "1 h",
+    "s": [
+      "printemps",
+      "été",
+      "automne",
+      "hiver"
+    ],
+    "servings": 4,
+    "classic": true,
+    "group": "volaille",
+    "protein": "volaille",
+    "starch": "aucun",
+    "kind": "warm",
+    "family": "volaille-ecrevisses",
+    "cuisine": "française",
+    "texture": "fondant-nappant",
+    "technique": "fricassée et sauce aux crustacés",
+    "presentation": "assiette de réception",
+    "vegetables": [
+      "échalote"
+    ],
+    "lightness": "classique",
+    "i": [
+      {
+        "q": 1,
+        "u": "",
+        "n": "poulet fermier découpé"
+      },
+      {
+        "q": 12,
+        "u": "",
+        "n": "écrevisses cuites ou queues d’écrevisses"
+      },
+      {
+        "q": 2,
+        "u": "",
+        "n": "échalotes"
+      },
+      {
+        "q": 10,
+        "u": "cl",
+        "n": "cognac"
+      },
+      {
+        "q": 15,
+        "u": "cl",
+        "n": "vin blanc"
+      },
+      {
+        "q": 35,
+        "u": "cl",
+        "n": "fond de volaille"
+      },
+      {
+        "q": 15,
+        "u": "cl",
+        "n": "crème"
+      },
+      {
+        "q": 1,
+        "u": "c. à soupe",
+        "n": "concentré de tomate"
+      },
+      {
+        "q": 30,
+        "u": "g",
+        "n": "beurre"
+      }
+    ],
+    "p": [
+      "Faire colorer légèrement les morceaux de volaille au beurre puis les réserver.",
+      "Faire fondre les échalotes, ajouter le concentré de tomate puis déglacer au cognac et au vin blanc.",
+      "Ajouter le fond, remettre la volaille et cuire 30 minutes à petit frémissement.",
+      "Retirer la volaille, réduire la sauce et ajouter la crème.",
+      "Ajouter les écrevisses pour les 3 dernières minutes afin de ne pas les durcir.",
+      "Remettre la volaille dans la sauce et servir très chaud."
+    ],
+    "collections": [
+      "cuisine-bourgeoise-recevoir"
+    ],
+    "editorial": "pas-a-pas-debutant"
+  },
+  {
+    "id": "bourgeois-24",
+    "n": "Suprêmes de volaille sauce Albufera",
+    "m": "Poêle",
+    "t": "50 min",
+    "s": [
+      "printemps",
+      "été",
+      "automne",
+      "hiver"
+    ],
+    "servings": 4,
+    "classic": true,
+    "group": "volaille",
+    "protein": "volaille",
+    "starch": "aucun",
+    "kind": "warm",
+    "family": "volaille-albufera",
+    "cuisine": "française",
+    "texture": "fondant-nappant",
+    "technique": "cuisson douce et sauce suprême enrichie",
+    "presentation": "assiette de réception",
+    "vegetables": [
+      "poivron"
+    ],
+    "lightness": "classique",
+    "i": [
+      {
+        "q": 4,
+        "u": "",
+        "n": "suprêmes de volaille"
+      },
+      {
+        "q": 25,
+        "u": "g",
+        "n": "beurre"
+      },
+      {
+        "q": 25,
+        "u": "cl",
+        "n": "fond de volaille"
+      },
+      {
+        "q": 15,
+        "u": "cl",
+        "n": "crème"
+      },
+      {
+        "q": 2,
+        "u": "c. à soupe",
+        "n": "glace de viande ou fond de veau réduit"
+      },
+      {
+        "q": 1,
+        "u": "c. à soupe",
+        "n": "beurre de poivron ou purée de poivron rouge"
+      },
+      {
+        "q": null,
+        "u": "",
+        "n": "sel et poivre"
+      }
+    ],
+    "p": [
+      "Colorer doucement les suprêmes au beurre côté peau puis terminer la cuisson à couvert 12 à 15 minutes.",
+      "Réserver la volaille et dégraisser la poêle.",
+      "Ajouter fond de volaille et glace de viande puis réduire de moitié.",
+      "Ajouter crème et purée de poivron et frémir 4 minutes.",
+      "Rectifier l’assaisonnement et remettre les suprêmes 2 minutes.",
+      "Servir avec riz pilaf ou pommes duchesse."
+    ],
+    "collections": [
+      "cuisine-bourgeoise-recevoir"
+    ],
+    "editorial": "pas-a-pas-debutant"
+  },
+  {
+    "id": "bourgeois-25",
+    "n": "Sole Véronique",
+    "m": "Poêle + Casserole",
+    "t": "45 min",
+    "s": [
+      "printemps",
+      "été",
+      "automne",
+      "hiver"
+    ],
+    "servings": 4,
+    "classic": true,
+    "group": "poisson",
+    "protein": "sole",
+    "starch": "aucun",
+    "kind": "warm",
+    "family": "sole-veronique",
+    "cuisine": "française",
+    "texture": "délicat-nappant",
+    "technique": "pochage et sauce au vin blanc",
+    "presentation": "assiette de réception",
+    "vegetables": [
+      "raisin"
+    ],
+    "lightness": "classique",
+    "i": [
+      {
+        "q": 4,
+        "u": "",
+        "n": "filets de sole"
+      },
+      {
+        "q": 250,
+        "u": "g",
+        "n": "raisins blancs sans pépins"
+      },
+      {
+        "q": 12,
+        "u": "cl",
+        "n": "vin blanc sec"
+      },
+      {
+        "q": 20,
+        "u": "cl",
+        "n": "fumet de poisson"
+      },
+      {
+        "q": 12,
+        "u": "cl",
+        "n": "crème"
+      },
+      {
+        "q": 30,
+        "u": "g",
+        "n": "beurre"
+      },
+      {
+        "q": null,
+        "u": "",
+        "n": "sel et poivre blanc"
+      }
+    ],
+    "p": [
+      "Beurrer une sauteuse, y déposer les filets de sole roulés ou pliés et assaisonner.",
+      "Ajouter vin blanc et fumet, couvrir et pocher 8 à 10 minutes à petit frémissement.",
+      "Retirer les filets et réduire le liquide de cuisson de moitié.",
+      "Ajouter crème puis réduire jusqu’à texture nappante.",
+      "Ajouter les grains de raisin pelés si souhaité et les réchauffer 2 minutes.",
+      "Napper les soles de sauce et servir immédiatement."
+    ],
+    "collections": [
+      "cuisine-bourgeoise-recevoir"
+    ],
+    "editorial": "pas-a-pas-debutant"
+  },
+  {
+    "id": "bourgeois-26",
+    "n": "Sole Dugléré",
+    "m": "Poêle + Casserole",
+    "t": "45 min",
+    "s": [
+      "printemps",
+      "été",
+      "automne",
+      "hiver"
+    ],
+    "servings": 4,
+    "classic": true,
+    "group": "poisson",
+    "protein": "sole",
+    "starch": "aucun",
+    "kind": "warm",
+    "family": "sole-duglere",
+    "cuisine": "française",
+    "texture": "fin-nappant",
+    "technique": "pochage Dugléré",
+    "presentation": "assiette de réception",
+    "vegetables": [
+      "tomate",
+      "échalote"
+    ],
+    "lightness": "classique",
+    "i": [
+      {
+        "q": 4,
+        "u": "",
+        "n": "filets de sole"
+      },
+      {
+        "q": 3,
+        "u": "",
+        "n": "tomates"
+      },
+      {
+        "q": 2,
+        "u": "",
+        "n": "échalotes"
+      },
+      {
+        "q": 12,
+        "u": "cl",
+        "n": "vin blanc sec"
+      },
+      {
+        "q": 20,
+        "u": "cl",
+        "n": "fumet de poisson"
+      },
+      {
+        "q": 30,
+        "u": "g",
+        "n": "beurre"
+      },
+      {
+        "q": 10,
+        "u": "g",
+        "n": "persil"
+      },
+      {
+        "q": null,
+        "u": "",
+        "n": "sel et poivre"
+      }
+    ],
+    "p": [
+      "Monder, épépiner et couper les tomates en petits dés ; ciseler les échalotes.",
+      "Déposer les filets de sole dans une sauteuse beurrée avec échalotes, tomates et vin blanc.",
+      "Ajouter le fumet, couvrir et pocher 8 minutes.",
+      "Retirer les filets et faire réduire le jus de cuisson à feu vif.",
+      "Monter la sauce au beurre froid et ajouter le persil.",
+      "Servir les soles nappées de sauce avec quelques dés de tomate."
+    ],
+    "collections": [
+      "cuisine-bourgeoise-recevoir"
+    ],
+    "editorial": "pas-a-pas-debutant"
+  },
+  {
+    "id": "bourgeois-27",
+    "n": "Turbot sauce champagne",
+    "m": "Four + Casserole",
+    "t": "55 min",
+    "s": [
+      "printemps",
+      "été",
+      "automne",
+      "hiver"
+    ],
+    "servings": 4,
+    "classic": true,
+    "group": "poisson",
+    "protein": "turbot",
+    "starch": "aucun",
+    "kind": "warm",
+    "family": "turbot-champagne",
+    "cuisine": "française",
+    "texture": "nacré-nappant",
+    "technique": "rôtissage doux et réduction",
+    "presentation": "assiette de réception",
+    "vegetables": [],
+    "lightness": "classique",
+    "i": [
+      {
+        "q": 4,
+        "u": "",
+        "n": "pavés de turbot"
+      },
+      {
+        "q": 20,
+        "u": "cl",
+        "n": "champagne brut"
+      },
+      {
+        "q": 20,
+        "u": "cl",
+        "n": "fumet de poisson"
+      },
+      {
+        "q": 12,
+        "u": "cl",
+        "n": "crème"
+      },
+      {
+        "q": 2,
+        "u": "",
+        "n": "échalotes"
+      },
+      {
+        "q": 30,
+        "u": "g",
+        "n": "beurre"
+      },
+      {
+        "q": null,
+        "u": "",
+        "n": "sel et poivre blanc"
+      }
+    ],
+    "p": [
+      "Faire réduire échalotes et champagne des deux tiers.",
+      "Ajouter le fumet et réduire à nouveau de moitié.",
+      "Ajouter la crème et laisser frémir jusqu’à texture nappante.",
+      "Cuire le turbot 12 à 15 minutes à 180 °C avec une noisette de beurre.",
+      "Filtrer la sauce et incorporer le reste du beurre hors du feu.",
+      "Servir le turbot avec la sauce champagne en petite quantité."
+    ],
+    "collections": [
+      "cuisine-bourgeoise-recevoir"
+    ],
+    "editorial": "pas-a-pas-debutant"
+  },
+  {
+    "id": "bourgeois-28",
+    "n": "Saint-Pierre sauce hollandaise",
+    "m": "Poêle + Casserole",
+    "t": "40 min",
+    "s": [
+      "printemps",
+      "été",
+      "automne",
+      "hiver"
+    ],
+    "servings": 4,
+    "classic": true,
+    "group": "poisson",
+    "protein": "saint-pierre",
+    "starch": "aucun",
+    "kind": "warm",
+    "family": "saint-pierre-hollandaise",
+    "cuisine": "française",
+    "texture": "nacré-onctueux",
+    "technique": "poêle et sauce émulsionnée",
+    "presentation": "assiette de réception",
+    "vegetables": [],
+    "lightness": "classique",
+    "i": [
+      {
+        "q": 4,
+        "u": "",
+        "n": "filets de Saint-Pierre"
+      },
+      {
+        "q": 2,
+        "u": "",
+        "n": "jaunes d’œufs"
+      },
+      {
+        "q": 120,
+        "u": "g",
+        "n": "beurre"
+      },
+      {
+        "q": 1,
+        "u": "c. à soupe",
+        "n": "jus de citron"
+      },
+      {
+        "q": 1,
+        "u": "c. à soupe",
+        "n": "eau"
+      },
+      {
+        "q": 1,
+        "u": "c. à soupe",
+        "n": "huile"
+      },
+      {
+        "q": null,
+        "u": "",
+        "n": "sel et poivre blanc"
+      }
+    ],
+    "p": [
+      "Préparer la hollandaise en fouettant jaunes et eau au bain-marie doux.",
+      "Incorporer le beurre tiède en filet puis ajouter le citron et garder tiède.",
+      "Sécher et assaisonner les filets de Saint-Pierre.",
+      "Les saisir côté présentation 3 minutes dans une poêle légèrement huilée.",
+      "Retourner et poursuivre 2 à 3 minutes selon l’épaisseur.",
+      "Servir immédiatement avec une cuillerée de hollandaise et des asperges ou légumes vapeur."
+    ],
+    "collections": [
+      "cuisine-bourgeoise-recevoir"
+    ],
+    "editorial": "pas-a-pas-debutant"
+  },
+  {
+    "id": "bourgeois-29",
+    "n": "Sandre au beurre rouge",
+    "m": "Poêle + Casserole",
+    "t": "40 min",
+    "s": [
+      "printemps",
+      "été",
+      "automne",
+      "hiver"
+    ],
+    "servings": 4,
+    "classic": true,
+    "group": "poisson",
+    "protein": "sandre",
+    "starch": "aucun",
+    "kind": "warm",
+    "family": "sandre-beurre-rouge",
+    "cuisine": "française",
+    "texture": "croustillant-nacré",
+    "technique": "cuisson peau et beurre monté",
+    "presentation": "assiette de réception",
+    "vegetables": [],
+    "lightness": "classique",
+    "i": [
+      {
+        "q": 4,
+        "u": "",
+        "n": "filets de sandre avec peau"
+      },
+      {
+        "q": 2,
+        "u": "",
+        "n": "échalotes"
+      },
+      {
+        "q": 15,
+        "u": "cl",
+        "n": "vin rouge"
+      },
+      {
+        "q": 2,
+        "u": "cl",
+        "n": "vinaigre de vin"
+      },
+      {
+        "q": 140,
+        "u": "g",
+        "n": "beurre froid"
+      },
+      {
+        "q": 1,
+        "u": "c. à soupe",
+        "n": "huile"
+      },
+      {
+        "q": null,
+        "u": "",
+        "n": "sel et poivre"
+      }
+    ],
+    "p": [
+      "Faire réduire échalotes, vin rouge et vinaigre jusqu’à obtenir environ deux cuillerées de liquide.",
+      "À feu très doux, incorporer progressivement le beurre froid en fouettant sans faire bouillir.",
+      "Assaisonner les filets de sandre et les saisir côté peau 4 à 5 minutes dans l’huile.",
+      "Retourner et cuire encore 2 minutes.",
+      "Filtrer le beurre rouge si souhaité et rectifier l’assaisonnement.",
+      "Servir le poisson peau croustillante avec un cordon de sauce."
+    ],
+    "collections": [
+      "cuisine-bourgeoise-recevoir"
+    ],
+    "editorial": "pas-a-pas-debutant"
+  },
+  {
+    "id": "bourgeois-30",
+    "n": "Homard à l’américaine",
+    "m": "Cocotte",
+    "t": "1 h",
+    "s": [
+      "printemps",
+      "été",
+      "automne",
+      "hiver"
+    ],
+    "servings": 4,
+    "classic": true,
+    "group": "poisson",
+    "protein": "homard",
+    "starch": "riz",
+    "kind": "warm",
+    "family": "homard-americaine",
+    "cuisine": "française",
+    "texture": "crustacé-nappant",
+    "technique": "saisie et sauce américaine",
+    "presentation": "assiette de réception",
+    "vegetables": [
+      "tomate",
+      "carotte"
+    ],
+    "lightness": "classique",
+    "i": [
+      {
+        "q": 2,
+        "u": "",
+        "n": "homards de 500 à 600 g"
+      },
+      {
+        "q": 2,
+        "u": "",
+        "n": "échalotes"
+      },
+      {
+        "q": 1,
+        "u": "",
+        "n": "carotte"
+      },
+      {
+        "q": 2,
+        "u": "",
+        "n": "gousses d’ail"
+      },
+      {
+        "q": 8,
+        "u": "cl",
+        "n": "cognac"
+      },
+      {
+        "q": 15,
+        "u": "cl",
+        "n": "vin blanc"
+      },
+      {
+        "q": 400,
+        "u": "g",
+        "n": "tomates concassées"
+      },
+      {
+        "q": 30,
+        "u": "cl",
+        "n": "fumet de poisson"
+      },
+      {
+        "q": 30,
+        "u": "g",
+        "n": "beurre"
+      },
+      {
+        "q": null,
+        "u": "",
+        "n": "estragon, sel et poivre"
+      }
+    ],
+    "p": [
+      "Découper les homards vivants seulement si vous maîtrisez la technique, sinon demander au poissonnier de les préparer.",
+      "Faire saisir les morceaux de homard au beurre jusqu’à coloration rouge puis les réserver.",
+      "Faire revenir échalotes, carotte et ail, déglacer au cognac puis au vin blanc.",
+      "Ajouter tomates, fumet et estragon, remettre le homard et cuire 15 minutes.",
+      "Retirer le homard et faire réduire la sauce 10 minutes, puis la passer si désiré.",
+      "Remettre les morceaux 2 minutes dans la sauce et servir avec riz pilaf."
+    ],
+    "collections": [
+      "cuisine-bourgeoise-recevoir"
+    ],
+    "editorial": "pas-a-pas-debutant"
+  },
+  {
+    "id": "bourgeois-31",
+    "n": "Lotte safranée aux petits légumes",
+    "m": "Cocotte",
+    "t": "45 min",
+    "s": [
+      "printemps",
+      "été",
+      "automne",
+      "hiver"
+    ],
+    "servings": 4,
+    "classic": true,
+    "group": "poisson",
+    "protein": "lotte",
+    "starch": "aucun",
+    "kind": "warm",
+    "family": "lotte-safran",
+    "cuisine": "française",
+    "texture": "ferme-nappant",
+    "technique": "pochage court au safran",
+    "presentation": "assiette de réception",
+    "vegetables": [
+      "carotte",
+      "poireau",
+      "fenouil"
+    ],
+    "lightness": "classique",
+    "i": [
+      {
+        "q": 700,
+        "u": "g",
+        "n": "queue de lotte parée"
+      },
+      {
+        "q": 2,
+        "u": "",
+        "n": "carottes"
+      },
+      {
+        "q": 1,
+        "u": "",
+        "n": "poireau"
+      },
+      {
+        "q": 1,
+        "u": "",
+        "n": "fenouil"
+      },
+      {
+        "q": 12,
+        "u": "cl",
+        "n": "vin blanc"
+      },
+      {
+        "q": 20,
+        "u": "cl",
+        "n": "fumet de poisson"
+      },
+      {
+        "q": 12,
+        "u": "cl",
+        "n": "crème"
+      },
+      {
+        "q": 1,
+        "u": "pincée",
+        "n": "safran"
+      },
+      {
+        "q": 20,
+        "u": "g",
+        "n": "beurre"
+      },
+      {
+        "q": null,
+        "u": "",
+        "n": "sel et poivre"
+      }
+    ],
+    "p": [
+      "Tailler carotte, poireau et fenouil en fine julienne et les faire fondre au beurre 8 minutes.",
+      "Ajouter vin blanc, fumet et safran puis réduire 5 minutes.",
+      "Couper la lotte en médaillons et les déposer dans la sauce.",
+      "Couvrir et cuire 8 à 10 minutes à feu doux.",
+      "Retirer la lotte, ajouter la crème et réduire 3 minutes.",
+      "Remettre le poisson, rectifier l’assaisonnement et servir aussitôt."
+    ],
+    "collections": [
+      "cuisine-bourgeoise-recevoir"
+    ],
+    "editorial": "pas-a-pas-debutant"
+  },
+  {
+    "id": "bourgeois-32",
+    "n": "Soufflé au chocolat",
+    "course": "dessert",
+    "kind": "dessert",
+    "m": "Four",
+    "t": "40 min",
+    "s": [
+      "printemps",
+      "été",
+      "automne",
+      "hiver"
+    ],
+    "servings": 4,
+    "family": "souffle-chocolat",
+    "cuisine": "française",
+    "hotCold": "chaud",
+    "richness": "gourmand",
+    "core": [
+      "chocolat"
+    ],
+    "i": [
+      {
+        "q": 160,
+        "u": "g",
+        "n": "chocolat noir"
+      },
+      {
+        "q": 25,
+        "u": "g",
+        "n": "beurre"
+      },
+      {
+        "q": 20,
+        "u": "g",
+        "n": "farine"
+      },
+      {
+        "q": 20,
+        "u": "cl",
+        "n": "lait"
+      },
+      {
+        "q": 4,
+        "u": "",
+        "n": "œufs"
+      },
+      {
+        "q": 50,
+        "u": "g",
+        "n": "sucre"
+      },
+      {
+        "q": 20,
+        "u": "g",
+        "n": "beurre pour les moules"
+      },
+      {
+        "q": 20,
+        "u": "g",
+        "n": "sucre pour les moules"
+      }
+    ],
+    "p": [
+      "Beurrer quatre ramequins de bas en haut puis les chemiser de sucre ; réserver au frais.",
+      "Faire fondre le chocolat. Préparer une petite béchamel sucrée avec beurre, farine et lait.",
+      "Hors du feu, incorporer le chocolat puis les jaunes d’œufs.",
+      "Monter les blancs en neige souple avec le sucre et les incorporer délicatement en trois fois.",
+      "Remplir les ramequins aux trois quarts et lisser le bord intérieur avec le pouce.",
+      "Cuire 12 à 14 minutes à 190 °C et servir immédiatement."
+    ],
+    "collections": [
+      "cuisine-bourgeoise-recevoir"
+    ],
+    "editorial": "pas-a-pas-debutant"
+  },
+  {
+    "id": "bourgeois-33",
+    "n": "Soufflé au citron",
+    "course": "dessert",
+    "kind": "dessert",
+    "m": "Four",
+    "t": "40 min",
+    "s": [
+      "printemps",
+      "été",
+      "automne",
+      "hiver"
+    ],
+    "servings": 4,
+    "family": "souffle-citron",
+    "cuisine": "française",
+    "hotCold": "chaud",
+    "richness": "gourmand",
+    "core": [
+      "citron"
+    ],
+    "i": [
+      {
+        "q": 3,
+        "u": "",
+        "n": "citrons non traités"
+      },
+      {
+        "q": 4,
+        "u": "",
+        "n": "œufs"
+      },
+      {
+        "q": 80,
+        "u": "g",
+        "n": "sucre"
+      },
+      {
+        "q": 20,
+        "u": "g",
+        "n": "fécule de maïs"
+      },
+      {
+        "q": 15,
+        "u": "cl",
+        "n": "lait"
+      },
+      {
+        "q": 20,
+        "u": "g",
+        "n": "beurre"
+      },
+      {
+        "q": 20,
+        "u": "g",
+        "n": "sucre pour les moules"
+      }
+    ],
+    "p": [
+      "Beurrer et sucrer quatre ramequins puis les réserver au frais.",
+      "Chauffer lait, zeste fin d’un citron et la moitié du sucre.",
+      "Mélanger jaunes, fécule et jus de citron, verser le lait chaud puis cuire jusqu’à épaississement.",
+      "Monter les blancs en neige avec le reste de sucre.",
+      "Incorporer délicatement les blancs à la crème citronnée refroidie quelques minutes.",
+      "Cuire 12 à 14 minutes à 190 °C et servir sans attendre."
+    ],
+    "collections": [
+      "cuisine-bourgeoise-recevoir"
+    ],
+    "editorial": "pas-a-pas-debutant"
+  },
+  {
+    "id": "bourgeois-34",
+    "n": "Charlotte aux poires",
+    "course": "dessert",
+    "kind": "dessert",
+    "m": "Sans cuisson",
+    "t": "50 min + 6 h de repos",
+    "s": [
+      "printemps",
+      "été",
+      "automne",
+      "hiver"
+    ],
+    "servings": 4,
+    "family": "charlotte-poires",
+    "cuisine": "française",
+    "hotCold": "froid",
+    "richness": "gourmand",
+    "core": [
+      "poire",
+      "biscuits"
+    ],
+    "i": [
+      {
+        "q": 24,
+        "u": "",
+        "n": "biscuits à la cuillère"
+      },
+      {
+        "q": 5,
+        "u": "",
+        "n": "poires mûres"
+      },
+      {
+        "q": 50,
+        "u": "cl",
+        "n": "eau"
+      },
+      {
+        "q": 120,
+        "u": "g",
+        "n": "sucre"
+      },
+      {
+        "q": 30,
+        "u": "cl",
+        "n": "crème liquide entière"
+      },
+      {
+        "q": 4,
+        "u": "",
+        "n": "feuilles de gélatine"
+      },
+      {
+        "q": 1,
+        "u": "c. à café",
+        "n": "vanille"
+      },
+      {
+        "q": 1,
+        "u": "c. à soupe",
+        "n": "jus de citron"
+      }
+    ],
+    "p": [
+      "Préparer un sirop avec eau, 80 g de sucre et vanille puis y pocher les poires en quartiers 8 à 10 minutes.",
+      "Égoutter les poires et conserver le sirop. Faire ramollir la gélatine puis la dissoudre dans 8 cl de sirop chaud.",
+      "Mixer la moitié des poires, ajouter la gélatine puis laisser refroidir.",
+      "Monter la crème avec le reste de sucre et l’incorporer délicatement à la purée de poires.",
+      "Chemiser un moule de biscuits rapidement trempés dans le sirop, remplir de mousse et de dés de poire.",
+      "Couvrir de biscuits et réfrigérer au moins 6 heures avant de démouler."
+    ],
+    "collections": [
+      "cuisine-bourgeoise-recevoir"
+    ],
+    "editorial": "pas-a-pas-debutant"
+  },
+  {
+    "id": "bourgeois-35",
+    "n": "Bavarois aux framboises",
+    "course": "dessert",
+    "kind": "dessert",
+    "m": "Casserole",
+    "t": "50 min + 6 h de repos",
+    "s": [
+      "printemps",
+      "été"
+    ],
+    "servings": 4,
+    "family": "bavarois-framboise",
+    "cuisine": "française",
+    "hotCold": "froid",
+    "richness": "gourmand",
+    "core": [
+      "framboise"
+    ],
+    "i": [
+      {
+        "q": 500,
+        "u": "g",
+        "n": "framboises"
+      },
+      {
+        "q": 100,
+        "u": "g",
+        "n": "sucre"
+      },
+      {
+        "q": 4,
+        "u": "",
+        "n": "feuilles de gélatine"
+      },
+      {
+        "q": 30,
+        "u": "cl",
+        "n": "crème liquide entière"
+      },
+      {
+        "q": 1,
+        "u": "c. à soupe",
+        "n": "jus de citron"
+      },
+      {
+        "q": 1,
+        "u": "",
+        "n": "petit biscuit génoise facultatif"
+      }
+    ],
+    "p": [
+      "Mixer 400 g de framboises avec sucre et citron puis passer au tamis.",
+      "Chauffer un tiers du coulis, y dissoudre la gélatine ramollie puis mélanger au reste.",
+      "Laisser refroidir jusqu’à ce que le coulis commence à épaissir.",
+      "Monter la crème souple et l’incorporer délicatement.",
+      "Verser dans un cercle éventuellement posé sur une fine génoise et lisser.",
+      "Réfrigérer au moins 6 heures puis décorer des framboises restantes."
+    ],
+    "collections": [
+      "cuisine-bourgeoise-recevoir"
+    ],
+    "editorial": "pas-a-pas-debutant"
+  },
+  {
+    "id": "bourgeois-36",
+    "n": "Crêpes soufflées à l’orange",
+    "course": "dessert",
+    "kind": "dessert",
+    "m": "Four",
+    "t": "55 min",
+    "s": [
+      "printemps",
+      "été",
+      "automne",
+      "hiver"
+    ],
+    "servings": 4,
+    "family": "crepes-soufflees-orange",
+    "cuisine": "française",
+    "hotCold": "chaud",
+    "richness": "gourmand",
+    "core": [
+      "crêpes",
+      "orange"
+    ],
+    "i": [
+      {
+        "q": 8,
+        "u": "",
+        "n": "crêpes fines"
+      },
+      {
+        "q": 3,
+        "u": "",
+        "n": "œufs"
+      },
+      {
+        "q": 70,
+        "u": "g",
+        "n": "sucre"
+      },
+      {
+        "q": 2,
+        "u": "",
+        "n": "oranges non traitées"
+      },
+      {
+        "q": 20,
+        "u": "g",
+        "n": "fécule de maïs"
+      },
+      {
+        "q": 15,
+        "u": "cl",
+        "n": "lait"
+      },
+      {
+        "q": 20,
+        "u": "g",
+        "n": "beurre"
+      },
+      {
+        "q": 2,
+        "u": "c. à soupe",
+        "n": "Grand Marnier facultatif"
+      }
+    ],
+    "p": [
+      "Préparer une crème avec jaunes, sucre, fécule, lait, zeste et jus d’une orange ; cuire jusqu’à épaississement.",
+      "Laisser tiédir puis ajouter éventuellement le Grand Marnier.",
+      "Monter les blancs en neige souple et les incorporer délicatement à la crème.",
+      "Déposer une belle cuillerée de préparation sur chaque crêpe et les plier en deux sans écraser.",
+      "Beurrer un plat, y ranger les crêpes et cuire 10 à 12 minutes à 200 °C.",
+      "Servir immédiatement avec quelques suprêmes d’orange."
+    ],
+    "collections": [
+      "cuisine-bourgeoise-recevoir"
+    ],
+    "editorial": "pas-a-pas-debutant"
+  }
+]
