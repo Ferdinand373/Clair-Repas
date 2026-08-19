@@ -1,0 +1,2001 @@
+[
+  {
+    "id": "c415",
+    "n": "Pommes duchesse",
+    "role": "side",
+    "m": "Four",
+    "t": "45 min",
+    "family": "accompagnements-pommes-de-terre",
+    "yieldText": "2 portions",
+    "pairWith": [
+      "viande",
+      "volaille"
+    ],
+    "i": [
+      {
+        "q": 500,
+        "u": "g",
+        "n": "pommes de terre farineuses"
+      },
+      {
+        "q": 2,
+        "u": "",
+        "n": "jaunes d’œufs"
+      },
+      {
+        "q": 35,
+        "u": "g",
+        "n": "beurre"
+      },
+      {
+        "q": 1,
+        "u": "pincée",
+        "n": "muscade"
+      },
+      {
+        "q": null,
+        "u": "",
+        "n": "sel et poivre"
+      }
+    ],
+    "p": [
+      "Cuire les pommes de terre 20 minutes dans l’eau salée puis les égoutter et les sécher 1 minute sur feu doux.",
+      "Les passer au presse-purée puis incorporer beurre, jaunes d’œufs, muscade et poivre.",
+      "Mettre la purée dans une poche cannelée et dresser de petites rosaces sur une plaque.",
+      "Cuire 15 à 18 minutes à 210 °C jusqu’à ce que les pointes soient bien dorées."
+    ],
+    "preferred": [
+      "rôti",
+      "bœuf",
+      "canard"
+    ],
+    "richness": "gourmand"
+  },
+  {
+    "id": "c416",
+    "n": "Pommes Anna",
+    "role": "side",
+    "m": "Four",
+    "t": "55 min",
+    "family": "accompagnements-pommes-de-terre",
+    "yieldText": "2 portions",
+    "pairWith": [
+      "viande",
+      "volaille"
+    ],
+    "i": [
+      {
+        "q": 600,
+        "u": "g",
+        "n": "pommes de terre à chair ferme"
+      },
+      {
+        "q": 50,
+        "u": "g",
+        "n": "beurre"
+      },
+      {
+        "q": 5,
+        "u": "g",
+        "n": "sel"
+      },
+      {
+        "q": 1,
+        "u": "g",
+        "n": "poivre"
+      }
+    ],
+    "p": [
+      "Préchauffer le four à 200 °C et beurrer généreusement un petit moule ou une poêle allant au four.",
+      "Tailler les pommes de terre en rondelles très fines et régulières, sans les rincer.",
+      "Les ranger en couches serrées en badigeonnant légèrement de beurre et en assaisonnant entre les couches.",
+      "Cuire 40 à 45 minutes, tasser une fois à mi-cuisson puis démouler lorsque les bords sont très dorés."
+    ],
+    "preferred": [
+      "rôti",
+      "magret",
+      "filet de bœuf"
+    ],
+    "richness": "gourmand"
+  },
+  {
+    "id": "c417",
+    "n": "Pommes boulangère",
+    "role": "side",
+    "m": "Four",
+    "t": "1 h 05",
+    "family": "accompagnements-pommes-de-terre",
+    "yieldText": "2 portions",
+    "pairWith": [
+      "viande",
+      "volaille"
+    ],
+    "i": [
+      {
+        "q": 650,
+        "u": "g",
+        "n": "pommes de terre"
+      },
+      {
+        "q": 2,
+        "u": "",
+        "n": "oignons"
+      },
+      {
+        "q": 35,
+        "u": "cl",
+        "n": "bouillon"
+      },
+      {
+        "q": 20,
+        "u": "g",
+        "n": "beurre"
+      },
+      {
+        "q": 1,
+        "u": "c. à café",
+        "n": "thym"
+      },
+      {
+        "q": null,
+        "u": "",
+        "n": "sel et poivre"
+      }
+    ],
+    "p": [
+      "Émincer finement pommes de terre et oignons.",
+      "Faire fondre les oignons 8 minutes au beurre sans forte coloration.",
+      "Alterner pommes de terre et oignons dans un plat, assaisonner et ajouter le thym.",
+      "Verser le bouillon à mi-hauteur et cuire 45 à 50 minutes à 190 °C jusqu’à absorption et coloration."
+    ],
+    "preferred": [
+      "agneau",
+      "rôti",
+      "poulet"
+    ]
+  },
+  {
+    "id": "c418",
+    "n": "Pommes fondantes",
+    "role": "side",
+    "m": "Poêle + Four",
+    "t": "45 min",
+    "family": "accompagnements-pommes-de-terre",
+    "yieldText": "2 portions",
+    "pairWith": [
+      "viande",
+      "volaille"
+    ],
+    "i": [
+      {
+        "q": 4,
+        "u": "",
+        "n": "grosses pommes de terre"
+      },
+      {
+        "q": 30,
+        "u": "g",
+        "n": "beurre"
+      },
+      {
+        "q": 1,
+        "u": "c. à soupe",
+        "n": "huile"
+      },
+      {
+        "q": 20,
+        "u": "cl",
+        "n": "bouillon"
+      },
+      {
+        "q": 1,
+        "u": "",
+        "n": "gousse d’ail"
+      },
+      {
+        "q": 1,
+        "u": "c. à café",
+        "n": "thym"
+      }
+    ],
+    "p": [
+      "Tailler les pommes de terre en gros cylindres réguliers et les sécher soigneusement.",
+      "Les dorer sur les deux faces dans huile et beurre pendant 5 à 6 minutes.",
+      "Ajouter ail, thym et bouillon à mi-hauteur.",
+      "Cuire 25 minutes à 190 °C en arrosant deux fois ; elles doivent être croustillantes dehors et fondantes à cœur."
+    ],
+    "preferred": [
+      "veau",
+      "bœuf",
+      "canard"
+    ],
+    "richness": "gourmand"
+  },
+  {
+    "id": "c419",
+    "n": "Écrasé de pommes de terre à l’huile d’olive",
+    "role": "side",
+    "m": "Casserole",
+    "t": "30 min",
+    "family": "accompagnements-pommes-de-terre",
+    "yieldText": "2 portions",
+    "pairWith": [
+      "poisson",
+      "viande",
+      "volaille"
+    ],
+    "i": [
+      {
+        "q": 500,
+        "u": "g",
+        "n": "pommes de terre"
+      },
+      {
+        "q": 4,
+        "u": "c. à soupe",
+        "n": "huile d’olive"
+      },
+      {
+        "q": 1,
+        "u": "",
+        "n": "gousse d’ail"
+      },
+      {
+        "q": 10,
+        "u": "g",
+        "n": "persil"
+      },
+      {
+        "q": null,
+        "u": "",
+        "n": "sel et poivre"
+      }
+    ],
+    "p": [
+      "Cuire les pommes de terre à l’eau salée jusqu’à tendreté puis les égoutter soigneusement.",
+      "Les écraser grossièrement à la fourchette ou au presse-purée en gardant quelques morceaux.",
+      "Ajouter ail très finement râpé et huile d’olive progressivement.",
+      "Poivrer, ajouter le persil et servir immédiatement sans chercher une texture lisse."
+    ],
+    "preferred": [
+      "poisson grillé",
+      "agneau",
+      "poulet"
+    ],
+    "richness": "normal"
+  },
+  {
+    "id": "c420",
+    "n": "Pommes grenailles rôties ail et thym",
+    "role": "side",
+    "m": "Four",
+    "t": "40 min",
+    "family": "accompagnements-pommes-de-terre",
+    "yieldText": "2 portions",
+    "pairWith": [
+      "viande",
+      "volaille",
+      "poisson"
+    ],
+    "i": [
+      {
+        "q": 600,
+        "u": "g",
+        "n": "pommes de terre grenaille"
+      },
+      {
+        "q": 1.5,
+        "u": "c. à soupe",
+        "n": "huile d’olive"
+      },
+      {
+        "q": 3,
+        "u": "",
+        "n": "gousses d’ail"
+      },
+      {
+        "q": 4,
+        "u": "",
+        "n": "branches de thym"
+      },
+      {
+        "q": null,
+        "u": "",
+        "n": "sel et poivre"
+      }
+    ],
+    "p": [
+      "Brosser les grenailles, les sécher et couper seulement les plus grosses en deux.",
+      "Les mélanger avec huile, ail en chemise, thym, sel et poivre.",
+      "Étaler sans superposer sur une plaque chaude.",
+      "Rôtir 30 à 35 minutes à 205 °C en remuant une fois."
+    ],
+    "preferred": [
+      "grillade",
+      "rôti",
+      "saumon"
+    ]
+  },
+  {
+    "id": "c421",
+    "n": "Pommes dauphine maison",
+    "role": "side",
+    "m": "Casserole",
+    "t": "50 min",
+    "family": "accompagnements-pommes-de-terre",
+    "yieldText": "2 portions",
+    "pairWith": [
+      "viande",
+      "volaille"
+    ],
+    "i": [
+      {
+        "q": 350,
+        "u": "g",
+        "n": "purée de pommes de terre sèche"
+      },
+      {
+        "q": 12.5,
+        "u": "cl",
+        "n": "eau"
+      },
+      {
+        "q": 50,
+        "u": "g",
+        "n": "beurre"
+      },
+      {
+        "q": 75,
+        "u": "g",
+        "n": "farine"
+      },
+      {
+        "q": 2,
+        "u": "",
+        "n": "œufs"
+      },
+      {
+        "q": null,
+        "u": "",
+        "n": "sel et muscade"
+      },
+      {
+        "q": null,
+        "u": "",
+        "n": "huile de friture"
+      }
+    ],
+    "p": [
+      "Préparer une petite pâte à choux avec eau, beurre, farine puis œufs.",
+      "Mélanger la pâte à choux avec la purée froide et assaisonner de muscade.",
+      "Former de petites boules régulières avec deux cuillères.",
+      "Frire à 170 °C par petites quantités jusqu’à gonflement et coloration, puis égoutter et saler."
+    ],
+    "preferred": [
+      "rôti",
+      "bœuf",
+      "volaille"
+    ],
+    "richness": "gourmand"
+  },
+  {
+    "id": "c422",
+    "n": "Pommes noisette maison",
+    "role": "side",
+    "m": "Poêle",
+    "t": "40 min",
+    "family": "accompagnements-pommes-de-terre",
+    "yieldText": "2 portions",
+    "pairWith": [
+      "viande",
+      "volaille",
+      "poisson"
+    ],
+    "i": [
+      {
+        "q": 500,
+        "u": "g",
+        "n": "pommes de terre farineuses"
+      },
+      {
+        "q": 1,
+        "u": "",
+        "n": "jaune d’œuf"
+      },
+      {
+        "q": 30,
+        "u": "g",
+        "n": "fécule"
+      },
+      {
+        "q": 20,
+        "u": "g",
+        "n": "beurre"
+      },
+      {
+        "q": 1,
+        "u": "c. à soupe",
+        "n": "huile"
+      },
+      {
+        "q": null,
+        "u": "",
+        "n": "sel et muscade"
+      }
+    ],
+    "p": [
+      "Cuire et sécher les pommes de terre puis les passer au presse-purée.",
+      "Ajouter jaune d’œuf, fécule, sel et muscade puis laisser tiédir.",
+      "Former de petites billes entre les mains légèrement farinées.",
+      "Les dorer doucement dans beurre et huile 8 à 10 minutes en les roulant souvent."
+    ],
+    "preferred": [
+      "rôti",
+      "poulet",
+      "poisson"
+    ]
+  },
+  {
+    "id": "c423",
+    "n": "Purée de céleri-rave",
+    "role": "side",
+    "m": "Casserole",
+    "t": "35 min",
+    "family": "accompagnements-purées",
+    "yieldText": "2 portions",
+    "pairWith": [
+      "viande",
+      "volaille"
+    ],
+    "i": [
+      {
+        "q": 500,
+        "u": "g",
+        "n": "céleri-rave"
+      },
+      {
+        "q": 200,
+        "u": "g",
+        "n": "pommes de terre"
+      },
+      {
+        "q": 12,
+        "u": "cl",
+        "n": "lait"
+      },
+      {
+        "q": 30,
+        "u": "g",
+        "n": "beurre"
+      },
+      {
+        "q": null,
+        "u": "",
+        "n": "sel, poivre et muscade"
+      }
+    ],
+    "p": [
+      "Couper céleri et pommes de terre en cubes réguliers.",
+      "Cuire 20 à 25 minutes dans l’eau salée puis égoutter et sécher 1 minute.",
+      "Passer au presse-purée et incorporer lait chaud puis beurre.",
+      "Assaisonner de poivre et muscade ; la texture doit être fine mais pas liquide."
+    ],
+    "preferred": [
+      "canard",
+      "bœuf",
+      "veau"
+    ]
+  },
+  {
+    "id": "c424",
+    "n": "Purée de carottes au cumin",
+    "role": "side",
+    "m": "Casserole",
+    "t": "30 min",
+    "family": "accompagnements-purées",
+    "yieldText": "2 portions",
+    "pairWith": [
+      "viande",
+      "volaille",
+      "poisson"
+    ],
+    "i": [
+      {
+        "q": 600,
+        "u": "g",
+        "n": "carottes"
+      },
+      {
+        "q": 150,
+        "u": "g",
+        "n": "pommes de terre"
+      },
+      {
+        "q": 25,
+        "u": "g",
+        "n": "beurre"
+      },
+      {
+        "q": 0.5,
+        "u": "c. à café",
+        "n": "cumin"
+      },
+      {
+        "q": null,
+        "u": "",
+        "n": "sel et poivre"
+      }
+    ],
+    "p": [
+      "Couper carottes et pommes de terre en morceaux réguliers.",
+      "Cuire dans l’eau salée jusqu’à tendreté puis égoutter parfaitement.",
+      "Écraser finement avec le beurre.",
+      "Ajouter cumin et poivre et servir bien chaud."
+    ],
+    "preferred": [
+      "agneau",
+      "poulet",
+      "cabillaud"
+    ],
+    "richness": "léger"
+  },
+  {
+    "id": "c425",
+    "n": "Purée de panais",
+    "role": "side",
+    "m": "Casserole",
+    "t": "35 min",
+    "family": "accompagnements-purées",
+    "yieldText": "2 portions",
+    "pairWith": [
+      "viande",
+      "volaille"
+    ],
+    "i": [
+      {
+        "q": 500,
+        "u": "g",
+        "n": "panais"
+      },
+      {
+        "q": 200,
+        "u": "g",
+        "n": "pommes de terre"
+      },
+      {
+        "q": 10,
+        "u": "cl",
+        "n": "lait"
+      },
+      {
+        "q": 30,
+        "u": "g",
+        "n": "beurre"
+      },
+      {
+        "q": null,
+        "u": "",
+        "n": "sel et poivre"
+      }
+    ],
+    "p": [
+      "Peler panais et pommes de terre puis les couper en morceaux.",
+      "Cuire 20 minutes à l’eau salée jusqu’à tendreté.",
+      "Égoutter, sécher puis passer au presse-purée.",
+      "Ajouter lait chaud et beurre ; poivrer généreusement."
+    ],
+    "preferred": [
+      "canard",
+      "porc",
+      "veau"
+    ],
+    "richness": "normal"
+  },
+  {
+    "id": "c426",
+    "n": "Purée de patate douce au citron",
+    "role": "side",
+    "m": "Casserole",
+    "t": "30 min",
+    "family": "accompagnements-purées",
+    "yieldText": "2 portions",
+    "pairWith": [
+      "volaille",
+      "poisson",
+      "viande"
+    ],
+    "i": [
+      {
+        "q": 600,
+        "u": "g",
+        "n": "patates douces"
+      },
+      {
+        "q": 20,
+        "u": "g",
+        "n": "beurre"
+      },
+      {
+        "q": 0.5,
+        "u": "",
+        "n": "citron"
+      },
+      {
+        "q": 1,
+        "u": "pincée",
+        "n": "paprika"
+      },
+      {
+        "q": null,
+        "u": "",
+        "n": "sel et poivre"
+      }
+    ],
+    "p": [
+      "Peler et couper les patates douces en cubes.",
+      "Les cuire 15 à 18 minutes à la vapeur ou dans l’eau salée puis bien égoutter.",
+      "Les écraser avec le beurre jusqu’à texture souple.",
+      "Ajouter zeste fin, quelques gouttes de citron, paprika et poivre."
+    ],
+    "preferred": [
+      "poulet",
+      "saumon",
+      "porc"
+    ]
+  },
+  {
+    "id": "c427",
+    "n": "Petits pois à la française",
+    "role": "side",
+    "m": "Casserole",
+    "t": "30 min",
+    "family": "accompagnements-légumes",
+    "yieldText": "2 portions",
+    "pairWith": [
+      "viande",
+      "volaille"
+    ],
+    "i": [
+      {
+        "q": 400,
+        "u": "g",
+        "n": "petits pois"
+      },
+      {
+        "q": 1,
+        "u": "",
+        "n": "petite laitue"
+      },
+      {
+        "q": 6,
+        "u": "",
+        "n": "petits oignons"
+      },
+      {
+        "q": 20,
+        "u": "g",
+        "n": "beurre"
+      },
+      {
+        "q": 8,
+        "u": "cl",
+        "n": "eau"
+      },
+      {
+        "q": null,
+        "u": "",
+        "n": "sel et poivre"
+      }
+    ],
+    "p": [
+      "Faire fondre les petits oignons 4 minutes dans la moitié du beurre.",
+      "Ajouter petits pois, laitue émincée, eau, sel et poivre.",
+      "Couvrir et cuire 12 à 15 minutes à feu doux.",
+      "Retirer le couvercle, faire réduire le jus puis ajouter le reste du beurre."
+    ],
+    "preferred": [
+      "veau",
+      "poulet",
+      "agneau"
+    ],
+    "richness": "normal",
+    "s": [
+      "printemps",
+      "été"
+    ]
+  },
+  {
+    "id": "c428",
+    "n": "Épinards à la crème",
+    "role": "side",
+    "m": "Poêle",
+    "t": "20 min",
+    "family": "accompagnements-légumes",
+    "yieldText": "2 portions",
+    "pairWith": [
+      "viande",
+      "poisson",
+      "oeufs"
+    ],
+    "i": [
+      {
+        "q": 700,
+        "u": "g",
+        "n": "épinards frais"
+      },
+      {
+        "q": 15,
+        "u": "cl",
+        "n": "crème"
+      },
+      {
+        "q": 20,
+        "u": "g",
+        "n": "beurre"
+      },
+      {
+        "q": 1,
+        "u": "",
+        "n": "gousse d’ail"
+      },
+      {
+        "q": null,
+        "u": "",
+        "n": "sel, poivre et muscade"
+      }
+    ],
+    "p": [
+      "Laver puis essorer les épinards.",
+      "Faire fondre le beurre avec l’ail puis ajouter les épinards par poignées.",
+      "Cuire 4 à 5 minutes jusqu’à évaporation de l’eau rendue.",
+      "Ajouter crème et muscade puis faire réduire 3 minutes."
+    ],
+    "preferred": [
+      "saumon",
+      "œufs",
+      "veau"
+    ],
+    "richness": "gourmand"
+  },
+  {
+    "id": "c429",
+    "n": "Endives braisées",
+    "role": "side",
+    "m": "Poêle",
+    "t": "40 min",
+    "family": "accompagnements-légumes",
+    "yieldText": "2 portions",
+    "pairWith": [
+      "volaille",
+      "viande",
+      "poisson"
+    ],
+    "i": [
+      {
+        "q": 6,
+        "u": "",
+        "n": "endives"
+      },
+      {
+        "q": 25,
+        "u": "g",
+        "n": "beurre"
+      },
+      {
+        "q": 15,
+        "u": "cl",
+        "n": "bouillon"
+      },
+      {
+        "q": 1,
+        "u": "c. à café",
+        "n": "sucre"
+      },
+      {
+        "q": 0.5,
+        "u": "",
+        "n": "citron"
+      },
+      {
+        "q": null,
+        "u": "",
+        "n": "sel et poivre"
+      }
+    ],
+    "p": [
+      "Retirer le cône dur à la base des endives puis les couper en deux.",
+      "Les dorer face coupée dans le beurre 5 minutes.",
+      "Ajouter sucre, citron et bouillon, couvrir et cuire 20 minutes à feu doux.",
+      "Découvrir et laisser réduire jusqu’à léger glaçage."
+    ],
+    "preferred": [
+      "jambon",
+      "veau",
+      "poisson blanc"
+    ],
+    "richness": "léger",
+    "s": [
+      "automne",
+      "hiver",
+      "printemps"
+    ]
+  },
+  {
+    "id": "c430",
+    "n": "Fenouil braisé au citron",
+    "role": "side",
+    "m": "Poêle",
+    "t": "35 min",
+    "family": "accompagnements-légumes",
+    "yieldText": "2 portions",
+    "pairWith": [
+      "poisson",
+      "volaille"
+    ],
+    "i": [
+      {
+        "q": 2,
+        "u": "",
+        "n": "bulbes de fenouil"
+      },
+      {
+        "q": 20,
+        "u": "g",
+        "n": "beurre"
+      },
+      {
+        "q": 12,
+        "u": "cl",
+        "n": "bouillon"
+      },
+      {
+        "q": 0.5,
+        "u": "",
+        "n": "citron"
+      },
+      {
+        "q": null,
+        "u": "",
+        "n": "sel et poivre"
+      }
+    ],
+    "p": [
+      "Couper chaque fenouil en quartiers en gardant un peu du pied.",
+      "Les dorer 5 minutes dans le beurre.",
+      "Ajouter bouillon, sel et poivre puis couvrir 18 minutes.",
+      "Découvrir, réduire le jus et ajouter le citron juste avant de servir."
+    ],
+    "preferred": [
+      "bar",
+      "saumon",
+      "poulet"
+    ],
+    "richness": "léger"
+  },
+  {
+    "id": "c431",
+    "n": "Poireaux étuvés au beurre",
+    "role": "side",
+    "m": "Casserole",
+    "t": "30 min",
+    "family": "accompagnements-légumes",
+    "yieldText": "2 portions",
+    "pairWith": [
+      "poisson",
+      "volaille"
+    ],
+    "i": [
+      {
+        "q": 4,
+        "u": "",
+        "n": "poireaux"
+      },
+      {
+        "q": 25,
+        "u": "g",
+        "n": "beurre"
+      },
+      {
+        "q": 8,
+        "u": "cl",
+        "n": "eau"
+      },
+      {
+        "q": null,
+        "u": "",
+        "n": "sel et poivre"
+      }
+    ],
+    "p": [
+      "Nettoyer soigneusement les poireaux puis les couper en tronçons.",
+      "Les ranger dans une sauteuse avec beurre, eau, sel et poivre.",
+      "Couvrir et cuire 18 à 20 minutes à feu doux.",
+      "Découvrir 3 minutes pour faire évaporer le liquide sans colorer fortement."
+    ],
+    "preferred": [
+      "saumon",
+      "cabillaud",
+      "poulet"
+    ],
+    "richness": "léger"
+  },
+  {
+    "id": "c432",
+    "n": "Champignons persillés",
+    "role": "side",
+    "m": "Poêle",
+    "t": "20 min",
+    "family": "accompagnements-légumes",
+    "yieldText": "2 portions",
+    "pairWith": [
+      "viande",
+      "volaille",
+      "oeufs"
+    ],
+    "i": [
+      {
+        "q": 500,
+        "u": "g",
+        "n": "champignons de Paris ou mélange forestier"
+      },
+      {
+        "q": 25,
+        "u": "g",
+        "n": "beurre"
+      },
+      {
+        "q": 1,
+        "u": "",
+        "n": "gousse d’ail"
+      },
+      {
+        "q": 15,
+        "u": "g",
+        "n": "persil"
+      },
+      {
+        "q": null,
+        "u": "",
+        "n": "sel et poivre"
+      }
+    ],
+    "p": [
+      "Nettoyer et couper les champignons régulièrement.",
+      "Les saisir à feu vif dans le beurre 6 à 8 minutes jusqu’à évaporation de leur eau.",
+      "Ajouter l’ail haché et cuire 30 secondes.",
+      "Saler, poivrer et ajouter le persil hors du feu."
+    ],
+    "preferred": [
+      "steak",
+      "poulet",
+      "omelette"
+    ]
+  },
+  {
+    "id": "c433",
+    "n": "Brocoli aux amandes",
+    "role": "side",
+    "m": "Casserole + Poêle",
+    "t": "25 min",
+    "family": "accompagnements-légumes",
+    "yieldText": "2 portions",
+    "pairWith": [
+      "poisson",
+      "volaille",
+      "vegetal"
+    ],
+    "i": [
+      {
+        "q": 500,
+        "u": "g",
+        "n": "brocoli"
+      },
+      {
+        "q": 40,
+        "u": "g",
+        "n": "amandes effilées"
+      },
+      {
+        "q": 20,
+        "u": "g",
+        "n": "beurre"
+      },
+      {
+        "q": 0.5,
+        "u": "",
+        "n": "citron"
+      },
+      {
+        "q": null,
+        "u": "",
+        "n": "sel et poivre"
+      }
+    ],
+    "p": [
+      "Détailler le brocoli en bouquets et cuire 6 à 7 minutes à la vapeur.",
+      "Faire griller les amandes à sec jusqu’à légère coloration.",
+      "Faire mousser le beurre puis ajouter le brocoli 2 minutes.",
+      "Ajouter citron, amandes, sel et poivre."
+    ],
+    "preferred": [
+      "truite",
+      "poulet",
+      "tofu"
+    ],
+    "richness": "léger"
+  },
+  {
+    "id": "c434",
+    "n": "Chou-fleur rôti au parmesan",
+    "role": "side",
+    "m": "Four",
+    "t": "40 min",
+    "family": "accompagnements-légumes",
+    "yieldText": "2 portions",
+    "pairWith": [
+      "viande",
+      "volaille",
+      "poisson"
+    ],
+    "i": [
+      {
+        "q": 600,
+        "u": "g",
+        "n": "chou-fleur"
+      },
+      {
+        "q": 45,
+        "u": "g",
+        "n": "parmesan"
+      },
+      {
+        "q": 1.5,
+        "u": "c. à soupe",
+        "n": "huile d’olive"
+      },
+      {
+        "q": 0.5,
+        "u": "c. à café",
+        "n": "paprika"
+      },
+      {
+        "q": null,
+        "u": "",
+        "n": "sel et poivre"
+      }
+    ],
+    "p": [
+      "Couper le chou-fleur en bouquets de taille régulière.",
+      "Le mélanger avec huile, paprika, sel et poivre.",
+      "Rôtir 25 minutes à 210 °C en retournant à mi-cuisson.",
+      "Ajouter le parmesan et poursuivre 5 à 7 minutes."
+    ],
+    "preferred": [
+      "poulet",
+      "porc",
+      "cabillaud"
+    ],
+    "richness": "normal",
+    "s": [
+      "automne",
+      "hiver",
+      "printemps"
+    ]
+  },
+  {
+    "id": "c435",
+    "n": "Choux de Bruxelles rôtis aux noisettes",
+    "role": "side",
+    "m": "Four",
+    "t": "40 min",
+    "family": "accompagnements-légumes",
+    "yieldText": "2 portions",
+    "pairWith": [
+      "viande",
+      "volaille"
+    ],
+    "i": [
+      {
+        "q": 500,
+        "u": "g",
+        "n": "choux de Bruxelles"
+      },
+      {
+        "q": 35,
+        "u": "g",
+        "n": "noisettes"
+      },
+      {
+        "q": 1.5,
+        "u": "c. à soupe",
+        "n": "huile"
+      },
+      {
+        "q": 1,
+        "u": "c. à café",
+        "n": "miel"
+      },
+      {
+        "q": null,
+        "u": "",
+        "n": "sel et poivre"
+      }
+    ],
+    "p": [
+      "Couper les choux en deux et les mélanger avec huile, sel et poivre.",
+      "Les rôtir face coupée vers la plaque 22 minutes à 205 °C.",
+      "Ajouter noisettes concassées et miel.",
+      "Poursuivre 5 minutes puis servir immédiatement."
+    ],
+    "preferred": [
+      "canard",
+      "porc",
+      "poulet"
+    ],
+    "richness": "normal",
+    "s": [
+      "automne",
+      "hiver"
+    ]
+  },
+  {
+    "id": "c436",
+    "n": "Navets glacés",
+    "role": "side",
+    "m": "Poêle",
+    "t": "30 min",
+    "family": "accompagnements-légumes",
+    "yieldText": "2 portions",
+    "pairWith": [
+      "viande",
+      "volaille"
+    ],
+    "i": [
+      {
+        "q": 500,
+        "u": "g",
+        "n": "petits navets"
+      },
+      {
+        "q": 20,
+        "u": "g",
+        "n": "beurre"
+      },
+      {
+        "q": 1,
+        "u": "c. à café",
+        "n": "sucre"
+      },
+      {
+        "q": 15,
+        "u": "cl",
+        "n": "eau"
+      },
+      {
+        "q": null,
+        "u": "",
+        "n": "sel"
+      }
+    ],
+    "p": [
+      "Peler les navets et les couper en quartiers réguliers.",
+      "Les placer dans une sauteuse avec beurre, sucre, sel et eau à mi-hauteur.",
+      "Couvrir et cuire 15 à 18 minutes.",
+      "Découvrir et rouler les navets dans le jus réduit jusqu’à ce qu’ils deviennent brillants."
+    ],
+    "preferred": [
+      "canard",
+      "veau",
+      "agneau"
+    ],
+    "richness": "normal"
+  },
+  {
+    "id": "c437",
+    "n": "Courgettes sautées ail et basilic",
+    "role": "side",
+    "m": "Poêle",
+    "t": "18 min",
+    "family": "accompagnements-légumes",
+    "yieldText": "2 portions",
+    "pairWith": [
+      "poisson",
+      "volaille",
+      "vegetal"
+    ],
+    "i": [
+      {
+        "q": 3,
+        "u": "",
+        "n": "courgettes"
+      },
+      {
+        "q": 1,
+        "u": "",
+        "n": "gousse d’ail"
+      },
+      {
+        "q": 1,
+        "u": "c. à soupe",
+        "n": "huile d’olive"
+      },
+      {
+        "q": 10,
+        "u": "g",
+        "n": "basilic"
+      },
+      {
+        "q": null,
+        "u": "",
+        "n": "sel et poivre"
+      }
+    ],
+    "p": [
+      "Couper les courgettes en demi-rondelles épaisses.",
+      "Les saisir dans l’huile 6 à 8 minutes à feu vif sans surcharger la poêle.",
+      "Ajouter l’ail pour la dernière minute.",
+      "Saler, poivrer et ajouter le basilic hors du feu."
+    ],
+    "preferred": [
+      "poisson grillé",
+      "poulet",
+      "tofu"
+    ],
+    "richness": "léger",
+    "s": [
+      "printemps",
+      "été"
+    ]
+  },
+  {
+    "id": "c438",
+    "n": "Tomates à la provençale",
+    "role": "side",
+    "m": "Four",
+    "t": "35 min",
+    "family": "accompagnements-légumes",
+    "yieldText": "2 portions",
+    "pairWith": [
+      "viande",
+      "poisson",
+      "volaille"
+    ],
+    "i": [
+      {
+        "q": 4,
+        "u": "",
+        "n": "grosses tomates"
+      },
+      {
+        "q": 50,
+        "u": "g",
+        "n": "chapelure"
+      },
+      {
+        "q": 1,
+        "u": "",
+        "n": "gousse d’ail"
+      },
+      {
+        "q": 15,
+        "u": "g",
+        "n": "persil"
+      },
+      {
+        "q": 1,
+        "u": "c. à soupe",
+        "n": "huile d’olive"
+      },
+      {
+        "q": null,
+        "u": "",
+        "n": "sel et poivre"
+      }
+    ],
+    "p": [
+      "Couper les tomates en deux, saler légèrement et laisser égoutter 10 minutes face coupée vers le bas.",
+      "Mélanger chapelure, ail, persil, poivre et huile.",
+      "Déposer les tomates dans un plat et répartir la persillade.",
+      "Cuire 20 à 25 minutes à 190 °C sans laisser les tomates s’effondrer."
+    ],
+    "preferred": [
+      "grillade",
+      "agneau",
+      "poisson"
+    ],
+    "richness": "léger",
+    "s": [
+      "été",
+      "automne"
+    ]
+  },
+  {
+    "id": "c439",
+    "n": "Aubergines rôties au thym",
+    "role": "side",
+    "m": "Four",
+    "t": "40 min",
+    "family": "accompagnements-légumes",
+    "yieldText": "2 portions",
+    "pairWith": [
+      "viande",
+      "poisson",
+      "vegetal"
+    ],
+    "i": [
+      {
+        "q": 2,
+        "u": "",
+        "n": "aubergines"
+      },
+      {
+        "q": 1.5,
+        "u": "c. à soupe",
+        "n": "huile d’olive"
+      },
+      {
+        "q": 1,
+        "u": "",
+        "n": "gousse d’ail"
+      },
+      {
+        "q": 1,
+        "u": "c. à café",
+        "n": "thym"
+      },
+      {
+        "q": null,
+        "u": "",
+        "n": "sel et poivre"
+      }
+    ],
+    "p": [
+      "Couper les aubergines en quartiers ou grosses tranches.",
+      "Les mélanger avec huile, ail, thym, sel et poivre.",
+      "Les étaler sur une plaque sans superposition.",
+      "Rôtir 28 à 32 minutes à 210 °C en retournant une fois."
+    ],
+    "preferred": [
+      "agneau",
+      "poisson",
+      "tofu"
+    ],
+    "richness": "léger",
+    "s": [
+      "été",
+      "automne"
+    ]
+  },
+  {
+    "id": "c440",
+    "n": "Courge rôtie à la sauge",
+    "role": "side",
+    "m": "Four",
+    "t": "40 min",
+    "family": "accompagnements-légumes",
+    "yieldText": "2 portions",
+    "pairWith": [
+      "viande",
+      "volaille",
+      "vegetal"
+    ],
+    "i": [
+      {
+        "q": 650,
+        "u": "g",
+        "n": "courge"
+      },
+      {
+        "q": 1.5,
+        "u": "c. à soupe",
+        "n": "huile d’olive"
+      },
+      {
+        "q": 8,
+        "u": "",
+        "n": "feuilles de sauge"
+      },
+      {
+        "q": 20,
+        "u": "g",
+        "n": "beurre"
+      },
+      {
+        "q": null,
+        "u": "",
+        "n": "sel et poivre"
+      }
+    ],
+    "p": [
+      "Couper la courge en cubes de 2 à 3 cm.",
+      "Les mélanger avec huile, sel et poivre puis rôtir 25 minutes à 205 °C.",
+      "Faire mousser le beurre avec la sauge.",
+      "Verser sur la courge et remettre 5 minutes au four."
+    ],
+    "preferred": [
+      "porc",
+      "poulet",
+      "lentilles"
+    ],
+    "richness": "normal",
+    "s": [
+      "automne",
+      "hiver"
+    ]
+  },
+  {
+    "id": "c441",
+    "n": "Artichauts barigoule",
+    "role": "side",
+    "m": "Cocotte",
+    "t": "45 min",
+    "family": "accompagnements-légumes",
+    "yieldText": "2 portions",
+    "pairWith": [
+      "poisson",
+      "volaille",
+      "vegetal"
+    ],
+    "i": [
+      {
+        "q": 6,
+        "u": "",
+        "n": "petits artichauts poivrade"
+      },
+      {
+        "q": 1,
+        "u": "",
+        "n": "carotte"
+      },
+      {
+        "q": 1,
+        "u": "",
+        "n": "oignon"
+      },
+      {
+        "q": 1,
+        "u": "",
+        "n": "gousse d’ail"
+      },
+      {
+        "q": 10,
+        "u": "cl",
+        "n": "vin blanc"
+      },
+      {
+        "q": 20,
+        "u": "cl",
+        "n": "bouillon de légumes"
+      },
+      {
+        "q": 2,
+        "u": "c. à soupe",
+        "n": "huile d’olive"
+      },
+      {
+        "q": null,
+        "u": "",
+        "n": "thym, sel et poivre"
+      }
+    ],
+    "p": [
+      "Tourner les artichauts en retirant les feuilles dures et frotter immédiatement au citron.",
+      "Faire revenir oignon et carotte 5 minutes dans l’huile.",
+      "Ajouter artichauts, ail, thym et vin puis réduire 2 minutes.",
+      "Ajouter le bouillon, couvrir et mijoter 20 à 25 minutes jusqu’à tendreté."
+    ],
+    "preferred": [
+      "poisson rôti",
+      "poulet"
+    ],
+    "richness": "léger",
+    "s": [
+      "printemps"
+    ]
+  },
+  {
+    "id": "c442",
+    "n": "Riz créole",
+    "role": "side",
+    "m": "Casserole",
+    "t": "22 min",
+    "family": "accompagnements-céréales",
+    "yieldText": "2 portions",
+    "pairWith": [
+      "viande",
+      "volaille",
+      "poisson",
+      "vegetal"
+    ],
+    "i": [
+      {
+        "q": 150,
+        "u": "g",
+        "n": "riz long"
+      },
+      {
+        "q": 1.5,
+        "u": "l",
+        "n": "eau"
+      },
+      {
+        "q": 5,
+        "u": "g",
+        "n": "sel"
+      },
+      {
+        "q": 10,
+        "u": "g",
+        "n": "beurre facultatif"
+      }
+    ],
+    "p": [
+      "Rincer le riz jusqu’à ce que l’eau soit presque claire.",
+      "Le verser dans une grande quantité d’eau bouillante salée.",
+      "Cuire à découvert selon le paquet, généralement 10 à 12 minutes.",
+      "Égoutter parfaitement, laisser sécher 1 minute puis ajouter éventuellement le beurre."
+    ],
+    "preferred": [
+      "plats en sauce",
+      "curry",
+      "poisson"
+    ],
+    "richness": "léger"
+  },
+  {
+    "id": "c443",
+    "n": "Riz basmati parfumé à la cardamome",
+    "role": "side",
+    "m": "Casserole",
+    "t": "25 min",
+    "family": "accompagnements-céréales",
+    "yieldText": "2 portions",
+    "pairWith": [
+      "viande",
+      "volaille",
+      "poisson",
+      "vegetal"
+    ],
+    "i": [
+      {
+        "q": 150,
+        "u": "g",
+        "n": "riz basmati"
+      },
+      {
+        "q": 24,
+        "u": "cl",
+        "n": "eau"
+      },
+      {
+        "q": 3,
+        "u": "",
+        "n": "gousses de cardamome"
+      },
+      {
+        "q": 1,
+        "u": "",
+        "n": "feuille de laurier"
+      },
+      {
+        "q": 3,
+        "u": "g",
+        "n": "sel"
+      }
+    ],
+    "p": [
+      "Rincer le riz plusieurs fois puis l’égoutter.",
+      "Le mettre avec eau, cardamome, laurier et sel et porter à ébullition.",
+      "Couvrir, baisser au minimum et cuire 11 minutes sans ouvrir.",
+      "Retirer du feu, reposer 8 minutes couvert puis égrener."
+    ],
+    "preferred": [
+      "curry",
+      "tandoori",
+      "poisson"
+    ]
+  },
+  {
+    "id": "c444",
+    "n": "Quinoa aux herbes et citron",
+    "role": "side",
+    "m": "Casserole",
+    "t": "25 min",
+    "family": "accompagnements-céréales",
+    "yieldText": "2 portions",
+    "pairWith": [
+      "poisson",
+      "volaille",
+      "vegetal"
+    ],
+    "i": [
+      {
+        "q": 140,
+        "u": "g",
+        "n": "quinoa"
+      },
+      {
+        "q": 28,
+        "u": "cl",
+        "n": "eau"
+      },
+      {
+        "q": 0.5,
+        "u": "",
+        "n": "citron"
+      },
+      {
+        "q": 10,
+        "u": "g",
+        "n": "persil"
+      },
+      {
+        "q": 10,
+        "u": "g",
+        "n": "ciboulette"
+      },
+      {
+        "q": 1,
+        "u": "c. à café",
+        "n": "huile d’olive"
+      }
+    ],
+    "p": [
+      "Rincer longuement le quinoa sous l’eau froide.",
+      "Le cuire 14 minutes dans l’eau légèrement salée puis reposer 5 minutes couvert.",
+      "Égrener à la fourchette.",
+      "Ajouter zeste, quelques gouttes de citron, huile et herbes."
+    ],
+    "preferred": [
+      "saumon",
+      "poulet",
+      "légumes"
+    ],
+    "richness": "léger"
+  },
+  {
+    "id": "c445",
+    "n": "Boulgour pilaf aux herbes",
+    "role": "side",
+    "m": "Casserole",
+    "t": "25 min",
+    "family": "accompagnements-céréales",
+    "yieldText": "2 portions",
+    "pairWith": [
+      "viande",
+      "volaille",
+      "vegetal"
+    ],
+    "i": [
+      {
+        "q": 140,
+        "u": "g",
+        "n": "boulgour"
+      },
+      {
+        "q": 1,
+        "u": "",
+        "n": "petit oignon"
+      },
+      {
+        "q": 28,
+        "u": "cl",
+        "n": "bouillon"
+      },
+      {
+        "q": 15,
+        "u": "g",
+        "n": "beurre"
+      },
+      {
+        "q": 10,
+        "u": "g",
+        "n": "persil"
+      },
+      {
+        "q": null,
+        "u": "",
+        "n": "sel et poivre"
+      }
+    ],
+    "p": [
+      "Faire fondre l’oignon 4 minutes au beurre.",
+      "Ajouter le boulgour et remuer 1 minute.",
+      "Verser le bouillon, couvrir et cuire 10 à 12 minutes à feu doux.",
+      "Reposer 5 minutes, égrener puis ajouter le persil."
+    ],
+    "preferred": [
+      "brochette",
+      "agneau",
+      "légumes"
+    ]
+  },
+  {
+    "id": "c446",
+    "n": "Orge perlé aux herbes",
+    "role": "side",
+    "m": "Casserole",
+    "t": "40 min",
+    "family": "accompagnements-céréales",
+    "yieldText": "2 portions",
+    "pairWith": [
+      "viande",
+      "volaille",
+      "vegetal"
+    ],
+    "i": [
+      {
+        "q": 140,
+        "u": "g",
+        "n": "orge perlé"
+      },
+      {
+        "q": 45,
+        "u": "cl",
+        "n": "bouillon"
+      },
+      {
+        "q": 1,
+        "u": "",
+        "n": "échalote"
+      },
+      {
+        "q": 15,
+        "u": "g",
+        "n": "beurre"
+      },
+      {
+        "q": 10,
+        "u": "g",
+        "n": "persil"
+      },
+      {
+        "q": null,
+        "u": "",
+        "n": "poivre"
+      }
+    ],
+    "p": [
+      "Faire fondre l’échalote dans la moitié du beurre.",
+      "Ajouter l’orge et mélanger 1 minute.",
+      "Verser le bouillon et cuire 28 à 30 minutes à petit frémissement.",
+      "Égoutter si nécessaire puis ajouter le reste du beurre, persil et poivre."
+    ],
+    "preferred": [
+      "rôti",
+      "champignons",
+      "légumes"
+    ]
+  },
+  {
+    "id": "c447",
+    "n": "Lentilles vertes mijotées",
+    "role": "side",
+    "m": "Casserole",
+    "t": "40 min",
+    "family": "accompagnements-légumineuses",
+    "yieldText": "2 portions",
+    "pairWith": [
+      "viande",
+      "volaille",
+      "vegetal"
+    ],
+    "i": [
+      {
+        "q": 180,
+        "u": "g",
+        "n": "lentilles vertes"
+      },
+      {
+        "q": 1,
+        "u": "",
+        "n": "carotte"
+      },
+      {
+        "q": 1,
+        "u": "",
+        "n": "oignon"
+      },
+      {
+        "q": 1,
+        "u": "",
+        "n": "feuille de laurier"
+      },
+      {
+        "q": 1,
+        "u": "",
+        "n": "gousse d’ail"
+      },
+      {
+        "q": 1,
+        "u": "c. à café",
+        "n": "moutarde facultative"
+      },
+      {
+        "q": null,
+        "u": "",
+        "n": "sel et poivre"
+      }
+    ],
+    "p": [
+      "Rincer les lentilles et les mettre dans une casserole avec carotte, oignon, ail et laurier.",
+      "Couvrir largement d’eau froide et porter à petit frémissement.",
+      "Cuire 25 à 30 minutes, en salant seulement en fin de cuisson.",
+      "Égoutter, retirer les aromates et ajouter éventuellement une pointe de moutarde."
+    ],
+    "preferred": [
+      "saucisse",
+      "canard",
+      "œufs"
+    ],
+    "richness": "léger"
+  },
+  {
+    "id": "c448",
+    "n": "Flageolets à l’ail et au persil",
+    "role": "side",
+    "m": "Casserole",
+    "t": "20 min",
+    "family": "accompagnements-légumineuses",
+    "yieldText": "2 portions",
+    "pairWith": [
+      "viande"
+    ],
+    "i": [
+      {
+        "q": 400,
+        "u": "g",
+        "n": "flageolets cuits égouttés"
+      },
+      {
+        "q": 1,
+        "u": "",
+        "n": "gousse d’ail"
+      },
+      {
+        "q": 20,
+        "u": "g",
+        "n": "beurre"
+      },
+      {
+        "q": 12,
+        "u": "cl",
+        "n": "bouillon"
+      },
+      {
+        "q": 15,
+        "u": "g",
+        "n": "persil"
+      },
+      {
+        "q": null,
+        "u": "",
+        "n": "sel et poivre"
+      }
+    ],
+    "p": [
+      "Faire fondre doucement l’ail dans le beurre 30 secondes.",
+      "Ajouter les flageolets et le bouillon.",
+      "Cuire 10 minutes à petit frémissement jusqu’à ce que le jus soit presque absorbé.",
+      "Poivrer et ajouter le persil avant de servir."
+    ],
+    "preferred": [
+      "gigot",
+      "agneau"
+    ],
+    "richness": "normal"
+  },
+  {
+    "id": "c449",
+    "n": "Pois chiches rôtis au paprika",
+    "role": "side",
+    "m": "Four",
+    "t": "35 min",
+    "family": "accompagnements-légumineuses",
+    "yieldText": "2 portions",
+    "pairWith": [
+      "vegetal",
+      "volaille"
+    ],
+    "i": [
+      {
+        "q": 300,
+        "u": "g",
+        "n": "pois chiches cuits égouttés"
+      },
+      {
+        "q": 1,
+        "u": "c. à soupe",
+        "n": "huile d’olive"
+      },
+      {
+        "q": 1,
+        "u": "c. à café",
+        "n": "paprika fumé"
+      },
+      {
+        "q": 0.5,
+        "u": "c. à café",
+        "n": "cumin"
+      },
+      {
+        "q": null,
+        "u": "",
+        "n": "sel"
+      }
+    ],
+    "p": [
+      "Rincer puis sécher très soigneusement les pois chiches.",
+      "Les mélanger avec huile, paprika, cumin et sel.",
+      "Les étaler sur une plaque sans les superposer.",
+      "Rôtir 25 à 30 minutes à 200 °C en remuant deux fois."
+    ],
+    "preferred": [
+      "légumes",
+      "poulet"
+    ],
+    "richness": "léger"
+  },
+  {
+    "id": "c450",
+    "n": "Haricots blancs mijotés à la tomate",
+    "role": "side",
+    "m": "Casserole",
+    "t": "30 min",
+    "family": "accompagnements-légumineuses",
+    "yieldText": "2 portions",
+    "pairWith": [
+      "viande",
+      "vegetal"
+    ],
+    "i": [
+      {
+        "q": 400,
+        "u": "g",
+        "n": "haricots blancs cuits"
+      },
+      {
+        "q": 250,
+        "u": "g",
+        "n": "tomates concassées"
+      },
+      {
+        "q": 1,
+        "u": "",
+        "n": "petit oignon"
+      },
+      {
+        "q": 1,
+        "u": "",
+        "n": "gousse d’ail"
+      },
+      {
+        "q": 1,
+        "u": "c. à café",
+        "n": "thym"
+      },
+      {
+        "q": 1,
+        "u": "c. à soupe",
+        "n": "huile d’olive"
+      },
+      {
+        "q": null,
+        "u": "",
+        "n": "sel et poivre"
+      }
+    ],
+    "p": [
+      "Faire fondre oignon et ail dans l’huile 5 minutes.",
+      "Ajouter tomates et thym puis mijoter 10 minutes.",
+      "Ajouter les haricots blancs et 8 cl d’eau.",
+      "Cuire encore 10 minutes à feu doux jusqu’à sauce courte."
+    ],
+    "preferred": [
+      "porc",
+      "saucisse",
+      "légumes"
+    ],
+    "richness": "léger"
+  }
+]
