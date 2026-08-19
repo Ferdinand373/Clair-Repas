@@ -1,0 +1,3634 @@
+[
+  {
+    "id": "bistrot-ext-01",
+    "n": "Os à moelle rôti, pain grillé et fleur de sel",
+    "m": "Four",
+    "t": "35 min",
+    "s": [
+      "printemps",
+      "été",
+      "automne",
+      "hiver"
+    ],
+    "servings": 4,
+    "cuisine": "française",
+    "family": "os-moelle",
+    "collections": [
+      "bistrot-brasserie"
+    ],
+    "editorial": "pas-a-pas-debutant",
+    "i": [
+      {
+        "q": 4,
+        "u": "",
+        "n": "os à moelle coupés dans la longueur",
+        "k": "os à moelle coupés dans la longueur"
+      },
+      {
+        "q": 8,
+        "u": "",
+        "n": "tranches de pain de campagne",
+        "k": "tranches de pain de campagne"
+      },
+      {
+        "q": 1,
+        "u": "",
+        "n": "petite échalote",
+        "k": "petite échalote"
+      },
+      {
+        "q": 2,
+        "u": "c. à soupe",
+        "n": "persil plat haché",
+        "k": "persil plat haché"
+      },
+      {
+        "q": 1,
+        "u": "c. à soupe",
+        "n": "vinaigre de vin",
+        "k": "vinaigre de vin"
+      },
+      {
+        "q": 2,
+        "u": "c. à soupe",
+        "n": "huile d’olive",
+        "k": "huile d’olive"
+      },
+      {
+        "q": null,
+        "u": "",
+        "n": "fleur de sel",
+        "k": "fleur de sel"
+      },
+      {
+        "q": null,
+        "u": "",
+        "n": "poivre noir",
+        "k": "poivre noir"
+      }
+    ],
+    "p": [
+      "Préchauffez le four à 220 °C. Demandez au boucher des os à moelle fendus dans la longueur et épongez-les soigneusement.",
+      "Posez les os, moelle vers le haut, sur une plaque. Enfournez 15 à 20 minutes : la moelle doit être tremblotante et commencer à dorer sans se liquéfier complètement.",
+      "Pendant ce temps, mélangez l’échalote très finement ciselée, le persil, le vinaigre, l’huile et du poivre pour obtenir une petite salade d’herbes acidulée.",
+      "Faites griller les tranches de pain jusqu’à ce qu’elles soient bien croustillantes.",
+      "Servez les os brûlants avec le pain grillé, la salade d’herbes et un peu de fleur de sel. Chacun prélève la moelle avec une petite cuillère."
+    ],
+    "course": "starter",
+    "kind": "starter",
+    "hotCold": "variable",
+    "richness": "gourmand",
+    "core": [
+      "os à moelle coupés dans la longueur",
+      "tranches de pain de campagne",
+      "petite échalote"
+    ]
+  },
+  {
+    "id": "bistrot-ext-02",
+    "n": "Soufflé au fromage",
+    "m": "Four",
+    "t": "45 min",
+    "s": [
+      "printemps",
+      "été",
+      "automne",
+      "hiver"
+    ],
+    "servings": 4,
+    "cuisine": "française",
+    "family": "souffle-fromage",
+    "collections": [
+      "bistrot-brasserie"
+    ],
+    "editorial": "pas-a-pas-debutant",
+    "i": [
+      {
+        "q": 40,
+        "u": "g",
+        "n": "beurre",
+        "k": "beurre"
+      },
+      {
+        "q": 40,
+        "u": "g",
+        "n": "farine",
+        "k": "farine"
+      },
+      {
+        "q": 35,
+        "u": "cl",
+        "n": "lait entier",
+        "k": "lait entier"
+      },
+      {
+        "q": 4,
+        "u": "",
+        "n": "œufs",
+        "k": "œufs"
+      },
+      {
+        "q": 120,
+        "u": "g",
+        "n": "comté ou gruyère râpé",
+        "k": "comté ou gruyère râpé"
+      },
+      {
+        "q": 1,
+        "u": "pincée",
+        "n": "noix de muscade",
+        "k": "noix de muscade"
+      },
+      {
+        "q": null,
+        "u": "",
+        "n": "sel et poivre",
+        "k": "sel et poivre"
+      }
+    ],
+    "p": [
+      "Préchauffez le four à 200 °C. Beurrez généreusement quatre ramequins et saupoudrez-les d’un peu de fromage râpé.",
+      "Faites fondre 30 g de beurre, ajoutez la farine et mélangez 1 minute. Versez le lait progressivement en fouettant et laissez épaissir 4 minutes.",
+      "Hors du feu, ajoutez muscade, poivre, 90 g de fromage puis les jaunes d’œufs un par un.",
+      "Montez les blancs en neige souple avec une pincée de sel. Incorporez d’abord un tiers vivement, puis le reste délicatement.",
+      "Remplissez les ramequins aux trois quarts, parsemez du fromage restant et enfournez 16 à 18 minutes sans ouvrir la porte.",
+      "Servez immédiatement : le soufflé doit être haut, doré et encore crémeux au centre."
+    ],
+    "course": "starter",
+    "kind": "starter",
+    "hotCold": "variable",
+    "richness": "normal",
+    "core": [
+      "beurre",
+      "farine",
+      "lait entier"
+    ]
+  },
+  {
+    "id": "bistrot-ext-03",
+    "n": "Œufs en gelée au jambon",
+    "m": "Casserole",
+    "t": "45 min + repos",
+    "s": [
+      "printemps",
+      "été",
+      "automne",
+      "hiver"
+    ],
+    "servings": 4,
+    "cuisine": "française",
+    "family": "oeufs-gelee",
+    "collections": [
+      "bistrot-brasserie"
+    ],
+    "editorial": "pas-a-pas-debutant",
+    "i": [
+      {
+        "q": 4,
+        "u": "",
+        "n": "œufs",
+        "k": "œufs"
+      },
+      {
+        "q": 4,
+        "u": "",
+        "n": "tranches fines de jambon blanc",
+        "k": "tranches fines de jambon blanc"
+      },
+      {
+        "q": 50,
+        "u": "cl",
+        "n": "bouillon de volaille clair",
+        "k": "bouillon de volaille clair"
+      },
+      {
+        "q": 4,
+        "u": "feuilles",
+        "n": "gélatine",
+        "k": "gélatine"
+      },
+      {
+        "q": 2,
+        "u": "c. à soupe",
+        "n": "porto ou madère facultatif",
+        "k": "porto ou madère facultatif"
+      },
+      {
+        "q": 2,
+        "u": "c. à soupe",
+        "n": "persil et ciboulette hachés",
+        "k": "persil et ciboulette hachés"
+      },
+      {
+        "q": null,
+        "u": "",
+        "n": "poivre",
+        "k": "poivre"
+      }
+    ],
+    "p": [
+      "Faites cuire les œufs 7 minutes dans l’eau bouillante pour garder le jaune légèrement tendre. Refroidissez-les puis écalez-les.",
+      "Faites tremper la gélatine dans l’eau froide. Chauffez le bouillon, retirez du feu et dissolvez-y la gélatine essorée. Ajoutez le porto si vous en utilisez.",
+      "Versez 5 mm de gelée dans quatre petits ramequins et laissez prendre 15 minutes au réfrigérateur.",
+      "Tapissez les bords de jambon, posez un œuf au centre et ajoutez les herbes.",
+      "Complétez avec le reste de gelée. Réfrigérez au moins 4 heures.",
+      "Démoulez quelques secondes dans l’eau tiède et servez avec salade verte et cornichons."
+    ],
+    "course": "starter",
+    "kind": "starter",
+    "hotCold": "variable",
+    "richness": "normal",
+    "core": [
+      "œufs",
+      "tranches fines de jambon blanc",
+      "bouillon de volaille clair"
+    ]
+  },
+  {
+    "id": "bistrot-ext-04",
+    "n": "Asperges sauce mousseline",
+    "m": "Casserole",
+    "t": "35 min",
+    "s": [
+      "printemps"
+    ],
+    "servings": 4,
+    "cuisine": "française",
+    "family": "asperges-mousseline",
+    "collections": [
+      "bistrot-brasserie"
+    ],
+    "editorial": "pas-a-pas-debutant",
+    "i": [
+      {
+        "q": 1.2,
+        "u": "kg",
+        "n": "asperges blanches ou vertes",
+        "k": "asperges blanches ou vertes"
+      },
+      {
+        "q": 2,
+        "u": "",
+        "n": "jaunes d’œufs",
+        "k": "jaunes d’œufs"
+      },
+      {
+        "q": 1,
+        "u": "c. à soupe",
+        "n": "jus de citron",
+        "k": "jus de citron"
+      },
+      {
+        "q": 120,
+        "u": "g",
+        "n": "beurre",
+        "k": "beurre"
+      },
+      {
+        "q": 8,
+        "u": "cl",
+        "n": "crème liquide entière très froide",
+        "k": "crème liquide entière très froide"
+      },
+      {
+        "q": null,
+        "u": "",
+        "n": "sel et poivre",
+        "k": "sel et poivre"
+      }
+    ],
+    "p": [
+      "Épluchez les asperges si elles sont blanches et coupez la base fibreuse. Ficelez-les en petites bottes.",
+      "Faites-les cuire 8 à 15 minutes dans une grande eau salée selon leur grosseur. Vérifiez avec la pointe d’un couteau puis égouttez-les.",
+      "Faites fondre le beurre. Placez les jaunes et le citron dans un bol au bain-marie doux et fouettez jusqu’à épaississement.",
+      "Versez progressivement le beurre tiède en fouettant pour obtenir une sauce hollandaise légère. Salez et poivrez.",
+      "Montez la crème très froide en texture souple et incorporez-la délicatement à la hollandaise.",
+      "Servez les asperges tièdes avec la mousseline à part."
+    ],
+    "course": "starter",
+    "kind": "starter",
+    "hotCold": "variable",
+    "richness": "normal",
+    "core": [
+      "asperges blanches ou vertes",
+      "jaunes d’œufs",
+      "jus de citron"
+    ]
+  },
+  {
+    "id": "bistrot-ext-05",
+    "n": "Champignons à la grecque",
+    "m": "Casserole",
+    "t": "35 min + repos",
+    "s": [
+      "printemps",
+      "été",
+      "automne",
+      "hiver"
+    ],
+    "servings": 4,
+    "cuisine": "française",
+    "family": "champignons-grecque",
+    "collections": [
+      "bistrot-brasserie"
+    ],
+    "editorial": "pas-a-pas-debutant",
+    "i": [
+      {
+        "q": 600,
+        "u": "g",
+        "n": "petits champignons de Paris",
+        "k": "petits champignons de Paris"
+      },
+      {
+        "q": 15,
+        "u": "cl",
+        "n": "vin blanc sec",
+        "k": "vin blanc sec"
+      },
+      {
+        "q": 10,
+        "u": "cl",
+        "n": "eau",
+        "k": "eau"
+      },
+      {
+        "q": 3,
+        "u": "c. à soupe",
+        "n": "huile d’olive",
+        "k": "huile d’olive"
+      },
+      {
+        "q": 1,
+        "u": "",
+        "n": "citron",
+        "k": "citron"
+      },
+      {
+        "q": 1,
+        "u": "c. à soupe",
+        "n": "concentré de tomate",
+        "k": "concentré de tomate"
+      },
+      {
+        "q": 1,
+        "u": "c. à café",
+        "n": "graines de coriandre",
+        "k": "graines de coriandre"
+      },
+      {
+        "q": 1,
+        "u": "",
+        "n": "feuille de laurier",
+        "k": "feuille de laurier"
+      },
+      {
+        "q": 1,
+        "u": "",
+        "n": "petit oignon",
+        "k": "petit oignon"
+      },
+      {
+        "q": null,
+        "u": "",
+        "n": "sel et poivre",
+        "k": "sel et poivre"
+      }
+    ],
+    "p": [
+      "Nettoyez les champignons et gardez-les entiers s’ils sont petits. Émincez finement l’oignon.",
+      "Faites revenir l’oignon 3 minutes dans l’huile sans coloration. Ajoutez vin, eau, jus de citron, tomate, coriandre et laurier.",
+      "Portez à frémissement 5 minutes pour former un court-bouillon parfumé.",
+      "Ajoutez les champignons et cuisez 8 à 10 minutes à découvert.",
+      "Retirez les champignons, faites réduire le jus de moitié puis reversez-le dessus.",
+      "Laissez refroidir et réfrigérez au moins 2 heures. Servez frais, mais pas glacé."
+    ],
+    "course": "starter",
+    "kind": "starter",
+    "hotCold": "variable",
+    "richness": "léger",
+    "core": [
+      "petits champignons de Paris",
+      "vin blanc sec",
+      "eau"
+    ]
+  },
+  {
+    "id": "bistrot-ext-06",
+    "n": "Salade de cervelas à l’ancienne",
+    "m": "Sans cuisson",
+    "t": "20 min",
+    "s": [
+      "printemps",
+      "été",
+      "automne",
+      "hiver"
+    ],
+    "servings": 4,
+    "cuisine": "française",
+    "family": "cervelas-salade",
+    "collections": [
+      "bistrot-brasserie"
+    ],
+    "editorial": "pas-a-pas-debutant",
+    "i": [
+      {
+        "q": 500,
+        "u": "g",
+        "n": "cervelas",
+        "k": "cervelas"
+      },
+      {
+        "q": 1,
+        "u": "",
+        "n": "oignon rouge",
+        "k": "oignon rouge"
+      },
+      {
+        "q": 8,
+        "u": "",
+        "n": "cornichons",
+        "k": "cornichons"
+      },
+      {
+        "q": 2,
+        "u": "c. à soupe",
+        "n": "moutarde à l’ancienne",
+        "k": "moutarde à l’ancienne"
+      },
+      {
+        "q": 2,
+        "u": "c. à soupe",
+        "n": "vinaigre de vin",
+        "k": "vinaigre de vin"
+      },
+      {
+        "q": 5,
+        "u": "c. à soupe",
+        "n": "huile neutre",
+        "k": "huile neutre"
+      },
+      {
+        "q": 2,
+        "u": "c. à soupe",
+        "n": "persil haché",
+        "k": "persil haché"
+      },
+      {
+        "q": null,
+        "u": "",
+        "n": "poivre",
+        "k": "poivre"
+      }
+    ],
+    "p": [
+      "Retirez la peau du cervelas puis coupez-le en rondelles assez fines.",
+      "Émincez très finement l’oignon rouge et coupez les cornichons en petites rondelles.",
+      "Mélangez moutarde, vinaigre et huile dans un saladier. Poivrez généreusement.",
+      "Ajoutez cervelas, oignon, cornichons et persil puis mélangez délicatement.",
+      "Laissez reposer 20 à 30 minutes avant de servir pour que la vinaigrette parfume bien la charcuterie."
+    ],
+    "course": "starter",
+    "kind": "starter",
+    "hotCold": "variable",
+    "richness": "normal",
+    "core": [
+      "cervelas",
+      "oignon rouge",
+      "cornichons"
+    ]
+  },
+  {
+    "id": "bistrot-ext-07",
+    "n": "Maquereaux marinés au vin blanc",
+    "m": "Casserole",
+    "t": "40 min + repos",
+    "s": [
+      "printemps",
+      "été",
+      "automne",
+      "hiver"
+    ],
+    "servings": 4,
+    "cuisine": "française",
+    "family": "maquereaux-vin-blanc",
+    "collections": [
+      "bistrot-brasserie"
+    ],
+    "editorial": "pas-a-pas-debutant",
+    "i": [
+      {
+        "q": 4,
+        "u": "",
+        "n": "petits maquereaux vidés",
+        "k": "petits maquereaux vidés"
+      },
+      {
+        "q": 30,
+        "u": "cl",
+        "n": "vin blanc sec",
+        "k": "vin blanc sec"
+      },
+      {
+        "q": 15,
+        "u": "cl",
+        "n": "vinaigre de vin blanc",
+        "k": "vinaigre de vin blanc"
+      },
+      {
+        "q": 25,
+        "u": "cl",
+        "n": "eau",
+        "k": "eau"
+      },
+      {
+        "q": 1,
+        "u": "",
+        "n": "carotte",
+        "k": "carotte"
+      },
+      {
+        "q": 1,
+        "u": "",
+        "n": "oignon",
+        "k": "oignon"
+      },
+      {
+        "q": 1,
+        "u": "",
+        "n": "citron",
+        "k": "citron"
+      },
+      {
+        "q": 1,
+        "u": "c. à café",
+        "n": "grains de poivre",
+        "k": "grains de poivre"
+      },
+      {
+        "q": 1,
+        "u": "c. à café",
+        "n": "graines de coriandre",
+        "k": "graines de coriandre"
+      },
+      {
+        "q": 1,
+        "u": "",
+        "n": "feuille de laurier",
+        "k": "feuille de laurier"
+      },
+      {
+        "q": null,
+        "u": "",
+        "n": "sel",
+        "k": "sel"
+      }
+    ],
+    "p": [
+      "Rincez et séchez les maquereaux. Coupez la carotte et l’oignon en fines rondelles et le citron en demi-rondelles.",
+      "Portez vin, vinaigre, eau, légumes, citron, épices, laurier et une pincée de sel à frémissement pendant 10 minutes.",
+      "Déposez les maquereaux dans un plat creux résistant à la chaleur.",
+      "Versez le court-bouillon bouillant dessus, couvrez immédiatement et laissez refroidir complètement.",
+      "Réfrigérez au moins 12 heures. Servez les maquereaux avec les légumes de marinade et du bon pain."
+    ],
+    "course": "starter",
+    "kind": "starter",
+    "hotCold": "variable",
+    "richness": "léger",
+    "core": [
+      "petits maquereaux vidés",
+      "vin blanc sec",
+      "vinaigre de vin blanc"
+    ]
+  },
+  {
+    "id": "bistrot-ext-08",
+    "n": "Pied de cochon croustillant, sauce gribiche",
+    "m": "Poêle",
+    "t": "75 min",
+    "s": [
+      "printemps",
+      "été",
+      "automne",
+      "hiver"
+    ],
+    "servings": 4,
+    "cuisine": "française",
+    "family": "pied-cochon-gribiche",
+    "collections": [
+      "bistrot-brasserie"
+    ],
+    "editorial": "pas-a-pas-debutant",
+    "i": [
+      {
+        "q": 2,
+        "u": "",
+        "n": "pieds de cochon cuits et désossés",
+        "k": "pieds de cochon cuits et désossés"
+      },
+      {
+        "q": 2,
+        "u": "",
+        "n": "œufs",
+        "k": "œufs"
+      },
+      {
+        "q": 1,
+        "u": "c. à soupe",
+        "n": "moutarde",
+        "k": "moutarde"
+      },
+      {
+        "q": 12,
+        "u": "cl",
+        "n": "huile",
+        "k": "huile"
+      },
+      {
+        "q": 1,
+        "u": "c. à soupe",
+        "n": "vinaigre de vin",
+        "k": "vinaigre de vin"
+      },
+      {
+        "q": 1,
+        "u": "c. à soupe",
+        "n": "câpres",
+        "k": "câpres"
+      },
+      {
+        "q": 4,
+        "u": "",
+        "n": "cornichons",
+        "k": "cornichons"
+      },
+      {
+        "q": 2,
+        "u": "c. à soupe",
+        "n": "persil et ciboulette",
+        "k": "persil et ciboulette"
+      },
+      {
+        "q": 80,
+        "u": "g",
+        "n": "chapelure",
+        "k": "chapelure"
+      },
+      {
+        "q": 1,
+        "u": "",
+        "n": "œuf pour panure",
+        "k": "œuf pour panure"
+      },
+      {
+        "q": 40,
+        "u": "g",
+        "n": "farine",
+        "k": "farine"
+      },
+      {
+        "q": 2,
+        "u": "c. à soupe",
+        "n": "huile",
+        "k": "huile"
+      },
+      {
+        "q": null,
+        "u": "",
+        "n": "sel et poivre",
+        "k": "sel et poivre"
+      }
+    ],
+    "p": [
+      "Demandez au charcutier des pieds déjà cuits et désossés. Tassez la chair en quatre petits palets et placez-les 20 minutes au frais.",
+      "Faites cuire deux œufs 10 minutes, refroidissez-les puis séparez jaunes et blancs.",
+      "Écrasez les jaunes avec moutarde et vinaigre, puis montez avec l’huile. Ajoutez blancs hachés, câpres, cornichons et herbes.",
+      "Passez les palets de pied de cochon dans farine, œuf battu puis chapelure.",
+      "Faites-les dorer 4 à 5 minutes par face dans une poêle avec l’huile.",
+      "Servez bien croustillant avec la gribiche froide ou à température ambiante."
+    ],
+    "course": "starter",
+    "kind": "starter",
+    "hotCold": "variable",
+    "richness": "gourmand",
+    "core": [
+      "pieds de cochon cuits et désossés",
+      "œufs",
+      "moutarde"
+    ]
+  },
+  {
+    "id": "bistrot-ext-09",
+    "n": "Jarret de porc caramélisé, jus réduit",
+    "m": "Four",
+    "t": "210 min",
+    "s": [
+      "printemps",
+      "été",
+      "automne",
+      "hiver"
+    ],
+    "servings": 4,
+    "cuisine": "française",
+    "family": "jarret-porc-caramelise",
+    "collections": [
+      "bistrot-brasserie"
+    ],
+    "editorial": "pas-a-pas-debutant",
+    "i": [
+      {
+        "q": 2,
+        "u": "",
+        "n": "jarrets de porc demi-sel ou frais",
+        "k": "jarrets de porc demi-sel ou frais"
+      },
+      {
+        "q": 2,
+        "u": "",
+        "n": "oignons",
+        "k": "oignons"
+      },
+      {
+        "q": 2,
+        "u": "",
+        "n": "carottes",
+        "k": "carottes"
+      },
+      {
+        "q": 2,
+        "u": "",
+        "n": "gousses d’ail",
+        "k": "gousses d’ail"
+      },
+      {
+        "q": 50,
+        "u": "cl",
+        "n": "bouillon de volaille",
+        "k": "bouillon de volaille"
+      },
+      {
+        "q": 20,
+        "u": "cl",
+        "n": "vin blanc sec",
+        "k": "vin blanc sec"
+      },
+      {
+        "q": 2,
+        "u": "c. à soupe",
+        "n": "miel",
+        "k": "miel"
+      },
+      {
+        "q": 1,
+        "u": "c. à soupe",
+        "n": "moutarde à l’ancienne",
+        "k": "moutarde à l’ancienne"
+      },
+      {
+        "q": 1,
+        "u": "c. à soupe",
+        "n": "vinaigre de cidre",
+        "k": "vinaigre de cidre"
+      },
+      {
+        "q": 1,
+        "u": "",
+        "n": "bouquet garni",
+        "k": "bouquet garni"
+      },
+      {
+        "q": 1,
+        "u": "c. à soupe",
+        "n": "huile",
+        "k": "huile"
+      },
+      {
+        "q": null,
+        "u": "",
+        "n": "poivre",
+        "k": "poivre"
+      }
+    ],
+    "p": [
+      "Si les jarrets sont demi-sel, dessalez-les selon les conseils du charcutier. Épongez-les puis faites-les colorer dans une cocotte avec l’huile.",
+      "Ajoutez oignons, carottes et ail grossièrement coupés. Faites revenir 5 minutes.",
+      "Versez vin blanc et bouillon, ajoutez le bouquet garni puis couvrez. Enfournez 2 h 30 à 160 °C en retournant les jarrets à mi-cuisson.",
+      "Mélangez miel, moutarde et vinaigre. Sortez les jarrets, égouttez-les et placez-les sur une plaque.",
+      "Filtrez le jus de cuisson et faites-le réduire jusqu’à texture nappante.",
+      "Badigeonnez les jarrets de laque et passez-les 12 à 15 minutes à 220 °C en les badigeonnant deux fois.",
+      "Servez très chaud avec le jus réduit et, par exemple, une purée ou des pommes rôties."
+    ],
+    "classic": true,
+    "group": "viande",
+    "protein": "porc",
+    "starch": "aucun",
+    "kind": "warm",
+    "texture": "fondant-laque",
+    "technique": "braisage puis laquage",
+    "presentation": "assiette",
+    "vegetables": [],
+    "lightness": "classique"
+  },
+  {
+    "id": "bistrot-ext-10",
+    "n": "Gigot de sept heures",
+    "m": "Four",
+    "t": "7 h 30",
+    "s": [
+      "printemps",
+      "été",
+      "automne",
+      "hiver"
+    ],
+    "servings": 6,
+    "cuisine": "française",
+    "family": "gigot-sept-heures",
+    "collections": [
+      "bistrot-brasserie"
+    ],
+    "editorial": "pas-a-pas-debutant",
+    "i": [
+      {
+        "q": 1.8,
+        "u": "kg",
+        "n": "gigot d’agneau",
+        "k": "gigot d’agneau"
+      },
+      {
+        "q": 2,
+        "u": "",
+        "n": "oignons",
+        "k": "oignons"
+      },
+      {
+        "q": 4,
+        "u": "",
+        "n": "carottes",
+        "k": "carottes"
+      },
+      {
+        "q": 1,
+        "u": "",
+        "n": "branche de céleri",
+        "k": "branche de céleri"
+      },
+      {
+        "q": 4,
+        "u": "",
+        "n": "gousses d’ail",
+        "k": "gousses d’ail"
+      },
+      {
+        "q": 30,
+        "u": "cl",
+        "n": "vin blanc sec",
+        "k": "vin blanc sec"
+      },
+      {
+        "q": 50,
+        "u": "cl",
+        "n": "bouillon de volaille",
+        "k": "bouillon de volaille"
+      },
+      {
+        "q": 2,
+        "u": "c. à soupe",
+        "n": "huile d’olive",
+        "k": "huile d’olive"
+      },
+      {
+        "q": 1,
+        "u": "",
+        "n": "bouquet garni",
+        "k": "bouquet garni"
+      },
+      {
+        "q": null,
+        "u": "",
+        "n": "sel et poivre",
+        "k": "sel et poivre"
+      }
+    ],
+    "p": [
+      "Sortez le gigot 45 minutes à l’avance. Salez, poivrez puis faites-le dorer sur toutes ses faces dans une grande cocotte avec l’huile.",
+      "Retirez-le. Faites revenir oignons, carottes, céleri et ail 8 minutes dans la même cocotte.",
+      "Replacez le gigot, versez le vin blanc et laissez réduire 3 minutes. Ajoutez le bouillon et le bouquet garni.",
+      "Couvrez hermétiquement et enfournez à 120 °C pendant 7 heures. Retournez délicatement le gigot deux ou trois fois et arrosez-le.",
+      "En fin de cuisson, la viande doit pouvoir se détacher à la cuillère. Sortez-la avec précaution et gardez-la au chaud.",
+      "Filtrez le jus et faites-le réduire 10 à 15 minutes jusqu’à ce qu’il soit brillant et concentré.",
+      "Servez le gigot entier ou en gros morceaux avec le jus et les légumes de cuisson."
+    ],
+    "classic": true,
+    "group": "viande",
+    "protein": "agneau",
+    "starch": "aucun",
+    "kind": "warm",
+    "texture": "confit-fondant",
+    "technique": "braisage très long",
+    "presentation": "assiette",
+    "vegetables": [],
+    "lightness": "classique"
+  },
+  {
+    "id": "bistrot-ext-11",
+    "n": "Steak tartare, frites maison",
+    "m": "Sans cuisson",
+    "t": "45 min",
+    "s": [
+      "printemps",
+      "été",
+      "automne",
+      "hiver"
+    ],
+    "servings": 4,
+    "cuisine": "française",
+    "family": "steak-tartare",
+    "collections": [
+      "bistrot-brasserie"
+    ],
+    "editorial": "pas-a-pas-debutant",
+    "i": [
+      {
+        "q": 700,
+        "u": "g",
+        "n": "bœuf très frais haché au couteau",
+        "k": "bœuf très frais haché au couteau"
+      },
+      {
+        "q": 2,
+        "u": "",
+        "n": "jaunes d’œufs",
+        "k": "jaunes d’œufs"
+      },
+      {
+        "q": 2,
+        "u": "c. à soupe",
+        "n": "câpres",
+        "k": "câpres"
+      },
+      {
+        "q": 8,
+        "u": "",
+        "n": "cornichons",
+        "k": "cornichons"
+      },
+      {
+        "q": 2,
+        "u": "",
+        "n": "échalotes",
+        "k": "échalotes"
+      },
+      {
+        "q": 2,
+        "u": "c. à soupe",
+        "n": "persil",
+        "k": "persil"
+      },
+      {
+        "q": 2,
+        "u": "c. à soupe",
+        "n": "moutarde de Dijon",
+        "k": "moutarde de Dijon"
+      },
+      {
+        "q": 2,
+        "u": "c. à soupe",
+        "n": "sauce Worcestershire",
+        "k": "sauce Worcestershire"
+      },
+      {
+        "q": 1,
+        "u": "c. à café",
+        "n": "Tabasco facultatif",
+        "k": "Tabasco facultatif"
+      },
+      {
+        "q": 900,
+        "u": "g",
+        "n": "pommes de terre à frites",
+        "k": "pommes de terre à frites"
+      },
+      {
+        "q": 1,
+        "u": "l",
+        "n": "huile de friture",
+        "k": "huile de friture"
+      },
+      {
+        "q": null,
+        "u": "",
+        "n": "sel et poivre",
+        "k": "sel et poivre"
+      }
+    ],
+    "p": [
+      "Utilisez uniquement une viande très fraîche préparée le jour même. Gardez-la au froid jusqu’au dernier moment.",
+      "Hachez finement câpres, cornichons, échalotes et persil.",
+      "Mélangez la viande avec moutarde, Worcestershire, condiments, jaunes, poivre et éventuellement quelques gouttes de Tabasco.",
+      "Goûtez l’assaisonnement sur une petite quantité puis salez juste avant de servir.",
+      "Préparez les frites en double cuisson : 6 minutes à 150 °C puis 2 à 3 minutes à 180 °C.",
+      "Dressez le tartare en cercle et servez immédiatement avec les frites brûlantes."
+    ],
+    "classic": true,
+    "group": "viande",
+    "protein": "boeuf",
+    "starch": "pommes-de-terre",
+    "kind": "warm",
+    "texture": "cru-frais",
+    "technique": "hachage minute",
+    "presentation": "assiette",
+    "vegetables": [],
+    "lightness": "classique"
+  },
+  {
+    "id": "bistrot-ext-12",
+    "n": "Côte de porc sauce charcutière",
+    "m": "Poêle",
+    "t": "45 min",
+    "s": [
+      "printemps",
+      "été",
+      "automne",
+      "hiver"
+    ],
+    "servings": 4,
+    "cuisine": "française",
+    "family": "porc-charcutiere",
+    "collections": [
+      "bistrot-brasserie"
+    ],
+    "editorial": "pas-a-pas-debutant",
+    "i": [
+      {
+        "q": 4,
+        "u": "",
+        "n": "côtes de porc épaisses",
+        "k": "côtes de porc épaisses"
+      },
+      {
+        "q": 2,
+        "u": "",
+        "n": "échalotes",
+        "k": "échalotes"
+      },
+      {
+        "q": 10,
+        "u": "cl",
+        "n": "vin blanc sec",
+        "k": "vin blanc sec"
+      },
+      {
+        "q": 20,
+        "u": "cl",
+        "n": "fond de veau",
+        "k": "fond de veau"
+      },
+      {
+        "q": 1,
+        "u": "c. à soupe",
+        "n": "moutarde de Dijon",
+        "k": "moutarde de Dijon"
+      },
+      {
+        "q": 6,
+        "u": "",
+        "n": "cornichons",
+        "k": "cornichons"
+      },
+      {
+        "q": 20,
+        "u": "g",
+        "n": "beurre",
+        "k": "beurre"
+      },
+      {
+        "q": 1,
+        "u": "c. à soupe",
+        "n": "huile",
+        "k": "huile"
+      },
+      {
+        "q": null,
+        "u": "",
+        "n": "sel et poivre",
+        "k": "sel et poivre"
+      }
+    ],
+    "p": [
+      "Sortez les côtes 20 minutes à l’avance. Salez-les légèrement et faites-les dorer dans une poêle avec l’huile, 4 à 5 minutes par face selon l’épaisseur.",
+      "Réservez sous une feuille d’aluminium.",
+      "Ajoutez les échalotes ciselées dans la poêle et faites-les revenir 2 minutes.",
+      "Déglacez avec le vin, réduisez de moitié puis ajoutez le fond de veau. Laissez réduire 5 minutes.",
+      "Ajoutez moutarde et cornichons en julienne. Hors du feu, incorporez le beurre.",
+      "Remettez les côtes 2 minutes dans la sauce et servez."
+    ],
+    "classic": true,
+    "group": "viande",
+    "protein": "porc",
+    "starch": "aucun",
+    "kind": "warm",
+    "texture": "juteux-nappe",
+    "technique": "saisie et sauce courte",
+    "presentation": "assiette",
+    "vegetables": [],
+    "lightness": "classique"
+  },
+  {
+    "id": "bistrot-ext-13",
+    "n": "Canard à l’orange",
+    "m": "Four",
+    "t": "120 min",
+    "s": [
+      "printemps",
+      "été",
+      "automne",
+      "hiver"
+    ],
+    "servings": 4,
+    "cuisine": "française",
+    "family": "canard-orange",
+    "collections": [
+      "bistrot-brasserie"
+    ],
+    "editorial": "pas-a-pas-debutant",
+    "i": [
+      {
+        "q": 1.8,
+        "u": "kg",
+        "n": "canard prêt à cuire",
+        "k": "canard prêt à cuire"
+      },
+      {
+        "q": 3,
+        "u": "",
+        "n": "oranges non traitées",
+        "k": "oranges non traitées"
+      },
+      {
+        "q": 2,
+        "u": "c. à soupe",
+        "n": "sucre",
+        "k": "sucre"
+      },
+      {
+        "q": 2,
+        "u": "c. à soupe",
+        "n": "vinaigre de vin",
+        "k": "vinaigre de vin"
+      },
+      {
+        "q": 20,
+        "u": "cl",
+        "n": "fond de volaille",
+        "k": "fond de volaille"
+      },
+      {
+        "q": 5,
+        "u": "cl",
+        "n": "Grand Marnier facultatif",
+        "k": "Grand Marnier facultatif"
+      },
+      {
+        "q": 20,
+        "u": "g",
+        "n": "beurre",
+        "k": "beurre"
+      },
+      {
+        "q": null,
+        "u": "",
+        "n": "sel et poivre",
+        "k": "sel et poivre"
+      }
+    ],
+    "p": [
+      "Préchauffez le four à 190 °C. Salez et poivrez le canard puis posez-le sur une grille au-dessus d’un plat.",
+      "Rôtissez environ 1 h 15 en l’arrosant et en retirant l’excès de graisse deux ou trois fois.",
+      "Prélevez les zestes fins de deux oranges et blanchissez-les 2 minutes. Pressez les trois oranges.",
+      "Faites un caramel blond avec le sucre, déglacez prudemment avec le vinaigre puis ajoutez jus d’orange et fond. Réduisez de moitié.",
+      "Ajoutez les zestes et le Grand Marnier si utilisé, puis montez la sauce avec le beurre.",
+      "Laissez reposer le canard 15 minutes avant de le découper et servez avec la sauce."
+    ],
+    "classic": true,
+    "group": "viande",
+    "protein": "canard",
+    "starch": "aucun",
+    "kind": "warm",
+    "texture": "roti-nappe",
+    "technique": "rôtissage et sauce agrumes",
+    "presentation": "assiette",
+    "vegetables": [],
+    "lightness": "classique"
+  },
+  {
+    "id": "bistrot-ext-14",
+    "n": "Tournedos Rossini",
+    "m": "Poêle",
+    "t": "40 min",
+    "s": [
+      "printemps",
+      "été",
+      "automne",
+      "hiver"
+    ],
+    "servings": 4,
+    "cuisine": "française",
+    "family": "tournedos-rossini",
+    "collections": [
+      "bistrot-brasserie"
+    ],
+    "editorial": "pas-a-pas-debutant",
+    "i": [
+      {
+        "q": 4,
+        "u": "",
+        "n": "tournedos de filet de bœuf",
+        "k": "tournedos de filet de bœuf"
+      },
+      {
+        "q": 4,
+        "u": "",
+        "n": "escalopes de foie gras cru",
+        "k": "escalopes de foie gras cru"
+      },
+      {
+        "q": 4,
+        "u": "",
+        "n": "tranches de pain de mie épaisses",
+        "k": "tranches de pain de mie épaisses"
+      },
+      {
+        "q": 12,
+        "u": "cl",
+        "n": "madère",
+        "k": "madère"
+      },
+      {
+        "q": 20,
+        "u": "cl",
+        "n": "fond de veau",
+        "k": "fond de veau"
+      },
+      {
+        "q": 20,
+        "u": "g",
+        "n": "beurre",
+        "k": "beurre"
+      },
+      {
+        "q": 1,
+        "u": "c. à soupe",
+        "n": "huile",
+        "k": "huile"
+      },
+      {
+        "q": null,
+        "u": "",
+        "n": "sel et poivre",
+        "k": "sel et poivre"
+      }
+    ],
+    "p": [
+      "Découpez les tranches de pain à la taille des tournedos et faites-les dorer dans un peu de beurre. Réservez au chaud.",
+      "Saisissez les tournedos dans une poêle très chaude avec l’huile, 2 à 3 minutes par face selon la cuisson souhaitée. Réservez 5 minutes.",
+      "Jetez l’excès de gras, déglacez avec le madère puis ajoutez le fond de veau. Réduisez jusqu’à texture sirupeuse.",
+      "Dans une poêle sèche très chaude, saisissez le foie gras 45 secondes à 1 minute par face. Égouttez sur papier absorbant.",
+      "Posez chaque tournedos sur un croûton, ajoutez le foie gras et nappez légèrement de sauce.",
+      "Servez immédiatement."
+    ],
+    "classic": true,
+    "group": "viande",
+    "protein": "boeuf",
+    "starch": "pain",
+    "kind": "warm",
+    "texture": "tendre-gourmand",
+    "technique": "saisie et sauce madère",
+    "presentation": "assiette",
+    "vegetables": [],
+    "lightness": "classique"
+  },
+  {
+    "id": "bistrot-ext-15",
+    "n": "Veau Marengo",
+    "m": "Cocotte",
+    "t": "110 min",
+    "s": [
+      "printemps",
+      "été",
+      "automne",
+      "hiver"
+    ],
+    "servings": 4,
+    "cuisine": "française",
+    "family": "veau-marengo",
+    "collections": [
+      "bistrot-brasserie"
+    ],
+    "editorial": "pas-a-pas-debutant",
+    "i": [
+      {
+        "q": 800,
+        "u": "g",
+        "n": "épaule de veau en cubes",
+        "k": "épaule de veau en cubes"
+      },
+      {
+        "q": 2,
+        "u": "",
+        "n": "oignons",
+        "k": "oignons"
+      },
+      {
+        "q": 2,
+        "u": "",
+        "n": "gousses d’ail",
+        "k": "gousses d’ail"
+      },
+      {
+        "q": 400,
+        "u": "g",
+        "n": "tomates concassées",
+        "k": "tomates concassées"
+      },
+      {
+        "q": 20,
+        "u": "cl",
+        "n": "vin blanc sec",
+        "k": "vin blanc sec"
+      },
+      {
+        "q": 20,
+        "u": "cl",
+        "n": "fond de veau",
+        "k": "fond de veau"
+      },
+      {
+        "q": 250,
+        "u": "g",
+        "n": "champignons de Paris",
+        "k": "champignons de Paris"
+      },
+      {
+        "q": 1,
+        "u": "c. à soupe",
+        "n": "farine",
+        "k": "farine"
+      },
+      {
+        "q": 2,
+        "u": "c. à soupe",
+        "n": "huile",
+        "k": "huile"
+      },
+      {
+        "q": 1,
+        "u": "",
+        "n": "bouquet garni",
+        "k": "bouquet garni"
+      },
+      {
+        "q": null,
+        "u": "",
+        "n": "sel et poivre",
+        "k": "sel et poivre"
+      }
+    ],
+    "p": [
+      "Épongez le veau et faites-le dorer en plusieurs fois dans une cocotte avec l’huile. Réservez.",
+      "Faites revenir oignons et ail 5 minutes. Saupoudrez de farine et mélangez 1 minute.",
+      "Ajoutez vin, tomates, fond et bouquet garni. Remettez le veau.",
+      "Couvrez et laissez mijoter 1 heure à feu doux.",
+      "Faites dorer les champignons séparément puis ajoutez-les pour les 20 dernières minutes.",
+      "La viande doit être très tendre et la sauce courte. Rectifiez l’assaisonnement et servez."
+    ],
+    "classic": true,
+    "group": "viande",
+    "protein": "veau",
+    "starch": "aucun",
+    "kind": "warm",
+    "texture": "fondant-nappe",
+    "technique": "mijotage",
+    "presentation": "assiette",
+    "vegetables": [],
+    "lightness": "classique"
+  },
+  {
+    "id": "bistrot-ext-16",
+    "n": "Poulet Vallée d’Auge",
+    "m": "Cocotte",
+    "t": "80 min",
+    "s": [
+      "printemps",
+      "été",
+      "automne",
+      "hiver"
+    ],
+    "servings": 4,
+    "cuisine": "française",
+    "family": "poulet-vallee-auge",
+    "collections": [
+      "bistrot-brasserie"
+    ],
+    "editorial": "pas-a-pas-debutant",
+    "i": [
+      {
+        "q": 4,
+        "u": "",
+        "n": "cuisses de poulet",
+        "k": "cuisses de poulet"
+      },
+      {
+        "q": 2,
+        "u": "",
+        "n": "pommes",
+        "k": "pommes"
+      },
+      {
+        "q": 2,
+        "u": "",
+        "n": "échalotes",
+        "k": "échalotes"
+      },
+      {
+        "q": 25,
+        "u": "cl",
+        "n": "cidre brut",
+        "k": "cidre brut"
+      },
+      {
+        "q": 15,
+        "u": "cl",
+        "n": "crème fraîche",
+        "k": "crème fraîche"
+      },
+      {
+        "q": 4,
+        "u": "cl",
+        "n": "calvados facultatif",
+        "k": "calvados facultatif"
+      },
+      {
+        "q": 200,
+        "u": "g",
+        "n": "champignons de Paris",
+        "k": "champignons de Paris"
+      },
+      {
+        "q": 25,
+        "u": "g",
+        "n": "beurre",
+        "k": "beurre"
+      },
+      {
+        "q": 1,
+        "u": "c. à soupe",
+        "n": "huile",
+        "k": "huile"
+      },
+      {
+        "q": null,
+        "u": "",
+        "n": "sel et poivre",
+        "k": "sel et poivre"
+      }
+    ],
+    "p": [
+      "Faites dorer le poulet dans la cocotte avec huile et moitié du beurre. Réservez.",
+      "Faites revenir échalotes et champignons 6 minutes.",
+      "Remettez le poulet, ajoutez le cidre et laissez mijoter 35 à 40 minutes à couvert.",
+      "Épluchez les pommes, coupez-les en quartiers et faites-les dorer dans le reste du beurre.",
+      "Retirez le poulet, ajoutez crème et calvados dans la cocotte puis faites réduire 5 minutes.",
+      "Remettez poulet et pommes 3 minutes dans la sauce avant de servir."
+    ],
+    "classic": true,
+    "group": "volaille",
+    "protein": "poulet",
+    "starch": "aucun",
+    "kind": "warm",
+    "texture": "cremeux-fondant",
+    "technique": "cocotte cidre crème",
+    "presentation": "assiette",
+    "vegetables": [],
+    "lightness": "classique"
+  },
+  {
+    "id": "bistrot-ext-17",
+    "n": "Paupiettes de veau grand-mère",
+    "m": "Cocotte",
+    "t": "75 min",
+    "s": [
+      "printemps",
+      "été",
+      "automne",
+      "hiver"
+    ],
+    "servings": 4,
+    "cuisine": "française",
+    "family": "paupiettes-veau",
+    "collections": [
+      "bistrot-brasserie"
+    ],
+    "editorial": "pas-a-pas-debutant",
+    "i": [
+      {
+        "q": 4,
+        "u": "",
+        "n": "paupiettes de veau",
+        "k": "paupiettes de veau"
+      },
+      {
+        "q": 120,
+        "u": "g",
+        "n": "lardons",
+        "k": "lardons"
+      },
+      {
+        "q": 250,
+        "u": "g",
+        "n": "champignons de Paris",
+        "k": "champignons de Paris"
+      },
+      {
+        "q": 8,
+        "u": "",
+        "n": "petits oignons grelots",
+        "k": "petits oignons grelots"
+      },
+      {
+        "q": 15,
+        "u": "cl",
+        "n": "vin blanc sec",
+        "k": "vin blanc sec"
+      },
+      {
+        "q": 25,
+        "u": "cl",
+        "n": "fond de veau",
+        "k": "fond de veau"
+      },
+      {
+        "q": 1,
+        "u": "c. à soupe",
+        "n": "huile",
+        "k": "huile"
+      },
+      {
+        "q": 20,
+        "u": "g",
+        "n": "beurre",
+        "k": "beurre"
+      },
+      {
+        "q": 1,
+        "u": "",
+        "n": "bouquet garni",
+        "k": "bouquet garni"
+      },
+      {
+        "q": null,
+        "u": "",
+        "n": "sel et poivre",
+        "k": "sel et poivre"
+      }
+    ],
+    "p": [
+      "Faites dorer les paupiettes sur toutes les faces dans la cocotte avec l’huile. Réservez.",
+      "Ajoutez lardons et petits oignons, puis faites revenir 5 minutes.",
+      "Versez le vin blanc, grattez les sucs et laissez réduire de moitié.",
+      "Ajoutez fond et bouquet garni puis remettez les paupiettes. Couvrez et laissez mijoter 35 minutes.",
+      "Faites dorer les champignons au beurre et ajoutez-les dans la cocotte pour les 10 dernières minutes.",
+      "Retirez le bouquet garni, rectifiez l’assaisonnement et servez."
+    ],
+    "classic": true,
+    "group": "viande",
+    "protein": "veau",
+    "starch": "aucun",
+    "kind": "warm",
+    "texture": "fondant",
+    "technique": "braisage court",
+    "presentation": "assiette",
+    "vegetables": [],
+    "lightness": "classique"
+  },
+  {
+    "id": "bistrot-ext-18",
+    "n": "Ris de veau aux morilles",
+    "m": "Poêle",
+    "t": "90 min",
+    "s": [
+      "printemps",
+      "été",
+      "automne",
+      "hiver"
+    ],
+    "servings": 4,
+    "cuisine": "française",
+    "family": "ris-veau-morilles",
+    "collections": [
+      "bistrot-brasserie"
+    ],
+    "editorial": "pas-a-pas-debutant",
+    "i": [
+      {
+        "q": 800,
+        "u": "g",
+        "n": "ris de veau",
+        "k": "ris de veau"
+      },
+      {
+        "q": 40,
+        "u": "g",
+        "n": "morilles séchées",
+        "k": "morilles séchées"
+      },
+      {
+        "q": 2,
+        "u": "",
+        "n": "échalotes",
+        "k": "échalotes"
+      },
+      {
+        "q": 10,
+        "u": "cl",
+        "n": "vin jaune ou vin blanc sec",
+        "k": "vin jaune ou vin blanc sec"
+      },
+      {
+        "q": 25,
+        "u": "cl",
+        "n": "crème entière",
+        "k": "crème entière"
+      },
+      {
+        "q": 30,
+        "u": "g",
+        "n": "beurre",
+        "k": "beurre"
+      },
+      {
+        "q": 1,
+        "u": "c. à soupe",
+        "n": "huile",
+        "k": "huile"
+      },
+      {
+        "q": null,
+        "u": "",
+        "n": "sel et poivre",
+        "k": "sel et poivre"
+      }
+    ],
+    "p": [
+      "Faites tremper les morilles 30 minutes dans de l’eau tiède, puis rincez-les soigneusement et filtrez leur eau.",
+      "Blanchissez les ris de veau 5 minutes dans une eau frémissante, refroidissez-les, retirez membranes et petits nerfs.",
+      "Placez-les 30 minutes sous une légère presse entre deux assiettes.",
+      "Coupez-les en morceaux et faites-les dorer dans beurre et huile, 4 à 5 minutes par face. Réservez.",
+      "Faites revenir échalotes et morilles, ajoutez vin puis 10 cl d’eau filtrée des morilles. Réduisez.",
+      "Ajoutez la crème, laissez épaissir 5 minutes puis remettez les ris de veau 3 minutes dans la sauce."
+    ],
+    "classic": true,
+    "group": "viande",
+    "protein": "ris-de-veau",
+    "starch": "aucun",
+    "kind": "warm",
+    "texture": "croustillant-cremeux",
+    "technique": "blanchir presser saisir",
+    "presentation": "assiette",
+    "vegetables": [],
+    "lightness": "classique"
+  },
+  {
+    "id": "bistrot-ext-19",
+    "n": "Pieds de porc Sainte-Menehould",
+    "m": "Four",
+    "t": "180 min",
+    "s": [
+      "printemps",
+      "été",
+      "automne",
+      "hiver"
+    ],
+    "servings": 4,
+    "cuisine": "française",
+    "family": "pieds-porc-menehould",
+    "collections": [
+      "bistrot-brasserie"
+    ],
+    "editorial": "pas-a-pas-debutant",
+    "i": [
+      {
+        "q": 4,
+        "u": "",
+        "n": "pieds de porc fendus et ficelés",
+        "k": "pieds de porc fendus et ficelés"
+      },
+      {
+        "q": 1,
+        "u": "",
+        "n": "carotte",
+        "k": "carotte"
+      },
+      {
+        "q": 1,
+        "u": "",
+        "n": "oignon",
+        "k": "oignon"
+      },
+      {
+        "q": 1,
+        "u": "",
+        "n": "bouquet garni",
+        "k": "bouquet garni"
+      },
+      {
+        "q": 100,
+        "u": "g",
+        "n": "chapelure",
+        "k": "chapelure"
+      },
+      {
+        "q": 2,
+        "u": "c. à soupe",
+        "n": "moutarde",
+        "k": "moutarde"
+      },
+      {
+        "q": 40,
+        "u": "g",
+        "n": "beurre fondu",
+        "k": "beurre fondu"
+      },
+      {
+        "q": null,
+        "u": "",
+        "n": "sel et poivre",
+        "k": "sel et poivre"
+      }
+    ],
+    "p": [
+      "Placez les pieds dans une grande cocotte avec carotte, oignon et bouquet garni. Couvrez d’eau, salez légèrement et laissez frémir 2 h 30.",
+      "Égouttez-les très soigneusement et laissez-les tiédir sans retirer la ficelle.",
+      "Badigeonnez-les de moutarde puis de beurre fondu et roulez-les généreusement dans la chapelure.",
+      "Posez-les sur une plaque et enfournez 20 à 25 minutes à 210 °C.",
+      "Retournez-les à mi-cuisson pour obtenir une panure uniformément dorée.",
+      "Servez très chaud avec moutarde forte et salade."
+    ],
+    "classic": true,
+    "group": "viande",
+    "protein": "porc",
+    "starch": "aucun",
+    "kind": "warm",
+    "texture": "croustillant-fondant",
+    "technique": "pochage long puis panure",
+    "presentation": "assiette",
+    "vegetables": [],
+    "lightness": "classique"
+  },
+  {
+    "id": "bistrot-ext-20",
+    "n": "Tablier de sapeur, sauce tartare",
+    "m": "Poêle",
+    "t": "70 min",
+    "s": [
+      "printemps",
+      "été",
+      "automne",
+      "hiver"
+    ],
+    "servings": 4,
+    "cuisine": "française",
+    "family": "tablier-sapeur",
+    "collections": [
+      "bistrot-brasserie"
+    ],
+    "editorial": "pas-a-pas-debutant",
+    "i": [
+      {
+        "q": 800,
+        "u": "g",
+        "n": "gras-double cuit en plaques",
+        "k": "gras-double cuit en plaques"
+      },
+      {
+        "q": 15,
+        "u": "cl",
+        "n": "vin blanc sec",
+        "k": "vin blanc sec"
+      },
+      {
+        "q": 5,
+        "u": "cl",
+        "n": "vinaigre",
+        "k": "vinaigre"
+      },
+      {
+        "q": 2,
+        "u": "c. à soupe",
+        "n": "moutarde",
+        "k": "moutarde"
+      },
+      {
+        "q": 100,
+        "u": "g",
+        "n": "farine",
+        "k": "farine"
+      },
+      {
+        "q": 2,
+        "u": "",
+        "n": "œufs",
+        "k": "œufs"
+      },
+      {
+        "q": 150,
+        "u": "g",
+        "n": "chapelure",
+        "k": "chapelure"
+      },
+      {
+        "q": 3,
+        "u": "c. à soupe",
+        "n": "huile",
+        "k": "huile"
+      },
+      {
+        "q": 20,
+        "u": "cl",
+        "n": "mayonnaise",
+        "k": "mayonnaise"
+      },
+      {
+        "q": 1,
+        "u": "c. à soupe",
+        "n": "câpres",
+        "k": "câpres"
+      },
+      {
+        "q": 4,
+        "u": "",
+        "n": "cornichons",
+        "k": "cornichons"
+      },
+      {
+        "q": 2,
+        "u": "c. à soupe",
+        "n": "herbes hachées",
+        "k": "herbes hachées"
+      },
+      {
+        "q": null,
+        "u": "",
+        "n": "sel et poivre",
+        "k": "sel et poivre"
+      }
+    ],
+    "p": [
+      "Coupez le gras-double en quatre rectangles. Faites-le mariner 30 minutes avec vin blanc, vinaigre, moutarde et poivre.",
+      "Égouttez et séchez parfaitement les morceaux.",
+      "Passez-les dans farine, œufs battus puis chapelure.",
+      "Faites-les dorer 5 à 6 minutes par face dans une grande poêle avec l’huile.",
+      "Mélangez mayonnaise, câpres, cornichons et herbes pour la sauce tartare.",
+      "Servez les tabliers très croustillants avec la sauce à part."
+    ],
+    "classic": true,
+    "group": "viande",
+    "protein": "gras-double",
+    "starch": "aucun",
+    "kind": "warm",
+    "texture": "croustillant",
+    "technique": "marinade et panure",
+    "presentation": "assiette",
+    "vegetables": [],
+    "lightness": "classique"
+  },
+  {
+    "id": "bistrot-ext-21",
+    "n": "Gras-double à la lyonnaise",
+    "m": "Poêle",
+    "t": "45 min",
+    "s": [
+      "printemps",
+      "été",
+      "automne",
+      "hiver"
+    ],
+    "servings": 4,
+    "cuisine": "française",
+    "family": "gras-double-lyonnaise",
+    "collections": [
+      "bistrot-brasserie"
+    ],
+    "editorial": "pas-a-pas-debutant",
+    "i": [
+      {
+        "q": 800,
+        "u": "g",
+        "n": "gras-double déjà cuit",
+        "k": "gras-double déjà cuit"
+      },
+      {
+        "q": 4,
+        "u": "",
+        "n": "gros oignons",
+        "k": "gros oignons"
+      },
+      {
+        "q": 30,
+        "u": "g",
+        "n": "beurre",
+        "k": "beurre"
+      },
+      {
+        "q": 1,
+        "u": "c. à soupe",
+        "n": "huile",
+        "k": "huile"
+      },
+      {
+        "q": 2,
+        "u": "c. à soupe",
+        "n": "vinaigre de vin",
+        "k": "vinaigre de vin"
+      },
+      {
+        "q": 2,
+        "u": "c. à soupe",
+        "n": "persil",
+        "k": "persil"
+      },
+      {
+        "q": null,
+        "u": "",
+        "n": "sel et poivre",
+        "k": "sel et poivre"
+      }
+    ],
+    "p": [
+      "Coupez le gras-double en lanières épaisses. Émincez les oignons.",
+      "Faites fondre les oignons 15 minutes dans beurre et huile à feu moyen-doux.",
+      "Montez le feu, ajoutez le gras-double et faites-le dorer 8 à 10 minutes en remuant régulièrement.",
+      "Salez peu, poivrez puis déglacez avec le vinaigre.",
+      "Laissez évaporer 1 minute, ajoutez le persil et servez immédiatement."
+    ],
+    "classic": true,
+    "group": "viande",
+    "protein": "gras-double",
+    "starch": "aucun",
+    "kind": "warm",
+    "texture": "fondant-dore",
+    "technique": "poêle aux oignons",
+    "presentation": "assiette",
+    "vegetables": [],
+    "lightness": "classique"
+  },
+  {
+    "id": "bistrot-ext-22",
+    "n": "Onglet de bœuf sauce bordelaise",
+    "m": "Poêle",
+    "t": "45 min",
+    "s": [
+      "printemps",
+      "été",
+      "automne",
+      "hiver"
+    ],
+    "servings": 4,
+    "cuisine": "française",
+    "family": "onglet-bordelaise",
+    "collections": [
+      "bistrot-brasserie"
+    ],
+    "editorial": "pas-a-pas-debutant",
+    "i": [
+      {
+        "q": 4,
+        "u": "",
+        "n": "onglets de bœuf",
+        "k": "onglets de bœuf"
+      },
+      {
+        "q": 2,
+        "u": "",
+        "n": "échalotes",
+        "k": "échalotes"
+      },
+      {
+        "q": 25,
+        "u": "cl",
+        "n": "vin rouge",
+        "k": "vin rouge"
+      },
+      {
+        "q": 20,
+        "u": "cl",
+        "n": "fond de veau",
+        "k": "fond de veau"
+      },
+      {
+        "q": 30,
+        "u": "g",
+        "n": "beurre",
+        "k": "beurre"
+      },
+      {
+        "q": 1,
+        "u": "c. à soupe",
+        "n": "huile",
+        "k": "huile"
+      },
+      {
+        "q": 1,
+        "u": "",
+        "n": "branche de thym",
+        "k": "branche de thym"
+      },
+      {
+        "q": null,
+        "u": "",
+        "n": "sel et poivre",
+        "k": "sel et poivre"
+      }
+    ],
+    "p": [
+      "Faites réduire échalotes, vin et thym des deux tiers dans une petite casserole.",
+      "Ajoutez le fond de veau et poursuivez la réduction jusqu’à obtenir une sauce nappante.",
+      "Saisissez les onglets dans une poêle très chaude avec l’huile, environ 2 à 3 minutes par face.",
+      "Laissez reposer 5 minutes.",
+      "Hors du feu, incorporez le beurre froid dans la sauce et rectifiez l’assaisonnement.",
+      "Tranchez la viande contre les fibres et servez avec la sauce."
+    ],
+    "classic": true,
+    "group": "viande",
+    "protein": "boeuf",
+    "starch": "aucun",
+    "kind": "warm",
+    "texture": "saisi-juteux",
+    "technique": "saisie et réduction vin rouge",
+    "presentation": "assiette",
+    "vegetables": [],
+    "lightness": "classique"
+  },
+  {
+    "id": "bistrot-ext-23",
+    "n": "Côte de veau forestière",
+    "m": "Poêle",
+    "t": "50 min",
+    "s": [
+      "printemps",
+      "été",
+      "automne",
+      "hiver"
+    ],
+    "servings": 4,
+    "cuisine": "française",
+    "family": "veau-forestiere",
+    "collections": [
+      "bistrot-brasserie"
+    ],
+    "editorial": "pas-a-pas-debutant",
+    "i": [
+      {
+        "q": 4,
+        "u": "",
+        "n": "côtes de veau épaisses",
+        "k": "côtes de veau épaisses"
+      },
+      {
+        "q": 400,
+        "u": "g",
+        "n": "champignons mélangés",
+        "k": "champignons mélangés"
+      },
+      {
+        "q": 2,
+        "u": "",
+        "n": "échalotes",
+        "k": "échalotes"
+      },
+      {
+        "q": 10,
+        "u": "cl",
+        "n": "vin blanc sec",
+        "k": "vin blanc sec"
+      },
+      {
+        "q": 20,
+        "u": "cl",
+        "n": "crème entière",
+        "k": "crème entière"
+      },
+      {
+        "q": 20,
+        "u": "g",
+        "n": "beurre",
+        "k": "beurre"
+      },
+      {
+        "q": 1,
+        "u": "c. à soupe",
+        "n": "huile",
+        "k": "huile"
+      },
+      {
+        "q": 2,
+        "u": "c. à soupe",
+        "n": "persil",
+        "k": "persil"
+      },
+      {
+        "q": null,
+        "u": "",
+        "n": "sel et poivre",
+        "k": "sel et poivre"
+      }
+    ],
+    "p": [
+      "Saisissez les côtes dans huile et moitié du beurre 4 à 5 minutes par face. Réservez et laissez reposer.",
+      "Dans la même poêle, faites revenir les échalotes 2 minutes puis ajoutez les champignons.",
+      "Cuisez à feu vif jusqu’à évaporation de leur eau et légère coloration.",
+      "Déglacez au vin blanc et réduisez de moitié.",
+      "Ajoutez la crème et laissez frémir 4 minutes.",
+      "Remettez les côtes 2 minutes dans la sauce, parsemez de persil et servez."
+    ],
+    "classic": true,
+    "group": "viande",
+    "protein": "veau",
+    "starch": "aucun",
+    "kind": "warm",
+    "texture": "moelleux-cremeux",
+    "technique": "poêle sauce champignons",
+    "presentation": "assiette",
+    "vegetables": [],
+    "lightness": "classique"
+  },
+  {
+    "id": "bistrot-ext-24",
+    "n": "Souris d’agneau confite au thym",
+    "m": "Four",
+    "t": "210 min",
+    "s": [
+      "printemps",
+      "été",
+      "automne",
+      "hiver"
+    ],
+    "servings": 4,
+    "cuisine": "française",
+    "family": "souris-agneau-confit",
+    "collections": [
+      "bistrot-brasserie"
+    ],
+    "editorial": "pas-a-pas-debutant",
+    "i": [
+      {
+        "q": 4,
+        "u": "",
+        "n": "souris d’agneau",
+        "k": "souris d’agneau"
+      },
+      {
+        "q": 2,
+        "u": "",
+        "n": "oignons",
+        "k": "oignons"
+      },
+      {
+        "q": 3,
+        "u": "",
+        "n": "carottes",
+        "k": "carottes"
+      },
+      {
+        "q": 4,
+        "u": "",
+        "n": "gousses d’ail",
+        "k": "gousses d’ail"
+      },
+      {
+        "q": 20,
+        "u": "cl",
+        "n": "vin blanc sec",
+        "k": "vin blanc sec"
+      },
+      {
+        "q": 40,
+        "u": "cl",
+        "n": "bouillon",
+        "k": "bouillon"
+      },
+      {
+        "q": 4,
+        "u": "",
+        "n": "branches de thym",
+        "k": "branches de thym"
+      },
+      {
+        "q": 2,
+        "u": "c. à soupe",
+        "n": "huile d’olive",
+        "k": "huile d’olive"
+      },
+      {
+        "q": null,
+        "u": "",
+        "n": "sel et poivre",
+        "k": "sel et poivre"
+      }
+    ],
+    "p": [
+      "Faites dorer les souris dans une cocotte avec l’huile. Salez, poivrez et réservez.",
+      "Faites revenir oignons, carottes et ail 7 minutes.",
+      "Déglacez avec le vin blanc, laissez réduire 2 minutes puis ajoutez le bouillon et le thym.",
+      "Remettez les souris, couvrez et enfournez 2 h 30 à 150 °C.",
+      "Retirez le couvercle et poursuivez 20 à 30 minutes en arrosant souvent pour faire confire la surface.",
+      "Servez avec le jus dégraissé et réduit si nécessaire."
+    ],
+    "classic": true,
+    "group": "viande",
+    "protein": "agneau",
+    "starch": "aucun",
+    "kind": "warm",
+    "texture": "confit",
+    "technique": "braisage long",
+    "presentation": "assiette",
+    "vegetables": [],
+    "lightness": "classique"
+  },
+  {
+    "id": "bistrot-ext-25",
+    "n": "Lapin aux pruneaux",
+    "m": "Cocotte",
+    "t": "95 min",
+    "s": [
+      "printemps",
+      "été",
+      "automne",
+      "hiver"
+    ],
+    "servings": 4,
+    "cuisine": "française",
+    "family": "lapin-pruneaux",
+    "collections": [
+      "bistrot-brasserie"
+    ],
+    "editorial": "pas-a-pas-debutant",
+    "i": [
+      {
+        "q": 1.4,
+        "u": "kg",
+        "n": "lapin coupé en morceaux",
+        "k": "lapin coupé en morceaux"
+      },
+      {
+        "q": 250,
+        "u": "g",
+        "n": "pruneaux dénoyautés",
+        "k": "pruneaux dénoyautés"
+      },
+      {
+        "q": 2,
+        "u": "",
+        "n": "oignons",
+        "k": "oignons"
+      },
+      {
+        "q": 25,
+        "u": "cl",
+        "n": "vin rouge léger ou bière ambrée",
+        "k": "vin rouge léger ou bière ambrée"
+      },
+      {
+        "q": 30,
+        "u": "cl",
+        "n": "bouillon",
+        "k": "bouillon"
+      },
+      {
+        "q": 1,
+        "u": "c. à soupe",
+        "n": "farine",
+        "k": "farine"
+      },
+      {
+        "q": 1,
+        "u": "c. à soupe",
+        "n": "huile",
+        "k": "huile"
+      },
+      {
+        "q": 20,
+        "u": "g",
+        "n": "beurre",
+        "k": "beurre"
+      },
+      {
+        "q": 1,
+        "u": "",
+        "n": "bouquet garni",
+        "k": "bouquet garni"
+      },
+      {
+        "q": null,
+        "u": "",
+        "n": "sel et poivre",
+        "k": "sel et poivre"
+      }
+    ],
+    "p": [
+      "Faites tremper les pruneaux 20 minutes dans un peu d’eau tiède.",
+      "Faites dorer les morceaux de lapin dans huile et beurre puis réservez.",
+      "Faites revenir les oignons, ajoutez la farine et mélangez 1 minute.",
+      "Versez vin et bouillon, ajoutez bouquet garni puis remettez le lapin.",
+      "Couvrez et mijotez 50 minutes. Ajoutez les pruneaux pour les 20 dernières minutes.",
+      "Retirez le bouquet garni, rectifiez l’assaisonnement et servez."
+    ],
+    "classic": true,
+    "group": "viande",
+    "protein": "lapin",
+    "starch": "aucun",
+    "kind": "warm",
+    "texture": "fondant-sucre-sale",
+    "technique": "mijotage",
+    "presentation": "assiette",
+    "vegetables": [],
+    "lightness": "classique"
+  },
+  {
+    "id": "bistrot-ext-26",
+    "n": "Joue de porc braisée au cidre",
+    "m": "Cocotte",
+    "t": "150 min",
+    "s": [
+      "printemps",
+      "été",
+      "automne",
+      "hiver"
+    ],
+    "servings": 4,
+    "cuisine": "française",
+    "family": "joue-porc-cidre",
+    "collections": [
+      "bistrot-brasserie"
+    ],
+    "editorial": "pas-a-pas-debutant",
+    "i": [
+      {
+        "q": 900,
+        "u": "g",
+        "n": "joues de porc parées",
+        "k": "joues de porc parées"
+      },
+      {
+        "q": 2,
+        "u": "",
+        "n": "oignons",
+        "k": "oignons"
+      },
+      {
+        "q": 2,
+        "u": "",
+        "n": "carottes",
+        "k": "carottes"
+      },
+      {
+        "q": 50,
+        "u": "cl",
+        "n": "cidre brut",
+        "k": "cidre brut"
+      },
+      {
+        "q": 25,
+        "u": "cl",
+        "n": "fond de veau",
+        "k": "fond de veau"
+      },
+      {
+        "q": 1,
+        "u": "c. à soupe",
+        "n": "moutarde à l’ancienne",
+        "k": "moutarde à l’ancienne"
+      },
+      {
+        "q": 1,
+        "u": "c. à soupe",
+        "n": "huile",
+        "k": "huile"
+      },
+      {
+        "q": 20,
+        "u": "g",
+        "n": "beurre",
+        "k": "beurre"
+      },
+      {
+        "q": 1,
+        "u": "",
+        "n": "bouquet garni",
+        "k": "bouquet garni"
+      },
+      {
+        "q": null,
+        "u": "",
+        "n": "sel et poivre",
+        "k": "sel et poivre"
+      }
+    ],
+    "p": [
+      "Épongez les joues et faites-les dorer dans la cocotte avec l’huile. Réservez.",
+      "Faites revenir oignons et carottes 6 minutes dans le beurre.",
+      "Remettez la viande, versez le cidre et laissez réduire 3 minutes.",
+      "Ajoutez le fond et le bouquet garni, couvrez et laissez mijoter 1 h 45 à feu très doux.",
+      "Retirez la viande, ajoutez la moutarde et faites réduire la sauce jusqu’à texture nappante.",
+      "Remettez les joues 5 minutes dans la sauce et servez."
+    ],
+    "classic": true,
+    "group": "viande",
+    "protein": "porc",
+    "starch": "aucun",
+    "kind": "warm",
+    "texture": "fondant",
+    "technique": "braisage",
+    "presentation": "assiette",
+    "vegetables": [],
+    "lightness": "classique"
+  },
+  {
+    "id": "bistrot-ext-27",
+    "n": "Lotte à l’armoricaine",
+    "m": "Cocotte",
+    "t": "60 min",
+    "s": [
+      "printemps",
+      "été",
+      "automne",
+      "hiver"
+    ],
+    "servings": 4,
+    "cuisine": "française",
+    "family": "lotte-armoricaine",
+    "collections": [
+      "bistrot-brasserie"
+    ],
+    "editorial": "pas-a-pas-debutant",
+    "i": [
+      {
+        "q": 900,
+        "u": "g",
+        "n": "lotte en médaillons",
+        "k": "lotte en médaillons"
+      },
+      {
+        "q": 2,
+        "u": "",
+        "n": "échalotes",
+        "k": "échalotes"
+      },
+      {
+        "q": 2,
+        "u": "",
+        "n": "gousses d’ail",
+        "k": "gousses d’ail"
+      },
+      {
+        "q": 400,
+        "u": "g",
+        "n": "tomates concassées",
+        "k": "tomates concassées"
+      },
+      {
+        "q": 15,
+        "u": "cl",
+        "n": "vin blanc sec",
+        "k": "vin blanc sec"
+      },
+      {
+        "q": 5,
+        "u": "cl",
+        "n": "cognac facultatif",
+        "k": "cognac facultatif"
+      },
+      {
+        "q": 1,
+        "u": "c. à soupe",
+        "n": "concentré de tomate",
+        "k": "concentré de tomate"
+      },
+      {
+        "q": 1,
+        "u": "pincée",
+        "n": "piment de Cayenne",
+        "k": "piment de Cayenne"
+      },
+      {
+        "q": 2,
+        "u": "c. à soupe",
+        "n": "huile d’olive",
+        "k": "huile d’olive"
+      },
+      {
+        "q": null,
+        "u": "",
+        "n": "sel et poivre",
+        "k": "sel et poivre"
+      }
+    ],
+    "p": [
+      "Épongez les morceaux de lotte et faites-les dorer rapidement dans l’huile. Réservez.",
+      "Faites revenir échalotes et ail 3 minutes. Ajoutez concentré de tomate puis le cognac si utilisé.",
+      "Versez vin et tomates, ajoutez une petite pincée de piment et laissez mijoter 15 minutes.",
+      "Remettez la lotte et poursuivez 8 à 10 minutes à petit frémissement.",
+      "La chair doit être juste cuite et rester ferme.",
+      "Rectifiez l’assaisonnement et servez avec riz ou pommes vapeur."
+    ],
+    "classic": true,
+    "group": "poisson",
+    "protein": "lotte",
+    "starch": "aucun",
+    "kind": "warm",
+    "texture": "ferme-nappe",
+    "technique": "saisie et sauce tomate",
+    "presentation": "assiette",
+    "vegetables": [],
+    "lightness": "classique"
+  },
+  {
+    "id": "bistrot-ext-28",
+    "n": "Cabillaud au beurre blanc",
+    "m": "Casserole",
+    "t": "40 min",
+    "s": [
+      "printemps",
+      "été",
+      "automne",
+      "hiver"
+    ],
+    "servings": 4,
+    "cuisine": "française",
+    "family": "cabillaud-beurre-blanc",
+    "collections": [
+      "bistrot-brasserie"
+    ],
+    "editorial": "pas-a-pas-debutant",
+    "i": [
+      {
+        "q": 4,
+        "u": "",
+        "n": "dos de cabillaud de 180 g",
+        "k": "dos de cabillaud de 180 g"
+      },
+      {
+        "q": 3,
+        "u": "",
+        "n": "échalotes",
+        "k": "échalotes"
+      },
+      {
+        "q": 10,
+        "u": "cl",
+        "n": "vin blanc sec",
+        "k": "vin blanc sec"
+      },
+      {
+        "q": 5,
+        "u": "cl",
+        "n": "vinaigre de vin blanc",
+        "k": "vinaigre de vin blanc"
+      },
+      {
+        "q": 200,
+        "u": "g",
+        "n": "beurre très froid",
+        "k": "beurre très froid"
+      },
+      {
+        "q": 1,
+        "u": "",
+        "n": "citron",
+        "k": "citron"
+      },
+      {
+        "q": null,
+        "u": "",
+        "n": "sel et poivre",
+        "k": "sel et poivre"
+      }
+    ],
+    "p": [
+      "Ciselez les échalotes et faites-les réduire presque à sec avec vin et vinaigre.",
+      "Baissez le feu et incorporez progressivement le beurre froid en petits dés en fouettant. La sauce ne doit pas bouillir.",
+      "Salez, poivrez et ajoutez quelques gouttes de citron. Gardez tiède.",
+      "Pochez ou cuisez à la vapeur le cabillaud 7 à 9 minutes selon l’épaisseur.",
+      "La chair doit se détacher en pétales et rester nacrée.",
+      "Servez immédiatement avec le beurre blanc."
+    ],
+    "classic": true,
+    "group": "poisson",
+    "protein": "cabillaud",
+    "starch": "aucun",
+    "kind": "warm",
+    "texture": "nacre-sauce-soyeuse",
+    "technique": "pochage et émulsion",
+    "presentation": "assiette",
+    "vegetables": [],
+    "lightness": "classique"
+  },
+  {
+    "id": "bistrot-ext-29",
+    "n": "Truite aux amandes",
+    "m": "Poêle",
+    "t": "30 min",
+    "s": [
+      "printemps",
+      "été",
+      "automne",
+      "hiver"
+    ],
+    "servings": 4,
+    "cuisine": "française",
+    "family": "truite-amandes",
+    "collections": [
+      "bistrot-brasserie"
+    ],
+    "editorial": "pas-a-pas-debutant",
+    "i": [
+      {
+        "q": 4,
+        "u": "",
+        "n": "truites portions vidées",
+        "k": "truites portions vidées"
+      },
+      {
+        "q": 60,
+        "u": "g",
+        "n": "farine",
+        "k": "farine"
+      },
+      {
+        "q": 80,
+        "u": "g",
+        "n": "beurre",
+        "k": "beurre"
+      },
+      {
+        "q": 60,
+        "u": "g",
+        "n": "amandes effilées",
+        "k": "amandes effilées"
+      },
+      {
+        "q": 1,
+        "u": "",
+        "n": "citron",
+        "k": "citron"
+      },
+      {
+        "q": 2,
+        "u": "c. à soupe",
+        "n": "persil",
+        "k": "persil"
+      },
+      {
+        "q": null,
+        "u": "",
+        "n": "sel et poivre",
+        "k": "sel et poivre"
+      }
+    ],
+    "p": [
+      "Séchez soigneusement les truites, salez-les, poivrez-les puis farinez-les légèrement.",
+      "Faites-les cuire 5 à 6 minutes par face dans 40 g de beurre sur feu moyen.",
+      "Réservez au chaud.",
+      "Dans une petite poêle, faites fondre le reste du beurre jusqu’à couleur noisette puis ajoutez les amandes.",
+      "Dès qu’elles sont dorées, ajoutez le jus du citron et le persil.",
+      "Versez immédiatement sur les truites et servez."
+    ],
+    "classic": true,
+    "group": "poisson",
+    "protein": "truite",
+    "starch": "aucun",
+    "kind": "warm",
+    "texture": "dore-tendre",
+    "technique": "meunière",
+    "presentation": "assiette",
+    "vegetables": [],
+    "lightness": "classique"
+  },
+  {
+    "id": "bistrot-ext-30",
+    "n": "Coquilles Saint-Jacques à la normande",
+    "m": "Poêle",
+    "t": "45 min",
+    "s": [
+      "automne",
+      "hiver",
+      "printemps"
+    ],
+    "servings": 4,
+    "cuisine": "française",
+    "family": "saint-jacques-normande",
+    "collections": [
+      "bistrot-brasserie"
+    ],
+    "editorial": "pas-a-pas-debutant",
+    "i": [
+      {
+        "q": 16,
+        "u": "",
+        "n": "noix de Saint-Jacques",
+        "k": "noix de Saint-Jacques"
+      },
+      {
+        "q": 2,
+        "u": "",
+        "n": "échalotes",
+        "k": "échalotes"
+      },
+      {
+        "q": 15,
+        "u": "cl",
+        "n": "cidre brut",
+        "k": "cidre brut"
+      },
+      {
+        "q": 15,
+        "u": "cl",
+        "n": "crème entière",
+        "k": "crème entière"
+      },
+      {
+        "q": 200,
+        "u": "g",
+        "n": "champignons de Paris",
+        "k": "champignons de Paris"
+      },
+      {
+        "q": 30,
+        "u": "g",
+        "n": "beurre",
+        "k": "beurre"
+      },
+      {
+        "q": 1,
+        "u": "c. à soupe",
+        "n": "huile",
+        "k": "huile"
+      },
+      {
+        "q": 1,
+        "u": "c. à soupe",
+        "n": "persil",
+        "k": "persil"
+      },
+      {
+        "q": null,
+        "u": "",
+        "n": "sel et poivre",
+        "k": "sel et poivre"
+      }
+    ],
+    "p": [
+      "Épongez parfaitement les Saint-Jacques. Faites revenir les champignons au beurre jusqu’à légère coloration puis réservez.",
+      "Saisissez les Saint-Jacques dans une poêle très chaude avec l’huile, environ 1 minute 30 par face. Réservez.",
+      "Faites revenir les échalotes 2 minutes dans la même poêle.",
+      "Versez le cidre et réduisez de moitié. Ajoutez la crème et laissez épaissir 3 à 4 minutes.",
+      "Ajoutez les champignons puis remettez les Saint-Jacques seulement 1 minute.",
+      "Parsemez de persil et servez immédiatement."
+    ],
+    "classic": true,
+    "group": "poisson",
+    "protein": "saint-jacques",
+    "starch": "aucun",
+    "kind": "warm",
+    "texture": "nacre-cremeux",
+    "technique": "saisie sauce cidre",
+    "presentation": "assiette",
+    "vegetables": [],
+    "lightness": "classique"
+  },
+  {
+    "id": "bistrot-ext-31",
+    "n": "Homard Thermidor",
+    "m": "Four",
+    "t": "75 min",
+    "s": [
+      "printemps",
+      "été",
+      "automne",
+      "hiver"
+    ],
+    "servings": 4,
+    "cuisine": "française",
+    "family": "homard-thermidor",
+    "collections": [
+      "bistrot-brasserie"
+    ],
+    "editorial": "pas-a-pas-debutant",
+    "i": [
+      {
+        "q": 2,
+        "u": "",
+        "n": "homards cuits de 600 à 700 g",
+        "k": "homards cuits de 600 à 700 g"
+      },
+      {
+        "q": 2,
+        "u": "",
+        "n": "échalotes",
+        "k": "échalotes"
+      },
+      {
+        "q": 12,
+        "u": "cl",
+        "n": "vin blanc sec",
+        "k": "vin blanc sec"
+      },
+      {
+        "q": 10,
+        "u": "cl",
+        "n": "fumet de crustacés",
+        "k": "fumet de crustacés"
+      },
+      {
+        "q": 15,
+        "u": "cl",
+        "n": "crème entière",
+        "k": "crème entière"
+      },
+      {
+        "q": 1,
+        "u": "c. à soupe",
+        "n": "moutarde de Dijon",
+        "k": "moutarde de Dijon"
+      },
+      {
+        "q": 2,
+        "u": "",
+        "n": "jaunes d’œufs",
+        "k": "jaunes d’œufs"
+      },
+      {
+        "q": 40,
+        "u": "g",
+        "n": "parmesan ou gruyère râpé",
+        "k": "parmesan ou gruyère râpé"
+      },
+      {
+        "q": 30,
+        "u": "g",
+        "n": "beurre",
+        "k": "beurre"
+      },
+      {
+        "q": null,
+        "u": "",
+        "n": "sel et poivre",
+        "k": "sel et poivre"
+      }
+    ],
+    "p": [
+      "Coupez les homards cuits en deux dans la longueur. Retirez la chair des queues et des pinces puis coupez-la en morceaux.",
+      "Faites revenir les échalotes au beurre 2 minutes. Ajoutez vin et fumet, puis réduisez de moitié.",
+      "Ajoutez la crème et laissez épaissir 4 minutes. Hors du feu, incorporez moutarde puis jaunes d’œufs.",
+      "Ajoutez la chair de homard et mélangez délicatement.",
+      "Remplissez les demi-carapaces, parsemez de fromage et enfournez 8 à 10 minutes à 220 °C.",
+      "Passez éventuellement 1 minute sous le gril et servez aussitôt."
+    ],
+    "classic": true,
+    "group": "poisson",
+    "protein": "homard",
+    "starch": "aucun",
+    "kind": "warm",
+    "texture": "gratine-onctueux",
+    "technique": "pochage sauce gratin",
+    "presentation": "assiette",
+    "vegetables": [],
+    "lightness": "classique"
+  },
+  {
+    "id": "bistrot-ext-32",
+    "n": "Turbot sauce hollandaise",
+    "m": "Casserole",
+    "t": "45 min",
+    "s": [
+      "printemps",
+      "été",
+      "automne",
+      "hiver"
+    ],
+    "servings": 4,
+    "cuisine": "française",
+    "family": "turbot-hollandaise",
+    "collections": [
+      "bistrot-brasserie"
+    ],
+    "editorial": "pas-a-pas-debutant",
+    "i": [
+      {
+        "q": 4,
+        "u": "",
+        "n": "pavés de turbot",
+        "k": "pavés de turbot"
+      },
+      {
+        "q": 20,
+        "u": "cl",
+        "n": "fumet de poisson",
+        "k": "fumet de poisson"
+      },
+      {
+        "q": 10,
+        "u": "cl",
+        "n": "vin blanc sec",
+        "k": "vin blanc sec"
+      },
+      {
+        "q": 3,
+        "u": "",
+        "n": "jaunes d’œufs",
+        "k": "jaunes d’œufs"
+      },
+      {
+        "q": 180,
+        "u": "g",
+        "n": "beurre",
+        "k": "beurre"
+      },
+      {
+        "q": 1,
+        "u": "c. à soupe",
+        "n": "jus de citron",
+        "k": "jus de citron"
+      },
+      {
+        "q": null,
+        "u": "",
+        "n": "sel et poivre",
+        "k": "sel et poivre"
+      }
+    ],
+    "p": [
+      "Placez les pavés dans une sauteuse, ajoutez fumet et vin et portez juste au frémissement.",
+      "Couvrez et pochez 7 à 10 minutes selon l’épaisseur. Réservez au chaud.",
+      "Faites fondre le beurre et laissez-le tiédir.",
+      "Fouettez les jaunes avec 2 cuillères à soupe d’eau au bain-marie doux jusqu’à obtenir une mousse épaisse.",
+      "Incorporez le beurre en filet, puis citron, sel et poivre.",
+      "Servez le turbot nappé très légèrement de hollandaise, le reste à part."
+    ],
+    "classic": true,
+    "group": "poisson",
+    "protein": "turbot",
+    "starch": "aucun",
+    "kind": "warm",
+    "texture": "nacre-soyeux",
+    "technique": "pochage et sauce émulsionnée",
+    "presentation": "assiette",
+    "vegetables": [],
+    "lightness": "classique"
+  },
+  {
+    "id": "bistrot-ext-33",
+    "n": "Matelote d’anguille",
+    "m": "Cocotte",
+    "t": "75 min",
+    "s": [
+      "printemps",
+      "été",
+      "automne",
+      "hiver"
+    ],
+    "servings": 4,
+    "cuisine": "française",
+    "family": "matelote-anguille",
+    "collections": [
+      "bistrot-brasserie"
+    ],
+    "editorial": "pas-a-pas-debutant",
+    "i": [
+      {
+        "q": 1.2,
+        "u": "kg",
+        "n": "anguille préparée en tronçons",
+        "k": "anguille préparée en tronçons"
+      },
+      {
+        "q": 50,
+        "u": "cl",
+        "n": "vin rouge léger",
+        "k": "vin rouge léger"
+      },
+      {
+        "q": 20,
+        "u": "cl",
+        "n": "fumet de poisson",
+        "k": "fumet de poisson"
+      },
+      {
+        "q": 150,
+        "u": "g",
+        "n": "lardons",
+        "k": "lardons"
+      },
+      {
+        "q": 200,
+        "u": "g",
+        "n": "champignons",
+        "k": "champignons"
+      },
+      {
+        "q": 12,
+        "u": "",
+        "n": "petits oignons",
+        "k": "petits oignons"
+      },
+      {
+        "q": 1,
+        "u": "c. à soupe",
+        "n": "farine",
+        "k": "farine"
+      },
+      {
+        "q": 25,
+        "u": "g",
+        "n": "beurre",
+        "k": "beurre"
+      },
+      {
+        "q": 1,
+        "u": "",
+        "n": "bouquet garni",
+        "k": "bouquet garni"
+      },
+      {
+        "q": null,
+        "u": "",
+        "n": "sel et poivre",
+        "k": "sel et poivre"
+      }
+    ],
+    "p": [
+      "Faites revenir lardons, petits oignons et champignons dans le beurre. Réservez.",
+      "Faites légèrement colorer les tronçons d’anguille dans la même cocotte.",
+      "Saupoudrez de farine, mélangez 1 minute puis versez vin et fumet.",
+      "Ajoutez le bouquet garni et laissez mijoter 20 minutes à feu doux.",
+      "Ajoutez lardons, oignons et champignons puis poursuivez 10 minutes.",
+      "La sauce doit être nappante. Retirez le bouquet garni et servez avec croûtons."
+    ],
+    "classic": true,
+    "group": "poisson",
+    "protein": "anguille",
+    "starch": "aucun",
+    "kind": "warm",
+    "texture": "fondant-nappe",
+    "technique": "mijotage au vin rouge",
+    "presentation": "assiette",
+    "vegetables": [],
+    "lightness": "classique"
+  },
+  {
+    "id": "bistrot-ext-34",
+    "n": "Bar rôti, beurre blanc",
+    "m": "Poêle + Four",
+    "t": "40 min",
+    "s": [
+      "printemps",
+      "été",
+      "automne",
+      "hiver"
+    ],
+    "servings": 4,
+    "cuisine": "française",
+    "family": "bar-beurre-blanc",
+    "collections": [
+      "bistrot-brasserie"
+    ],
+    "editorial": "pas-a-pas-debutant",
+    "i": [
+      {
+        "q": 4,
+        "u": "",
+        "n": "filets de bar avec peau",
+        "k": "filets de bar avec peau"
+      },
+      {
+        "q": 3,
+        "u": "",
+        "n": "échalotes",
+        "k": "échalotes"
+      },
+      {
+        "q": 10,
+        "u": "cl",
+        "n": "vin blanc sec",
+        "k": "vin blanc sec"
+      },
+      {
+        "q": 4,
+        "u": "cl",
+        "n": "vinaigre de vin blanc",
+        "k": "vinaigre de vin blanc"
+      },
+      {
+        "q": 180,
+        "u": "g",
+        "n": "beurre froid",
+        "k": "beurre froid"
+      },
+      {
+        "q": 1,
+        "u": "c. à soupe",
+        "n": "huile",
+        "k": "huile"
+      },
+      {
+        "q": 1,
+        "u": "",
+        "n": "citron",
+        "k": "citron"
+      },
+      {
+        "q": null,
+        "u": "",
+        "n": "sel et poivre",
+        "k": "sel et poivre"
+      }
+    ],
+    "p": [
+      "Préchauffez le four à 180 °C. Épongez les filets et salez légèrement côté chair.",
+      "Saisissez-les côté peau 4 minutes dans une poêle avec l’huile, sans les déplacer.",
+      "Retournez-les puis terminez 3 à 4 minutes au four.",
+      "Pour le beurre blanc, réduisez échalotes, vin et vinaigre presque à sec.",
+      "Incorporez le beurre froid en dés sur feu très doux, en fouettant sans laisser bouillir.",
+      "Ajoutez quelques gouttes de citron et servez autour du poisson pour garder la peau croustillante."
+    ],
+    "classic": true,
+    "group": "poisson",
+    "protein": "bar",
+    "starch": "aucun",
+    "kind": "warm",
+    "texture": "croustillant-nacre",
+    "technique": "saisie puis four et beurre blanc",
+    "presentation": "assiette",
+    "vegetables": [],
+    "lightness": "classique"
+  },
+  {
+    "id": "bistrot-ext-35",
+    "n": "Café liégeois",
+    "m": "Sans cuisson",
+    "t": "15 min",
+    "s": [
+      "printemps",
+      "été",
+      "automne",
+      "hiver"
+    ],
+    "servings": 4,
+    "cuisine": "française",
+    "family": "cafe-liegeois",
+    "collections": [
+      "bistrot-brasserie"
+    ],
+    "editorial": "pas-a-pas-debutant",
+    "i": [
+      {
+        "q": 8,
+        "u": "",
+        "n": "boules de glace café",
+        "k": "boules de glace café"
+      },
+      {
+        "q": 4,
+        "u": "",
+        "n": "expressos refroidis",
+        "k": "expressos refroidis"
+      },
+      {
+        "q": 25,
+        "u": "cl",
+        "n": "crème liquide entière",
+        "k": "crème liquide entière"
+      },
+      {
+        "q": 30,
+        "u": "g",
+        "n": "sucre glace",
+        "k": "sucre glace"
+      },
+      {
+        "q": 40,
+        "u": "g",
+        "n": "chocolat noir râpé",
+        "k": "chocolat noir râpé"
+      }
+    ],
+    "p": [
+      "Placez quatre grandes coupes au congélateur pendant 10 minutes.",
+      "Montez la crème très froide avec le sucre glace jusqu’à obtenir une chantilly souple.",
+      "Déposez deux boules de glace café dans chaque coupe.",
+      "Versez un espresso froid autour de la glace.",
+      "Ajoutez une belle rosace de chantilly et parsemez de chocolat râpé.",
+      "Servez immédiatement."
+    ],
+    "course": "dessert",
+    "kind": "dessert",
+    "hotCold": "froid",
+    "richness": "gourmand",
+    "core": [
+      "boules de glace café",
+      "expressos refroidis",
+      "crème liquide entière"
+    ]
+  },
+  {
+    "id": "bistrot-ext-36",
+    "n": "Dame blanche",
+    "m": "Casserole",
+    "t": "20 min",
+    "s": [
+      "printemps",
+      "été",
+      "automne",
+      "hiver"
+    ],
+    "servings": 4,
+    "cuisine": "française",
+    "family": "dame-blanche",
+    "collections": [
+      "bistrot-brasserie"
+    ],
+    "editorial": "pas-a-pas-debutant",
+    "i": [
+      {
+        "q": 12,
+        "u": "",
+        "n": "boules de glace vanille",
+        "k": "boules de glace vanille"
+      },
+      {
+        "q": 180,
+        "u": "g",
+        "n": "chocolat noir",
+        "k": "chocolat noir"
+      },
+      {
+        "q": 15,
+        "u": "cl",
+        "n": "crème liquide",
+        "k": "crème liquide"
+      },
+      {
+        "q": 20,
+        "u": "cl",
+        "n": "crème liquide entière pour chantilly",
+        "k": "crème liquide entière pour chantilly"
+      },
+      {
+        "q": 20,
+        "u": "g",
+        "n": "sucre glace",
+        "k": "sucre glace"
+      },
+      {
+        "q": 30,
+        "u": "g",
+        "n": "amandes effilées",
+        "k": "amandes effilées"
+      }
+    ],
+    "p": [
+      "Faites griller les amandes 2 minutes dans une poêle sèche et laissez refroidir.",
+      "Hachez le chocolat. Chauffez 15 cl de crème puis versez-la dessus. Attendez 1 minute et mélangez.",
+      "Montez les 20 cl de crème très froide avec le sucre glace.",
+      "Répartissez trois boules de glace vanille par coupe.",
+      "Nappez de sauce chocolat chaude puis ajoutez la chantilly.",
+      "Parsemez d’amandes et servez aussitôt."
+    ],
+    "course": "dessert",
+    "kind": "dessert",
+    "hotCold": "froid",
+    "richness": "gourmand",
+    "core": [
+      "boules de glace vanille",
+      "chocolat noir",
+      "crème liquide"
+    ]
+  },
+  {
+    "id": "bistrot-ext-37",
+    "n": "Omelette norvégienne",
+    "m": "Four",
+    "t": "75 min + congélation",
+    "s": [
+      "printemps",
+      "été",
+      "automne",
+      "hiver"
+    ],
+    "servings": 8,
+    "cuisine": "française",
+    "family": "omelette-norvegienne",
+    "collections": [
+      "bistrot-brasserie"
+    ],
+    "editorial": "pas-a-pas-debutant",
+    "i": [
+      {
+        "q": 1,
+        "u": "",
+        "n": "génoise ronde ou rectangulaire",
+        "k": "génoise ronde ou rectangulaire"
+      },
+      {
+        "q": 1,
+        "u": "l",
+        "n": "glace vanille",
+        "k": "glace vanille"
+      },
+      {
+        "q": 4,
+        "u": "",
+        "n": "blancs d’œufs",
+        "k": "blancs d’œufs"
+      },
+      {
+        "q": 180,
+        "u": "g",
+        "n": "sucre",
+        "k": "sucre"
+      },
+      {
+        "q": 4,
+        "u": "cl",
+        "n": "Grand Marnier ou rhum facultatif",
+        "k": "Grand Marnier ou rhum facultatif"
+      }
+    ],
+    "p": [
+      "Chemisez un moule de film alimentaire et tassez-y la glace. Placez au congélateur au moins 2 heures.",
+      "Découpez la génoise légèrement plus grande que le bloc de glace et posez-la sur une plaque.",
+      "Démoulez la glace sur la génoise et remettez au congélateur 15 minutes.",
+      "Montez les blancs en neige et ajoutez le sucre progressivement jusqu’à obtenir une meringue très ferme et brillante.",
+      "Recouvrez entièrement la glace de meringue, sans laisser de trou.",
+      "Passez 3 à 5 minutes dans un four à 240 °C ou colorez au chalumeau. Flambez éventuellement avec l’alcool chauffé et servez immédiatement."
+    ],
+    "course": "dessert",
+    "kind": "dessert",
+    "hotCold": "variable",
+    "richness": "gourmand",
+    "core": [
+      "génoise ronde ou rectangulaire",
+      "glace vanille",
+      "blancs d’œufs"
+    ]
+  },
+  {
+    "id": "bistrot-ext-38",
+    "n": "Soufflé au Grand Marnier",
+    "m": "Four",
+    "t": "45 min",
+    "s": [
+      "printemps",
+      "été",
+      "automne",
+      "hiver"
+    ],
+    "servings": 4,
+    "cuisine": "française",
+    "family": "souffle-grand-marnier",
+    "collections": [
+      "bistrot-brasserie"
+    ],
+    "editorial": "pas-a-pas-debutant",
+    "i": [
+      {
+        "q": 30,
+        "u": "g",
+        "n": "beurre",
+        "k": "beurre"
+      },
+      {
+        "q": 30,
+        "u": "g",
+        "n": "farine",
+        "k": "farine"
+      },
+      {
+        "q": 25,
+        "u": "cl",
+        "n": "lait entier",
+        "k": "lait entier"
+      },
+      {
+        "q": 4,
+        "u": "",
+        "n": "œufs",
+        "k": "œufs"
+      },
+      {
+        "q": 80,
+        "u": "g",
+        "n": "sucre",
+        "k": "sucre"
+      },
+      {
+        "q": 6,
+        "u": "cl",
+        "n": "Grand Marnier",
+        "k": "Grand Marnier"
+      },
+      {
+        "q": 1,
+        "u": "",
+        "n": "orange non traitée",
+        "k": "orange non traitée"
+      },
+      {
+        "q": 20,
+        "u": "g",
+        "n": "sucre pour les moules",
+        "k": "sucre pour les moules"
+      }
+    ],
+    "p": [
+      "Préchauffez le four à 200 °C. Beurrez quatre ramequins et chemisez-les avec le sucre.",
+      "Faites un roux avec 20 g de beurre et la farine, versez le lait et faites épaissir 4 minutes.",
+      "Hors du feu, ajoutez zestes d’orange, Grand Marnier puis jaunes d’œufs.",
+      "Montez les blancs en neige et ajoutez progressivement le sucre.",
+      "Incorporez délicatement les blancs à la base parfumée.",
+      "Remplissez les ramequins aux trois quarts et enfournez 14 à 16 minutes. Servez sans attendre."
+    ],
+    "course": "dessert",
+    "kind": "dessert",
+    "hotCold": "chaud",
+    "richness": "gourmand",
+    "core": [
+      "beurre",
+      "farine",
+      "lait entier"
+    ]
+  },
+  {
+    "id": "bistrot-ext-39",
+    "n": "Mont-Blanc aux marrons",
+    "m": "Sans cuisson",
+    "t": "45 min",
+    "s": [
+      "automne",
+      "hiver",
+      "printemps"
+    ],
+    "servings": 6,
+    "cuisine": "française",
+    "family": "mont-blanc-marrons",
+    "collections": [
+      "bistrot-brasserie"
+    ],
+    "editorial": "pas-a-pas-debutant",
+    "i": [
+      {
+        "q": 500,
+        "u": "g",
+        "n": "crème de marrons",
+        "k": "crème de marrons"
+      },
+      {
+        "q": 250,
+        "u": "g",
+        "n": "purée de marrons non sucrée",
+        "k": "purée de marrons non sucrée"
+      },
+      {
+        "q": 30,
+        "u": "g",
+        "n": "beurre mou",
+        "k": "beurre mou"
+      },
+      {
+        "q": 2,
+        "u": "c. à soupe",
+        "n": "rhum facultatif",
+        "k": "rhum facultatif"
+      },
+      {
+        "q": 30,
+        "u": "cl",
+        "n": "crème liquide entière",
+        "k": "crème liquide entière"
+      },
+      {
+        "q": 30,
+        "u": "g",
+        "n": "sucre glace",
+        "k": "sucre glace"
+      },
+      {
+        "q": 6,
+        "u": "",
+        "n": "petites meringues ou 1 grand disque de meringue",
+        "k": "petites meringues ou 1 grand disque de meringue"
+      }
+    ],
+    "p": [
+      "Mélangez crème de marrons, purée de marrons, beurre et rhum jusqu’à obtenir une préparation lisse.",
+      "Placez-la 20 minutes au frais puis mettez-la dans une poche munie d’une douille fine.",
+      "Montez la crème très froide avec le sucre glace en chantilly ferme.",
+      "Déposez une meringue dans chaque assiette ou coupe.",
+      "Ajoutez une belle cuillerée de chantilly puis pochez la crème de marrons en longs vermicelles.",
+      "Réfrigérez 30 minutes avant de servir."
+    ],
+    "course": "dessert",
+    "kind": "dessert",
+    "hotCold": "froid",
+    "richness": "gourmand",
+    "core": [
+      "crème de marrons",
+      "purée de marrons non sucrée",
+      "beurre mou"
+    ]
+  },
+  {
+    "id": "bistrot-ext-40",
+    "n": "Poires au vin rouge épicé",
+    "m": "Casserole",
+    "t": "55 min + repos",
+    "s": [
+      "automne",
+      "hiver",
+      "printemps"
+    ],
+    "servings": 4,
+    "cuisine": "française",
+    "family": "poires-vin-rouge",
+    "collections": [
+      "bistrot-brasserie"
+    ],
+    "editorial": "pas-a-pas-debutant",
+    "i": [
+      {
+        "q": 4,
+        "u": "",
+        "n": "poires fermes",
+        "k": "poires fermes"
+      },
+      {
+        "q": 75,
+        "u": "cl",
+        "n": "vin rouge fruité",
+        "k": "vin rouge fruité"
+      },
+      {
+        "q": 120,
+        "u": "g",
+        "n": "sucre",
+        "k": "sucre"
+      },
+      {
+        "q": 1,
+        "u": "",
+        "n": "bâton de cannelle",
+        "k": "bâton de cannelle"
+      },
+      {
+        "q": 2,
+        "u": "",
+        "n": "étoiles de badiane",
+        "k": "étoiles de badiane"
+      },
+      {
+        "q": 1,
+        "u": "",
+        "n": "orange non traitée",
+        "k": "orange non traitée"
+      },
+      {
+        "q": 1,
+        "u": "",
+        "n": "citron",
+        "k": "citron"
+      },
+      {
+        "q": 1,
+        "u": "",
+        "n": "gousse de vanille",
+        "k": "gousse de vanille"
+      }
+    ],
+    "p": [
+      "Épluchez les poires en gardant la queue. Prélevez deux bandes de zeste d’orange et une de citron.",
+      "Portez le vin, le sucre, les zestes, les épices et la vanille à frémissement 5 minutes.",
+      "Ajoutez les poires et pochez-les 25 à 35 minutes selon leur maturité, en les retournant régulièrement.",
+      "Retirez les poires et faites réduire le vin jusqu’à obtenir un sirop léger.",
+      "Remettez les poires dans le sirop et laissez refroidir.",
+      "Réfrigérez au moins 4 heures et servez frais ou à température ambiante."
+    ],
+    "course": "dessert",
+    "kind": "dessert",
+    "hotCold": "froid",
+    "richness": "normal",
+    "core": [
+      "poires fermes",
+      "vin rouge fruité",
+      "sucre"
+    ]
+  }
+]
