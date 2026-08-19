@@ -12,7 +12,7 @@
  */
 
 const APP_ID = "clair-repas";
-const RELEASE = "8.0.0-foundation.9";
+const RELEASE = "8.0.0-foundation.10";
 const DATA_SCHEMA = 2;
 const BOOT_GRACE_MS = 18000;
 
