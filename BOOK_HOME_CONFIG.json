@@ -1,0 +1,134 @@
+{
+  "version": "Chantier 6",
+  "title": "Le Livre",
+  "subtitle": "Toutes les recettes Clair Repas, une seule fois, à explorer selon vos envies.",
+  "principles": [
+    "Aucune nouvelle recette",
+    "Aucune suppression de recette",
+    "Une recette canonique peut apparaître dans plusieurs collections",
+    "Les collections éditoriales et les filtres de navigation restent distincts",
+    "Les données personnelles existantes ne sont jamais migrées ni réécrites",
+    "Les risottos restent inchangés"
+  ],
+  "primaryCollections": [
+    {
+      "matchTitles": [
+        "Grands classiques"
+      ],
+      "icon": "⭐"
+    },
+    {
+      "matchTitles": [
+        "Bistrot & Brasserie",
+        "Bistrot & brasserie"
+      ],
+      "icon": "🍷"
+    },
+    {
+      "matchTitles": [
+        "Tables de France",
+        "Cuisine régionale"
+      ],
+      "icon": "🇫🇷"
+    },
+    {
+      "matchTitles": [
+        "Grands Chefs",
+        "Grands chefs"
+      ],
+      "icon": "👨‍🍳"
+    },
+    {
+      "matchTitles": [
+        "Cuisine familiale",
+        "Cuisine familiale & plats du dimanche"
+      ],
+      "icon": "🏡"
+    },
+    {
+      "matchTitles": [
+        "Petits gourmands"
+      ],
+      "icon": "🧒"
+    }
+  ],
+  "typeFilters": [
+    {
+      "id": "starters",
+      "label": "Entrées",
+      "icon": "🥗"
+    },
+    {
+      "id": "meat",
+      "label": "Viandes",
+      "icon": "🥩"
+    },
+    {
+      "id": "seafood",
+      "label": "Poissons & fruits de mer",
+      "icon": "🐟"
+    },
+    {
+      "id": "pasta-risotto",
+      "label": "Pâtes & risottos",
+      "icon": "🍝"
+    },
+    {
+      "id": "vegetarian",
+      "label": "Plats végétariens",
+      "icon": "🥬"
+    },
+    {
+      "id": "terrines",
+      "label": "Terrines, pâtés & rillettes",
+      "icon": "🍞"
+    },
+    {
+      "id": "desserts",
+      "label": "Desserts",
+      "icon": "🍰"
+    },
+    {
+      "id": "sauces-sides",
+      "label": "Sauces & accompagnements",
+      "icon": "🥣"
+    },
+    {
+      "id": "breakfast-brunch",
+      "label": "Petits-déjeuners & brunchs",
+      "icon": "☕"
+    }
+  ],
+  "moodFilters": [
+    {
+      "id": "quick",
+      "label": "Rapide",
+      "icon": "⏱️"
+    },
+    {
+      "id": "light",
+      "label": "Léger",
+      "icon": "🌿"
+    },
+    {
+      "id": "comfort",
+      "label": "Réconfortant",
+      "icon": "🫶"
+    },
+    {
+      "id": "sharing",
+      "label": "À partager",
+      "icon": "🤝"
+    },
+    {
+      "id": "seasonal",
+      "label": "De saison",
+      "icon": "🍂"
+    },
+    {
+      "id": "hosting",
+      "label": "Pour recevoir",
+      "icon": "✨"
+    }
+  ]
+}

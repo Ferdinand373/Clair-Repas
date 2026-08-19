@@ -1,0 +1,84 @@
+/* CLAIR REPAS — CHANTIER 6 — ACCUEIL DU LIVRE
+   Mobile first. Aucun framework externe.
+*/
+.cr-book-home{
+  --cr-book-gap:14px;
+  width:100%;
+  max-width:1100px;
+  margin:0 auto;
+  padding:18px 14px 34px;
+  box-sizing:border-box;
+}
+.cr-book-header{margin:2px 0 16px}
+.cr-book-heading{margin:0;font-size:clamp(1.65rem,5vw,2.25rem);line-height:1.1}
+.cr-book-subtitle{margin:8px 0 0;opacity:.72;line-height:1.45}
+.cr-book-search{position:relative;margin:18px 0 26px}
+.cr-book-search-input{
+  width:100%;min-height:50px;padding:12px 16px;border:1px solid rgba(127,127,127,.32);
+  border-radius:16px;background:var(--card-bg,rgba(255,255,255,.92));color:inherit;
+  font:inherit;font-size:1rem;box-sizing:border-box;
+}
+.cr-book-search-input:focus{outline:2px solid currentColor;outline-offset:2px}
+.cr-book-search-results{
+  margin-top:10px;padding:12px;border:1px solid rgba(127,127,127,.22);
+  border-radius:16px;background:var(--card-bg,#fff);
+}
+.cr-book-results-head{display:flex;justify-content:space-between;margin-bottom:10px}
+.cr-book-results-grid{display:grid;grid-template-columns:1fr;gap:8px}
+.cr-book-recipe-card{
+  display:flex;flex-direction:column;gap:4px;width:100%;padding:12px;text-align:left;
+  border:1px solid rgba(127,127,127,.22);border-radius:12px;background:transparent;color:inherit;
+}
+.cr-book-recipe-title{font-weight:700}
+.cr-book-recipe-meta{font-size:.88rem;opacity:.68}
+.cr-book-section{margin:28px 0}
+.cr-book-section-title{margin:0;font-size:1.25rem}
+.cr-book-section-intro{margin:5px 0 13px;opacity:.68;line-height:1.4}
+.cr-book-collection-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.cr-book-collection-card{
+  display:flex;flex-direction:column;align-items:flex-start;min-height:122px;padding:14px;
+  border:1px solid rgba(127,127,127,.22);border-radius:16px;background:var(--card-bg,rgba(255,255,255,.88));
+  color:inherit;text-align:left;
+}
+.cr-book-collection-icon{font-size:1.55rem;margin-bottom:9px}
+.cr-book-collection-title{font-weight:750;line-height:1.2}
+.cr-book-collection-desc{margin-top:6px;font-size:.82rem;line-height:1.32;opacity:.66}
+.cr-book-tabs{display:flex;gap:7px;overflow-x:auto;padding:2px 0 10px;scrollbar-width:none}
+.cr-book-tabs::-webkit-scrollbar{display:none}
+.cr-book-tab{
+  flex:0 0 auto;padding:9px 12px;border:1px solid rgba(127,127,127,.28);
+  border-radius:999px;background:transparent;color:inherit;font:inherit;
+}
+.cr-book-tab.is-active{font-weight:750;border-color:currentColor}
+.cr-book-panel{padding-top:4px}
+.cr-book-chip-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.cr-book-chip{
+  min-height:46px;padding:9px 11px;border:1px solid rgba(127,127,127,.22);
+  border-radius:13px;background:var(--card-bg,rgba(255,255,255,.78));color:inherit;
+  text-align:left;font:inherit;
+}
+.cr-book-collection-grid--compact .cr-book-collection-card{min-height:90px}
+.cr-book-personal{
+  display:flex;align-items:center;justify-content:space-between;gap:14px;
+  padding:16px;border:1px solid rgba(127,127,127,.22);border-radius:18px;
+}
+.cr-book-personal .cr-book-section-intro{margin-bottom:0}
+.cr-book-personal-button{
+  flex:0 0 auto;padding:10px 13px;border:1px solid currentColor;border-radius:12px;
+  background:transparent;color:inherit;font:inherit;font-weight:700;
+}
+.cr-book-empty{text-align:center;padding:18px 10px;opacity:.72}
+.cr-book-empty-icon{font-size:1.5rem}
+.cr-book-home button{cursor:pointer}
+.cr-book-home button:focus-visible{outline:2px solid currentColor;outline-offset:2px}
+
+@media (min-width:700px){
+  .cr-book-home{padding:24px 22px 44px}
+  .cr-book-collection-grid{grid-template-columns:repeat(3,1fr)}
+  .cr-book-chip-grid{grid-template-columns:repeat(3,1fr)}
+  .cr-book-results-grid{grid-template-columns:1fr 1fr}
+}
+@media (min-width:980px){
+  .cr-book-collection-grid--compact{grid-template-columns:repeat(4,1fr)}
+  .cr-book-chip-grid{grid-template-columns:repeat(4,1fr)}
+}

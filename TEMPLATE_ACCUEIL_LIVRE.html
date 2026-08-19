@@ -1,0 +1,40 @@
+<!-- CLAIR REPAS — CHANTIER 6
+Ce bloc remplace uniquement la zone d'accueil actuelle du Livre.
+Il ne remplace PAS les écrans de recette ni les données.
+-->
+<section id="clair-book-home" aria-label="Le Livre Clair Repas"></section>
+
+<!-- Exemple d'initialisation.
+     Adapter uniquement les fonctions entre commentaires "À RELIER".
+     Ne pas inventer de nouvelles clés localStorage.
+-->
+<script>
+(async function(){
+  const config = await fetch('./BOOK_HOME_CONFIG.json').then(r => r.json());
+
+  CRBookHome.init({
+    mount: document.getElementById('clair-book-home'),
+
+    // À RELIER : retourner les recettes canoniques existantes, sans les recopier.
+    getRecipes: () => window.getAllClairRepasRecipes
+      ? window.getAllClairRepasRecipes()
+      : [],
+
+    // À RELIER : passer le tableau BOOK_SHELVES existant.
+    bookShelves: window.BOOK_SHELVES || [],
+
+    config,
+
+    // À RELIER aux fonctions déjà utilisées dans l'application.
+    openRecipe: (recipe) => window.openClairRecipe?.(recipe),
+    openCollection: (shelf) => window.openBookShelf?.(shelf),
+
+    // À RELIER aux filtres existants. Ne pas créer de doublons de recettes.
+    filterByType: (id) => window.openBookTypeFilter?.(id),
+    filterByMood: (id) => window.openBookMoodFilter?.(id),
+
+    // OPTIONNEL : brancher uniquement si "Mon Livre" existe déjà.
+    // openMyBook: () => window.openMyBook?.()
+  });
+})();
+</script>
