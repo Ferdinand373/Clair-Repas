@@ -1,7 +1,7 @@
 "use strict";
 
 /*
- * Clair V8 Fondation — FOUNDATION.9 CANDIDATE PRODUCTION
+ * Clair V8 Fondation — FOUNDATION.9 PRODUCTION HANDOVER PREPARED
  *
  * Objectifs :
  * - mise à jour atomique ;
@@ -12,8 +12,13 @@
  */
 
 const APP_ID = "clair-repas";
-const RELEASE = "8.0.0-foundation.10";
+const RELEASE = "8.0.0-foundation.11";
+const FOUNDATION_LABEL = RELEASE.slice(RELEASE.lastIndexOf("-") + 1).toUpperCase();
 const DATA_SCHEMA = 2;
+const CLOUD_APP_ID = "clair-repas";
+const CLOUD_ENABLED = false;
+const CLOUD_DIRECT_SYNC_PROTOCOL = "clair-personal-sync/v1";
+const CORE_REVISION = "sha256:70a8c5a467160d4de11b02686bfd394e7def0815d24664ef6790e48c49f75680";
 const BOOT_GRACE_MS = 18000;
 
 function fnv1a(text) {
@@ -27,8 +32,12 @@ function fnv1a(text) {
 
 const SCOPE_PATH = new URL(self.registration.scope).pathname;
 const SCOPE_ID = fnv1a(SCOPE_PATH);
+const CLOUD_CONFIG_REVISION = fnv1a(
+  `${CLOUD_APP_ID}\0${CLOUD_ENABLED}\0${CLOUD_DIRECT_SYNC_PROTOCOL}`
+);
 const CACHE_PREFIX = `clair-v8-${APP_ID}-${SCOPE_ID}-app-`;
-const CURRENT_CACHE = `${CACHE_PREFIX}${RELEASE}`;
+const CURRENT_CACHE =
+  `${CACHE_PREFIX}${RELEASE}-${CORE_REVISION.slice(7, 19)}-${CLOUD_CONFIG_REVISION}`;
 const META_CACHE = `clair-v8-${APP_ID}-${SCOPE_ID}-meta`;
 const META_URL = new URL("./__clair_v8_meta__", self.registration.scope).toString();
 const STATUS_URL = new URL("./__clair_v8_status__", self.registration.scope).toString();
@@ -39,8 +48,8 @@ const LEGACY_APP_PREFIX = "clair-repas-app-";
 const LEGACY_META_CACHE = "clair-repas-v8-meta";
 const LEGACY_META_URL = META_URL;
 
-// Cache de la V7.5 actuellement utilisée en production.
-// Il est copié avant activation de V8 afin de conserver un parachute réel.
+// Cache de la V7.5 actuellement utilisée en production. Il reste admissible
+// comme tout premier parachute même s'il précède les scripts Foundation.
 const PRE_V8_STABLE_CACHES = ["clair-repas-v75-grands-chefs-20260816"];
 
 const CORE_FILES = [
@@ -49,9 +58,34 @@ const CORE_FILES = [
   "./manifest.webmanifest",
   "./icon-192.png",
   "./icon-512.png",
+  "./v8/clair-sync.js",
+  "./v8/vendor/supabase-js-2.111.0.js",
   "./v8/clair-foundation.js",
+  "./v8/clair-cloud-sync.js",
   "./v8/version.json"
 ];
+const CLOUD_ONLY_CORE_FILES = new Set([
+  "./v8/vendor/supabase-js-2.111.0.js",
+  "./v8/clair-cloud-sync.js"
+]);
+const LOCAL_SYNC_CORE_FILES = CORE_FILES.filter(
+  path => !CLOUD_ONLY_CORE_FILES.has(path)
+);
+const FOUNDATION_CORE_FILES = LOCAL_SYNC_CORE_FILES.filter(
+  path => path !== "./v8/clair-sync.js"
+);
+const CORE_DIGESTS = Object.freeze({
+  "./": "sha256:e2ad5e2827eddb45f8dbe623ee21e29b4bc7a697f92116ac5630edbc2df40c07",
+  "./index.html": "sha256:e2ad5e2827eddb45f8dbe623ee21e29b4bc7a697f92116ac5630edbc2df40c07",
+  "./manifest.webmanifest": "sha256:49b30612587c379d6bb8c6d9ade4e299ff244b41f0bd03e2fcca0a5495834e2a",
+  "./icon-192.png": "sha256:8d0d516fdcb7d76a40df62dc92d4f312a1557b9e105917026780e465c32fa9f8",
+  "./icon-512.png": "sha256:334f3158730e33ad8232ea229a39f9193b45274f1a72b2f55467b1e625924f70",
+  "./v8/clair-sync.js": "sha256:10070c2b0aec6be9e7cc0a832dfcd94fc6a242c956966b4ac6c9729aec3b2e75",
+  "./v8/vendor/supabase-js-2.111.0.js": "sha256:7396012594aa6d23bb373ebc25d1080bf3672fa847c3713f756520b40fd13453",
+  "./v8/clair-foundation.js": "sha256:15c675dc6dd004b3f16f752fd66c0fc18733ca678eaa5008eaf2ff0b769a9807",
+  "./v8/clair-cloud-sync.js": "sha256:32203d7914605e43b341f48670c077c6d71c30753e2d2618378242f36c40ff6f",
+  "./v8/version.json": "sha256:49aadde0a56d207b9fc7967fdc4d298e5cf9d8974eef008df39277d96720e0c4"
+});
 
 function appIndexUrl() {
   return new URL("./index.html", self.registration.scope).toString();
@@ -71,15 +105,42 @@ async function cacheExists(cacheName) {
   return names.includes(cacheName);
 }
 
-async function cacheHasIndex(cacheName) {
+async function requiredCoreFiles(cacheName, cache) {
+  if (cacheName === CURRENT_CACHE) return CORE_FILES;
+
+  // Chaque génération de bootstrap conserve son propre ensemble atomique :
+  // Foundation.8, Foundation.9 local, puis Foundation.9 avec transport cloud.
+  try {
+    const shell =
+      (await cache.match(appIndexUrl())) ||
+      (await cache.match(appRootUrl()));
+    if (!shell) return FOUNDATION_CORE_FILES;
+    const html = await shell.clone().text();
+    const hasSync = html.includes("data-clair-v8-sync");
+    const hasFoundation = html.includes("data-clair-v8-foundation");
+    const hasCloud = html.includes("data-clair-v8-cloud-sync");
+    if (!hasSync && !hasFoundation && !hasCloud) return [];
+    if (hasCloud && hasSync && hasFoundation) return CORE_FILES;
+    if (hasCloud || (hasSync && !hasFoundation)) return null;
+    if (hasSync) return LOCAL_SYNC_CORE_FILES;
+    return FOUNDATION_CORE_FILES;
+  } catch (_) {
+    return CORE_FILES;
+  }
+}
+
+async function cacheHasCore(cacheName, requiredFiles = null) {
   if (!cacheName) return false;
   try {
     if (!(await cacheExists(cacheName))) return false;
     const cache = await caches.open(cacheName);
-    return Boolean(
-      (await cache.match(appIndexUrl())) ||
-      (await cache.match(appRootUrl()))
-    );
+    const files = requiredFiles || await requiredCoreFiles(cacheName, cache);
+    if (!files) return false;
+    for (const path of files) {
+      const url = new URL(path, self.registration.scope).toString();
+      if (!(await cache.match(url, { ignoreSearch: true }))) return false;
+    }
+    return true;
   } catch (_) {
     return false;
   }
@@ -131,8 +192,8 @@ async function writeState(state) {
 
 async function copyCache(sourceName, targetName) {
   if (!sourceName || !targetName) return false;
-  if (!(await cacheHasIndex(sourceName))) return false;
-  if (await cacheHasIndex(targetName)) return true;
+  if (!(await cacheHasCore(sourceName))) return false;
+  if (await cacheHasCore(targetName)) return true;
 
   await caches.delete(targetName);
   const source = await caches.open(sourceName);
@@ -145,7 +206,7 @@ async function copyCache(sourceName, targetName) {
       if (response) await target.put(request, response.clone());
     }
 
-    if (!(await cacheHasIndex(targetName))) {
+    if (!(await cacheHasCore(targetName))) {
       throw new Error("V8 migration: fallback cache invalid");
     }
     return true;
@@ -174,12 +235,12 @@ async function chooseLegacyHealthyCache(legacyState = {}) {
   for (const candidate of preferred) {
     if (!candidate || candidate === failed) continue;
     if (!available.includes(candidate)) continue;
-    if (await cacheHasIndex(candidate)) return candidate;
+    if (await cacheHasCore(candidate)) return candidate;
   }
 
   for (const candidate of available) {
     if (candidate === failed) continue;
-    if (await cacheHasIndex(candidate)) return candidate;
+    if (await cacheHasCore(candidate)) return candidate;
   }
 
   return null;
@@ -189,7 +250,7 @@ async function choosePreV8StableCache() {
   const names = await caches.keys();
   for (const candidate of PRE_V8_STABLE_CACHES) {
     if (!names.includes(candidate)) continue;
-    if (await cacheHasIndex(candidate)) return candidate;
+    if (await cacheHasCore(candidate)) return candidate;
   }
   return null;
 }
@@ -197,7 +258,7 @@ async function choosePreV8StableCache() {
 async function migrateLegacyFallback() {
   let state = await readState();
 
-  if (state.lastHealthyCache && (await cacheHasIndex(state.lastHealthyCache))) {
+  if (state.lastHealthyCache && (await cacheHasCore(state.lastHealthyCache))) {
     return state;
   }
 
@@ -205,8 +266,6 @@ async function migrateLegacyFallback() {
   let migrationSource = await chooseLegacyHealthyCache(legacyState);
   let migrationKind = "v8-legacy";
 
-  // Première arrivée de V8 en production : si aucun ancien cache V8 n'existe,
-  // on conserve explicitement la V7.5 stable actuellement active.
   if (!migrationSource) {
     migrationSource = await choosePreV8StableCache();
     migrationKind = "v7.5-stable";
@@ -229,7 +288,7 @@ async function migrateLegacyFallback() {
       state.release ||
       (migrationKind === "v7.5-stable" ? "7.5" : legacyState.release || null),
     activeCache:
-      state.activeCache && (await cacheHasIndex(state.activeCache))
+      state.activeCache && (await cacheHasCore(state.activeCache))
         ? state.activeCache
         : migratedCache,
     previousCache: state.previousCache || null,
@@ -245,8 +304,20 @@ async function migrateLegacyFallback() {
   return state;
 }
 
+function syncTag() {
+  return `<script src="./v8/clair-sync.js" data-clair-v8-sync data-clair-app="${APP_ID}" data-clair-release="${RELEASE}" data-clair-schema="${DATA_SCHEMA}" data-clair-core="${CORE_REVISION}"></script>`;
+}
+
 function foundationTag() {
-  return `<script src="./v8/clair-foundation.js" data-clair-v8-foundation data-clair-app="${APP_ID}" data-clair-release="${RELEASE}" data-clair-schema="${DATA_SCHEMA}"></script>`;
+  return `<script src="./v8/clair-foundation.js" data-clair-v8-foundation data-clair-app="${APP_ID}" data-clair-release="${RELEASE}" data-clair-schema="${DATA_SCHEMA}" data-clair-core="${CORE_REVISION}"></script>`;
+}
+
+function cloudSyncTag() {
+  return `<script src="./v8/clair-cloud-sync.js" data-clair-v8-cloud-sync data-clair-app="${APP_ID}" data-clair-release="${RELEASE}" data-clair-schema="${DATA_SCHEMA}" data-clair-core="${CORE_REVISION}" data-clair-cloud-app="${CLOUD_APP_ID}" data-clair-cloud-enabled="${CLOUD_ENABLED}" data-clair-direct-sync="${CLOUD_DIRECT_SYNC_PROTOCOL}"></script>`;
+}
+
+function runtimeTags() {
+  return `${syncTag()}\n${foundationTag()}\n${cloudSyncTag()}`;
 }
 
 function responseInit(response) {
@@ -260,16 +331,23 @@ function responseInit(response) {
   };
 }
 
-async function injectFoundation(response) {
+async function injectRuntime(response) {
   const text = await response.text();
-  if (text.includes("data-clair-v8-foundation")) {
+  const hasSync = text.includes("data-clair-v8-sync");
+  const hasFoundation = text.includes("data-clair-v8-foundation");
+  const hasCloud = text.includes("data-clair-v8-cloud-sync");
+  const markerCount = Number(hasSync) + Number(hasFoundation) + Number(hasCloud);
+  if (markerCount > 0 && markerCount < 3) {
+    throw new Error("V8 install: incomplete runtime bootstrap in HTML");
+  }
+  if (markerCount === 3) {
     return new Response(text, responseInit(response));
   }
 
-  const tag = foundationTag();
+  const tags = runtimeTags();
   const html = /<head(?:\s[^>]*)?>/i.test(text)
-    ? text.replace(/<head(?:\s[^>]*)?>/i, match => `${match}\n${tag}`)
-    : `${tag}\n${text}`;
+    ? text.replace(/<head(?:\s[^>]*)?>/i, match => `${match}\n${tags}`)
+    : `${tags}\n${text}`;
 
   return new Response(html, responseInit(response));
 }
@@ -289,6 +367,31 @@ async function validateVersionManifest(response) {
   }
 }
 
+function isTextCorePath(path) {
+  return path === "./" || /\.(?:html|js|json|webmanifest|txt|text)$/i.test(path);
+}
+
+async function responseDigest(path, response) {
+  let bytes = new Uint8Array(await response.clone().arrayBuffer());
+  if (isTextCorePath(path)) {
+    const normalized = new TextDecoder().decode(bytes).replace(/\r\n?/g, "\n");
+    bytes = new TextEncoder().encode(normalized);
+  }
+  const digest = await crypto.subtle.digest("SHA-256", bytes);
+  return `sha256:${Array.from(new Uint8Array(digest))
+    .map(byte => byte.toString(16).padStart(2, "0"))
+    .join("")}`;
+}
+
+async function validateCoreDigest(path, response) {
+  const expected = CORE_DIGESTS[path];
+  if (!expected) throw new Error(`V8 install: missing digest for ${path}`);
+  const actual = await responseDigest(path, response);
+  if (actual !== expected) {
+    throw new Error(`V8 install: digest mismatch for ${path}`);
+  }
+}
+
 async function fetchRequired(path) {
   const url = new URL(path, self.registration.scope).toString();
   const response = await fetch(
@@ -302,18 +405,35 @@ async function fetchRequired(path) {
     throw new Error(`V8 install: ${path} -> HTTP ${response.status}`);
   }
 
+  await validateCoreDigest(path, response);
+
   if (path === "./v8/version.json") {
     await validateVersionManifest(response);
   }
 
   if (path === "./" || path === "./index.html") {
-    return injectFoundation(response);
+    return injectRuntime(response);
   }
 
   return response;
 }
 
 async function buildCandidateCache() {
+  const state = await readState();
+  if (state.failedCache === CURRENT_CACHE) {
+    throw new Error("V8 install: candidate cache is quarantined after a failed boot");
+  }
+  if (await cacheHasCore(CURRENT_CACHE)) return;
+
+  const referenced = new Set([
+    state.activeCache,
+    state.previousCache,
+    state.lastHealthyCache
+  ].filter(Boolean));
+  if (referenced.has(CURRENT_CACHE)) {
+    throw new Error("V8 install: refusing to replace a referenced cache");
+  }
+
   await caches.delete(CURRENT_CACHE);
   const cache = await caches.open(CURRENT_CACHE);
 
@@ -324,7 +444,7 @@ async function buildCandidateCache() {
       await cache.put(url, response.clone());
     }
 
-    if (!(await cacheHasIndex(CURRENT_CACHE))) {
+    if (!(await cacheHasCore(CURRENT_CACHE))) {
       throw new Error("V8 install: candidate cache invalid");
     }
   } catch (error) {
@@ -348,11 +468,11 @@ async function choosePreviousCache(state = {}) {
   for (const candidate of preferred) {
     if (!candidate || candidate === CURRENT_CACHE) continue;
     if (!available.includes(candidate)) continue;
-    if (await cacheHasIndex(candidate)) return candidate;
+    if (await cacheHasCore(candidate)) return candidate;
   }
 
   for (const candidate of available) {
-    if (await cacheHasIndex(candidate)) return candidate;
+    if (await cacheHasCore(candidate)) return candidate;
   }
 
   return null;
@@ -362,7 +482,7 @@ async function markCandidateActive() {
   const previousState = await readState();
   const previousCache = await choosePreviousCache(previousState);
 
-  if (!(await cacheHasIndex(CURRENT_CACHE))) {
+  if (!(await cacheHasCore(CURRENT_CACHE))) {
     throw new Error("V8 activate: candidate cache invalid");
   }
 
@@ -376,6 +496,9 @@ async function markCandidateActive() {
     rollbackReason: null,
     probation: true,
     bootFailures: 0,
+    // La probation commence réellement à la première navigation servie. Une
+    // activation sans client ne doit pas faire expirer une version jamais testée.
+    bootAttempted: false,
     bootStartedAt: 0,
     activatedAt: new Date().toISOString()
   });
@@ -384,11 +507,11 @@ async function markCandidateActive() {
 async function rollbackIfNeeded(state, reason = "boot-failed") {
   let fallback = state?.previousCache || state?.lastHealthyCache || null;
 
-  if (!fallback || fallback === CURRENT_CACHE || !(await cacheHasIndex(fallback))) {
+  if (!fallback || fallback === CURRENT_CACHE || !(await cacheHasCore(fallback))) {
     fallback = await choosePreviousCache(state || {});
   }
 
-  if (!fallback || fallback === CURRENT_CACHE || !(await cacheHasIndex(fallback))) {
+  if (!fallback || fallback === CURRENT_CACHE || !(await cacheHasCore(fallback))) {
     return state;
   }
 
@@ -398,6 +521,7 @@ async function rollbackIfNeeded(state, reason = "boot-failed") {
     previousCache: fallback,
     failedCache: CURRENT_CACHE,
     probation: false,
+    bootAttempted: false,
     bootStartedAt: 0,
     rollbackReason: reason,
     rolledBackAt: new Date().toISOString()
@@ -407,12 +531,13 @@ async function rollbackIfNeeded(state, reason = "boot-failed") {
 async function currentServingState() {
   let state = await readState();
 
-  if (!state.activeCache || !(await cacheHasIndex(state.activeCache))) {
+  if (!state.activeCache || !(await cacheHasCore(state.activeCache))) {
     state = await rollbackIfNeeded(state, "invalid-active-cache");
   }
 
   if (
     state.probation &&
+    state.bootAttempted &&
     state.bootStartedAt &&
     Date.now() - Number(state.bootStartedAt) > BOOT_GRACE_MS
   ) {
@@ -420,6 +545,30 @@ async function currentServingState() {
   }
 
   return state;
+}
+
+async function startBootAttemptIfNeeded(state) {
+  if (
+    !state?.probation ||
+    state.activeCache !== CURRENT_CACHE ||
+    state.bootStartedAt
+  ) return state;
+
+  return writeState({
+    ...state,
+    bootAttempted: true,
+    bootStartedAt: Date.now()
+  });
+}
+
+async function startBootAttemptSafely(state) {
+  try {
+    return await startBootAttemptIfNeeded(state);
+  } catch (_) {
+    // Une panne du méta-cache ne doit ni casser la navigation, ni mélanger un
+    // ancien HTML avec les assets du candidat. On conserve donc le même cache.
+    return state;
+  }
 }
 
 async function serveFromCache(cacheName, request) {
@@ -481,18 +630,18 @@ async function statusResponse() {
     state.activeCache === CURRENT_CACHE &&
     state.lastHealthyCache === CURRENT_CACHE &&
     state.probation === false &&
-    (await cacheHasIndex(CURRENT_CACHE))
+    (await cacheHasCore(CURRENT_CACHE))
   );
   const rolledBack = Boolean(
     state.failedCache === CURRENT_CACHE &&
     state.activeCache &&
     state.activeCache !== CURRENT_CACHE &&
     state.probation === false &&
-    (await cacheHasIndex(state.activeCache))
+    (await cacheHasCore(state.activeCache))
   );
 
   const title = currentHealthy
-    ? "FOUNDATION.9 SAINE — production prête"
+    ? `${FOUNDATION_LABEL} SAINE — mise à jour validée`
     : rolledBack
       ? "RETOUR AUTOMATIQUE — version précédente restaurée"
       : "MISE À JOUR EN COURS OU À VÉRIFIER";
@@ -500,6 +649,7 @@ async function statusResponse() {
   const result = currentHealthy ? "HEALTHY" : rolledBack ? "ROLLBACK" : "PENDING";
   const details = {
     release: RELEASE,
+    coreRevision: CORE_REVISION,
     result,
     scopePath: SCOPE_PATH,
     scopeId: SCOPE_ID,
@@ -509,6 +659,7 @@ async function statusResponse() {
     failedCache: state.failedCache || null,
     rollbackReason: state.rollbackReason || null,
     probation: state.probation,
+    bootAttempted: Boolean(state.bootAttempted),
     bootFailures: state.bootFailures,
     migratedFromLegacy: state.migratedFromLegacy || null,
     caches: cacheNames.filter(name => name === META_CACHE || isAppCache(name))
@@ -519,7 +670,7 @@ async function statusResponse() {
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Clair V8 — statut foundation.9</title>
+<title>Clair V8 — statut ${escapeHtml(FOUNDATION_LABEL.toLowerCase())}</title>
 <style>
   body { font-family: system-ui, sans-serif; margin: 0; padding: 32px; background: #f5f7f9; color: #173042; }
   .card { max-width: 800px; margin: 40px auto; background: white; border-radius: 18px; padding: 28px; box-shadow: 0 10px 35px rgba(0,0,0,.08); }
@@ -533,7 +684,7 @@ async function statusResponse() {
     <h1>${escapeHtml(title)}</h1>
     <p class="lead">${escapeHtml(
       currentHealthy
-        ? "La fondation production est active. La V7.5 précédente reste conservée comme secours lors de la première migration, puis chaque mise à jour saine devient le nouveau point de retour."
+        ? "La fondation stable est active. Les caches sont désormais isolés par application et par chemin, avec une version saine précédente conservée comme secours."
         : rolledBack
           ? "La candidate a été refusée et Clair Repas sert automatiquement la dernière version saine."
           : "Le navigateur n’a pas encore terminé la validation de la nouvelle fondation."
@@ -581,23 +732,10 @@ self.addEventListener("message", event => {
 
   if (data.app && data.app !== APP_ID) return;
 
-  if (data.type === "CLAIR_V8_BOOT_START" && data.release === RELEASE) {
-    event.waitUntil(
-      (async () => {
-        const state = await readState();
-        if (state.activeCache !== CURRENT_CACHE) return;
-        await writeState({
-          ...state,
-          probation: true,
-          bootStartedAt: Date.now(),
-          prebootFingerprint: data.fingerprint || null
-        });
-      })()
-    );
-    return;
-  }
+  const currentBootMessage =
+    data.release === RELEASE && data.coreRevision === CORE_REVISION;
 
-  if (data.type === "CLAIR_V8_BOOT_OK" && data.release === RELEASE) {
+  if (data.type === "CLAIR_V8_BOOT_OK" && currentBootMessage) {
     event.waitUntil(
       (async () => {
         const state = await readState();
@@ -619,7 +757,7 @@ self.addEventListener("message", event => {
     return;
   }
 
-  if (data.type === "CLAIR_V8_BOOT_FAIL" && data.release === RELEASE) {
+  if (data.type === "CLAIR_V8_BOOT_FAIL" && currentBootMessage) {
     event.waitUntil(
       (async () => {
         const state = await readState();
@@ -684,11 +822,12 @@ self.addEventListener("fetch", event => {
     event.respondWith(
       (async () => {
         const state = await currentServingState();
+        const servingState = await startBootAttemptSafely(state);
 
-        const cached = await serveFromCache(state.activeCache, request);
+        const cached = await serveFromCache(servingState.activeCache, request);
         if (cached) return cached;
 
-        const previous = await serveFromCache(state.previousCache, request);
+        const previous = await serveFromCache(servingState.previousCache, request);
         if (previous) return previous;
 
         return fetch(request, { cache: "no-store" });
@@ -703,9 +842,10 @@ self.addEventListener("fetch", event => {
         try {
           return await fetch(request, { cache: "no-store" });
         } catch (_) {
-          const state = await readState();
+          const state = await currentServingState();
+          const servingState = await startBootAttemptSafely(state);
           return (
-            (await serveFromCache(state.activeCache, request)) ||
+            (await serveFromCache(servingState.activeCache, request)) ||
             Response.error()
           );
         }

@@ -1,14 +1,17 @@
 {
   "platform": "Clair V8",
   "app": "clair-repas",
-  "foundationVersion": "8.0.0-foundation.10",
+  "foundationVersion": "8.0.0-foundation.11",
   "productVersion": "7.5",
   "dataSchema": 2,
-  "channel": "production-candidate",
-  "publishedAt": "2026-08-17",
+  "channel": "production-handover-prepared",
+  "publishedAt": "2026-08-21",
   "updatePolicy": "atomic-with-rollback",
   "personalDataPolicy": "preserve-and-snapshot",
   "cacheIsolation": "app-and-scope",
   "snapshotIsolation": "app-and-scope",
-  "productionBootstrap": "preserve-v7.5-as-first-fallback"
+  "productionBootstrap": "preserve-v7.5-as-first-fallback",
+  "cloudAppId": "clair-repas",
+  "cloudEnabled": false,
+  "cloudHandover": "local-first-with-snapshot"
 }
