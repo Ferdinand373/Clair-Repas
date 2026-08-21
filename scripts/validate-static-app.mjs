@@ -238,7 +238,7 @@ await check("Release metadata consistency", () => {
   assert.equal(markerVersion[1], productVersion);
   assert.match(version.publishedAt, /^\d{4}-\d{2}-\d{2}$/);
   assert.equal(cloudAppId, "clair-repas");
-  assert.equal(cloudEnabled, true);
+  assert.equal(cloudEnabled, false);
   assert.equal(version.cloudAppId, cloudAppId);
   assert.equal(version.cloudEnabled, cloudEnabled);
   assert.equal(directSyncProtocol, "clair-personal-sync/v1");
@@ -594,7 +594,7 @@ await check("Service-worker registration and full-cache validation", async () =>
   assert.equal((injectedHtml.match(/data-clair-v8-cloud-sync/g) || []).length, 1);
   assert.equal((injectedHtml.match(/data-clair-app="clair-repas"/g) || []).length, 3);
   assert.equal((injectedHtml.match(/data-clair-cloud-app="clair-repas"/g) || []).length, 1);
-  assert.equal((injectedHtml.match(/data-clair-cloud-enabled="true"/g) || []).length, 1);
+  assert.equal((injectedHtml.match(/data-clair-cloud-enabled="false"/g) || []).length, 1);
   assert.equal(
     (injectedHtml.match(/data-clair-direct-sync="clair-personal-sync\/v1"/g) || []).length,
     1

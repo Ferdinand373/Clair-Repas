@@ -16,9 +16,9 @@ const RELEASE = "8.0.0-foundation.11";
 const FOUNDATION_LABEL = RELEASE.slice(RELEASE.lastIndexOf("-") + 1).toUpperCase();
 const DATA_SCHEMA = 2;
 const CLOUD_APP_ID = "clair-repas";
-const CLOUD_ENABLED = true;
+const CLOUD_ENABLED = false;
 const CLOUD_DIRECT_SYNC_PROTOCOL = "clair-personal-sync/v1";
-const CORE_REVISION = "sha256:a3be2410b02616276a43335bebb2d5d7e778cd13099614031934b65fcfb394bd";
+const CORE_REVISION = "sha256:70a8c5a467160d4de11b02686bfd394e7def0815d24664ef6790e48c49f75680";
 const BOOT_GRACE_MS = 18000;
 
 function fnv1a(text) {
@@ -84,7 +84,7 @@ const CORE_DIGESTS = Object.freeze({
   "./v8/vendor/supabase-js-2.111.0.js": "sha256:7396012594aa6d23bb373ebc25d1080bf3672fa847c3713f756520b40fd13453",
   "./v8/clair-foundation.js": "sha256:15c675dc6dd004b3f16f752fd66c0fc18733ca678eaa5008eaf2ff0b769a9807",
   "./v8/clair-cloud-sync.js": "sha256:32203d7914605e43b341f48670c077c6d71c30753e2d2618378242f36c40ff6f",
-  "./v8/version.json": "sha256:a7dbf3294819307c0d3f4d32b3629fbdf376c667b1c7bb1dfec414ead5fd4d59"
+  "./v8/version.json": "sha256:49aadde0a56d207b9fc7967fdc4d298e5cf9d8974eef008df39277d96720e0c4"
 });
 
 function appIndexUrl() {
