@@ -1,0 +1,921 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow,noarchive">
+<title>Clair Repas — Réparation locale production</title>
+<style>
+:root{
+  --bg:#f4efe7;
+  --card:#fffdfa;
+  --text:#27231f;
+  --muted:#746c63;
+  --line:#e6ddd3;
+  --green:#3f7657;
+  --green-soft:#e3f0e8;
+  --red:#9a4141;
+  --red-soft:#fff1f1;
+  --amber:#8a641e;
+  --amber-soft:#fff7df;
+}
+*{box-sizing:border-box}
+html{background:var(--bg)}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+}
+button{font:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent}
+button:focus-visible{outline:3px solid rgba(63,118,87,.25);outline-offset:2px}
+button:disabled{cursor:not-allowed;opacity:.52}
+main{
+  width:min(760px,100%);
+  margin:0 auto;
+  padding:calc(22px + env(safe-area-inset-top)) 15px calc(34px + env(safe-area-inset-bottom));
+}
+header{margin:0 0 18px;text-align:center}
+h1{margin:0 0 7px;font-size:clamp(25px,6vw,34px);letter-spacing:-.6px}
+.subtitle{margin:0;color:var(--muted);font-size:14px;line-height:1.45}
+.warning{
+  margin:13px auto 0;
+  padding:9px 12px;
+  border:1px solid #ead6a8;
+  border-radius:13px;
+  background:var(--amber-soft);
+  color:var(--amber);
+  font-size:12px;
+  font-weight:800;
+}
+.card{
+  margin:12px 0;
+  padding:17px;
+  border:1px solid var(--line);
+  border-radius:19px;
+  background:var(--card);
+  box-shadow:0 8px 26px rgba(45,35,25,.055);
+}
+.step{margin:0 0 12px;color:var(--green);font-size:12px;font-weight:900;letter-spacing:.5px;text-transform:uppercase}
+h2{margin:0 0 12px;font-size:20px;letter-spacing:-.2px}
+.checks{display:grid;gap:8px;margin:0;padding:0;list-style:none}
+.check{
+  display:grid;
+  grid-template-columns:24px minmax(0,1fr);
+  gap:8px;
+  align-items:start;
+  padding:9px 10px;
+  border:1px solid var(--line);
+  border-radius:12px;
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.35;
+}
+.check-icon{font-weight:950;text-align:center}
+.check[data-state="ok"]{border-color:#b8d8c3;background:var(--green-soft);color:#24563b}
+.check[data-state="error"]{border-color:#efcaca;background:var(--red-soft);color:var(--red)}
+.version-summary,.small-note,.analysis-status,.backup-hint{margin:11px 0 0;color:var(--muted);font-size:12px;line-height:1.45}
+.button-row{display:flex;gap:9px;flex-wrap:wrap}
+.primary,.secondary,.danger{
+  min-height:48px;
+  padding:11px 15px;
+  border-radius:14px;
+  font-weight:850;
+}
+.primary{border:1px solid var(--green);background:var(--green);color:white;box-shadow:0 7px 17px rgba(63,118,87,.18)}
+.secondary{border:1px solid var(--line);background:white;color:var(--text)}
+.danger{border:1px solid #efcaca;background:var(--red-soft);color:var(--red)}
+.repair-button{width:100%;min-height:55px;font-size:16px}
+.summary-line{margin:0 0 12px;color:var(--muted);font-size:13px}
+.table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:13px}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th,td{padding:10px 11px;border-bottom:1px solid var(--line);text-align:left;white-space:nowrap}
+th{background:#f8f4ee;color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.35px}
+tr:last-child td{border-bottom:0}
+.state-identical{color:var(--green);font-weight:800}
+.state-change,.state-create{color:var(--amber);font-weight:800}
+.result{display:none}
+.result.visible{display:block}
+.result.success{border-color:#b8d8c3;background:var(--green-soft)}
+.result.error{border-color:#efcaca;background:var(--red-soft)}
+.result.info{border-color:#d9d1e8;background:#f7f3fc}
+.result h2{margin-bottom:10px}
+.result p{margin:5px 0;font-size:14px;line-height:1.4}
+.result .technical{margin-top:11px;color:var(--muted);font-size:11px;overflow-wrap:anywhere}
+@media (max-width:520px){
+  .card{padding:15px}
+  .button-row>*{width:100%}
+  th,td{padding:9px 8px}
+}
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <h1>Réparation locale production</h1>
+    <p class="subtitle">Outil ponctuel et indépendant pour restaurer huit données locales depuis Supabase production.</p>
+    <p class="warning">Aucune réparation ne démarre sans clic. Cette page ne réactive pas le cloud.</p>
+  </header>
+
+  <section class="card" aria-labelledby="securityTitle">
+    <p class="step">1 · État de sécurité</p>
+    <h2 id="securityTitle">Verrous obligatoires</h2>
+    <ul class="checks">
+      <li class="check" id="checkApp" data-state="pending"><span class="check-icon">•</span><span>Identité production à vérifier</span></li>
+      <li class="check" id="checkCloud" data-state="pending"><span class="check-icon">•</span><span>Verrou cloud à vérifier</span></li>
+      <li class="check" id="checkSession" data-state="pending"><span class="check-icon">•</span><span>Session Supabase à vérifier</span></li>
+      <li class="check" id="checkRows" data-state="pending"><span class="check-icon">•</span><span>Huit lignes production à vérifier</span></li>
+    </ul>
+    <p class="version-summary" id="versionSummary">Configuration non chargée.</p>
+  </section>
+
+  <section class="card" aria-labelledby="analyzeTitle">
+    <p class="step">2 · Analyser</p>
+    <h2 id="analyzeTitle">Contrôler sans modifier</h2>
+    <div class="button-row">
+      <button class="secondary" id="analyzeButton" type="button">Analyser les données production</button>
+      <button class="danger" id="restoreButton" type="button" disabled>Restaurer la sauvegarde précédente</button>
+    </div>
+    <p class="analysis-status" id="analysisStatus" aria-live="polite">Aucune analyse effectuée.</p>
+    <p class="backup-hint" id="backupHint">Recherche d’une sauvegarde locale…</p>
+  </section>
+
+  <section class="card" aria-labelledby="differencesTitle">
+    <p class="step">3 · Résumé des différences</p>
+    <h2 id="differencesTitle">Les huit clés autorisées</h2>
+    <p class="summary-line" id="differenceSummary">Analyse requise avant toute comparaison.</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Clé locale</th><th>État</th></tr></thead>
+        <tbody id="differenceRows"></tbody>
+      </table>
+    </div>
+    <p class="small-note" id="favoritePreview">Le nombre de favoris production sera calculé pendant l’analyse.</p>
+  </section>
+
+  <section class="card" aria-labelledby="repairTitle">
+    <p class="step">4 · Réparer</p>
+    <h2 id="repairTitle">Écriture locale contrôlée</h2>
+    <button class="primary repair-button" id="repairButton" type="button" disabled>Réparer le stockage local</button>
+    <p class="small-note">Une nouvelle sauvegarde complète et vérifiée des clés <code>cr…</code> sera créée juste avant l’écriture.</p>
+  </section>
+
+  <section class="card result" id="resultPanel" aria-live="polite" aria-atomic="true">
+    <p class="step">5 · Résultat final</p>
+    <div id="resultContent"></div>
+  </section>
+</main>
+
+<script src="./v8/vendor/supabase-js-2.111.0.js"></script>
+<script>
+(() => {
+  'use strict';
+
+  const APP_ID = 'clair-repas';
+  const VERSION_PATH = './v8/version.json';
+  const REMOTE_TABLE = 'clair_data';
+  const REMOTE_COLUMNS = 'user_id,app_id,data_key,payload,deleted_at';
+  const SUPABASE_URL = 'https://ryyewskgfgysfubesdsj.supabase.co';
+  const SUPABASE_PUBLISHABLE_KEY = 'sb_publishable_T9Dmg9VKTdMFdCuLVxD54w_7GeH3Q6S';
+  const SUPABASE_ORIGIN = new URL(SUPABASE_URL).origin;
+  const CR_KEY_PATTERN = /^cr[A-Za-z0-9_.-]+$/;
+  const BACKUP_PREFIX = 'clair.repair.production.before.';
+  const BACKUP_FORMAT = 'clair-repair-production-backup/v1';
+  const ALLOWED_KEYS = Object.freeze([
+    'crDays',
+    'crFavMeals',
+    'crHistoryV13',
+    'crMealUsageV19',
+    'crRecentRecipesV25',
+    'crRecipeLearningV3',
+    'crRecipeNotesV31',
+    'crStateV13'
+  ]);
+  const ALLOWED_KEY_SET = new Set(ALLOWED_KEYS);
+
+  const elements = {
+    checkApp: document.getElementById('checkApp'),
+    checkCloud: document.getElementById('checkCloud'),
+    checkSession: document.getElementById('checkSession'),
+    checkRows: document.getElementById('checkRows'),
+    versionSummary: document.getElementById('versionSummary'),
+    analyzeButton: document.getElementById('analyzeButton'),
+    restoreButton: document.getElementById('restoreButton'),
+    analysisStatus: document.getElementById('analysisStatus'),
+    backupHint: document.getElementById('backupHint'),
+    differenceSummary: document.getElementById('differenceSummary'),
+    differenceRows: document.getElementById('differenceRows'),
+    favoritePreview: document.getElementById('favoritePreview'),
+    repairButton: document.getElementById('repairButton'),
+    resultPanel: document.getElementById('resultPanel'),
+    resultContent: document.getElementById('resultContent')
+  };
+
+  let busy = false;
+  let currentAnalysis = null;
+  let latestBackup = null;
+  let supabaseClient = null;
+  const volatileAuthValues = new Map();
+
+  const authStorage = Object.freeze({
+    getItem(key) {
+      if (volatileAuthValues.has(key)) return volatileAuthValues.get(key);
+      return window.localStorage.getItem(key);
+    },
+    setItem(key, value) {
+      volatileAuthValues.set(key, String(value));
+    },
+    removeItem(key) {
+      volatileAuthValues.set(key, null);
+    }
+  });
+
+  function markCheck(element, state, text) {
+    element.dataset.state = state;
+    element.querySelector('.check-icon').textContent = state === 'ok' ? '✓' : state === 'error' ? '!' : '•';
+    element.querySelector('span:last-child').textContent = text;
+  }
+
+  function resetChecks() {
+    markCheck(elements.checkApp, 'pending', 'Identité production à vérifier');
+    markCheck(elements.checkCloud, 'pending', 'Verrou cloud à vérifier');
+    markCheck(elements.checkSession, 'pending', 'Session Supabase à vérifier');
+    markCheck(elements.checkRows, 'pending', 'Huit lignes production à vérifier');
+    elements.versionSummary.textContent = 'Configuration en cours de vérification.';
+  }
+
+  function errorMessage(error) {
+    if (error instanceof Error && error.message) return error.message;
+    return String(error || 'Erreur inconnue.');
+  }
+
+  function showResult(kind, title, lines, technicalLine = '') {
+    elements.resultPanel.className = 'card result visible ' + kind;
+    elements.resultContent.replaceChildren();
+    const heading = document.createElement('h2');
+    heading.textContent = title;
+    elements.resultContent.appendChild(heading);
+    for (const line of lines) {
+      const paragraph = document.createElement('p');
+      paragraph.textContent = line;
+      elements.resultContent.appendChild(paragraph);
+    }
+    if (technicalLine) {
+      const technical = document.createElement('p');
+      technical.className = 'technical';
+      technical.textContent = technicalLine;
+      elements.resultContent.appendChild(technical);
+    }
+    elements.resultPanel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+
+  function clearResult() {
+    elements.resultPanel.className = 'card result';
+    elements.resultContent.replaceChildren();
+  }
+
+  function updateControls() {
+    elements.analyzeButton.disabled = busy;
+    elements.restoreButton.disabled = busy || !latestBackup;
+    elements.repairButton.disabled = busy || !currentAnalysis || currentAnalysis.differenceCount === 0;
+  }
+
+  function setBusy(next) {
+    busy = next;
+    updateControls();
+  }
+
+  async function loadProductionVersion() {
+    const response = await window.fetch(VERSION_PATH, {
+      cache: 'no-store',
+      credentials: 'same-origin'
+    });
+    if (!response.ok) throw new Error('Impossible de charger v8/version.json. STOP.');
+    const version = await response.json();
+    if (!version || Object.prototype.toString.call(version) !== '[object Object]') {
+      throw new Error('v8/version.json est invalide. STOP.');
+    }
+    return version;
+  }
+
+  function guardedSupabaseFetch(input, init) {
+    const request = new Request(input, init);
+    const url = new URL(request.url);
+    const method = request.method.toUpperCase();
+    if (url.origin !== SUPABASE_ORIGIN) {
+      throw new Error('Destination Supabase non autorisée. STOP.');
+    }
+    if (url.pathname === '/rest/v1/' + REMOTE_TABLE) {
+      if (method !== 'GET') throw new Error('Opération distante non autorisée. STOP.');
+      return window.fetch(request);
+    }
+    if (url.pathname === '/auth/v1/user' && method === 'GET') {
+      return window.fetch(request);
+    }
+    throw new Error('Appel Supabase hors périmètre de lecture. STOP.');
+  }
+
+  function getSupabaseClient() {
+    if (supabaseClient) return supabaseClient;
+    if (!SUPABASE_PUBLISHABLE_KEY.startsWith('sb_publishable_')) {
+      throw new Error('La clé Supabase publique attendue est absente. STOP.');
+    }
+    if (typeof window.supabase?.createClient !== 'function') {
+      throw new Error('La bibliothèque Supabase locale est indisponible. STOP.');
+    }
+    supabaseClient = window.supabase.createClient(
+      SUPABASE_URL,
+      SUPABASE_PUBLISHABLE_KEY,
+      {
+        auth: {
+          persistSession: true,
+          autoRefreshToken: false,
+          detectSessionInUrl: false,
+          storage: authStorage
+        },
+        global: { fetch: guardedSupabaseFetch }
+      }
+    );
+    return supabaseClient;
+  }
+
+  function readCrEntries() {
+    const entries = [];
+    for (let index = 0; index < window.localStorage.length; index += 1) {
+      const key = window.localStorage.key(index);
+      if (!key || !CR_KEY_PATTERN.test(key)) continue;
+      const value = window.localStorage.getItem(key);
+      if (value === null) throw new Error('Le stockage local a changé pendant sa lecture. STOP.');
+      entries.push([key, value]);
+    }
+    entries.sort((left, right) => left[0].localeCompare(right[0]));
+    for (let index = 1; index < entries.length; index += 1) {
+      if (entries[index - 1][0] === entries[index][0]) {
+        throw new Error('Une clé locale est dupliquée. STOP.');
+      }
+    }
+    return entries;
+  }
+
+  function readTechnicalEntries() {
+    const entries = [];
+    for (let index = 0; index < window.localStorage.length; index += 1) {
+      const key = window.localStorage.key(index);
+      if (!key || CR_KEY_PATTERN.test(key)) continue;
+      const value = window.localStorage.getItem(key);
+      if (value === null) throw new Error('Le stockage technique a changé pendant sa lecture. STOP.');
+      entries.push([key, value]);
+    }
+    entries.sort((left, right) => left[0].localeCompare(right[0]));
+    return entries;
+  }
+
+  function sameEntries(left, right) {
+    return left.length === right.length && left.every((entry, index) => (
+      entry[0] === right[index][0] && entry[1] === right[index][1]
+    ));
+  }
+
+  function captureStableCrEntries() {
+    const first = readCrEntries();
+    const second = readCrEntries();
+    if (!sameEntries(first, second)) {
+      throw new Error('Le stockage local est en cours de modification. Recommencez l’analyse. STOP.');
+    }
+    return second;
+  }
+
+  function captureStableTechnicalEntries() {
+    const first = readTechnicalEntries();
+    const second = readTechnicalEntries();
+    if (!sameEntries(first, second)) {
+      throw new Error('Le stockage technique est en cours de modification. Recommencez l’analyse. STOP.');
+    }
+    return second;
+  }
+
+  function entriesToMap(entries) {
+    return new Map(entries.map(([key, value]) => [key, value]));
+  }
+
+  function mapToEntries(values) {
+    return [...values.entries()].sort((left, right) => left[0].localeCompare(right[0]));
+  }
+
+  function validateFavoriteCount(rawValue) {
+    let favorites;
+    try {
+      favorites = JSON.parse(rawValue);
+    } catch (_) {
+      throw new Error('La donnée crFavMeals production n’est pas un JSON valide. STOP.');
+    }
+    if (!Array.isArray(favorites) || favorites.some((value) => typeof value !== 'string')) {
+      throw new Error('La donnée crFavMeals production a un format invalide. STOP.');
+    }
+    return new Set(favorites).size;
+  }
+
+  function validateRemoteRows(rows, userId) {
+    if (!Array.isArray(rows) || rows.length !== ALLOWED_KEYS.length) {
+      throw new Error('Supabase doit retourner exactement 8 lignes production actives. STOP.');
+    }
+    const values = new Map();
+    for (const row of rows) {
+      if (!row || typeof row !== 'object') throw new Error('Une ligne Supabase est invalide. STOP.');
+      if (row.user_id !== userId || row.app_id !== APP_ID) {
+        throw new Error('Une ligne Supabase ne correspond pas à l’utilisateur ou à l’application. STOP.');
+      }
+      if (!ALLOWED_KEY_SET.has(row.data_key) || values.has(row.data_key)) {
+        throw new Error('Le jeu de clés Supabase n’est pas exactement celui autorisé. STOP.');
+      }
+      if (row.deleted_at !== null) {
+        throw new Error('Une donnée production est supprimée ou archivée. STOP.');
+      }
+      if (
+        !row.payload ||
+        typeof row.payload !== 'object' ||
+        Array.isArray(row.payload) ||
+        !Object.prototype.hasOwnProperty.call(row.payload, 'value') ||
+        typeof row.payload.value !== 'string'
+      ) {
+        throw new Error('Une valeur production n’est pas une chaîne valide. STOP.');
+      }
+      values.set(row.data_key, row.payload.value);
+    }
+    if (values.size !== ALLOWED_KEYS.length || ALLOWED_KEYS.some((key) => !values.has(key))) {
+      throw new Error('Une ou plusieurs clés production sont absentes. STOP.');
+    }
+    return values;
+  }
+
+  function buildAnalysis(version, remoteValues, localEntries) {
+    const localValues = entriesToMap(localEntries);
+    const differences = ALLOWED_KEYS.map((key) => {
+      const present = localValues.has(key);
+      const identical = present && localValues.get(key) === remoteValues.get(key);
+      return {
+        key,
+        state: identical ? 'identical' : present ? 'change' : 'create',
+        label: identical ? 'Identique' : present ? 'Sera remplacée' : 'Sera créée'
+      };
+    });
+    return {
+      version,
+      remoteValues,
+      localEntries,
+      differences,
+      differenceCount: differences.filter((item) => item.state !== 'identical').length,
+      favoriteCount: validateFavoriteCount(remoteValues.get('crFavMeals'))
+    };
+  }
+
+  function renderAnalysis(analysis) {
+    elements.differenceRows.replaceChildren();
+    for (const item of analysis.differences) {
+      const row = document.createElement('tr');
+      const keyCell = document.createElement('td');
+      const stateCell = document.createElement('td');
+      keyCell.textContent = item.key;
+      stateCell.textContent = item.label;
+      stateCell.className = 'state-' + item.state;
+      row.append(keyCell, stateCell);
+      elements.differenceRows.appendChild(row);
+    }
+    const count = analysis.differenceCount;
+    elements.differenceSummary.textContent = '8 clés contrôlées · ' + count + ' différence' + (count === 1 ? '' : 's') + '.';
+    elements.favoritePreview.textContent = 'Favoris production détectés : ' + analysis.favoriteCount;
+  }
+
+  function renderPendingDifferences() {
+    elements.differenceRows.replaceChildren();
+    for (const key of ALLOWED_KEYS) {
+      const row = document.createElement('tr');
+      const keyCell = document.createElement('td');
+      const stateCell = document.createElement('td');
+      keyCell.textContent = key;
+      stateCell.textContent = 'Non analysée';
+      row.append(keyCell, stateCell);
+      elements.differenceRows.appendChild(row);
+    }
+    elements.differenceSummary.textContent = 'Analyse requise avant toute comparaison.';
+    elements.favoritePreview.textContent = 'Le nombre de favoris production sera calculé pendant l’analyse.';
+  }
+
+  async function analyzeCore() {
+    resetChecks();
+    let version;
+    try {
+      version = await loadProductionVersion();
+    } catch (error) {
+      markCheck(elements.checkApp, 'error', 'v8/version.json non vérifiable');
+      markCheck(elements.checkCloud, 'error', 'Verrou cloud non vérifiable');
+      throw error;
+    }
+    if (version.cloudAppId !== APP_ID) {
+      markCheck(elements.checkApp, 'error', 'cloudAppId différent de clair-repas');
+      throw new Error('cloudAppId doit être exactement « clair-repas ». STOP.');
+    }
+    markCheck(elements.checkApp, 'ok', 'cloudAppId = clair-repas');
+    if (version.cloudEnabled !== false) {
+      markCheck(elements.checkCloud, 'error', 'cloudEnabled n’est pas strictement false');
+      throw new Error('cloudEnabled doit être strictement false. STOP.');
+    }
+    markCheck(elements.checkCloud, 'ok', 'cloudEnabled = false — cloud verrouillé');
+    elements.versionSummary.textContent = String(version.foundationVersion || 'Foundation inconnue') + ' · produit ' + String(version.productVersion || 'inconnu');
+
+    const technicalBefore = captureStableTechnicalEntries();
+    volatileAuthValues.clear();
+    const client = getSupabaseClient();
+    let session;
+    let user;
+    try {
+      const sessionResult = await client.auth.getSession();
+      if (sessionResult.error) throw sessionResult.error;
+      session = sessionResult.data?.session;
+      if (!session?.user?.id) throw new Error('Aucune session Supabase existante. STOP.');
+      const userResult = await client.auth.getUser();
+      if (userResult.error) throw userResult.error;
+      user = userResult.data?.user;
+      if (!user?.id) throw new Error('Utilisateur Supabase non vérifiable. STOP.');
+      if (user.id !== session.user.id) throw new Error('La session et l’utilisateur Supabase ne correspondent pas. STOP.');
+    } catch (error) {
+      markCheck(elements.checkSession, 'error', 'Session Supabase absente ou incohérente');
+      throw error;
+    }
+    markCheck(elements.checkSession, 'ok', 'getSession() puis getUser() : même utilisateur');
+
+    let rows;
+    try {
+      const result = await client
+        .from(REMOTE_TABLE)
+        .select(REMOTE_COLUMNS)
+        .eq('user_id', user.id)
+        .eq('app_id', APP_ID)
+        .in('data_key', ALLOWED_KEYS);
+      if (result.error) throw result.error;
+      rows = result.data;
+      const remoteValues = validateRemoteRows(rows, user.id);
+      const localEntries = captureStableCrEntries();
+      const technicalAfter = captureStableTechnicalEntries();
+      if (!sameEntries(technicalBefore, technicalAfter)) {
+        throw new Error('Une clé technique hors cr… a changé pendant l’analyse. STOP.');
+      }
+      const analysis = buildAnalysis(version, remoteValues, localEntries);
+      analysis.technicalEntries = technicalAfter;
+      markCheck(elements.checkRows, 'ok', '8/8 lignes actives et valeurs valides — SELECT uniquement');
+      return analysis;
+    } catch (error) {
+      markCheck(elements.checkRows, 'error', 'Les 8 lignes production ne sont pas toutes valides');
+      throw error;
+    }
+  }
+
+  function backupValuesFromEntries(entries) {
+    const values = {};
+    for (const [key, value] of entries) values[key] = value;
+    return values;
+  }
+
+  function validateBackupRecord(record) {
+    if (!record || Object.prototype.toString.call(record) !== '[object Object]') {
+      throw new Error('Sauvegarde illisible.');
+    }
+    if (
+      record.format !== BACKUP_FORMAT ||
+      record.app_id !== APP_ID ||
+      record.origine !== 'Clair Repas production' ||
+      record.origin !== window.location.origin ||
+      record.scope !== window.location.pathname ||
+      typeof record.date !== 'string' ||
+      !Number.isFinite(Date.parse(record.date)) ||
+      !record.values ||
+      Object.prototype.toString.call(record.values) !== '[object Object]'
+    ) {
+      throw new Error('Sauvegarde incompatible avec cette origine.');
+    }
+    const entries = Object.entries(record.values).sort((left, right) => left[0].localeCompare(right[0]));
+    for (const [key, value] of entries) {
+      if (!CR_KEY_PATTERN.test(key) || typeof value !== 'string') {
+        throw new Error('Sauvegarde contenant une clé ou une valeur invalide.');
+      }
+    }
+    return entries;
+  }
+
+  function createVerifiedBackup(entries) {
+    let timestamp = Date.now();
+    let key;
+    do {
+      key = BACKUP_PREFIX + new Date(timestamp).toISOString();
+      timestamp += 1;
+    } while (window.localStorage.getItem(key) !== null);
+
+    const record = {
+      format: BACKUP_FORMAT,
+      date: new Date(timestamp - 1).toISOString(),
+      origine: 'Clair Repas production',
+      origin: window.location.origin,
+      scope: window.location.pathname,
+      app_id: APP_ID,
+      values: backupValuesFromEntries(entries)
+    };
+    const serialized = JSON.stringify(record);
+    window.localStorage.setItem(key, serialized);
+    const reread = window.localStorage.getItem(key);
+    if (reread !== serialized) throw new Error('La sauvegarde locale n’est pas relisible à l’identique. STOP.');
+    let parsed;
+    try {
+      parsed = JSON.parse(reread);
+    } catch (_) {
+      throw new Error('La sauvegarde locale ne peut pas être relue. STOP.');
+    }
+    const verifiedEntries = validateBackupRecord(parsed);
+    if (!sameEntries(entries, verifiedEntries)) {
+      throw new Error('La sauvegarde locale diffère de l’avant-image. STOP.');
+    }
+    return { key, record: parsed, entries: verifiedEntries, serialized };
+  }
+
+  function restoreEntriesExactly(expectedEntries) {
+    const expected = entriesToMap(expectedEntries);
+    const currentEntries = readCrEntries();
+    const current = entriesToMap(currentEntries);
+
+    for (const [key] of currentEntries) {
+      if (!expected.has(key)) window.localStorage.removeItem(key);
+    }
+
+    const orderedWrites = expectedEntries
+      .map(([key, value]) => ({
+        key,
+        value,
+        delta: value.length - (current.has(key) ? current.get(key).length : 0)
+      }))
+      .sort((left, right) => left.delta - right.delta || left.key.localeCompare(right.key));
+    for (const entry of orderedWrites) {
+      window.localStorage.setItem(entry.key, entry.value);
+    }
+
+    const restored = captureStableCrEntries();
+    if (!sameEntries(expectedEntries, restored)) {
+      throw new Error('La restauration de la sauvegarde n’est pas exacte.');
+    }
+  }
+
+  function verifyRepair(remoteValues, beforeEntries) {
+    for (const key of ALLOWED_KEYS) {
+      if (window.localStorage.getItem(key) !== remoteValues.get(key)) {
+        throw new Error('La vérification stricte a échoué pour ' + key + '.');
+      }
+    }
+    const expected = entriesToMap(beforeEntries);
+    for (const key of ALLOWED_KEYS) expected.set(key, remoteValues.get(key));
+    const afterEntries = captureStableCrEntries();
+    if (!sameEntries(mapToEntries(expected), afterEntries)) {
+      throw new Error('Une clé locale hors allowlist a été modifiée.');
+    }
+    return afterEntries;
+  }
+
+  function verifyTechnicalStorage(beforeEntries, backup) {
+    const expected = entriesToMap(beforeEntries);
+    expected.set(backup.key, backup.serialized);
+    const afterEntries = captureStableTechnicalEntries();
+    if (!sameEntries(mapToEntries(expected), afterEntries)) {
+      throw new Error('Une clé technique hors cr… a été modifiée.');
+    }
+  }
+
+  function validBackups() {
+    const backups = [];
+    for (let index = 0; index < window.localStorage.length; index += 1) {
+      const key = window.localStorage.key(index);
+      if (!key || !key.startsWith(BACKUP_PREFIX)) continue;
+      try {
+        const raw = window.localStorage.getItem(key);
+        if (raw === null) continue;
+        const record = JSON.parse(raw);
+        const entries = validateBackupRecord(record);
+        backups.push({ key, record, entries, serialized: raw, time: Date.parse(record.date) });
+      } catch (_) {}
+    }
+    backups.sort((left, right) => right.time - left.time || right.key.localeCompare(left.key));
+    return backups;
+  }
+
+  function refreshBackupControl() {
+    try {
+      latestBackup = validBackups()[0] || null;
+      if (latestBackup) {
+        const date = new Intl.DateTimeFormat('fr-FR', { dateStyle: 'medium', timeStyle: 'medium' }).format(new Date(latestBackup.record.date));
+        elements.backupHint.textContent = 'Dernière sauvegarde vérifiée : ' + date + '.';
+      } else {
+        elements.backupHint.textContent = 'Aucune sauvegarde précédente valide sur cette origine.';
+      }
+    } catch (_) {
+      latestBackup = null;
+      elements.backupHint.textContent = 'Impossible de lire les sauvegardes locales.';
+    }
+    updateControls();
+  }
+
+  async function analyze() {
+    if (busy) return;
+    setBusy(true);
+    clearResult();
+    currentAnalysis = null;
+    renderPendingDifferences();
+    elements.analysisStatus.textContent = 'Analyse de sécurité en cours…';
+    try {
+      currentAnalysis = await analyzeCore();
+      renderAnalysis(currentAnalysis);
+      elements.analysisStatus.textContent = currentAnalysis.differenceCount === 0
+        ? 'Analyse terminée : le stockage local correspond déjà aux 8 données production.'
+        : 'Analyse terminée : aucune donnée locale n’a été modifiée.';
+    } catch (error) {
+      currentAnalysis = null;
+      elements.analysisStatus.textContent = 'Analyse arrêtée : ' + errorMessage(error);
+      showResult('error', 'ANALYSE ARRÊTÉE', [
+        errorMessage(error),
+        'Aucune des huit clés locales n’a été réparée.'
+      ]);
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  async function repair() {
+    if (busy) return;
+    setBusy(true);
+    clearResult();
+    currentAnalysis = null;
+    let backup = null;
+    let writesStarted = false;
+    try {
+      elements.analysisStatus.textContent = 'Revalidation complète avant réparation…';
+      const analysis = await analyzeCore();
+      currentAnalysis = analysis;
+      renderAnalysis(analysis);
+      if (analysis.differenceCount === 0) {
+        elements.analysisStatus.textContent = 'Aucune réparation nécessaire : les 8 données sont déjà identiques.';
+        showResult('info', 'AUCUNE RÉPARATION NÉCESSAIRE', [
+          '8/8 données locales correspondent déjà à la production.',
+          'Aucune donnée distante modifiée.'
+        ]);
+        return;
+      }
+
+      const beforeEntries = captureStableCrEntries();
+      backup = createVerifiedBackup(beforeEntries);
+      const justBeforeWrite = captureStableCrEntries();
+      if (!sameEntries(beforeEntries, justBeforeWrite)) {
+        throw new Error('Le stockage local a changé après la sauvegarde. Aucune réparation appliquée. STOP.');
+      }
+      verifyTechnicalStorage(analysis.technicalEntries, backup);
+
+      writesStarted = true;
+      for (const key of ALLOWED_KEYS) {
+        window.localStorage.setItem(key, analysis.remoteValues.get(key));
+      }
+      const afterEntries = verifyRepair(analysis.remoteValues, beforeEntries);
+      verifyTechnicalStorage(analysis.technicalEntries, backup);
+      currentAnalysis = buildAnalysis(analysis.version, analysis.remoteValues, afterEntries);
+      renderAnalysis(currentAnalysis);
+      elements.analysisStatus.textContent = 'Réparation vérifiée : les huit valeurs locales sont strictement identiques à la production.';
+      refreshBackupControl();
+      showResult('success', 'RÉPARATION LOCALE RÉUSSIE', [
+        '8/8 données production restaurées',
+        'Cloud production toujours verrouillé',
+        'Aucune donnée distante modifiée',
+        'Favoris production restaurés : ' + analysis.favoriteCount
+      ], 'Sauvegarde vérifiée conservée : ' + backup.key);
+    } catch (error) {
+      currentAnalysis = null;
+      let rollbackSucceeded = false;
+      if (backup && writesStarted) {
+        try {
+          restoreEntriesExactly(backup.entries);
+          rollbackSucceeded = true;
+        } catch (_) {
+          rollbackSucceeded = false;
+        }
+      }
+      refreshBackupControl();
+      elements.analysisStatus.textContent = 'Réparation arrêtée : ' + errorMessage(error);
+      if (backup && writesStarted && rollbackSucceeded) {
+        showResult('error', 'ÉCHEC', [
+          errorMessage(error),
+          'La sauvegarde complète a été restaurée automatiquement.',
+          'Aucune donnée distante modifiée.'
+        ], 'Sauvegarde conservée : ' + backup.key);
+      } else if (backup && writesStarted) {
+        showResult('error', 'ÉCHEC CRITIQUE', [
+          errorMessage(error),
+          'Le rollback automatique n’a pas pu être vérifié. N’effectuez aucune nouvelle opération.',
+          'Aucune donnée distante modifiée.'
+        ], 'Sauvegarde à conserver impérativement : ' + backup.key);
+      } else {
+        showResult('error', 'ÉCHEC', [
+          errorMessage(error),
+          'Aucune des huit clés locales n’a été écrite.',
+          'Aucune donnée distante modifiée.'
+        ], backup ? 'Sauvegarde conservée : ' + backup.key : 'Aucune sauvegarde exploitable n’a été créée.');
+      }
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  async function restoreLatestBackup() {
+    if (busy) return;
+    refreshBackupControl();
+    if (!latestBackup) {
+      showResult('error', 'RESTAURATION IMPOSSIBLE', ['Aucune sauvegarde précédente valide n’est disponible.']);
+      return;
+    }
+    const confirmed = window.confirm(
+      'Restaurer exactement toutes les clés cr… depuis la dernière sauvegarde vérifiée ?'
+    );
+    if (!confirmed) return;
+
+    setBusy(true);
+    clearResult();
+    const target = latestBackup;
+    let currentEntries;
+    let technicalEntries;
+    let restoreStarted = false;
+    try {
+      const version = await loadProductionVersion();
+      if (version.cloudAppId !== APP_ID) {
+        throw new Error('cloudAppId doit être exactement « clair-repas ». STOP.');
+      }
+      if (version.cloudEnabled !== false) {
+        throw new Error('cloudEnabled doit être strictement false. STOP.');
+      }
+      const reread = window.localStorage.getItem(target.key);
+      if (reread !== target.serialized) {
+        throw new Error('La sauvegarde sélectionnée a changé depuis sa vérification. STOP.');
+      }
+      const verifiedEntries = validateBackupRecord(JSON.parse(reread));
+      if (!sameEntries(target.entries, verifiedEntries)) {
+        throw new Error('La sauvegarde sélectionnée n’est plus identique. STOP.');
+      }
+      technicalEntries = captureStableTechnicalEntries();
+      currentEntries = captureStableCrEntries();
+      restoreStarted = true;
+      restoreEntriesExactly(target.entries);
+      const technicalAfter = captureStableTechnicalEntries();
+      if (!sameEntries(technicalEntries, technicalAfter)) {
+        throw new Error('Une clé technique hors cr… a changé pendant la restauration. STOP.');
+      }
+      currentAnalysis = null;
+      renderPendingDifferences();
+      resetChecks();
+      elements.analysisStatus.textContent = 'Sauvegarde précédente restaurée. Une nouvelle analyse est requise avant toute réparation.';
+      showResult('success', 'SAUVEGARDE PRÉCÉDENTE RESTAURÉE', [
+        'L’état antérieur complet des clés cr… a été restauré et vérifié.',
+        'Les clés techniques hors cr… sont restées intactes.',
+        'Aucune donnée distante modifiée.'
+      ], 'Sauvegarde utilisée : ' + target.key);
+    } catch (error) {
+      let compensationSucceeded = false;
+      if (restoreStarted && currentEntries) {
+        try {
+          restoreEntriesExactly(currentEntries);
+          compensationSucceeded = true;
+        } catch (_) {
+          compensationSucceeded = false;
+        }
+      }
+      if (!restoreStarted) {
+        showResult('error', 'RESTAURATION IMPOSSIBLE', [
+          errorMessage(error),
+          'Aucune clé locale n’a été écrite.',
+          'Aucune donnée distante modifiée.'
+        ], 'Sauvegarde conservée : ' + target.key);
+      } else {
+        showResult('error', compensationSucceeded ? 'RESTAURATION ANNULÉE' : 'ÉCHEC CRITIQUE', [
+          errorMessage(error),
+          compensationSucceeded
+            ? 'L’état des clés cr… présent avant cette tentative a été rétabli.'
+            : 'La restauration et sa compensation n’ont pas pu être vérifiées.',
+          'Aucune donnée distante modifiée.'
+        ], 'Sauvegarde conservée : ' + target.key);
+      }
+    } finally {
+      refreshBackupControl();
+      setBusy(false);
+    }
+  }
+
+  elements.analyzeButton.addEventListener('click', analyze);
+  elements.repairButton.addEventListener('click', repair);
+  elements.restoreButton.addEventListener('click', restoreLatestBackup);
+
+  renderPendingDifferences();
+  resetChecks();
+  refreshBackupControl();
+})();
+</script>
+</body>
+</html>
