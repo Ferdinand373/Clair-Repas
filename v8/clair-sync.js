@@ -3,7 +3,7 @@
 
   const script = document.currentScript;
   const APP_ID = script?.dataset?.clairApp || 'clair';
-  const RELEASE = script?.dataset?.clairRelease || '8.0.0-foundation.12';
+  const RELEASE = script?.dataset?.clairRelease || '8.0.0-foundation.13';
   const DATA_SCHEMA = Number(script?.dataset?.clairSchema || 2);
   const CORE_REVISION = script?.dataset?.clairCore || '';
 
@@ -27,9 +27,28 @@
   const SCOPE_PATH = appScopePath();
   const SCOPE_ID = fnv1a(SCOPE_PATH);
 
+  const CLAIR_REPAS_PERSONAL_KEYS = Object.freeze([
+    'crFavMeals',
+    'crRecentRecipesV25',
+    'crRecipeReactionsV3',
+    'crRecipeLearningV3',
+    'crRecipeNotesV31',
+    'crPeople',
+    'crDays',
+    'crMode',
+    'crTimeAvailable',
+    'crMealContext',
+    'crMealUsageV19',
+    'crCourseUsageV37',
+    'crBrowserDiscoveryV35',
+    'crBrowserDecksV35',
+    'crStateV13',
+    'crHistoryV13'
+  ]);
+  const clairRepasPersonalKeySet = new Set(CLAIR_REPAS_PERSONAL_KEYS);
+
   const personalKeyPolicies = {
-    'clair-repas': (key) =>
-      /^cr[A-Za-z0-9_.-]+$/.test(key) && key !== 'crHealthProbeV73',
+    'clair-repas': (key) => clairRepasPersonalKeySet.has(key),
     'clair-courses': (key) => {
       if (!key.startsWith('clairCourses.')) return false;
       // Les anciens wrappers/shells sont du code applicatif, pas des données personnelles.

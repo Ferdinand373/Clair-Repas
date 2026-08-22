@@ -10,6 +10,30 @@ import vm from "node:vm";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const PRODUCTION_V75_INDEX_BLOB = "5dfbd79d6a7da0bf43a702982fc11f33fb2ed9f2";
+const CLAIR_REPAS_PERSONAL_KEYS = Object.freeze([
+  "crFavMeals",
+  "crRecentRecipesV25",
+  "crRecipeReactionsV3",
+  "crRecipeLearningV3",
+  "crRecipeNotesV31",
+  "crPeople",
+  "crDays",
+  "crMode",
+  "crTimeAvailable",
+  "crMealContext",
+  "crMealUsageV19",
+  "crCourseUsageV37",
+  "crBrowserDiscoveryV35",
+  "crBrowserDecksV35",
+  "crStateV13",
+  "crHistoryV13"
+]);
+const CLAIR_REPAS_TECHNICAL_KEYS = Object.freeze([
+  "crHealthProbeV73",
+  "crRecipeIdMigrationV39",
+  "crWelcomeV7",
+  "crFutureTechnicalFlag"
+]);
 const decoder = new TextDecoder("utf-8", { fatal: true });
 const successes = [];
 const failures = [];
@@ -755,6 +779,17 @@ await check("Direct personal sync isolation", async () => {
   assert.doesNotMatch(cloudSync, /personalKeyPolicies|function readPersonalData/);
   assert.doesNotMatch(cloudSync, /app_id:\s*['"]clair-repas['"]/);
   assert.match(foundation, /const personalSync = resolvePersonalSync\(\)/);
+  const allowlistSource = between(
+    personalSync,
+    "const CLAIR_REPAS_PERSONAL_KEYS = Object.freeze([",
+    "\n  ]);"
+  );
+  const configuredPersonalKeys = [
+    ...allowlistSource.matchAll(/'([^']+)'/g)
+  ].map((match) => match[1]);
+  assert.deepEqual(configuredPersonalKeys, CLAIR_REPAS_PERSONAL_KEYS);
+  assert.equal(new Set(configuredPersonalKeys).size, 16);
+  assert.match(personalSync, /'clair-repas': \(key\) => clairRepasPersonalKeySet\.has\(key\)/);
   const readySource = between(
     foundation,
     "function clairRepasReady() {",
@@ -775,10 +810,16 @@ await check("Direct personal sync isolation", async () => {
   readyContext.document.readyState = "loading";
   assert.equal(readyContext.__clairRepasReady(), false);
 
-  const values = new Map([
-    ["crA", "old-a"],
-    ["crB", "old-b"],
+  const personalBefore = Object.fromEntries(
+    CLAIR_REPAS_PERSONAL_KEYS.map((key, index) => [key, "old-personal-" + index])
+  );
+  const technicalBefore = Object.fromEntries([
+    ...CLAIR_REPAS_TECHNICAL_KEYS.map((key, index) => [key, "technical-" + index]),
     ["unrelated", "keep"]
+  ]);
+  const values = new Map([
+    ...Object.entries(personalBefore),
+    ...Object.entries(technicalBefore)
   ]);
   let operation = 0;
   let failAt = 2;
@@ -832,10 +873,21 @@ await check("Direct personal sync isolation", async () => {
   const syncApi = context.window.ClairSync;
   assert.ok(syncApi, "ClairSync API was not published");
   assert.equal(syncApi.protocol, "clair-personal-sync/v1");
-  assert.deepEqual(Object.fromEntries(Object.entries(syncApi.capture().values)), {
-    crA: "old-a",
-    crB: "old-b"
-  });
+  assert.deepEqual(
+    Object.fromEntries(Object.entries(syncApi.capture().values)),
+    personalBefore
+  );
+  assert.deepEqual(
+    Array.from(syncApi.listPersonalKeys()),
+    [...CLAIR_REPAS_PERSONAL_KEYS].sort()
+  );
+  for (const key of CLAIR_REPAS_PERSONAL_KEYS) {
+    assert.equal(syncApi.valid({ [key]: "allowed" }), true, key + " must be allowed");
+  }
+  for (const key of CLAIR_REPAS_TECHNICAL_KEYS) {
+    assert.equal(syncApi.valid({ [key]: "forbidden" }), false, key + " must be ignored");
+    assert.equal(Object.hasOwn(syncApi.capture().values, key), false);
+  }
 
   const resolverSource = between(
     foundation,
@@ -860,24 +912,27 @@ await check("Direct personal sync isolation", async () => {
   resolverContext.window.ClairSync = { ...syncApi, coreRevision: "sha256:tampered" };
   assert.equal(resolverContext.__resolvePersonalSync(), null);
 
-  assert.equal(syncApi.restore({ crA: "new-a", crC: "new-c" }), false);
-  assert.deepEqual(Object.fromEntries(values), {
-    crA: "old-a",
-    crB: "old-b",
-    unrelated: "keep"
-  });
+  const restoredPersonalValues = {
+    crFavMeals: '["favorite-new"]',
+    crRecentRecipesV25: '["recipe-new"]'
+  };
+  const fullBeforeFailedRestore = Object.fromEntries(values);
+  assert.equal(syncApi.restore(restoredPersonalValues), false);
+  assert.deepEqual(Object.fromEntries(values), fullBeforeFailedRestore);
 
   operation = 0;
   failAt = Number.POSITIVE_INFINITY;
-  assert.equal(syncApi.restore({ crA: "new-a", crC: "new-c" }), true);
+  assert.equal(syncApi.restore(restoredPersonalValues), true);
   assert.deepEqual(Object.fromEntries(values), {
-    crA: "new-a",
-    crC: "new-c",
-    unrelated: "keep"
+    ...restoredPersonalValues,
+    ...technicalBefore
   });
   const beforeRejectedRestore = Object.fromEntries(values);
-  assert.equal(syncApi.restore(new Map([["crA", "map-value"]])), false);
-  assert.equal(syncApi.restore({ crA: 42 }), false);
+  assert.equal(syncApi.restore(new Map([["crFavMeals", "map-value"]])), false);
+  assert.equal(syncApi.restore({ crFavMeals: 42 }), false);
+  for (const key of CLAIR_REPAS_TECHNICAL_KEYS) {
+    assert.equal(syncApi.restore({ [key]: "must-not-write" }), false);
+  }
   assert.deepEqual(Object.fromEntries(values), beforeRejectedRestore);
 
   readFailuresRemaining = 1;
@@ -920,8 +975,8 @@ await check("Direct personal sync isolation", async () => {
   assert.equal(postedFailure.personalDataCaptured, false);
 
   const quotaValues = new Map([
-    ["crA", "a".repeat(4000)],
-    ["crB", "b".repeat(1000)]
+    ["crFavMeals", "a".repeat(4000)],
+    ["crRecentRecipesV25", "b".repeat(1000)]
   ]);
   const quotaLimit = 6000;
   const quotaStorage = {
@@ -959,17 +1014,17 @@ await check("Direct personal sync isolation", async () => {
   );
   assert.equal(
     quotaContext.window.ClairSync.restore({
-      crA: "a".repeat(1000),
-      crC: "c".repeat(4000),
-      crD: "d".repeat(1000)
+      crFavMeals: "a".repeat(1000),
+      crRecipeLearningV3: "c".repeat(4000),
+      crRecipeNotesV31: "d".repeat(1000)
     }),
     false
   );
   assert.deepEqual(Object.fromEntries(quotaValues), {
-    crA: "a".repeat(4000),
-    crB: "b".repeat(1000)
+    crFavMeals: "a".repeat(4000),
+    crRecentRecipesV25: "b".repeat(1000)
   });
-  return "storage isolated; transient and quota failures restore the before-image";
+  return "16-key allowlist; technical keys isolated; rollback preserves the before-image";
 });
 
 await check("Compatible newest snapshot selection", () => {
@@ -998,7 +1053,8 @@ await check("Compatible newest snapshot selection", () => {
       return (
         Object.prototype.toString.call(values) === "[object Object]" &&
         Object.entries(values).every(
-          ([key, value]) => /^cr/.test(key) && typeof value === "string"
+          ([key, value]) =>
+            CLAIR_REPAS_PERSONAL_KEYS.includes(key) && typeof value === "string"
         )
       );
     }
@@ -1013,7 +1069,7 @@ await check("Compatible newest snapshot selection", () => {
   );
 
   const makeSnapshot = (capturedAt, overrides = {}) => {
-    const values = overrides.values || { crA: capturedAt };
+    const values = overrides.values || { crDays: capturedAt };
     return {
       app: "clair-repas",
       dataSchema: 2,
@@ -1043,13 +1099,13 @@ await check("Compatible newest snapshot selection", () => {
   cyclic.values.self = cyclic.values;
   const withBigInt = {
     ...makeSnapshot("2026-08-22T12:00:00.000Z"),
-    values: { crA: 1n }
+    values: { crDays: 1n }
   };
   const withMap = makeSnapshot("2026-08-22T13:00:00.000Z", {
-    values: new Map([["crA", "map-value"]])
+    values: new Map([["crDays", "map-value"]])
   });
   const withNonString = makeSnapshot("2026-08-22T14:00:00.000Z", {
-    values: { crA: 42 }
+    values: { crDays: 42 }
   });
   assert.equal(
     context.__latestCompatibleSnapshot([

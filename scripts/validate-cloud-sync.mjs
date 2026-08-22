@@ -10,12 +10,36 @@ import vm from "node:vm";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const source = readFileSync(resolve(ROOT, "v8/clair-cloud-sync.js"), "utf8");
-const RELEASE = "8.0.0-foundation.12";
+const RELEASE = "8.0.0-foundation.13";
 const DATA_SCHEMA = 2;
 const CORE_REVISION = "sha256:test-core-revision";
 const PRODUCTION_APP_ID = "clair-repas";
 const NON_PRODUCTION_APP_ID = "clair-repas-staging";
 const PERSONAL_SYNC_PROTOCOL = "clair-personal-sync/v1";
+const CLAIR_REPAS_PERSONAL_KEYS = Object.freeze([
+  "crFavMeals",
+  "crRecentRecipesV25",
+  "crRecipeReactionsV3",
+  "crRecipeLearningV3",
+  "crRecipeNotesV31",
+  "crPeople",
+  "crDays",
+  "crMode",
+  "crTimeAvailable",
+  "crMealContext",
+  "crMealUsageV19",
+  "crCourseUsageV37",
+  "crBrowserDiscoveryV35",
+  "crBrowserDecksV35",
+  "crStateV13",
+  "crHistoryV13"
+]);
+const CLAIR_REPAS_EXCLUDED_KEYS = Object.freeze([
+  "crHealthProbeV73",
+  "crRecipeIdMigrationV39",
+  "crWelcomeV7",
+  "crFutureTechnicalFlag"
+]);
 const successes = [];
 const failures = [];
 
@@ -76,8 +100,9 @@ class FakeStorage {
 }
 
 class FakeSync {
-  constructor(values = {}) {
+  constructor(values = {}, personalKeys = null) {
     this.values = { ...values };
+    this.personalKeys = personalKeys ? new Set(personalKeys) : null;
     this.restoreCalls = [];
     this.failRestore = false;
     this.failRestoreAt = null;
@@ -94,8 +119,20 @@ class FakeSync {
     this.scopeId = "scope-test";
   }
 
+  personalKey(key) {
+    if (this.personalKeys) return this.personalKeys.has(key);
+    return (
+      /^cr[A-Za-z0-9_.-]+$/.test(key) && key !== "crHealthProbeV73"
+    );
+  }
+
   capture() {
-    return { ok: true, values: { ...this.values } };
+    return {
+      ok: true,
+      values: Object.fromEntries(
+        Object.entries(this.values).filter(([key]) => this.personalKey(key))
+      )
+    };
   }
 
   valid(values) {
@@ -103,11 +140,22 @@ class FakeSync {
       Object.prototype.toString.call(values) === "[object Object]" &&
       Object.entries(values).every(
         ([key, value]) =>
-          /^cr[A-Za-z0-9_.-]+$/.test(key) &&
-          key !== "crHealthProbeV73" &&
-          typeof value === "string"
+          this.personalKey(key) && typeof value === "string"
       )
     );
+  }
+
+  replacePersonal(values) {
+    if (!this.personalKeys) {
+      this.values = { ...values };
+      return;
+    }
+    this.values = {
+      ...Object.fromEntries(
+        Object.entries(this.values).filter(([key]) => !this.personalKey(key))
+      ),
+      ...values
+    };
   }
 
   restore(values) {
@@ -117,11 +165,11 @@ class FakeSync {
     }
     this.restoreCalls.push({ ...values });
     if (this.restoreCalls.length === this.mutateThenFailAt) {
-      this.values = { ...values };
+      this.replacePersonal(values);
       return false;
     }
     if (this.restoreCalls.length === this.mutateThenThrowAt) {
-      this.values = { ...values };
+      this.replacePersonal(values);
       throw new Error("restore-mutated-then-threw");
     }
     if (
@@ -129,7 +177,7 @@ class FakeSync {
       this.restoreCalls.length === this.failRestoreAt ||
       !this.valid(values)
     ) return false;
-    this.values = { ...values };
+    this.replacePersonal(values);
     return true;
   }
 }
@@ -328,9 +376,10 @@ function makeHarness({
   values = {},
   transport = new MemoryTransport(),
   storage,
-  runtimeApi = api
+  runtimeApi = api,
+  personalKeys = null
 } = {}) {
-  const sync = new FakeSync(values);
+  const sync = new FakeSync(values, personalKeys);
   const technicalStorage = storage || new FakeStorage();
   const windowTarget = new FakeEventTarget();
   const documentTarget = new FakeEventTarget();
@@ -347,7 +396,7 @@ function makeHarness({
         scopeId: sync.scopeId,
         kind,
         capturedAt: new Date(currentTime).toISOString(),
-        values: { ...sync.values },
+        values: { ...sync.capture().values },
         fingerprint: "fnv1a:snapshot-" + String(snapshots.length + 1)
       };
       snapshots.push(structuredClone(record));
@@ -479,6 +528,55 @@ await check("Cloud bootstrap fails closed before every remote side effect", asyn
   assert.equal(marker.release, RELEASE);
   assert.equal(marker.device, null);
   disabledHarness.runtime.stop();
+});
+
+await check("Explicit personal boundary excludes technical and future cr keys end to end", async () => {
+  const localValues = {
+    crFavMeals: '["favorite-local"]',
+    crHealthProbeV73: "health-local",
+    crRecipeIdMigrationV39: "migration-local",
+    crWelcomeV7: "welcome-local",
+    crFutureTechnicalFlag: "future-local",
+    unrelated: "unrelated-local"
+  };
+  const transport = new MemoryTransport();
+  transport.putRemote("crFavMeals", ["favorite-local"], { revision: 20 });
+  for (const [index, key] of CLAIR_REPAS_EXCLUDED_KEYS.entries()) {
+    transport.putRemote(key, { technical: "remote-" + index }, {
+      revision: 30 + index
+    });
+  }
+  const remoteBefore = new Map(
+    [...transport.rows].map(([key, row]) => [key, structuredClone(row)])
+  );
+  const harness = makeHarness({
+    values: localValues,
+    transport,
+    personalKeys: CLAIR_REPAS_PERSONAL_KEYS
+  });
+
+  for (const key of CLAIR_REPAS_EXCLUDED_KEYS) {
+    assert.equal(harness.runtime.markDirty(key), false, key + " must stay local");
+  }
+  const result = await harness.runtime.syncNow("explicit-personal-boundary");
+
+  assert.equal(result.synced, true, JSON.stringify(result));
+  assert.equal(result.keyCount, 1);
+  assert.deepEqual(harness.sync.values, localValues);
+  assert.equal(harness.sync.restoreCalls.length, 0);
+  assert.equal(transport.listCalls.length, 1);
+  assert.equal(transport.writeCalls.length, 0);
+  assert.deepEqual(harness.snapshots[0].values, {
+    crFavMeals: localValues.crFavMeals
+  });
+  const meta = JSON.parse(
+    harness.storage.getItem(api.constants.META_STORAGE_KEY)
+  );
+  assert.deepEqual(Object.keys(meta.accounts["user-test"].keys), ["crFavMeals"]);
+  for (const key of CLAIR_REPAS_EXCLUDED_KEYS) {
+    assert.deepEqual(transport.rows.get(key), remoteBefore.get(key));
+  }
+  harness.runtime.stop();
 });
 
 await check("Pinned SDK loader replaces a loaded-but-unavailable script", async () => {

@@ -28,7 +28,7 @@ const ALLOWED_KEYS = [
   "crStateV13"
 ];
 const VERSION = Object.freeze({
-  foundationVersion: "8.0.0-foundation.12",
+  foundationVersion: "8.0.0-foundation.13",
   productVersion: "7.5",
   cloudAppId: "clair-repas",
   cloudEnabled: false
