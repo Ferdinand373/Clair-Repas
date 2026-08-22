@@ -3,7 +3,7 @@
 
   const script = document.currentScript;
   const LOCAL_APP_ID = script?.dataset?.clairApp || 'clair';
-  const RELEASE = script?.dataset?.clairRelease || '8.0.0-foundation.11';
+  const RELEASE = script?.dataset?.clairRelease || '8.0.0-foundation.12';
   const DATA_SCHEMA = Number(script?.dataset?.clairSchema || 2);
   const CORE_REVISION = script?.dataset?.clairCore || '';
 
@@ -47,6 +47,161 @@
       value &&
       Object.prototype.toString.call(value) === '[object Object]'
     );
+  }
+
+  function isJsonPlainObject(value) {
+    if (!isPlainObject(value)) return false;
+    try {
+      const prototype = Object.getPrototypeOf(value);
+      if (prototype === null) return true;
+      if (Object.getPrototypeOf(prototype) !== null) return false;
+      if (Object.getOwnPropertyDescriptor(prototype, 'toJSON')) return false;
+      const constructor = Object.getOwnPropertyDescriptor(
+        prototype,
+        'constructor'
+      );
+      if (
+        !constructor ||
+        !own(constructor, 'value') ||
+        typeof constructor.value !== 'function' ||
+        Function.prototype.toString.call(constructor.value) !==
+          Function.prototype.toString.call(Object)
+      ) return false;
+      const expectedNames = Object.getOwnPropertyNames(Object.prototype).sort();
+      const prototypeNames = Object.getOwnPropertyNames(prototype).sort();
+      return (
+        expectedNames.length === prototypeNames.length &&
+        expectedNames.every((name, index) => name === prototypeNames[index]) &&
+        Object.getOwnPropertySymbols(prototype).length ===
+          Object.getOwnPropertySymbols(Object.prototype).length
+      );
+    } catch (_) {
+      return false;
+    }
+  }
+
+  function isJsonArray(value) {
+    if (!Array.isArray(value)) return false;
+    try {
+      const prototype = Object.getPrototypeOf(value);
+      if (!prototype) return false;
+      const objectPrototype = Object.getPrototypeOf(prototype);
+      if (!objectPrototype || Object.getPrototypeOf(objectPrototype) !== null) {
+        return false;
+      }
+      if (Object.getOwnPropertyDescriptor(prototype, 'toJSON')) return false;
+      const constructor = Object.getOwnPropertyDescriptor(
+        prototype,
+        'constructor'
+      );
+      if (
+        !constructor ||
+        !own(constructor, 'value') ||
+        typeof constructor.value !== 'function' ||
+        Function.prototype.toString.call(constructor.value) !==
+          Function.prototype.toString.call(Array)
+      ) return false;
+      const expectedNames = Object.getOwnPropertyNames(Array.prototype).sort();
+      const prototypeNames = Object.getOwnPropertyNames(prototype).sort();
+      return (
+        expectedNames.length === prototypeNames.length &&
+        expectedNames.every((name, index) => name === prototypeNames[index]) &&
+        Object.getOwnPropertySymbols(prototype).length ===
+          Object.getOwnPropertySymbols(Array.prototype).length
+      );
+    } catch (_) {
+      return false;
+    }
+  }
+
+  function isJsonValue(value, seen = new Set()) {
+    if (value === null || typeof value === 'string' || typeof value === 'boolean') {
+      return true;
+    }
+    if (typeof value === 'number') return Number.isFinite(value);
+    const arrayValue = Array.isArray(value);
+    if (arrayValue ? !isJsonArray(value) : !isJsonPlainObject(value)) return false;
+    if (seen.has(value)) return false;
+
+    seen.add(value);
+    try {
+      if (Object.getOwnPropertySymbols(value).length !== 0) return false;
+      const names = Object.getOwnPropertyNames(value);
+      if (arrayValue) {
+        if (names.length !== value.length + 1 || !names.includes('length')) {
+          return false;
+        }
+        for (let index = 0; index < value.length; index += 1) {
+          const descriptor = Object.getOwnPropertyDescriptor(value, String(index));
+          if (!descriptor || !own(descriptor, 'value') || !descriptor.enumerable) {
+            return false;
+          }
+          if (!isJsonValue(descriptor.value, seen)) return false;
+        }
+        return true;
+      }
+
+      for (const key of names) {
+        const descriptor = Object.getOwnPropertyDescriptor(value, key);
+        if (!descriptor || !own(descriptor, 'value') || !descriptor.enumerable) {
+          return false;
+        }
+        if (!isJsonValue(descriptor.value, seen)) return false;
+      }
+      return true;
+    } catch (_) {
+      return false;
+    } finally {
+      seen.delete(value);
+    }
+  }
+
+  function copyJsonValue(value) {
+    if (value === null || typeof value !== 'object') return value;
+    if (Array.isArray(value)) {
+      const copy = [];
+      Object.setPrototypeOf(copy, null);
+      for (let index = 0; index < value.length; index += 1) {
+        const descriptor = Object.getOwnPropertyDescriptor(value, String(index));
+        Object.defineProperty(copy, String(index), {
+          value: copyJsonValue(descriptor.value),
+          enumerable: true,
+          configurable: true,
+          writable: true
+        });
+      }
+      return copy;
+    }
+    const copy = Object.create(null);
+    for (const key of Object.getOwnPropertyNames(value)) {
+      const descriptor = Object.getOwnPropertyDescriptor(value, key);
+      Object.defineProperty(copy, key, {
+        value: copyJsonValue(descriptor.value),
+        enumerable: true,
+        configurable: true,
+        writable: true
+      });
+    }
+    return copy;
+  }
+
+  function normalizeRemoteLocalStorageValue(value, key = 'unknown') {
+    if (typeof value === 'string') return value;
+    const supported =
+      Array.isArray(value) ||
+      isJsonPlainObject(value) ||
+      (typeof value === 'number' && Number.isFinite(value)) ||
+      typeof value === 'boolean';
+    if (!supported || !isJsonValue(value)) {
+      throw new Error('invalid-remote-payload:' + String(key));
+    }
+    try {
+      const normalized = JSON.stringify(copyJsonValue(value));
+      if (typeof normalized !== 'string') throw new Error('not-a-string');
+      return normalized;
+    } catch (_) {
+      throw new Error('invalid-remote-payload:' + String(key));
+    }
   }
 
   function stableJson(value) {
@@ -163,6 +318,14 @@
     } catch (_) {
       return null;
     }
+  }
+
+  function sameJsonContainerStrings(leftRaw, rightRaw) {
+    const left = parseJsonContainer(leftRaw);
+    const right = parseJsonContainer(rightRaw);
+    const bothArrays = Array.isArray(left) && Array.isArray(right);
+    const bothObjects = isPlainObject(left) && isPlainObject(right);
+    return (bothArrays || bothObjects) && sameJson(left, right);
   }
 
   function mergePersonalStrings(baseRaw, localRaw, remoteRaw, preferLocal) {
@@ -440,11 +603,17 @@
 
   function liveRemoteValue(row) {
     if (!row || row.deleted_at) return { present: false, value: null };
-    const value = row.payload?.value;
-    if (typeof value !== 'string') {
-      throw new Error('invalid-remote-payload:' + String(row.data_key || 'unknown'));
-    }
-    return { present: true, value };
+    const rawValue = row.payload?.value;
+    const value = normalizeRemoteLocalStorageValue(
+      rawValue,
+      row.data_key || 'unknown'
+    );
+    return {
+      present: true,
+      value,
+      legacyJsonContainer:
+        Array.isArray(rawValue) || isJsonPlainObject(rawValue)
+    };
   }
 
   class SyncConflictError extends Error {
@@ -1087,7 +1256,14 @@
         if (localPresent) {
           // Premier handover : la représentation locale est la référence,
           // y compris pour le JSON et face à un ancien tombstone distant.
-          if (!remotePresent || remoteValue !== localValue) {
+          const remoteCompatible = remotePresent && (
+            remoteValue === localValue ||
+            (
+              remoteState.legacyJsonContainer &&
+              sameJsonContainerStrings(localValue, remoteValue)
+            )
+          );
+          if (!remoteCompatible) {
             row = await uploadState(
               transport,
               user,
@@ -1742,6 +1918,7 @@
       createSupabaseTransport,
       loadSupabaseLibrary,
       mergePersonalStrings,
+      normalizeRemoteLocalStorageValue,
       fingerprint,
       constants: Object.freeze({
         CLOUD_APP_ID,

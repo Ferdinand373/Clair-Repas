@@ -118,14 +118,21 @@ const personalSync = readUtf8("v8/clair-sync.js");
 const foundation = readUtf8("v8/clair-foundation.js");
 const cloudSync = readUtf8("v8/clair-cloud-sync.js");
 const supabaseVendor = readUtf8("v8/vendor/supabase-js-2.111.0.js");
+const repairTool = readUtf8("repair-local-production.html");
 const manifest = JSON.parse(readUtf8("manifest.webmanifest"));
-const version = JSON.parse(readUtf8("v8/version.json"));
+const versionText = readUtf8("v8/version.json");
+const version = JSON.parse(versionText);
 const refreshMarker = readUtf8("refresh.text");
 
 const scriptMatches = [
   ...indexHtml.matchAll(/<script\b([^>]*)>([\s\S]*?)<\/script>/gi)
 ];
 const inlineScripts = scriptMatches
+  .filter(([, attributes, body]) => !/\bsrc\s*=/.test(attributes) && body.trim())
+  .map(([, , body]) => body);
+const repairInlineScripts = [
+  ...repairTool.matchAll(/<script\b([^>]*)>([\s\S]*?)<\/script>/gi)
+]
   .filter(([, attributes, body]) => !/\bsrc\s*=/.test(attributes) && body.trim())
   .map(([, , body]) => body);
 
@@ -150,7 +157,8 @@ await check("Required repository files", () => {
     "v8/vendor/supabase-js-2.111.0.js",
     "v8/vendor/supabase-js-2.111.0.LICENSE",
     "v8/clair-foundation.js",
-    "v8/version.json"
+    "v8/version.json",
+    "repair-local-production.html"
   ];
   for (const relativePath of required) {
     assert.ok(existsSync(rooted(relativePath)), "Missing " + relativePath);
@@ -169,7 +177,8 @@ await check("UTF-8 and merge-conflict safety", () => {
     "v8/vendor/supabase-js-2.111.0.js",
     "v8/vendor/supabase-js-2.111.0.LICENSE",
     "v8/clair-foundation.js",
-    "v8/version.json"
+    "v8/version.json",
+    "repair-local-production.html"
   ];
   for (const relativePath of textFiles) {
     const text = readUtf8(relativePath);
@@ -194,7 +203,13 @@ await check("JavaScript syntax", () => {
   inlineScripts.forEach((source, index) => {
     new vm.Script(source, { filename: "index.html:inline-" + (index + 1) + ".js" });
   });
-  return inlineScripts.length + 5 + " scripts";
+  assert.equal(repairInlineScripts.length, 1, "Unexpected repair tool inline scripts");
+  repairInlineScripts.forEach((source, index) => {
+    new vm.Script(source, {
+      filename: "repair-local-production.html:inline-" + (index + 1) + ".js"
+    });
+  });
+  return inlineScripts.length + repairInlineScripts.length + 5 + " scripts";
 });
 
 await check("Release metadata consistency", () => {
@@ -254,7 +269,21 @@ await check("Release metadata consistency", () => {
     /const CLOUD_ENABLED = script\?\.dataset\?\.clairCloudEnabled === 'true'/
   );
   assert.match(cloudSync, /const DIRECT_SYNC_PROTOCOL = String\(/);
-  assert.doesNotMatch(cloudSync, /clair-repas-v8-test/);
+  const forbiddenTestAppId = /clair-repas-v8[-]test/i;
+  for (const [label, content] of Object.entries({
+    indexHtml,
+    serviceWorker,
+    personalSync,
+    foundation,
+    cloudSync,
+    repairTool,
+    versionText,
+    refreshMarker
+  })) {
+    assert.doesNotMatch(content, forbiddenTestAppId, label + " references a test app id");
+  }
+  const retiredDiagnosticMarker = ["Outil diagnostic : 593cecce", "diag1"].join("-");
+  assert.equal(repairTool.includes(retiredDiagnosticMarker), false);
   assert.match(
     serviceWorker,
     /data-clair-cloud-app="\$\{CLOUD_APP_ID\}"/

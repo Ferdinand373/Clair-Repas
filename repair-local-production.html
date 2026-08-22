@@ -115,7 +115,6 @@ tr:last-child td{border-bottom:0}
     <h1>Réparation locale production</h1>
     <p class="subtitle">Outil ponctuel et indépendant pour restaurer huit données locales depuis Supabase production.</p>
     <p class="warning">Aucune réparation ne démarre sans clic. Cette page ne réactive pas le cloud.</p>
-    <p class="small-note">Outil diagnostic : 593cecce-diag1</p>
   </header>
 
   <section class="card" aria-labelledby="securityTitle">
@@ -195,6 +194,17 @@ tr:last-child td{border-bottom:0}
     'crStateV13'
   ]);
   const ALLOWED_KEY_SET = new Set(ALLOWED_KEYS);
+  const ARRAY_VALUE_KEYS = new Set([
+    'crFavMeals',
+    'crHistoryV13',
+    'crRecentRecipesV25'
+  ]);
+  const OBJECT_VALUE_KEYS = new Set([
+    'crMealUsageV19',
+    'crRecipeLearningV3',
+    'crRecipeNotesV31',
+    'crStateV13'
+  ]);
 
   const elements = {
     checkApp: document.getElementById('checkApp'),
@@ -659,7 +669,193 @@ tr:last-child td{border-bottom:0}
     if (!Array.isArray(favorites) || favorites.some((value) => typeof value !== 'string')) {
       throw new Error('La donnée crFavMeals production a un format invalide. STOP.');
     }
-    return new Set(favorites).size;
+    return favorites.length;
+  }
+
+  function isJsonPlainObject(value) {
+    if (
+      !value ||
+      Object.prototype.toString.call(value) !== '[object Object]'
+    ) return false;
+    try {
+      const prototype = Object.getPrototypeOf(value);
+      if (prototype === null) return true;
+      if (Object.getPrototypeOf(prototype) !== null) return false;
+      if (Object.getOwnPropertyDescriptor(prototype, 'toJSON')) return false;
+      const constructor = Object.getOwnPropertyDescriptor(
+        prototype,
+        'constructor'
+      );
+      if (
+        !constructor ||
+        !Object.prototype.hasOwnProperty.call(constructor, 'value') ||
+        typeof constructor.value !== 'function' ||
+        Function.prototype.toString.call(constructor.value) !==
+          Function.prototype.toString.call(Object)
+      ) return false;
+      const expectedNames = Object.getOwnPropertyNames(Object.prototype).sort();
+      const prototypeNames = Object.getOwnPropertyNames(prototype).sort();
+      return (
+        expectedNames.length === prototypeNames.length &&
+        expectedNames.every((name, index) => name === prototypeNames[index]) &&
+        Object.getOwnPropertySymbols(prototype).length ===
+          Object.getOwnPropertySymbols(Object.prototype).length
+      );
+    } catch (_) {
+      return false;
+    }
+  }
+
+  function isJsonArray(value) {
+    if (!Array.isArray(value)) return false;
+    try {
+      const prototype = Object.getPrototypeOf(value);
+      if (!prototype) return false;
+      const objectPrototype = Object.getPrototypeOf(prototype);
+      if (!objectPrototype || Object.getPrototypeOf(objectPrototype) !== null) {
+        return false;
+      }
+      if (Object.getOwnPropertyDescriptor(prototype, 'toJSON')) return false;
+      const constructor = Object.getOwnPropertyDescriptor(
+        prototype,
+        'constructor'
+      );
+      if (
+        !constructor ||
+        !Object.prototype.hasOwnProperty.call(constructor, 'value') ||
+        typeof constructor.value !== 'function' ||
+        Function.prototype.toString.call(constructor.value) !==
+          Function.prototype.toString.call(Array)
+      ) return false;
+      const expectedNames = Object.getOwnPropertyNames(Array.prototype).sort();
+      const prototypeNames = Object.getOwnPropertyNames(prototype).sort();
+      return (
+        expectedNames.length === prototypeNames.length &&
+        expectedNames.every((name, index) => name === prototypeNames[index]) &&
+        Object.getOwnPropertySymbols(prototype).length ===
+          Object.getOwnPropertySymbols(Array.prototype).length
+      );
+    } catch (_) {
+      return false;
+    }
+  }
+
+  function isJsonValue(value, seen = new Set()) {
+    if (value === null || typeof value === 'string' || typeof value === 'boolean') {
+      return true;
+    }
+    if (typeof value === 'number') return Number.isFinite(value);
+    const arrayValue = Array.isArray(value);
+    if (arrayValue ? !isJsonArray(value) : !isJsonPlainObject(value)) return false;
+    if (seen.has(value)) return false;
+
+    seen.add(value);
+    try {
+      if (Object.getOwnPropertySymbols(value).length !== 0) return false;
+      const names = Object.getOwnPropertyNames(value);
+      if (arrayValue) {
+        if (names.length !== value.length + 1 || !names.includes('length')) {
+          return false;
+        }
+        for (let index = 0; index < value.length; index += 1) {
+          const descriptor = Object.getOwnPropertyDescriptor(value, String(index));
+          if (!descriptor || !Object.prototype.hasOwnProperty.call(descriptor, 'value') || !descriptor.enumerable) {
+            return false;
+          }
+          if (!isJsonValue(descriptor.value, seen)) return false;
+        }
+        return true;
+      }
+
+      for (const key of names) {
+        const descriptor = Object.getOwnPropertyDescriptor(value, key);
+        if (!descriptor || !Object.prototype.hasOwnProperty.call(descriptor, 'value') || !descriptor.enumerable) {
+          return false;
+        }
+        if (!isJsonValue(descriptor.value, seen)) return false;
+      }
+      return true;
+    } catch (_) {
+      return false;
+    } finally {
+      seen.delete(value);
+    }
+  }
+
+  function copyJsonValue(value) {
+    if (value === null || typeof value !== 'object') return value;
+    if (Array.isArray(value)) {
+      const copy = [];
+      Object.setPrototypeOf(copy, null);
+      for (let index = 0; index < value.length; index += 1) {
+        const descriptor = Object.getOwnPropertyDescriptor(value, String(index));
+        Object.defineProperty(copy, String(index), {
+          value: copyJsonValue(descriptor.value),
+          enumerable: true,
+          configurable: true,
+          writable: true
+        });
+      }
+      return copy;
+    }
+    const copy = Object.create(null);
+    for (const key of Object.getOwnPropertyNames(value)) {
+      const descriptor = Object.getOwnPropertyDescriptor(value, key);
+      Object.defineProperty(copy, key, {
+        value: copyJsonValue(descriptor.value),
+        enumerable: true,
+        configurable: true,
+        writable: true
+      });
+    }
+    return copy;
+  }
+
+  function normalizeRemoteValue(key, value) {
+    if (key === 'crDays') {
+      if (typeof value === 'string') return value;
+      if (typeof value === 'number' && Number.isFinite(value)) {
+        return JSON.stringify(value);
+      }
+      throw new Error('La donnée crDays production a un format invalide. STOP.');
+    }
+
+    const expectsArray = ARRAY_VALUE_KEYS.has(key);
+    const expectsObject = OBJECT_VALUE_KEYS.has(key);
+    if (!expectsArray && !expectsObject) {
+      throw new Error('Une clé production ne possède aucune règle de validation. STOP.');
+    }
+
+    if (typeof value === 'string') {
+      let parsed;
+      try {
+        parsed = JSON.parse(value);
+      } catch (_) {
+        throw new Error('La donnée ' + key + ' production n’est pas un JSON valide. STOP.');
+      }
+      if (
+        (expectsArray && !Array.isArray(parsed)) ||
+        (expectsObject && !isJsonPlainObject(parsed))
+      ) {
+        throw new Error('La donnée ' + key + ' production a un type JSON invalide. STOP.');
+      }
+      return value;
+    }
+
+    if (
+      (expectsArray && !Array.isArray(value)) ||
+      (expectsObject && !isJsonPlainObject(value)) ||
+      !isJsonValue(value)
+    ) {
+      throw new Error('La donnée ' + key + ' production a un type JSON invalide. STOP.');
+    }
+    try {
+      const normalized = JSON.stringify(copyJsonValue(value));
+      if (typeof normalized !== 'string') throw new Error('not-a-string');
+      return normalized;
+    } catch (_) {
+      throw new Error('La donnée ' + key + ' production ne peut pas être normalisée. STOP.');
+    }
   }
 
   function validateRemoteRows(rows, userId) {
@@ -682,12 +878,11 @@ tr:last-child td{border-bottom:0}
         !row.payload ||
         typeof row.payload !== 'object' ||
         Array.isArray(row.payload) ||
-        !Object.prototype.hasOwnProperty.call(row.payload, 'value') ||
-        typeof row.payload.value !== 'string'
+        !Object.prototype.hasOwnProperty.call(row.payload, 'value')
       ) {
-        throw new Error('Une valeur production n’est pas une chaîne valide. STOP.');
+        throw new Error('Une valeur production est absente ou invalide. STOP.');
       }
-      values.set(row.data_key, row.payload.value);
+      values.set(row.data_key, normalizeRemoteValue(row.data_key, row.payload.value));
     }
     if (values.size !== ALLOWED_KEYS.length || ALLOWED_KEYS.some((key) => !values.has(key))) {
       throw new Error('Une ou plusieurs clés production sont absentes. STOP.');
@@ -706,13 +901,17 @@ tr:last-child td{border-bottom:0}
         label: identical ? 'Identique' : present ? 'Sera remplacée' : 'Sera créée'
       };
     });
+    const favoriteCount = validateFavoriteCount(remoteValues.get('crFavMeals'));
+    if (favoriteCount !== 1) {
+      throw new Error('Supabase doit contenir exactement 1 favori production. STOP.');
+    }
     return {
       version,
       remoteValues,
       localEntries,
       differences,
       differenceCount: differences.filter((item) => item.state !== 'identical').length,
-      favoriteCount: validateFavoriteCount(remoteValues.get('crFavMeals'))
+      favoriteCount
     };
   }
 

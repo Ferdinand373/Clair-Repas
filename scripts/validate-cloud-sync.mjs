@@ -10,11 +10,11 @@ import vm from "node:vm";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const source = readFileSync(resolve(ROOT, "v8/clair-cloud-sync.js"), "utf8");
-const RELEASE = "8.0.0-foundation.11";
+const RELEASE = "8.0.0-foundation.12";
 const DATA_SCHEMA = 2;
 const CORE_REVISION = "sha256:test-core-revision";
 const PRODUCTION_APP_ID = "clair-repas";
-const TEST_APP_ID = "clair-repas-v8-test";
+const NON_PRODUCTION_APP_ID = "clair-repas-staging";
 const PERSONAL_SYNC_PROTOCOL = "clair-personal-sync/v1";
 const successes = [];
 const failures = [];
@@ -278,6 +278,52 @@ function loadTestApi(dataset = {}) {
 const api = loadTestApi();
 assert.ok(api, "Cloud Sync test API was not exposed");
 
+await check("Legacy payload normalization is strict and string-preserving", () => {
+  const exactString = '  { "foundation": true }\r\n';
+  assert.equal(api.normalizeRemoteLocalStorageValue(exactString, "crString"), exactString);
+  assert.equal(
+    api.normalizeRemoteLocalStorageValue(["legacy", { nested: null }], "crArray"),
+    '["legacy",{"nested":null}]'
+  );
+  assert.equal(
+    api.normalizeRemoteLocalStorageValue({ legacy: true, count: 2 }, "crObject"),
+    '{"legacy":true,"count":2}'
+  );
+  assert.equal(api.normalizeRemoteLocalStorageValue(42.5, "crNumber"), "42.5");
+  assert.equal(api.normalizeRemoteLocalStorageValue(false, "crBoolean"), "false");
+
+  const customPrototype = Object.create(null);
+  customPrototype.toJSON = () => null;
+  const inheritedToJson = Object.create(customPrototype);
+  inheritedToJson.safeLooking = true;
+  const customArrayPrototype = Object.create(Array.prototype);
+  customArrayPrototype.toJSON = () => null;
+  const inheritedArrayToJson = ["safe-looking"];
+  Object.setPrototypeOf(inheritedArrayToJson, customArrayPrototype);
+  for (const invalid of [
+    null,
+    undefined,
+    Number.NaN,
+    Number.POSITIVE_INFINITY,
+    new Date("2026-08-22T00:00:00.000Z"),
+    [undefined],
+    { nested: () => true },
+    inheritedToJson,
+    inheritedArrayToJson
+  ]) {
+    assert.throws(
+      () => api.normalizeRemoteLocalStorageValue(invalid, "crInvalid"),
+      /invalid-remote-payload:crInvalid/
+    );
+  }
+  const cyclic = {};
+  cyclic.self = cyclic;
+  assert.throws(
+    () => api.normalizeRemoteLocalStorageValue(cyclic, "crCyclic"),
+    /invalid-remote-payload:crCyclic/
+  );
+});
+
 function makeHarness({
   values = {},
   transport = new MemoryTransport(),
@@ -367,7 +413,7 @@ function assertOnlyProductionApp(transport) {
   ];
   assert.ok(ids.length > 0, "Expected at least one clair_data operation");
   assert.ok(ids.every((appId) => appId === PRODUCTION_APP_ID));
-  assert.ok(ids.every((appId) => appId !== TEST_APP_ID));
+  assert.ok(ids.every((appId) => appId !== NON_PRODUCTION_APP_ID));
 }
 
 await check("Cloud bootstrap fails closed before every remote side effect", async () => {
@@ -642,13 +688,13 @@ await check("Supabase adapter reuses auth and hard-locks clair_data to productio
   );
   const beforeForbidden = operations.length;
   await assert.rejects(
-    () => signedIn.listData({ user_id: user.id, app_id: TEST_APP_ID }),
+    () => signedIn.listData({ user_id: user.id, app_id: NON_PRODUCTION_APP_ID }),
     /forbidden-app-id/
   );
   await assert.rejects(
     () =>
       signedIn.writeData(
-        { user_id: user.id, app_id: TEST_APP_ID, data_key: "crForbidden" },
+        { user_id: user.id, app_id: NON_PRODUCTION_APP_ID, data_key: "crForbidden" },
         null
       ),
     /forbidden-app-id/
@@ -716,15 +762,75 @@ await check("Local upload uses the raw value and production app_id", async () =>
   assertOnlyProductionApp(harness.transport);
 });
 
-await check("Remote-only data downloads without format conversion", async () => {
+await check("Remote-only Foundation and legacy data download as localStorage strings", async () => {
   const transport = new MemoryTransport();
-  transport.putRemote("crRemote", '["a","b"]');
+  transport.putRemote("crFoundation", ' ["a", "b"] ');
+  transport.putRemote("crLegacyArray", ["a", "b"]);
+  transport.putRemote("crLegacyObject", { a: 1, nested: { ok: true } });
   const harness = makeHarness({ transport });
   const result = await harness.runtime.syncNow("test-download");
   assert.equal(result.synced, true, JSON.stringify(result));
-  assert.equal(harness.sync.values.crRemote, '["a","b"]');
-  assert.equal(harness.sync.restoreCalls.length, 1);
+  assert.equal(harness.sync.values.crFoundation, ' ["a", "b"] ');
+  assert.equal(harness.sync.values.crLegacyArray, '["a","b"]');
+  assert.equal(
+    harness.sync.values.crLegacyObject,
+    '{"a":1,"nested":{"ok":true}}'
+  );
+  assert.equal(transport.writeCalls.length, 0);
+  assert.ok(harness.sync.restoreCalls.length >= 1);
   assertOnlyProductionApp(transport);
+});
+
+await check("Legacy production shapes preserve local-first handover and revisions", async () => {
+  const legacyValues = {
+    crDays: "14",
+    crFavMeals: ["v75-favorite-1"],
+    crHistoryV13: [{ id: "history-1", at: 1720000000000 }],
+    crMealUsageV19: { "meal-1": { count: 2 } },
+    crRecentRecipesV25: ["recipe-1", "recipe-2"],
+    crRecipeLearningV3: { version: 3, choices: [] },
+    crRecipeNotesV31: { "recipe-1": "À refaire" },
+    crStateV13: { week: 2, filters: { quick: true } }
+  };
+  const transport = new MemoryTransport();
+  let revision = 30;
+  for (const [key, value] of Object.entries(legacyValues)) {
+    transport.putRemote(key, value, {
+      revision,
+      updatedAt: "2025-01-01T00:00:00.000Z"
+    });
+    revision += 1;
+  }
+  const beforeRows = new Map(
+    [...transport.rows].map(([key, row]) => [key, structuredClone(row)])
+  );
+  const localValues = Object.fromEntries(
+    Object.entries(legacyValues).map(([key, value]) => [
+      key,
+      typeof value === "string"
+        ? value
+        : JSON.stringify(
+            Array.isArray(value)
+              ? value
+              : Object.fromEntries(Object.entries(value).reverse()),
+            null,
+            2
+          )
+    ])
+  );
+  const harness = makeHarness({ values: localValues, transport });
+  const result = await harness.runtime.syncNow("legacy-production-handover");
+
+  assert.equal(result.synced, true, JSON.stringify(result));
+  assert.deepEqual(harness.sync.values, localValues);
+  assert.equal(transport.writeCalls.length, 0, "Equivalent legacy rows must not be rewritten");
+  for (const [key, beforeRow] of beforeRows) {
+    const afterRow = transport.rows.get(key);
+    assert.equal(afterRow.revision, beforeRow.revision, key + " revision changed");
+    assert.deepEqual(afterRow.payload.value, beforeRow.payload.value, key + " payload changed");
+  }
+  const meta = JSON.parse(harness.storage.getItem(api.constants.META_STORAGE_KEY));
+  assert.ok(meta.accounts["user-test"].handover.completedAt);
 });
 
 await check("A local edit during network I/O is never overwritten", async () => {
