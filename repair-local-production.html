@@ -115,6 +115,7 @@ tr:last-child td{border-bottom:0}
     <h1>Réparation locale production</h1>
     <p class="subtitle">Outil ponctuel et indépendant pour restaurer huit données locales depuis Supabase production.</p>
     <p class="warning">Aucune réparation ne démarre sans clic. Cette page ne réactive pas le cloud.</p>
+    <p class="small-note">Outil diagnostic : 593cecce-diag1</p>
   </header>
 
   <section class="card" aria-labelledby="securityTitle">
@@ -491,7 +492,14 @@ tr:last-child td{border-bottom:0}
       }
       return response;
     }
-    throw new Error('Appel Supabase hors périmètre de lecture. STOP.');
+    const diagnosticSearch = url.search
+      ? '?' + Array.from(url.searchParams, ([key, value]) => (
+        encodeURIComponent(key) + '=' + (
+          /^(access_token|refresh_token)$/i.test(key) ? '[masqué]' : encodeURIComponent(value)
+        )
+      )).join('&')
+      : '';
+    throw new Error(`Appel Supabase refusé : ${method} ${url.pathname}${diagnosticSearch}. STOP.`);
   }
 
   function getSupabaseClient() {
