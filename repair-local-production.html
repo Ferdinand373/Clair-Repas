@@ -178,6 +178,8 @@ tr:last-child td{border-bottom:0}
   const SUPABASE_URL = 'https://ryyewskgfgysfubesdsj.supabase.co';
   const SUPABASE_PUBLISHABLE_KEY = 'sb_publishable_T9Dmg9VKTdMFdCuLVxD54w_7GeH3Q6S';
   const SUPABASE_ORIGIN = new URL(SUPABASE_URL).origin;
+  const SUPABASE_PROJECT_REF = 'ryyewskgfgysfubesdsj';
+  const SUPABASE_AUTH_STORAGE_KEY = 'sb-' + SUPABASE_PROJECT_REF + '-auth-token';
   const CR_KEY_PATTERN = /^cr[A-Za-z0-9_.-]+$/;
   const BACKUP_PREFIX = 'clair.repair.production.before.';
   const BACKUP_FORMAT = 'clair-repair-production-backup/v1';
@@ -215,18 +217,123 @@ tr:last-child td{border-bottom:0}
   let currentAnalysis = null;
   let latestBackup = null;
   let supabaseClient = null;
-  const volatileAuthValues = new Map();
+  let activeAuthAudit = null;
+  let authRefreshMustStop = false;
+
+  function assertAuthStorageKey(key) {
+    if (key !== SUPABASE_AUTH_STORAGE_KEY) {
+      throw new Error('Clé de stockage Auth Supabase non autorisée. STOP.');
+    }
+  }
+
+  function parseAuthSession(raw, errorText) {
+    if (raw === null) return null;
+    let session;
+    try {
+      session = JSON.parse(raw);
+    } catch (_) {
+      throw new Error(errorText);
+    }
+    if (
+      !session ||
+      Object.prototype.toString.call(session) !== '[object Object]' ||
+      typeof session.access_token !== 'string' ||
+      !session.access_token ||
+      typeof session.refresh_token !== 'string' ||
+      !session.refresh_token ||
+      !session.user ||
+      typeof session.user.id !== 'string' ||
+      !session.user.id
+    ) {
+      throw new Error(errorText);
+    }
+    return session;
+  }
+
+  function beginAuthAudit() {
+    if (activeAuthAudit) {
+      throw new Error('Un contrôle Auth Supabase est déjà en cours. STOP.');
+    }
+    if (authRefreshMustStop) {
+      throw new Error('Le refresh Auth précédent n’a pas pu être sécurisé. N’effectuez aucune nouvelle tentative depuis cet outil. STOP.');
+    }
+    const beforeRaw = window.localStorage.getItem(SUPABASE_AUTH_STORAGE_KEY);
+    const initialSession = parseAuthSession(beforeRaw, 'La session Supabase locale est invalide. STOP.');
+    const audit = {
+      beforeRaw,
+      initialSession,
+      requestCount: 0,
+      approvedResponse: null,
+      committedRaw: null,
+      removalRequested: false,
+      fatal: false
+    };
+    activeAuthAudit = audit;
+    return audit;
+  }
+
+  function endAuthAudit(audit) {
+    if (activeAuthAudit === audit) activeAuthAudit = null;
+  }
+
+  function stopAuthRefresh(audit, message) {
+    if (audit) audit.fatal = true;
+    authRefreshMustStop = true;
+    throw new Error(message);
+  }
+
+  function rejectAuthRefreshRequest(audit, message) {
+    if (audit) audit.fatal = true;
+    authRefreshMustStop = true;
+    throw new Error(message);
+  }
 
   const authStorage = Object.freeze({
     getItem(key) {
-      if (volatileAuthValues.has(key)) return volatileAuthValues.get(key);
+      if (key !== SUPABASE_AUTH_STORAGE_KEY) return null;
       return window.localStorage.getItem(key);
     },
     setItem(key, value) {
-      volatileAuthValues.set(key, String(value));
+      assertAuthStorageKey(key);
+      const audit = activeAuthAudit;
+      if (!audit?.approvedResponse || audit.committedRaw !== null) {
+        stopAuthRefresh(audit, 'Écriture Auth Supabase sans refresh approuvé. STOP.');
+      }
+      const serialized = String(value);
+      let session;
+      try {
+        session = parseAuthSession(serialized, 'La nouvelle session Supabase est invalide. STOP.');
+      } catch (_) {
+        stopAuthRefresh(audit, 'La nouvelle session Supabase est invalide. STOP.');
+      }
+      if (
+        session.access_token !== audit.approvedResponse.accessToken ||
+        session.refresh_token !== audit.approvedResponse.refreshToken ||
+        session.user.id !== audit.approvedResponse.userId ||
+        session.user.id !== audit.initialSession?.user.id
+      ) {
+        stopAuthRefresh(audit, 'La session Supabase à persister ne correspond pas au refresh approuvé. STOP.');
+      }
+      if (window.localStorage.getItem(key) !== audit.beforeRaw) {
+        stopAuthRefresh(audit, 'La session Supabase locale a changé pendant le refresh. STOP.');
+      }
+      try {
+        window.localStorage.setItem(key, serialized);
+      } catch (_) {
+        stopAuthRefresh(audit, 'La nouvelle session Supabase n’a pas pu être persistée. STOP.');
+      }
+      if (window.localStorage.getItem(key) !== serialized) {
+        stopAuthRefresh(audit, 'La nouvelle session Supabase n’a pas pu être persistée à l’identique. STOP.');
+      }
+      audit.committedRaw = serialized;
     },
     removeItem(key) {
-      volatileAuthValues.set(key, null);
+      if (key !== SUPABASE_AUTH_STORAGE_KEY) return;
+      if (activeAuthAudit) {
+        activeAuthAudit.removalRequested = true;
+        activeAuthAudit.fatal = true;
+      }
+      authRefreshMustStop = true;
     }
   });
 
@@ -298,7 +405,7 @@ tr:last-child td{border-bottom:0}
     return version;
   }
 
-  function guardedSupabaseFetch(input, init) {
+  async function guardedSupabaseFetch(input, init) {
     const request = new Request(input, init);
     const url = new URL(request.url);
     const method = request.method.toUpperCase();
@@ -312,6 +419,78 @@ tr:last-child td{border-bottom:0}
     if (url.pathname === '/auth/v1/user' && method === 'GET') {
       return window.fetch(request);
     }
+    if (
+      url.pathname === '/auth/v1/token' &&
+      method === 'POST' &&
+      url.search === '?grant_type=refresh_token'
+    ) {
+      const audit = activeAuthAudit;
+      if (
+        authRefreshMustStop ||
+        audit?.fatal ||
+        !audit?.initialSession ||
+        audit.approvedResponse ||
+        audit.requestCount !== 0
+      ) {
+        return rejectAuthRefreshRequest(audit, 'Refresh Auth Supabase inattendu. STOP.');
+      }
+      let body;
+      try {
+        body = await request.clone().json();
+      } catch (_) {
+        return rejectAuthRefreshRequest(audit, 'Requête de refresh Auth Supabase invalide. STOP.');
+      }
+      if (
+        !body ||
+        Object.prototype.toString.call(body) !== '[object Object]' ||
+        Object.keys(body).length !== 1 ||
+        body.refresh_token !== audit.initialSession.refresh_token
+      ) {
+        return rejectAuthRefreshRequest(audit, 'Refresh token Supabase non autorisé. STOP.');
+      }
+      if (window.localStorage.getItem(SUPABASE_AUTH_STORAGE_KEY) !== audit.beforeRaw) {
+        return rejectAuthRefreshRequest(audit, 'La session Supabase locale a changé avant le refresh. STOP.');
+      }
+      audit.requestCount += 1;
+      let response;
+      try {
+        response = await window.fetch(request);
+      } catch (_) {
+        return rejectAuthRefreshRequest(audit, 'Le refresh Auth Supabase n’a pas abouti. STOP.');
+      }
+      if (!response.ok) {
+        return rejectAuthRefreshRequest(audit, 'Le refresh Auth Supabase a été refusé. STOP.');
+      }
+      if (response.ok) {
+        let refreshed;
+        try {
+          refreshed = await response.clone().json();
+        } catch (_) {
+          return rejectAuthRefreshRequest(audit, 'Réponse de refresh Auth Supabase invalide. STOP.');
+        }
+        if (
+          !refreshed ||
+          typeof refreshed.access_token !== 'string' ||
+          !refreshed.access_token ||
+          typeof refreshed.refresh_token !== 'string' ||
+          !refreshed.refresh_token ||
+          refreshed.access_token === audit.initialSession.access_token ||
+          refreshed.refresh_token === audit.initialSession.refresh_token ||
+          !Number.isFinite(refreshed.expires_in) ||
+          refreshed.expires_in <= 0 ||
+          !refreshed.user ||
+          refreshed.user.id !== audit.initialSession.user.id
+        ) {
+          return rejectAuthRefreshRequest(audit, 'Réponse de refresh Auth Supabase incohérente. STOP.');
+        }
+        audit.approvedResponse = {
+          accessToken: refreshed.access_token,
+          refreshToken: refreshed.refresh_token,
+          userId: refreshed.user.id
+        };
+      }
+      return response;
+    }
     throw new Error('Appel Supabase hors périmètre de lecture. STOP.');
   }
 
@@ -319,6 +498,9 @@ tr:last-child td{border-bottom:0}
     if (supabaseClient) return supabaseClient;
     if (!SUPABASE_PUBLISHABLE_KEY.startsWith('sb_publishable_')) {
       throw new Error('La clé Supabase publique attendue est absente. STOP.');
+    }
+    if (new URL(SUPABASE_URL).hostname !== SUPABASE_PROJECT_REF + '.supabase.co') {
+      throw new Error('Le projet Supabase attendu est invalide. STOP.');
     }
     if (typeof window.supabase?.createClient !== 'function') {
       throw new Error('La bibliothèque Supabase locale est indisponible. STOP.');
@@ -331,6 +513,7 @@ tr:last-child td{border-bottom:0}
           persistSession: true,
           autoRefreshToken: false,
           detectSessionInUrl: false,
+          storageKey: SUPABASE_AUTH_STORAGE_KEY,
           storage: authStorage
         },
         global: { fetch: guardedSupabaseFetch }
@@ -400,6 +583,62 @@ tr:last-child td{border-bottom:0}
 
   function mapToEntries(values) {
     return [...values.entries()].sort((left, right) => left[0].localeCompare(right[0]));
+  }
+
+  function withoutAuthStorageEntry(entries) {
+    return entries.filter(([key]) => key !== SUPABASE_AUTH_STORAGE_KEY);
+  }
+
+  function verifyAnalysisTechnicalStorage(beforeEntries, afterEntries, audit, session) {
+    if (!sameEntries(withoutAuthStorageEntry(beforeEntries), withoutAuthStorageEntry(afterEntries))) {
+      throw new Error('Une clé technique hors Auth Supabase a changé pendant l’analyse. STOP.');
+    }
+    const beforeAuth = entriesToMap(beforeEntries).get(SUPABASE_AUTH_STORAGE_KEY);
+    const afterAuth = entriesToMap(afterEntries).get(SUPABASE_AUTH_STORAGE_KEY);
+    const authChanged = beforeAuth !== afterAuth;
+
+    if (audit.removalRequested) {
+      stopAuthRefresh(audit, 'Supabase a tenté de supprimer la session locale. Aucune suppression appliquée. STOP.');
+    }
+
+    if (!audit.approvedResponse) {
+      if (authChanged || audit.committedRaw !== null) {
+        stopAuthRefresh(audit, 'La clé Auth Supabase a changé sans refresh réussi. STOP.');
+      }
+      if (audit.requestCount > 0) {
+        stopAuthRefresh(audit, 'Le refresh Auth Supabase a échoué sans rotation persistée. STOP.');
+      }
+      if (audit.fatal) {
+        stopAuthRefresh(audit, 'Le refresh Auth Supabase n’a pas pu être sécurisé. STOP.');
+      }
+      return false;
+    }
+
+    if (audit.fatal) {
+      stopAuthRefresh(audit, 'Le refresh Auth Supabase n’a pas pu être sécurisé. STOP.');
+    }
+
+    if (audit.requestCount !== 1 || audit.committedRaw === null || !authChanged) {
+      stopAuthRefresh(audit, 'Le refresh Auth a réussi mais la nouvelle session n’est pas persistée. STOP.');
+    }
+    if (afterAuth !== audit.committedRaw) {
+      stopAuthRefresh(audit, 'La session Auth persistée a changé après le refresh. STOP.');
+    }
+    let persisted;
+    try {
+      persisted = parseAuthSession(afterAuth, 'La session Auth persistée est invalide. STOP.');
+    } catch (_) {
+      stopAuthRefresh(audit, 'La session Auth persistée est invalide. STOP.');
+    }
+    if (
+      persisted.access_token !== audit.approvedResponse.accessToken ||
+      persisted.refresh_token !== audit.approvedResponse.refreshToken ||
+      persisted.user.id !== audit.approvedResponse.userId ||
+      (session && persisted.user.id !== session.user?.id)
+    ) {
+      stopAuthRefresh(audit, 'La session Auth persistée ne correspond pas au refresh Supabase. STOP.');
+    }
+    return true;
   }
 
   function validateFavoriteCount(rawValue) {
@@ -524,11 +763,21 @@ tr:last-child td{border-bottom:0}
     elements.versionSummary.textContent = String(version.foundationVersion || 'Foundation inconnue') + ' · produit ' + String(version.productVersion || 'inconnu');
 
     const technicalBefore = captureStableTechnicalEntries();
-    volatileAuthValues.clear();
-    const client = getSupabaseClient();
+    let authAudit;
+    try {
+      authAudit = beginAuthAudit();
+    } catch (error) {
+      markCheck(elements.checkSession, 'error', 'Session Supabase locale non exploitable');
+      throw error;
+    }
     let session;
     let user;
+    let analysis;
+    let technicalAfter;
+    let sessionVerified = false;
+    let operationError = null;
     try {
+      const client = getSupabaseClient();
       const sessionResult = await client.auth.getSession();
       if (sessionResult.error) throw sessionResult.error;
       session = sessionResult.data?.session;
@@ -538,14 +787,15 @@ tr:last-child td{border-bottom:0}
       user = userResult.data?.user;
       if (!user?.id) throw new Error('Utilisateur Supabase non vérifiable. STOP.');
       if (user.id !== session.user.id) throw new Error('La session et l’utilisateur Supabase ne correspondent pas. STOP.');
-    } catch (error) {
-      markCheck(elements.checkSession, 'error', 'Session Supabase absente ou incohérente');
-      throw error;
-    }
-    markCheck(elements.checkSession, 'ok', 'getSession() puis getUser() : même utilisateur');
+      sessionVerified = true;
+      markCheck(
+        elements.checkSession,
+        'ok',
+        authAudit.approvedResponse
+          ? 'getSession() puis getUser() : session rafraîchie, persistée et même utilisateur'
+          : 'getSession() puis getUser() : même utilisateur'
+      );
 
-    let rows;
-    try {
       const result = await client
         .from(REMOTE_TABLE)
         .select(REMOTE_COLUMNS)
@@ -553,21 +803,44 @@ tr:last-child td{border-bottom:0}
         .eq('app_id', APP_ID)
         .in('data_key', ALLOWED_KEYS);
       if (result.error) throw result.error;
-      rows = result.data;
-      const remoteValues = validateRemoteRows(rows, user.id);
+      const remoteValues = validateRemoteRows(result.data, user.id);
       const localEntries = captureStableCrEntries();
-      const technicalAfter = captureStableTechnicalEntries();
-      if (!sameEntries(technicalBefore, technicalAfter)) {
-        throw new Error('Une clé technique hors cr… a changé pendant l’analyse. STOP.');
-      }
-      const analysis = buildAnalysis(version, remoteValues, localEntries);
-      analysis.technicalEntries = technicalAfter;
-      markCheck(elements.checkRows, 'ok', '8/8 lignes actives et valeurs valides — SELECT uniquement');
-      return analysis;
+      analysis = buildAnalysis(version, remoteValues, localEntries);
     } catch (error) {
-      markCheck(elements.checkRows, 'error', 'Les 8 lignes production ne sont pas toutes valides');
-      throw error;
+      operationError = error;
     }
+
+    let auditError = null;
+    try {
+      technicalAfter = captureStableTechnicalEntries();
+      verifyAnalysisTechnicalStorage(technicalBefore, technicalAfter, authAudit, session);
+    } catch (error) {
+      if (authAudit.approvedResponse && authAudit.committedRaw === null) authRefreshMustStop = true;
+      auditError = error;
+    } finally {
+      endAuthAudit(authAudit);
+    }
+
+    const finalError = auditError || operationError;
+    if (finalError) {
+      if (auditError || !sessionVerified) {
+        markCheck(elements.checkSession, 'error', 'Session Supabase ou stockage technique non sécurisé');
+      } else {
+        markCheck(elements.checkRows, 'error', 'Lecture production ou contrôle technique invalide');
+      }
+      throw finalError;
+    }
+
+    analysis.technicalEntries = technicalAfter;
+    markCheck(
+      elements.checkSession,
+      'ok',
+      authAudit.approvedResponse
+        ? 'getSession() puis getUser() : session rafraîchie, persistée et même utilisateur'
+        : 'getSession() puis getUser() : même utilisateur'
+    );
+    markCheck(elements.checkRows, 'ok', '8/8 lignes actives et valeurs valides — SELECT uniquement');
+    return analysis;
   }
 
   function backupValuesFromEntries(entries) {
