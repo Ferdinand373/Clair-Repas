@@ -325,6 +325,7 @@ function loadTestApi(dataset = {}) {
 
 const api = loadTestApi();
 assert.ok(api, "Cloud Sync test API was not exposed");
+assert.equal(api.constants.CLOUD_ENABLED, true);
 
 await check("Legacy payload normalization is strict and string-preserving", () => {
   const exactString = '  { "foundation": true }\r\n';

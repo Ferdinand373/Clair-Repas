@@ -34,6 +34,8 @@ const CLAIR_REPAS_TECHNICAL_KEYS = Object.freeze([
   "crWelcomeV7",
   "crFutureTechnicalFlag"
 ]);
+const DISABLED_CLOUD_CONFIG_REVISION = "91499ba9";
+const ENABLED_CLOUD_CONFIG_REVISION = "876ade08";
 const decoder = new TextDecoder("utf-8", { fatal: true });
 const successes = [];
 const failures = [];
@@ -125,6 +127,15 @@ function coreDigest(coreFiles) {
 function gitBlobSha(content) {
   const header = Buffer.from("blob " + content.length + "\0", "utf8");
   return createHash("sha1").update(header).update(content).digest("hex");
+}
+
+function fnv1a(text) {
+  let hash = 0x811c9dc5;
+  for (let index = 0; index < text.length; index += 1) {
+    hash ^= text.charCodeAt(index);
+    hash = Math.imul(hash, 0x01000193);
+  }
+  return (hash >>> 0).toString(16).padStart(8, "0");
 }
 
 async function check(name, callback) {
@@ -277,10 +288,19 @@ await check("Release metadata consistency", () => {
   assert.equal(markerVersion[1], productVersion);
   assert.match(version.publishedAt, /^\d{4}-\d{2}-\d{2}$/);
   assert.equal(cloudAppId, "clair-repas");
-  assert.equal(cloudEnabled, false);
+  assert.equal(cloudEnabled, true);
   assert.equal(version.cloudAppId, cloudAppId);
   assert.equal(version.cloudEnabled, cloudEnabled);
   assert.equal(directSyncProtocol, "clair-personal-sync/v1");
+  const cloudConfigRevision = fnv1a(
+    cloudAppId + "\0" + cloudEnabled + "\0" + directSyncProtocol
+  );
+  const disabledCloudConfigRevision = fnv1a(
+    cloudAppId + "\0false\0" + directSyncProtocol
+  );
+  assert.equal(cloudConfigRevision, ENABLED_CLOUD_CONFIG_REVISION);
+  assert.equal(disabledCloudConfigRevision, DISABLED_CLOUD_CONFIG_REVISION);
+  assert.notEqual(cloudConfigRevision, disabledCloudConfigRevision);
   assert.equal((serviceWorker.match(/data-clair-core="\$\{CORE_REVISION\}"/g) || []).length, 3);
   assert.match(personalSync, /protocol:\s*'clair-personal-sync\/v1'/);
   assert.match(cloudSync, /const CLOUD_PROTOCOL = 'clair-cloud-sync\/v1'/);
@@ -343,7 +363,7 @@ await check("Release metadata consistency", () => {
     serviceWorker,
     /data\.release === RELEASE && data\.coreRevision === CORE_REVISION/
   );
-  return release + " / product " + productVersion;
+  return release + " / product " + productVersion + " / cloud " + cloudConfigRevision;
 });
 
 await check("Production V7.5 application shell identity", () => {
@@ -519,9 +539,22 @@ await check("Service-worker registration and full-cache validation", async () =>
     serviceWorker +
       "\n;globalThis.__cacheHasCore = cacheHasCore;" +
       "\n;globalThis.__currentCache = CURRENT_CACHE;" +
+      "\n;globalThis.__cloudConfigRevision = CLOUD_CONFIG_REVISION;" +
       "\n;globalThis.__validateCoreDigest = validateCoreDigest;",
     cacheContext,
     { filename: "sw.js:cache-smoke", timeout: 1000 }
+  );
+  assert.equal(
+    cacheContext.__cloudConfigRevision,
+    ENABLED_CLOUD_CONFIG_REVISION
+  );
+  assert.ok(cacheContext.__currentCache.endsWith("-" + ENABLED_CLOUD_CONFIG_REVISION));
+  assert.notEqual(
+    cacheContext.__currentCache,
+    cacheContext.__currentCache.replace(
+      ENABLED_CLOUD_CONFIG_REVISION,
+      DISABLED_CLOUD_CONFIG_REVISION
+    )
   );
   cacheNames = [cacheContext.__currentCache, "legacy", "local-sync", "pre-v8"];
   assert.equal(await cacheContext.__cacheHasCore(cacheContext.__currentCache), true);
@@ -647,7 +680,7 @@ await check("Service-worker registration and full-cache validation", async () =>
   assert.equal((injectedHtml.match(/data-clair-v8-cloud-sync/g) || []).length, 1);
   assert.equal((injectedHtml.match(/data-clair-app="clair-repas"/g) || []).length, 3);
   assert.equal((injectedHtml.match(/data-clair-cloud-app="clair-repas"/g) || []).length, 1);
-  assert.equal((injectedHtml.match(/data-clair-cloud-enabled="false"/g) || []).length, 1);
+  assert.equal((injectedHtml.match(/data-clair-cloud-enabled="true"/g) || []).length, 1);
   assert.equal(
     (injectedHtml.match(/data-clair-direct-sync="clair-personal-sync\/v1"/g) || []).length,
     1

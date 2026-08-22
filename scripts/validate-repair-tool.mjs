@@ -17,6 +17,7 @@ const source = inlineScripts[0];
 const USER_ID = "production-user";
 const AUTH_KEY = "sb-ryyewskgfgysfubesdsj-auth-token";
 const BACKUP_PREFIX = "clair.repair.production.before.";
+const BACKUP_FORMAT = "clair-repair-production-backup/v1";
 const ALLOWED_KEYS = [
   "crDays",
   "crFavMeals",
@@ -32,6 +33,10 @@ const VERSION = Object.freeze({
   productVersion: "7.5",
   cloudAppId: "clair-repas",
   cloudEnabled: false
+});
+const CLOUD_ENABLED_VERSION = Object.freeze({
+  ...VERSION,
+  cloudEnabled: true
 });
 const successes = [];
 const failures = [];
@@ -155,12 +160,15 @@ function createHarness({
   rows,
   localValues = {},
   failOnceKey = null,
-  cloneRemoteRows = true
+  cloneRemoteRows = true,
+  version = VERSION,
+  storageEntries = {}
 }) {
   const initialEntries = {
     [AUTH_KEY]: JSON.stringify(authSession()),
     "technical.sentinel": "unchanged",
-    ...localValues
+    ...localValues,
+    ...storageEntries
   };
   const storage = new FakeStorage(initialEntries);
   storage.failOnceKey = failOnceKey;
@@ -180,7 +188,7 @@ function createHarness({
 
   async function fetchMock(input, init) {
     if (input === "./v8/version.json") {
-      return new Response(JSON.stringify(VERSION), {
+      return new Response(JSON.stringify(version), {
         status: 200,
         headers: { "content-type": "application/json" }
       });
@@ -280,6 +288,9 @@ function createHarness({
     },
     async repair() {
       return elements.get("repairButton").trigger("click");
+    },
+    async restore() {
+      return elements.get("restoreButton").trigger("click");
     }
   };
 }
@@ -323,6 +334,55 @@ function oldLocalValues() {
     crUnrelated: "must-stay-identical"
   };
 }
+
+function backupFixture(values) {
+  const date = "2026-08-22T12:00:00.000Z";
+  const key = BACKUP_PREFIX + date;
+  return {
+    key,
+    serialized: JSON.stringify({
+      format: BACKUP_FORMAT,
+      date,
+      origine: "Clair Repas production",
+      origin: "https://ferdinand373.github.io",
+      scope: "/Clair-Repas/repair-local-production.html",
+      app_id: "clair-repas",
+      values
+    })
+  };
+}
+
+await check("Cloud activation keeps the repair tool completely inert", async () => {
+  assert.equal((source.match(/version\.cloudEnabled !== false/g) || []).length, 2);
+  const localValues = oldLocalValues();
+  const backup = backupFixture({ crFavMeals: '["backup-favorite"]' });
+  const harness = createHarness({
+    rows: makeRows(legacyValues()),
+    localValues,
+    version: CLOUD_ENABLED_VERSION,
+    storageEntries: { [backup.key]: backup.serialized }
+  });
+  const before = Object.fromEntries(harness.storage.values);
+
+  await harness.analyze();
+  assert.match(harness.elements.get("analysisStatus").textContent, /cloudEnabled doit être strictement false/);
+  await harness.repair();
+  assert.match(
+    harness.elements.get("resultContent").children.map((child) => child.textContent).join(" "),
+    /cloudEnabled doit être strictement false/
+  );
+  await harness.restore();
+  assert.match(
+    harness.elements.get("resultContent").children.map((child) => child.textContent).join(" "),
+    /cloudEnabled doit être strictement false/
+  );
+
+  assert.deepEqual(Object.fromEntries(harness.storage.values), before);
+  assert.equal(backupEntries(harness.storage).length, 1);
+  assert.equal(harness.queryCalls.length, 0);
+  assert.equal(harness.networkCalls.length, 0);
+  assert.equal(harness.clientOptions, null);
+});
 
 await check("Analysis is read-only and clair_data POST stays blocked", async () => {
   const rows = makeRows(legacyValues());

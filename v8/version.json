@@ -12,6 +12,6 @@
   "snapshotIsolation": "app-and-scope",
   "productionBootstrap": "preserve-v7.5-as-first-fallback",
   "cloudAppId": "clair-repas",
-  "cloudEnabled": false,
+  "cloudEnabled": true,
   "cloudHandover": "local-first-with-snapshot"
 }
