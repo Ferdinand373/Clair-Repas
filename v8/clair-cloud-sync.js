@@ -3,7 +3,7 @@
 
   const script = document.currentScript;
   const LOCAL_APP_ID = script?.dataset?.clairApp || 'clair';
-  const RELEASE = script?.dataset?.clairRelease || '8.0.0-foundation.14';
+  const RELEASE = script?.dataset?.clairRelease || '8.0.0-foundation.15';
   const DATA_SCHEMA = Number(script?.dataset?.clairSchema || 2);
   const LEGACY_DATA_SCHEMA = 1;
   const CORE_REVISION = script?.dataset?.clairCore || '';
@@ -22,11 +22,12 @@
     VALID_CLOUD_APP_ID.test(CLOUD_APP_ID) &&
     DIRECT_SYNC_PROTOCOL === PERSONAL_SYNC_PROTOCOL
   );
+  const BOOTSTRAP_GENERATION = 'bootstrap-v2';
   const META_STORAGE_KEY = CLOUD_CONFIGURED
-    ? 'clair.v8.sync.meta.' + CLOUD_APP_ID
+    ? 'clair.v8.sync.meta.' + CLOUD_APP_ID + '.' + BOOTSTRAP_GENERATION
     : '';
   const DIRECT_SYNC_MARKER_KEY = CLOUD_CONFIGURED
-    ? 'clair.v8.direct-sync.' + CLOUD_APP_ID
+    ? 'clair.v8.direct-sync.' + CLOUD_APP_ID + '.' + BOOTSTRAP_GENERATION
     : '';
   const DEVICE_KEY_STORAGE = 'clair.device.key.v1';
   const SUPABASE_URL = 'https://ryyewskgfgysfubesdsj.supabase.co';
@@ -35,7 +36,9 @@
   const LOCAL_SCAN_MS = 4000;
   const PERIODIC_SYNC_MS = 60000;
   const BOOT_WAIT_MS = 20000;
-  const HANDOVER_SNAPSHOT_KIND = 'cloud-production-handover';
+  const HANDOVER_SNAPSHOT_KIND = 'cloud-device-bootstrap-v2';
+  const REMOTE_EXISTING_ACCOUNT = 'remote-existing-account';
+  const LOCAL_NEW_ACCOUNT = 'local-new-account';
 
   const MISSING = Object.freeze({ missing: true });
 
@@ -431,6 +434,8 @@
         localAppId: LOCAL_APP_ID,
         protocol: CLOUD_PROTOCOL,
         directSyncProtocol: DIRECT_SYNC_PROTOCOL,
+        bootstrapGeneration: BOOTSTRAP_GENERATION,
+        bootstrapMode: null,
         dataSchema: DATA_SCHEMA,
         coreRevision: CORE_REVISION,
         ...(isPlainObject(existing) ? existing : {}),
@@ -442,6 +447,7 @@
         localAppId: LOCAL_APP_ID,
         protocol: CLOUD_PROTOCOL,
         directSyncProtocol: DIRECT_SYNC_PROTOCOL,
+        bootstrapGeneration: BOOTSTRAP_GENERATION,
         dataSchema: DATA_SCHEMA,
         coreRevision: CORE_REVISION
       };
@@ -497,8 +503,11 @@
               ? current.lastSyncAt || '1970-01-01T00:00:00.000Z'
               : null,
           preparedAt: null,
-          snapshotFingerprint: null
+          snapshotFingerprint: null,
+          mode: null
         };
+      } else if (!own(current.handover, 'mode')) {
+        current.handover.mode = null;
       }
       return current;
     }
@@ -510,7 +519,8 @@
       handover: {
         completedAt: null,
         preparedAt: null,
-        snapshotFingerprint: null
+        snapshotFingerprint: null,
+        mode: null
       }
     };
     root.accounts[userId] = next;
@@ -826,6 +836,7 @@
       lastSuccessAt: null,
       lastError: null,
       metaPersisted: true,
+      bootstrapMode: null,
       started: false
     };
 
@@ -883,8 +894,7 @@
       if (!persisted) throw new Error('sync-meta-persistence-failed');
     }
 
-    async function prepareHandover(localValues, account, metaRoot) {
-      if (account.handover?.completedAt) return null;
+    async function createVerifiedHandoverSnapshot(localValues) {
       const snapshotApi = hostWindow.ClairV8?.snapshot;
       const verifySnapshotApi = hostWindow.ClairV8?.verifySnapshot;
       if (
@@ -922,25 +932,70 @@
         throw new Error('handover-snapshot-verification-failed');
       }
 
+      return {
+        values: beforeValues,
+        fingerprint: record.fingerprint,
+        preparedAt: isoNow()
+      };
+    }
+
+    async function prepareLocalNewAccountHandover(
+      localValues,
+      account,
+      metaRoot
+    ) {
+      if (account.handover?.completedAt) return null;
+      const snapshot = await createVerifiedHandoverSnapshot(localValues);
       account.handover = {
         completedAt: null,
-        preparedAt: isoNow(),
-        snapshotFingerprint: record.fingerprint
+        preparedAt: snapshot.preparedAt,
+        snapshotFingerprint: snapshot.fingerprint,
+        mode: LOCAL_NEW_ACCOUNT
       };
       persistMeta(metaRoot);
       if (
         !writeDirectSyncMarker(storage, {
           healthy: false,
           handoverPreparedAt: account.handover.preparedAt,
-          handoverSnapshotFingerprint: record.fingerprint,
+          handoverSnapshotFingerprint: snapshot.fingerprint,
+          bootstrapMode: LOCAL_NEW_ACCOUNT,
           scopePath: sync.scopePath,
           scopeId: sync.scopeId
         })
       ) throw new Error('direct-sync-marker-persistence-failed');
-      return {
-        values: beforeValues,
-        fingerprint: record.fingerprint
-      };
+      return snapshot;
+    }
+
+    function collectPersonalRemoteRows(remoteRows) {
+      if (!Array.isArray(remoteRows)) throw new Error('remote-data-list-invalid');
+      const personalRows = [];
+      for (const row of remoteRows) {
+        if (row?.app_id !== CLOUD_APP_ID || !isPersonalKey(sync, row.data_key)) {
+          continue;
+        }
+        personalRows.push(row);
+      }
+      return personalRows;
+    }
+
+    function validatePersonalRemoteRows(personalRows, userId) {
+      const remoteMap = new Map();
+      const target = {};
+      for (const row of personalRows) {
+        const key = row.data_key;
+        if (row.user_id !== userId) {
+          throw new Error('remote-row-scope-mismatch:' + key);
+        }
+        if (remoteMap.has(key)) throw new Error('duplicate-remote-key:' + key);
+        if (!isReadableRemoteDataSchema(row.schema_version)) {
+          throw new Error('remote-schema-mismatch:' + key);
+        }
+        const remoteState = liveRemoteValue(row);
+        remoteMap.set(key, row);
+        if (remoteState.present) target[key] = remoteState.value;
+      }
+      if (!sync.valid(target)) throw new Error('invalid-remote-bootstrap-target');
+      return { remoteMap, target };
     }
 
     async function resolveTransport() {
@@ -1543,10 +1598,17 @@
       const concurrentKeys = new Set();
       const processedKeys = new Set();
       let handoverSnapshot = null;
+      let remoteBootstrap = false;
+      let remoteBootstrapMutationAttempted = false;
+      let remoteBootstrapApplied = false;
+      let remoteBootstrapTarget = null;
       let syncCommitted = false;
       let metaBefore = null;
       let metaExistedBefore = false;
       let metaBeforeKnown = false;
+      let markerBefore = null;
+      let markerExistedBefore = false;
+      let markerBeforeKnown = false;
 
       try {
         const transport = await resolveTransport();
@@ -1588,13 +1650,138 @@
         metaBefore = loadedMeta.raw;
         metaExistedBefore = loadedMeta.status === 'valid';
         metaBeforeKnown = true;
+        markerBefore = storage.getItem(DIRECT_SYNC_MARKER_KEY);
+        markerExistedBefore = markerBefore !== null;
+        markerBeforeKnown = true;
         const metaRoot = loadedMeta.root;
         const account = accountMeta(metaRoot, user.id);
-        handoverSnapshot = await prepareHandover(
-          localValues,
-          account,
-          metaRoot
+
+        const remoteRows = await transport.listData({
+          user_id: user.id,
+          app_id: CLOUD_APP_ID
+        });
+        const personalRemoteRows = collectPersonalRemoteRows(remoteRows);
+        const bootstrapPending = !account.handover?.completedAt;
+        const resumingLocalNewAccount = Boolean(
+          bootstrapPending &&
+          account.handover?.mode === LOCAL_NEW_ACCOUNT &&
+          account.handover?.preparedAt
         );
+
+        if (
+          bootstrapPending &&
+          !resumingLocalNewAccount &&
+          personalRemoteRows.length > 0
+        ) {
+          remoteBootstrap = true;
+          handoverSnapshot = await createVerifiedHandoverSnapshot(localValues);
+
+          // La présence d'une seule ligne personnelle (active ou tombstone)
+          // fait du compte distant la référence. Toute la collection est
+          // validée et normalisée avant la première mutation locale.
+          const validated = validatePersonalRemoteRows(
+            personalRemoteRows,
+            user.id
+          );
+          const remoteMap = validated.remoteMap;
+          const target = validated.target;
+          remoteBootstrapTarget = target;
+
+          const latestBeforeRestore = { ...captureLocal() };
+          if (
+            snapshotSignature(latestBeforeRestore) !==
+            snapshotSignature(handoverSnapshot.values)
+          ) {
+            noteConcurrentChanges(
+              handoverSnapshot.values,
+              latestBeforeRestore,
+              concurrentKeys
+            );
+            throw new Error('local-data-changed-during-bootstrap');
+          }
+
+          remoteBootstrapMutationAttempted = true;
+          if (sync.restore(target) !== true) {
+            throw new Error('remote-bootstrap-restore-failed');
+          }
+          const verified = sync.capture();
+          if (
+            !verified?.ok ||
+            !sync.valid(verified.values) ||
+            snapshotSignature(verified.values) !== snapshotSignature(target)
+          ) throw new Error('remote-bootstrap-verification-failed');
+          remoteBootstrapApplied = true;
+
+          const completedAt = isoNow();
+          account.keys = {};
+          account.conflicts = {};
+          for (const [key, row] of [...remoteMap.entries()].sort(
+            ([left], [right]) => left.localeCompare(right)
+          )) {
+            account.keys[key] = await finalEntry(
+              target,
+              key,
+              row,
+              completedAt
+            );
+          }
+          account.lastSyncAt = completedAt;
+          account.handover = {
+            completedAt,
+            preparedAt: handoverSnapshot.preparedAt,
+            snapshotFingerprint: handoverSnapshot.fingerprint,
+            mode: REMOTE_EXISTING_ACCOUNT
+          };
+
+          const finalLocalValues = { ...captureLocal() };
+          noteConcurrentChanges(target, finalLocalValues, concurrentKeys);
+          persistMeta(metaRoot);
+          if (
+            !writeDirectSyncMarker(storage, {
+              healthy: true,
+              lastSuccessfulSync: completedAt,
+              handoverPreparedAt: handoverSnapshot.preparedAt,
+              handoverSnapshotFingerprint: handoverSnapshot.fingerprint,
+              bootstrapMode: REMOTE_EXISTING_ACCOUNT,
+              scopePath: sync.scopePath,
+              scopeId: sync.scopeId
+            })
+          ) throw new Error('direct-sync-marker-persistence-failed-after-bootstrap');
+
+          syncCommitted = true;
+          lastObservedSignature = snapshotSignature(finalLocalValues);
+          lastObservedValues = { ...finalLocalValues };
+          setState({
+            phase: 'synced',
+            reason,
+            authenticated: true,
+            lastSuccessAt: completedAt,
+            lastError: null,
+            bootstrapMode: REMOTE_EXISTING_ACCOUNT
+          });
+          if (concurrentKeys.size) {
+            scheduleSync('concurrent-local-change', 250);
+          }
+          return {
+            synced: true,
+            reason,
+            keyCount: remoteMap.size,
+            bootstrapMode: REMOTE_EXISTING_ACCOUNT
+          };
+        }
+
+        const validated = validatePersonalRemoteRows(
+          personalRemoteRows,
+          user.id
+        );
+        const remoteMap = validated.remoteMap;
+        if (bootstrapPending) {
+          handoverSnapshot = await prepareLocalNewAccountHandover(
+            localValues,
+            account,
+            metaRoot
+          );
+        }
 
         const keyValue = deviceKey(storage, cryptoApi);
         const label = deviceLabel(navigatorApi);
@@ -1609,23 +1796,6 @@
         });
         if (!device?.id) throw new Error('device-registration-failed');
         device.label = device.label || label;
-
-        const remoteRows = await transport.listData({
-          user_id: user.id,
-          app_id: CLOUD_APP_ID
-        });
-        const remoteMap = new Map();
-        for (const row of Array.isArray(remoteRows) ? remoteRows : []) {
-          if (
-            row?.app_id === CLOUD_APP_ID &&
-            isPersonalKey(sync, row.data_key)
-          ) {
-            if (!isReadableRemoteDataSchema(row.schema_version)) {
-              throw new Error('remote-schema-mismatch:' + row.data_key);
-            }
-            remoteMap.set(row.data_key, row);
-          }
-        }
 
         const keys = new Set([
           ...Object.keys(localValues),
@@ -1660,6 +1830,7 @@
         account.lastSyncAt = isoNow();
         if (!account.handover.completedAt) {
           account.handover.completedAt = account.lastSyncAt;
+          account.handover.mode = LOCAL_NEW_ACCOUNT;
         }
         persistMeta(metaRoot);
         syncCommitted = true;
@@ -1675,6 +1846,7 @@
             handoverPreparedAt: account.handover.preparedAt,
             handoverSnapshotFingerprint:
               account.handover.snapshotFingerprint || null,
+            bootstrapMode: account.handover.mode || null,
             scopePath: sync.scopePath,
             scopeId: sync.scopeId
           })
@@ -1684,15 +1856,58 @@
           reason,
           authenticated: true,
           lastSuccessAt: account.lastSyncAt,
-          lastError: null
+          lastError: null,
+          bootstrapMode: account.handover.mode || null
         });
         if (concurrentKeys.size) {
           scheduleSync('concurrent-local-change', 250);
         }
-        return { synced: true, reason, keyCount: keys.size };
+        return {
+          synced: true,
+          reason,
+          keyCount: keys.size,
+          bootstrapMode: account.handover.mode || null
+        };
       } catch (error) {
         if (syncCommitted) {
           writeDirectSyncMarker(storage, { healthy: false });
+          throw error;
+        }
+        if (remoteBootstrap) {
+          if (remoteBootstrapApplied && remoteBootstrapTarget) {
+            try {
+              noteConcurrentChanges(
+                remoteBootstrapTarget,
+                { ...captureLocal() },
+                concurrentKeys
+              );
+            } catch (_) {}
+          }
+          const beforeImageRollbackSucceeded =
+            !remoteBootstrapMutationAttempted ||
+            restoreHandoverSnapshot(handoverSnapshot, concurrentKeys);
+          try {
+            if (metaBeforeKnown) {
+              if (metaExistedBefore) storage.setItem(META_STORAGE_KEY, metaBefore);
+              else storage.removeItem(META_STORAGE_KEY);
+            }
+            if (markerBeforeKnown) {
+              if (markerExistedBefore) {
+                storage.setItem(DIRECT_SYNC_MARKER_KEY, markerBefore);
+              } else {
+                storage.removeItem(DIRECT_SYNC_MARKER_KEY);
+              }
+            }
+          } catch (_) {}
+          if (concurrentKeys.size) {
+            scheduleSync('concurrent-local-change', 250);
+          }
+          if (!beforeImageRollbackSucceeded) {
+            throw new Error(
+              'local-rollback-failed-after-bootstrap-error:' +
+                String(error?.message || error || 'unknown')
+            );
+          }
           throw error;
         }
         const journalRollbackSucceeded = rollbackLocalMutations(mutationJournal);
@@ -1933,6 +2148,7 @@
         CLOUD_APP_ID,
         CLOUD_ENABLED,
         CLOUD_CONFIGURED,
+        BOOTSTRAP_GENERATION,
         META_STORAGE_KEY,
         DIRECT_SYNC_MARKER_KEY,
         DEVICE_KEY_STORAGE,
@@ -1940,7 +2156,9 @@
         INTEGRATION,
         SUPABASE_JS_PATH,
         DATA_SCHEMA,
-        LEGACY_DATA_SCHEMA
+        LEGACY_DATA_SCHEMA,
+        REMOTE_EXISTING_ACCOUNT,
+        LOCAL_NEW_ACCOUNT
       })
     });
     return;

@@ -291,6 +291,20 @@ await check("Release metadata consistency", () => {
   assert.equal(cloudEnabled, false);
   assert.equal(version.cloudAppId, cloudAppId);
   assert.equal(version.cloudEnabled, cloudEnabled);
+  assert.equal(version.channel, "device-bootstrap-test");
+  assert.equal(version.bootstrapGeneration, "bootstrap-v2");
+  assert.equal(
+    stringConstant(cloudSync, "BOOTSTRAP_GENERATION"),
+    version.bootstrapGeneration
+  );
+  assert.equal(
+    stringConstant(cloudSync, "REMOTE_EXISTING_ACCOUNT"),
+    "remote-existing-account"
+  );
+  assert.equal(
+    stringConstant(cloudSync, "LOCAL_NEW_ACCOUNT"),
+    "local-new-account"
+  );
   assert.equal(directSyncProtocol, "clair-personal-sync/v1");
   const cloudConfigRevision = fnv1a(
     cloudAppId + "\0" + cloudEnabled + "\0" + directSyncProtocol
