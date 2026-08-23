@@ -3,8 +3,9 @@
 
   const script = document.currentScript;
   const LOCAL_APP_ID = script?.dataset?.clairApp || 'clair';
-  const RELEASE = script?.dataset?.clairRelease || '8.0.0-foundation.13';
+  const RELEASE = script?.dataset?.clairRelease || '8.0.0-foundation.14';
   const DATA_SCHEMA = Number(script?.dataset?.clairSchema || 2);
+  const LEGACY_DATA_SCHEMA = 1;
   const CORE_REVISION = script?.dataset?.clairCore || '';
 
   const CLOUD_PROTOCOL = 'clair-cloud-sync/v1';
@@ -37,6 +38,10 @@
   const HANDOVER_SNAPSHOT_KIND = 'cloud-production-handover';
 
   const MISSING = Object.freeze({ missing: true });
+
+  function isReadableRemoteDataSchema(value) {
+    return value === LEGACY_DATA_SCHEMA || value === DATA_SCHEMA;
+  }
 
   function own(value, key) {
     return Object.prototype.hasOwnProperty.call(value, key);
@@ -1234,6 +1239,9 @@
         mutationJournal,
         concurrentKeys
       } = context;
+      if (row && !isReadableRemoteDataSchema(row.schema_version)) {
+        throw new Error('remote-schema-mismatch:' + key);
+      }
       const handoverPending = !account.handover?.completedAt;
       const entry = !handoverPending && isPlainObject(account.keys[key])
         ? account.keys[key]
@@ -1247,10 +1255,6 @@
         ? await fingerprint(localValue, cryptoApi)
         : null;
       const syncedAt = isoNow();
-
-      if (row && Number(row.schema_version) !== DATA_SCHEMA) {
-        throw new Error('remote-schema-mismatch:' + key);
-      }
 
       if (!entry) {
         if (localPresent) {
@@ -1615,7 +1619,12 @@
           if (
             row?.app_id === CLOUD_APP_ID &&
             isPersonalKey(sync, row.data_key)
-          ) remoteMap.set(row.data_key, row);
+          ) {
+            if (!isReadableRemoteDataSchema(row.schema_version)) {
+              throw new Error('remote-schema-mismatch:' + row.data_key);
+            }
+            remoteMap.set(row.data_key, row);
+          }
         }
 
         const keys = new Set([
@@ -1929,7 +1938,9 @@
         DEVICE_KEY_STORAGE,
         PERSONAL_SYNC_PROTOCOL,
         INTEGRATION,
-        SUPABASE_JS_PATH
+        SUPABASE_JS_PATH,
+        DATA_SCHEMA,
+        LEGACY_DATA_SCHEMA
       })
     });
     return;
