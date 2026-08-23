@@ -288,19 +288,19 @@ await check("Release metadata consistency", () => {
   assert.equal(markerVersion[1], productVersion);
   assert.match(version.publishedAt, /^\d{4}-\d{2}-\d{2}$/);
   assert.equal(cloudAppId, "clair-repas");
-  assert.equal(cloudEnabled, false);
+  assert.equal(cloudEnabled, true);
   assert.equal(version.cloudAppId, cloudAppId);
   assert.equal(version.cloudEnabled, cloudEnabled);
   assert.equal(directSyncProtocol, "clair-personal-sync/v1");
   const cloudConfigRevision = fnv1a(
     cloudAppId + "\0" + cloudEnabled + "\0" + directSyncProtocol
   );
-  const enabledCloudConfigRevision = fnv1a(
-    cloudAppId + "\0true\0" + directSyncProtocol
+  const disabledCloudConfigRevision = fnv1a(
+    cloudAppId + "\0false\0" + directSyncProtocol
   );
-  assert.equal(cloudConfigRevision, DISABLED_CLOUD_CONFIG_REVISION);
-  assert.equal(enabledCloudConfigRevision, ENABLED_CLOUD_CONFIG_REVISION);
-  assert.notEqual(cloudConfigRevision, enabledCloudConfigRevision);
+  assert.equal(cloudConfigRevision, ENABLED_CLOUD_CONFIG_REVISION);
+  assert.equal(disabledCloudConfigRevision, DISABLED_CLOUD_CONFIG_REVISION);
+  assert.notEqual(cloudConfigRevision, disabledCloudConfigRevision);
   assert.equal((serviceWorker.match(/data-clair-core="\$\{CORE_REVISION\}"/g) || []).length, 3);
   assert.match(personalSync, /protocol:\s*'clair-personal-sync\/v1'/);
   assert.match(cloudSync, /const CLOUD_PROTOCOL = 'clair-cloud-sync\/v1'/);
@@ -546,14 +546,14 @@ await check("Service-worker registration and full-cache validation", async () =>
   );
   assert.equal(
     cacheContext.__cloudConfigRevision,
-    DISABLED_CLOUD_CONFIG_REVISION
+    ENABLED_CLOUD_CONFIG_REVISION
   );
-  assert.ok(cacheContext.__currentCache.endsWith("-" + DISABLED_CLOUD_CONFIG_REVISION));
+  assert.ok(cacheContext.__currentCache.endsWith("-" + ENABLED_CLOUD_CONFIG_REVISION));
   assert.notEqual(
     cacheContext.__currentCache,
     cacheContext.__currentCache.replace(
-      DISABLED_CLOUD_CONFIG_REVISION,
-      ENABLED_CLOUD_CONFIG_REVISION
+      ENABLED_CLOUD_CONFIG_REVISION,
+      DISABLED_CLOUD_CONFIG_REVISION
     )
   );
   cacheNames = [cacheContext.__currentCache, "legacy", "local-sync", "pre-v8"];
@@ -680,7 +680,7 @@ await check("Service-worker registration and full-cache validation", async () =>
   assert.equal((injectedHtml.match(/data-clair-v8-cloud-sync/g) || []).length, 1);
   assert.equal((injectedHtml.match(/data-clair-app="clair-repas"/g) || []).length, 3);
   assert.equal((injectedHtml.match(/data-clair-cloud-app="clair-repas"/g) || []).length, 1);
-  assert.equal((injectedHtml.match(/data-clair-cloud-enabled="false"/g) || []).length, 1);
+  assert.equal((injectedHtml.match(/data-clair-cloud-enabled="true"/g) || []).length, 1);
   assert.equal(
     (injectedHtml.match(/data-clair-direct-sync="clair-personal-sync\/v1"/g) || []).length,
     1
