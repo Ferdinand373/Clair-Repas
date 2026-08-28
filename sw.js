@@ -41,6 +41,10 @@ const CURRENT_CACHE =
 const META_CACHE = `clair-v8-${APP_ID}-${SCOPE_ID}-meta`;
 const META_URL = new URL("./__clair_v8_meta__", self.registration.scope).toString();
 const STATUS_URL = new URL("./__clair_v8_status__", self.registration.scope).toString();
+const CLOUD_REPAIR_URL = new URL(
+  "./repair-cloud-from-local.html",
+  self.registration.scope
+).toString();
 
 // Ancien espace de caches utilisé jusqu'à foundation.7. On le lit uniquement
 // pour copier la dernière version saine vers le nouvel espace isolé.
@@ -595,6 +599,15 @@ function isMainNavigation(url, request) {
   return url.pathname === base || url.pathname === `${base}index.html`;
 }
 
+function isCloudRepairNavigation(url, request) {
+  const repairUrl = new URL(CLOUD_REPAIR_URL);
+  return (
+    request.mode === "navigate" &&
+    url.origin === repairUrl.origin &&
+    url.pathname === repairUrl.pathname
+  );
+}
+
 async function cleanupCaches(state) {
   const keep = new Set(
     [
@@ -815,6 +828,13 @@ self.addEventListener("fetch", event => {
 
   if (url.toString() === STATUS_URL) {
     event.respondWith(statusResponse());
+    return;
+  }
+
+  // Cet outil ponctuel doit rester une vraie page autonome : réseau seul,
+  // aucune injection Foundation et aucun remplacement par le shell en cache.
+  if (isCloudRepairNavigation(url, request)) {
+    event.respondWith(fetch(request, { cache: "no-store" }));
     return;
   }
 

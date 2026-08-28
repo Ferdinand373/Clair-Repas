@@ -35,11 +35,14 @@ jobs:
           node --check v8/clair-sync.js
           node --check v8/clair-foundation.js
           node --check v8/clair-cloud-sync.js
+          node --check v8/clair-cloud-repair.js
           node --check v8/vendor/supabase-js-2.111.0.js
           node --check scripts/validate-repair-tool.mjs
+          node --check scripts/validate-cloud-repair-tool.mjs
 
       - name: Validate application and PWA invariants
         run: |
           node scripts/validate-static-app.mjs
           node scripts/validate-cloud-sync.mjs
           node scripts/validate-repair-tool.mjs
+          node scripts/validate-cloud-repair-tool.mjs
