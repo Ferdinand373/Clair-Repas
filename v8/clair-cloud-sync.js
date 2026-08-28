@@ -39,6 +39,7 @@
   const HANDOVER_SNAPSHOT_KIND = 'cloud-device-bootstrap-v2';
   const REMOTE_EXISTING_ACCOUNT = 'remote-existing-account';
   const LOCAL_NEW_ACCOUNT = 'local-new-account';
+  const PERSONAL_DATA_RESTORED_EVENT = 'clair:personal-data-restored';
 
   const MISSING = Object.freeze({ missing: true });
 
@@ -1061,6 +1062,62 @@
       }
     }
 
+    function changedPersonalKeys(beforeValues, afterValues, candidates = null) {
+      const keys = candidates
+        ? new Set(candidates)
+        : new Set([
+            ...Object.keys(beforeValues),
+            ...Object.keys(afterValues)
+          ]);
+      return [...keys]
+        .filter((key) => !samePersonalValue(beforeValues, afterValues, key))
+        .sort();
+    }
+
+    function journalTargetValues(beforeValues, mutationJournal) {
+      const target = { ...beforeValues };
+      for (const [key, entry] of mutationJournal) {
+        if (!own(entry, 'afterPresent')) continue;
+        if (entry.afterPresent) target[key] = entry.afterValue;
+        else delete target[key];
+      }
+      return target;
+    }
+
+    function appliedPersonalKeys(beforeValues, targetValues, finalValues, candidates = null) {
+      return changedPersonalKeys(beforeValues, targetValues, candidates)
+        .filter((key) => samePersonalValue(targetValues, finalValues, key));
+    }
+
+    function rolledBackPersonalKeys(beforeValues, targetValues, finalValues, candidates = null) {
+      return changedPersonalKeys(beforeValues, targetValues, candidates)
+        .filter((key) => samePersonalValue(beforeValues, finalValues, key));
+    }
+
+    function notifyPersonalDataRestored(changedKeys, reason, mode) {
+      if (!changedKeys.length || typeof hostWindow.dispatchEvent !== 'function') {
+        return false;
+      }
+      const EventConstructor = hostWindow.CustomEvent;
+      if (typeof EventConstructor !== 'function') return false;
+      try {
+        hostWindow.dispatchEvent(new EventConstructor(
+          PERSONAL_DATA_RESTORED_EVENT,
+          {
+            detail: Object.freeze({
+              changedKeys: Object.freeze([...changedKeys]),
+              source: 'cloud',
+              reason,
+              mode
+            })
+          }
+        ));
+        return true;
+      } catch (_) {
+        return false;
+      }
+    }
+
     async function applyLocalState(
       localValues,
       key,
@@ -1759,6 +1816,15 @@
             lastError: null,
             bootstrapMode: REMOTE_EXISTING_ACCOUNT
           });
+          notifyPersonalDataRestored(
+            appliedPersonalKeys(
+              syncBeforeValues,
+              remoteBootstrapTarget,
+              finalLocalValues
+            ),
+            reason,
+            'bootstrap'
+          );
           if (concurrentKeys.size) {
             scheduleSync('concurrent-local-change', 250);
           }
@@ -1839,6 +1905,20 @@
         }
         lastObservedSignature = snapshotSignature(localValues);
         lastObservedValues = { ...localValues };
+        const journalTarget = journalTargetValues(
+          syncBeforeValues,
+          mutationJournal
+        );
+        notifyPersonalDataRestored(
+          appliedPersonalKeys(
+            syncBeforeValues,
+            journalTarget,
+            localValues,
+            mutationJournal.keys()
+          ),
+          reason,
+          'reconciliation'
+        );
         if (
           !writeDirectSyncMarker(storage, {
             healthy: true,
@@ -1902,6 +1982,26 @@
           if (concurrentKeys.size) {
             scheduleSync('concurrent-local-change', 250);
           }
+          if (
+            remoteBootstrapApplied &&
+            beforeImageRollbackSucceeded &&
+            handoverSnapshot &&
+            remoteBootstrapTarget
+          ) {
+            let finalAfterRollback = null;
+            try { finalAfterRollback = { ...captureLocal() }; } catch (_) {}
+            if (finalAfterRollback) {
+              notifyPersonalDataRestored(
+                rolledBackPersonalKeys(
+                  handoverSnapshot.values,
+                  remoteBootstrapTarget,
+                  finalAfterRollback
+                ),
+                reason,
+                'rollback'
+              );
+            }
+          }
           if (!beforeImageRollbackSucceeded) {
             throw new Error(
               'local-rollback-failed-after-bootstrap-error:' +
@@ -1961,6 +2061,26 @@
         });
         if (concurrentKeys.size) {
           scheduleSync('concurrent-local-change', 250);
+        }
+        if (beforeImageRollbackSucceeded) {
+          let finalAfterRollback = null;
+          try { finalAfterRollback = { ...captureLocal() }; } catch (_) {}
+          if (finalAfterRollback) {
+            const journalTarget = journalTargetValues(
+              syncBeforeValues,
+              mutationJournal
+            );
+            notifyPersonalDataRestored(
+              rolledBackPersonalKeys(
+                syncBeforeValues,
+                journalTarget,
+                finalAfterRollback,
+                mutationJournal.keys()
+              ),
+              reason,
+              'rollback'
+            );
+          }
         }
         if (!beforeImageRollbackSucceeded) {
           throw new Error(
@@ -2158,7 +2278,8 @@
         DATA_SCHEMA,
         LEGACY_DATA_SCHEMA,
         REMOTE_EXISTING_ACCOUNT,
-        LOCAL_NEW_ACCOUNT
+        LOCAL_NEW_ACCOUNT,
+        PERSONAL_DATA_RESTORED_EVENT
       })
     });
     return;

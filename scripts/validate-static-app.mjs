@@ -9,7 +9,7 @@ import { TextDecoder, TextEncoder } from "node:util";
 import vm from "node:vm";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
-const PRODUCTION_V75_INDEX_BLOB = "5dfbd79d6a7da0bf43a702982fc11f33fb2ed9f2";
+const PRODUCTION_V75_INDEX_BLOB = "7ec32c4b44f0553976735d12bdec3470b6aa26c5";
 const CLAIR_REPAS_PERSONAL_KEYS = Object.freeze([
   "crFavMeals",
   "crRecentRecipesV25",
@@ -385,9 +385,27 @@ await check("Production V7.5 application shell identity", () => {
   assert.equal(
     gitBlobSha(canonicalIndex),
     PRODUCTION_V75_INDEX_BLOB,
-    "index.html must remain the exact production V7.5 application shell"
+    "index.html must remain the validated V7.5 application shell"
   );
   assert.doesNotMatch(indexHtml, /data-clair-v8-(?:sync|foundation|cloud-sync)/);
+  const uiBridge = between(
+    indexHtml,
+    "/* CLAIR_IPHONE_UI_STABILITY_START */",
+    "/* CLAIR_IPHONE_UI_STABILITY_END */"
+  );
+  const restoreKeysMatch = uiBridge.match(
+    /const PERSONAL_RESTORE_KEYS=new Set\((\[[\s\S]*?\])\);/
+  );
+  assert.ok(restoreKeysMatch, "Missing personal restore UI boundary");
+  assert.deepEqual(
+    [...vm.runInNewContext(restoreKeysMatch[1])],
+    [...CLAIR_REPAS_PERSONAL_KEYS]
+  );
+  assert.match(uiBridge, /clair:personal-data-restored/);
+  assert.match(uiBridge, /render\(\{persist:false,refreshPersonalUi:false\}\)/);
+  assert.doesNotMatch(uiBridge, /localStorage\.(?:setItem|removeItem|clear)\s*\(/);
+  assert.doesNotMatch(uiBridge, /location\.reload\s*\(/);
+  assert.match(cloudSync, /const PERSONAL_DATA_RESTORED_EVENT = 'clair:personal-data-restored'/);
   return "index.html blob " + PRODUCTION_V75_INDEX_BLOB.slice(0, 12);
 });
 

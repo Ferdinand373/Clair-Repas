@@ -10,6 +10,7 @@ import vm from "node:vm";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const source = readFileSync(resolve(ROOT, "v8/clair-cloud-sync.js"), "utf8");
+const indexSource = readFileSync(resolve(ROOT, "index.html"), "utf8");
 const RELEASE = "8.0.0-foundation.15";
 const DATA_SCHEMA = 2;
 const CORE_REVISION = "sha256:test-core-revision";
@@ -56,6 +57,7 @@ class FakeEventTarget {
   constructor() {
     this.listeners = new Map();
     this.hidden = false;
+    this.dispatched = [];
   }
 
   addEventListener(type, callback) {
@@ -70,6 +72,19 @@ class FakeEventTarget {
 
   dispatch(type, event = {}) {
     for (const callback of this.listeners.get(type) || []) callback(event);
+  }
+
+  dispatchEvent(event) {
+    this.dispatched.push(event);
+    this.dispatch(event.type, event);
+    return true;
+  }
+}
+
+class FakeCustomEvent {
+  constructor(type, options = {}) {
+    this.type = type;
+    this.detail = options.detail;
   }
 }
 
@@ -178,6 +193,58 @@ class FakeSync {
       !this.valid(values)
     ) return false;
     this.replacePersonal(values);
+    return true;
+  }
+}
+
+class StorageBackedSync {
+  constructor(storage, personalKeys = CLAIR_REPAS_PERSONAL_KEYS) {
+    this.storage = storage;
+    this.personalKeys = new Set(personalKeys);
+    this.restoreCalls = [];
+    this.protocol = "clair-personal-sync/v1";
+    this.app = "clair-repas";
+    this.release = RELEASE;
+    this.dataSchema = DATA_SCHEMA;
+    this.coreRevision = CORE_REVISION;
+    this.scopePath = "/";
+    this.scopeId = "scope-test";
+  }
+
+  personalKey(key) {
+    return this.personalKeys.has(key);
+  }
+
+  capture() {
+    const values = {};
+    for (let index = 0; index < this.storage.length; index += 1) {
+      const key = this.storage.key(index);
+      if (!key || !this.personalKey(key)) continue;
+      const value = this.storage.getItem(key);
+      if (value !== null) values[key] = value;
+    }
+    return { ok: true, values };
+  }
+
+  valid(values) {
+    return (
+      Object.prototype.toString.call(values) === "[object Object]" &&
+      Object.entries(values).every(
+        ([key, value]) => this.personalKey(key) && typeof value === "string"
+      )
+    );
+  }
+
+  restore(values) {
+    if (!this.valid(values)) return false;
+    this.restoreCalls.push({ ...values });
+    const currentKeys = Object.keys(this.capture().values);
+    for (const [key, value] of Object.entries(values)) {
+      this.storage.setItem(key, value);
+    }
+    for (const key of currentKeys) {
+      if (!Object.hasOwn(values, key)) this.storage.removeItem(key);
+    }
     return true;
   }
 }
@@ -382,12 +449,17 @@ function makeHarness({
   transport = new MemoryTransport(),
   storage,
   runtimeApi = api,
-  personalKeys = null
+  personalKeys = null,
+  syncInstance = null,
+  windowInstance = null,
+  documentInstance = null,
+  runtimeOptions = {}
 } = {}) {
-  const sync = new FakeSync(values, personalKeys);
   const technicalStorage = storage || new FakeStorage();
-  const windowTarget = new FakeEventTarget();
-  const documentTarget = new FakeEventTarget();
+  const sync = syncInstance || new FakeSync(values, personalKeys);
+  const windowTarget = windowInstance || new FakeEventTarget();
+  const documentTarget = documentInstance || new FakeEventTarget();
+  windowTarget.CustomEvent = FakeCustomEvent;
   const snapshots = [];
   windowTarget.ClairV8 = {
     async snapshot(kind) {
@@ -439,7 +511,8 @@ function makeHarness({
     sync,
     transport,
     isHealthy: () => true,
-    now: () => currentTime
+    now: () => currentTime,
+    ...runtimeOptions
   });
   return {
     runtime,
@@ -455,6 +528,307 @@ function makeHarness({
     },
     future(milliseconds) {
       return new Date(currentTime + milliseconds).toISOString();
+    }
+  };
+}
+
+const UI_BRIDGE_START = "/* CLAIR_IPHONE_UI_STABILITY_START */";
+const UI_BRIDGE_END = "/* CLAIR_IPHONE_UI_STABILITY_END */";
+
+function iphoneUiBridgeSource() {
+  const start = indexSource.indexOf(UI_BRIDGE_START);
+  const end = indexSource.indexOf(UI_BRIDGE_END, start);
+  assert.ok(start >= 0 && end > start, "Missing iPhone UI stability bridge");
+  return indexSource.slice(start + UI_BRIDGE_START.length, end);
+}
+
+function favoriteCacheSource() {
+  const startMarker = "let V73_FAVORITES_RAW=null;";
+  const endMarker = "function recentRecipeIds()";
+  const start = indexSource.indexOf(startMarker);
+  const end = indexSource.indexOf(endMarker, start);
+  assert.ok(start >= 0 && end > start, "Missing real favorites cache helpers");
+  return indexSource.slice(start, end);
+}
+
+function recipeControlBindingSource() {
+  const startMarker = "function bindRecipeControls(";
+  const endMarker = "let wakeLock=null;";
+  const start = indexSource.indexOf(startMarker);
+  const end = indexSource.indexOf(endMarker, start);
+  assert.ok(start >= 0 && end > start, "Missing real recipe control binding");
+  const source = indexSource.slice(start, end);
+  assert.match(source, /document\.querySelectorAll\('\.recipe-favorite'\)/);
+  const browserStart = indexSource.indexOf("function renderRecipeBrowser(");
+  const browserEnd = indexSource.indexOf("function prepareScoringContext(", browserStart);
+  assert.ok(browserStart >= 0 && browserEnd > browserStart, "Missing recipe browser renderer");
+  assert.match(
+    indexSource.slice(browserStart, browserEnd),
+    /bindRecipeControls\(\{refreshReactions:refreshPersonalUi\}\)/
+  );
+  return source;
+}
+
+function makeIphoneUiHarness({
+  values = {},
+  browserMode = "search",
+  browserBookShelfId = null,
+  browserSelection = null,
+  browserLastFocus = null,
+  browserOpen = false,
+  storage: sharedStorage = null,
+  windowInstance = null,
+  documentInstance = null
+} = {}) {
+  const storage = sharedStorage || new FakeStorage(values);
+  let storageWrites = 0;
+  const storageWriteKeys = [];
+  const baseSetItem = storage.setItem.bind(storage);
+  const baseRemoveItem = storage.removeItem.bind(storage);
+  storage.setItem = (key, value) => {
+    storageWrites += 1;
+    storageWriteKeys.push(key);
+    baseSetItem(key, value);
+  };
+  storage.removeItem = (key) => {
+    storageWrites += 1;
+    storageWriteKeys.push(key);
+    baseRemoveItem(key);
+  };
+
+  const windowTarget = windowInstance || new FakeEventTarget();
+  const documentTarget = documentInstance || new FakeEventTarget();
+  const elements = new Map();
+  const makeElement = (id, extra = {}) => {
+    const element = {
+      id,
+      value: "",
+      hidden: false,
+      scrollTop: 0,
+      dataset: {},
+      selectionStart: null,
+      selectionEnd: null,
+      focus() {
+        documentTarget.activeElement = element;
+      },
+      setSelectionRange(start, end) {
+        element.selectionStart = start;
+        element.selectionEnd = end;
+      },
+      ...extra
+    };
+    elements.set(id, element);
+    return element;
+  };
+  const browserContent = makeElement("browserContent", { scrollTop: 73 });
+  makeElement("recipeBrowser", { hidden: !browserOpen });
+  makeElement("people", { value: "2" });
+  makeElement("days", { value: "2" });
+  makeElement("mode", { value: "Tous" });
+  makeElement("timeAvailable", { value: "Tous" });
+  makeElement("mealContext", { value: "auto" });
+  makeElement("recipeSearch", { value: "" });
+  const chooseRecipe = makeElement("chooseRecipe", { isConnected: true });
+  const noteInput = makeElement("note-r1", {
+    value: "ancienne note",
+    dataset: { recipeId: "r1" },
+    selectionStart: 4,
+    selectionEnd: 4
+  });
+  let totalFavoriteClicks = 0;
+  let favoriteButton = null;
+  const createFavoriteButton = () => {
+    let assignedHandler = null;
+    let exposedHandler = null;
+    const button = {
+      dataset: { recipeId: "r1" },
+      clicks: 0,
+      bindingCount: 0,
+      isConnected: true,
+    };
+    Object.defineProperty(button, "onclick", {
+      configurable: true,
+      get() {
+        return exposedHandler;
+      },
+      set(handler) {
+        assignedHandler = handler;
+        button.bindingCount += 1;
+        exposedHandler = (...args) => {
+          button.clicks += 1;
+          totalFavoriteClicks += 1;
+          return assignedHandler(...args);
+        };
+      }
+    });
+    return button;
+  };
+  favoriteButton = createFavoriteButton();
+  documentTarget.activeElement = noteInput;
+  documentTarget.querySelectorAll = (selector) => {
+    if (selector === ".recipe-favorite") return [favoriteButton];
+    if (selector === ".recipe-note-input") return [noteInput];
+    if (selector.includes("note-indicator")) {
+      return [{ dataset: { recipeId: "r1" } }];
+    }
+    return [];
+  };
+  documentTarget.getElementById = (id) => elements.get(id) || null;
+
+  const counters = {
+    favoriteRefreshes: 0,
+    reactionRefreshes: 0,
+    noteIndicators: 0,
+    stateRenders: 0,
+    historyRenders: 0,
+    browserRenders: 0,
+    portionRefreshes: 0,
+    dayRefreshes: 0,
+    optionRefreshes: 0,
+    reloads: 0,
+    scrollCalls: 0,
+    renderedPlan: null,
+    renderOptions: []
+  };
+  let favoriteCount = 3;
+  const timers = [];
+  windowTarget.scrollX = 12;
+  windowTarget.scrollY = 640;
+  windowTarget.scrollTo = (options, top) => {
+    counters.scrollCalls += 1;
+    if (typeof options === "object") {
+      windowTarget.scrollX = Number(options.left) || 0;
+      windowTarget.scrollY = Number(options.top) || 0;
+    } else {
+      windowTarget.scrollX = Number(options) || 0;
+      windowTarget.scrollY = Number(top) || 0;
+    }
+  };
+  windowTarget.location = { reload() { counters.reloads += 1; } };
+
+  const sandbox = {
+    window: windowTarget,
+    document: documentTarget,
+    localStorage: storage,
+    setTimeout(callback) {
+      timers.push(callback);
+      return timers.length;
+    },
+    $: (id) => elements.get(id) || null,
+    V73_REACTIONS_RAW: "memory-reactions",
+    V73_NOTES_RAW: "memory-notes",
+    plan: [{ source: "old-plan" }],
+    browserMode,
+    browserBookShelfId,
+    browserSelection,
+    browserLastFocus,
+    browserReturnMode: browserMode,
+    browserRecipeId: null,
+    browserBookSubcategoryId: "all",
+    browserTargetDirect: false,
+    bookVisibleCount: 12,
+    BOOK_PAGE_SIZE: 12,
+    FAVORITES_KEY: "crFavMeals",
+    recipeIndex: new Map(["r1", "r2", "r3", "r4", "r5", "r6"].map(
+      (id) => [id, { id }]
+    )),
+    loadSavedPlan(savedPlan) {
+      return savedPlan.map((item) => ({ restored: item.midId || null }));
+    },
+    render(options) {
+      counters.stateRenders += 1;
+      counters.renderOptions.push({ ...options });
+      assert.equal(options.persist, false);
+      assert.equal(options.refreshPersonalUi, false);
+      counters.renderedPlan = structuredClone(sandbox.plan);
+      windowTarget.scrollY = 0;
+      documentTarget.activeElement = null;
+    },
+    updateFavoriteUI() {
+      counters.favoriteRefreshes += 1;
+      favoriteCount = sandbox.favoriteSet().size;
+    },
+    toggleFavorite() {},
+    updateReactionUI() {
+      counters.reactionRefreshes += 1;
+    },
+    recipeNoteMap() {
+      return JSON.parse(storage.getItem("crRecipeNotesV31") || "{}");
+    },
+    updateNoteIndicators() {
+      counters.noteIndicators += 1;
+    },
+    refreshPortionDisplays() {
+      counters.portionRefreshes += 1;
+    },
+    syncDayChoice() {
+      counters.dayRefreshes += 1;
+    },
+    updatePlanningOptionsSummary() {
+      counters.optionRefreshes += 1;
+    },
+    renderHistory() {
+      counters.historyRenders += 1;
+    },
+    renderRecipeBrowser(options) {
+      counters.browserRenders += 1;
+      assert.equal(options.preserveView, true);
+      assert.equal(options.refreshPersonalUi, false);
+      browserContent.scrollTop = 0;
+      favoriteButton.isConnected = false;
+      favoriteButton = createFavoriteButton();
+      sandbox.bindRecipeControls({ refreshReactions: false });
+    }
+  };
+  vm.createContext(sandbox);
+  vm.runInContext(
+    favoriteCacheSource() +
+      recipeControlBindingSource() +
+      "\n;favoriteIds();" +
+      iphoneUiBridgeSource() +
+      "\n;globalThis.__iphoneUiBridge={" +
+      "applyPersonalRestoreUi,onPersonalDataRestored," +
+      "flushPendingPersonalRestoreUi," +
+      "pendingCount:()=>pendingPersonalRestoreKeys.size," +
+      "favoriteCache:()=>({raw:V73_FAVORITES_RAW,ids:[...V73_FAVORITES_IDS]})};",
+    sandbox,
+    { filename: "index.html:iphone-ui-stability" }
+  );
+  sandbox.bindRecipeControls({ refreshReactions: false });
+
+  return {
+    windowTarget,
+    documentTarget,
+    storage,
+    counters,
+    noteInput,
+    chooseRecipe,
+    browserContent,
+    elements,
+    sandbox,
+    get favoriteCount() {
+      return favoriteCount;
+    },
+    get favoriteButton() {
+      return favoriteButton;
+    },
+    get totalFavoriteClicks() {
+      return totalFavoriteClicks;
+    },
+    get storageWrites() {
+      return storageWrites;
+    },
+    get storageWriteKeys() {
+      return [...storageWriteKeys];
+    },
+    dispatchRestore(detail) {
+      windowTarget.dispatchEvent(new FakeCustomEvent(
+        api.constants.PERSONAL_DATA_RESTORED_EVENT,
+        { detail }
+      ));
+    },
+    runTimers() {
+      while (timers.length) timers.shift()();
     }
   };
 }
@@ -1828,6 +2202,483 @@ await check("Startup, local, foreground, online and periodic triggers stay async
   assert.equal(intervals.size, 0);
   assert.equal(windowTarget.listeners.get("online")?.size || 0, 0);
   assert.equal(documentTarget.listeners.get("visibilitychange")?.size || 0, 0);
+});
+
+await check("IPHONE UI 1 — bootstrap 3→5 refreshes favorites once without reload", async () => {
+  const sharedStorage = new FakeStorage({
+    crFavMeals: '["r1","r2","r3"]'
+  });
+  const ui = makeIphoneUiHarness({ storage: sharedStorage });
+  const primed = ui.sandbox.__iphoneUiBridge.favoriteCache();
+  assert.deepEqual([...primed.ids], ["r1", "r2", "r3"]);
+  assert.equal(ui.favoriteCount, 3);
+
+  const transport = new MemoryTransport();
+  transport.putRemote("crFavMeals", '["r1","r2","r3","r4","r5"]', {
+    revision: 26,
+    schemaVersion: 2
+  });
+  const sharedSync = new StorageBackedSync(sharedStorage);
+  const cloud = makeHarness({
+    transport,
+    storage: sharedStorage,
+    syncInstance: sharedSync,
+    windowInstance: ui.windowTarget,
+    documentInstance: ui.documentTarget
+  });
+  const oldButton = ui.favoriteButton;
+  const handler = oldButton.onclick;
+  const result = await cloud.runtime.syncNow("iphone-bootstrap-3-to-5");
+  assert.equal(result.synced, true, JSON.stringify(result));
+  const events = cloud.windowTarget.dispatched.filter(
+    (event) => event.type === api.constants.PERSONAL_DATA_RESTORED_EVENT
+  );
+  assert.equal(events.length, 1);
+  assert.deepEqual([...events[0].detail.changedKeys], ["crFavMeals"]);
+  assert.equal(events[0].detail.mode, "bootstrap");
+  assert.equal(
+    sharedStorage.getItem("crFavMeals"),
+    '["r1","r2","r3","r4","r5"]'
+  );
+  assert.deepEqual(
+    [...ui.sandbox.__iphoneUiBridge.favoriteCache().ids],
+    ["r1", "r2", "r3", "r4", "r5"]
+  );
+  assert.equal(ui.favoriteCount, 5);
+  assert.equal(ui.counters.favoriteRefreshes, 1);
+  assert.equal(ui.favoriteButton.onclick, handler);
+  assert.deepEqual(
+    ui.storageWriteKeys.filter((key) => CLAIR_REPAS_PERSONAL_KEYS.includes(key)),
+    ["crFavMeals"],
+    "Only ClairSync.restore may write the restored personal key"
+  );
+  assert.equal(ui.counters.reloads, 0);
+  assert.equal(transport.writeCalls.length, 0);
+  assert.equal(transport.rows.get("crFavMeals").revision, 26);
+});
+
+await check("IPHONE UI 2 — one reconciliation signal refreshes only changed UI state", async () => {
+  const initial = {
+    crFavMeals: '["r1","r2","r3"]',
+    crStateV13: '{"plan":[{"midId":"old"}]}',
+    crHistoryV13: '[{"id":"old"}]',
+    crRecipeNotesV31: '{"r1":"ancienne note"}'
+  };
+  const transport = new MemoryTransport();
+  let revision = 10;
+  for (const [key, value] of Object.entries(initial)) {
+    transport.putRemote(key, value, { revision, schemaVersion: 2 });
+    revision += 1;
+  }
+  const cloud = makeHarness({
+    values: initial,
+    transport,
+    personalKeys: CLAIR_REPAS_PERSONAL_KEYS
+  });
+  const bootstrap = await cloud.runtime.syncNow("iphone-ui-seed");
+  assert.equal(bootstrap.synced, true, JSON.stringify(bootstrap));
+  cloud.windowTarget.dispatched.length = 0;
+
+  const updatedAt = cloud.advance(5000);
+  const restored = {
+    crFavMeals: '["r1","r2","r3","r4","r5"]',
+    crStateV13: '{"plan":[{"midId":"cloud"}]}',
+    crHistoryV13: '[{"id":"cloud"}]',
+    crRecipeNotesV31: '{"r1":"note cloud"}'
+  };
+  revision = 26;
+  for (const [key, value] of Object.entries(restored)) {
+    transport.putRemote(key, value, {
+      revision,
+      schemaVersion: 2,
+      updatedAt
+    });
+    revision += 1;
+  }
+  const reconciled = await cloud.runtime.syncNow("iphone-ui-reconciliation");
+  assert.equal(reconciled.synced, true, JSON.stringify(reconciled));
+  const events = cloud.windowTarget.dispatched.filter(
+    (event) => event.type === api.constants.PERSONAL_DATA_RESTORED_EVENT
+  );
+  assert.equal(events.length, 1);
+  assert.equal(events[0].detail.mode, "reconciliation");
+  assert.deepEqual([...events[0].detail.changedKeys], Object.keys(restored).sort());
+
+  const ui = makeIphoneUiHarness({
+    values: restored,
+    browserMode: "favorites",
+    browserOpen: true
+  });
+  ui.dispatchRestore(events[0].detail);
+  assert.equal(ui.counters.favoriteRefreshes, 1);
+  assert.equal(ui.counters.stateRenders, 1);
+  assert.deepEqual(ui.counters.renderOptions, [{
+    persist: false,
+    refreshPersonalUi: false
+  }]);
+  assert.deepEqual(ui.counters.renderedPlan, [{ restored: "cloud" }]);
+  assert.equal(ui.counters.historyRenders, 1);
+  assert.equal(ui.noteInput.value, "note cloud");
+  assert.ok(ui.counters.noteIndicators > 0);
+  assert.equal(ui.counters.browserRenders, 1);
+  assert.equal(ui.browserContent.scrollTop, 73);
+  assert.equal(ui.windowTarget.scrollY, 640);
+  assert.equal(ui.documentTarget.activeElement, ui.noteInput);
+  assert.equal(ui.storageWrites, 0);
+  assert.equal(transport.writeCalls.length, 0);
+
+  const detachedPlanButton = {
+    id: "removed-plan-button",
+    isConnected: false,
+    focus() {}
+  };
+  const removedState = makeIphoneUiHarness({
+    browserMode: "search",
+    browserSelection: { dayIndex: 0, type: "mid", component: "dish" },
+    browserLastFocus: detachedPlanButton,
+    browserOpen: true
+  });
+  removedState.dispatchRestore({
+    changedKeys: ["crStateV13"],
+    source: "cloud",
+    reason: "state-tombstone",
+    mode: "reconciliation"
+  });
+  assert.deepEqual(removedState.counters.renderedPlan, []);
+  assert.deepEqual(removedState.counters.renderOptions, [{
+    persist: false,
+    refreshPersonalUi: false
+  }]);
+  assert.equal(removedState.sandbox.browserSelection, null);
+  assert.equal(removedState.sandbox.browserMode, "book");
+  assert.equal(removedState.sandbox.browserLastFocus, removedState.chooseRecipe);
+  assert.equal(removedState.counters.browserRenders, 1);
+  assert.equal(removedState.storageWrites, 0);
+});
+
+await check("IPHONE UI 3 — refresh keeps cloud revision 26 and performs no write-back", async () => {
+  const transport = new MemoryTransport();
+  transport.putRemote("crFavMeals", '["r1","r2","r3","r4","r5"]', {
+    revision: 26,
+    schemaVersion: 2
+  });
+  const cloud = makeHarness({
+    values: { crFavMeals: '["r1","r2","r3"]' },
+    transport,
+    personalKeys: CLAIR_REPAS_PERSONAL_KEYS
+  });
+  await cloud.runtime.syncNow("iphone-revision-26-restore");
+  const event = cloud.windowTarget.dispatched.find(
+    (item) => item.type === api.constants.PERSONAL_DATA_RESTORED_EVENT
+  );
+  assert.ok(event);
+  const ui = makeIphoneUiHarness({
+    values: { crFavMeals: '["r1","r2","r3","r4","r5"]' }
+  });
+  ui.dispatchRestore(event.detail);
+  const noOp = await cloud.runtime.syncNow("iphone-post-refresh-no-op");
+  assert.equal(noOp.synced, true, JSON.stringify(noOp));
+  assert.equal(ui.storageWrites, 0);
+  assert.equal(transport.writeCalls.length, 0);
+  assert.equal(transport.rows.get("crFavMeals").revision, 26);
+  assert.equal(
+    cloud.windowTarget.dispatched.filter(
+      (item) => item.type === api.constants.PERSONAL_DATA_RESTORED_EVENT
+    ).length,
+    1
+  );
+});
+
+await check("IPHONE UI 4 — touch defers reconstruction and buttons remain single-bound", async () => {
+  const ui = makeIphoneUiHarness({
+    values: { crFavMeals: '["r1","r2","r3","r4","r5"]' },
+    browserMode: "favorites",
+    browserOpen: true
+  });
+  const oldButton = ui.favoriteButton;
+  const handler = oldButton.onclick;
+  ui.documentTarget.dispatch("touchstart", { touches: [{}] });
+  ui.dispatchRestore({
+    changedKeys: ["crFavMeals"],
+    source: "cloud",
+    reason: "touch-test",
+    mode: "reconciliation"
+  });
+  assert.equal(ui.counters.favoriteRefreshes, 0);
+  assert.equal(ui.sandbox.__iphoneUiBridge.pendingCount(), 1);
+  ui.documentTarget.dispatch("touchend", { touches: [] });
+  ui.dispatchRestore({
+    changedKeys: ["crFavMeals"],
+    source: "cloud",
+    reason: "post-touch-guard-test",
+    mode: "reconciliation"
+  });
+  assert.equal(ui.counters.favoriteRefreshes, 0, "Synthetic click must finish first");
+  oldButton.onclick();
+  ui.runTimers();
+  const newButton = ui.favoriteButton;
+  assert.notEqual(newButton, oldButton);
+  assert.equal(oldButton.isConnected, false);
+  assert.equal(oldButton.onclick, handler);
+  assert.equal(oldButton.clicks, 1);
+  assert.equal(newButton.bindingCount, 1);
+  newButton.onclick();
+  assert.equal(newButton.clicks, 1);
+  assert.equal(ui.totalFavoriteClicks, 2);
+  assert.equal(ui.counters.favoriteRefreshes, 1);
+  assert.equal(ui.counters.browserRenders, 1);
+  assert.equal(ui.browserContent.scrollTop, 73);
+  assert.equal(
+    ui.windowTarget.listeners.get(api.constants.PERSONAL_DATA_RESTORED_EVENT)?.size,
+    1
+  );
+  assert.equal(ui.storageWrites, 0);
+  assert.equal(ui.counters.reloads, 0);
+});
+
+await check("IPHONE UI 5 — restore refresh creates no loop and local favorite still writes once", async () => {
+  const sharedStorage = new FakeStorage({
+    crFavMeals: '["r1","r2","r3"]'
+  });
+  const ui = makeIphoneUiHarness({ storage: sharedStorage });
+  const transport = new MemoryTransport();
+  transport.putRemote("crFavMeals", '["r1","r2","r3","r4","r5"]', {
+    revision: 26,
+    schemaVersion: 2
+  });
+  const timers = new Map();
+  const intervals = new Map();
+  let nextTimer = 1;
+  const sharedSync = new StorageBackedSync(sharedStorage);
+  const cloud = makeHarness({
+    transport,
+    storage: sharedStorage,
+    syncInstance: sharedSync,
+    windowInstance: ui.windowTarget,
+    documentInstance: ui.documentTarget,
+    runtimeOptions: {
+      setTimeout(callback, delay) {
+        const id = nextTimer++;
+        timers.set(id, { callback, delay });
+        return id;
+      },
+      clearTimeout(id) {
+        timers.delete(id);
+      },
+      setInterval(callback, delay) {
+        const id = nextTimer++;
+        intervals.set(id, { callback, delay });
+        return id;
+      },
+      clearInterval(id) {
+        intervals.delete(id);
+      }
+    }
+  });
+  await cloud.runtime.syncNow("iphone-loop-bootstrap");
+  assert.equal(ui.favoriteCount, 5);
+  assert.equal(
+    ui.storageWriteKeys.filter((key) => CLAIR_REPAS_PERSONAL_KEYS.includes(key)).length,
+    1
+  );
+  await cloud.runtime.syncNow("iphone-loop-probe");
+  assert.equal(transport.writeCalls.length, 0);
+  assert.equal(transport.rows.get("crFavMeals").revision, 26);
+  assert.equal(
+    ui.storageWriteKeys.filter((key) => CLAIR_REPAS_PERSONAL_KEYS.includes(key)).length,
+    1,
+    "The UI refresh and no-op sync must not write personal storage"
+  );
+
+  await cloud.runtime.start();
+  const localScan = [...intervals.values()].find((entry) => entry.delay === 4000);
+  assert.ok(localScan, "Missing local scan interval");
+  const scheduledLocalSyncsBefore = [...timers.values()]
+    .filter((entry) => entry.delay === 500).length;
+  localScan.callback();
+  const scheduledLocalSyncsAfter = [...timers.values()]
+    .filter((entry) => entry.delay === 500).length;
+  assert.equal(scheduledLocalSyncsAfter, scheduledLocalSyncsBefore);
+
+  sharedStorage.setItem(
+    "crFavMeals",
+    '["r1","r2","r3","r4","r5","r6"]'
+  );
+  cloud.advance(2000);
+  const localChange = await cloud.runtime.syncNow("iphone-normal-local-favorite");
+  assert.equal(localChange.synced, true, JSON.stringify(localChange));
+  assert.equal(transport.writeCalls.length, 1);
+  assert.equal(transport.writeCalls[0].record.data_key, "crFavMeals");
+  assert.equal(transport.writeCalls[0].expectedRevision, 26);
+  assert.equal(transport.rows.get("crFavMeals").revision, 27);
+  assert.equal(
+    cloud.windowTarget.dispatched.filter(
+      (item) => item.type === api.constants.PERSONAL_DATA_RESTORED_EVENT
+    ).length,
+    1,
+    "A local upload must not masquerade as a restore"
+  );
+  cloud.runtime.stop();
+});
+
+await check("IPHONE UI 6 — identical local and cloud state emits no refresh", async () => {
+  const favorites = '["r1","r2","r3","r4","r5"]';
+  const transport = new MemoryTransport();
+  transport.putRemote("crFavMeals", favorites, {
+    revision: 26,
+    schemaVersion: 2
+  });
+  const cloud = makeHarness({
+    values: { crFavMeals: favorites },
+    transport,
+    personalKeys: CLAIR_REPAS_PERSONAL_KEYS
+  });
+  const first = await cloud.runtime.syncNow("iphone-identical-bootstrap");
+  const second = await cloud.runtime.syncNow("iphone-identical-no-op");
+  assert.equal(first.synced, true, JSON.stringify(first));
+  assert.equal(second.synced, true, JSON.stringify(second));
+  assert.equal(
+    cloud.windowTarget.dispatched.filter(
+      (event) => event.type === api.constants.PERSONAL_DATA_RESTORED_EVENT
+    ).length,
+    0
+  );
+  assert.equal(transport.writeCalls.length, 0);
+  assert.equal(transport.rows.get("crFavMeals").revision, 26);
+  const ui = makeIphoneUiHarness({ values: { crFavMeals: favorites } });
+  assert.equal(ui.counters.favoriteRefreshes, 0);
+  assert.equal(ui.counters.stateRenders, 0);
+  assert.equal(ui.storageWrites, 0);
+  assert.equal(ui.counters.reloads, 0);
+});
+
+await check("IPHONE UI transaction — post-commit marker failure still notifies UI", async () => {
+  const storage = new FakeStorage();
+  const baseSetItem = storage.setItem.bind(storage);
+  let failMarker = false;
+  storage.setItem = (key, value) => {
+    if (failMarker && key === api.constants.DIRECT_SYNC_MARKER_KEY) {
+      throw new Error("marker-quota-after-commit");
+    }
+    baseSetItem(key, value);
+  };
+  const transport = new MemoryTransport();
+  transport.putRemote("crFavMeals", '["r1","r2","r3"]', {
+    revision: 25,
+    schemaVersion: 2
+  });
+  const cloud = makeHarness({
+    values: { crFavMeals: '["r1","r2","r3"]' },
+    transport,
+    storage,
+    personalKeys: CLAIR_REPAS_PERSONAL_KEYS
+  });
+  await cloud.runtime.syncNow("marker-failure-seed");
+  cloud.windowTarget.dispatched.length = 0;
+  transport.putRemote("crFavMeals", '["r1","r2","r3","r4","r5"]', {
+    revision: 26,
+    schemaVersion: 2,
+    updatedAt: cloud.advance(5000)
+  });
+  failMarker = true;
+  const result = await cloud.runtime.syncNow("marker-failure-after-restore");
+  assert.equal(result.reason, "error");
+  assert.match(result.error, /direct-sync-marker-persistence-failed-after-commit/);
+  assert.equal(cloud.sync.values.crFavMeals, '["r1","r2","r3","r4","r5"]');
+  const events = cloud.windowTarget.dispatched.filter(
+    (event) => event.type === api.constants.PERSONAL_DATA_RESTORED_EVENT
+  );
+  assert.equal(events.length, 1);
+  assert.equal(events[0].detail.mode, "reconciliation");
+  assert.deepEqual([...events[0].detail.changedKeys], ["crFavMeals"]);
+  assert.equal(transport.writeCalls.length, 0);
+  assert.equal(transport.rows.get("crFavMeals").revision, 26);
+});
+
+await check("IPHONE UI transaction — verified rollback realigns UI exactly once", async () => {
+  const sharedStorage = new FakeStorage({
+    crFavMeals: '["r1","r2","r3"]'
+  });
+  const ui = makeIphoneUiHarness({ storage: sharedStorage });
+  const uiSetItem = sharedStorage.setItem.bind(sharedStorage);
+  let metaWrites = 0;
+  let failMetaAt = Number.POSITIVE_INFINITY;
+  sharedStorage.setItem = (key, value) => {
+    if (key === api.constants.META_STORAGE_KEY) {
+      metaWrites += 1;
+      if (metaWrites === failMetaAt) throw new Error("meta-failure-after-restore");
+    }
+    uiSetItem(key, value);
+  };
+  const transport = new MemoryTransport();
+  transport.putRemote("crFavMeals", '["r1","r2","r3"]', {
+    revision: 25,
+    schemaVersion: 2
+  });
+  const sharedSync = new StorageBackedSync(sharedStorage);
+  const cloud = makeHarness({
+    transport,
+    storage: sharedStorage,
+    syncInstance: sharedSync,
+    windowInstance: ui.windowTarget,
+    documentInstance: ui.documentTarget
+  });
+  await cloud.runtime.syncNow("rollback-ui-seed");
+  cloud.windowTarget.dispatched.length = 0;
+  metaWrites = 0;
+  failMetaAt = 2;
+  transport.putRemote("crFavMeals", '["r1","r2","r3","r4","r5"]', {
+    revision: 26,
+    schemaVersion: 2,
+    updatedAt: cloud.advance(5000)
+  });
+  const result = await cloud.runtime.syncNow("rollback-ui-after-restore");
+  assert.equal(result.reason, "error");
+  assert.match(result.error, /sync-meta-persistence-failed/);
+  assert.equal(sharedStorage.getItem("crFavMeals"), '["r1","r2","r3"]');
+  const events = cloud.windowTarget.dispatched.filter(
+    (event) => event.type === api.constants.PERSONAL_DATA_RESTORED_EVENT
+  );
+  assert.equal(events.length, 1);
+  assert.equal(events[0].detail.mode, "rollback");
+  assert.deepEqual([...events[0].detail.changedKeys], ["crFavMeals"]);
+  assert.equal(ui.counters.favoriteRefreshes, 1);
+  assert.equal(ui.favoriteCount, 3);
+  assert.equal(transport.writeCalls.length, 0);
+  assert.equal(transport.rows.get("crFavMeals").revision, 26);
+});
+
+await check("IPHONE UI transaction — final journal state wins over historical concurrency", async () => {
+  const transport = new MemoryTransport();
+  transport.putRemote("crA", "base-a", { revision: 1 });
+  transport.putRemote("crB", "base-b", { revision: 1 });
+  const cloud = makeHarness({
+    values: { crA: "base-a", crB: "base-b" },
+    transport
+  });
+  await cloud.runtime.syncNow("journal-concurrency-seed");
+  cloud.windowTarget.dispatched.length = 0;
+  const updatedAt = cloud.advance(5000);
+  transport.putRemote("crA", "remote-a", { revision: 2, updatedAt });
+  transport.putRemote("crB", "remote-b", { revision: 2, updatedAt });
+
+  const capture = cloud.sync.capture.bind(cloud.sync);
+  let captures = 0;
+  cloud.sync.capture = () => {
+    captures += 1;
+    if (captures === 4) cloud.sync.values.crA = "temporary-user-a";
+    if (captures === 6) cloud.sync.values.crA = "remote-a";
+    return capture();
+  };
+  const result = await cloud.runtime.syncNow("journal-concurrency-final-state");
+  assert.equal(result.synced, true, JSON.stringify(result));
+  assert.deepEqual(cloud.sync.values, { crA: "remote-a", crB: "remote-b" });
+  const events = cloud.windowTarget.dispatched.filter(
+    (event) => event.type === api.constants.PERSONAL_DATA_RESTORED_EVENT
+  );
+  assert.equal(events.length, 1);
+  assert.deepEqual([...events[0].detail.changedKeys], ["crA", "crB"]);
+  assert.equal(transport.writeCalls.length, 0);
 });
 
 if (failures.length) {

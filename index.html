@@ -7454,11 +7454,12 @@ function bindBrowserInteractions(){
     $('browserContent').scrollTop=scrollTop;
   };
 }
-function renderRecipeBrowser(){
+function renderRecipeBrowser({preserveView=false,refreshPersonalUi=true}={}){
   if($('recipeBrowser').hidden)return;
   const searchArea=$('browserSearchArea');
   const back=$('browserBack');
   const content=$('browserContent');
+  const previousScrollTop=preserveView?content.scrollTop:0;
   const choosing=Boolean(browserSelection);
   const bookSearching=browserMode==='book'&&Boolean(normalizeSearchText($('recipeSearch').value));
   back.hidden=!(browserMode==='detail'||browserMode==='book-shelf'||browserMode==='book-target'||browserMode==='shopping'||bookSearching);
@@ -7551,7 +7552,7 @@ function renderRecipeBrowser(){
       content.innerHTML=filterSummary+refreshButton+recipeListHTML(recipes,'Aucune recette trouvée. Essayez un autre nom ou ingrédient.',lead);
     }
   }
-  content.scrollTop=0;
+  content.scrollTop=preserveView?previousScrollTop:0;
   const refreshButton=$('refreshDiscoveries');
   if(refreshButton)refreshButton.onclick=()=>{
     refreshBrowserDiscoveryPage();
@@ -7565,8 +7566,8 @@ function renderRecipeBrowser(){
   };
   bindBrowserInteractions();
   if(browserMode==='shopping')bindShoppingInteractions();
-  bindRecipeControls();
-  updateFavoriteUI();
+  bindRecipeControls({refreshReactions:refreshPersonalUi});
+  if(refreshPersonalUi)updateFavoriteUI();
   refreshPortionDisplays();
 }
 function prepareScoringContext(context,data){
@@ -8324,7 +8325,9 @@ function toggleFavorite(id){
   const removing=favorites.has(id);
   if(removing)favorites.delete(id);else favorites.add(id);
   writeIdList(FAVORITES_KEY,[...favorites]);
-  if(browserMode==='favorites'&&!$('recipeBrowser').hidden)renderRecipeBrowser();
+  if(browserMode==='favorites'&&!$('recipeBrowser').hidden){
+    renderRecipeBrowser({preserveView:true});
+  }
   else updateFavoriteUI();
   show(removing?'Recette retirée des favoris':'Recette ajoutée aux favoris');
 }
@@ -8350,7 +8353,7 @@ function setPeopleCount(value,announce=true){
   refreshPortionDisplays();
   if(announce)show(`Quantités adaptées pour ${count} ${count===1?'personne':'personnes'}`);
 }
-function bindRecipeControls(){
+function bindRecipeControls({refreshReactions=true}={}){
   document.querySelectorAll('.step-timer').forEach(button=>button.onclick=()=>{
     const recipe=recipeIndex.get(button.dataset.recipeId);
     const minutes=Number(button.dataset.timerMinutes);
@@ -8372,7 +8375,7 @@ function bindRecipeControls(){
   document.querySelectorAll('.recipe-note-delete').forEach(button=>button.onclick=()=>{
     deleteRecipeNote(button.dataset.recipeId);
   });
-  updateReactionUI();
+  if(refreshReactions)updateReactionUI();
 }
 
 let wakeLock=null;
@@ -8614,7 +8617,7 @@ function mealHTML(day,dayIndex,type){
     ${content}
   </div>`;
 }
-function render(){
+function render({persist=true,refreshPersonalUi=true}={}){
   $('daysContainer').innerHTML=plan.map((d,i)=>`
     <section class="day-card">
       <div class="day-head">
@@ -8671,10 +8674,12 @@ function render(){
   document.querySelectorAll('.plan-meal-btn').forEach(button=>button.onclick=()=>{
     setMealStatus(Number(button.dataset.day),button.dataset.type,MEAL_PLANNED);
   });
-  bindRecipeControls();
-  updateFavoriteUI();
-  saveState();
-  saveHistory();
+  bindRecipeControls({refreshReactions:refreshPersonalUi});
+  if(refreshPersonalUi)updateFavoriteUI();
+  if(persist){
+    saveState();
+    saveHistory();
+  }
   updateWakeLock();
 }
 function changeMeal(index,type){
@@ -9297,6 +9302,203 @@ $('checkUpdate').onclick=manualAppUpdateCheck;
 $('welcomeV6Start').onclick=()=>closeV6Welcome(false);
 $('welcomeV6More').onclick=()=>closeV6Welcome(true);
 $('welcomeV6').onclick=event=>{if(event.target===$('welcomeV6'))closeV6Welcome(false)};
+
+/* CLAIR_IPHONE_UI_STABILITY_START */
+const PERSONAL_DATA_RESTORED_EVENT='clair:personal-data-restored';
+const PERSONAL_RESTORE_KEYS=new Set([
+  'crFavMeals','crRecentRecipesV25','crRecipeReactionsV3','crRecipeLearningV3',
+  'crRecipeNotesV31','crPeople','crDays','crMode','crTimeAvailable',
+  'crMealContext','crMealUsageV19','crCourseUsageV37','crBrowserDiscoveryV35',
+  'crBrowserDecksV35','crStateV13','crHistoryV13'
+]);
+let personalRestoreTouchActive=false;
+let personalRestoreFlushTimer=null;
+const pendingPersonalRestoreKeys=new Set();
+
+function restoredStorageValue(key,fallback){
+  try{return localStorage.getItem(key)||fallback}catch(e){return fallback}
+}
+function capturePersonalRestoreUiContext(){
+  const active=document.activeElement;
+  let selectionStart=null,selectionEnd=null;
+  try{
+    if(Number.isInteger(active?.selectionStart))selectionStart=active.selectionStart;
+    if(Number.isInteger(active?.selectionEnd))selectionEnd=active.selectionEnd;
+  }catch(e){}
+  return{
+    scrollX:Number(window.scrollX)||0,
+    scrollY:Number(window.scrollY)||0,
+    browserScrollTop:Number($('browserContent')?.scrollTop)||0,
+    activeElement:active||null,
+    focusId:active?.id||null,
+    selectionStart,
+    selectionEnd
+  };
+}
+function restorePersonalRestoreUiContext(context){
+  const focus=context.activeElement&&context.activeElement.isConnected!==false
+    ?context.activeElement
+    :context.focusId?$(context.focusId):null;
+  if(focus&&focus!==document.activeElement&&typeof focus.focus==='function'){
+    try{focus.focus({preventScroll:true})}catch(e){try{focus.focus()}catch(_){} }
+  }
+  if(focus&&context.selectionStart!==null&&typeof focus.setSelectionRange==='function'){
+    const length=String(focus.value??'').length;
+    try{focus.setSelectionRange(
+      Math.min(context.selectionStart,length),
+      Math.min(context.selectionEnd??context.selectionStart,length)
+    )}catch(e){}
+  }
+  const content=$('browserContent');
+  if(content)content.scrollTop=context.browserScrollTop;
+  if((Number(window.scrollX)||0)!==context.scrollX||(Number(window.scrollY)||0)!==context.scrollY){
+    try{window.scrollTo({left:context.scrollX,top:context.scrollY,behavior:'auto'})}
+    catch(e){try{window.scrollTo(context.scrollX,context.scrollY)}catch(_){} }
+  }
+}
+function refreshRestoredRecipeNotes(){
+  V73_NOTES_RAW=null;
+  const notes=recipeNoteMap();
+  const ids=new Set(Object.keys(notes));
+  document.querySelectorAll('.recipe-note-input').forEach(input=>{
+    const id=input.dataset.recipeId;
+    if(!id)return;
+    ids.add(id);
+    const value=notes[id]||'';
+    if(input.value!==value)input.value=value;
+  });
+  document.querySelectorAll(
+    '.note-indicator[data-recipe-id],.recipe-note-status[data-recipe-id],.recipe-note-delete[data-recipe-id]'
+  ).forEach(element=>{if(element.dataset.recipeId)ids.add(element.dataset.recipeId)});
+  ids.forEach(updateNoteIndicators);
+}
+function refreshRestoredPlan(){
+  let saved=null;
+  try{saved=JSON.parse(localStorage.getItem('crStateV13')||'null')}catch(e){}
+  if(saved&&Array.isArray(saved.plan)&&saved.plan.length){
+    plan=loadSavedPlan(saved.plan);
+  }else{
+    plan=[];
+  }
+  render({persist:false,refreshPersonalUi:false});
+}
+function restoredBrowserSelectionValid(selection){
+  if(!selection)return true;
+  const day=plan[Number(selection.dayIndex)];
+  const type=selection.type;
+  const component=selection.component||'dish';
+  if(!day||!MEAL_TYPES.includes(type)||mealStatus(day,type)!==MEAL_PLANNED)return false;
+  const format=mealFormat(day,type);
+  return component==='dish'||
+    (component==='starter'&&formatHasStarter(format))||
+    (component==='dessert'&&formatHasDessert(format));
+}
+function resetRestoredBrowserSelection(){
+  browserSelection=null;
+  browserMode='book';
+  browserReturnMode='book';
+  browserRecipeId=null;
+  browserBookShelfId=null;
+  browserBookSubcategoryId='all';
+  browserTargetDirect=false;
+  bookVisibleCount=BOOK_PAGE_SIZE;
+  $('recipeSearch').value='';
+}
+function applyPersonalRestoreUi(changedKeys){
+  const keys=new Set(changedKeys.filter(key=>PERSONAL_RESTORE_KEYS.has(key)));
+  if(!keys.size)return false;
+  const context=capturePersonalRestoreUiContext();
+  try{
+    const stateChanged=keys.has('crStateV13');
+    if(keys.has('crFavMeals'))V73_FAVORITES_RAW=null;
+    if(keys.has('crRecipeReactionsV3'))V73_REACTIONS_RAW=null;
+    if(keys.has('crRecipeNotesV31'))V73_NOTES_RAW=null;
+
+    if(keys.has('crPeople'))$('people').value=restoredStorageValue('crPeople','2');
+    if(keys.has('crDays'))$('days').value=restoredStorageValue('crDays','2');
+    if(keys.has('crMode'))$('mode').value=restoredStorageValue('crMode','Tous');
+    if(keys.has('crTimeAvailable'))$('timeAvailable').value=restoredStorageValue('crTimeAvailable','Tous');
+    if(keys.has('crMealContext'))$('mealContext').value=restoredStorageValue('crMealContext','auto');
+
+    if(keys.has('crDays'))syncDayChoice();
+    if(keys.has('crMode')||keys.has('crTimeAvailable')||keys.has('crMealContext')){
+      updatePlanningOptionsSummary();
+    }
+    if(stateChanged){
+      refreshRestoredPlan();
+      if(browserLastFocus&&browserLastFocus.isConnected===false){
+        const replacement=browserLastFocus.id?$(browserLastFocus.id):null;
+        browserLastFocus=replacement||$('chooseRecipe');
+      }
+    }
+    if(keys.has('crPeople'))refreshPortionDisplays();
+
+    if(keys.has('crHistoryV13'))renderHistory();
+
+    const browserOpen=!$('recipeBrowser').hidden;
+    let refreshStateBrowser=false;
+    if(stateChanged&&browserOpen&&(browserSelection||browserMode==='book-target')){
+      if(browserSelection&&!restoredBrowserSelectionValid(browserSelection)){
+        resetRestoredBrowserSelection();
+      }
+      refreshStateBrowser=true;
+    }
+    const refreshFavorites=keys.has('crFavMeals')&&(
+      browserMode==='favorites'||
+      (browserMode==='book-shelf'&&browserBookShelfId==='favorites')
+    );
+    const refreshRecent=keys.has('crRecentRecipesV25')&&browserMode==='recent';
+    const refreshAgain=keys.has('crRecipeReactionsV3')&&
+      browserMode==='book-shelf'&&browserBookShelfId==='again';
+    if(browserOpen&&(refreshStateBrowser||refreshFavorites||refreshRecent||refreshAgain)){
+      renderRecipeBrowser({preserveView:true,refreshPersonalUi:false});
+    }
+    if(keys.has('crFavMeals'))updateFavoriteUI();
+    if(keys.has('crRecipeReactionsV3'))updateReactionUI();
+    if(keys.has('crRecipeNotesV31'))refreshRestoredRecipeNotes();
+  }finally{
+    restorePersonalRestoreUiContext(context);
+  }
+  return true;
+}
+function flushPendingPersonalRestoreUi(){
+  personalRestoreFlushTimer=null;
+  if(personalRestoreTouchActive||!pendingPersonalRestoreKeys.size)return false;
+  const keys=[...pendingPersonalRestoreKeys];
+  pendingPersonalRestoreKeys.clear();
+  return applyPersonalRestoreUi(keys);
+}
+function queuePersonalRestoreUi(keys){
+  keys.forEach(key=>pendingPersonalRestoreKeys.add(key));
+  if(personalRestoreTouchActive||personalRestoreFlushTimer!==null)return;
+  flushPendingPersonalRestoreUi();
+}
+function onPersonalDataRestored(event){
+  const detail=event?.detail;
+  if(
+    detail?.source!=='cloud'||
+    !['bootstrap','reconciliation','rollback'].includes(detail?.mode)||
+    !Array.isArray(detail?.changedKeys)
+  )return;
+  const keys=[...new Set(detail.changedKeys)]
+    .filter(key=>PERSONAL_RESTORE_KEYS.has(key));
+  if(keys.length)queuePersonalRestoreUi(keys);
+}
+function onPersonalRestoreTouchStart(event){
+  personalRestoreTouchActive=event?.touches?event.touches.length>0:true;
+}
+function onPersonalRestoreTouchEnd(event){
+  personalRestoreTouchActive=Boolean(event?.touches?.length);
+  if(
+    !personalRestoreTouchActive&&
+    personalRestoreFlushTimer===null
+  )personalRestoreFlushTimer=setTimeout(flushPendingPersonalRestoreUi,0);
+}
+window.addEventListener(PERSONAL_DATA_RESTORED_EVENT,onPersonalDataRestored);
+document.addEventListener('touchstart',onPersonalRestoreTouchStart,{capture:true,passive:true});
+document.addEventListener('touchend',onPersonalRestoreTouchEnd,{capture:true,passive:true});
+document.addEventListener('touchcancel',onPersonalRestoreTouchEnd,{capture:true,passive:true});
+/* CLAIR_IPHONE_UI_STABILITY_END */
 
 loadOrCreate();
 refreshProfessionalStatus();

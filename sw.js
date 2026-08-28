@@ -18,7 +18,7 @@ const DATA_SCHEMA = 2;
 const CLOUD_APP_ID = "clair-repas";
 const CLOUD_ENABLED = true;
 const CLOUD_DIRECT_SYNC_PROTOCOL = "clair-personal-sync/v1";
-const CORE_REVISION = "sha256:a93812902d19d46ab55c8fb301e08c29fa110f7974f9c40792f1570c9e6e29f9";
+const CORE_REVISION = "sha256:e6c1e7a9509c278887803d4875d329ffc0e0b442c8c807d54bc0ddd3ecbddee9";
 const BOOT_GRACE_MS = 18000;
 
 function fnv1a(text) {
@@ -75,15 +75,15 @@ const FOUNDATION_CORE_FILES = LOCAL_SYNC_CORE_FILES.filter(
   path => path !== "./v8/clair-sync.js"
 );
 const CORE_DIGESTS = Object.freeze({
-  "./": "sha256:e2ad5e2827eddb45f8dbe623ee21e29b4bc7a697f92116ac5630edbc2df40c07",
-  "./index.html": "sha256:e2ad5e2827eddb45f8dbe623ee21e29b4bc7a697f92116ac5630edbc2df40c07",
+  "./": "sha256:e39c264f89e8e24c8801c01252394b45e112f2d65789b8d469bbdd4d1a0adca5",
+  "./index.html": "sha256:e39c264f89e8e24c8801c01252394b45e112f2d65789b8d469bbdd4d1a0adca5",
   "./manifest.webmanifest": "sha256:49b30612587c379d6bb8c6d9ade4e299ff244b41f0bd03e2fcca0a5495834e2a",
   "./icon-192.png": "sha256:8d0d516fdcb7d76a40df62dc92d4f312a1557b9e105917026780e465c32fa9f8",
   "./icon-512.png": "sha256:334f3158730e33ad8232ea229a39f9193b45274f1a72b2f55467b1e625924f70",
   "./v8/clair-sync.js": "sha256:0599c8a11fcc775b6412440d872fce660d832d18f793fb4e87a5fbf7af7efb36",
   "./v8/vendor/supabase-js-2.111.0.js": "sha256:7396012594aa6d23bb373ebc25d1080bf3672fa847c3713f756520b40fd13453",
   "./v8/clair-foundation.js": "sha256:83786311d67be4be19af248b045735397ed988126b63bf9955c9cc5796d29ba2",
-  "./v8/clair-cloud-sync.js": "sha256:ca374bfa6b7cbac73a268ef14d366bc547e217cd2296d93adb17350944be51d4",
+  "./v8/clair-cloud-sync.js": "sha256:6d05b667525082078ed76ae05f8166bcec52c6da05a44f9e27cedf8590b729c3",
   "./v8/version.json": "sha256:e748ea2ecfea92120e550e165dc7dc5557852bd3084fbfb1384eb64c431b10e2"
 });
 
