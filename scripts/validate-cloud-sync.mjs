@@ -839,13 +839,76 @@ await check("No session stays local and performs no anonymous write", async () =
   assert.equal(harness.snapshots.length, 0);
 });
 
-await check("Empty cloud keeps local-first and marks local-new-account", async () => {
-  const harness = makeHarness({ values: { crPrefs: '{"mode":"local"}' } });
+await check("Scenario A — existing computer bootstraps matching schema 2 cloud", async () => {
+  const cloudValues = {
+    crFavMeals: '["cloud-1","cloud-2","cloud-3"]',
+    crDays: "7"
+  };
+  const transport = new MemoryTransport();
+  transport.putRemote("crFavMeals", cloudValues.crFavMeals, {
+    revision: 12,
+    schemaVersion: 2
+  });
+  transport.putRemote("crDays", cloudValues.crDays, {
+    revision: 4,
+    schemaVersion: 2
+  });
+  const remoteBefore = new Map(
+    [...transport.rows].map(([key, row]) => [key, structuredClone(row)])
+  );
+  const harness = makeHarness({
+    values: cloudValues,
+    transport,
+    personalKeys: CLAIR_REPAS_PERSONAL_KEYS
+  });
+  assert.equal(harness.storage.getItem(api.constants.META_STORAGE_KEY), null);
+  assert.equal(
+    harness.storage.getItem(api.constants.DIRECT_SYNC_MARKER_KEY),
+    null
+  );
+
+  const result = await harness.runtime.syncNow("scenario-a-existing-computer");
+
+  assert.equal(result.synced, true, JSON.stringify(result));
+  assert.equal(result.bootstrapMode, "remote-existing-account");
+  assert.deepEqual(harness.sync.values, cloudValues);
+  assert.equal(harness.sync.restoreCalls.length, 1);
+  assert.deepEqual(harness.sync.restoreCalls[0], cloudValues);
+  assert.equal(transport.registerCalls.length, 0);
+  assert.equal(transport.writeCalls.length, 0);
+  for (const [key, row] of remoteBefore) {
+    assert.deepEqual(transport.rows.get(key), row, key + " changed during bootstrap");
+    assert.equal(row.schema_version, 2);
+  }
+  const meta = JSON.parse(harness.storage.getItem(api.constants.META_STORAGE_KEY));
+  assert.ok(meta.accounts["user-test"].handover.completedAt);
+  assert.equal(
+    meta.accounts["user-test"].handover.mode,
+    "remote-existing-account"
+  );
+  const marker = JSON.parse(
+    harness.storage.getItem(api.constants.DIRECT_SYNC_MARKER_KEY)
+  );
+  assert.equal(marker.healthy, true);
+  assert.equal(marker.bootstrapGeneration, "bootstrap-v2");
+  assert.equal(marker.bootstrapMode, "remote-existing-account");
+
+  const continued = await harness.runtime.syncNow("scenario-a-normal-sync");
+  assert.equal(continued.synced, true, JSON.stringify(continued));
+  assert.equal(transport.writeCalls.length, 0);
+});
+
+await check("Scenario D — empty cloud keeps local-new-account safe", async () => {
+  const localFavorites = '["local-1","local-2","local-3"]';
+  const harness = makeHarness({
+    values: { crFavMeals: localFavorites },
+    personalKeys: CLAIR_REPAS_PERSONAL_KEYS
+  });
   const result = await harness.runtime.syncNow("test-upload");
   assert.equal(result.synced, true, JSON.stringify(result));
   assert.equal(result.bootstrapMode, "local-new-account");
-  const row = harness.transport.rows.get("crPrefs");
-  assert.equal(row.payload.value, '{"mode":"local"}');
+  const row = harness.transport.rows.get("crFavMeals");
+  assert.equal(row.payload.value, localFavorites);
   assert.equal(row.schema_version, DATA_SCHEMA);
   assert.equal(row.payload.integration, "clair-v8-foundation.9");
   assert.equal(row.payload.source_device, "Windows • Chrome");
@@ -1164,9 +1227,9 @@ await check("Deletion sends a tombstone and recreation clears it", async () => {
   assertOnlyProductionApp(harness.transport);
 });
 
-await check("Following device adopts the complete existing cloud account", async () => {
+await check("Scenario B — iPhone adopts the complete existing cloud account", async () => {
   const transport = new MemoryTransport();
-  transport.putRemote("crFavMeals", '["cloud-1","cloud-2"]');
+  transport.putRemote("crFavMeals", '["cloud-1","cloud-2","cloud-3"]');
   transport.putRemote("crHistoryV13", '[{"id":"cloud-history"}]');
   transport.putRemote("crStateV13", '{"source":"cloud"}');
   transport.putRemote("crRecipeNotesV31", null, {
@@ -1211,7 +1274,13 @@ await check("Following device adopts the complete existing cloud account", async
   assert.equal(result.bootstrapMode, "remote-existing-account");
   assert.deepEqual(harness.sync.values, {
     ...technicalValues,
-    crFavMeals: '["cloud-1","cloud-2"]',
+    crFavMeals: '["cloud-1","cloud-2","cloud-3"]',
+    crHistoryV13: '[{"id":"cloud-history"}]',
+    crStateV13: '{"source":"cloud"}'
+  });
+  assert.equal(harness.sync.restoreCalls.length, 1);
+  assert.deepEqual(harness.sync.restoreCalls[0], {
+    crFavMeals: '["cloud-1","cloud-2","cloud-3"]',
     crHistoryV13: '[{"id":"cloud-history"}]',
     crStateV13: '{"source":"cloud"}'
   });
@@ -1221,6 +1290,7 @@ await check("Following device adopts the complete existing cloud account", async
   assert.equal(transport.writeCalls.length, 0);
   for (const [key, row] of remoteBefore) {
     assert.deepEqual(transport.rows.get(key), row, key + " changed remotely");
+    assert.equal(row.schema_version, 2);
   }
   const meta = JSON.parse(
     harness.storage.getItem(api.constants.META_STORAGE_KEY)
@@ -1236,13 +1306,18 @@ await check("Following device adopts the complete existing cloud account", async
   );
 });
 
-await check("Normal reconciliation resumes after remote bootstrap", async () => {
+await check("Scenario C — fourth local favorite writes only crFavMeals with CAS", async () => {
   const transport = new MemoryTransport();
-  transport.putRemote("crFavMeals", '["cloud-1","cloud-2"]', {
+  transport.putRemote("crFavMeals", '["cloud-1","cloud-2","cloud-3"]', {
     revision: 7
   });
+  transport.putRemote("crStateV13", '{"stable":true}', { revision: 11 });
+  const stableBefore = structuredClone(transport.rows.get("crStateV13"));
   const harness = makeHarness({
-    values: { crFavMeals: '["old-1","old-2","old-3"]' },
+    values: {
+      crFavMeals: '["cloud-1","cloud-2","cloud-3"]',
+      crStateV13: '{"stable":true}'
+    },
     transport,
     personalKeys: CLAIR_REPAS_PERSONAL_KEYS
   });
@@ -1252,7 +1327,7 @@ await check("Normal reconciliation resumes after remote bootstrap", async () => 
   assert.equal(transport.registerCalls.length, 0);
   assert.equal(transport.writeCalls.length, 0);
 
-  harness.sync.values.crFavMeals = '["cloud-1","cloud-2","local-3"]';
+  harness.sync.values.crFavMeals = '["cloud-1","cloud-2","cloud-3","local-4"]';
   harness.advance(2000);
   const reconciled = await harness.runtime.syncNow("favorite-after-bootstrap");
 
@@ -1261,11 +1336,14 @@ await check("Normal reconciliation resumes after remote bootstrap", async () => 
   assert.equal(transport.writeCalls.length, 1);
   assert.equal(transport.writeCalls[0].record.data_key, "crFavMeals");
   assert.equal(transport.writeCalls[0].expectedRevision, 7);
+  assert.equal(transport.writeCalls[0].record.schema_version, 2);
   assert.equal(
     transport.writeCalls[0].record.payload.value,
-    '["cloud-1","cloud-2","local-3"]'
+    '["cloud-1","cloud-2","cloud-3","local-4"]'
   );
   assert.equal(transport.rows.get("crFavMeals").revision, 8);
+  assert.equal(transport.rows.get("crFavMeals").schema_version, 2);
+  assert.deepEqual(transport.rows.get("crStateV13"), stableBefore);
   const meta = JSON.parse(
     harness.storage.getItem(api.constants.META_STORAGE_KEY)
   );
@@ -1434,17 +1512,24 @@ await check("Newest scalar and newest delete win after a shared base", async () 
   assert.equal(Object.hasOwn(harness.sync.values, "crDeleteVsEdit"), false);
 });
 
-await check("Failed production handover restores the snapshot and retries safely", async () => {
+await check("Scenario D — partial local-new-account initialization resumes safely", async () => {
   const transport = new MemoryTransport();
-  const before = { crA: "local-a", crB: '{"local":true}' };
-  const harness = makeHarness({ values: before, transport });
+  const before = {
+    crFavMeals: '["local-1","local-2","local-3"]',
+    crStateV13: '{"local":true}'
+  };
+  const harness = makeHarness({
+    values: before,
+    transport,
+    personalKeys: CLAIR_REPAS_PERSONAL_KEYS
+  });
   const originalWrite = transport.writeData.bind(transport);
   let writes = 0;
   let failSecondWrite = true;
   transport.writeData = async (...args) => {
     writes += 1;
     if (failSecondWrite && writes === 2) {
-      harness.sync.values.crB = '{"user":"concurrent"}';
+      harness.sync.values.crStateV13 = '{"user":"concurrent"}';
       throw new Error("handover-write-failed");
     }
     return originalWrite(...args);
@@ -1452,10 +1537,19 @@ await check("Failed production handover restores the snapshot and retries safely
   const failed = await harness.runtime.syncNow("handover-failure");
   assert.equal(failed.reason, "error");
   assert.deepEqual(harness.sync.values, {
-    crA: "local-a",
-    crB: '{"user":"concurrent"}'
+    crFavMeals: '["local-1","local-2","local-3"]',
+    crStateV13: '{"user":"concurrent"}'
   });
   assert.equal(harness.snapshots.length, 1);
+  const failedMeta = JSON.parse(
+    harness.storage.getItem(api.constants.META_STORAGE_KEY)
+  );
+  assert.equal(failedMeta.accounts["user-test"].handover.mode, "local-new-account");
+  assert.ok(failedMeta.accounts["user-test"].handover.preparedAt);
+  assert.equal(Boolean(failedMeta.accounts["user-test"].handover.completedAt), false);
+  assert.equal(transport.writeCalls.length, 1);
+  assert.equal(transport.writeCalls[0].record.data_key, "crFavMeals");
+  assert.equal(transport.writeCalls[0].record.schema_version, 2);
   const failedMarker = JSON.parse(
     harness.storage.getItem(api.constants.DIRECT_SYNC_MARKER_KEY)
   );
@@ -1469,15 +1563,29 @@ await check("Failed production handover restores the snapshot and retries safely
   writes = 0;
   const retried = await harness.runtime.syncNow("handover-retry");
   assert.equal(retried.synced, true, JSON.stringify(retried));
+  assert.equal(retried.bootstrapMode, "local-new-account");
   assert.deepEqual(harness.sync.values, {
-    crA: "local-a",
-    crB: '{"user":"concurrent"}'
+    crFavMeals: '["local-1","local-2","local-3"]',
+    crStateV13: '{"user":"concurrent"}'
   });
-  assert.equal(transport.rows.get("crA").payload.value, "local-a");
   assert.equal(
-    transport.rows.get("crB").payload.value,
+    transport.rows.get("crFavMeals").payload.value,
+    '["local-1","local-2","local-3"]'
+  );
+  assert.equal(
+    transport.rows.get("crStateV13").payload.value,
     '{"user":"concurrent"}'
   );
+  assert.equal(transport.writeCalls.length, 2);
+  assert.equal(transport.writeCalls[1].record.data_key, "crStateV13");
+  assert.ok(
+    [...transport.rows.values()].every((row) => row.schema_version === DATA_SCHEMA)
+  );
+  const healthyMeta = JSON.parse(
+    harness.storage.getItem(api.constants.META_STORAGE_KEY)
+  );
+  assert.ok(healthyMeta.accounts["user-test"].handover.completedAt);
+  assert.equal(healthyMeta.accounts["user-test"].handover.mode, "local-new-account");
   const healthyMarker = JSON.parse(
     harness.storage.getItem(api.constants.DIRECT_SYNC_MARKER_KEY)
   );

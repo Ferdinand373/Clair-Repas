@@ -4,7 +4,7 @@
   "foundationVersion": "8.0.0-foundation.15",
   "productVersion": "7.5",
   "dataSchema": 2,
-  "channel": "production-handover-prepared",
+  "channel": "production-sync-enabled",
   "publishedAt": "2026-08-23",
   "updatePolicy": "atomic-with-rollback",
   "personalDataPolicy": "preserve-and-snapshot",
@@ -12,7 +12,7 @@
   "snapshotIsolation": "app-and-scope",
   "productionBootstrap": "preserve-v7.5-as-first-fallback",
   "cloudAppId": "clair-repas",
-  "cloudEnabled": false,
+  "cloudEnabled": true,
   "cloudHandover": "remote-existing-account-or-local-new-account",
   "bootstrapGeneration": "bootstrap-v2"
 }
