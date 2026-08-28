@@ -4,7 +4,7 @@
   "foundationVersion": "8.0.0-foundation.15",
   "productVersion": "7.5",
   "dataSchema": 2,
-  "channel": "device-bootstrap-test",
+  "channel": "production-handover-prepared",
   "publishedAt": "2026-08-23",
   "updatePolicy": "atomic-with-rollback",
   "personalDataPolicy": "preserve-and-snapshot",

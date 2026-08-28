@@ -291,7 +291,7 @@ await check("Release metadata consistency", () => {
   assert.equal(cloudEnabled, false);
   assert.equal(version.cloudAppId, cloudAppId);
   assert.equal(version.cloudEnabled, cloudEnabled);
-  assert.equal(version.channel, "device-bootstrap-test");
+  assert.equal(version.channel, "production-handover-prepared");
   assert.equal(version.bootstrapGeneration, "bootstrap-v2");
   assert.equal(
     stringConstant(cloudSync, "BOOTSTRAP_GENERATION"),
