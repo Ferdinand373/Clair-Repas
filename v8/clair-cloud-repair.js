@@ -8,6 +8,7 @@
   const BOOTSTRAP_GENERATION = 'bootstrap-v2';
   const DATA_SCHEMA = 2;
   const LEGACY_DATA_SCHEMA = 1;
+  const EXPECTED_LOCAL_FAVORITES = 3;
   const INTEGRATION = 'clair-foundation15-cloud-repair';
   const REMOTE_TABLE = 'clair_data';
   const REMOTE_COLUMNS =
@@ -314,14 +315,17 @@
         reason: "crFavMeals local n'est pas un tableau JSON valide."
       };
     }
-    if (favorites.length !== 2) {
+    if (favorites.length !== EXPECTED_LOCAL_FAVORITES) {
       return {
         ok: false,
         count: favorites.length,
-        reason: 'Le nombre de favoris locaux doit être exactement 2.'
+        reason:
+          'Le nombre de favoris locaux doit être exactement ' +
+          EXPECTED_LOCAL_FAVORITES +
+          '.'
       };
     }
-    return { ok: true, count: 2, reason: null };
+    return { ok: true, count: EXPECTED_LOCAL_FAVORITES, reason: null };
   }
 
   function remoteLiveValue(row) {
@@ -806,8 +810,11 @@
       throw new RepairError('final-technical-key', 'Une clé technique apparaît dans le cloud final.');
     }
     const favoriteRow = map.get('crFavMeals');
-    if (remoteFavoriteCount(favoriteRow) !== 2) {
-      throw new RepairError('final-favorites', 'Le cloud final ne contient pas exactement 2 favoris.');
+    if (remoteFavoriteCount(favoriteRow) !== EXPECTED_LOCAL_FAVORITES) {
+      throw new RepairError(
+        'final-favorites',
+        'Le cloud final ne contient pas exactement ' + EXPECTED_LOCAL_FAVORITES + ' favoris.'
+      );
     }
     return true;
   }
@@ -1079,7 +1086,7 @@
           writes: applied.length,
           lines: [
             'RÉPARATION CLOUD RÉUSSIE',
-            '2 FAVORIS CONFIRMÉS',
+            EXPECTED_LOCAL_FAVORITES + ' FAVORIS CONFIRMÉS',
             'FOUNDATION.15 TOUJOURS VERROUILLÉE'
           ]
         };
@@ -1329,6 +1336,7 @@
       BOOTSTRAP_GENERATION,
       DATA_SCHEMA,
       LEGACY_DATA_SCHEMA,
+      EXPECTED_LOCAL_FAVORITES,
       INTEGRATION,
       REMOTE_TABLE,
       REMOTE_COLUMNS,

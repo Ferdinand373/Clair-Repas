@@ -87,7 +87,7 @@ function clock(start = '2026-08-28T12:00:00.000Z') {
   return () => new Date(startTime + tick++ * 1000).toISOString();
 }
 
-function localValues(favoriteCount = 2, extras = {}) {
+function localValues(favoriteCount = constants.EXPECTED_LOCAL_FAVORITES, extras = {}) {
   return {
     crFavMeals: JSON.stringify(
       Array.from({ length: favoriteCount }, (_, index) => 'local-favorite-' + (index + 1))
@@ -174,20 +174,21 @@ function rowFor(transport, key, userId = USER_ID, appId = 'clair-repas') {
   return scopedRows(transport, userId, appId).find((row) => row.data_key === key) || null;
 }
 
-await check('1. local 2 favoris / cloud 3 favoris legacy', async () => {
+await check('1. local 3 favoris / cloud 2 favoris legacy', async () => {
   const harness = makeHarness({
     rows: [
-      remoteRow('crFavMeals', ['cloud-1', 'cloud-2', 'cloud-3'], {
+      remoteRow('crFavMeals', ['cloud-1', 'cloud-2'], {
         schemaVersion: 1,
         revision: 12
       })
     ]
   });
   const { analysis, result } = await analyzeAndRepair(harness);
-  assert.equal(analysis.localFavoriteCount, 2);
-  assert.equal(analysis.cloudFavoriteCount, 3);
+  assert.equal(analysis.localFavoriteCount, 3);
+  assert.equal(analysis.cloudFavoriteCount, 2);
   assert.equal(result.status, 'success');
-  assert.equal(JSON.parse(rowFor(harness.transport, 'crFavMeals').payload.value).length, 2);
+  assert.ok(result.lines.includes('3 FAVORIS CONFIRMÉS'));
+  assert.equal(JSON.parse(rowFor(harness.transport, 'crFavMeals').payload.value).length, 3);
 });
 
 await check('2. refus local 1 favori', async () => {
@@ -203,23 +204,55 @@ await check('2. refus local 1 favori', async () => {
   );
 });
 
-await check('3. refus local 3 favoris', async () => {
-  const harness = makeHarness({ local: localValues(3) });
+await check('3. refus local 2 favoris', async () => {
+  const harness = makeHarness({ local: localValues(2) });
   const analysis = await harness.engine.analyze();
   assert.equal(analysis.repairAllowed, false);
-  assert.equal(analysis.localFavoriteCount, 3);
+  assert.equal(analysis.localFavoriteCount, 2);
   assert.equal(harness.transport.writeAttempts.length, 0);
 });
 
-await check('4. refus local crFavMeals invalide ou absent', async () => {
-  for (const local of [
-    { crFavMeals: '{invalide' },
-    { crFavMeals: '{"not":"array"}' },
-    { crDays: '7' }
-  ]) {
+await check('4. refus local 4 favoris', async () => {
+  const harness = makeHarness({ local: localValues(4) });
+  const analysis = await harness.engine.analyze();
+  assert.equal(analysis.repairAllowed, false);
+  assert.equal(analysis.localFavoriteCount, 4);
+  assert.equal(harness.transport.writeAttempts.length, 0);
+});
+
+await check('4a. refus local crFavMeals absent', async () => {
+  const harness = makeHarness({ local: { crDays: '7' } });
+  const analysis = await harness.engine.analyze();
+  assert.equal(analysis.repairAllowed, false);
+  assert.equal(analysis.localFavoriteCount, null);
+  assert.equal(harness.transport.writeAttempts.length, 0);
+  assert.equal(harness.storage.writes.length, 0);
+});
+
+await check('4b. refus local crFavMeals invalide', async () => {
+  for (const crFavMeals of ['{invalide', '{"not":"array"}', 'null']) {
+    const local = { crFavMeals };
     const harness = makeHarness({ local });
     const analysis = await harness.engine.analyze();
     assert.equal(analysis.repairAllowed, false);
+    assert.equal(harness.transport.writeAttempts.length, 0);
+    assert.equal(harness.storage.writes.length, 0);
+  }
+});
+
+await check('4c. le nombre de favoris cloud ne décide jamais de l’autorisation', async () => {
+  for (const cloudFavoriteCount of [0, 1, 2, 3, 4, 7]) {
+    const cloudFavorites = Array.from(
+      { length: cloudFavoriteCount },
+      (_, index) => 'cloud-favorite-' + (index + 1)
+    );
+    const harness = makeHarness({
+      rows: [remoteRow('crFavMeals', cloudFavorites, { schemaVersion: 1 })]
+    });
+    const analysis = await harness.engine.analyze();
+    assert.equal(analysis.localFavoriteCount, constants.EXPECTED_LOCAL_FAVORITES);
+    assert.equal(analysis.cloudFavoriteCount, cloudFavoriteCount);
+    assert.equal(analysis.repairAllowed, true);
     assert.equal(harness.transport.writeAttempts.length, 0);
   }
 });
@@ -231,7 +264,7 @@ await check('5. lecture schema 1 JSON natif', async () => {
     JSON.stringify(native)
   );
   const harness = makeHarness({
-    local: localValues(2, { crHistoryV13: '[{"id":"local"}]' }),
+    local: localValues(constants.EXPECTED_LOCAL_FAVORITES, { crHistoryV13: '[{"id":"local"}]' }),
     rows: [
       remoteRow('crFavMeals', ['cloud-1', 'cloud-2'], { schemaVersion: 1 }),
       remoteRow('crHistoryV13', native, { schemaVersion: 1 })
@@ -373,7 +406,7 @@ await check('14. échec après première écriture déclenche un rollback sûr',
   });
   const beforeRecent = remoteRow('crRecentRecipesV25', '["remote"]', { revision: 20 });
   const harness = makeHarness({
-    local: localValues(2, { crRecentRecipesV25: '["local"]' }),
+    local: localValues(constants.EXPECTED_LOCAL_FAVORITES, { crRecentRecipesV25: '["local"]' }),
     rows: [beforeFavorites, beforeRecent],
     failRepairAt: 2
   });
@@ -391,7 +424,7 @@ await check('14. échec après première écriture déclenche un rollback sûr',
 
 await check('15. échec rollback produit l’alerte manuelle', async () => {
   const harness = makeHarness({
-    local: localValues(2, { crRecentRecipesV25: '["local"]' }),
+    local: localValues(constants.EXPECTED_LOCAL_FAVORITES, { crRecentRecipesV25: '["local"]' }),
     rows: [
       remoteRow('crFavMeals', '["remote-1","remote-2"]'),
       remoteRow('crRecentRecipesV25', '["remote"]')
@@ -728,7 +761,7 @@ await check('25. transport Supabase mocké applique CAS et INSERT stricts', asyn
 
 await check('26. aucune donnée locale personnelle n’est modifiée', async () => {
   const local = {
-    ...localValues(2, { crDays: '11' }),
+    ...localValues(constants.EXPECTED_LOCAL_FAVORITES, { crDays: '11' }),
     crHealthProbeV73: 'do-not-touch',
     unrelated: 'sentinel'
   };
@@ -753,7 +786,7 @@ await check('26. aucune donnée locale personnelle n’est modifiée', async () 
 
 await check('27. chaque écriture réelle ou compensatoire reste en schema_version 2', async () => {
   const harness = makeHarness({
-    local: localValues(2, { crRecentRecipesV25: '["local"]' }),
+    local: localValues(constants.EXPECTED_LOCAL_FAVORITES, { crRecentRecipesV25: '["local"]' }),
     rows: [
       remoteRow('crFavMeals', ['legacy-1', 'legacy-2'], { schemaVersion: 1 }),
       remoteRow('crRecentRecipesV25', ['legacy-recent'], { schemaVersion: 1 })
@@ -782,12 +815,14 @@ await check('28. double contrôle Foundation après écriture déclenche le roll
 });
 
 await check('29. configuration statique publique et interface verrouillée', () => {
+  assert.equal(constants.EXPECTED_LOCAL_FAVORITES, 3);
   assert.match(constants.SUPABASE_PUBLISHABLE_KEY, /^sb_publishable_/);
   assert.doesNotMatch(source, /service[_-]?role/i);
   assert.doesNotMatch(source, /sb_secret_/i);
   assert.match(html, />ANALYSER LOCAL ET CLOUD<\/button>/);
   assert.match(html, /id="repairButton"[^>]*disabled[^>]*>RÉPARER LE CLOUD DEPUIS CET ORDINATEUR/);
   assert.match(html, /id="downloadButton"[^>]*disabled/);
+  assert.match(html, /verrou des 3 favoris locaux/);
   assert.match(source, /integration:\s*INTEGRATION/);
   assert.match(source, /source_device:\s*deviceLabel/);
   assert.match(source, /schema_version:\s*DATA_SCHEMA/);
