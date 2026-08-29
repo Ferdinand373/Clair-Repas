@@ -7,6 +7,7 @@ on:
       - main
       - "foundation-9-production"
       - "shopping-v2-engine-test"
+      - "shopping-v2-real-world-fixes"
   workflow_dispatch:
 
 permissions:
@@ -39,6 +40,7 @@ jobs:
           node --check v8/clair-cloud-sync.js
           node --check v8/vendor/supabase-js-2.111.0.js
           node --check scripts/validate-repair-tool.mjs
+          node --check scripts/validate-shopping-qr4.mjs
           node --check scripts/validate-shopping-v2.mjs
 
       - name: Validate application and PWA invariants
@@ -46,4 +48,5 @@ jobs:
           node scripts/validate-static-app.mjs
           node scripts/validate-cloud-sync.mjs
           node scripts/validate-repair-tool.mjs
+          node scripts/validate-shopping-qr4.mjs
           node scripts/validate-shopping-v2.mjs

@@ -18,7 +18,7 @@ const DATA_SCHEMA = 2;
 const CLOUD_APP_ID = "clair-repas";
 const CLOUD_ENABLED = true;
 const CLOUD_DIRECT_SYNC_PROTOCOL = "clair-personal-sync/v1";
-const CORE_REVISION = "sha256:3127db764fe76e714ee084f226bafc762f8da983321cb29fea72cc83eb9cbe96";
+const CORE_REVISION = "sha256:56a22a74ffd88fcf6725256311843a12e4c56460a5e6564ffa602df863afac90";
 const BOOT_GRACE_MS = 18000;
 
 function fnv1a(text) {
@@ -48,8 +48,8 @@ const LEGACY_APP_PREFIX = "clair-repas-app-";
 const LEGACY_META_CACHE = "clair-repas-v8-meta";
 const LEGACY_META_URL = META_URL;
 
-// Cache de la V7.5 actuellement utilisée en production. Il reste admissible
-// comme tout premier parachute même s'il précède les scripts Foundation.
+// Cache V7.5 historique : il reste admissible comme source de migration,
+// mais jamais comme shell actif depuis l'activation du transfert Shopping V2.
 const PRE_V8_STABLE_CACHES = ["clair-repas-v75-grands-chefs-20260816"];
 
 const CORE_FILES = [
@@ -90,7 +90,7 @@ const CORE_DIGESTS = Object.freeze({
   "./manifest.webmanifest": "sha256:49b30612587c379d6bb8c6d9ade4e299ff244b41f0bd03e2fcca0a5495834e2a",
   "./icon-192.png": "sha256:8d0d516fdcb7d76a40df62dc92d4f312a1557b9e105917026780e465c32fa9f8",
   "./icon-512.png": "sha256:334f3158730e33ad8232ea229a39f9193b45274f1a72b2f55467b1e625924f70",
-  "./shopping-v2-engine.js": "sha256:f3aae77971a4346adea474d42b07e185cc4702c33481b0ddf36fc00351cca40d",
+  "./shopping-v2-engine.js": "sha256:43ff956d831627e4f8b27b1f63bc0ca817f4f30f4d33c75594964ee005335265",
   "./v8/clair-sync.js": "sha256:0599c8a11fcc775b6412440d872fce660d832d18f793fb4e87a5fbf7af7efb36",
   "./v8/vendor/supabase-js-2.111.0.js": "sha256:7396012594aa6d23bb373ebc25d1080bf3672fa847c3713f756520b40fd13453",
   "./v8/clair-foundation.js": "sha256:83786311d67be4be19af248b045735397ed988126b63bf9955c9cc5796d29ba2",
@@ -160,6 +160,39 @@ async function cacheHasCore(cacheName, requiredFiles = null) {
       if (!(await cache.match(url, { ignoreSearch: true }))) return false;
     }
     return true;
+  } catch (_) {
+    return false;
+  }
+}
+
+// Les caches de release sont immuables par nom. Une validation positive peut
+// donc être réutilisée pendant la vie du worker sans relire le gros shell à
+// chaque requête d'asset.
+const SHOPPING_V2_COMPATIBLE_CACHES = new Set();
+
+async function cacheSupportsShoppingV2(cacheName) {
+  if (SHOPPING_V2_COMPATIBLE_CACHES.has(cacheName)) return true;
+  if (!cacheName || !(await cacheHasCore(cacheName))) return false;
+  try {
+    const cache = await caches.open(cacheName);
+    const shellUrls = [appIndexUrl(), appRootUrl()];
+    const engineTag = /<script\b[^>]*\bsrc=["']\.\/shopping-v2-engine\.js(?:[?#][^"']*)?["'][^>]*><\/script>/iu;
+    for (const shellUrl of shellUrls) {
+      const shell = await cache.match(shellUrl, { ignoreSearch: true });
+      if (!shell) return false;
+      const html = (await shell.clone().text()).replace(/<!--[\s\S]*?-->/gu, "");
+      if (!engineTag.test(html)) return false;
+      const senderStart = html.indexOf("function shoppingSendSelected(){");
+      const senderEnd = html.indexOf("function bindShoppingInteractions()", senderStart);
+      if (senderStart < 0 || senderEnd <= senderStart) return false;
+      const sender = html.slice(senderStart, senderEnd);
+      if (!sender.includes("const contract=shoppingContractV2();")) return false;
+      if (sender.includes("shoppingContractV1()")) return false;
+    }
+    const engineUrl = new URL("./shopping-v2-engine.js", self.registration.scope).toString();
+    const compatible = Boolean(await cache.match(engineUrl, { ignoreSearch: true }));
+    if (compatible) SHOPPING_V2_COMPATIBLE_CACHES.add(cacheName);
+    return compatible;
   } catch (_) {
     return false;
   }
@@ -487,11 +520,11 @@ async function choosePreviousCache(state = {}) {
   for (const candidate of preferred) {
     if (!candidate || candidate === CURRENT_CACHE) continue;
     if (!available.includes(candidate)) continue;
-    if (await cacheHasCore(candidate)) return candidate;
+    if (await cacheSupportsShoppingV2(candidate)) return candidate;
   }
 
   for (const candidate of available) {
-    if (await cacheHasCore(candidate)) return candidate;
+    if (await cacheSupportsShoppingV2(candidate)) return candidate;
   }
 
   return null;
@@ -526,11 +559,11 @@ async function markCandidateActive() {
 async function rollbackIfNeeded(state, reason = "boot-failed") {
   let fallback = state?.previousCache || state?.lastHealthyCache || null;
 
-  if (!fallback || fallback === CURRENT_CACHE || !(await cacheHasCore(fallback))) {
+  if (!fallback || fallback === CURRENT_CACHE || !(await cacheSupportsShoppingV2(fallback))) {
     fallback = await choosePreviousCache(state || {});
   }
 
-  if (!fallback || fallback === CURRENT_CACHE || !(await cacheHasCore(fallback))) {
+  if (!fallback || fallback === CURRENT_CACHE || !(await cacheSupportsShoppingV2(fallback))) {
     return state;
   }
 
@@ -843,10 +876,14 @@ self.addEventListener("fetch", event => {
         const state = await currentServingState();
         const servingState = await startBootAttemptSafely(state);
 
-        const cached = await serveFromCache(servingState.activeCache, request);
+        const cached = await cacheSupportsShoppingV2(servingState.activeCache)
+          ? await serveFromCache(servingState.activeCache, request)
+          : null;
         if (cached) return cached;
 
-        const previous = await serveFromCache(servingState.previousCache, request);
+        const previous = await cacheSupportsShoppingV2(servingState.previousCache)
+          ? await serveFromCache(servingState.previousCache, request)
+          : null;
         if (previous) return previous;
 
         return fetch(request, { cache: "no-store" });
@@ -863,10 +900,10 @@ self.addEventListener("fetch", event => {
         } catch (_) {
           const state = await currentServingState();
           const servingState = await startBootAttemptSafely(state);
-          return (
-            (await serveFromCache(servingState.activeCache, request)) ||
-            Response.error()
-          );
+          if (!(await cacheSupportsShoppingV2(servingState.activeCache))) {
+            return Response.error();
+          }
+          return (await serveFromCache(servingState.activeCache, request)) || Response.error();
         }
       })()
     );
@@ -877,13 +914,17 @@ self.addEventListener("fetch", event => {
     (async () => {
       const state = await currentServingState();
 
-      const cached = await serveFromCache(state.activeCache, request);
+      const cached = await cacheSupportsShoppingV2(state.activeCache)
+        ? await serveFromCache(state.activeCache, request)
+        : null;
       if (cached) return cached;
 
       try {
         return await fetch(request);
       } catch (_) {
-        const previous = await serveFromCache(state.previousCache, request);
+        const previous = await cacheSupportsShoppingV2(state.previousCache)
+          ? await serveFromCache(state.previousCache, request)
+          : null;
         return previous || Response.error();
       }
     })()

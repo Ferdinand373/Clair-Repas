@@ -196,6 +196,7 @@ await check("Required repository files", () => {
     "v8/clair-foundation.js",
     "v8/version.json",
     "repair-local-production.html",
+    "scripts/validate-shopping-qr4.mjs",
     "scripts/validate-shopping-v2.mjs",
     "scripts/shopping-contract-v1.fixture.json",
     "scripts/shopping-contract-v2.fixture.json"
@@ -220,6 +221,7 @@ await check("UTF-8 and merge-conflict safety", () => {
     "v8/clair-foundation.js",
     "v8/version.json",
     "repair-local-production.html",
+    "scripts/validate-shopping-qr4.mjs",
     "scripts/validate-shopping-v2.mjs",
     "scripts/shopping-contract-v1.fixture.json",
     "scripts/shopping-contract-v2.fixture.json"
@@ -558,7 +560,32 @@ await check("Precache completeness and immutable revision", () => {
   assert.match(
     serviceWorker,
     /const PRE_V8_STABLE_CACHES\s*=\s*\[/,
-    "The production V7.5 cache must remain an eligible first fallback"
+    "The production V7.5 cache must remain an eligible migration source"
+  );
+  assert.match(
+    serviceWorker,
+    /async function cacheSupportsShoppingV2\(cacheName\)/,
+    "Shopping V2 fallback compatibility guard is required"
+  );
+  assert.match(
+    serviceWorker,
+    /async function choosePreviousCache[\s\S]*?cacheSupportsShoppingV2\(candidate\)/,
+    "Rollback selection must reject pre-QR1 shopping shells"
+  );
+  assert.match(
+    serviceWorker,
+    /const cached = await cacheSupportsShoppingV2\(servingState\.activeCache\)/,
+    "Main navigation must not serve a pre-QR1 shopping shell"
+  );
+  assert.match(
+    serviceWorker,
+    /if \(!\(await cacheSupportsShoppingV2\(servingState\.activeCache\)\)\) \{\s*return Response\.error\(\);/,
+    "Secondary offline navigation must not serve a shell without the active V2 sender"
+  );
+  assert.match(
+    serviceWorker,
+    /const cached = await cacheSupportsShoppingV2\(state\.activeCache\)[\s\S]*?const previous = await cacheSupportsShoppingV2\(state\.previousCache\)/,
+    "Asset fallback must not mix a current shell with pre-V2 transport resources"
   );
   return coreFiles.length + " URLs, " + revision.slice(0, 19);
 });
@@ -593,6 +620,25 @@ await check("Service-worker registration and full-cache validation", async () =>
 
   let cacheNames = ["legacy"];
   let missingAsset = null;
+  let currentCacheName = null;
+  let metaCacheName = null;
+  let metaUrl = null;
+  let metaState = {};
+  let networkFetch = async () => new Response("network", { status: 200 });
+  const v2Bootstrap =
+    '<script src="./shopping-v2-engine.js"></script>' +
+    '<script data-clair-v8-sync></script>' +
+    '<script data-clair-v8-foundation></script>' +
+    '<script data-clair-v8-cloud-sync></script>' +
+    '<script>function shoppingSendSelected(){const contract=shoppingContractV2();}' +
+    'function bindShoppingInteractions(){}</script>';
+  const v1Bootstrap =
+    '<script src="./shopping-v2-engine.js"></script>' +
+    '<script data-clair-v8-sync></script>' +
+    '<script data-clair-v8-foundation></script>' +
+    '<script data-clair-v8-cloud-sync></script>' +
+    '<script>function shoppingSendSelected(){const contract=shoppingContractV1();}' +
+    'function bindShoppingInteractions(){}</script>';
   const cacheContext = {
     self: fakeSelf,
     URL,
@@ -605,6 +651,9 @@ await check("Service-worker registration and full-cache validation", async () =>
     crypto: webcrypto,
     TextDecoder,
     TextEncoder,
+    fetch(...args) {
+      return networkFetch(...args);
+    },
     caches: {
       async keys() {
         return cacheNames;
@@ -613,20 +662,45 @@ await check("Service-worker registration and full-cache validation", async () =>
         return {
           async match(request) {
             const url = String(request);
+            if (cacheName === metaCacheName && url === metaUrl) {
+              return new Response(JSON.stringify(metaState), {
+                headers: { "content-type": "application/json" }
+              });
+            }
             if (missingAsset && url.includes(missingAsset)) return null;
+            if (url === "[object Object]") return null;
             if (url.endsWith("/index.html") || url.endsWith("/app/")) {
-              const bootstrap = cacheName === "pre-v8"
+              if (cacheName === currentCacheName) return new Response(indexHtml);
+              const bootstrap = cacheName === "shopping-v2-old" || cacheName.endsWith("-qr3")
+                ? v2Bootstrap
+                : cacheName.endsWith("-qr1b")
+                  ? v1Bootstrap
+                  : cacheName.endsWith("-mixed-shell")
+                    ? url.endsWith("/index.html")
+                      ? v2Bootstrap
+                      : "<script data-clair-v8-foundation></script>"
+                    : cacheName.endsWith("-comment-only")
+                      ? '<!-- <script src="./shopping-v2-engine.js"></script>' +
+                        '<script>function shoppingSendSelected(){const contract=shoppingContractV2();}' +
+                        'function bindShoppingInteractions(){}</script> -->' +
+                        '<script data-clair-v8-sync></script>' +
+                        '<script data-clair-v8-foundation></script>' +
+                        '<script data-clair-v8-cloud-sync></script>'
+                : cacheName === "pre-v8"
                 ? ""
                 : cacheName === "legacy"
                 ? "<script data-clair-v8-foundation></script>"
                 : cacheName === "local-sync"
                   ? "<script data-clair-v8-sync></script><script data-clair-v8-foundation></script>"
-                  : cacheName === "shopping-v2-old"
-                    ? "<script src=\"./shopping-v2-engine.js\"></script><script data-clair-v8-sync></script><script data-clair-v8-foundation></script><script data-clair-v8-cloud-sync></script>"
-                    : "<script data-clair-v8-sync></script><script data-clair-v8-foundation></script><script data-clair-v8-cloud-sync></script>";
+                  : "<script data-clair-v8-sync></script><script data-clair-v8-foundation></script><script data-clair-v8-cloud-sync></script>";
               return new Response("<head>" + bootstrap + "</head>");
             }
             return new Response("asset");
+          },
+          async put(request, response) {
+            if (cacheName === metaCacheName && String(request) === metaUrl) {
+              metaState = await response.clone().json();
+            }
           }
         };
       }
@@ -635,7 +709,12 @@ await check("Service-worker registration and full-cache validation", async () =>
   vm.runInNewContext(
     serviceWorker +
       "\n;globalThis.__cacheHasCore = cacheHasCore;" +
+      "\n;globalThis.__cacheSupportsShoppingV2 = cacheSupportsShoppingV2;" +
+      "\n;globalThis.__cachePrefix = CACHE_PREFIX;" +
+      "\n;globalThis.__choosePreviousCache = choosePreviousCache;" +
       "\n;globalThis.__currentCache = CURRENT_CACHE;" +
+      "\n;globalThis.__metaCache = META_CACHE;" +
+      "\n;globalThis.__metaUrl = META_URL;" +
       "\n;globalThis.__cloudConfigRevision = CLOUD_CONFIG_REVISION;" +
       "\n;globalThis.__validateCoreDigest = validateCoreDigest;",
     cacheContext,
@@ -646,6 +725,9 @@ await check("Service-worker registration and full-cache validation", async () =>
     ENABLED_CLOUD_CONFIG_REVISION
   );
   assert.ok(cacheContext.__currentCache.endsWith("-" + ENABLED_CLOUD_CONFIG_REVISION));
+  currentCacheName = cacheContext.__currentCache;
+  metaCacheName = cacheContext.__metaCache;
+  metaUrl = cacheContext.__metaUrl;
   assert.notEqual(
     cacheContext.__currentCache,
     cacheContext.__currentCache.replace(
@@ -653,7 +735,7 @@ await check("Service-worker registration and full-cache validation", async () =>
       DISABLED_CLOUD_CONFIG_REVISION
     )
   );
-  cacheNames = [
+  const completeCacheNames = [
     cacheContext.__currentCache,
     "legacy",
     "local-sync",
@@ -661,12 +743,124 @@ await check("Service-worker registration and full-cache validation", async () =>
     "shopping-v2-old",
     "pre-v8"
   ];
+  cacheNames = completeCacheNames;
   assert.equal(await cacheContext.__cacheHasCore(cacheContext.__currentCache), true);
   assert.equal(await cacheContext.__cacheHasCore("legacy"), true);
   assert.equal(await cacheContext.__cacheHasCore("local-sync"), true);
   assert.equal(await cacheContext.__cacheHasCore("old-cloud"), true);
   assert.equal(await cacheContext.__cacheHasCore("shopping-v2-old"), true);
   assert.equal(await cacheContext.__cacheHasCore("pre-v8"), true);
+  assert.equal(await cacheContext.__cacheSupportsShoppingV2(cacheContext.__currentCache), true);
+  assert.equal(await cacheContext.__cacheSupportsShoppingV2("shopping-v2-old"), true);
+  assert.equal(await cacheContext.__cacheSupportsShoppingV2("old-cloud"), false);
+  assert.equal(await cacheContext.__cacheSupportsShoppingV2("local-sync"), false);
+  assert.equal(await cacheContext.__cacheSupportsShoppingV2("legacy"), false);
+  assert.equal(await cacheContext.__cacheSupportsShoppingV2("pre-v8"), false);
+  const preQr1Fallback = `${cacheContext.__cachePrefix}pre-qr1`;
+  const qr1bFallback = `${cacheContext.__cachePrefix}qr1b`;
+  const qr3Fallback = `${cacheContext.__cachePrefix}qr3`;
+  const mixedShellFallback = `${cacheContext.__cachePrefix}mixed-shell`;
+  const commentOnlyFallback = `${cacheContext.__cachePrefix}comment-only`;
+  cacheNames = [preQr1Fallback, qr1bFallback, qr3Fallback, mixedShellFallback, commentOnlyFallback];
+  assert.equal(
+    await cacheContext.__cacheSupportsShoppingV2(qr1bFallback),
+    false,
+    "A shell with the V2 engine but the active V1 sender must be rejected"
+  );
+  assert.equal(
+    await cacheContext.__cacheSupportsShoppingV2(mixedShellFallback),
+    false,
+    "Both cached entry shells must expose the active V2 sender"
+  );
+  assert.equal(
+    await cacheContext.__cacheSupportsShoppingV2(commentOnlyFallback),
+    false,
+    "Commented Shopping V2 markup must not qualify a fallback shell"
+  );
+  assert.equal(
+    await cacheContext.__choosePreviousCache({
+      lastHealthyCache: qr1bFallback,
+      previousCache: qr3Fallback,
+      probation: true
+    }),
+    qr3Fallback,
+    "Rollback must skip a preferred active-V1 shell and choose the active-V2 fallback"
+  );
+  cacheNames = [preQr1Fallback, qr1bFallback, mixedShellFallback, commentOnlyFallback];
+  assert.equal(
+    await cacheContext.__choosePreviousCache({ lastHealthyCache: qr1bFallback }),
+    null,
+    "No shell without the active V2 sender may be selected as a Shopping fallback"
+  );
+
+  const fetchHandler = handlers.get("fetch");
+  assert.equal(typeof fetchHandler, "function", "Fetch handler must be registered");
+  async function offlineSecondaryNavigation(activeCache) {
+    cacheNames = [metaCacheName, activeCache];
+    metaState = { activeCache, probation: false, bootAttempted: false };
+    networkFetch = async () => {
+      throw new Error("offline");
+    };
+    let responsePromise = null;
+    fetchHandler({
+      request: { method: "GET", mode: "navigate", url: "https://example.test/app/secondary" },
+      respondWith(value) {
+        responsePromise = Promise.resolve(value);
+      }
+    });
+    assert.ok(responsePromise, "Offline navigation must call respondWith");
+    return responsePromise;
+  }
+  const rejectedV1Navigation = await offlineSecondaryNavigation(qr1bFallback);
+  assert.equal(
+    rejectedV1Navigation.type,
+    "error",
+    "Secondary offline navigation must reject the cached active-V1 sender"
+  );
+  const acceptedV2Navigation = await offlineSecondaryNavigation(qr3Fallback);
+  assert.match(
+    await acceptedV2Navigation.text(),
+    /const contract=shoppingContractV2\(\);/,
+    "Secondary offline navigation may serve a verified active-V2 shell"
+  );
+
+  async function offlineAssetRequest(activeCache) {
+    cacheNames = [metaCacheName, activeCache];
+    metaState = { activeCache, previousCache: null, probation: false, bootAttempted: false };
+    networkFetch = async () => {
+      throw new Error("offline");
+    };
+    let responsePromise = null;
+    const assetUrl = "https://example.test/app/shopping-v2-engine.js";
+    fetchHandler({
+      request: {
+        method: "GET",
+        mode: "cors",
+        url: assetUrl,
+        toString() {
+          return assetUrl;
+        }
+      },
+      respondWith(value) {
+        responsePromise = Promise.resolve(value);
+      }
+    });
+    assert.ok(responsePromise, "Asset request must call respondWith");
+    return responsePromise;
+  }
+  const rejectedV1Asset = await offlineAssetRequest(qr1bFallback);
+  assert.equal(
+    rejectedV1Asset.type,
+    "error",
+    "Offline assets must not be read from a cache whose active sender is V1"
+  );
+  const acceptedV2Asset = await offlineAssetRequest(qr3Fallback);
+  assert.equal(
+    await acceptedV2Asset.text(),
+    "asset",
+    "Offline assets may be read from a verified active-V2 cache"
+  );
+  cacheNames = completeCacheNames;
   missingAsset = "shopping-v2-engine.js";
   assert.equal(
     await cacheContext.__cacheHasCore(cacheContext.__currentCache),
@@ -676,17 +870,17 @@ await check("Service-worker registration and full-cache validation", async () =>
   assert.equal(
     await cacheContext.__cacheHasCore("old-cloud"),
     true,
-    "A healthy pre-QR1 cloud cache must remain rollback-compatible"
+    "A healthy pre-QR1 cloud cache must remain a structurally valid migration source"
   );
   assert.equal(
     await cacheContext.__cacheHasCore("local-sync"),
     true,
-    "A healthy pre-QR1 local-sync cache must remain rollback-compatible"
+    "A healthy pre-QR1 local-sync cache must remain a structurally valid migration source"
   );
   assert.equal(
     await cacheContext.__cacheHasCore("legacy"),
     true,
-    "A healthy pre-QR1 Foundation cache must remain rollback-compatible"
+    "A healthy pre-QR1 Foundation cache must remain a structurally valid migration source"
   );
   assert.equal(
     await cacheContext.__cacheHasCore("shopping-v2-old"),
@@ -720,7 +914,7 @@ await check("Service-worker registration and full-cache validation", async () =>
   assert.equal(
     await cacheContext.__cacheHasCore("pre-v8"),
     true,
-    "The pre-V8 production shell remains a valid emergency fallback"
+    "The pre-V8 production shell remains a structurally valid migration source"
   );
 
   const manifestResponse = new Response(readFileSync(rooted("manifest.webmanifest")));

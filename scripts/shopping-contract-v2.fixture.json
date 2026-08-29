@@ -1,14 +1,14 @@
 {
   "fixtureVersion": 1,
-  "rulesVersion": "clair-repas-shopping-v2.0.0",
+  "rulesVersion": "clair-repas-shopping-v2.0.1",
   "contracts": {
     "representative": {
       "schemaVersion": 2,
       "source": "Clair Repas",
       "sourceVersion": "7.5",
-      "rulesVersion": "clair-repas-shopping-v2.0.0",
+      "rulesVersion": "clair-repas-shopping-v2.0.1",
       "createdAt": "2026-08-29T08:00:00.000Z",
-      "contentFingerprint": "fnv1a:bf51c105",
+      "contentFingerprint": "fnv1a:6c83c734",
       "items": [
         {
           "selected": true,
@@ -50,9 +50,9 @@
       "schemaVersion": 2,
       "source": "Clair Repas",
       "sourceVersion": "7.5",
-      "rulesVersion": "clair-repas-shopping-v2.0.0",
+      "rulesVersion": "clair-repas-shopping-v2.0.1",
       "createdAt": "2026-08-29T08:00:00.000Z",
-      "contentFingerprint": "fnv1a:2fcc9cc8",
+      "contentFingerprint": "fnv1a:c0509cd9",
       "items": [
         {
           "selected": true,
@@ -77,9 +77,9 @@
       "schemaVersion": 2,
       "source": "Clair Repas",
       "sourceVersion": "7.5",
-      "rulesVersion": "clair-repas-shopping-v2.0.0",
+      "rulesVersion": "clair-repas-shopping-v2.0.1",
       "createdAt": "2026-08-29T08:00:00.000Z",
-      "contentFingerprint": "fnv1a:7a08ee90",
+      "contentFingerprint": "fnv1a:284eaf81",
       "items": [
         {
           "selected": true,
@@ -104,9 +104,9 @@
       "schemaVersion": 2,
       "source": "Clair Repas",
       "sourceVersion": "7.5",
-      "rulesVersion": "clair-repas-shopping-v2.0.0",
+      "rulesVersion": "clair-repas-shopping-v2.0.1",
       "createdAt": "2026-08-29T08:00:00.000Z",
-      "contentFingerprint": "fnv1a:1a6c2887",
+      "contentFingerprint": "fnv1a:98ddd7c6",
       "items": [
         {
           "selected": true,
@@ -131,9 +131,9 @@
       "schemaVersion": 2,
       "source": "Clair Repas",
       "sourceVersion": "7.5",
-      "rulesVersion": "clair-repas-shopping-v2.0.0",
+      "rulesVersion": "clair-repas-shopping-v2.0.1",
       "createdAt": "2026-08-29T08:00:00.000Z",
-      "contentFingerprint": "fnv1a:d2d4cc70",
+      "contentFingerprint": "fnv1a:5c98f5e1",
       "items": [
         {
           "selected": true,
@@ -158,9 +158,9 @@
       "schemaVersion": 2,
       "source": "Clair Repas",
       "sourceVersion": "7.5",
-      "rulesVersion": "clair-repas-shopping-v2.0.0",
+      "rulesVersion": "clair-repas-shopping-v2.0.1",
       "createdAt": "2026-08-29T08:00:00.000Z",
-      "contentFingerprint": "fnv1a:b231846c",
+      "contentFingerprint": "fnv1a:228941bd",
       "items": [
         {
           "selected": true,
@@ -185,9 +185,9 @@
       "schemaVersion": 2,
       "source": "Clair Repas",
       "sourceVersion": "7.5",
-      "rulesVersion": "clair-repas-shopping-v2.0.0",
+      "rulesVersion": "clair-repas-shopping-v2.0.1",
       "createdAt": "2026-08-29T08:00:00.000Z",
-      "contentFingerprint": "fnv1a:abf01c4e",
+      "contentFingerprint": "fnv1a:238a80ef",
       "items": [
         {
           "selected": true,
@@ -212,9 +212,9 @@
       "schemaVersion": 2,
       "source": "Clair Repas",
       "sourceVersion": "7.5",
-      "rulesVersion": "clair-repas-shopping-v2.0.0",
+      "rulesVersion": "clair-repas-shopping-v2.0.1",
       "createdAt": "2026-08-29T08:00:00.000Z",
-      "contentFingerprint": "fnv1a:84e7e544",
+      "contentFingerprint": "fnv1a:c15f1755",
       "items": [
         {
           "selected": true,

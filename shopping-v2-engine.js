@@ -8,7 +8,7 @@
   const SCHEMA_VERSION = 2;
   const SOURCE = 'Clair Repas';
   const SOURCE_VERSION = '7.5';
-  const RULES_VERSION = 'clair-repas-shopping-v2.0.0';
+  const RULES_VERSION = 'clair-repas-shopping-v2.0.1';
   const AISLES = Object.freeze([
     'Eau',
     'Épicerie',
@@ -628,9 +628,10 @@
       displayName = canonicalName;
       kind = 'condiment';
       form = formOrDefault(form, 'other');
-    } else if (/\b(?:sauce soja|mirin|vinaigres?|huile d olive|huile neutre)\b/.test(search)) {
+    } else if (/\b(?:sauce soja|mirin|vinaigrettes?|vinaigres?|huile d olive|huile neutre)\b/.test(search)) {
       if (/sauce soja/.test(search)) canonicalName = 'sauce soja';
       else if (/mirin/.test(search)) canonicalName = 'mirin';
+      else if (/^vinaigrettes?$/.test(search)) canonicalName = 'vinaigrette';
       else if (/huile d olive/.test(search)) canonicalName = 'huile d’olive';
       else if (/huile neutre/.test(search)) canonicalName = 'huile neutre';
       else canonicalName = canonicalText(sourceName);
@@ -1200,9 +1201,12 @@
     } else if (search === 'concentre de tomate') {
       quantity = 1;
       unit = 'tube';
-    } else if (/^(?:sauce soja|mirin|vinaigre(?: |$)|huile d olive$|huile neutre$)/.test(search)) {
+    } else if (/^(?:sauce soja|mirin|vinaigrette(?: |$)|vinaigre(?: |$)|huile d olive$|huile neutre$)/.test(search)) {
       quantity = 1;
       unit = 'bouteille';
+    } else if (search === 'sesame') {
+      quantity = 1;
+      unit = 'sachet';
     } else if (model.kind === 'herb' && model.form === 'fresh') {
       quantity = 1;
       unit = search === 'basilic' ? 'pot' : 'bouquet';
@@ -1495,6 +1499,39 @@
     return COMMON_PANTRY_PATTERN.test(normalizeSearchText(model.canonicalName));
   }
 
+  const SAFE_VINAIGRETTE_COMPONENTS = new Map([
+    ['basilic', 'basilic'],
+    ['persil', 'persil'],
+    ['coriandre', 'coriandre'],
+    ['ciboulette', 'ciboulette'],
+    ['menthe', 'menthe'],
+    ['aneth', 'aneth'],
+    ['estragon', 'estragon'],
+    ['cerfeuil', 'cerfeuil'],
+    ['sauge', 'sauge'],
+    ['romarin', 'romarin'],
+    ['olive', 'olive'],
+    ['olives', 'olives']
+  ]);
+
+  function splitPurchasableIngredient(item) {
+    const source = item || {};
+    if (parseQuantity(source.q) != null || normalizeUnit(source.u || source.unit)) return [source];
+    const parts = normalizeSearchText(source.n || source.name || source.k).split(/\s+et\s+/u);
+    if (parts.length !== 2) return [source];
+
+    const dressingIndex = parts.findIndex(part => part === 'vinaigrette');
+    if (dressingIndex < 0) return [source];
+    const componentIndex = dressingIndex === 0 ? 1 : 0;
+    const component = SAFE_VINAIGRETTE_COMPONENTS.get(parts[componentIndex]);
+    if (!component) return [source];
+
+    return parts.map((part, index) => {
+      const name = index === dressingIndex ? 'vinaigrette' : component;
+      return { ...source, q: null, u: '', n: name, k: name };
+    });
+  }
+
   function normalizeSources(input) {
     if (Array.isArray(input)) return input;
     if (input && Array.isArray(input.sources)) return input.sources;
@@ -1510,10 +1547,18 @@
       const recipe = source && source.recipe ? source.recipe : source;
       if (!recipe || !Array.isArray(recipe.i)) return;
       const sourceRecipeId = normalizeSpaces(recipe.id || source.recipeId || `source-${sourceIndex + 1}`);
-      for (const item of recipe.i) {
-        const profile = ingredientProfile(item);
-        if (availableIngredient(item, profile, source, options)) continue;
-        contributions.push(contributionFor(item, recipe, sourceRecipeId, peopleCount, source, options));
+      for (const rawItem of recipe.i) {
+        const expandedItems = splitPurchasableIngredient(rawItem);
+        const rawProfile = ingredientProfile(rawItem);
+        if (
+          expandedItems.length > 1 &&
+          availableIngredient(rawItem, rawProfile, source, options)
+        ) continue;
+        for (const item of expandedItems) {
+          const profile = ingredientProfile(item);
+          if (availableIngredient(item, profile, source, options)) continue;
+          contributions.push(contributionFor(item, recipe, sourceRecipeId, peopleCount, source, options));
+        }
       }
     });
 
@@ -1764,6 +1809,18 @@
       next.text = overrideText;
     }
 
+    if (next.aisleOverride !== true) {
+      const automaticProfile = next.canonicalName
+        ? next
+        : ingredientProfile({
+            n: next.displayName || next.item?.n || next.purchaseLabel || next.text,
+            u: next.exactUnit || next.unit || next.item?.u,
+            form: next.form
+          });
+      next.computedAisle = aisleFor(automaticProfile);
+      next.aisle = next.computedAisle;
+      next.aisleOverride = false;
+    }
     if (Object.prototype.hasOwnProperty.call(overrides, 'aisle') && AISLES.includes(overrides.aisle)) {
       next.aisle = overrides.aisle;
       next.aisleOverride = true;
