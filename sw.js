@@ -18,7 +18,7 @@ const DATA_SCHEMA = 2;
 const CLOUD_APP_ID = "clair-repas";
 const CLOUD_ENABLED = true;
 const CLOUD_DIRECT_SYNC_PROTOCOL = "clair-personal-sync/v1";
-const CORE_REVISION = "sha256:e6c1e7a9509c278887803d4875d329ffc0e0b442c8c807d54bc0ddd3ecbddee9";
+const CORE_REVISION = "sha256:3cf351b6e7ca67433de5aec4462311052333ba6d793d30f718553a60fd77fc55";
 const BOOT_GRACE_MS = 18000;
 
 function fnv1a(text) {
@@ -58,6 +58,7 @@ const CORE_FILES = [
   "./manifest.webmanifest",
   "./icon-192.png",
   "./icon-512.png",
+  "./shopping-v2-engine.js",
   "./v8/clair-sync.js",
   "./v8/vendor/supabase-js-2.111.0.js",
   "./v8/clair-foundation.js",
@@ -74,12 +75,22 @@ const LOCAL_SYNC_CORE_FILES = CORE_FILES.filter(
 const FOUNDATION_CORE_FILES = LOCAL_SYNC_CORE_FILES.filter(
   path => path !== "./v8/clair-sync.js"
 );
+const PRE_SHOPPING_V2_CORE_FILES = CORE_FILES.filter(
+  path => path !== "./shopping-v2-engine.js"
+);
+const PRE_SHOPPING_V2_LOCAL_SYNC_CORE_FILES = LOCAL_SYNC_CORE_FILES.filter(
+  path => path !== "./shopping-v2-engine.js"
+);
+const PRE_SHOPPING_V2_FOUNDATION_CORE_FILES = FOUNDATION_CORE_FILES.filter(
+  path => path !== "./shopping-v2-engine.js"
+);
 const CORE_DIGESTS = Object.freeze({
-  "./": "sha256:e39c264f89e8e24c8801c01252394b45e112f2d65789b8d469bbdd4d1a0adca5",
-  "./index.html": "sha256:e39c264f89e8e24c8801c01252394b45e112f2d65789b8d469bbdd4d1a0adca5",
+  "./": "sha256:e92135e8d6de44264b9a3d4b0316cfbf702f86fd199100686842cefc94bc5774",
+  "./index.html": "sha256:e92135e8d6de44264b9a3d4b0316cfbf702f86fd199100686842cefc94bc5774",
   "./manifest.webmanifest": "sha256:49b30612587c379d6bb8c6d9ade4e299ff244b41f0bd03e2fcca0a5495834e2a",
   "./icon-192.png": "sha256:8d0d516fdcb7d76a40df62dc92d4f312a1557b9e105917026780e465c32fa9f8",
   "./icon-512.png": "sha256:334f3158730e33ad8232ea229a39f9193b45274f1a72b2f55467b1e625924f70",
+  "./shopping-v2-engine.js": "sha256:f3aae77971a4346adea474d42b07e185cc4702c33481b0ddf36fc00351cca40d",
   "./v8/clair-sync.js": "sha256:0599c8a11fcc775b6412440d872fce660d832d18f793fb4e87a5fbf7af7efb36",
   "./v8/vendor/supabase-js-2.111.0.js": "sha256:7396012594aa6d23bb373ebc25d1080bf3672fa847c3713f756520b40fd13453",
   "./v8/clair-foundation.js": "sha256:83786311d67be4be19af248b045735397ed988126b63bf9955c9cc5796d29ba2",
@@ -119,11 +130,19 @@ async function requiredCoreFiles(cacheName, cache) {
     const hasSync = html.includes("data-clair-v8-sync");
     const hasFoundation = html.includes("data-clair-v8-foundation");
     const hasCloud = html.includes("data-clair-v8-cloud-sync");
+    const hasShoppingV2 = html.includes("shopping-v2-engine.js");
     if (!hasSync && !hasFoundation && !hasCloud) return [];
-    if (hasCloud && hasSync && hasFoundation) return CORE_FILES;
+    const fullCoreFiles = hasShoppingV2 ? CORE_FILES : PRE_SHOPPING_V2_CORE_FILES;
+    const localSyncCoreFiles = hasShoppingV2
+      ? LOCAL_SYNC_CORE_FILES
+      : PRE_SHOPPING_V2_LOCAL_SYNC_CORE_FILES;
+    const foundationCoreFiles = hasShoppingV2
+      ? FOUNDATION_CORE_FILES
+      : PRE_SHOPPING_V2_FOUNDATION_CORE_FILES;
+    if (hasCloud && hasSync && hasFoundation) return fullCoreFiles;
     if (hasCloud || (hasSync && !hasFoundation)) return null;
-    if (hasSync) return LOCAL_SYNC_CORE_FILES;
-    return FOUNDATION_CORE_FILES;
+    if (hasSync) return localSyncCoreFiles;
+    return foundationCoreFiles;
   } catch (_) {
     return CORE_FILES;
   }

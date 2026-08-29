@@ -1,0 +1,239 @@
+{
+  "fixtureVersion": 1,
+  "rulesVersion": "clair-repas-shopping-v2.0.0",
+  "contracts": {
+    "representative": {
+      "schemaVersion": 2,
+      "source": "Clair Repas",
+      "sourceVersion": "7.5",
+      "rulesVersion": "clair-repas-shopping-v2.0.0",
+      "createdAt": "2026-08-29T08:00:00.000Z",
+      "contentFingerprint": "fnv1a:bf51c105",
+      "items": [
+        {
+          "selected": true,
+          "productKey": "clair-repas:v2:ba258df2:other:moutarde",
+          "canonicalName": "moutarde",
+          "displayName": "moutarde",
+          "form": "other",
+          "exactQuantity": 2,
+          "exactUnit": "c. à soupe",
+          "exactLabel": "2 c. à soupe de moutarde",
+          "purchaseQuantity": 1,
+          "purchaseUnit": "pot",
+          "purchaseLabel": "1 pot de moutarde",
+          "aisle": "Épicerie",
+          "sourceRecipeIds": [
+            "fixture-mustard"
+          ]
+        },
+        {
+          "selected": true,
+          "productKey": "clair-repas:v2:93a3e018:fresh:basilic",
+          "canonicalName": "basilic",
+          "displayName": "basilic frais",
+          "form": "fresh",
+          "exactQuantity": 4,
+          "exactUnit": "feuille",
+          "exactLabel": "4 feuilles de basilic frais",
+          "purchaseQuantity": 1,
+          "purchaseUnit": "pot",
+          "purchaseLabel": "1 pot de basilic frais",
+          "aisle": "Fruits et légumes",
+          "sourceRecipeIds": [
+            "fixture-basil"
+          ]
+        }
+      ]
+    },
+    "mustard": {
+      "schemaVersion": 2,
+      "source": "Clair Repas",
+      "sourceVersion": "7.5",
+      "rulesVersion": "clair-repas-shopping-v2.0.0",
+      "createdAt": "2026-08-29T08:00:00.000Z",
+      "contentFingerprint": "fnv1a:2fcc9cc8",
+      "items": [
+        {
+          "selected": true,
+          "productKey": "clair-repas:v2:ba258df2:other:moutarde",
+          "canonicalName": "moutarde",
+          "displayName": "moutarde",
+          "form": "other",
+          "exactQuantity": 2,
+          "exactUnit": "c. à soupe",
+          "exactLabel": "2 c. à soupe de moutarde",
+          "purchaseQuantity": 1,
+          "purchaseUnit": "pot",
+          "purchaseLabel": "1 pot de moutarde",
+          "aisle": "Épicerie",
+          "sourceRecipeIds": [
+            "fixture-mustard"
+          ]
+        }
+      ]
+    },
+    "freshBasil": {
+      "schemaVersion": 2,
+      "source": "Clair Repas",
+      "sourceVersion": "7.5",
+      "rulesVersion": "clair-repas-shopping-v2.0.0",
+      "createdAt": "2026-08-29T08:00:00.000Z",
+      "contentFingerprint": "fnv1a:7a08ee90",
+      "items": [
+        {
+          "selected": true,
+          "productKey": "clair-repas:v2:93a3e018:fresh:basilic",
+          "canonicalName": "basilic",
+          "displayName": "basilic frais",
+          "form": "fresh",
+          "exactQuantity": 4,
+          "exactUnit": "feuille",
+          "exactLabel": "4 feuilles de basilic frais",
+          "purchaseQuantity": 1,
+          "purchaseUnit": "pot",
+          "purchaseLabel": "1 pot de basilic frais",
+          "aisle": "Fruits et légumes",
+          "sourceRecipeIds": [
+            "fixture-basil-fresh"
+          ]
+        }
+      ]
+    },
+    "driedBasil": {
+      "schemaVersion": 2,
+      "source": "Clair Repas",
+      "sourceVersion": "7.5",
+      "rulesVersion": "clair-repas-shopping-v2.0.0",
+      "createdAt": "2026-08-29T08:00:00.000Z",
+      "contentFingerprint": "fnv1a:1a6c2887",
+      "items": [
+        {
+          "selected": true,
+          "productKey": "clair-repas:v2:ee2eb5dc:dried:basilic",
+          "canonicalName": "basilic",
+          "displayName": "basilic séché",
+          "form": "dried",
+          "exactQuantity": 1,
+          "exactUnit": "c. à café",
+          "exactLabel": "1 c. à café de basilic séché",
+          "purchaseQuantity": 1,
+          "purchaseUnit": "pot",
+          "purchaseLabel": "1 pot de basilic séché",
+          "aisle": "Épicerie",
+          "sourceRecipeIds": [
+            "fixture-basil-dried"
+          ]
+        }
+      ]
+    },
+    "knacks": {
+      "schemaVersion": 2,
+      "source": "Clair Repas",
+      "sourceVersion": "7.5",
+      "rulesVersion": "clair-repas-shopping-v2.0.0",
+      "createdAt": "2026-08-29T08:00:00.000Z",
+      "contentFingerprint": "fnv1a:d2d4cc70",
+      "items": [
+        {
+          "selected": true,
+          "productKey": "clair-repas:v2:10c29f38:other:knacks",
+          "canonicalName": "knacks",
+          "displayName": "knacks",
+          "form": "other",
+          "exactQuantity": 4,
+          "exactUnit": "unité",
+          "exactLabel": "4 knacks",
+          "purchaseQuantity": 1,
+          "purchaseUnit": "paquet",
+          "purchaseLabel": "1 paquet de knacks",
+          "aisle": "Charcuterie",
+          "sourceRecipeIds": [
+            "fixture-knacks"
+          ]
+        }
+      ]
+    },
+    "cookedRice": {
+      "schemaVersion": 2,
+      "source": "Clair Repas",
+      "sourceVersion": "7.5",
+      "rulesVersion": "clair-repas-shopping-v2.0.0",
+      "createdAt": "2026-08-29T08:00:00.000Z",
+      "contentFingerprint": "fnv1a:b231846c",
+      "items": [
+        {
+          "selected": true,
+          "productKey": "clair-repas:v2:d1ec68aa:dried:riz",
+          "canonicalName": "riz",
+          "displayName": "riz",
+          "form": "dried",
+          "exactQuantity": 60,
+          "exactUnit": "g",
+          "exactLabel": "environ 60 g de riz sec",
+          "purchaseQuantity": 1,
+          "purchaseUnit": "paquet",
+          "purchaseLabel": "1 paquet de riz",
+          "aisle": "Épicerie",
+          "sourceRecipeIds": [
+            "fixture-rice"
+          ]
+        }
+      ]
+    },
+    "salmon": {
+      "schemaVersion": 2,
+      "source": "Clair Repas",
+      "sourceVersion": "7.5",
+      "rulesVersion": "clair-repas-shopping-v2.0.0",
+      "createdAt": "2026-08-29T08:00:00.000Z",
+      "contentFingerprint": "fnv1a:abf01c4e",
+      "items": [
+        {
+          "selected": true,
+          "productKey": "clair-repas:v2:2dcfa3da:fresh:saumon",
+          "canonicalName": "saumon",
+          "displayName": "saumon",
+          "form": "fresh",
+          "exactQuantity": 2,
+          "exactUnit": "pavé",
+          "exactLabel": "2 pavés de saumon",
+          "purchaseQuantity": 2,
+          "purchaseUnit": "pavé",
+          "purchaseLabel": "2 pavés de saumon",
+          "aisle": "Poissonnerie",
+          "sourceRecipeIds": [
+            "fixture-salmon"
+          ]
+        }
+      ]
+    },
+    "cannedTuna": {
+      "schemaVersion": 2,
+      "source": "Clair Repas",
+      "sourceVersion": "7.5",
+      "rulesVersion": "clair-repas-shopping-v2.0.0",
+      "createdAt": "2026-08-29T08:00:00.000Z",
+      "contentFingerprint": "fnv1a:84e7e544",
+      "items": [
+        {
+          "selected": true,
+          "productKey": "clair-repas:v2:900f7525:canned:thon",
+          "canonicalName": "thon",
+          "displayName": "thon",
+          "form": "canned",
+          "exactQuantity": 1,
+          "exactUnit": "boîte",
+          "exactLabel": "1 boîte de thon",
+          "purchaseQuantity": 1,
+          "purchaseUnit": "boîte",
+          "purchaseLabel": "1 boîte de thon",
+          "aisle": "Conserves",
+          "sourceRecipeIds": [
+            "fixture-tuna"
+          ]
+        }
+      ]
+    }
+  }
+}

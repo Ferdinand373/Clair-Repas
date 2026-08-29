@@ -1118,6 +1118,7 @@ select{min-height:48px;border:1px solid #deebf2;border-radius:16px;background:#f
   </section>
 </div>
 
+<script src="./shopping-v2-engine.js"></script>
 <script>
 const I=(q,u,n,k)=>({q,u,n,k:k||n});
 const noon=[
@@ -6454,8 +6455,9 @@ function ingredientAssistantHTML(){
 // La préparation contrôlée des courses de la V4.3 reste inchangée. Aucun article n'est transmis
 // avant l'action explicite « Envoyer vers Clair Courses ».
 const CLAIR_COURSES_IMPORT_URL='https://ferdinand373.github.io/clair-courses/import.html';
-const SHOPPING_AISLES=['Eau','Épicerie','Fruits et légumes','Boucherie','Charcuterie','Poissonnerie','Boulangerie','Conserves','Crèmerie','Surgelés','Boissons','Hygiène','Maison','Divers'];
-const SHOPPING_COMMON_PATTERN=/^(?:sel|poivre|sel et poivre|huile|huile neutre|huile d olive|eau)$/;
+const SHOPPING_ENGINE=globalThis.ClairShoppingV2;
+if(!SHOPPING_ENGINE)throw new Error('Clair Repas : moteur de courses V2 indisponible');
+const SHOPPING_AISLES=[...SHOPPING_ENGINE.AISLES];
 let shoppingContext=null;
 let shoppingDraft=[];
 let shoppingReturnState=null;
@@ -6463,186 +6465,30 @@ let shoppingStatus='';
 let shoppingStatusTone='';
 
 function shoppingExactIdentity(item){
-  return String(item?.k||item?.n||'').normalize('NFC').toLocaleLowerCase('fr-FR').replace(/\s+/g,' ').trim();
+  const profile=SHOPPING_ENGINE.ingredientProfile(item);
+  return `${profile.canonicalName}|${profile.form}`;
 }
-function shoppingUnit(unit){return String(unit||'').normalize('NFC').toLocaleLowerCase('fr-FR').replace(/\s+/g,' ').trim()}
+function shoppingUnit(unit){return SHOPPING_ENGINE.normalizeUnit(unit)}
 function shoppingQuantity(item,recipe){
-  if(item?.q==null)return null;
-  if(recipeHasFixedYield(recipe))return Number(item.q);
-  const base=Math.max(1,Number(recipe?.servings)||2);
-  return Number(item.q)*(peopleCount()/base);
+  const engineRecipe=recipeHasFixedYield(recipe)?{...recipe,fixedYield:true}:recipe;
+  return SHOPPING_ENGINE.scaleQuantity(item?.q,engineRecipe,peopleCount());
 }
-function shoppingIngredientAvailable(item,availableItems=[]){
-  if(!availableItems.length)return false;
-  const key=assistantIngredientKey(item?.n||item?.k||'');
-  return availableItems.some(available=>available&&available.key===key);
-}
-function shoppingPantryItem(item){return SHOPPING_COMMON_PATTERN.test(normalizeSearchText(item?.n||item?.k||''))}
-function shoppingLine(entry){
-  if(entry.q==null)return String(entry.item.n||entry.item.k||'').trim();
-  if(entry.purchasePackage){
-    const name=String(entry.item.n||entry.item.k||'').trim();
-    return `${formatQty(entry.q)} ${entry.unit} de ${name}`;
-  }
-  return ingredientText(entry.item,entry.q);
-}
-function shoppingRoundConvertedGrams(value){
-  const q=Number(value);
-  if(!Number.isFinite(q))return value;
-  return Math.max(10,Math.round(q/10)*10);
-}
-function shoppingNormalizePurchaseItem(item,q){
-  const sourceName=String(item?.n||item?.k||'').normalize('NFC').trim();
-  const n=normalizeSearchText(sourceName);
-  const unit=shoppingUnit(item?.u);
-  let name=sourceName;
-  let quantity=q;
-  let converted=false;
-  // Une liste de courses doit exprimer ce que l'on achète. Les quantités de
-  // céréales déjà cuites sont donc ramenées à une quantité sèche pratique.
-  const cookedGrains=[
-    [/\briz cuits?\b/,'riz',1/3],
-    [/\bpates? cuites?\b/,'pâtes',0.43],
-    [/\bquinoa cuits?\b/,'quinoa',1/3],
-    [/\bboulgour cuits?\b/,'boulgour',0.4],
-    [/\bsemoule cuites?\b/,'semoule',0.4]
-  ];
-  if(unit==='g'&&q!=null){
-    for(const [pattern,purchaseName,factor] of cookedGrains){
-      if(pattern.test(n)){
-        name=purchaseName;
-        quantity=shoppingRoundConvertedGrams(Number(q)*factor);
-        converted=true;
-        break;
-      }
-    }
-  }
-  // Les pommes de terre gardent leur poids : seul l'état « cuit » disparaît.
-  if(!converted&&/\bpommes? de terre cuites?\b/.test(n)){
-    name='pommes de terre';
-    converted=true;
-  }
-  const purchaseItem=converted?{...item,n:name,k:name}:item;
-  return{item:purchaseItem,q:quantity,unit:shoppingUnit(purchaseItem?.u)};
-}
-function shoppingAisle(name){
-  const raw=String(name||'').normalize('NFC').toLocaleLowerCase('fr-FR').trim();
-  const has=(word)=>new RegExp(`(^|[\\s’'/-])${word}($|[\\s’'/-])`,'u').test(raw);
-  // Les homonymes pâte / pâtes / pâté restent distingués avant normalisation.
-  if(has('pâtes')||/(^|[\s’'/-])(?:spaghetti|spaghettis|penne|tagliatelles|coquillettes|macaroni|fusilli|linguine|orzo)($|[\s’'/-])/u.test(raw))return'Épicerie';
-  if(has('pâte')&&/(brisée|feuilletée|sablée|à pizza|a pizza|à tarte|a tarte)/u.test(raw))return'Boulangerie';
-  if(has('pâté')||has('terrine')||has('rillettes')||has('rillette'))return'Charcuterie';
-  const n=normalizeSearchText(raw);
-  if(/\b(?:eau|eaux|eau gazeuse|eau petillante)\b/.test(n))return'Eau';
-  // Les tomates transformées sont achetées au rayon conserves, même si le mot
-  // « boîte » n'est pas écrit dans la recette.
-  if(/\b(?:tomates? concassees?|tomates? pelees?|pulpe de tomates?|passata)\b/.test(n))return'Conserves';
-  if(/\b(?:boites?|conserves?|thon en boite|mais en boite)\b/.test(n))return'Conserves';
-  if(/\b(?:jambons?|lardons?|bacons?|chorizos?|andouillettes?|saucissons?|boudins?)\b/.test(n))return'Charcuterie';
-  if(/\b(?:cabillauds?|saumons?|poissons?|dorades?|daurades?|truites?|maquereaux?|sardines?|moules?|crevettes?|gambas?|lieu(?:x)?|thons? frais?|saint jacques|coquilles? saint jacques|calamars?|encornets?|huitres?|crabes?|langoustines?)\b/.test(n))return'Poissonnerie';
-  if(/\b(?:boeufs?|porcs?|veaux?|agneaux?|poulets?|dindes?|canards?|lapins?|steaks?|escalopes?|bavettes?|filets? mignons?|saucisses?|merguez|chair a saucisse)\b/.test(n))return'Boucherie';
-  if(/\b(?:beurres?|cremes?|laits?|fromages?|yaourts?|oeufs?|parmesans?|mozzarellas?|fetas?|emmentals?|gruyeres?|mascarpones?|skyrs?|faisselles?)\b/.test(n))return'Crèmerie';
-  if(/\b(?:pains?|baguettes?|brioches?|muffins? anglais|pate brisee|pate feuilletee)\b/.test(n))return'Boulangerie';
-  if(/\b(?:surgeles?|glaces?)\b/.test(n))return'Surgelés';
-  if(/\b(?:vins?|cidres?|bieres?|limonades?|sodas?|sirops?|cognacs?|portos?|armagnacs?|rhums?)\b/.test(n))return'Boissons';
-  // Herbes sèches = épicerie ; herbes fraîches = fruits et légumes.
-  if(/\b(?:basilic|coriandre|persil|ciboulette|menthe|aneth)\b.*\b(?:sec|seche|seches|deshydrate|poudre)\b/.test(n))return'Épicerie';
-  if(/\b(?:ails?|aubergines?|avocats?|carottes?|celeris?|champignons?|chou(?:x)?|concombres?|courgettes?|echalotes?|epinards?|haricots? verts?|navets?|oignons?|poireaux?|poivrons?|pommes? de terre|radis|salades?|tomates?|citrons?|oranges?|pommes?|poires?|bananes?|fraises?|melons?|raisins?|brocolis?|petits pois|asperges?|betteraves?|endives?|fenouils?|framboises?|myrtilles?|rhubarbes?|basilic|coriandre|persil|ciboulette|menthe|aneth)\b/.test(n))return'Fruits et légumes';
-  if(/\b(?:huiles?|vinaigres?|farines?|sucres?|riz|semoules?|quinoas?|boulgours?|nouilles?|chapelures?|panko|paprikas?|currys?|cumins?|bouillons?|moutardes?|mayonnaises?|ketchups?|concentres?|coulis|sels?|poivres?|epices?|herbes?|miels?|levures?|cacaos?|chocolats?|lentilles?|pois chiches?|haricots? rouges?|haricots? blancs?|polenta|flocons? d avoine)\b/.test(n))return'Épicerie';
-  return'Divers';
-}
-function shoppingFNV(value){
-  let hash=0x811c9dc5;
-  for(const char of String(value||'')){hash^=char.charCodeAt(0);hash=Math.imul(hash,0x01000193)}
-  return(hash>>>0).toString(16).padStart(8,'0');
-}
-function shoppingProductKey(name){
-  const exact=String(name||'').normalize('NFC').toLocaleLowerCase('fr-FR').replace(/\s+/g,' ').trim();
-  return`clair-repas:${shoppingFNV(exact)}:${exact.slice(0,72)}`;
-}
-function shoppingPackageWord(unit,count){
-  const words={paquet:'paquets',pot:'pots',bouteille:'bouteilles',flacon:'flacons',tube:'tubes',bocal:'bocaux'};
-  return Number(count)>1?(words[unit]||`${unit}s`):unit;
-}
-function shoppingPurchasePackage(entry){
-  const sourceName=String(entry?.item?.n||entry?.item?.k||'').normalize('NFC').trim();
-  const n=normalizeSearchText(sourceName);
-  const q=entry?.q==null?null:Number(entry.q);
-  const unit=shoppingUnit(entry?.unit||entry?.item?.u);
-  let packageUnit='';
-  let packageSize=null;
-
-  // Condiments : une mesure de recette devient le contenant à acheter.
-  if(/\bmiel\b/.test(n))packageUnit='pot';
-  else if(/\bmoutarde\b/.test(n))packageUnit='pot';
-  else if(/\bmayonnaise\b/.test(n))packageUnit='pot';
-  else if(/\bketchup\b/.test(n))packageUnit='flacon';
-  else if(/\bconcentre de tomate\b/.test(n))packageUnit='tube';
-  else if(/\b(?:sauce soja|mirin|vinaigre|huile d olive|huile neutre)\b/.test(n))packageUnit='bouteille';
-  else if(/\b(?:paprika|curry|cumin|curcuma|cannelle|muscade|epices?)\b/.test(n))packageUnit='pot';
-
-  // Épicerie sèche : on achète un paquet, pas les grammes exacts de la recette.
-  else if(/\briz\b/.test(n)){packageUnit='paquet';packageSize=1000;}
-  else if(/\b(?:pates|spaghetti|spaghettis|penne|tagliatelles|coquillettes|macaroni|fusilli|linguine|orzo)\b/.test(n)){packageUnit='paquet';packageSize=500;}
-  else if(/\bsemoule\b/.test(n)){packageUnit='paquet';packageSize=500;}
-  else if(/\bquinoa\b/.test(n)){packageUnit='paquet';packageSize=500;}
-  else if(/\bboulgour\b/.test(n)){packageUnit='paquet';packageSize=500;}
-  else if(/\bpolenta\b/.test(n)){packageUnit='paquet';packageSize=500;}
-  else if(/\bfarine\b/.test(n)){packageUnit='paquet';packageSize=1000;}
-  else if(/\bsucre\b/.test(n)){packageUnit='paquet';packageSize=1000;}
-  else if(/\b(?:chapelure|panko)\b/.test(n)){packageUnit='paquet';packageSize=250;}
-  else if(/\bflocons? d avoine\b/.test(n)){packageUnit='paquet';packageSize=500;}
-
-  if(!packageUnit)return{...entry,purchasePackage:false};
-  let count=1;
-  if(packageSize&&unit==='g'&&Number.isFinite(q)&&q>0)count=Math.max(1,Math.ceil(q/packageSize));
-  const item={...entry.item,u:shoppingPackageWord(packageUnit,count)};
-  return{...entry,item,q:count,unit:item.u,purchasePackage:true};
-}
+function shoppingAisle(name,form,unit){return SHOPPING_ENGINE.aisleFor(name,form,unit)}
+function shoppingFNV(value){return SHOPPING_ENGINE.fnv1a(value)}
+function shoppingProductKey(name,form){return SHOPPING_ENGINE.productKeyFor(name,form)}
 function shoppingBuildDraft(context){
-  const grouped=new Map();
-  for(const source of context.sources||[]){
-    const recipe=source.recipe;
-    if(!recipe)continue;
-    for(const item of recipe.i||[]){
-      if(shoppingIngredientAvailable(item,source.availableItems||[]))continue;
-      const normalized=shoppingNormalizePurchaseItem(item,shoppingQuantity(item,recipe));
-      const purchaseItem=normalized.item;
-      const q=normalized.q;
-      const identity=shoppingExactIdentity(purchaseItem);
-      const unit=normalized.unit;
-      const quantityKind=q==null?'sans-quantite':'quantite';
-      const key=`${identity}\u241f${unit}\u241f${quantityKind}`;
-      if(!grouped.has(key)){
-        grouped.set(key,{item:{...purchaseItem},q:q==null?null:q,identity,unit,sourceCount:1});
-      }else{
-        const current=grouped.get(key);
-        current.sourceCount+=1;
-        if(q!=null&&current.q!=null)current.q+=q;
-      }
-    }
-  }
-  const drafts=[...grouped.values()].map((rawEntry,index)=>{
-    const entry=shoppingPurchasePackage(rawEntry);
-    const text=shoppingLine(entry);
-    const pantry=shoppingPantryItem(entry.item);
+  const sources=(context?.sources||[]).map(source=>{
+    const recipe=source?.recipe;
+    if(!recipe)return source;
     return{
-      id:`shop-${index}-${shoppingFNV(`${entry.identity}|${entry.unit}`)}`,
-      item:entry.item,
-      q:entry.q,
-      unit:entry.unit,
-      identity:entry.identity,
-      sourceCount:entry.sourceCount,
-      purchasePackage:Boolean(entry.purchasePackage),
-      originalText:text,
-      text,
-      pantry,
-      selected:!pantry,
-      aisle:shoppingAisle(entry.item.n)
+      ...source,
+      recipe:{
+        ...recipe,
+        fixedYield:recipeHasFixedYield(recipe)
+      }
     };
   });
-  const order=new Map(SHOPPING_AISLES.map((aisle,index)=>[aisle,index]));
-  return drafts.sort((a,b)=>(order.get(a.aisle)-order.get(b.aisle))||a.text.localeCompare(b.text,'fr'));
+  return SHOPPING_ENGINE.buildDraft(sources,{peopleCount:peopleCount()});
 }
 function shoppingContextText(){
   if(!shoppingContext)return'';
@@ -6746,8 +6592,8 @@ function cancelShoppingReview(){
 }
 function shoppingSyncDraftFromScreen(){
   document.querySelectorAll('[data-shopping-edit]').forEach(input=>{
-    const entry=shoppingDraft[Number(input.dataset.shoppingEdit)];
-    if(entry)entry.text=String(input.value||'').replace(/\s+/g,' ').trim().slice(0,160);
+    const index=Number(input.dataset.shoppingEdit),entry=shoppingDraft[index];
+    if(entry)shoppingDraft[index]=SHOPPING_ENGINE.applyManualText(entry,String(input.value||'').slice(0,160));
   });
   document.querySelectorAll('[data-shopping-check]').forEach(input=>{
     const entry=shoppingDraft[Number(input.dataset.shoppingCheck)];
@@ -6768,39 +6614,30 @@ function shoppingSetStatus(message,tone=''){
   const status=$('shoppingStatus');
   if(status){status.textContent=message;status.className=`shopping-status ${tone}`.trim()}
 }
-const SHOPPING_FRACTIONS={'⅛':0.125,'¼':0.25,'⅓':1/3,'⅜':0.375,'½':0.5,'⅝':0.625,'⅔':2/3,'¾':0.75,'⅞':0.875};
-function shoppingParseEditedLine(entry){
-  if(entry.text===entry.originalText){
-    return{name:String(entry.item.n||entry.identity).trim(),quantity:entry.q,unit:entry.unit};
-  }
-  const text=String(entry.text||'').trim();
-  const match=text.match(/^(\d+(?:[.,]\d+)?|[⅛¼⅓⅜½⅝⅔¾⅞])\s*(kg|g|ml|cl|l|c\.\s*à\s*soupe|c\.\s*à\s*café|c\.\s*à\s*c|c\.\s*à\s*s|pincée|pincées|tranche|tranches|feuille|feuilles|gousse|gousses|boîte|boîtes|sachet|sachets|paquet|paquets|pot|pots|bocal|bocaux|bouteille|bouteilles|flacon|flacons|tube|tubes)?\s*(?:de\s+|d[’']\s*)?(.+)$/i);
-  if(!match)return{name:text,quantity:null,unit:''};
-  const quantity=SHOPPING_FRACTIONS[match[1]]??Number(match[1].replace(',','.'));
-  return{name:String(match[3]||'').trim(),quantity:Number.isFinite(quantity)?quantity:null,unit:shoppingUnit(match[2]||'')};
+const SHOPPING_FRACTIONS=SHOPPING_ENGINE.FRACTIONS;
+function shoppingParseEditedLine(entry){return SHOPPING_ENGINE.parseEditedLine(entry)}
+function shoppingApplyAisleOverride(index,aisle){
+  const entry=shoppingDraft[Number(index)];
+  if(!entry)return false;
+  const next=SHOPPING_ENGINE.applyAisleOverride(entry,aisle);
+  if(!next||next.aisle!==aisle)return false;
+  shoppingDraft[Number(index)]=next;
+  return true;
 }
-function shoppingSelectedContractItems(){
+function shoppingSelectedContractItemsV2(){
   shoppingSyncDraftFromScreen();
-  return shoppingDraft.filter(entry=>entry.selected&&entry.text).map(entry=>{
-    const parsed=shoppingParseEditedLine(entry);
-    const unit=parsed.unit||'';
-    return{
-      selected:true,
-      text:entry.text,
-      purchaseLabel:entry.text,
-      displayName:parsed.name,
-      exactQuantity:parsed.quantity,
-      exactUnit:unit||'unité',
-      aisle:shoppingAisle(parsed.name),
-      productKey:shoppingProductKey(parsed.name)
-    };
-  });
+  return SHOPPING_ENGINE.selectedItemsV2(shoppingDraft);
 }
-function shoppingContract(){
-  const items=shoppingSelectedContractItems();
-  const fingerprint=`fnv1a:${shoppingFNV(JSON.stringify(items))}`;
-  return{schemaVersion:1,source:'Clair Repas',sourceVersion:CR_APP_VERSION,createdAt:new Date().toISOString(),contentFingerprint:fingerprint,items};
+function shoppingSelectedContractItems(){return shoppingSelectedContractItemsV2()}
+function shoppingContractV2(){
+  shoppingSyncDraftFromScreen();
+  return SHOPPING_ENGINE.buildContractV2(shoppingDraft,{sourceVersion:CR_APP_VERSION});
 }
+function shoppingContractV1(){
+  shoppingSyncDraftFromScreen();
+  return SHOPPING_ENGINE.buildContractV1(shoppingDraft,{sourceVersion:CR_APP_VERSION});
+}
+function shoppingContract(){return shoppingContractV2()}
 async function shoppingCopySelected(){
   const items=shoppingSelectedContractItems();
   if(!items.length){shoppingSetStatus('Sélectionnez au moins un produit.','warning');return}
@@ -6814,7 +6651,8 @@ async function shoppingCopySelected(){
   }
 }
 function shoppingSendSelected(){
-  const contract=shoppingContract();
+  // QR1 publie le contrat V2, mais Clair Courses existant reçoit encore le V1.
+  const contract=shoppingContractV1();
   if(!contract.items.length){shoppingSetStatus('Sélectionnez au moins un produit.','warning');return}
   const returnUrl=location.href.split('#')[0];
   const url=`${CLAIR_COURSES_IMPORT_URL}?source=clair-repas&return=${encodeURIComponent(returnUrl)}#mcjson=${encodeURIComponent(JSON.stringify(contract))}`;
@@ -8901,258 +8739,6 @@ function loadOrCreate(){
   }
   plan=buildPlan(Number($('days').value));
   render();
-}
-function shopKey(x){
-  return String(x.k||x.n).toLowerCase().trim();
-}
-function wholeCount(q){
-  return Math.max(1,Math.ceil(Number(q)-0.00001));
-}
-function countText(q,singular,plural){
-  const n=wholeCount(q);
-  return `${n} ${n>1?(plural||singular+'s'):singular}`;
-}
-function roundedWeightText(g,step=500){
-  const rounded=Math.ceil(Number(g)/step)*step;
-  if(rounded>=1000){
-    const kg=rounded/1000;
-    return `${formatQty(kg)} kg`;
-  }
-  return `${rounded} g`;
-}
-function packCount(q,capacity){
-  return Math.max(1,Math.ceil(Number(q)/capacity));
-}
-function purchaseText(x){
-  const key=shopKey(x);
-  const q=x.hasQty?Number(x.q):null;
-  const unit=String(x.u||'').toLowerCase();
-
-  // Viandes et poissons vendus à la pièce.
-  const meatPieces={
-    'blancs de poulet':['blanc de poulet','blancs de poulet'],
-    'échines de porc':['échine de porc','échines de porc'],
-    'escalopes de porc ou de veau':['escalope de porc ou de veau','escalopes de porc ou de veau'],
-    'steaks hachés':['steak haché','steaks hachés'],
-    'pavés de saumon':['pavé de saumon','pavés de saumon'],
-    'filets de poisson blanc':['filet de poisson blanc','filets de poisson blanc'],
-    'magret de canard':['magret de canard','magrets de canard'],
-    'petit filet mignon':['filet mignon','filets mignons'],
-    'côte de bœuf':['côte de bœuf','côtes de bœuf'],
-    'côtes de porc':['côte de porc','côtes de porc'],
-    'cuisses de poulet':['cuisse de poulet','cuisses de poulet'],
-    'saucisses':['saucisse','saucisses'],
-    'knacks':['knack','knacks'],
-    'tranches de jambon':['tranche de jambon','tranches de jambon'],
-    'tranches de jambon cru':['tranche de jambon cru','tranches de jambon cru'],
-    'escalopes de dinde':['escalope de dinde','escalopes de dinde'],
-    'chipolatas':['chipolata','chipolatas'],
-    'merguez':['merguez','merguez'],
-    'steaks de thon':['steak de thon','steaks de thon'],
-    'dos de cabillaud':['dos de cabillaud','dos de cabillaud'],
-    'filets de truite':['filet de truite','filets de truite'],
-    'saucisses blanches':['saucisse blanche','saucisses blanches'],
-    'galettes de poisson':['galette de poisson','galettes de poisson'],
-    'filets de cabillaud':['filet de cabillaud','filets de cabillaud'],
-    'tranches de dinde':['tranche de dinde','tranches de dinde']
-  };
-  if(q!=null&&unit===''&&meatPieces[key]){
-    return countText(q,meatPieces[key][0],meatPieces[key][1]);
-  }
-
-  // Le poulet exprimé en grammes devient un nombre de blancs à acheter.
-  if(q!=null&&unit==='g'&&(key==='poulet'||key==='poulet cuit')){
-    const pieces=Math.max(1,Math.ceil(q/200));
-    return `${pieces} ${pieces>1?'blancs de poulet':'blanc de poulet'}`;
-  }
-
-  // Fruits et légumes : on achète des pièces entières.
-  const pieces={
-    'courgettes':['courgette','courgettes'],
-    'poivrons':['poivron','poivrons'],
-    'oignons':['oignon','oignons'],
-    'citrons':['citron','citrons'],
-    'concombres':['concombre','concombres'],
-    'carottes':['carotte','carottes'],
-    'échalotes':['échalote','échalotes'],
-    'tomates':['tomate','tomates'],
-    'avocats':['avocat','avocats'],
-    'poireaux':['poireau','poireaux'],
-    'salades vertes':['salade','salades'],
-    'aubergines':['aubergine','aubergines'],
-    'épis de maïs':['épi de maïs','épis de maïs'],
-    'pommes':['pomme','pommes'],
-    'poires':['poire','poires'],
-    'oranges':['orange','oranges'],
-    'pamplemousses':['pamplemousse','pamplemousses'],
-    'clémentines':['clémentine','clémentines'],
-    'kiwis':['kiwi','kiwis'],
-    'kakis':['kaki','kakis'],
-    'pêches':['pêche','pêches'],
-    'nectarines':['nectarine','nectarines'],
-    'abricots':['abricot','abricots'],
-    'prunes':['prune','prunes'],
-    'figues':['figue','figues'],
-    'bananes':['banane','bananes'],
-    'mangues':['mangue','mangues'],
-    'melons':['melon','melons'],
-    'citrons verts':['citron vert','citrons verts'],
-    'grenades':['grenade','grenades']
-  };
-  if(q!=null&&pieces[key])return countText(q,pieces[key][0],pieces[key][1]);
-
-  // Produits vendus en boîtes, paquets, pots, briques ou sachets.
-  if(key==='œufs'&&q!=null){
-    const n=wholeCount(q);
-    if(n<=6)return'1 boîte de 6 œufs';
-    if(n<=12)return'1 boîte de 12 œufs';
-    return `${Math.ceil(n/12)} boîtes de 12 œufs`;
-  }
-  if(key==='gousses d’ail'&&q!=null){
-    const heads=Math.max(1,Math.ceil(q/8));
-    return heads===1?'1 tête d’ail':`${heads} têtes d’ail`;
-  }
-  if(key==='tranches de pain de mie'&&q!=null){
-    const n=packCount(q,20);
-    return n===1?'1 paquet de pain de mie':`${n} paquets de pain de mie`;
-  }
-  if((key==='tranches de pain'||key==='grandes tranches de pain')&&q!=null){
-    const n=packCount(q,8);
-    return n===1?'1 pain':`${n} pains`;
-  }
-  if(key==='pommes de terre'&&q!=null&&unit==='g'){
-    return `${roundedWeightText(q,500)} de pommes de terre`;
-  }
-  if((key==='pâtes'||key==='pâtes cuites'||key==='riz'||key==='riz cuit'||key==='semoule'||key==='nouilles')&&q!=null&&unit==='g'){
-    const n=packCount(q,500);
-    const label=(key==='pâtes'||key==='pâtes cuites')?'pâtes':(key==='riz'||key==='riz cuit')?'riz':key;
-    return n===1?`1 paquet de ${label} (500 g)`:`${n} paquets de ${label} (500 g)`;
-  }
-  if(key==='chapelure'&&q!=null)return'1 paquet de chapelure';
-  if(key==='farine'&&q!=null)return'1 paquet de farine';
-  if((key==='tortillas'||key==='wraps')&&q!=null)return'1 paquet de tortillas';
-  if(key==='lentilles cuites'&&q!=null)return'1 boîte de lentilles';
-  if(key==='tomates cerises'&&q!=null){
-    const n=packCount(q,250);
-    return n===1?'1 barquette de tomates cerises (250 g)':`${n} barquettes de tomates cerises (250 g)`;
-  }
-  if(key==='champignons'&&q!=null){
-    const n=packCount(q,250);
-    return n===1?'1 barquette de champignons (250 g)':`${n} barquettes de champignons (250 g)`;
-  }
-  if(key==='haricots verts'&&q!=null){
-    const n=packCount(q,500);
-    return n===1?'1 sachet de haricots verts (500 g)':`${n} sachets de haricots verts (500 g)`;
-  }
-  if(key==='saumon fumé'&&q!=null){
-    const n=packCount(q,200);
-    return n===1?'1 paquet de saumon fumé (200 g)':`${n} paquets de saumon fumé (200 g)`;
-  }
-  if((key==='crevettes cuites'||key==='crevettes décortiquées')&&q!=null){
-    const n=packCount(q,200);
-    return n===1?'1 barquette de crevettes (200 g)':`${n} barquettes de crevettes (200 g)`;
-  }
-  if(key==='crème'&&q!=null&&unit==='cl'){
-    if(q<=25)return'1 briquette de crème (25 cl)';
-    if(q<=50)return'1 bouteille de crème (50 cl)';
-    return `${Math.ceil(q/50)} bouteilles de crème (50 cl)`;
-  }
-  if(key==='lait'&&q!=null&&unit==='cl'){
-    if(q<=50)return'1 petite brique de lait (50 cl)';
-    return'1 bouteille de lait (1 L)';
-  }
-  if(key==='coulis de tomate'&&q!=null)return'1 brique de coulis de tomate';
-  if(key==='bouillon'&&q!=null)return'1 brique de bouillon (1 L)';
-  if(key==='fromage râpé'&&q!=null)return'1 sachet de fromage râpé';
-  if(key==='gruyère'&&q!=null)return'1 sachet de gruyère râpé';
-  if(key==='fromage'&&q!=null)return'1 sachet de fromage râpé';
-  if(key==='feta'&&q!=null)return'1 paquet de feta';
-  if(key==='fromage frais'&&q!=null)return'1 pot de fromage frais';
-  if((key==='yaourts nature'||key==='yaourt nature')&&q!=null)return'1 pack de yaourts nature';
-  if((key==='fromage blanc'||key==='skyr'||key==='faisselle'||key==='yaourt grec')&&q!=null)return`1 pot de ${key}`;
-  if(key==='petits-suisses'&&q!=null)return'1 pack de petits-suisses';
-  if(key==='thon')return q==null?'1 boîte de thon':`${wholeCount(q)} boîte${wholeCount(q)>1?'s':''} de thon`;
-  if(key==='maïs')return q==null?'1 petite boîte de maïs':`${wholeCount(q)} petite${wholeCount(q)>1?'s':''} boîte${wholeCount(q)>1?'s':''} de maïs`;
-
-  if(key==='petits pois'&&q!=null)return'1 sachet de petits pois (500 g)';
-  if(key==='épinards'&&q!=null)return'1 sachet d’épinards (500 g)';
-  if(key==='gnocchis'&&q!=null)return'1 paquet de gnocchis';
-  if(key==='tortellini'&&q!=null)return'1 paquet de tortellini';
-  if(key==='ravioles'&&q!=null)return'1 paquet de ravioles';
-  if((key==='quinoa'||key==='quinoa cuit')&&q!=null)return'1 paquet de quinoa (500 g)';
-  if(key==='lardons'&&q!=null)return'1 paquet de lardons';
-  if(key==='mozzarella'&&q!=null)return'1 boule de mozzarella';
-  if(key==='fromage de chèvre'&&q!=null)return'1 bûche de chèvre';
-  if(key==='cheddar'&&q!=null)return'1 paquet de cheddar';
-  if(key==='camembert'&&q!=null)return'1 camembert';
-  if(key==='lait de coco'&&q!=null)return'1 boîte de lait de coco';
-  if(key==='ratatouille')return'1 boîte de ratatouille';
-  if(key==='haricots rouges')return'1 boîte de haricots rouges';
-  if(key==='pois chiches')return'1 boîte de pois chiches';
-  if(key==='soupe de tomate')return'1 brique de soupe de tomate';
-  if(key==='pains pita'&&q!=null)return'1 paquet de pains pita';
-  if(key==='galettes de sarrasin'&&q!=null)return'1 paquet de galettes de sarrasin';
-  if(key==='boulettes de poulet'&&q!=null)return`${roundedWeightText(q,250)} de boulettes de poulet`;
-  if(key==='boulettes de bœuf'&&q!=null)return`${roundedWeightText(q,250)} de boulettes de bœuf`;
-  if(key==='bœuf haché'&&q!=null)return`${roundedWeightText(q,250)} de bœuf haché`;
-  if(key==='porc en cubes'&&q!=null)return`${roundedWeightText(q,250)} de porc en cubes`;
-
-  // Condiments et épices : la quantité de recette devient un contenant.
-  const containers={
-    'ketchup':'1 flacon de ketchup',
-    'moutarde':'1 pot de moutarde',
-    'concentré de tomate':'1 tube de concentré de tomate',
-    'paprika':'1 pot de paprika',
-    'curry':'1 pot de curry',
-    'miel':'1 pot de miel',
-    'vinaigre balsamique':'1 bouteille de vinaigre balsamique',
-    'olives':'1 bocal d’olives',
-    'vinaigrette':'1 bouteille de vinaigrette',
-    'sauce légère':'1 flacon de sauce légère',
-    'huile':'1 bouteille d’huile',
-    'huile d’olive':'1 bouteille d’huile d’olive',
-    'beurre':'1 plaquette de beurre',
-    'sauce soja':'1 bouteille de sauce soja',
-    'sauce barbecue':'1 flacon de sauce barbecue',
-    'cumin':'1 pot de cumin',
-    'herbes de Provence':'1 pot d’herbes de Provence',
-    'paprika et cumin':'1 pot de paprika et 1 pot de cumin',
-    'olives et vinaigrette':'1 bocal d’olives et 1 bouteille de vinaigrette'
-  };
-  if(containers[key])return containers[key];
-
-  // Herbes fraîches.
-  const herbs={
-    'aneth':'1 bouquet d’aneth',
-    'basilic':'1 bouquet de basilic',
-    'ciboulette':'1 bouquet de ciboulette',
-    'persil':'1 bouquet de persil'
-  };
-  if(herbs[key])return herbs[key];
-
-  // Viandes, poissons et autres produits réellement vendus au poids.
-  if(!x.hasQty)return x.n;
-  if(unit==='g')return `${formatQty(x.q)} g de ${x.n}`;
-  if(unit==='kg')return `${formatQty(x.q)} kg de ${x.n}`;
-  if(unit==='cl')return `${formatQty(x.q)} cl de ${x.n}`;
-  if(unit==='ml')return `${formatQty(x.q)} ml de ${x.n}`;
-  return ingredientText(x,x.q);
-}
-function groupedCourses(){
-  const map=new Map();
-  const all=activeAllRecipeEntries().flatMap(item=>item.recipe.i);
-  all.forEach(item=>{
-    const q=qtyForPeople(item.q);
-    const key=`${String(item.k).toLowerCase()}|${item.u||''}`;
-    if(!map.has(key))map.set(key,{...item,q:0,hasQty:q!=null});
-    const entry=map.get(key);
-    if(q==null){
-      entry.hasQty=false;
-    }else{
-      entry.q+=q;
-    }
-  });
-  return [...map.values()].map(purchaseText);
 }
 let toastTimer=null;
 function show(t,duration=1900){

@@ -9,7 +9,7 @@ import { TextDecoder, TextEncoder } from "node:util";
 import vm from "node:vm";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
-const PRODUCTION_V75_INDEX_BLOB = "7ec32c4b44f0553976735d12bdec3470b6aa26c5";
+const PRODUCTION_V75_INDEX_BLOB = "288f009837317ae60eedd4c5e5187538d26fc8c0";
 const CLAIR_REPAS_PERSONAL_KEYS = Object.freeze([
   "crFavMeals",
   "crRecentRecipesV25",
@@ -149,6 +149,7 @@ async function check(name, callback) {
 
 const indexHtml = readUtf8("index.html");
 const serviceWorker = readUtf8("sw.js");
+const shoppingEngine = readUtf8("shopping-v2-engine.js");
 const personalSync = readUtf8("v8/clair-sync.js");
 const foundation = readUtf8("v8/clair-foundation.js");
 const cloudSync = readUtf8("v8/clair-cloud-sync.js");
@@ -187,13 +188,17 @@ await check("Required repository files", () => {
     "manifest.webmanifest",
     "icon-192.png",
     "icon-512.png",
+    "shopping-v2-engine.js",
     "v8/clair-sync.js",
     "v8/clair-cloud-sync.js",
     "v8/vendor/supabase-js-2.111.0.js",
     "v8/vendor/supabase-js-2.111.0.LICENSE",
     "v8/clair-foundation.js",
     "v8/version.json",
-    "repair-local-production.html"
+    "repair-local-production.html",
+    "scripts/validate-shopping-v2.mjs",
+    "scripts/shopping-contract-v1.fixture.json",
+    "scripts/shopping-contract-v2.fixture.json"
   ];
   for (const relativePath of required) {
     assert.ok(existsSync(rooted(relativePath)), "Missing " + relativePath);
@@ -207,13 +212,17 @@ await check("UTF-8 and merge-conflict safety", () => {
     "sw.js",
     "manifest.webmanifest",
     "refresh.text",
+    "shopping-v2-engine.js",
     "v8/clair-sync.js",
     "v8/clair-cloud-sync.js",
     "v8/vendor/supabase-js-2.111.0.js",
     "v8/vendor/supabase-js-2.111.0.LICENSE",
     "v8/clair-foundation.js",
     "v8/version.json",
-    "repair-local-production.html"
+    "repair-local-production.html",
+    "scripts/validate-shopping-v2.mjs",
+    "scripts/shopping-contract-v1.fixture.json",
+    "scripts/shopping-contract-v2.fixture.json"
   ];
   for (const relativePath of textFiles) {
     const text = readUtf8(relativePath);
@@ -228,6 +237,7 @@ await check("UTF-8 and merge-conflict safety", () => {
 
 await check("JavaScript syntax", () => {
   new vm.Script(serviceWorker, { filename: "sw.js" });
+  new vm.Script(shoppingEngine, { filename: "shopping-v2-engine.js" });
   new vm.Script(personalSync, { filename: "v8/clair-sync.js" });
   new vm.Script(foundation, { filename: "v8/clair-foundation.js" });
   new vm.Script(cloudSync, { filename: "v8/clair-cloud-sync.js" });
@@ -244,7 +254,7 @@ await check("JavaScript syntax", () => {
       filename: "repair-local-production.html:inline-" + (index + 1) + ".js"
     });
   });
-  return inlineScripts.length + repairInlineScripts.length + 5 + " scripts";
+  return inlineScripts.length + repairInlineScripts.length + 6 + " scripts";
 });
 
 await check("Release metadata consistency", () => {
@@ -331,6 +341,7 @@ await check("Release metadata consistency", () => {
   for (const [label, content] of Object.entries({
     indexHtml,
     serviceWorker,
+    shoppingEngine,
     personalSync,
     foundation,
     cloudSync,
@@ -409,6 +420,52 @@ await check("Production V7.5 application shell identity", () => {
   return "index.html blob " + PRODUCTION_V75_INDEX_BLOB.slice(0, 12);
 });
 
+await check("Shopping V2 engine wiring", () => {
+  const engineTags = [
+    ...indexHtml.matchAll(/<script\b([^>]*)src=["']\.\/shopping-v2-engine\.js["']([^>]*)><\/script>/gi)
+  ];
+  assert.equal(engineTags.length, 1, "shopping-v2-engine.js must be loaded exactly once");
+  const enginePosition = indexHtml.indexOf('<script src="./shopping-v2-engine.js"></script>');
+  const applicationPosition = indexHtml.indexOf("<script>", enginePosition + 1);
+  assert.ok(enginePosition >= 0, "Missing canonical Shopping V2 script tag");
+  assert.ok(
+    applicationPosition > enginePosition,
+    "Shopping V2 engine must load before the inline application"
+  );
+  assert.match(indexHtml, /const SHOPPING_ENGINE=globalThis\.ClairShoppingV2;/);
+  assert.match(indexHtml, /SHOPPING_ENGINE\.(?:buildDraft|buildModel)\(/);
+  assert.match(indexHtml, /SHOPPING_ENGINE\.(?:buildContractV1|contractV1)\(/);
+  assert.match(indexHtml, /SHOPPING_ENGINE\.(?:buildContractV2|contractV2)\(/);
+
+  const sandbox = {};
+  vm.runInNewContext(shoppingEngine, sandbox, {
+    filename: "shopping-v2-engine.js:api",
+    timeout: 1000
+  });
+  const api = sandbox.ClairShoppingV2;
+  assert.ok(api && typeof api === "object", "Missing ClairShoppingV2 global API");
+  assert.equal(api.SCHEMA_VERSION, 2);
+  assert.equal(api.SOURCE, "Clair Repas");
+  assert.equal(api.SOURCE_VERSION, "7.5");
+  assert.match(api.RULES_VERSION, /^clair-repas-shopping-v2\./);
+  for (const method of [
+    "buildDraft",
+    "buildContractV1",
+    "buildContractV2",
+    "selectedItemsV2",
+    "applyManualText",
+    "applyAisleOverride"
+  ]) {
+    assert.equal(typeof api[method], "function", "Missing Shopping V2 API method " + method);
+  }
+  assert.doesNotMatch(shoppingEngine, /\b(?:fetch|XMLHttpRequest|WebSocket|EventSource)\b/);
+  assert.doesNotMatch(
+    shoppingEngine,
+    /\b(?:localStorage|sessionStorage|indexedDB|caches|supabase)\b/i
+  );
+  return api.RULES_VERSION;
+});
+
 await check("PWA manifest and icons", () => {
   assert.equal(manifest.name, "Clair Repas");
   assert.equal(manifest.short_name, "Clair Repas");
@@ -451,6 +508,7 @@ await check("Precache completeness and immutable revision", () => {
     "./manifest.webmanifest",
     "./icon-192.png",
     "./icon-512.png",
+    "./shopping-v2-engine.js",
     "./v8/clair-sync.js",
     "./v8/vendor/supabase-js-2.111.0.js",
     "./v8/clair-foundation.js",
@@ -484,12 +542,17 @@ await check("Precache completeness and immutable revision", () => {
   );
   assert.match(
     serviceWorker,
-    /if \(hasCloud && hasSync && hasFoundation\) return CORE_FILES/,
+    /const PRE_SHOPPING_V2_CORE_FILES\s*=\s*CORE_FILES\.filter/,
+    "Pre-QR1 fallbacks must retain their historical core set"
+  );
+  assert.match(
+    serviceWorker,
+    /const fullCoreFiles = hasShoppingV2 \? CORE_FILES : PRE_SHOPPING_V2_CORE_FILES/,
     "Cloud fallbacks must retain the complete cloud runtime"
   );
   assert.match(
     serviceWorker,
-    /if \(hasSync\) return LOCAL_SYNC_CORE_FILES/,
+    /PRE_SHOPPING_V2_LOCAL_SYNC_CORE_FILES/,
     "Local-Sync fallbacks must retain clair-sync.js"
   );
   assert.match(
@@ -558,7 +621,9 @@ await check("Service-worker registration and full-cache validation", async () =>
                 ? "<script data-clair-v8-foundation></script>"
                 : cacheName === "local-sync"
                   ? "<script data-clair-v8-sync></script><script data-clair-v8-foundation></script>"
-                  : "<script data-clair-v8-sync></script><script data-clair-v8-foundation></script><script data-clair-v8-cloud-sync></script>";
+                  : cacheName === "shopping-v2-old"
+                    ? "<script src=\"./shopping-v2-engine.js\"></script><script data-clair-v8-sync></script><script data-clair-v8-foundation></script><script data-clair-v8-cloud-sync></script>"
+                    : "<script data-clair-v8-sync></script><script data-clair-v8-foundation></script><script data-clair-v8-cloud-sync></script>";
               return new Response("<head>" + bootstrap + "</head>");
             }
             return new Response("asset");
@@ -588,11 +653,46 @@ await check("Service-worker registration and full-cache validation", async () =>
       DISABLED_CLOUD_CONFIG_REVISION
     )
   );
-  cacheNames = [cacheContext.__currentCache, "legacy", "local-sync", "pre-v8"];
+  cacheNames = [
+    cacheContext.__currentCache,
+    "legacy",
+    "local-sync",
+    "old-cloud",
+    "shopping-v2-old",
+    "pre-v8"
+  ];
   assert.equal(await cacheContext.__cacheHasCore(cacheContext.__currentCache), true);
   assert.equal(await cacheContext.__cacheHasCore("legacy"), true);
   assert.equal(await cacheContext.__cacheHasCore("local-sync"), true);
+  assert.equal(await cacheContext.__cacheHasCore("old-cloud"), true);
+  assert.equal(await cacheContext.__cacheHasCore("shopping-v2-old"), true);
   assert.equal(await cacheContext.__cacheHasCore("pre-v8"), true);
+  missingAsset = "shopping-v2-engine.js";
+  assert.equal(
+    await cacheContext.__cacheHasCore(cacheContext.__currentCache),
+    false,
+    "The current cache must include the Shopping V2 engine"
+  );
+  assert.equal(
+    await cacheContext.__cacheHasCore("old-cloud"),
+    true,
+    "A healthy pre-QR1 cloud cache must remain rollback-compatible"
+  );
+  assert.equal(
+    await cacheContext.__cacheHasCore("local-sync"),
+    true,
+    "A healthy pre-QR1 local-sync cache must remain rollback-compatible"
+  );
+  assert.equal(
+    await cacheContext.__cacheHasCore("legacy"),
+    true,
+    "A healthy pre-QR1 Foundation cache must remain rollback-compatible"
+  );
+  assert.equal(
+    await cacheContext.__cacheHasCore("shopping-v2-old"),
+    false,
+    "A cache whose shell references Shopping V2 must include the engine"
+  );
   missingAsset = "clair-cloud-sync.js";
   assert.equal(await cacheContext.__cacheHasCore(cacheContext.__currentCache), false);
   assert.equal(await cacheContext.__cacheHasCore("legacy"), true);

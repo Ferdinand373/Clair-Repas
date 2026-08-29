@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "source": "Clair Repas",
+  "sourceVersion": "7.5",
+  "createdAt": "2026-08-29T08:00:00.000Z",
+  "contentFingerprint": "fnv1a:63093f06",
+  "items": [
+    {
+      "selected": true,
+      "text": "1 pot de moutarde",
+      "purchaseLabel": "1 pot de moutarde",
+      "displayName": "moutarde",
+      "exactQuantity": 1,
+      "exactUnit": "pot",
+      "aisle": "Épicerie",
+      "productKey": "clair-repas:9867209c:moutarde"
+    },
+    {
+      "selected": true,
+      "text": "1 pot de basilic frais",
+      "purchaseLabel": "1 pot de basilic frais",
+      "displayName": "basilic frais",
+      "exactQuantity": 1,
+      "exactUnit": "pot",
+      "aisle": "Fruits et légumes",
+      "productKey": "clair-repas:36494e4f:basilic frais"
+    }
+  ]
+}
