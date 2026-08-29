@@ -6651,8 +6651,8 @@ async function shoppingCopySelected(){
   }
 }
 function shoppingSendSelected(){
-  // QR1 publie le contrat V2, mais Clair Courses existant reçoit encore le V1.
-  const contract=shoppingContractV1();
+  // QR3 active le contrat V2 validé pour le transfert réel vers Clair Courses.
+  const contract=shoppingContractV2();
   if(!contract.items.length){shoppingSetStatus('Sélectionnez au moins un produit.','warning');return}
   const returnUrl=location.href.split('#')[0];
   const url=`${CLAIR_COURSES_IMPORT_URL}?source=clair-repas&return=${encodeURIComponent(returnUrl)}#mcjson=${encodeURIComponent(JSON.stringify(contract))}`;

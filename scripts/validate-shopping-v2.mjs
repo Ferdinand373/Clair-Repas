@@ -16,6 +16,7 @@ const V2_FIXTURE_PATH = resolve(ROOT, "scripts", "shopping-contract-v2.fixture.j
 const FIXED_CREATED_AT = "2026-08-29T08:00:00.000Z";
 const SOURCE_VERSION = "7.5";
 const EXPECTED_SANITIZED_INDEX_SHA256 = "3458178216af99a63381732e66d92d3f1a2107e51f7594619e3135e168095968";
+const EXPECTED_QR3_TRANSPORT_SUFFIX_SHA256 = "2f1cba6cfba67518077ac184732451c00f247bfebaf7516951aa15b6637db3d9";
 const EXPECTED_PROTECTED_SHA256 = Object.freeze({
   "v8/clair-cloud-sync.js": "6d05b667525082078ed76ae05f8166bcec52c6da05a44f9e27cedf8590b729c3",
   "v8/clair-sync.js": "0599c8a11fcc775b6412440d872fce660d832d18f793fb4e87a5fbf7af7efb36",
@@ -2767,7 +2768,7 @@ await check("Engine purity and absence of external effects", () => {
   return "0 storage/network accesses";
 });
 
-await check("Index keeps V1 transport active and exposes V2", () => {
+await check("Index activates V2 transport and keeps V1 compatibility", () => {
   assert.match(indexSource, /<script\b[^>]*src=["']\.\/shopping-v2-engine\.js["'][^>]*><\/script>/i);
   assert.match(indexSource, /\bClairShoppingV2\b/);
   assert.doesNotMatch(indexSource, /\bshoppingIngredientAvailable\b/);
@@ -2809,19 +2810,120 @@ await check("Index keeps V1 transport active and exposes V2", () => {
   assert.equal(forwardedOptions.peopleCount, 4);
 
   const sendSource = extractFunction(indexSource, "shoppingSendSelected");
-  assert.match(sendSource, /shoppingContractV1\(\)/);
-  assert.doesNotMatch(sendSource, /\bshoppingContract\(\)/);
-  assert.doesNotMatch(sendSource, /(?:buildContractV2|contractV2|shoppingContractV2)/);
   const v1Source = extractFunction(indexSource, "shoppingContractV1");
   const v2Source = extractFunction(indexSource, "shoppingContractV2");
   const futureContractSource = extractFunction(indexSource, "shoppingContract");
+  assert.match(sendSource, /const contract=shoppingContractV2\(\);/);
+  assert.doesNotMatch(sendSource, /\bshoppingContractV1\(\)/);
+  assert.doesNotMatch(sendSource, /\bshoppingContract\(\)/);
+  assert.doesNotMatch(sendSource, /\.(?:map|filter|reduce)\(|\b(?:buildDraft|selectedItemsV2)\b/);
   assert.match(v1Source, /SHOPPING_ENGINE\.(?:buildContractV1|contractV1)\(/);
   assert.doesNotMatch(v1Source, /(?:buildContractV2|contractV2|shoppingContractV2)/);
   assert.match(v2Source, /SHOPPING_ENGINE\.(?:buildContractV2|contractV2)\(/);
   assert.match(futureContractSource, /shoppingContractV2\(\)/);
   assert.equal(typeof api.buildContractV2, "function");
   assert.match(indexSource, /#mcjson=\$\{encodeURIComponent\(JSON\.stringify\(contract\)\)\}/);
-  return "legacy #mcjson sender + V2 builder + availableItems forwarded";
+
+  const transportMarker = "  if(!contract.items.length)";
+  const transportStart = sendSource.indexOf(transportMarker);
+  assert.notEqual(transportStart, -1, "Active transport boundary missing");
+  const transportSuffix = sendSource.slice(transportStart).replace(/\r\n/g, "\n");
+  assert.equal(
+    sha256(transportSuffix),
+    EXPECTED_QR3_TRANSPORT_SUFFIX_SHA256,
+    "QR3 may change the active payload builder, not the transport"
+  );
+
+  const activeDraft = draftFor([
+    source("active-mustard", [ingredient(2, "c. à soupe", "moutarde")]),
+    source("active-basil", [ingredient(4, "feuilles", "basilic")])
+  ]);
+  let builtContract;
+  let v2BuildCalls = 0;
+  let openedUrl = "";
+  let openedTarget = "";
+  const openedWindow = { opener: {} };
+  const senderSandbox = {
+    SHOPPING_ENGINE: {
+      buildContractV2(input, options) {
+        v2BuildCalls += 1;
+        builtContract = buildContractV2(input, { ...options, createdAt: FIXED_CREATED_AT });
+        return builtContract;
+      }
+    },
+    shoppingDraft: activeDraft,
+    shoppingSyncDraftFromScreen() {},
+    CR_APP_VERSION: SOURCE_VERSION,
+    location: { href: "https://repas.example/app#local-state" },
+    CLAIR_COURSES_IMPORT_URL: "https://courses.example/import.html",
+    window: {
+      open(url, target) {
+        openedUrl = url;
+        openedTarget = target;
+        return openedWindow;
+      }
+    },
+    shoppingSetStatus() {},
+    encodeURIComponent,
+    JSON
+  };
+  vm.runInNewContext(
+    `${v2Source}; ${sendSource}; shoppingSendSelected();`,
+    senderSandbox,
+    { filename: "shopping-v2-active-transfer.integration.js" }
+  );
+
+  assert.equal(v2BuildCalls, 1, "Active sender must build the V2 contract exactly once");
+  assert.equal(openedTarget, "_blank");
+  assert.equal(openedWindow.opener, null);
+  const opened = new URL(openedUrl);
+  assert.equal(opened.searchParams.get("source"), "clair-repas");
+  assert.equal(opened.searchParams.get("return"), "https://repas.example/app");
+  assert.ok(opened.hash.startsWith("#mcjson="));
+  const sentContract = JSON.parse(decodeURIComponent(opened.hash.slice("#mcjson=".length)));
+  assert.equal(JSON.stringify(sentContract), JSON.stringify(builtContract));
+  assert.deepEqual(Object.keys(sentContract), [
+    "schemaVersion",
+    "source",
+    "sourceVersion",
+    "rulesVersion",
+    "createdAt",
+    "contentFingerprint",
+    "items"
+  ]);
+  assert.equal(sentContract.schemaVersion, 2);
+  assert.equal(sentContract.source, "Clair Repas");
+  assert.equal(sentContract.sourceVersion, "7.5");
+  assert.equal(sentContract.rulesVersion, api.RULES_VERSION);
+  assert.equal(sentContract.createdAt, FIXED_CREATED_AT);
+  assert.match(sentContract.contentFingerprint, /^fnv1a:[a-f0-9]{8}$/);
+  assert.equal(
+    sentContract.contentFingerprint,
+    api.fingerprintForContent({
+      schemaVersion: sentContract.schemaVersion,
+      source: sentContract.source,
+      sourceVersion: sentContract.sourceVersion,
+      rulesVersion: sentContract.rulesVersion,
+      items: sentContract.items
+    })
+  );
+  assert.deepEqual(Object.keys(sentContract.items[0]), [
+    "selected",
+    "productKey",
+    "canonicalName",
+    "displayName",
+    "form",
+    "exactQuantity",
+    "exactUnit",
+    "exactLabel",
+    "purchaseQuantity",
+    "purchaseUnit",
+    "purchaseLabel",
+    "aisle",
+    "sourceRecipeIds"
+  ]);
+  assert.ok(sentContract.items.every(item => Object.hasOwn(item, "exactQuantity")));
+  return `active schema V${sentContract.schemaVersion} #mcjson + immutable transport ${EXPECTED_QR3_TRANSPORT_SUFFIX_SHA256}`;
 });
 
 await check("Index changes stay inside the QR1 boundary", () => {
