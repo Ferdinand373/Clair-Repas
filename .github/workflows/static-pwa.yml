@@ -39,9 +39,16 @@ jobs:
           node --check v8/clair-foundation.js
           node --check v8/clair-cloud-sync.js
           node --check v8/vendor/supabase-js-2.111.0.js
+          node --check scripts/generate-public-recipe-catalog.mjs
+          node --check scripts/validate-public-recipe-catalog.mjs
           node --check scripts/validate-repair-tool.mjs
           node --check scripts/validate-shopping-qr4.mjs
           node --check scripts/validate-shopping-v2.mjs
+
+      - name: Validate generated public recipe catalog
+        run: |
+          node scripts/generate-public-recipe-catalog.mjs --check
+          node scripts/validate-public-recipe-catalog.mjs
 
       - name: Validate application and PWA invariants
         run: |
