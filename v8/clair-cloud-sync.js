@@ -42,6 +42,9 @@
   const PERSONAL_DATA_RESTORED_EVENT = 'clair:personal-data-restored';
 
   const MISSING = Object.freeze({ missing: true });
+  // Le planning est un snapshot ordonné : fusionner plan[] comme un ensemble
+  // peut décaler les jours et dupliquer des repas.
+  const ATOMIC_NEWEST_WINS_KEYS = new Set(['crStateV13']);
 
   function isReadableRemoteDataSchema(value) {
     return value === LEGACY_DATA_SCHEMA || value === DATA_SCHEMA;
@@ -857,6 +860,48 @@
       return new Date(now()).toISOString();
     }
 
+    function rememberLocalChange(key, changedAt = isoNow()) {
+      localChangeTimes.set(key, changedAt);
+      const loaded = loadMetaRoot(storage);
+      if (loaded.status !== 'valid') return false;
+      const candidates = Object.values(loaded.root.accounts).filter(
+        (account) =>
+          isPlainObject(account) &&
+          isPlainObject(account.keys) &&
+          isPlainObject(account.keys[key])
+      );
+      if (candidates.length !== 1) return false;
+      candidates[0].keys[key].localChangedAt = changedAt;
+      const persisted = writeMetaRoot(storage, loaded.root);
+      state.metaPersisted = persisted;
+      return persisted;
+    }
+
+    function applyKnownLocalChangeTimes(account, keys) {
+      if (!isPlainObject(account?.keys)) return false;
+      let changed = false;
+      for (const key of keys) {
+        const changedAt = localChangeTimes.get(key);
+        const entry = account.keys[key];
+        if (!changedAt || !isPlainObject(entry)) continue;
+        if (entry.localChangedAt === changedAt) continue;
+        entry.localChangedAt = changedAt;
+        changed = true;
+      }
+      return changed;
+    }
+
+    function persistKnownLocalChangeTimes(userId, keys) {
+      if (!keys.size) return true;
+      const loaded = loadMetaRoot(storage);
+      if (loaded.status !== 'valid') return false;
+      const account = loaded.root.accounts[userId];
+      if (!applyKnownLocalChangeTimes(account, keys)) return true;
+      const persisted = writeMetaRoot(storage, loaded.root);
+      state.metaPersisted = persisted;
+      return persisted;
+    }
+
     function setState(next) {
       Object.assign(state, next);
     }
@@ -1308,6 +1353,29 @@
       account.conflicts[key] = history.slice(-3);
     }
 
+    function rememberAtomicConflict(
+      account,
+      key,
+      localValue,
+      remoteValue,
+      resolvedValue,
+      resolved,
+      syncedAt
+    ) {
+      const history = Array.isArray(account.conflicts[key])
+        ? account.conflicts[key]
+        : [];
+      history.push({
+        at: syncedAt,
+        kind: 'atomic-newest-wins',
+        localValue,
+        remoteValue,
+        resolvedValue,
+        resolved
+      });
+      account.conflicts[key] = history.slice(-3);
+    }
+
     async function uploadState(
       transport,
       user,
@@ -1419,7 +1487,16 @@
         normalizeRevision(row?.revision) !==
         normalizeRevision(entry.remoteRevision);
 
-      if (localChanged && !entry.localChangedAt) {
+      if (
+        localChanged &&
+        !entry.localChangedAt &&
+        (
+          localChangeTimes.has(key) ||
+          !ATOMIC_NEWEST_WINS_KEYS.has(key)
+        )
+      ) {
+        // Une divergence de planning découverte au redémarrage n'est pas une
+        // édition « maintenant ». Sans horodatage réel, le distant révisé gagne.
         entry.localChangedAt = localChangeTimes.get(key) || syncedAt;
         account.keys[key] = entry;
         persistMeta(metaRoot);
@@ -1509,27 +1586,48 @@
 
       const localChangedAt = localTime(entry);
       const remoteChangedAt = rowTime(row);
+      const atomic = ATOMIC_NEWEST_WINS_KEYS.has(key);
       const preferLocal =
-        localChangedAt === 0 || localChangedAt >= remoteChangedAt;
+        localChangedAt > 0
+          ? localChangedAt >= remoteChangedAt
+          : !atomic;
 
       if (localPresent && remotePresent) {
         if (localValue !== remoteValue) {
-          const merged = mergePersonalStrings(
-            entry.basePresent ? entry.baseValue : null,
-            localValue,
-            remoteValue,
-            preferLocal
-          );
+          const merged = atomic
+            ? {
+                mergeable: false,
+                value: preferLocal ? localValue : remoteValue,
+                conflicts: []
+              }
+            : mergePersonalStrings(
+                entry.basePresent ? entry.baseValue : null,
+                localValue,
+                remoteValue,
+                preferLocal
+              );
           const resolvedValue = merged.value;
-          rememberJsonConflict(
-            account,
-            key,
-            merged,
-            localValue,
-            remoteValue,
-            resolvedValue,
-            syncedAt
-          );
+          if (atomic) {
+            rememberAtomicConflict(
+              account,
+              key,
+              localValue,
+              remoteValue,
+              resolvedValue,
+              preferLocal ? 'local' : 'remote',
+              syncedAt
+            );
+          } else {
+            rememberJsonConflict(
+              account,
+              key,
+              merged,
+              localValue,
+              remoteValue,
+              resolvedValue,
+              syncedAt
+            );
+          }
           if (resolvedValue !== localValue) {
             localValues = await applyLocalState(
               localValues,
@@ -1577,7 +1675,9 @@
         }
       } else if (localPresent && !remotePresent) {
         const localModificationWins =
-          localChangedAt === 0 || localChangedAt >= remoteChangedAt;
+          localChangedAt > 0
+            ? localChangedAt >= remoteChangedAt
+            : !atomic;
         if (localModificationWins) {
           row = await uploadState(
             transport,
@@ -1666,6 +1766,7 @@
       let markerBefore = null;
       let markerExistedBefore = false;
       let markerBeforeKnown = false;
+      let authenticatedUserId = null;
 
       try {
         const transport = await resolveTransport();
@@ -1681,6 +1782,7 @@
           writeDirectSyncMarker(storage, { healthy: false });
           return { synced: false, reason: 'no-session' };
         }
+        authenticatedUserId = user.id;
 
         setState({
           phase: 'syncing',
@@ -1792,6 +1894,7 @@
 
           const finalLocalValues = { ...captureLocal() };
           noteConcurrentChanges(target, finalLocalValues, concurrentKeys);
+          applyKnownLocalChangeTimes(account, concurrentKeys);
           persistMeta(metaRoot);
           if (
             !writeDirectSyncMarker(storage, {
@@ -1893,6 +1996,7 @@
         const finalLocalValues = { ...captureLocal() };
         noteConcurrentChanges(localValues, finalLocalValues, concurrentKeys);
         localValues = finalLocalValues;
+        applyKnownLocalChangeTimes(account, concurrentKeys);
         account.lastSyncAt = isoNow();
         if (!account.handover.completedAt) {
           account.handover.completedAt = account.lastSyncAt;
@@ -1979,6 +2083,7 @@
               }
             }
           } catch (_) {}
+          persistKnownLocalChangeTimes(authenticatedUserId, concurrentKeys);
           if (concurrentKeys.size) {
             scheduleSync('concurrent-local-change', 250);
           }
@@ -2054,6 +2159,7 @@
             else storage.removeItem(META_STORAGE_KEY);
           } catch (_) {}
         }
+        persistKnownLocalChangeTimes(authenticatedUserId, concurrentKeys);
         writeDirectSyncMarker(storage, {
           healthy: false,
           handoverSnapshotFingerprint:
@@ -2121,7 +2227,7 @@
     function markDirty(key, reason = 'local-change', delay = 500) {
       if (cloudGateReason()) return false;
       if (!isPersonalKey(sync, key)) return false;
-      localChangeTimes.set(key, isoNow());
+      rememberLocalChange(key);
       scheduleSync(reason, delay);
       return true;
     }
@@ -2137,7 +2243,7 @@
           ]);
           for (const key of keys) {
             if (lastObservedValues[key] !== values[key]) {
-              localChangeTimes.set(key, isoNow());
+              rememberLocalChange(key);
             }
           }
           if (signature !== lastObservedSignature) {
@@ -2166,9 +2272,15 @@
           scheduleSync('foreground', 150);
         }
       };
+      const onResume = () => {
+        scanLocal(false);
+        scheduleSync('resume', 150);
+      };
 
       hostWindow.addEventListener?.('online', onOnline);
       hostWindow.addEventListener?.('storage', onStorage);
+      hostWindow.addEventListener?.('pageshow', onResume);
+      hostWindow.addEventListener?.('focus', onResume);
       hostDocument.addEventListener?.('visibilitychange', onVisibility);
       scanInterval = scheduleInterval(() => scanLocal(false), LOCAL_SCAN_MS);
       periodicInterval = scheduleInterval(() => {
@@ -2181,6 +2293,8 @@
       return () => {
         hostWindow.removeEventListener?.('online', onOnline);
         hostWindow.removeEventListener?.('storage', onStorage);
+        hostWindow.removeEventListener?.('pageshow', onResume);
+        hostWindow.removeEventListener?.('focus', onResume);
         hostDocument.removeEventListener?.('visibilitychange', onVisibility);
       };
     }

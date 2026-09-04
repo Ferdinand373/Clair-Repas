@@ -50,7 +50,7 @@ const dateFunctionsSource = between(
 );
 const persistenceSource = between(
   application,
-  "function saveState(){",
+  "function saveState(",
   "function renderHistory(){"
 );
 const loadSource = between(
@@ -90,6 +90,7 @@ class ClockDate extends Date {
 }
 
 const values = new Map();
+const storageWrites = [];
 const localStorage = {
   get length() {
     return values.size;
@@ -101,6 +102,7 @@ const localStorage = {
     return values.has(key) ? values.get(key) : null;
   },
   setItem(key, value) {
+    storageWrites.push(key);
     values.set(key, String(value));
   },
   removeItem(key) {
@@ -132,6 +134,15 @@ const context = {
   Date: ClockDate,
   Intl,
   localStorage,
+  window: {
+    ClairCloudSync: {
+      dirtyKeys: [],
+      markDirty(key) {
+        this.dirtyKeys.push(key);
+        return true;
+      }
+    }
+  },
   $: (id) => elements[id],
   isManualChoice: () => false,
   mealFormat: (day, type) => day?.[type + "Format"] || "dish",
@@ -209,11 +220,17 @@ const savedSeptember3 = {
   plan: [dayRecord(), dayRecord("n01", "s01")]
 };
 localStorage.setItem("crStateV13", JSON.stringify(savedSeptember3));
-context.render = () => planning.saveState();
+storageWrites.length = 0;
+context.window.ClairCloudSync.dirtyKeys.length = 0;
+let loadRenderOptions = null;
+context.render = (options) => { loadRenderOptions = options; };
 planning.loadOrCreate();
 
 let persisted = JSON.parse(localStorage.getItem("crStateV13"));
 assert.equal(persisted.date, "2026-09-03");
+assert.equal(loadRenderOptions?.persist, false);
+assert.deepEqual(storageWrites, []);
+assert.deepEqual(context.window.ClairCloudSync.dirtyKeys, []);
 assert.equal(dateKey(planning.dateFor(1)), "2026-09-04");
 assert.notEqual(dateKey(planning.dateFor(1)), "2026-09-05");
 assert.equal(planning.dayLabel(0), "Hier");
@@ -224,6 +241,14 @@ planning.saveState();
 persisted = JSON.parse(localStorage.getItem("crStateV13"));
 assert.equal(persisted.date, "2026-09-03");
 assert.equal(persisted.plan[1].midId, "n02");
+assert.deepEqual(context.window.ClairCloudSync.dirtyKeys, ["crStateV13"]);
+
+planning.saveState();
+assert.deepEqual(
+  context.window.ClairCloudSync.dirtyKeys,
+  ["crStateV13"],
+  "An identical state save must not create another cloud edit"
+);
 
 planning.saveHistory();
 const history = JSON.parse(localStorage.getItem("crHistoryV13"));
@@ -260,21 +285,32 @@ assert.equal(JSON.parse(localStorage.getItem("crStateV13")).date, "2026-10-24");
 const legacyState = { ...savedSeptember3 };
 delete legacyState.date;
 localStorage.setItem("crStateV13", JSON.stringify(legacyState));
-context.render = () => planning.saveState();
+const dirtyBeforeLegacyMigration = context.window.ClairCloudSync.dirtyKeys.length;
+context.render = () => {};
 planning.loadOrCreate();
 assert.equal(JSON.parse(localStorage.getItem("crStateV13")).date, "2026-09-04");
+assert.equal(
+  context.window.ClairCloudSync.dirtyKeys.length,
+  dirtyBeforeLegacyMigration,
+  "A legacy-date normalization must not masquerade as a new user edit"
+);
 
 for (const invalidDate of ["2026-02-31", "2026-13-01", "0000-01-01"]) {
   localStorage.setItem(
     "crStateV13",
     JSON.stringify({ ...savedSeptember3, date: invalidDate })
   );
-  context.render = () => planning.saveState();
+  const dirtyBeforeInvalidMigration = context.window.ClairCloudSync.dirtyKeys.length;
+  context.render = () => {};
   planning.loadOrCreate();
   assert.equal(
     JSON.parse(localStorage.getItem("crStateV13")).date,
     "2026-09-04",
     invalidDate + " must fall back to the current valid civil date"
+  );
+  assert.equal(
+    context.window.ClairCloudSync.dirtyKeys.length,
+    dirtyBeforeInvalidMigration
   );
 }
 
@@ -282,7 +318,7 @@ localStorage.setItem(
   "crStateV13",
   JSON.stringify({ ...savedSeptember3, date: "2024-02-29" })
 );
-context.render = () => planning.saveState();
+context.render = () => {};
 planning.loadOrCreate();
 assert.equal(JSON.parse(localStorage.getItem("crStateV13")).date, "2024-02-29");
 assert.equal(dateKey(planning.dateFor(1)), "2024-03-01");

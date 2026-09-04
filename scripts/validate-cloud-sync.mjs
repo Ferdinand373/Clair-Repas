@@ -1621,6 +1621,51 @@ await check("A local edit during network I/O is never overwritten", async () => 
   );
 });
 
+await check("Concurrent planning edit time survives failure and restart", async () => {
+  const base = planningState("2026-09-03", "concurrent-base");
+  const remoteOlder = planningState("2026-09-03", "concurrent-remote");
+  const localNewer = planningState("2026-09-03", "concurrent-local");
+  const transport = new MemoryTransport();
+  const storage = new FakeStorage();
+  const first = makeHarness({
+    values: { crStateV13: base },
+    transport,
+    storage,
+    personalKeys: CLAIR_REPAS_PERSONAL_KEYS
+  });
+  await first.runtime.syncNow("concurrent-planning-seed");
+  transport.putRemote("crStateV13", remoteOlder, {
+    revision: 2,
+    updatedAt: first.advance(1000)
+  });
+  transport.onList = async () => {
+    transport.onList = null;
+    first.advance(1000);
+    first.sync.values.crStateV13 = localNewer;
+    assert.equal(first.runtime.markDirty("crStateV13"), true);
+  };
+  const interrupted = await first.runtime.syncNow("concurrent-planning-during-list");
+  assert.equal(interrupted.reason, "error");
+  assert.match(interrupted.error, /local-key-changed-during-sync:crStateV13/);
+  assert.equal(first.sync.values.crStateV13, localNewer);
+  first.runtime.stop();
+
+  const second = makeHarness({
+    transport,
+    storage,
+    syncInstance: first.sync,
+    personalKeys: CLAIR_REPAS_PERSONAL_KEYS,
+    runtimeOptions: {
+      now: () => Date.parse("2026-08-21T10:00:10.000Z")
+    }
+  });
+  const resumed = await second.runtime.syncNow("concurrent-planning-restart");
+  assert.equal(resumed.synced, true, JSON.stringify(resumed));
+  assert.equal(second.sync.values.crStateV13, localNewer);
+  assert.equal(transport.rows.get("crStateV13").payload.value, localNewer);
+  assert.equal(transport.rows.get("crStateV13").revision, 3);
+});
+
 await check("Deletion sends a tombstone and recreation clears it", async () => {
   const harness = makeHarness({ values: { crDraft: "first" } });
   await harness.runtime.syncNow("seed");
@@ -1870,6 +1915,9 @@ await check("Concurrent JSON objects and arrays merge non-destructively", async 
   harness.sync.values.crObject = '{"base":1,"local":2}';
   harness.sync.values.crArray = '["base","local"]';
   harness.sync.values.crLeaf = '{"note":"local"}';
+  assert.equal(harness.runtime.markDirty("crObject"), true);
+  assert.equal(harness.runtime.markDirty("crArray"), true);
+  assert.equal(harness.runtime.markDirty("crLeaf"), true);
   harness.advance(1000);
   harness.transport.putRemote("crObject", '{"base":1,"remote":3}', {
     updatedAt: harness.advance(1000)
@@ -1894,7 +1942,7 @@ await check("Concurrent JSON objects and arrays merge non-destructively", async 
     harness.transport.rows.get("crObject").payload.value,
     harness.sync.values.crObject
   );
-  assert.equal(JSON.parse(harness.sync.values.crLeaf).note, "local");
+  assert.equal(JSON.parse(harness.sync.values.crLeaf).note, "remote");
   const meta = JSON.parse(
     harness.storage.getItem(api.constants.META_STORAGE_KEY)
   );
@@ -1902,6 +1950,304 @@ await check("Concurrent JSON objects and arrays merge non-destructively", async 
   assert.equal(archived.localValue, '{"note":"local"}');
   assert.equal(archived.remoteValue, '{"note":"remote"}');
   assert.deepEqual(archived.details[0].path, ["note"]);
+});
+
+function planningState(date, marker) {
+  return JSON.stringify({
+    date,
+    days: 2,
+    mode: "Tous",
+    timeAvailable: "Tous",
+    plan: [
+      {
+        midId: marker + "-day-0-mid",
+        eveId: marker + "-day-0-eve",
+        midStatus: "planned",
+        eveStatus: "planned"
+      },
+      {
+        midId: marker + "-day-1-mid",
+        eveId: marker + "-day-1-eve",
+        midStatus: "planned",
+        eveStatus: "planned"
+      }
+    ]
+  });
+}
+
+await check("Planning remote-newer restart adopts one exact ordered plan", async () => {
+  const base = planningState("2026-09-05", "base");
+  const staleLocal = planningState("2026-09-04", "local-stale");
+  const correctedRemote = planningState("2026-09-03", "remote-correct");
+  const history = '[{"date":"2026-09-02","plan":[]}]';
+  const harness = makeHarness({
+    values: { crStateV13: base, crHistoryV13: history },
+    personalKeys: CLAIR_REPAS_PERSONAL_KEYS
+  });
+  await harness.runtime.syncNow("planning-base-seed");
+  harness.windowTarget.dispatched.length = 0;
+
+  harness.sync.values.crStateV13 = staleLocal;
+  const remoteAt = harness.advance(5000);
+  harness.transport.putRemote("crStateV13", correctedRemote, {
+    revision: 2,
+    updatedAt: remoteAt
+  });
+  const writesBefore = harness.transport.writeCalls.length;
+
+  const result = await harness.runtime.syncNow("planning-remote-newer-restart");
+  assert.equal(result.synced, true, JSON.stringify(result));
+  assert.equal(harness.sync.values.crStateV13, correctedRemote);
+  assert.equal(harness.transport.rows.get("crStateV13").payload.value, correctedRemote);
+  assert.equal(harness.transport.rows.get("crStateV13").revision, 2);
+  assert.equal(harness.transport.writeCalls.length, writesBefore);
+  assert.equal(JSON.parse(harness.sync.values.crStateV13).plan.length, 2);
+  assert.equal(harness.sync.values.crHistoryV13, history);
+  const events = harness.windowTarget.dispatched.filter(
+    (event) => event.type === api.constants.PERSONAL_DATA_RESTORED_EVENT
+  );
+  assert.equal(events.length, 1);
+  assert.deepEqual([...events[0].detail.changedKeys], ["crStateV13"]);
+  const meta = JSON.parse(harness.storage.getItem(api.constants.META_STORAGE_KEY));
+  const archived = meta.accounts["user-test"].conflicts.crStateV13.at(-1);
+  assert.equal(archived.kind, "atomic-newest-wins");
+  assert.equal(archived.resolved, "remote");
+  assert.equal(archived.localValue, staleLocal);
+  assert.equal(archived.remoteValue, correctedRemote);
+
+  const eventsBeforeNoOp = harness.windowTarget.dispatched.length;
+  const noOp = await harness.runtime.syncNow("planning-same-revision-no-op");
+  assert.equal(noOp.synced, true, JSON.stringify(noOp));
+  assert.equal(harness.transport.writeCalls.length, writesBefore);
+  assert.equal(harness.transport.rows.get("crStateV13").revision, 2);
+  assert.equal(harness.windowTarget.dispatched.length, eventsBeforeNoOp);
+});
+
+await check("Planning local-newer edit uploads one exact ordered plan", async () => {
+  const base = planningState("2026-09-03", "base");
+  const remoteOlder = planningState("2026-09-03", "remote-older");
+  const localNewer = planningState("2026-09-03", "local-newer");
+  const harness = makeHarness({
+    values: { crStateV13: base },
+    personalKeys: CLAIR_REPAS_PERSONAL_KEYS
+  });
+  await harness.runtime.syncNow("planning-local-base-seed");
+  harness.transport.putRemote("crStateV13", remoteOlder, {
+    revision: 2,
+    updatedAt: harness.advance(1000)
+  });
+  harness.advance(2000);
+  harness.sync.values.crStateV13 = localNewer;
+  assert.equal(harness.runtime.markDirty("crStateV13"), true);
+
+  const result = await harness.runtime.syncNow("planning-local-newer");
+  assert.equal(result.synced, true, JSON.stringify(result));
+  assert.equal(harness.sync.values.crStateV13, localNewer);
+  assert.equal(harness.transport.rows.get("crStateV13").payload.value, localNewer);
+  assert.equal(harness.transport.rows.get("crStateV13").revision, 3);
+  assert.equal(JSON.parse(harness.sync.values.crStateV13).plan.length, 2);
+  const meta = JSON.parse(harness.storage.getItem(api.constants.META_STORAGE_KEY));
+  assert.equal(
+    meta.accounts["user-test"].conflicts.crStateV13.at(-1).resolved,
+    "local"
+  );
+});
+
+await check("Offline planning edit time survives a complete runtime restart", async () => {
+  const base = planningState("2026-09-03", "base");
+  const localOffline = planningState("2026-09-04", "offline-local");
+  const remoteNewer = planningState("2026-09-03", "remote-newer");
+  const transport = new MemoryTransport();
+  const storage = new FakeStorage();
+  const first = makeHarness({
+    values: { crStateV13: base },
+    transport,
+    storage,
+    personalKeys: CLAIR_REPAS_PERSONAL_KEYS
+  });
+  await first.runtime.syncNow("offline-restart-seed");
+  first.advance(1000);
+  first.sync.values.crStateV13 = localOffline;
+  assert.equal(first.runtime.markDirty("crStateV13"), true);
+  transport.failAt = "list";
+  const offline = await first.runtime.syncNow("offline-edit-not-yet-synced");
+  assert.equal(offline.reason, "error");
+  first.runtime.stop();
+
+  transport.failAt = null;
+  transport.putRemote("crStateV13", remoteNewer, {
+    revision: 2,
+    updatedAt: "2026-08-21T10:00:02.000Z"
+  });
+  const second = makeHarness({
+    transport,
+    storage,
+    syncInstance: first.sync,
+    personalKeys: CLAIR_REPAS_PERSONAL_KEYS,
+    runtimeOptions: {
+      now: () => Date.parse("2026-08-21T10:00:10.000Z")
+    }
+  });
+  const resumed = await second.runtime.syncNow("offline-restart-remote-newer");
+  assert.equal(resumed.synced, true, JSON.stringify(resumed));
+  assert.equal(second.sync.values.crStateV13, remoteNewer);
+  assert.equal(transport.rows.get("crStateV13").revision, 2);
+  assert.equal(JSON.parse(second.sync.values.crStateV13).plan.length, 2);
+});
+
+await check("Newer offline planning edit survives a complete runtime restart", async () => {
+  const base = planningState("2026-09-03", "base");
+  const remoteOlder = planningState("2026-09-03", "remote-older");
+  const localNewer = planningState("2026-09-03", "offline-newer");
+  const transport = new MemoryTransport();
+  const storage = new FakeStorage();
+  const first = makeHarness({
+    values: { crStateV13: base },
+    transport,
+    storage,
+    personalKeys: CLAIR_REPAS_PERSONAL_KEYS
+  });
+  await first.runtime.syncNow("offline-newer-seed");
+  transport.putRemote("crStateV13", remoteOlder, {
+    revision: 2,
+    updatedAt: first.advance(1000)
+  });
+  first.advance(1000);
+  first.sync.values.crStateV13 = localNewer;
+  assert.equal(first.runtime.markDirty("crStateV13"), true);
+  transport.failAt = "list";
+  const offline = await first.runtime.syncNow("offline-newer-not-yet-synced");
+  assert.equal(offline.reason, "error");
+  first.runtime.stop();
+
+  transport.failAt = null;
+  const second = makeHarness({
+    transport,
+    storage,
+    syncInstance: first.sync,
+    personalKeys: CLAIR_REPAS_PERSONAL_KEYS,
+    runtimeOptions: {
+      now: () => Date.parse("2026-08-21T10:00:10.000Z")
+    }
+  });
+  const resumed = await second.runtime.syncNow("offline-restart-local-newer");
+  assert.equal(resumed.synced, true, JSON.stringify(resumed));
+  assert.equal(second.sync.values.crStateV13, localNewer);
+  assert.equal(transport.rows.get("crStateV13").payload.value, localNewer);
+  assert.equal(transport.rows.get("crStateV13").revision, 3);
+  assert.equal(JSON.parse(second.sync.values.crStateV13).plan.length, 2);
+});
+
+await check("Startup trigger pulls remote-newer planning after a clean restart", async () => {
+  const base = planningState("2026-09-05", "startup-base");
+  const staleLocal = planningState("2026-09-04", "startup-stale");
+  const correctedRemote = planningState("2026-09-03", "startup-remote");
+  const transport = new MemoryTransport();
+  const storage = new FakeStorage();
+  const first = makeHarness({
+    values: { crStateV13: base },
+    transport,
+    storage,
+    personalKeys: CLAIR_REPAS_PERSONAL_KEYS
+  });
+  await first.runtime.syncNow("startup-restart-seed");
+  first.sync.values.crStateV13 = staleLocal;
+  transport.putRemote("crStateV13", correctedRemote, {
+    revision: 2,
+    updatedAt: first.advance(2000)
+  });
+  first.runtime.stop();
+
+  const timers = new Map();
+  const intervals = new Map();
+  let nextTimer = 1;
+  const second = makeHarness({
+    transport,
+    storage,
+    syncInstance: first.sync,
+    personalKeys: CLAIR_REPAS_PERSONAL_KEYS,
+    runtimeOptions: {
+      now: () => Date.parse("2026-08-21T10:00:10.000Z"),
+      setTimeout(callback, delay) {
+        const id = nextTimer++;
+        timers.set(id, { callback, delay });
+        return id;
+      },
+      clearTimeout(id) {
+        timers.delete(id);
+      },
+      setInterval(callback, delay) {
+        const id = nextTimer++;
+        intervals.set(id, { callback, delay });
+        return id;
+      },
+      clearInterval(id) {
+        intervals.delete(id);
+      }
+    }
+  });
+  await second.runtime.start();
+  const startupTimer = [...timers.entries()].find(([, entry]) => entry.delay === 0);
+  assert.ok(startupTimer);
+  timers.delete(startupTimer[0]);
+  startupTimer[1].callback();
+  await second.runtime.syncNow("join-startup-planning-pull");
+  assert.equal(second.runtime.getStatus().reason, "startup");
+  assert.equal(second.sync.values.crStateV13, correctedRemote);
+  assert.equal(transport.rows.get("crStateV13").revision, 2);
+  assert.equal(transport.writeCalls.length, 1);
+  assert.equal(JSON.parse(second.sync.values.crStateV13).plan.length, 2);
+  second.runtime.stop();
+});
+
+await check("Planning synchronizes computer to iPhone and iPhone to computer", async () => {
+  const computerPlan = planningState("2026-09-03", "computer");
+  const staleIphonePlan = planningState("2026-09-04", "iphone-stale");
+  const iphoneEdit = planningState("2026-09-03", "iphone-newer");
+  const history = '[{"date":"2026-09-02","plan":[]}]';
+  const transport = new MemoryTransport();
+  const computer = makeHarness({
+    values: { crStateV13: computerPlan, crHistoryV13: history },
+    transport,
+    personalKeys: CLAIR_REPAS_PERSONAL_KEYS
+  });
+  const computerSeed = await computer.runtime.syncNow("computer-publishes-plan");
+  assert.equal(computerSeed.synced, true, JSON.stringify(computerSeed));
+
+  const iphone = makeHarness({
+    values: { crStateV13: staleIphonePlan, crHistoryV13: history },
+    transport,
+    personalKeys: CLAIR_REPAS_PERSONAL_KEYS,
+    runtimeOptions: {
+      navigator: {
+        onLine: true,
+        userAgent: "Mozilla/5.0 (iPhone) Version/26.5 Mobile Safari/604.1",
+        platform: "iPhone"
+      }
+    }
+  });
+  const iphonePull = await iphone.runtime.syncNow("iphone-pulls-computer-plan");
+  assert.equal(iphonePull.synced, true, JSON.stringify(iphonePull));
+  assert.equal(iphone.sync.values.crStateV13, computerPlan);
+  assert.equal(transport.rows.get("crStateV13").revision, 1);
+  assert.equal(JSON.parse(iphone.sync.values.crStateV13).plan.length, 2);
+
+  iphone.advance(5000);
+  iphone.sync.values.crStateV13 = iphoneEdit;
+  assert.equal(iphone.runtime.markDirty("crStateV13"), true);
+  const iphonePush = await iphone.runtime.syncNow("iphone-publishes-newer-plan");
+  assert.equal(iphonePush.synced, true, JSON.stringify(iphonePush));
+  assert.equal(transport.rows.get("crStateV13").payload.value, iphoneEdit);
+  assert.equal(transport.rows.get("crStateV13").revision, 2);
+
+  const writesBeforeComputerPull = transport.writeCalls.length;
+  const computerPull = await computer.runtime.syncNow("computer-pulls-iphone-plan");
+  assert.equal(computerPull.synced, true, JSON.stringify(computerPull));
+  assert.equal(computer.sync.values.crStateV13, iphoneEdit);
+  assert.equal(transport.writeCalls.length, writesBeforeComputerPull);
+  assert.equal(transport.rows.get("crStateV13").revision, 2);
+  assert.equal(computer.sync.values.crHistoryV13, history);
+  assert.equal(iphone.sync.values.crHistoryV13, history);
 });
 
 await check("Newest scalar and newest delete win after a shared base", async () => {
@@ -2220,6 +2566,8 @@ await check("Startup, local, foreground, online and periodic triggers stay async
   await runtime.start();
   assert.ok(windowTarget.listeners.get("online")?.size);
   assert.ok(windowTarget.listeners.get("storage")?.size);
+  assert.ok(windowTarget.listeners.get("pageshow")?.size);
+  assert.ok(windowTarget.listeners.get("focus")?.size);
   assert.ok(documentTarget.listeners.get("visibilitychange")?.size);
   assert.deepEqual(
     [...intervals.values()].map((entry) => entry.delay).sort((a, b) => a - b),
@@ -2228,6 +2576,10 @@ await check("Startup, local, foreground, online and periodic triggers stay async
   assert.ok([...timers.values()].some((entry) => entry.delay === 0));
 
   windowTarget.dispatch("online");
+  assert.ok([...timers.values()].some((entry) => entry.delay === 150));
+  windowTarget.dispatch("pageshow");
+  assert.ok([...timers.values()].some((entry) => entry.delay === 150));
+  windowTarget.dispatch("focus");
   assert.ok([...timers.values()].some((entry) => entry.delay === 150));
   documentTarget.dispatch("visibilitychange");
   assert.ok([...timers.values()].some((entry) => entry.delay === 150));
@@ -2240,7 +2592,98 @@ await check("Startup, local, foreground, online and periodic triggers stay async
   runtime.stop();
   assert.equal(intervals.size, 0);
   assert.equal(windowTarget.listeners.get("online")?.size || 0, 0);
+  assert.equal(windowTarget.listeners.get("pageshow")?.size || 0, 0);
+  assert.equal(windowTarget.listeners.get("focus")?.size || 0, 0);
   assert.equal(documentTarget.listeners.get("visibilitychange")?.size || 0, 0);
+});
+
+await check("Foreground and online triggers execute bidirectional reconciliation", async () => {
+  const timers = new Map();
+  const intervals = new Map();
+  let nextTimer = 1;
+  const transport = new MemoryTransport();
+  const base = planningState("2026-09-03", "trigger-base");
+  const remoteResume = planningState("2026-09-03", "trigger-resume");
+  const remoteForeground = planningState("2026-09-03", "trigger-foreground");
+  const localOnline = planningState("2026-09-03", "trigger-local");
+  const harness = makeHarness({
+    values: { crStateV13: base },
+    transport,
+    personalKeys: CLAIR_REPAS_PERSONAL_KEYS,
+    runtimeOptions: {
+      setTimeout(callback, delay) {
+        const id = nextTimer++;
+        timers.set(id, { callback, delay });
+        return id;
+      },
+      clearTimeout(id) {
+        timers.delete(id);
+      },
+      setInterval(callback, delay) {
+        const id = nextTimer++;
+        intervals.set(id, { callback, delay });
+        return id;
+      },
+      clearInterval(id) {
+        intervals.delete(id);
+      }
+    }
+  });
+  await harness.runtime.syncNow("trigger-execution-seed");
+  await harness.runtime.start();
+  timers.clear();
+
+  transport.putRemote("crStateV13", remoteResume, {
+    revision: 2,
+    updatedAt: harness.advance(2000)
+  });
+  harness.windowTarget.dispatch("pageshow");
+  const resumeTimer = [...timers.entries()].find(([, entry]) => entry.delay === 150);
+  assert.ok(resumeTimer);
+  timers.delete(resumeTimer[0]);
+  resumeTimer[1].callback();
+  await harness.runtime.syncNow("join-pageshow");
+  assert.equal(harness.runtime.getStatus().reason, "resume");
+  assert.equal(harness.sync.values.crStateV13, remoteResume);
+  assert.equal(transport.rows.get("crStateV13").revision, 2);
+  assert.equal(transport.writeCalls.length, 1);
+
+  timers.clear();
+  transport.putRemote("crStateV13", remoteForeground, {
+    revision: 3,
+    updatedAt: harness.advance(2000)
+  });
+  harness.documentTarget.hidden = false;
+  harness.documentTarget.dispatch("visibilitychange");
+  const foregroundTimer = [...timers.entries()].find(([, entry]) => entry.delay === 150);
+  assert.ok(foregroundTimer);
+  timers.delete(foregroundTimer[0]);
+  foregroundTimer[1].callback();
+  await harness.runtime.syncNow("join-foreground");
+  assert.equal(harness.runtime.getStatus().reason, "foreground");
+  assert.equal(harness.sync.values.crStateV13, remoteForeground);
+  assert.equal(transport.rows.get("crStateV13").revision, 3);
+  assert.equal(transport.writeCalls.length, 1);
+
+  harness.advance(2000);
+  harness.sync.values.crStateV13 = localOnline;
+  assert.equal(harness.runtime.markDirty("crStateV13"), true);
+  transport.failAt = "list";
+  const disconnected = await harness.runtime.syncNow("network-lost");
+  assert.equal(disconnected.reason, "error");
+  assert.equal(transport.rows.get("crStateV13").payload.value, remoteForeground);
+  transport.failAt = null;
+  timers.clear();
+  harness.windowTarget.dispatch("online");
+  const onlineTimer = [...timers.entries()].find(([, entry]) => entry.delay === 150);
+  assert.ok(onlineTimer);
+  timers.delete(onlineTimer[0]);
+  onlineTimer[1].callback();
+  await harness.runtime.syncNow("join-online");
+  assert.equal(harness.runtime.getStatus().reason, "online");
+  assert.equal(transport.rows.get("crStateV13").payload.value, localOnline);
+  assert.equal(transport.rows.get("crStateV13").revision, 4);
+  harness.runtime.stop();
 });
 
 await check("IPHONE UI 1 — bootstrap 3→5 refreshes favorites once without reload", async () => {

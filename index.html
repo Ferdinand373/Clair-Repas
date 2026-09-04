@@ -8066,8 +8066,8 @@ function buildPlan(count,template=plan){
   rememberPlan(result);
   return result;
 }
-function saveState(){
-  localStorage.setItem('crStateV13',JSON.stringify({
+function saveState({markDirty=true}={}){
+  const value=JSON.stringify({
     date:planDate,
     days:Number($('days').value),
     mode:$('mode').value,
@@ -8094,7 +8094,11 @@ function saveState(){
       midStatus:mealStatus(d,'mid'),
       eveStatus:mealStatus(d,'eve')
     }))
-  }));
+  });
+  if(localStorage.getItem('crStateV13')===value)return false;
+  localStorage.setItem('crStateV13',value);
+  if(markDirty)window.ClairCloudSync?.markDirty?.('crStateV13','planning-state');
+  return true;
 }
 function saveHistory(){
   let h=safeStoredJSON('crHistoryV13',[]);
@@ -8117,7 +8121,11 @@ function saveHistory(){
       eveStatus:mealStatus(d,'eve')
     }))
   });
-  localStorage.setItem('crHistoryV13',JSON.stringify(h.slice(0,10)));
+  const value=JSON.stringify(h.slice(0,10));
+  if(localStorage.getItem('crHistoryV13')!==value){
+    localStorage.setItem('crHistoryV13',value);
+    window.ClairCloudSync?.markDirty?.('crHistoryV13','planning-history');
+  }
   renderHistory();
 }
 function renderHistory(){
@@ -8739,12 +8747,16 @@ function loadOrCreate(){
   // Les anciens programmes V2.2 sont repris avec Midi et Soir activés par défaut.
   if(saved&&Array.isArray(saved.plan)&&saved.plan.length){
     const savedDate=typeof saved.date==='string'&&/^[1-9]\d{3}-\d{2}-\d{2}$/.test(saved.date)?new Date(`${saved.date}T12:00:00`):null;
-    planDate=savedDate&&!Number.isNaN(savedDate.getTime())&&todayKey(savedDate)===saved.date?saved.date:todayKey();
+    const savedDateValid=Boolean(savedDate&&!Number.isNaN(savedDate.getTime())&&todayKey(savedDate)===saved.date);
+    planDate=savedDateValid?saved.date:todayKey();
     plan=loadSavedPlan(saved.plan);
     // Le programme mémorisé conserve sa propre durée. Un choix 1 / 2 / 3 jours
     // non encore validé ne doit pas le reconstruire au prochain démarrage.
     ensureDays(plan.length);
-    render();
+    // Une simple ouverture ne constitue pas une modification du planning.
+    render({persist:false});
+    renderHistory();
+    if(!savedDateValid)saveState({markDirty:false});
     return;
   }
   planDate=todayKey();

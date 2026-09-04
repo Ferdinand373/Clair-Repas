@@ -15,10 +15,10 @@ const V1_FIXTURE_PATH = resolve(ROOT, "scripts", "shopping-contract-v1.fixture.j
 const V2_FIXTURE_PATH = resolve(ROOT, "scripts", "shopping-contract-v2.fixture.json");
 const FIXED_CREATED_AT = "2026-08-29T08:00:00.000Z";
 const SOURCE_VERSION = "7.5";
-const EXPECTED_SANITIZED_INDEX_SHA256 = "c012fd0aff2850e5dd5773bca207fea4582ef8dee2a958734085e9f26f6b98fa";
+const EXPECTED_SANITIZED_INDEX_SHA256 = "0c9dd05298f84f634e477a2bc719c9f4742b9597c9ad95b34fe22f2e042abf2f";
 const EXPECTED_QR3_TRANSPORT_SUFFIX_SHA256 = "2f1cba6cfba67518077ac184732451c00f247bfebaf7516951aa15b6637db3d9";
 const EXPECTED_PROTECTED_SHA256 = Object.freeze({
-  "v8/clair-cloud-sync.js": "6d05b667525082078ed76ae05f8166bcec52c6da05a44f9e27cedf8590b729c3",
+  "v8/clair-cloud-sync.js": "826b44d8ee64b816f14e097a39405068001e529cc8a03885a5156de5d40ef7ea",
   "v8/clair-sync.js": "0599c8a11fcc775b6412440d872fce660d832d18f793fb4e87a5fbf7af7efb36",
   "v8/clair-foundation.js": "83786311d67be4be19af248b045735397ed988126b63bf9955c9cc5796d29ba2",
   "v8/version.json": "e748ea2ecfea92120e550e165dc7dc5557852bd3084fbfb1384eb64c431b10e2"
