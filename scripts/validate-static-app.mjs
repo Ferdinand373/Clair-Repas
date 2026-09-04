@@ -9,7 +9,7 @@ import { TextDecoder, TextEncoder } from "node:util";
 import vm from "node:vm";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
-const PRODUCTION_V75_INDEX_BLOB = "7148283fe052ea12deedeb99e9c8089c4f43e795";
+const PRODUCTION_V75_INDEX_BLOB = "64e1b057cabff4db7e843264023b75e9ab759529";
 const CLAIR_REPAS_PERSONAL_KEYS = Object.freeze([
   "crFavMeals",
   "crRecentRecipesV25",
@@ -196,6 +196,7 @@ await check("Required repository files", () => {
     "v8/clair-foundation.js",
     "v8/version.json",
     "repair-local-production.html",
+    "scripts/validate-planning-dates.mjs",
     "scripts/validate-shopping-qr4.mjs",
     "scripts/validate-shopping-v2.mjs",
     "scripts/shopping-contract-v1.fixture.json",
@@ -221,6 +222,7 @@ await check("UTF-8 and merge-conflict safety", () => {
     "v8/clair-foundation.js",
     "v8/version.json",
     "repair-local-production.html",
+    "scripts/validate-planning-dates.mjs",
     "scripts/validate-shopping-qr4.mjs",
     "scripts/validate-shopping-v2.mjs",
     "scripts/shopping-contract-v1.fixture.json",

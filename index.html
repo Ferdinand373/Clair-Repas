@@ -4793,7 +4793,12 @@ function resetLearnedPreferences(){
   updateReactionUI();
   show('Préférences réinitialisées · favoris conservés');
 }
-const todayKey=()=>new Date().toLocaleDateString('en-CA');
+const todayKey=(date=new Date())=>{
+  const year=String(date.getFullYear()).padStart(4,'0');
+  const month=String(date.getMonth()+1).padStart(2,'0');
+  const day=String(date.getDate()).padStart(2,'0');
+  return`${year}-${month}-${day}`;
+};
 const SEASON_TRANSITION_DAYS=15;
 const DAY_MS=24*60*60*1000;
 const officialSeason=(date=new Date())=>{
@@ -4833,6 +4838,7 @@ function culinarySeasonProfile(date=new Date()){
 }
 const season=(date=new Date())=>officialSeason(date);
 let plan=[];
+let planDate=todayKey();
 const MEAL_TYPES=['mid','eve'];
 const MEAL_PLANNED='planned';
 const MEAL_OUTSIDE='outside';
@@ -5068,14 +5074,16 @@ const currentSeason=seasonInfo[season()];
 $('seasonLine').textContent=`${currentSeason.icon} ${currentSeason.label} · produits de saison privilégiés`;
 
 function dateFor(index){
-  const d=new Date();
-  d.setDate(d.getDate()+index);
-  return d;
+  const [year,month,day]=planDate.split('-').map(Number);
+  return new Date(year,month-1,day+Number(index||0),12);
 }
 function dayLabel(index){
-  if(index===0)return"Aujourd’hui";
-  if(index===1)return"Demain";
-  return"Après-demain";
+  const offset=calendarDay(dateFor(index))-calendarDay(new Date());
+  if(offset===0)return"Aujourd’hui";
+  if(offset===1)return"Demain";
+  if(offset===2)return"Après-demain";
+  if(offset===-1)return"Hier";
+  return offset<0?"Jour passé":`Dans ${offset} jours`;
 }
 function formatDate(index){
   return new Intl.DateTimeFormat('fr-FR',{weekday:'long',day:'numeric',month:'long'}).format(dateFor(index));
@@ -8060,7 +8068,7 @@ function buildPlan(count,template=plan){
 }
 function saveState(){
   localStorage.setItem('crStateV13',JSON.stringify({
-    date:todayKey(),
+    date:planDate,
     days:Number($('days').value),
     mode:$('mode').value,
     timeAvailable:$('timeAvailable').value,
@@ -8091,9 +8099,9 @@ function saveState(){
 function saveHistory(){
   let h=safeStoredJSON('crHistoryV13',[]);
   if(!Array.isArray(h))h=[];
-  h=h.filter(x=>x&&x.date!==todayKey());
+  h=h.filter(x=>x&&x.date!==planDate);
   h.unshift({
-    date:todayKey(),
+    date:planDate,
     plan:plan.map(d=>({
       midId:d.mid?.id||null,
       eveId:d.eve?.id||null,
@@ -8730,6 +8738,8 @@ function loadOrCreate(){
   try{saved=JSON.parse(localStorage.getItem('crStateV13')||'null')}catch(e){}
   // Les anciens programmes V2.2 sont repris avec Midi et Soir activés par défaut.
   if(saved&&Array.isArray(saved.plan)&&saved.plan.length){
+    const savedDate=typeof saved.date==='string'&&/^[1-9]\d{3}-\d{2}-\d{2}$/.test(saved.date)?new Date(`${saved.date}T12:00:00`):null;
+    planDate=savedDate&&!Number.isNaN(savedDate.getTime())&&todayKey(savedDate)===saved.date?saved.date:todayKey();
     plan=loadSavedPlan(saved.plan);
     // Le programme mémorisé conserve sa propre durée. Un choix 1 / 2 / 3 jours
     // non encore validé ne doit pas le reconstruire au prochain démarrage.
@@ -8737,6 +8747,7 @@ function loadOrCreate(){
     render();
     return;
   }
+  planDate=todayKey();
   plan=buildPlan(Number($('days').value));
   render();
 }
@@ -8759,6 +8770,7 @@ $('newPlan').onclick=()=>{
   try{
     recordPlanSelections();
     resetAlternativeSession();
+    planDate=todayKey();
     plan=buildPlan(count);
     render();
     show(`Programme préparé pour ${count} ${count===1?'jour':'jours'}`);
@@ -8962,8 +8974,11 @@ function refreshRestoredPlan(){
   let saved=null;
   try{saved=JSON.parse(localStorage.getItem('crStateV13')||'null')}catch(e){}
   if(saved&&Array.isArray(saved.plan)&&saved.plan.length){
+    const savedDate=typeof saved.date==='string'&&/^[1-9]\d{3}-\d{2}-\d{2}$/.test(saved.date)?new Date(`${saved.date}T12:00:00`):null;
+    planDate=savedDate&&!Number.isNaN(savedDate.getTime())&&todayKey(savedDate)===saved.date?saved.date:todayKey();
     plan=loadSavedPlan(saved.plan);
   }else{
+    planDate=todayKey();
     plan=[];
   }
   render({persist:false,refreshPersonalUi:false});

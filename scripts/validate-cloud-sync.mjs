@@ -718,6 +718,8 @@ function makeIphoneUiHarness({
     V73_REACTIONS_RAW: "memory-reactions",
     V73_NOTES_RAW: "memory-notes",
     plan: [{ source: "old-plan" }],
+    planDate: "2026-09-04",
+    todayKey: () => "2026-09-04",
     browserMode,
     browserBookShelfId,
     browserSelection,
@@ -1316,6 +1318,43 @@ await check("Scenario D — empty cloud keeps local-new-account safe", async () 
     "local-new-account"
   );
   assertOnlyProductionApp(harness.transport);
+});
+
+await check("Calendar-date planning state round-trips byte-for-byte through cloud", async () => {
+  const exactState = JSON.stringify({
+    date: "2026-09-03",
+    days: 2,
+    mode: "Tous",
+    timeAvailable: "Tous",
+    plan: [
+      { midId: null, eveId: null },
+      { midId: "recipe-for-2026-09-04", eveId: null }
+    ]
+  });
+  const transport = new MemoryTransport();
+  const uploader = makeHarness({
+    values: { crStateV13: exactState },
+    transport,
+    personalKeys: CLAIR_REPAS_PERSONAL_KEYS
+  });
+  const uploaded = await uploader.runtime.syncNow("calendar-date-upload");
+  assert.equal(uploaded.synced, true, JSON.stringify(uploaded));
+  assert.equal(transport.rows.get("crStateV13").payload.value, exactState);
+
+  const reader = makeHarness({
+    values: { crStateV13: '{"date":"2026-09-04","plan":[]}' },
+    transport,
+    personalKeys: CLAIR_REPAS_PERSONAL_KEYS
+  });
+  const adopted = await reader.runtime.syncNow("calendar-date-download");
+  assert.equal(adopted.synced, true, JSON.stringify(adopted));
+  assert.equal(adopted.bootstrapMode, "remote-existing-account");
+  assert.equal(reader.sync.values.crStateV13, exactState);
+  assert.equal(reader.sync.restoreCalls[0].crStateV13, exactState);
+  assert.equal(transport.rows.get("crStateV13").payload.value, exactState);
+  assert.equal(transport.writeCalls.length, 1);
+  uploader.runtime.stop();
+  reader.runtime.stop();
 });
 
 await check("Schema 1 native JSON bootstraps locally without remote migration", async () => {
@@ -2260,7 +2299,7 @@ await check("IPHONE UI 1 — bootstrap 3→5 refreshes favorites once without re
 await check("IPHONE UI 2 — one reconciliation signal refreshes only changed UI state", async () => {
   const initial = {
     crFavMeals: '["r1","r2","r3"]',
-    crStateV13: '{"plan":[{"midId":"old"}]}',
+    crStateV13: '{"date":"2026-09-03","plan":[{"midId":"old"}]}',
     crHistoryV13: '[{"id":"old"}]',
     crRecipeNotesV31: '{"r1":"ancienne note"}'
   };
@@ -2282,7 +2321,7 @@ await check("IPHONE UI 2 — one reconciliation signal refreshes only changed UI
   const updatedAt = cloud.advance(5000);
   const restored = {
     crFavMeals: '["r1","r2","r3","r4","r5"]',
-    crStateV13: '{"plan":[{"midId":"cloud"}]}',
+    crStateV13: '{"date":"2026-09-04","plan":[{"midId":"cloud"}]}',
     crHistoryV13: '[{"id":"cloud"}]',
     crRecipeNotesV31: '{"r1":"note cloud"}'
   };
@@ -2317,6 +2356,7 @@ await check("IPHONE UI 2 — one reconciliation signal refreshes only changed UI
     refreshPersonalUi: false
   }]);
   assert.deepEqual(ui.counters.renderedPlan, [{ restored: "cloud" }]);
+  assert.equal(ui.sandbox.planDate, "2026-09-04");
   assert.equal(ui.counters.historyRenders, 1);
   assert.equal(ui.noteInput.value, "note cloud");
   assert.ok(ui.counters.noteIndicators > 0);
