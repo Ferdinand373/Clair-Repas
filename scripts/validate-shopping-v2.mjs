@@ -15,7 +15,7 @@ const V1_FIXTURE_PATH = resolve(ROOT, "scripts", "shopping-contract-v1.fixture.j
 const V2_FIXTURE_PATH = resolve(ROOT, "scripts", "shopping-contract-v2.fixture.json");
 const FIXED_CREATED_AT = "2026-08-29T08:00:00.000Z";
 const SOURCE_VERSION = "7.5";
-const EXPECTED_SANITIZED_INDEX_SHA256 = "0c9dd05298f84f634e477a2bc719c9f4742b9597c9ad95b34fe22f2e042abf2f";
+const EXPECTED_SANITIZED_INDEX_SHA256 = "c05e2ee95c777132b54ec6bb6616aecb98a99218ee542597bb59d88223173c00";
 const EXPECTED_QR3_TRANSPORT_SUFFIX_SHA256 = "2f1cba6cfba67518077ac184732451c00f247bfebaf7516951aa15b6637db3d9";
 const EXPECTED_PROTECTED_SHA256 = Object.freeze({
   "v8/clair-cloud-sync.js": "826b44d8ee64b816f14e097a39405068001e529cc8a03885a5156de5d40ef7ea",
@@ -2732,6 +2732,434 @@ await check("Full real recipe corpus at 2 and 4 people", () => {
   );
 
   return `${recipes.length} recipes × 2; ${draftItemCount} draft items; ${contractCount} contracts; Divers legacy ${legacyDiversCount}, engine ${engineDiversCount}; ${legacyMatchedCount} legacy matches guarded`;
+});
+
+await check("Meal people counts stay independent by day and slot", () => {
+  const plan = [
+    { midPeople: 2, evePeople: 4 },
+    { midPeople: 3, evePeople: 2 },
+    { midPeople: 6, evePeople: 1 }
+  ];
+  let saveStateCalls = 0;
+  let refreshCalls = 0;
+  const peopleElement = { value: "8" };
+  const stored = new Map();
+  const sandbox = {
+    MEAL_TYPES: ["mid", "eve"],
+    plan,
+    $() {
+      return peopleElement;
+    },
+    localStorage: {
+      setItem(key, value) {
+        stored.set(key, String(value));
+      }
+    },
+    saveState() {
+      saveStateCalls += 1;
+    },
+    refreshPortionDisplays() {
+      refreshCalls += 1;
+    },
+    show() {}
+  };
+  sandbox.globalThis = sandbox;
+  vm.runInNewContext(
+    [
+      "normalizePeopleCount",
+      "peopleCount",
+      "peopleKey",
+      "mealPeopleCount",
+      "setPeopleCount",
+      "setMealPeopleCount"
+    ].map(name => extractFunction(indexSource, name)).join("\n") +
+      "\n;globalThis.__mealPeople={mealPeopleCount,setPeopleCount,setMealPeopleCount};",
+    sandbox,
+    { filename: "index.html:meal-people-independence" }
+  );
+
+  const counts = () => plan.flatMap(day => [
+    sandbox.__mealPeople.mealPeopleCount(day, "mid"),
+    sandbox.__mealPeople.mealPeopleCount(day, "eve")
+  ]);
+  assert.deepEqual(counts(), [2, 4, 3, 2, 6, 1]);
+  sandbox.__mealPeople.setMealPeopleCount(0, "eve", 5);
+  assert.deepEqual(counts(), [2, 5, 3, 2, 6, 1]);
+  assert.equal(saveStateCalls, 1);
+  assert.equal(refreshCalls, 1);
+
+  sandbox.__mealPeople.setPeopleCount(7, false, false);
+  assert.equal(peopleElement.value, "7");
+  assert.equal(stored.get("crPeople"), "7");
+  assert.deepEqual(counts(), [2, 5, 3, 2, 6, 1]);
+  assert.equal(saveStateCalls, 1, "Global default must not persist an unchanged plan");
+  assert.equal(refreshCalls, 2);
+
+  sandbox.__mealPeople.setPeopleCount(4, false, true);
+  assert.equal(peopleElement.value, "4");
+  assert.equal(stored.get("crPeople"), "4");
+  assert.deepEqual(counts(), [4, 4, 4, 4, 4, 4]);
+  assert.equal(saveStateCalls, 2);
+  assert.equal(refreshCalls, 3);
+  return "slot edit isolated; global default isolated unless updatePlan=true";
+});
+
+await check("Meal people counts persist and legacy plans use the global fallback", () => {
+  const recipes = ["samedi-midi", "samedi-soir", "dimanche-midi", "dimanche-soir"]
+    .map(id => ({ id }));
+  const stored = new Map();
+  const elements = {
+    people: { value: "6" },
+    days: { value: "2" },
+    mode: { value: "Tous" },
+    timeAvailable: { value: "Tous" }
+  };
+  const sandbox = {
+    MEAL_TYPES: ["mid", "eve"],
+    MEAL_PLANNED: "planned",
+    planDate: "2026-09-07",
+    plan: [
+      {
+        mid: recipes[0], eve: recipes[1], midPeople: 2, evePeople: 5,
+        midStatus: "planned", eveStatus: "planned", midFormat: "dish", eveFormat: "dish"
+      },
+      {
+        mid: recipes[2], eve: recipes[3], midPeople: 3, evePeople: 2,
+        midStatus: "planned", eveStatus: "planned", midFormat: "dish", eveFormat: "dish"
+      }
+    ],
+    dishLibrary: recipes,
+    starters: [],
+    desserts: [],
+    sauceRecipes: [],
+    sideRecipes: [],
+    localStorage: {
+      getItem(key) {
+        return stored.has(key) ? stored.get(key) : null;
+      },
+      setItem(key, value) {
+        stored.set(key, String(value));
+      }
+    },
+    window: {},
+    $(id) {
+      return elements[id];
+    },
+    todayKey() {
+      return "2026-09-07";
+    },
+    isManualChoice() {
+      return false;
+    },
+    mealFormat(day, type) {
+      return day[`${type}Format`] || "dish";
+    },
+    mealStatus(day, type) {
+      return day[`${type}Status`] || "planned";
+    },
+    normalizeMealStatus(value) {
+      return value === "planned" ? value : "planned";
+    },
+    normalizeMealFormat(value) {
+      return value || "dish";
+    },
+    formatHasStarter() {
+      return false;
+    },
+    formatHasDessert() {
+      return false;
+    }
+  };
+  sandbox.globalThis = sandbox;
+  const saveStateStart = indexSource.indexOf("function saveState(");
+  const saveStateEnd = indexSource.indexOf("function saveHistory(", saveStateStart);
+  assert.ok(saveStateStart >= 0 && saveStateEnd > saveStateStart, "saveState source block missing");
+  const saveStateSource = indexSource.slice(saveStateStart, saveStateEnd);
+  vm.runInNewContext(
+    [
+      "normalizePeopleCount",
+      "peopleCount",
+      "peopleKey",
+      "mealPeopleCount",
+      "loadSavedPlan"
+    ].map(name => extractFunction(indexSource, name)).join("\n") + "\n" + saveStateSource +
+      "\n;globalThis.__mealState={saveState,loadSavedPlan};",
+    sandbox,
+    { filename: "index.html:meal-people-persistence" }
+  );
+
+  sandbox.__mealState.saveState();
+  assert.deepEqual([...stored.keys()], ["crStateV13"]);
+  const saved = JSON.parse(stored.get("crStateV13"));
+  assert.deepEqual(
+    saved.plan.map(day => [day.midPeople, day.evePeople]),
+    [[2, 5], [3, 2]]
+  );
+  const restored = sandbox.__mealState.loadSavedPlan(saved.plan);
+  assert.deepEqual(
+    Array.from(restored, day => [Number(day.midPeople), Number(day.evePeople)]),
+    [[2, 5], [3, 2]]
+  );
+
+  const legacy = sandbox.__mealState.loadSavedPlan(saved.plan.map(day => {
+    const copy = { ...day };
+    delete copy.midPeople;
+    delete copy.evePeople;
+    return copy;
+  }));
+  assert.deepEqual(
+    Array.from(legacy, day => [Number(day.midPeople), Number(day.evePeople)]),
+    [[6, 6], [6, 6]]
+  );
+  return "crStateV13 round-trip + crPeople legacy fallback";
+});
+
+await check("Recipe ingredient text uses an explicit meal people count", () => {
+  const sandbox = {
+    $() {
+      return { value: "8" };
+    },
+    formatQty(value) {
+      return String(value);
+    },
+    ingredientNameForQuantity(item) {
+      return item.n;
+    },
+    recipeRole(recipe) {
+      return recipe && recipe.role ? recipe.role : "dish";
+    }
+  };
+  sandbox.globalThis = sandbox;
+  vm.runInNewContext(
+    [
+      "normalizePeopleCount",
+      "peopleCount",
+      "qtyForPeople",
+      "ingredientText",
+      "recipeHasFixedYield",
+      "ingredientTextForRecipe"
+    ].map(name => extractFunction(indexSource, name)).join("\n") +
+      "\n;globalThis.__ingredientTextForRecipe=ingredientTextForRecipe;",
+    sandbox,
+    { filename: "index.html:meal-ingredient-quantities" }
+  );
+
+  const item = { q: 100, u: "g", n: "carottes" };
+  const recipeEntry = { id: "meal-ingredient", servings: 2 };
+  assert.deepEqual(
+    [2, 4, 3, 2, 5].map(count => sandbox.__ingredientTextForRecipe(item, recipeEntry, count)),
+    ["100 g carottes", "200 g carottes", "150 g carottes", "100 g carottes", "250 g carottes"]
+  );
+  assert.equal(
+    sandbox.__ingredientTextForRecipe(item, { ...recipeEntry, role: "terrine" }, 8),
+    "100 g carottes"
+  );
+  return "100/200/150/100 g, then 250 g for Saturday evening";
+});
+
+await check("Meal portion UI keeps contextual and generic controls separate", () => {
+  const recipeSandbox = {
+    MEAL_TYPES: ["mid", "eve"],
+    stepTimerDurations() {
+      return [];
+    },
+    isFavorite() {
+      return false;
+    },
+    recipeHasFixedYield() {
+      return false;
+    },
+    recipeFeedbackHTML() {
+      return "";
+    },
+    recipePersonalNoteHTML() {
+      return "";
+    },
+    ingredientTextForRecipe(item, recipeEntry, count) {
+      return `${count} · ${item.n} · ${recipeEntry.id}`;
+    }
+  };
+  recipeSandbox.globalThis = recipeSandbox;
+  const recipeHtmlStart = indexSource.indexOf("function recipeHTML(");
+  const recipeHtmlEnd = indexSource.indexOf("function recipeText(", recipeHtmlStart);
+  assert.ok(recipeHtmlStart >= 0 && recipeHtmlEnd > recipeHtmlStart, "Missing recipeHTML boundary");
+  vm.runInNewContext(
+    extractFunction(indexSource, "normalizePeopleCount") + "\n" +
+      indexSource.slice(recipeHtmlStart, recipeHtmlEnd) +
+      "\n;globalThis.__recipeHTML=recipeHTML;",
+    recipeSandbox,
+    { filename: "index.html:meal-portion-markup" }
+  );
+  const recipeEntry = {
+    id: "contextual-meal",
+    n: "Repas contextualisé",
+    i: [{ q: 100, u: "g", n: "carottes" }],
+    p: []
+  };
+  const contextualHtml = recipeSandbox.__recipeHTML(recipeEntry, {
+    showFavorite: false,
+    people: 4,
+    dayIndex: 1,
+    mealType: "eve"
+  });
+  assert.equal(
+    (contextualHtml.match(/class="portion-adjust"[^>]*data-day="1" data-type="eve"/g) || []).length,
+    2
+  );
+  assert.match(
+    contextualHtml,
+    /class="ingredient-line"[^>]*data-day="1" data-type="eve"/
+  );
+  const genericHtml = recipeSandbox.__recipeHTML(recipeEntry, {
+    showFavorite: false,
+    people: 4
+  });
+  assert.doesNotMatch(genericHtml, /\bdata-(?:day|type)=/);
+
+  const contextualButton = { dataset: { day: "0", type: "eve", delta: "1" } };
+  const genericButton = { dataset: { delta: "-1" } };
+  const mealCalls = [];
+  const globalCalls = [];
+  const binderSandbox = {
+    MEAL_TYPES: ["mid", "eve"],
+    plan: [{ midPeople: 2, evePeople: 4 }],
+    document: {
+      querySelectorAll(selector) {
+        return selector === ".portion-adjust" ? [contextualButton, genericButton] : [];
+      }
+    },
+    mealPeopleCount(day, type) {
+      return day[`${type}People`];
+    },
+    peopleCount() {
+      return 3;
+    },
+    setMealPeopleCount(...args) {
+      mealCalls.push(args);
+    },
+    setPeopleCount(...args) {
+      globalCalls.push(args);
+    },
+    updateReactionUI() {
+      throw new Error("refreshReactions=false must skip reaction refresh");
+    }
+  };
+  binderSandbox.globalThis = binderSandbox;
+  const binderStart = indexSource.indexOf("function bindRecipeControls(");
+  const binderEnd = indexSource.indexOf("let wakeLock=null;", binderStart);
+  assert.ok(binderStart >= 0 && binderEnd > binderStart, "Missing bindRecipeControls boundary");
+  vm.runInNewContext(
+    indexSource.slice(binderStart, binderEnd) +
+      "\n;globalThis.__bindRecipeControls=bindRecipeControls;",
+    binderSandbox,
+    { filename: "index.html:meal-portion-binding" }
+  );
+  binderSandbox.__bindRecipeControls({ refreshReactions: false });
+  contextualButton.onclick();
+  genericButton.onclick();
+  assert.deepEqual(mealCalls, [[0, "eve", 5]]);
+  assert.deepEqual(globalCalls, [[2]]);
+  return "day/type markup + contextual/global button routing";
+});
+
+await check("Program shopping scales every source with its meal people count", () => {
+  const ids = ["samedi-midi", "samedi-soir", "dimanche-midi", "dimanche-soir"];
+  const recipes = ids.map(id => ({
+    id,
+    n: id,
+    servings: 2,
+    i: [ingredient(100, "g", "carottes")]
+  }));
+  const plan = [
+    { midPeople: 2, evePeople: 4 },
+    { midPeople: 3, evePeople: 2 }
+  ];
+  const entries = recipes.map((recipeEntry, index) => ({
+    dayIndex: Math.floor(index / 2),
+    slot: index % 2 === 0 ? "mid" : "eve",
+    recipe: recipeEntry
+  }));
+  let capturedContext = null;
+  let selectionRecords = 0;
+  const sandbox = {
+    SHOPPING_ENGINE: api,
+    MEAL_TYPES: ["mid", "eve"],
+    plan,
+    $() {
+      return { value: "8" };
+    },
+    recipeRole(recipe) {
+      return recipe && recipe.role ? recipe.role : "dish";
+    },
+    recordPlanSelections() {
+      selectionRecords += 1;
+    },
+    activeAllRecipeEntries() {
+      return entries;
+    },
+    openShoppingReview(context) {
+      capturedContext = context;
+    }
+  };
+  sandbox.globalThis = sandbox;
+  vm.runInNewContext(
+    [
+      "normalizePeopleCount",
+      "peopleCount",
+      "peopleKey",
+      "mealPeopleCount",
+      "recipeHasFixedYield",
+      "shoppingBuildDraft",
+      "openShoppingForProgram"
+    ].map(name => extractFunction(indexSource, name)).join("\n") +
+      "\n;globalThis.__mealShopping={shoppingBuildDraft,openShoppingForProgram};",
+    sandbox,
+    { filename: "index.html:meal-shopping-quantities" }
+  );
+
+  sandbox.__mealShopping.openShoppingForProgram();
+  assert.equal(capturedContext.kind, "program");
+  assert.deepEqual(
+    Array.from(capturedContext.sources, sourceEntry => sourceEntry.peopleCount),
+    [2, 4, 3, 2]
+  );
+  const before = sandbox.__mealShopping.shoppingBuildDraft(capturedContext);
+  assert.equal(before.length, 1);
+  approx(before[0].exactQuantity, 550);
+  assert.equal(before[0].sourceCount, 4);
+  assert.deepEqual(before[0].contributions.map(entry => entry.quantity), [100, 200, 150, 100]);
+
+  plan[0].evePeople = 5;
+  sandbox.__mealShopping.openShoppingForProgram();
+  assert.deepEqual(
+    Array.from(capturedContext.sources, sourceEntry => sourceEntry.peopleCount),
+    [2, 5, 3, 2]
+  );
+  const after = sandbox.__mealShopping.shoppingBuildDraft(capturedContext);
+  assert.equal(after.length, 1);
+  approx(after[0].exactQuantity, 600);
+  assert.equal(after[0].sourceCount, 4);
+  assert.deepEqual(after[0].contributions.map(entry => entry.quantity), [100, 250, 150, 100]);
+  assert.equal(selectionRecords, 2);
+
+  const fixed = sandbox.__mealShopping.shoppingBuildDraft({
+    kind: "program",
+    sources: [{
+      recipe: {
+        id: "fixed-yield",
+        n: "Rendement fixe",
+        servings: 2,
+        role: "terrine",
+        i: [ingredient(100, "g", "carottes")]
+      },
+      availableItems: [],
+      peopleCount: 8
+    }]
+  });
+  assert.equal(fixed.length, 1);
+  approx(fixed[0].exactQuantity, 100);
+  assert.deepEqual(fixed[0].contributions.map(entry => entry.quantity), [100]);
+  return "550 g -> 600 g; fixed yield remains 100 g";
 });
 
 await check("Engine purity and absence of external effects", () => {

@@ -145,6 +145,7 @@ const context = {
   },
   $: (id) => elements[id],
   isManualChoice: () => false,
+  mealPeopleCount: (day, type) => day?.[type + "People"] ?? 2,
   mealFormat: (day, type) => day?.[type + "Format"] || "dish",
   mealStatus: (day, type) => day?.[type + "Status"] || "planned",
   safeStoredJSON(key, fallback) {
