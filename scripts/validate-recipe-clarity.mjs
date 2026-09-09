@@ -76,8 +76,13 @@ for(const entry of fixture.recipes){
   assert.equal(ingredientTerms[entry.id].length,recipe.i.length);
   const preparation=recipe.p.join(' ');
   for(const term of ingredientTerms[entry.id])assert.match(preparation,new RegExp(term,'i'),entry.id+' ingredient '+term);
-  // Ingredient quantities remain in the scaled list, not frozen in prose.
+  // Quantities in prose reference the scaled ingredient list, never fixed numbers.
   assert.doesNotMatch(preparation,/\d+(?:[.,]\d+)?\s*(?:kg|g|cl|ml|litres?|cuillères?)\b/i,entry.id+' fixed ingredient quantity');
+  assert.doesNotMatch(preparation,/(?:un dixième|le quart|la moitié) (?:du|de la|des)/i,entry.id+' impractical fraction');
+  for(const token of preparation.matchAll(/\{\{qty:(\d+)(?::(\d+(?:\.\d+)?))?\}\}/g)){
+    assert.ok(recipe.i[Number(token[1])]?.q!=null,entry.id+' valid quantity reference');
+    assert.ok(token[2]===undefined||(Number(token[2])>0&&Number(token[2])<=1));
+  }
   recipe.p.forEach((step,index)=>{
     const actual=Array.from(context.stepTimerDurations(step));
     assert.deepEqual(actual,entry.timers[index],`${entry.id} step ${index+1}`);
@@ -97,9 +102,55 @@ for(const entry of fixture.recipes){
     const renderedTimers=[...rendered.matchAll(/data-step-index="(\d+)" data-timer-minutes="(\d+)"/g)]
       .map(([,index,minutes])=>[Number(index),Number(minutes)]);
     assert.deepEqual(renderedTimers,entry.timers.flatMap((durations,index)=>durations.map(minutes=>[index,minutes])));
-    for(const step of recipe.p)assert.ok(rendered.includes(step));
+    assert.doesNotMatch(rendered,/\{\{|NaN|undefined/);
+    for(const step of recipe.p)assert.ok(rendered.includes(context.recipeStepText(step,recipe,count)));
   }
 }
+
+// Concrete portions at the point of use, independently of the global default (8).
+const byId=id=>recipes.find(r=>r.id===id);
+for(const [count,cheese,broth,milk] of [[1,20,25,2.5],[2,40,50,5],[3,60,75,7.5],[4,80,100,10],[5,100,125,12.5],[8,160,200,20]]){
+  assert.match(context.recipeStepText(byId('e11').p[2],byId('e11'),count),new RegExp(`${cheese} g de fromage.*${cheese} g de fromage`));
+  assert.ok(context.recipeStepText(byId('a048').p[1],byId('a048'),count).includes(`${broth} cl de bouillon`));
+  assert.ok(context.recipeStepText(byId('a048').p[3],byId('a048'),count).includes(`${context.formatQty(milk)} cl de lait`));
+}
+assert.equal(context.recipeStepText('{{qty:0:0.5}}',{servings:4,i:[{q:200,u:'g',n:'farine'}]},3),'75 g');
+assert.equal(context.recipeStepText('{{qty:0:0.5}}',{role:'terrine',i:[{q:200,u:'g',n:'farine'}]},8),'100 g');
+assert.equal(context.recipeStepText('{{qty:0}}',{i:[{q:null,n:'sel'}]},3),'la quantité indiquée dans les ingrédients');
+assert.equal(context.recipeStepText('{{qty:99}}',byId('e11'),3),'la quantité indiquée dans les ingrédients');
+for(const recipe of recipes.filter(r=>!selected.has(r.id))){
+  for(const step of recipe.p)assert.equal(context.recipeStepText(step,recipe,5),step,'Untouched recipes retain their exact step text');
+}
+
+// Exercise the actual in-place refresh + meal setter with four independent slots.
+const lines=[['0','mid'],['0','eve'],['1','mid'],['1','eve']].map(([day,type])=>({
+  dataset:{recipeId:'e11',stepIndex:'2',day,type},textContent:''
+}));
+const globalLine={dataset:{recipeId:'e11',stepIndex:'2'},textContent:''};
+context.plan=[{midPeople:2,evePeople:4},{midPeople:3,evePeople:2}];
+context.peopleKey=type=>`${type}People`;
+context.saveState=()=>{};
+context.document={getElementById:()=>({value:'8'}),querySelectorAll:selector=>selector==='.recipe-step-quantities'?[...lines,globalLine]:[]};
+vm.runInNewContext(block('function refreshPortionDisplays(','function bindRecipeControls('),context);
+context.refreshPortionDisplays();
+const original=lines.map(line=>line.textContent);
+assert.deepEqual(original.map(text=>Number(text.match(/Répartir dessus (\d+) g/)[1])),[40,80,60,40]);
+context.setMealPeopleCount(0,'eve',5,false);
+assert.deepEqual(lines.map(line=>Number(line.textContent.match(/Répartir dessus (\d+) g/)[1])),[40,100,60,40]);
+for(const index of [0,2,3])assert.equal(lines[index].textContent,original[index]);
+assert.match(globalLine.textContent,/160 g de fromage/);
+assert.deepEqual(context.plan,[{midPeople:2,evePeople:5},{midPeople:3,evePeople:2}]);
+
+// Preserve original techniques and expose source gaps rather than inventing them.
+for(const id of ['a048','e78','e92','n88','a038'])assert.match(byId(id).p[0],/^À vérifier/);
+assert.match(byId('a048').p[1],/^Faire revenir l’oignon avec le curry/);
+assert.doesNotMatch(byId('a048').p.join(' '),/Verser un dixième|cuire 4 minutes/);
+assert.match(byId('e78').p[2],/^Poêler les dés de courgette/);
+assert.match(byId('e92').p[2],/^Faire revenir les dés de poivron/);
+assert.match(byId('n88').p[5],/^Une fois le saumon cuit et émietté, ajouter/);
+assert.match(byId('e63').p[1],/sans couvercle au début pour les faire dorer/);
+assert.match(byId('a088').p[3],/Laisser refroidir le quinoa avant/);
+assert.match(byId('d036').p[3],/laisser refroidir avant de servir/);
 
 const timerCases=[
   ['Cuire 2 minutes de moins que le temps indiqué sur le paquet.',[]],
@@ -117,3 +168,5 @@ console.log(`✓ Editorial batch: 20 reviewed recipes, ${new Set(fixture.recipes
 console.log(`✓ ${quantityChecks} ingredient/render checks at 1/2/3/4/5/8 people; original fixed-yield exception preserved`);
 console.log('✓ 1553 ids/names/ingredient lists/reference portions and 1533 other recipes unchanged');
 console.log('✓ Relative package times excluded; ranges, per-face and additional active durations preserved');
+console.log('✓ Concrete step quantities refresh per meal (2/4/3/2 → 2/5/3/2), fixed yields and other recipes preserved');
+console.log('✓ Original techniques restored; 5 source gaps explicitly flagged in the application');
