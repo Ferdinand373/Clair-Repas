@@ -1,0 +1,246 @@
+{
+  "baselineCommit": "e0651372daaedcd762c5e6fdfa61ae25a7d3c260",
+  "batch": "05",
+  "recipes": [
+    {
+      "id": "n100",
+      "status": "blocked",
+      "sourceHash": "9badbd97dbab966e665a7459723425d29aecd533a7f1d381445b567706be4b5c",
+      "reviewedHash": "9badbd97dbab966e665a7459723425d29aecd533a7f1d381445b567706be4b5c",
+      "protectedRecipeSha256": "b496239b05d5b2c0f6915d4fd3c3119d38e62c641b69cac7d266474ef234a30b",
+      "note": "La matière grasse pour dorer les médaillons, l’oignon et le poivron est absente ; la crème ajoutée ensuite ne remplace pas la saisie."
+    },
+    {
+      "id": "gn-poulet-citron-herbes",
+      "status": "blocked",
+      "sourceHash": "93fd9ab3588d8f57652c7d49fc4a2bc1a4b7ec7e7fb460fff758d1e473e0d59d",
+      "reviewedHash": "93fd9ab3588d8f57652c7d49fc4a2bc1a4b7ec7e7fb460fff758d1e473e0d59d",
+      "protectedRecipeSha256": "417446eb2aa9c079fbaf757b26646c268df6a3473ab3dd12e476708ddbe62d9e",
+      "note": "L’infusion citron/estragon précède la grillade dans le texte. Le rôle du citron frais et du citron confit, l’assaisonnement et la cuisson de la courgette sont à préciser."
+    },
+    {
+      "id": "gn-dinde-citron-herbes",
+      "status": "blocked",
+      "sourceHash": "fb4961bd01d953caa81bd78593b9374a8181efc3c00e4581153ec14805e10e9f",
+      "reviewedHash": "fb4961bd01d953caa81bd78593b9374a8181efc3c00e4581153ec14805e10e9f",
+      "protectedRecipeSha256": "0b78e3a4f3415efacad94a95cf4308adac6e0fba072d621212ba958ad97724d4",
+      "note": "La sauce moutarde est annoncée avant la grillade. Le jus à recueillir sur la plancha, l’assaisonnement et la conduite de la courgette ne sont pas définis."
+    },
+    {
+      "id": "gn-filet-mignon-citron-herbes",
+      "status": "blocked",
+      "sourceHash": "2546fbfc9a6cf3d9dd475815b7299f38e51d367ce5e6b139520f582803c12d49",
+      "reviewedHash": "2546fbfc9a6cf3d9dd475815b7299f38e51d367ce5e6b139520f582803c12d49",
+      "protectedRecipeSha256": "cd96a783c7903cb0fe56002924e5ec6f1cda329e71c1cdf7f1dbdea2a3290274",
+      "note": "La crème au poivre est réduite deux fois dans le texte, avant la grillade puis pendant trois minutes. Récipient de sauce, répartition et cuisson de la courgette manquent."
+    },
+    {
+      "id": "gn-saumon-citron-herbes",
+      "status": "blocked",
+      "sourceHash": "e40cc01d7d3ea84b16674794c04555e42814b92910bef6ff8131467b023fbeaa",
+      "reviewedHash": "e40cc01d7d3ea84b16674794c04555e42814b92910bef6ff8131467b023fbeaa",
+      "protectedRecipeSha256": "8f4b30bf049806e8549bca2663c51f8130b784c1dd8e794461e587549712734e",
+      "note": "Le citron intervient dans les sucs puis avec la courgette sans répartition. Le persil apparaît dans deux ingrédients ; le jus et la cuisson de la courgette sur plancha sont à définir."
+    },
+    {
+      "id": "gn-poisson-blanc-citron-herbes",
+      "status": "blocked",
+      "sourceHash": "909011ce578babc3e216295dbb48b4f6911cba96d12a6abeb79f9281bbbfa209",
+      "reviewedHash": "909011ce578babc3e216295dbb48b4f6911cba96d12a6abeb79f9281bbbfa209",
+      "protectedRecipeSha256": "d990b41cf731f2e357d772f0f4ff7da57f3055e54b1dff4ff69732438bbb66f4",
+      "note": "La plancha est dite huilée mais l’huile manque dans la liste. Citron et pesto sont employés à plusieurs moments sans répartition, et l’ordre de la finition est ambigu."
+    },
+    {
+      "id": "gn-crevettes-citron-herbes",
+      "status": "blocked",
+      "sourceHash": "2b79ae7d8b4a99712cc8254e1b8c3b4194ccd47c12bfab7759b8d84e5bf965d3",
+      "reviewedHash": "2b79ae7d8b4a99712cc8254e1b8c3b4194ccd47c12bfab7759b8d84e5bf965d3",
+      "protectedRecipeSha256": "2d5b328a08dc9aab2dfd718b56a66d7657d881999a727701a720c040c4a13c5d",
+      "note": "La cuisson est dite douce puis en saisie, sans conduite de plancha définie. Le citron est répété pour crevettes, courgette et service sans répartition ; assaisonnement non listé."
+    },
+    {
+      "id": "gn-poulet-paprika-grenailles",
+      "status": "blocked",
+      "sourceHash": "faa093338ffa8c9891c6a16d6d2c5d5ac9c9a66805767a33c74b4465c0a8d323",
+      "reviewedHash": "faa093338ffa8c9891c6a16d6d2c5d5ac9c9a66805767a33c74b4465c0a8d323",
+      "protectedRecipeSha256": "8013c367f2039fe868dca0f1202680ef1b422582362918a2aca6fd30adfddb9c",
+      "note": "La température de départ des grenailles a disparu du profil généré. Torréfaction du paprika à feu moyen et panier Air Fryer se mélangent ; paprika fumé et amandes sont ajoutés plusieurs fois."
+    },
+    {
+      "id": "gn-dinde-paprika-grenailles",
+      "status": "blocked",
+      "sourceHash": "1384231fce6173f0114bb33c09132f4c7e7e52801f6a58ffc48565db7c78d337",
+      "reviewedHash": "1384231fce6173f0114bb33c09132f4c7e7e52801f6a58ffc48565db7c78d337",
+      "protectedRecipeSha256": "0aa9dfd6553d8cb7a5db0fcb381c4dba39a22b1b87b1d6da399873ddaf58ef94",
+      "note": "La température des grenailles manque. La variante demande une compotée et du jus de tomate avec seulement des tomates séchées ; olives ajoutées deux fois et méthode incompatible non résolue."
+    },
+    {
+      "id": "gn-cotes-porc-paprika-grenailles",
+      "status": "blocked",
+      "sourceHash": "77a3a5e6d067a1608ce9e92de4acf92ffd6ef3a1b1ff94e558b42312975891d6",
+      "reviewedHash": "77a3a5e6d067a1608ce9e92de4acf92ffd6ef3a1b1ff94e558b42312975891d6",
+      "protectedRecipeSha256": "e291af4ff9ef0978c0dad995bd9f8a675b79ce914c062d664143693bc6216461",
+      "note": "Température initiale des grenailles absente ; saisie et arrosage au jus ne sont pas organisés dans l’Air Fryer. L’ail cru de la liste devient rôti sans étape de cuisson."
+    },
+    {
+      "id": "gn-saumon-paprika-grenailles",
+      "status": "blocked",
+      "sourceHash": "17bb4ab95e1cb7bcc41ff2b9db0ee4b17ea4620fa0673e7fa14c4d23f96bb302",
+      "reviewedHash": "17bb4ab95e1cb7bcc41ff2b9db0ee4b17ea4620fa0673e7fa14c4d23f96bb302",
+      "protectedRecipeSha256": "c84fc121944630b266a416b76d9ba6851c371d3e82ded6f7b19369186fefd75f",
+      "note": "Température des grenailles absente ; mijotage de tomate puis panier Air Fryer non organisés. Le basilic demandé dans le nom et les étapes manque dans la liste."
+    },
+    {
+      "id": "gn-poisson-blanc-paprika-grenailles",
+      "status": "blocked",
+      "sourceHash": "f10a035f256290cb247cbca9a6d4aeb58610f36a9d644d2cd348aa5260e7dec6",
+      "reviewedHash": "f10a035f256290cb247cbca9a6d4aeb58610f36a9d644d2cd348aa5260e7dec6",
+      "protectedRecipeSha256": "adafceb2a84ef5051fa0877c87e5461ae312ed75dab53f5aa7965a0000e501a2",
+      "note": "Le même poivron et le paprika sont utilisés au départ puis ajoutés grillés sans répartition. Température Air Fryer absente et articulation des deux minutes couvertes et trois minutes finales inconnue."
+    },
+    {
+      "id": "gn-saucisses-paprika-grenailles",
+      "status": "blocked",
+      "sourceHash": "0802c57f8068e5b66b243e099fe6b43349e128b53f7dace2fb99622b499afc8e",
+      "reviewedHash": "0802c57f8068e5b66b243e099fe6b43349e128b53f7dace2fb99622b499afc8e",
+      "protectedRecipeSha256": "eda3c5b345e0883142adf6aa2bf8b62377231e56a10a384a77f425ccd5d8aa80",
+      "note": "La température des grenailles manque. Échalote et balsamique sont cuits/déglacés deux fois sans répartition ni récipient compatible ; type des saucisses inconnu."
+    },
+    {
+      "id": "gn-boulettes-paprika-grenailles",
+      "status": "blocked",
+      "sourceHash": "0de8d58fea68db1ebcfc60a50c417a44bbbcd0dd9b7d908cbae4b8bb17de7b9c",
+      "reviewedHash": "0de8d58fea68db1ebcfc60a50c417a44bbbcd0dd9b7d908cbae4b8bb17de7b9c",
+      "protectedRecipeSha256": "70b501332053770ffd631edab47d8b7fdbc29172a9bb93cc02caf4650f618429",
+      "note": "Température Air Fryer absente. Chimichurri employé avant d’être préparé, vinaigre non listé et répartition marinade/service manquante ; ne pas servir une marinade ayant touché de la viande crue."
+    },
+    {
+      "id": "gn-falafels-paprika-grenailles",
+      "status": "blocked",
+      "sourceHash": "96233d4a31d6b0cae220e32d481003e320e46257618baf45f77d8cd27bad6dee",
+      "reviewedHash": "96233d4a31d6b0cae220e32d481003e320e46257618baf45f77d8cd27bad6dee",
+      "protectedRecipeSha256": "9e2e636d7b3f07780892d6d7ef5e42e7428bec8012f22ba8fe300ecf1c29ed0a",
+      "note": "La température des grenailles n’est pas donnée ; le profil individuel des falafels ne renseigne pas cette première cuisson. Type des falafels et dilution de la sauce tahini/citron restent à préciser."
+    },
+    {
+      "id": "gn-pois-chiches-paprika-grenailles",
+      "status": "blocked",
+      "sourceHash": "92559a9641d2533a2c5762d6ff40dabe869e706d10a591ca7bd4567ee1436579",
+      "reviewedHash": "92559a9641d2533a2c5762d6ff40dabe869e706d10a591ca7bd4567ee1436579",
+      "protectedRecipeSha256": "229de56f145ddb48611524ec9cec74b703d849b8c61f8c846216901c8b17ee7b",
+      "note": "La température initiale des grenailles manque et le rinçage/séchage des pois chiches a disparu de la préparation générée. Le profil de pois chiches à 190 °C ne suffit pas à établir toute la cuisson mixte."
+    },
+    {
+      "id": "gn-poulet-moutarde-champignons",
+      "status": "blocked",
+      "sourceHash": "b7fdc341c4c5e90280762764d026678f635e5c8492b777e784a6abd8ba1a08f8",
+      "reviewedHash": "b7fdc341c4c5e90280762764d026678f635e5c8492b777e784a6abd8ba1a08f8",
+      "protectedRecipeSha256": "d6b052dbd99334b2803999428ea0df54228c3c0757382919646d9db5b23d1de9",
+      "note": "Matière grasse pour échalote, champignons et poulet absente. Infusion citron/estragon placée avant la saisie, puis finition avant ajout de crème ; ordre à confirmer."
+    },
+    {
+      "id": "gn-dinde-moutarde-champignons",
+      "status": "blocked",
+      "sourceHash": "0ad4c45cdfba40f4c695e11c294582bbcfcd058db37ff5b7d502eac30018babe",
+      "reviewedHash": "0ad4c45cdfba40f4c695e11c294582bbcfcd058db37ff5b7d502eac30018babe",
+      "protectedRecipeSha256": "a1aab06873a04eab4aaef0e40942a3522ab8ba96121f7d0a706f67a778b15d95",
+      "note": "Matière grasse de l’échalote, des champignons et de la dinde absente. Deux moutardes distinctes sont listées mais les étapes ne les distinguent pas ; sauce avant cuisson de la viande."
+    },
+    {
+      "id": "gn-filet-mignon-moutarde-champignons",
+      "status": "blocked",
+      "sourceHash": "e9e3e1ca102f1454aaff2184633a0beb4c621ad6de0871ec8953bd7fdd49f588",
+      "reviewedHash": "e9e3e1ca102f1454aaff2184633a0beb4c621ad6de0871ec8953bd7fdd49f588",
+      "protectedRecipeSha256": "83de1d218ba02687eefce9fa9b7404e75a94c6bf23d2cdb177e022d9e3dc3f73",
+      "note": "Matière grasse des cuissons initiales absente. La seule quantité de crème est réduite puis ajoutée de nouveau avec la moutarde ; aucune répartition n’est fournie."
+    },
+    {
+      "id": "gn-cotes-porc-moutarde-champignons",
+      "status": "blocked",
+      "sourceHash": "c753aa2c4a3464a1ac763070518767e6d3dcede60cce8fd85833f1b9331ec2f6",
+      "reviewedHash": "c753aa2c4a3464a1ac763070518767e6d3dcede60cce8fd85833f1b9331ec2f6",
+      "protectedRecipeSha256": "40d0e50bdd102a5b0254df95dd5bd99ebc99514a57b657cc1cf38eb952f8713d",
+      "note": "Matière grasse de l’échalote, des champignons et du porc absente. L’ail listé cru doit être écrasé rôti, sans instruction de cuisson ; les herbes sont ajoutées plusieurs fois."
+    },
+    {
+      "id": "gn-saumon-moutarde-champignons",
+      "status": "blocked",
+      "sourceHash": "d9b6fe24f020ace637650f79ee79346e9dbe6a849834aec2a9fd8ef2f51b9817",
+      "reviewedHash": "d9b6fe24f020ace637650f79ee79346e9dbe6a849834aec2a9fd8ef2f51b9817",
+      "protectedRecipeSha256": "0663bc708077f8ca6ffc84c4da993424b31d905500337bd003c5351d360669fa",
+      "note": "Matière grasse des légumes et du saumon absente. Le pesto citronné est annoncé hors du feu puis suivi d’un réchauffage à la crème ; citron pour sauce et quartier de service non réparti."
+    },
+    {
+      "id": "gn-poisson-blanc-moutarde-champignons",
+      "status": "blocked",
+      "sourceHash": "e1b421fbe8d4c907b76151cec9036c7023ce7e6707f93c661f89f178ed60fec2",
+      "reviewedHash": "e1b421fbe8d4c907b76151cec9036c7023ce7e6707f93c661f89f178ed60fec2",
+      "protectedRecipeSha256": "2f058d2b2d9ef4445f51e4c27d232c0d96487396283bd4ee17179630f0294a50",
+      "note": "Matière grasse des cuissons initiales absente. Citron et aneth sont ajoutés avant la crème puis de nouveau au service sans répartition ; geste de finition à confirmer."
+    },
+    {
+      "id": "gn-boulettes-moutarde-champignons",
+      "status": "blocked",
+      "sourceHash": "a33251a80d49a936fce15fe2b8566772625cb38295ba41ad6734a9f036a50d0e",
+      "reviewedHash": "a33251a80d49a936fce15fe2b8566772625cb38295ba41ad6734a9f036a50d0e",
+      "protectedRecipeSha256": "a604c4abbea488862e88e1466225c8ab641ff057dd8bef1878d1d622a7cdaf43",
+      "note": "Matière grasse initiale absente. Le cidre est employé pour deux déglaçages, et la moutarde ajoutée deux fois sans répartition ; état cru/cuit des boulettes inconnu."
+    },
+    {
+      "id": "gn-poulet-tomate-basilic",
+      "status": "blocked",
+      "sourceHash": "362f2d2fb3464cf63d74b6a6168bee543121d77aa0730aa5d66aa519840bc345",
+      "reviewedHash": "362f2d2fb3464cf63d74b6a6168bee543121d77aa0730aa5d66aa519840bc345",
+      "protectedRecipeSha256": "a1c85c025ca24145260cd11cf627f3f9e798688ea2186f4a4814b94d10e2e37e",
+      "note": "Courgette, ail, tomate et poulet à saisir sans matière grasse. Olives à compoter puis à ajouter dans les trois dernières minutes : chronologie contradictoire."
+    },
+    {
+      "id": "gn-dinde-tomate-basilic",
+      "status": "blocked",
+      "sourceHash": "0155f94b263781cc9aeee53eee9df15a444122b48e22669cfd795e452339e1ec",
+      "reviewedHash": "0155f94b263781cc9aeee53eee9df15a444122b48e22669cfd795e452339e1ec",
+      "protectedRecipeSha256": "da796e0e238696d6ae54ef50db364e317032e95e1684317c041565b427cc002c",
+      "note": "Matière grasse des légumes et de la dinde absente. Pesto et basilic sont ajoutés avant la cuisson, après celle-ci puis encore au service, sans répartition claire."
+    },
+    {
+      "id": "gn-filet-mignon-tomate-basilic",
+      "status": "blocked",
+      "sourceHash": "0538af4af1bc852af89af20919319547ba6220c47bf8b2c8c11c3af9b1db54e6",
+      "reviewedHash": "0538af4af1bc852af89af20919319547ba6220c47bf8b2c8c11c3af9b1db54e6",
+      "protectedRecipeSha256": "9b6fe301a1fdec63f6e5d8d29cea680d6df336064a696b19b17ec9f70c85bd82",
+      "note": "Matière grasse de la saisie absente. L’unique gousse d’ail est revenue avec les légumes puis demandée rôtie dans le jus, sans répartition ni étape de rôtissage."
+    },
+    {
+      "id": "gn-boeuf-tomate-basilic",
+      "status": "blocked",
+      "sourceHash": "666a6ebd324740c2e8364a0ba8428899ee48a6f6885ac48c8cbd2bab8ec1fd55",
+      "reviewedHash": "666a6ebd324740c2e8364a0ba8428899ee48a6f6885ac48c8cbd2bab8ec1fd55",
+      "protectedRecipeSha256": "3276411715bda60be8cc23222f163a5fae0417c4d9d42191810cbd31878f966b",
+      "note": "Matière grasse de la courgette, de l’ail et du bœuf absente. Échalote et balsamique sont cuits/déglacés deux fois sans répartition ni organisation des poêles."
+    },
+    {
+      "id": "gn-saumon-tomate-basilic",
+      "status": "blocked",
+      "sourceHash": "48604037c8c88ebfb440c488efe0fa2d3e6dfb778198577addac5e247c413843",
+      "reviewedHash": "48604037c8c88ebfb440c488efe0fa2d3e6dfb778198577addac5e247c413843",
+      "protectedRecipeSha256": "d9c2b0c4085ae2bf587096c9b66355fcaaa5318abe792db727176affb70c8f9c",
+      "note": "Matière grasse des légumes et du poisson absente. Tomates cerises et tomates entières sont listées séparément mais les étapes ne les distinguent pas ; olives mijotées avant leur ajout."
+    },
+    {
+      "id": "gn-poisson-blanc-tomate-basilic",
+      "status": "blocked",
+      "sourceHash": "329c9ffc51721761bad378cf7105aa58a70811be5ba03e8fca2420f3e1bfa29b",
+      "reviewedHash": "329c9ffc51721761bad378cf7105aa58a70811be5ba03e8fca2420f3e1bfa29b",
+      "protectedRecipeSha256": "2c83e20cd5ed60bb952ffe6f9919e113409a289d39985fc8d7d9c2f8818ec202",
+      "note": "Matière grasse de la courgette, de l’ail et du poisson absente. Le même geste est demandé à feu vif puis moyen ; citron partagé entre pesto et quartier de service sans répartition."
+    },
+    {
+      "id": "gn-crevettes-tomate-basilic",
+      "status": "blocked",
+      "sourceHash": "e324fc1ed36a0a6618dec70ffc907bbd37002db3357888df45876fd102f9776f",
+      "reviewedHash": "e324fc1ed36a0a6618dec70ffc907bbd37002db3357888df45876fd102f9776f",
+      "protectedRecipeSha256": "1ed51845545b6efaf9674bf84872e25c3c02f6f956e70fff636b4abe2f0441f9",
+      "note": "La matière grasse des légumes et des crevettes manque. Le trait de citron pour détendre les sucs n’est pas dans la liste, et persil/câpres sont ajoutés avant puis au service sans organisation."
+    }
+  ]
+}

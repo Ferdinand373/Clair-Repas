@@ -78,7 +78,17 @@ P02 publié : `c87dc373c29cae1d6edb9c2ac6191004c69ba52a`, tests `34390827874` et
 
 **Cumul : 110 identifiants examinés, 59 corrigés, 51 bloqués, 1 443 à examiner.** Prochaine fiche : `n100`. Catalogue toujours à 1 553 recettes. Zéro erreur éditoriale, 9 595 avertissements ; 68 minuteurs et 1 668 contrôles de quantité dans les lots 02/03/04, plus les contrôles du premier lot. Formats simulés téléphone, tablette et ordinateur inspectés ; aucun test physique ou culinaire.
 
-## Procédure de reprise à appliquer après le lot 04
+## Publication du lot 04
+
+`e0651372daaedcd762c5e6fdfa61ae25a7d3c260` publié sur `main`. Tests `34392022040` et Pages `34392021855` réussis ; déploiement `6357106346` réussi. HTTPS 200 et fichiers identiques au commit : index SHA-256 `770af0f32b6696ab3ec3a54fa2e3ca5d7c531814f96a03ade90c13c191b8dde9`, service worker `4ace299ecf769106f9f88467557975e92d844da0995805de3559f98c030452cd`. Le navigateur charge bien `sha256:8863c98f29bb1c3d4d28e0dccf0a7ac205bb3ebf0d0245c476e4b224099f946a`. `n82` vérifiée en production avec huile dans la liste, cinq titres et boutons 18/4/4 minutes.
+
+## Lot 05 — réserves des variantes historiques
+
+[Journal par identifiant](recipe-editorial-batch-05.md). 30 nouvelles fiches examinées : 0 corrigée, 0 conforme, 30 bloquées. Les objets culinaires des 1 553 recettes sont tous identiques à la base du lot ; seules les réserves et les métadonnées de lecture des fiches sélectionnées changent. Les températures perdues par génération et les gestes contradictoires ne sont pas complétés par supposition.
+
+**Cumul : 140 identifiants examinés, 59 corrigés, 81 bloqués, 1 413 à examiner.** Prochaine fiche dans l'ordre : `gn-boulettes-tomate-basilic`. Le nombre de fiches corrigées n'augmente pas pour ce lot. Contrôles existants et rendus réussis ; zéro erreur éditoriale, 9 475 avertissements. Réserves et défilement inspectés dans le navigateur aux formats simulés téléphone/tablette/ordinateur, pas sur appareil physique.
+
+## Procédure de reprise à appliquer après le lot 05
 
 1. Lire `CONTRIBUTING.md` et le standard.
 2. Vérifier `main`, la branche et les travaux locaux sans les écraser.
