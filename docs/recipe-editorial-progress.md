@@ -258,6 +258,16 @@ P02 publié : `c87dc373c29cae1d6edb9c2ac6191004c69ba52a`, tests `34390827874` et
 
 **Cumul : 661 identifiants examinés, 240 corrigés, 421 bloqués, 892 à examiner.** Prochaine fiche globale `v31n-tacos-tofu`, prochaine entrée `v75-chef-ducasse-03`. Zéro erreur éditoriale, 7 404 avertissements, 277 minuteurs et 7 734 contrôles d’ingrédients dans les corrections des lots 02–21. Les 24 commandes du workflow passent ; contrôles visuels et défilement aux trois formats simulés réussis. Publication à consigner après contrôle en ligne.
 
+## Publication du lot 21
+
+`6de7ac063105ad44bae318e7c1ad9ea88a23f2df` publié sur `main`. Tests `34409982815`, Pages `34409982349` et déploiement `6360162735` réussis. HTTPS 200 et fichiers identiques au commit : index `de817fb08ec6585c80bd438ad62c4d456436249149762061e3f7c023a11ac20e`, service worker `1abc43371113c3787b7be53e35bcefc7bd4534f83bd3f2a1d27ae7c782762e23`. Révision chargée après actualisation normale `sha256:be9468d841ad62e1bd59c80fd4bdddbf446388aaf6bd748038f05f97aad4ef18`. Gratin vérifié en production à deux personnes : 40 g de beurre et farine, 45 cl de lait, 90 g de fromage, trois boutons 10/5/18 et vapeur conservée. Aucune donnée effacée.
+
+## Lot 22 — trente plats, pochages et sautés
+
+[Journal, sources et décisions](recipe-editorial-batch-22.md). 1 corrigée, 29 réservées, aucune conforme sans modification. L’oyakodon conserve le pochage au bouillon ; quantités, riz et service clarifiés, contrôles sanitaires sourcés. Les partages de marinade, rendements figés et graisses ou volumes indéfinis sont signalés sans modifier les autres objets culinaires.
+
+**Cumul : 691 identifiants examinés, 241 corrigés, 450 bloqués, 862 à examiner.** Prochaine fiche globale `v31n-papillote-fenouil-tofu`, prochaine entrée `v75-chef-ducasse-03`. Zéro erreur éditoriale, 7 281 avertissements, 280 minuteurs et 7 782 contrôles d’ingrédients dans les corrections des lots 02–22. Les 24 commandes du workflow et les contrôles visuels aux trois formats simulés passent. Publication à consigner après contrôle HTTPS.
+
 ## Limites des vérifications
 
 Les tests de structure, quantité, minuteurs, stockage simulé et rendu ne sont pas des essais culinaires. Les formats iPhone/PWA sont simulés, sauf mention explicite d’un appareil physique. Le total de fiches à examiner ne doit jamais être remplacé par le nombre de fiches auxquelles le style commun a été appliqué.

@@ -7,7 +7,7 @@ import {recipeSource} from './recipe-source.mjs';
 import {recipeHash} from './validate-recipe-editorial.mjs';
 const root=resolve(dirname(fileURLToPath(import.meta.url)),'..');
 const {code,recipes,editorial}=recipeSource(readFileSync(resolve(root,'index.html'),'utf8'));
-const batchNumbers=['02','03','04','05','06','07','08','09','10','11','12','13','14','15','16','17','18','19','20','21'];
+const batchNumbers=['02','03','04','05','06','07','08','09','10','11','12','13','14','15','16','17','18','19','20','21','22'];
 const fixture={recipes:batchNumbers.flatMap(number=>JSON.parse(readFileSync(resolve(root,`scripts/recipe-editorial-batch-${number}.fixture.json`),'utf8')).recipes)};
 const slice=(a,b)=>code.slice(code.indexOf(a),code.indexOf(b,code.indexOf(a)+a.length));
 const context={window:{},$:()=>({value:'8'}),MEAL_TYPES:['mid','eve'],recipeRole:r=>r.role||r.course||'dish',isFavorite:()=>false,recipeFeedbackHTML:()=>'',recipePersonalNoteHTML:()=>''};
@@ -103,7 +103,8 @@ const timers={
   'bourgeois-36':[[],[],[1],[],[],[12]],
   'v31n-donburi-dinde':[[],[],[40],[8],[5]],
   'v31n-orzo-poisson-blanc':[[],[5],[30],[5]],
-  'v31n-orzo-tofu':[[],[10],[5],[],[18]]
+  'v31n-orzo-tofu':[[],[10],[5],[],[18]],
+  'v31n-brochettes-tabboule-poisson-blanc':[[],[5],[7],[3],[]]
 };
 const ingredients={
   n01:['poulet','pommes de terre','paprika','huile','sel.*poivre'],
@@ -300,9 +301,10 @@ const ingredients={
   'bourgeois-36':['crêpes','œufs','sucre','oranges','fécule de maïs','lait','beurre','Grand Marnier'],
   'v31n-donburi-dinde':['rôti de porc','pruneaux','carottes','pommes de terre','oignon','bouillon','miel','thym'],
   'v31n-orzo-poisson-blanc':['lentilles vertes','lard fumé','carottes','oignon','poireau','bouillon','laurier','moutarde'],
-  'v31n-orzo-tofu':['chou-fleur','jambon','farine','beurre','lait','fromage','moutarde','muscade']
+  'v31n-orzo-tofu':['chou-fleur','jambon','farine','beurre','lait','fromage','moutarde','muscade'],
+  'v31n-brochettes-tabboule-poisson-blanc':['poulet','riz','œufs','oignon','bouillon','soja','miel','ciboule']
 };
-assert.equal(fixture.recipes.length,646);
+assert.equal(fixture.recipes.length,676);
 let quantityChecks=0,timerCount=0;
 for(const record of fixture.recipes){
   const recipe=recipes.find(r=>r.id===record.id);
@@ -650,6 +652,31 @@ assert.match(editorial['v31n-couscous-minute-poulet'].reviewNote,/10 cl.*140 g.*
 assert.match(editorial['v31n-nouilles-wok-poisson-blanc'].reviewNote,/moitié de l’oignon.*aucun emploi/);
 assert.match(editorial['v31n-tacos-filet-mignon'].reviewNote,/oignon.*jamais utilisé/);
 assert.match(editorial['v31n-tacos-crevettes'].reviewNote,/citron.*partagé.*quantités/);
+const batch22=JSON.parse(readFileSync(resolve(root,'scripts/recipe-editorial-batch-22.fixture.json'),'utf8')).recipes;
+assert.equal(batch22.length,30);
+assert.equal(batch22.filter(r=>r.status==='corrected').length,1);
+const oyakodon22=recipes.find(r=>r.id==='v31n-brochettes-tabboule-poisson-blanc');
+assert.equal(oyakodon22.n,'Oyakodon poulet-œuf');
+assert.equal(oyakodon22.m,'Poêle');
+for(const count of [1,2,3,4,5,8]){
+  const stock=context.recipeStepText(oyakodon22.p[1],oyakodon22,count);
+  assert.ok(stock.includes(context.formatQty(9*count)+' cl de bouillon'));
+  assert.ok(stock.includes(context.formatQty(count)+' c. à soupe de sauce soja'));
+  assert.ok(stock.includes(context.formatQty(count/2)+' c. à café de miel'));
+  assert.match(context.recipeStepText(oyakodon22.p[4],oyakodon22,count),/bols selon le nombre de personnes/);
+  assert.match(context.recipeStepText(oyakodon22.p[2],oyakodon22,count),/74 °C/);
+  assert.match(context.recipeStepText(oyakodon22.p[3],oyakodon22,count),/71 °C/);
+}
+assert.match(oyakodon22.p[0],/selon les indications de son paquet/);
+assert.match(oyakodon22.p[1],/sans être sauté/);
+assert.match(oyakodon22.p[2],/bouillon frémissant.*Couvrir/);
+assert.doesNotMatch(oyakodon22.p.join(' '),/huile|beurre|deux bols/);
+assert.deepEqual(Array.from(context.stepTimerDurations(recipes.find(r=>r.id==='v31n-brochettes-tabboule-tofu').p[0])),[]);
+assert.match(editorial['v31n-brochettes-tabboule-boeuf'].reviewNote,/marinade.*poulet cru.*réutilisée/);
+assert.match(editorial['v31n-croustillant-coleslaw-poulet'].reviewNote,/8 cl.*fixe.*poids égoutté/);
+assert.match(editorial['v31n-papillote-fenouil-dinde'].reviewNote,/paprika.*manque/);
+assert.match(editorial['v31n-papillote-fenouil-falafels'].reviewNote,/poche.*directement.*ne pas ajouter une saisie/);
+assert.match(editorial['v31n-tacos-tofu'].reviewNote,/ciboulette.*jamais utilisée.*quatre œufs/);
 const corrected=fixture.recipes.filter(r=>r.status==='corrected').length;
 const unchanged=fixture.recipes.filter(r=>r.status==='unchanged').length;
 console.log(`✓ Batches ${batchNumbers.join('/')}: ${fixture.recipes.length} individual review records, ${corrected} corrected, ${unchanged} unchanged, ${fixture.recipes.length-corrected-unchanged} blocked with original content preserved; ${timerCount} manually checked timers`);

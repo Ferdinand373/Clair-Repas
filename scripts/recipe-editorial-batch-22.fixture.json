@@ -1,0 +1,252 @@
+{
+  "baselineCommit": "6de7ac063105ad44bae318e7c1ad9ea88a23f2df",
+  "batch": "22",
+  "recipes": [
+    {
+      "id": "v31n-tacos-tofu",
+      "status": "blocked",
+      "sourceHash": "3d95040f2bde407e08e48b7c57989d653b8169013986849d63e853f613c49b8b",
+      "reviewedHash": "3d95040f2bde407e08e48b7c57989d653b8169013986849d63e853f613c49b8b",
+      "protectedRecipeSha256": "d61b7c8d6f47ae31f8cb974da99132ee244cbaecd184b716cee0c0ec3c9c7b89",
+      "note": "la ciboulette listée n’est jamais utilisée. Ni matière grasse ni procédé sans ajout ne sont définis pour les röstis et les œufs au plat. Le texte fixe deux röstis, mais liste quatre œufs et demande un œuf par rösti : rendement et répartition sont à résoudre sans supprimer d’œufs ni fixer deux galettes pour tous les convives."
+    },
+    {
+      "id": "v31n-brochettes-tabboule-poulet",
+      "status": "blocked",
+      "sourceHash": "6af9700d3ce4792a04cfb1e0ef655cf400dd7a93c7f3a31320df3a26716cff63",
+      "reviewedHash": "6af9700d3ce4792a04cfb1e0ef655cf400dd7a93c7f3a31320df3a26716cff63",
+      "protectedRecipeSha256": "dc7d1cdf04781c510f9721ccd62d387b51fd57d6306aa26e18f78970bf11d2f1",
+      "note": "le riz et le brocoli sont tous deux indiqués à la vapeur, mais sans appareil, liquide ou durées distinctes. La matière grasse de saisie du poulet et le contrôle à cœur manquent. Ne pas remplacer la vapeur du riz par une casserole d’eau ni cuire le poulet directement dans le miel pour contourner la saisie."
+    },
+    {
+      "id": "v31n-brochettes-tabboule-dinde",
+      "status": "blocked",
+      "sourceHash": "a5b4b1e4ba61868ea2e630544e381d957041a4ff32c4e24b2be6f2eb4b26c249",
+      "reviewedHash": "a5b4b1e4ba61868ea2e630544e381d957041a4ff32c4e24b2be6f2eb4b26c249",
+      "protectedRecipeSha256": "156b29926f549d71860aa529e13294a3c53ec0e333aecaaaf04f7f4471a43ea9",
+      "note": "le glaçage miso-soja-miel est badigeonné puis redemandé à mi-cuisson sans part réservée. Le vinaigre est correctement partagé par moitié, mais ce partage ne définit pas celui du glaçage. Confirmer la réserve propre et le contrôle à cœur du saumon ; ne pas réutiliser sans précaution une sauce souillée par le pinceau au contact du poisson cru."
+    },
+    {
+      "id": "v31n-brochettes-tabboule-filet-mignon",
+      "status": "blocked",
+      "sourceHash": "c05eb88cc937d8a7310906a3132454082875b5dc60e0e51b919298a406fa479e",
+      "reviewedHash": "c05eb88cc937d8a7310906a3132454082875b5dc60e0e51b919298a406fa479e",
+      "protectedRecipeSha256": "26abe213a61969ba3007046b65ad13d4819a22421df814cadaba0f05223f2a07",
+      "note": "l’huile de sésame est explicitement ajoutée après la saisie du bœuf, pas au début. Aucune matière grasse ou méthode sans ajout n’est définie pour sauter oignons, carottes et viande à feu vif. Conserver cette huile en finition et préciser le riz ainsi que le morceau et le contrôle de cuisson du bœuf."
+    },
+    {
+      "id": "v31n-brochettes-tabboule-cotes-porc",
+      "status": "blocked",
+      "sourceHash": "7de82f549d1909f02cbec3f91b9a46e00d348c981464aa958cd29220d3f89802",
+      "reviewedHash": "7de82f549d1909f02cbec3f91b9a46e00d348c981464aa958cd29220d3f89802",
+      "protectedRecipeSha256": "a4f1cba7400a82d385fa82c1f66cd90630752ff808f3f3eb5efb972d273d0ec1",
+      "note": "aucune matière grasse ou méthode sans ajout n’est précisée pour la saisie vive du porc et le sauté des légumes. Le morceau et l’épaisseur du porc ne permettent pas de confirmer la cuisson ; le riz n’a pas de renvoi au paquet. Le soja et le miel doivent rester en finition, pas servir au pochage initial."
+    },
+    {
+      "id": "v31n-brochettes-tabboule-boeuf",
+      "status": "blocked",
+      "sourceHash": "5d3a1117ce6ef243deae4411c335749dad7f32ebc96eb36e26ea150d508dce07",
+      "reviewedHash": "5d3a1117ce6ef243deae4411c335749dad7f32ebc96eb36e26ea150d508dce07",
+      "protectedRecipeSha256": "2be82586a344ea8af825883e6ed1946afae1da264fea3701dc610d3a65e055b7",
+      "note": "la marinade au contact du poulet cru est réutilisée pour badigeonner pendant la cuisson sans réserve propre ni traitement précisé. La chaleur de la plancha, son éventuel graissage et le contrôle à cœur manquent. Ne pas valider ce badigeonnage ni transposer la recette au four pour fournir une température."
+    },
+    {
+      "id": "v31n-brochettes-tabboule-saumon",
+      "status": "blocked",
+      "sourceHash": "fe70e87dc1e2c1ce507589f13a1392735e6c8e17308e8bae552e0305866217bc",
+      "reviewedHash": "fe70e87dc1e2c1ce507589f13a1392735e6c8e17308e8bae552e0305866217bc",
+      "protectedRecipeSha256": "d0d987b4e2e7f87f5968cc6f4cacaaab3ff68cf0e03acd63703c4c2cae9cfdf8",
+      "note": "les œufs sont deux lignes distinctes : un pour paner, deux pour lier à la fin aux portions de référence. Ces quantités et les deux bols sont figés dans le texte. La graisse de cuisson de la panure et les contrôles du porc et des œufs manquent. Conserver les deux usages d’œufs, sans fusion qui en change la répartition."
+    },
+    {
+      "id": "v31n-brochettes-tabboule-poisson-blanc",
+      "status": "corrected",
+      "sourceHash": "9be9a46d94d2ad4fc577455010b208ef4e094f8c8b8ae83d719dcec270473c9d",
+      "reviewedHash": "9265f6b3bec13032e92a30fd013040e9566d7cd25133e4bfde53f26f1a2ff1d4",
+      "protectedRecipeSha256": "7d5440f7c3489347771640ada2ed757f717520873ee3ea70bc1f36c506acd0b4",
+      "beforeSteps": [
+        "Cuire le riz et le répartir dans deux bols.",
+        "Faire frémir oignon, bouillon, soja et miel 5 minutes dans une poêle.",
+        "Ajouter le poulet en fines lamelles et cuire 7 minutes à couvert.",
+        "Verser les œufs à peine battus, couvrir 2 à 3 minutes pour les garder moelleux, puis déposer sur le riz et ajouter la ciboule."
+      ],
+      "note": "Oyakodon conservé : oignon puis poulet pochés, œufs peu battus ajoutés à la fin, aucun sauté et aucune huile ajoutée. Riz selon le paquet, bols adaptés au nombre de convives et bouillon lié à l’ingrédient. Contrôles à cœur sourcés ajoutés ; cuisson douce et texture moelleuse conservées, sans promettre des œufs crus sûrs."
+    },
+    {
+      "id": "v31n-brochettes-tabboule-crevettes",
+      "status": "blocked",
+      "sourceHash": "9cf9a115c58c3864ce3abadc063ce046434b8a857594a944a40619bfd25e8594",
+      "reviewedHash": "9cf9a115c58c3864ce3abadc063ce046434b8a857594a944a40619bfd25e8594",
+      "protectedRecipeSha256": "93b50a4c6422733f435fb13e96a50417bd642ba81c37e052b9794892e74d6265",
+      "note": "la carotte apparaît seulement au sauté final sans découpe ni précuisson, alors que soba et brocoli sont cuits puis refroidis. La matière grasse ou méthode sans ajout du saumon n’est pas donnée. Tout le mélange soja-miel est versé pour le laquage, puis un reste de sauce est demandé sans préciser si c’est le jus de poêle ou une réserve propre."
+    },
+    {
+      "id": "v31n-brochettes-tabboule-saucisses",
+      "status": "blocked",
+      "sourceHash": "f9450fd933f52f851fa2e2dec8e77bab4314f7a641121c4a274ac7d49eddb4f5",
+      "reviewedHash": "f9450fd933f52f851fa2e2dec8e77bab4314f7a641121c4a274ac7d49eddb4f5",
+      "protectedRecipeSha256": "9f485daca8bd6e3751bc699f54f2a2c9df397097ab9c221d9fff56ab315523b0",
+      "note": "aucune matière grasse ou méthode sans ajout n’est donnée pour sauter les légumes puis saisir le bœuf à feu très vif. Le gingembre n’est pas identifié frais ou moulu et le morceau de viande n’est pas précisé. Le renvoi au paquet des udon est déjà présent et doit être conservé."
+    },
+    {
+      "id": "v31n-brochettes-tabboule-tofu",
+      "status": "blocked",
+      "sourceHash": "52a3a5779f604dbfbb37e1c96b18102ce4de25ae515948db9c34846198963c06",
+      "reviewedHash": "52a3a5779f604dbfbb37e1c96b18102ce4de25ae515948db9c34846198963c06",
+      "protectedRecipeSha256": "8a8193d0854b64effc2e5f77ef0353067bcbe30eef9e5752d6ce0e2224a148f1",
+      "note": "l’huile de sésame est ajoutée seulement avec les nouilles à la fin ; le sauté initial des légumes n’a pas de graisse ou méthode sans ajout. Les crevettes ne sont pas précisées crues ou cuites. La minute retranchée au temps du paquet n’est pas une durée autonome ; ne pas créer un minuteur d’une minute ni avancer l’huile."
+    },
+    {
+      "id": "v31n-croustillant-coleslaw-poulet",
+      "status": "blocked",
+      "sourceHash": "f68bc1ccaa1bc664fc2d4c86721a20aeceeca1198e3268b5466960561858b8fb",
+      "reviewedHash": "f68bc1ccaa1bc664fc2d4c86721a20aeceeca1198e3268b5466960561858b8fb",
+      "protectedRecipeSha256": "c725fb412abd6a6d5666e57d0673a4ecad451251b1895444e1a03f496c093a10",
+      "note": "les 8 cl de jus d’ananas sont une mesure fixe non reliée aux portions, tandis que les 250 g d’ananas ne sont pas précisés poids égoutté ou poids avec jus. La graisse de saisie du poulet et des légumes manque. Ne pas déduire arbitrairement le jus disponible ni convertir ces 8 cl en fraction du poids des fruits."
+    },
+    {
+      "id": "v31n-croustillant-coleslaw-dinde",
+      "status": "blocked",
+      "sourceHash": "b384e7ffc57fdbd488ab5b7767aa5478769b863741fb74247c4f01e0cce94285",
+      "reviewedHash": "b384e7ffc57fdbd488ab5b7767aa5478769b863741fb74247c4f01e0cce94285",
+      "protectedRecipeSha256": "8808cc38f8d994e1bad5d07a5c2bf06deb9ac4e5d674c65a2edfa75ea8f84cea",
+      "note": "aucune matière grasse ou méthode sans ajout n’est précisée pour les œufs brouillés et les sautés successifs. Le riz est déjà cuit et froid, pas un poids de riz sec ; son refroidissement et son réchauffage doivent être sécurisés. L’état des petits pois et les contrôles du porc et des œufs restent à préciser."
+    },
+    {
+      "id": "v31n-croustillant-coleslaw-filet-mignon",
+      "status": "blocked",
+      "sourceHash": "8993426dfdcc425d00e5c72ec6ac114d036203faa1375a541f76e1120ca295df",
+      "reviewedHash": "8993426dfdcc425d00e5c72ec6ac114d036203faa1375a541f76e1120ca295df",
+      "protectedRecipeSha256": "35a17ea80b3e0a86b0ba3b551311f5105af18d8704aa22ab339805969c4896de",
+      "note": "aucune graisse ou méthode sans ajout n’est précisée pour dorer poulet et oignon. La farine et le curry sont délayés avec un peu de bouillon sans volume concret ni indication de prélèvement ou réserve. Conserver cette liaison après mijotage, sans la remplacer par un roux au beurre non listé."
+    },
+    {
+      "id": "v31n-croustillant-coleslaw-cotes-porc",
+      "status": "blocked",
+      "sourceHash": "4bf8a78e3bc9617bbbe4e37a35f6e1ba714b261d0b16db17074d7ed08ccc12a8",
+      "reviewedHash": "4bf8a78e3bc9617bbbe4e37a35f6e1ba714b261d0b16db17074d7ed08ccc12a8",
+      "protectedRecipeSha256": "3bb5072aabab1b6fffa720486fd73102bb581d7fbca61621d797f69e3adfa601",
+      "note": "le sauté d’oignon et de champignons n’a pas de matière grasse ou méthode sans ajout. La louche de bouillon utilisée pour délayer le curry n’a pas de volume concret. La sauce annoncée veloutée n’a ni liant ni geste d’écrasement dans la source : ne pas ajouter de farine ni mixer les légumes arbitrairement."
+    },
+    {
+      "id": "v31n-croustillant-coleslaw-saumon",
+      "status": "blocked",
+      "sourceHash": "8b154f37bf003f449a1a29a9ead19eea685bdd887d2b673ba0633b7c5db4be77",
+      "reviewedHash": "8b154f37bf003f449a1a29a9ead19eea685bdd887d2b673ba0633b7c5db4be77",
+      "protectedRecipeSha256": "68f48b740777d65742468e89f920d105bcd2f9d6a44ca4e1984140983704eafb",
+      "note": "aucune graisse ou méthode sans ajout n’est définie pour les galettes couvertes. Deux grandes galettes sont imposées quelle que soit la quantité adaptée, sans diamètre ni épaisseur ; le contrôle des œufs manque. La moitié du soja est réservée mais la mayonnaise est utilisée seulement comme un peu, sans préciser l’emploi de toute la quantité."
+    },
+    {
+      "id": "v31n-croustillant-coleslaw-poisson-blanc",
+      "status": "blocked",
+      "sourceHash": "0ad3155b46d2e3a9a7118146c3b7164e102b9375829683e93f06413c27e8a32e",
+      "reviewedHash": "0ad3155b46d2e3a9a7118146c3b7164e102b9375829683e93f06413c27e8a32e",
+      "protectedRecipeSha256": "dc6c106c3b60eef806e05b0f1ca0c027b301ae1a428bf4a37b058aaedbe30347",
+      "note": "le sauté vif de courgette, ail et gingembre n’a pas de graisse ou méthode sans ajout. Les crevettes décortiquées ne sont pas identifiées crues ou déjà cuites ; les nouilles n’ont pas de renvoi au paquet. Le citron vert est bien utilisé en jus : ne pas ajouter un autre liquide à sa place."
+    },
+    {
+      "id": "v31n-croustillant-coleslaw-crevettes",
+      "status": "blocked",
+      "sourceHash": "d476e5e5092f6134e6814ea2c655e7de675a951d2303e856acf81dc4e5bd2e75",
+      "reviewedHash": "d476e5e5092f6134e6814ea2c655e7de675a951d2303e856acf81dc4e5bd2e75",
+      "protectedRecipeSha256": "48a4648ce1090399598f0d6104eaced4f94cbd8839342dea3e60cd145a80ee9b",
+      "note": "aucune graisse ou méthode sans ajout n’est précisée pour saisir le poulet puis sauter les légumes. Le contrôle à cœur de la volaille et le renvoi au paquet du riz manquent. Le citron est utilisé en zeste et jus, et les haricots sont blanchis avant le sauté : ne pas supprimer cette précuisson."
+    },
+    {
+      "id": "v31n-croustillant-coleslaw-boulettes",
+      "status": "blocked",
+      "sourceHash": "acc83551de582eb4cac77fc3ae19718681b25ffc9f447cf8ea074b618bb55f68",
+      "reviewedHash": "acc83551de582eb4cac77fc3ae19718681b25ffc9f447cf8ea074b618bb55f68",
+      "protectedRecipeSha256": "44f87c73a2a2febb62ae6daeb095c1480e7a98d5ec3e0c09b1335de6915431ac",
+      "note": "l’huile de sésame est versée après le sauté des légumes : elle n’est pas la graisse de saisie initiale définie par la source. Ni cette saisie ni celle du bœuf ne décrivent de procédé sans ajout. Confirmer ces gestes, le morceau de bœuf et le riz sans déplacer l’huile avant sa place prévue."
+    },
+    {
+      "id": "v31n-croustillant-coleslaw-falafels",
+      "status": "blocked",
+      "sourceHash": "0edd065f7a6355ecac956baff5dd9d830b2e382a9f930e037d4f0ecb088651a8",
+      "reviewedHash": "0edd065f7a6355ecac956baff5dd9d830b2e382a9f930e037d4f0ecb088651a8",
+      "protectedRecipeSha256": "e0c76b1f1ea1a4ed3b85d66d6b826d4cfce1a8018af35f69b055d3a36a37a211",
+      "note": "les deux cuillerées d’eau chaude de la sauce sont absentes de la liste et sans taille de cuillère. Le gingembre mesuré en cuillère est demandé en julienne sans préciser son état. Confirmer ces mesures et le contrôle à cœur du poisson ; conserver la vapeur plutôt qu’inventer une cuisson à la poêle."
+    },
+    {
+      "id": "v31n-croustillant-coleslaw-tofu",
+      "status": "blocked",
+      "sourceHash": "66091fa13f3284274f1dd4785246819c3af43bdb4bc87ba8fda4f5e2c5057f46",
+      "reviewedHash": "66091fa13f3284274f1dd4785246819c3af43bdb4bc87ba8fda4f5e2c5057f46",
+      "protectedRecipeSha256": "d29622fad6d6ef002e24e2da8d8b53264e1398c6b4b7fd7be7a6d5e7269aac6a",
+      "note": "aucune matière grasse ou méthode sans ajout n’est définie pour dorer les boulettes et sauter les légumes et le riz. La cuisson à cœur du poulet haché doit être contrôlée et l’état des petits pois précisé. Les 180 g sont du riz déjà cuit ; le soja est bien partagé par moitié entre farce et riz."
+    },
+    {
+      "id": "v31n-papillote-fenouil-poulet",
+      "status": "blocked",
+      "sourceHash": "98769cbd06dc164646cf8883fb41939172cf630967565b082b8a14e048134c72",
+      "reviewedHash": "98769cbd06dc164646cf8883fb41939172cf630967565b082b8a14e048134c72",
+      "protectedRecipeSha256": "6446fef016c2a69a3e8306c7411eb35d87b8c4ecbb711824b7fb2ecf82a1809f",
+      "note": "l’eau chaude de trempage des raisins est absente et non mesurée. La graisse du sauté d’oignon et de poivron et l’assaisonnement à rectifier ne sont pas définis. Les raisins doivent rester réhydratés puis égouttés avant le mijotage ; ne pas verser leur eau dans la tomate à la place."
+    },
+    {
+      "id": "v31n-papillote-fenouil-dinde",
+      "status": "blocked",
+      "sourceHash": "549ac086ec0b4be2c42acda1c696261d71358cd8a5f896899833d63b78d938f7",
+      "reviewedHash": "549ac086ec0b4be2c42acda1c696261d71358cd8a5f896899833d63b78d938f7",
+      "protectedRecipeSha256": "667422941437bb4f29532b5d411973965f5fedef24d6df8013bb93822dcfb373",
+      "note": "le paprika doux demandé avec le riz manque dans la liste et aucune graisse de coloration n’est définie. Les crevettes ne sont pas identifiées crues ou cuites et le riz n’est pas spécifié. Leurs cinq dernières minutes sont incluses dans les seize minutes, pas ajoutées ensuite ; ne pas inventer le dosage du paprika."
+    },
+    {
+      "id": "v31n-papillote-fenouil-filet-mignon",
+      "status": "blocked",
+      "sourceHash": "8f8f91d1be0867e21de85c15e2210f5116232995f91ab338b34df636c6553b43",
+      "reviewedHash": "8f8f91d1be0867e21de85c15e2210f5116232995f91ab338b34df636c6553b43",
+      "protectedRecipeSha256": "ebc0e0a2b4b97b4503096208ae0f88df56cad3484c1b7bd96765f0b96dc5d0ce",
+      "note": "la matière grasse ou le procédé sans ajout pour faire revenir oignon, poivron et bœuf n’est pas défini. Le poids égoutté de la boîte de haricots rouges et le contrôle de viande hachée manquent. Conserver le coulis en nappage et le cheddar au-dessus, sans les déplacer dans la farce pour modifier sa cuisson."
+    },
+    {
+      "id": "v31n-papillote-fenouil-saumon",
+      "status": "blocked",
+      "sourceHash": "90956f6cef7eda89925de8d41d02ea1bf1918b7b60d783770a8602cf18b26d99",
+      "reviewedHash": "90956f6cef7eda89925de8d41d02ea1bf1918b7b60d783770a8602cf18b26d99",
+      "protectedRecipeSha256": "e331c176d025cc825053644786c311b9223f4ef9fca4c15255745af086474691",
+      "note": "le paprika du poulet manque dans la liste et le produit de badigeonnage des tortillas n’est pas nommé. Le poids égoutté des haricots et la part de citron vert manquent ; la salsa tomate-avocat n’est pas détaillée. Le maintien des tortillas dans l’airfryer et le contrôle du poulet sont à vérifier, sans transposition au four."
+    },
+    {
+      "id": "v31n-papillote-fenouil-poisson-blanc",
+      "status": "blocked",
+      "sourceHash": "3f2d8de112e53faadb037c6c2a1efe5a5beaf831955ba0a9ac7cf2bb81e52387",
+      "reviewedHash": "3f2d8de112e53faadb037c6c2a1efe5a5beaf831955ba0a9ac7cf2bb81e52387",
+      "protectedRecipeSha256": "f5d19d848ec5a1ef54000a935ddc33b5487abeaa5ad8aa4cee7fe2a3d872b10b",
+      "note": "le paprika du bœuf manque dans la liste et la graisse de coloration n’est pas définie. Les deux conserves n’ont pas de poids égoutté ; la pincée de cumin initiale ne définit pas une répartition concrète de la cuillère totale. Les deux bols ne doivent pas rester fixes pour toutes les portions."
+    },
+    {
+      "id": "v31n-papillote-fenouil-saucisses",
+      "status": "blocked",
+      "sourceHash": "3b9b60c8ea72b27e7846c4a0b4d7b46b75015da752f4cc8dafedc392a8e6a337",
+      "reviewedHash": "3b9b60c8ea72b27e7846c4a0b4d7b46b75015da752f4cc8dafedc392a8e6a337",
+      "protectedRecipeSha256": "8f810dc3716085414a8d026a24009deb6d920f8372d2c498fed4699bd2957415",
+      "note": "la matière grasse ou méthode sans ajout pour dorer les keftas et faire revenir les légumes n’est pas définie. La semoule n’a ni liquide ni procédé et le contrôle de viande hachée manque. L’oignon est explicitement partagé par moitié ; les épices et le persil restent dans la viande, sans partage supplémentaire inventé."
+    },
+    {
+      "id": "v31n-papillote-fenouil-boulettes",
+      "status": "blocked",
+      "sourceHash": "7d35048f328b940b30c3b238c436ec065454e231a52efcaab41cb45f571363b3",
+      "reviewedHash": "7d35048f328b940b30c3b238c436ec065454e231a52efcaab41cb45f571363b3",
+      "protectedRecipeSha256": "0e6bdd8d6cf17e37834068595e817275e027366d3daa9aefa50c42ad6b88f77b",
+      "note": "aucune graisse ou méthode sans ajout n’est définie pour la coloration du poulet et des oignons. La préparation du citron confit ne précise pas chair ou écorce, rinçage et pépins ; l’assaisonnement final n’est pas listé. Ne pas supprimer la chair ni ajouter du sel par habitude, et conserver les sept minutes finales à découvert."
+    },
+    {
+      "id": "v31n-papillote-fenouil-falafels",
+      "status": "blocked",
+      "sourceHash": "61f981e4ccbf5b7de8c932647e7089c2f2a82eebcec922544752de346106af76",
+      "reviewedHash": "61f981e4ccbf5b7de8c932647e7089c2f2a82eebcec922544752de346106af76",
+      "protectedRecipeSha256": "53ce9a4a5457a15bd4e751fc605cbc9374ebf3669681eb5a3800d74a5143a407",
+      "note": "le sauté d’oignon et de poivron n’a pas de matière grasse ou procédé sans ajout. Les quatre puits doivent suivre la quantité adaptée d’œufs, pas rester fixes ; les contrôles de viande hachée et d’œufs manquent. La source poche les boulettes directement dans la sauce : ne pas ajouter une saisie préalable."
+    },
+    {
+      "id": "v31n-papillote-fenouil-pois-chiches",
+      "status": "blocked",
+      "sourceHash": "71a4543516f362a3fdd9bc55390437c16ef71938f8cf50af2439c1b89ee8b7e0",
+      "reviewedHash": "71a4543516f362a3fdd9bc55390437c16ef71938f8cf50af2439c1b89ee8b7e0",
+      "protectedRecipeSha256": "6642b4cbc4ab3f09c5064e486fb5168b53bb6c59972553e846075e17aee59787",
+      "note": "la matière grasse ou méthode sans ajout pour dorer poulet et oignon n’est pas définie. Une louche prélevée dans le bouillon parfume la semoule, mais son volume et l’hydratation des 140 g ne sont pas précisés. Le temps des amandes à sec manque ; ne pas ajouter une quantité arbitraire d’eau ni confondre ce prélèvement avec un nouveau bouillon."
+    }
+  ]
+}
