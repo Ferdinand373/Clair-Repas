@@ -1,0 +1,291 @@
+{
+  "baselineCommit": "b05d6b95d7f6e330f5b34de84fb8cf2b8ed53782",
+  "batch": "10",
+  "recipes": [
+    {
+      "id": "a031",
+      "status": "blocked",
+      "sourceHash": "895de8508993e18eb25ebc2ae8937f65a9390b0f24f8693b6f85b436557fd11c",
+      "reviewedHash": "895de8508993e18eb25ebc2ae8937f65a9390b0f24f8693b6f85b436557fd11c",
+      "protectedRecipeSha256": "508ffe7ee1d7dfdabc563eb2af50dd3ec957e4b6c06fca0b082966019ed67d91",
+      "note": "huile et vinaigre de la vinaigrette sont absents des ingrédients, sans quantité retrouvée. La variété des lentilles et leur conduite de cuisson restent aussi à préciser."
+    },
+    {
+      "id": "a032",
+      "status": "blocked",
+      "sourceHash": "ba3a30c76e08c00941c06272ff2bb37c487f1e6c81bad66694ed0f13788dd3c1",
+      "reviewedHash": "ba3a30c76e08c00941c06272ff2bb37c487f1e6c81bad66694ed0f13788dd3c1",
+      "protectedRecipeSha256": "66de8005bea2f74274d70ebfdd4f75476712897696e68d69ba96125c5e1daab2",
+      "note": "l’huile, le sel et le poivre demandés dans la préparation sont absents de la liste. Le filet d’huile n’a pas de mesure retrouvée ; ne pas lui attribuer arbitrairement une cuillère."
+    },
+    {
+      "id": "a033",
+      "status": "blocked",
+      "sourceHash": "8519c64cd4a17fb8b95c94ccd400de992ec4f53f17da30285f7eff11c18effe3",
+      "reviewedHash": "8519c64cd4a17fb8b95c94ccd400de992ec4f53f17da30285f7eff11c18effe3",
+      "protectedRecipeSha256": "5ff25d09fd08dbf767a6bb83899c72a5b498038327e11f0c92918c9e3155b14e",
+      "note": "le vinaigre, le sel et le poivre sont utilisés mais absents de la liste. La quantité et le type de vinaigre ne sont pas précisés par les archives."
+    },
+    {
+      "id": "a034",
+      "status": "blocked",
+      "sourceHash": "98616d9bca788c258d33a24d648ff0f0eab90ca19d12e54b838279f778bd15c7",
+      "reviewedHash": "98616d9bca788c258d33a24d648ff0f0eab90ca19d12e54b838279f778bd15c7",
+      "protectedRecipeSha256": "be22fd488debfbcb6c3b42f67c1a95e8322bcf3ed3f0a2d5c8f238c58616f079",
+      "note": "l’eau pour détendre le houmous et l’assaisonnement final ne figurent pas dans les ingrédients. Leur composition et leurs quantités doivent être précisées sans inventer une dose."
+    },
+    {
+      "id": "a035",
+      "status": "blocked",
+      "sourceHash": "30e77095a1229e2085fecc0505e6ecd40dace4e908e878c735c93561b3058e7c",
+      "reviewedHash": "30e77095a1229e2085fecc0505e6ecd40dace4e908e878c735c93561b3058e7c",
+      "protectedRecipeSha256": "8e24cfbf01f2995f2b1c781a6000025055fd2f06e7030261d83527c5500d2b1d",
+      "note": "le sel et le poivre ne figurent pas dans la liste. Le pain est demandé grillé sans conduite de cuisson, alors que seule la cuisson entière de l’aubergine au four est détaillée."
+    },
+    {
+      "id": "a036",
+      "status": "corrected",
+      "sourceHash": "453ba8f0a8c02256a1d7d901cfae5346f971cb226d4909586ca33385e367314f",
+      "reviewedHash": "82a3c0779653af75917612e57cb7ca4b138c63a48d5d0a059107c8444815ff23",
+      "protectedRecipeSha256": "2a14c06035371c06b92a86e56c140ec9dcd94eb748b1c1cafa3f7a580702c3c9",
+      "beforeSteps": [
+        "Râper le concombre, le saler puis le presser.",
+        "Mélanger avec le yaourt, l’ail, le citron et l’aneth.",
+        "Réserver au frais jusqu’au service."
+      ],
+      "note": "Sel explicitement demandé rétabli sans dose inventée ; concombre pressé, pas de temps de dégorgement ajouté, ail/aneth et jus expliqués."
+    },
+    {
+      "id": "a037",
+      "status": "corrected",
+      "sourceHash": "789d161ce020828c010943668c627e8f28853725def1269b67e94e2dc9026c99",
+      "reviewedHash": "b75b2f01b095bcd249f6c84b81afad86c76475440349ca2ba04ef6eb7745f1b4",
+      "protectedRecipeSha256": "9aa4c6f2c94d9ad19413354f8b9d7566b1ee93d5227687aa56bb17985e53bfd7",
+      "beforeSteps": [
+        "Couper grossièrement les légumes.",
+        "Mixer avec le vinaigre, l’huile, le sel et le poivre.",
+        "Réserver au moins 30 minutes au frais."
+      ],
+      "note": "Sel/poivre de la préparation rétablis ; trente minutes de réfrigération séparées de la préparation. Aucun pain ni eau ajoutés."
+    },
+    {
+      "id": "a039",
+      "status": "corrected",
+      "sourceHash": "2b1486eacc7f1623ffba41a21b624052c2f2bb5b9916cfdbae14e3dcd261b5e2",
+      "reviewedHash": "9138dfc5d28d32ecb194c40eba0eeafcf943a955b3a2e989bc0351bcd8bc3946",
+      "protectedRecipeSha256": "9280316a46099b3682313e7700da6344415c2ab3dee09c92d2e8f5fd26990fb3",
+      "beforeSteps": [
+        "Retirer les graines et prélever la chair du melon.",
+        "Mixer avec le citron, le basilic, l’huile et une pincée de sel.",
+        "Servir bien frais."
+      ],
+      "note": "La pincée de sel, explicite dans la source mais absente de la liste, est rétablie et liée au calcul des convives. Melon cru, jus et basilic conservés."
+    },
+    {
+      "id": "a040",
+      "status": "blocked",
+      "sourceHash": "c4f99a377a38663dc58fa89db1640066e7f7459b6c29f7a37c5df3a8b975553a",
+      "reviewedHash": "c4f99a377a38663dc58fa89db1640066e7f7459b6c29f7a37c5df3a8b975553a",
+      "protectedRecipeSha256": "d43a76865061606b1adf1221a001a549c660e8e2b783c6638070e23d9f294725",
+      "note": "l’état des petits pois et le poids écossé ne sont pas définis, alors que la durée dépend du produit. Le refroidissement nécessaire au service froid n’est pas compris explicitement dans les vingt minutes."
+    },
+    {
+      "id": "a041",
+      "status": "blocked",
+      "sourceHash": "a31df70e86cbbb12e9a709f5675d0d072224d72c8a8ad318950b13a93a5422cb",
+      "reviewedHash": "a31df70e86cbbb12e9a709f5675d0d072224d72c8a8ad318950b13a93a5422cb",
+      "protectedRecipeSha256": "be73c266b9245c153099e14437f422106f1fb7025c798c2ff38b6873f95ab5db",
+      "note": "l’oignon doit revenir avant le bouillon, mais aucune matière grasse n’est listée ou dosée. Ne pas transformer ce sauté en cuisson dans le bouillon."
+    },
+    {
+      "id": "a042",
+      "status": "blocked",
+      "sourceHash": "2a5593a819e18528b80beeaa38d1d0315ed2e700e1b47d9d31c3987582c5df2c",
+      "reviewedHash": "2a5593a819e18528b80beeaa38d1d0315ed2e700e1b47d9d31c3987582c5df2c",
+      "protectedRecipeSha256": "8290116a98864760b0a636f65275efdf6178714fafb3c706823dee20f6024312",
+      "note": "la conduite et la matière grasse pour faire fondre l’oignon avant le bouillon ne sont pas définies. La cuisson initiale ne doit pas être remplacée par une cuisson à l’eau."
+    },
+    {
+      "id": "a043",
+      "status": "corrected",
+      "sourceHash": "293c0ff51647001b6a2672c24046ad1591b827f0fb53d6a83c9cf1f857109920",
+      "reviewedHash": "6b249a7c58258e295416aa8d5808ecc834cad0b5f4205e0ba25e9f274e1c2d2d",
+      "protectedRecipeSha256": "81e1e9d614c4f63d1b4e22fdd13cf658d17936e751a58d00cf657ae64601189f",
+      "beforeSteps": [
+        "Émincer les poireaux et l’oignon, puis couper les pommes de terre.",
+        "Cuire tous les légumes 25 minutes dans le bouillon.",
+        "Mixer et poivrer généreusement."
+      ],
+      "note": "Poivre explicitement demandé rétabli ; poireaux lavés entre les feuilles, légumes cuits directement au bouillon comme dans la source, sans sauté ajouté."
+    },
+    {
+      "id": "a044",
+      "status": "blocked",
+      "sourceHash": "98f49a776fe54adaf0a544420a478bf3993b7bd15bc218137f826457b8b702fc",
+      "reviewedHash": "98f49a776fe54adaf0a544420a478bf3993b7bd15bc218137f826457b8b702fc",
+      "protectedRecipeSha256": "1a1fec14e4ad05ad6430f0b4045a0906556719870c95e6aadddad389427e8810",
+      "note": "la matière grasse pour faire revenir échalote et champignons pendant huit minutes est absente des ingrédients. La crème finale ne doit pas être utilisée au début à sa place sans source."
+    },
+    {
+      "id": "a045",
+      "status": "blocked",
+      "sourceHash": "b9da315bea046735835d0e4c2b41927db24d4dc10befc452e27ae2e580d634e8",
+      "reviewedHash": "b9da315bea046735835d0e4c2b41927db24d4dc10befc452e27ae2e580d634e8",
+      "protectedRecipeSha256": "2860acefde2838fd6ad86278a2465e0d17298ae607984a03c9cb929fd5f79940",
+      "note": "la matière grasse pour faire fondre les oignons et la température ou le réglage du gratin ne sont pas définis. Ne pas inventer une dose de beurre ni un mode de four."
+    },
+    {
+      "id": "a046",
+      "status": "corrected",
+      "sourceHash": "d98247f6e73de3d705f4020fe061d9addd775d33a771872202a48ea160273d97",
+      "reviewedHash": "ae19d0092a402a1867355838b0edd11fcef3c2b7ada1904f57b92721bb55fd51",
+      "protectedRecipeSha256": "2c3814d726fa0f7948a28fdba48f4156e0490338fd7c62bf7ccccce911899d08",
+      "beforeSteps": [
+        "Faire revenir l’oignon puis ajouter les tomates en morceaux.",
+        "Verser le bouillon et cuire 20 minutes.",
+        "Mixer et ajouter le basilic."
+      ],
+      "note": "Huile listée utilisée au sauté initial, oignon translucide comme repère sans durée inventée ; bouillon entier et basilic après mixage."
+    },
+    {
+      "id": "a047",
+      "status": "corrected",
+      "sourceHash": "9a075d98a808f7a828d2e5a86bd25253cd0ef38be51217ef2e1679b7fb0d4717",
+      "reviewedHash": "a9b4df8ff4ac9cc040519662c95da0f3b9a3fe4268fc044372485128d8fa6ee7",
+      "protectedRecipeSha256": "a8067c6a45e4795d5644767663bf5563e163982ebf745023226516ae34d56cb5",
+      "beforeSteps": [
+        "Tailler les légumes en très petits dés.",
+        "Les cuire 15 minutes dans le bouillon.",
+        "Ajouter les vermicelles et poursuivre selon le temps indiqué sur le paquet."
+      ],
+      "note": "Découpes et nettoyage précisés, légumes quinze minutes puis vermicelles selon paquet ; aucun minuteur arbitraire pour les pâtes."
+    },
+    {
+      "id": "a049",
+      "status": "blocked",
+      "sourceHash": "3eb3374b29f682b0db5125690f81af1eb495232a51b3b394f72911895b9ca382",
+      "reviewedHash": "3eb3374b29f682b0db5125690f81af1eb495232a51b3b394f72911895b9ca382",
+      "protectedRecipeSha256": "c3f0d50091e5deedc295ecd010e8154061ef1d23b9cfef7bed363ec856a67107",
+      "note": "les amandes sont demandées grillées à sec sans récipient, intensité ni durée. La source comparable confirme le geste à la poêle mais pas sa conduite dans cette fiche classée Casserole."
+    },
+    {
+      "id": "a050",
+      "status": "blocked",
+      "sourceHash": "df3368648d1a92688a50ff5bc30eb98c7e272ee8ff6164f279d30b5d10b6fcf0",
+      "reviewedHash": "df3368648d1a92688a50ff5bc30eb98c7e272ee8ff6164f279d30b5d10b6fcf0",
+      "protectedRecipeSha256": "ef6b5124ad53218b98a86120586ccb45485232ed28073ed0fb3e466636b29e73",
+      "note": "l’oignon doit revenir avant la courgette et le bouillon, sans matière grasse listée. Le fromage blanc final ne doit pas être utilisé pour remplacer ce sauté."
+    },
+    {
+      "id": "a051",
+      "status": "blocked",
+      "sourceHash": "14817225dd28302c23e91526fc58cd531b868864d546c0149361233fd907c8de",
+      "reviewedHash": "14817225dd28302c23e91526fc58cd531b868864d546c0149361233fd907c8de",
+      "protectedRecipeSha256": "9709854c25ae3907acfa248030c81abe5fc0cdbdd945ca305465e1a8eace3d09",
+      "note": "la matière grasse du sauté initial et le poivre final manquent à la liste. Ne pas remplacer le sauté par une cuisson au bouillon ni inventer une quantité d’huile."
+    },
+    {
+      "id": "a052",
+      "status": "blocked",
+      "sourceHash": "bfb6dcadfe37b47f2a2f7a3cbb079c1b8052bb9c118c1a1fd40a61c96383f27c",
+      "reviewedHash": "bfb6dcadfe37b47f2a2f7a3cbb079c1b8052bb9c118c1a1fd40a61c96383f27c",
+      "protectedRecipeSha256": "805cb9bbb7f0a14ded9be1d7e5db1bb16ec395b8943cca859cc27b57290a9acc",
+      "note": "oignon, carotte et curry doivent revenir sans matière grasse listée. Le lait de coco est prévu en finition ; il ne remplace pas automatiquement la matière grasse manquante."
+    },
+    {
+      "id": "a053",
+      "status": "corrected",
+      "sourceHash": "d81921eb11fce39fa997a3d1fa6fa2e590a6089f1aa2a81bc479d48b26dfd5ea",
+      "reviewedHash": "a2bf75be5851d7edd6dfb07aae64a00f6e8b49c464ebc34a4d55190d0e45ef31",
+      "protectedRecipeSha256": "32d38fac68513b6c8533b4dcf59b217be3aabf5ad9ad5aeecb9fa590fbe98e92",
+      "beforeSteps": [
+        "Émincer les endives et couper la pomme de terre.",
+        "Cuire 20 minutes dans le bouillon.",
+        "Mixer avec la crème et une pincée de muscade."
+      ],
+      "note": "Pincée de muscade retrouvée dans la préparation reportée dans la liste et rendue dynamique. Légumes directement au bouillon, crème après cuisson, aucun sauté ajouté."
+    },
+    {
+      "id": "a054",
+      "status": "blocked",
+      "sourceHash": "71814a28925ba37509ee843f369f41e1a32b94bebfcfa5453f746ee3aca54439",
+      "reviewedHash": "71814a28925ba37509ee843f369f41e1a32b94bebfcfa5453f746ee3aca54439",
+      "protectedRecipeSha256": "9774ad77bb6b3486362705bea9f1550a8725717e4a9657df15257f755fc2e0b9",
+      "note": "la torréfaction des noisettes concassées n’indique ni récipient, ni feu, ni durée. Ne pas ajouter une cuisson au four ou une durée standard sans référence adaptée."
+    },
+    {
+      "id": "a055",
+      "status": "blocked",
+      "sourceHash": "08ed78d3f7cfb473f97f9ef1e2ba1e754e4664a865bcf88609cbd60daecb27aa",
+      "reviewedHash": "08ed78d3f7cfb473f97f9ef1e2ba1e754e4664a865bcf88609cbd60daecb27aa",
+      "protectedRecipeSha256": "4289f1ded3e3390d2d76ba043d1f53f62265661132c0734baff16101adc444ff",
+      "note": "la conduite et la matière grasse pour faire fondre l’oignon nouveau sont absentes. L’état des petits pois n’est pas défini ; ne pas remplacer l’étape initiale par le bouillon."
+    },
+    {
+      "id": "a056",
+      "status": "blocked",
+      "sourceHash": "29ac2dd42948a9ce14b007cc85ed17b5816b72cddeeb14df0d17c83e4d0c3a10",
+      "reviewedHash": "29ac2dd42948a9ce14b007cc85ed17b5816b72cddeeb14df0d17c83e4d0c3a10",
+      "protectedRecipeSha256": "d22efc1b748ee0d63276a0f25b232d52850e3a8afdefc68662c571d56a2f45af",
+      "note": "la quantité de pointes réservées et leur cuisson à la poêle ne sont pas définies. Aucune matière grasse n’est listée pour les pointes ; ne pas choisir une fraction arbitraire des asperges."
+    },
+    {
+      "id": "a057",
+      "status": "blocked",
+      "sourceHash": "001024a796999d5b3a73cf85c36ce7b10036a33e63ff28e403eb327dc2287dec",
+      "reviewedHash": "001024a796999d5b3a73cf85c36ce7b10036a33e63ff28e403eb327dc2287dec",
+      "protectedRecipeSha256": "2430d12c9f929d0aa12eca53c9ba1d7f002ca7ffd42ebdcae3592086695c161b",
+      "note": "l’état des petits pois et leur poids écossé ne sont pas définis. Leur longue cuisson avec les légumes puis les pâtes doit être confirmée ; la durée des pâtes doit suivre le produit utilisé."
+    },
+    {
+      "id": "a058",
+      "status": "corrected",
+      "sourceHash": "7f1fb7d05a780bd0caf7b1b46b6bc632af85ef4e2da26895445c5bf3b3b050d6",
+      "reviewedHash": "781a9046b1ada107f3d664b5ced83d768ee384c2c852d65b1653d68a433b6408",
+      "protectedRecipeSha256": "2b259fd7d22a4e0460dd0b5bda9e0486180855ea5761cf1aecf5e1889ed3461e",
+      "beforeSteps": [
+        "Émincer le fenouil et l’oignon.",
+        "Ajouter les tomates et le bouillon puis cuire 20 minutes.",
+        "Mixer partiellement et ajouter le basilic."
+      ],
+      "note": "Fenouil fin, oignon et tomates directement au bouillon comme dans la source ; mixage partiel conservé, aucun sauté ajouté."
+    },
+    {
+      "id": "a059",
+      "status": "blocked",
+      "sourceHash": "d80df7741d0b22a7db590575d30b25daf03d125d37d2d4a3d4cb18cb49e94877",
+      "reviewedHash": "d80df7741d0b22a7db590575d30b25daf03d125d37d2d4a3d4cb18cb49e94877",
+      "protectedRecipeSha256": "3cd6678f3c1cceb60f559a63b8fc10e9d7b08025b7039134be374c87abbfd3f2",
+      "note": "l’état et le poids écossé des petits pois ne sont pas définis. La durée commune de dix-huit minutes doit être vérifiée avec le produit prévu, sans supposer des pois en conserve ou surgelés."
+    },
+    {
+      "id": "a060",
+      "status": "blocked",
+      "sourceHash": "a97185f6ceb4d56cd9f564c264be1c3826547c1b04abd67a6690614a0bd6d9df",
+      "reviewedHash": "a97185f6ceb4d56cd9f564c264be1c3826547c1b04abd67a6690614a0bd6d9df",
+      "protectedRecipeSha256": "995743ed9be7b92ea8eadacb3a0b835fb6585a485600165eea55f5236c7f98ee",
+      "note": "l’oignon et le gingembre doivent revenir sans matière grasse listée. Le gingembre n’est pas défini frais ou en poudre ; le lait de coco final ne doit pas remplacer la cuisson initiale."
+    },
+    {
+      "id": "a061",
+      "status": "blocked",
+      "sourceHash": "c9340f6b84cce580d01a49a1c542ccd1ea2d83e47232473e53bff27a2af2c329",
+      "reviewedHash": "c9340f6b84cce580d01a49a1c542ccd1ea2d83e47232473e53bff27a2af2c329",
+      "protectedRecipeSha256": "a713c31276f9ea04339a2d9f15d5914607554093c3b3f99af6f558b63755bb64",
+      "note": "le pain est demandé grillé sans conduite précise ni confirmation du récipient. La répartition de l’huile listée entre pain et champignons n’est pas explicitée ; ne pas ajouter un autre appareil ou une dose d’huile."
+    },
+    {
+      "id": "a062",
+      "status": "corrected",
+      "sourceHash": "45cfa1681ebc1dad760fdd92ba4bdc729bbc2a2c6aa19a682426de2de45937c9",
+      "reviewedHash": "a6be1f9dfd0157782f8486cf3bc5b8f8afbc352acdc49151c22bac5075667678",
+      "protectedRecipeSha256": "87872853a2543c1ec03a04a1d06c1e446c3b01ff64279055c176cb0d92742409",
+      "beforeSteps": [
+        "Cuire les poireaux 15 à 18 minutes à la vapeur ou dans l’eau.",
+        "Fouetter moutarde, vinaigre et huile.",
+        "Napper les poireaux tièdes et ajouter la ciboulette."
+      ],
+      "note": "Choix existant eau/vapeur maintenu avec gestes pour les deux modes ; vinaigrette entière et ciboulette au service, plage 15–18 avec tendreté."
+    }
+  ]
+}

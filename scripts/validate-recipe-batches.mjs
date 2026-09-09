@@ -7,7 +7,7 @@ import {recipeSource} from './recipe-source.mjs';
 import {recipeHash} from './validate-recipe-editorial.mjs';
 const root=resolve(dirname(fileURLToPath(import.meta.url)),'..');
 const {code,recipes,editorial}=recipeSource(readFileSync(resolve(root,'index.html'),'utf8'));
-const batchNumbers=['02','03','04','05','06','07','08','09'];
+const batchNumbers=['02','03','04','05','06','07','08','09','10'];
 const fixture={recipes:batchNumbers.flatMap(number=>JSON.parse(readFileSync(resolve(root,`scripts/recipe-editorial-batch-${number}.fixture.json`),'utf8')).recipes)};
 const slice=(a,b)=>code.slice(code.indexOf(a),code.indexOf(b,code.indexOf(a)+a.length));
 const context={window:{},$:()=>({value:'8'}),MEAL_TYPES:['mid','eve'],recipeRole:r=>r.role||r.course||'dish',isFavorite:()=>false,recipeFeedbackHTML:()=>'',recipePersonalNoteHTML:()=>''};
@@ -48,7 +48,9 @@ const timers={
   d041:[[],[],[10]],d042:[[],[],[25]],d043:[[],[],[25]],d045:[[],[],[12]],
   d046:[[],[],[]],d048:[[],[],[]],d049:[[],[],[]],d050:[[],[],[]],
   d051:[[],[],[]],d052:[[],[],[]],d053:[[],[],[]],d054:[[],[],[]],
-  d055:[[],[],[]],d056:[[],[],[]],d057:[[],[],[],[20]],d060:[[],[],[]],d063:[[],[],[30],[]]
+  d055:[[],[],[]],d056:[[],[],[]],d057:[[],[],[],[20]],d060:[[],[],[]],d063:[[],[],[30],[]],
+  a036:[[],[],[]],a037:[[],[],[30]],a039:[[],[],[]],a043:[[],[25],[]],
+  a046:[[],[20],[]],a047:[[],[15],[]],a053:[[],[20],[]],a058:[[],[20],[]],a062:[[18],[],[]]
 };
 const ingredients={
   n01:['poulet','pommes de terre','paprika','huile','sel.*poivre'],
@@ -140,9 +142,18 @@ const ingredients={
   d053:['petits-suisses','abricots','miel'],d054:['yaourts nature','mangue','citron vert'],
   d055:['yaourts nature','framboises','granola','miel'],d056:['fromage blanc','kiwis','citron vert','miel'],
   d057:['yaourt grec','citron','miel','blanc d’œuf'],d060:['poires','fromage blanc','spéculoos','vanille'],
-  d063:['lait','œufs','sucre','vanille','caramel']
+  d063:['lait','œufs','sucre','vanille','caramel'],
+  a036:['concombre','yaourt grec','ail','citron','aneth','saler'],
+  a037:['tomates','poivron rouge','concombre','vinaigre','huile d’olive','sel.*poivre'],
+  a039:['melon','citron','basilic','huile d’olive','sel'],
+  a043:['poireaux','pommes de terre','oignon','bouillon','poivre'],
+  a046:['tomates','oignon','bouillon','basilic','huile d’olive'],
+  a047:['carotte','poireau','courgette','bouillon','vermicelles'],
+  a053:['endives','pomme de terre','bouillon','crème légère','muscade'],
+  a058:['fenouil','tomates','oignon','bouillon','basilic'],
+  a062:['poireaux','moutarde','vinaigre','huile','ciboulette']
 };
-assert.equal(fixture.recipes.length,245);
+assert.equal(fixture.recipes.length,275);
 let quantityChecks=0,timerCount=0;
 for(const record of fixture.recipes){
   const recipe=recipes.find(r=>r.id===record.id);
@@ -228,6 +239,24 @@ assert.match(recipes.find(r=>r.id==='d057').p[0],/blanc d’œuf pasteurisé/);
 assert.match(recipes.find(r=>r.id==='d057').t,/20 min au frais/);
 assert.doesNotMatch(recipes.find(r=>r.id==='d063').p.join(' '),/deux ramequins/);
 assert.match(recipes.find(r=>r.id==='d063').p[2],/71 °C/);
+for(const [id,n,proof] of [['a036','sel',/le saler/],['a037','sel et poivre',/sel et le poivre/],['a043','poivre',/poivrer généreusement/]]){
+  assert.deepEqual(recipes.find(r=>r.id===id).i.at(-1),{q:null,u:'',n,k:n});
+  assert.match(fixture.recipes.find(r=>r.id===id).beforeSteps.join(' '),proof);
+}
+for(const [id,n,step] of [['a039','sel',1],['a053','muscade',2]]){
+  const recipe=recipes.find(r=>r.id===id);
+  assert.deepEqual(recipe.i[4],{q:1,u:'pincée',n,k:n});
+  assert.match(fixture.recipes.find(r=>r.id===id).beforeSteps.join(' '),new RegExp('une pincée de '+n));
+  for(const [count,quantity] of [[1,'½'],[2,'1'],[3,'1½'],[4,'2'],[5,'2½'],[8,'4']]){
+    assert.ok(context.recipeStepText(recipe.p[step],recipe,count).includes(quantity+' pincée'),id+' sourced pinch scales at '+count+' people');
+  }
+}
+assert.match(recipes.find(r=>r.id==='a037').t,/30 min au frais/);
+assert.match(recipes.find(r=>r.id==='a046').p[1],/huile d’olive.*Ajouter l’oignon.*Ajouter les tomates/);
+assert.match(recipes.find(r=>r.id==='a047').p[2],/temps indiqué sur leur paquet/);
+assert.match(recipes.find(r=>r.id==='a058').p[1],/sans les faire revenir/);
+assert.match(recipes.find(r=>r.id==='a058').p[2],/garder des morceaux/);
+assert.match(recipes.find(r=>r.id==='a062').p[0],/panier vapeur.*ou les plonger.*15 à 18 minutes/);
 const corrected=fixture.recipes.filter(r=>r.status==='corrected').length;
 console.log(`✓ Batches ${batchNumbers.join('/')}: ${fixture.recipes.length} individual review records, ${corrected} corrected, ${fixture.recipes.length-corrected} blocked with original content preserved; ${timerCount} manually checked timers`);
 console.log(`✓ ${quantityChecks} ingredient checks at 1/2/3/4/5/8 people; split parmesan quantities, per-face timing and original cooking techniques`);

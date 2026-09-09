@@ -138,6 +138,16 @@ P02 publié : `c87dc373c29cae1d6edb9c2ac6191004c69ba52a`, tests `34390827874` et
 
 **Cumul : 260 identifiants examinés, 131 corrigés, 129 bloqués, 1 293 à examiner.** Prochain dessert `d064`, prochaine entrée `a031`, prochaine fiche globale `gn-cotes-porc-champignons-polenta`. Zéro erreur éditoriale, 9 014 avertissements. 99 minuteurs et 3 456 contrôles d’ingrédients dans les lots 02–09, plus les contrôles du premier lot. Tests du projet réussis ; Browser téléphone/tablette/ordinateur simulés vérifié, fin de recette accessible et quantités réparties cohérentes. Publication à consigner après vérification HTTPS.
 
+## Publication du lot 09
+
+`b05d6b95d7f6e330f5b34de84fb8cf2b8ed53782` publié. Tests `34396043508`, Pages `34396042754` et déploiement `6357809674` réussis. HTTPS 200 et fichiers identiques au commit : index `91e9e2c6f8347778023134bbdd3421db9a23f4c5cef6c1e5e69c3fda4cdcad78`, service worker `a9c302f00692bee94159c27d0ff96337fb9a52cd09267001d4e1722715311f18`. Révision chargée `sha256:2fc70f4a0ad3eef7963a84828bb669bfadd017f04b5b79a0a5cc8294bdb90b5c`. Faisselle vérifiée en production : les deux parts de 100 g correspondent aux 200 g de fruits rouges pour deux personnes.
+
+## Lot 10 — trente entrées et soupes
+
+[Journal et décisions individuelles](recipe-editorial-batch-10.md). 9 corrigées, 21 bloquées, aucune conforme sans modification. Quatre ingrédients rétablis depuis les anciennes étapes ; la pincée de muscade déjà demandée remplace une quantité non renseignée. Les deux pincées retrouvées sont dynamiques. Aucun changement des portions ou appareils, aucun changement culinaire des fiches bloquées.
+
+**Cumul : 290 identifiants examinés, 140 corrigés, 150 bloqués, 1 263 à examiner.** Prochaine entrée `a063`, prochain dessert `d064`, prochaine fiche globale `gn-cotes-porc-champignons-polenta`. Zéro erreur éditoriale, 8 893 avertissements. 106 minuteurs et 3 738 contrôles d’ingrédients dans les lots 02–10. Contrôles du projet réussis ; publication à consigner après vérification HTTPS.
+
 ## Limites des vérifications
 
 Les tests de structure, quantité, minuteurs, stockage simulé et rendu ne sont pas des essais culinaires. Les formats iPhone/PWA sont simulés, sauf mention explicite d’un appareil physique. Le total de fiches à examiner ne doit jamais être remplacé par le nombre de fiches auxquelles le style commun a été appliqué.

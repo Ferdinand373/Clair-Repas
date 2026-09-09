@@ -467,7 +467,7 @@ await check("11. Sel et poivre is never split", () => {
   }
   // Editorial batch 02 restores the source-listed seasoning in a038.
   // Batch 07 restores seven sel/poivre entries explicitly present in the old steps.
-  assert.equal(compoundCount, 476, "Unexpected compoundSource corpus count");
+  assert.equal(compoundCount, 477, "Unexpected compoundSource corpus count");
   assert.equal(splitCount, 19, "Only the audited vinaigrette compounds may split");
   return `${compoundCount} compound occurrences; ${splitCount} safe splits; 0 unexpected`;
 });
