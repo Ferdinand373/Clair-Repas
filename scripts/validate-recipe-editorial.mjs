@@ -49,6 +49,13 @@ export function inspectRecipe(recipe,reading,{reviewed=false}={}){
   return findings;
 }
 
+function preservedLegacyQuantity(issue,recipe,record,reading,legacy){
+  // Do not rewrite uncertain historical steps just to pass editorial checks.
+  // Only their documented, byte-equivalent fixed quantities remain warnings.
+  return issue.code==='fixed-quantity'&&legacy.has(recipe.id)&&record.status==='blocked'
+    &&record.issues?.length>0&&/À vérifier/.test(reading?.reviewNote||'')
+    &&recipeHash(recipe)===record.sourceHash&&record.reviewedHash===record.sourceHash;
+}
 export function validateEditorial({html,inventory}){
   const {recipes,editorial}=recipeSource(html);
   const errors=[],warnings=[],counts={pending:0,unchanged:0,corrected:0,blocked:0};
@@ -72,7 +79,7 @@ export function validateEditorial({html,inventory}){
     if(record.status==='blocked'&&(!record.issues?.length||!reading?.reviewNote))errors.push(`${recipe.id}: blocage sans motif visible`);
     if(['corrected','unchanged'].includes(record.status)&&(record.issues?.length||reading?.reviewNote))errors.push(`${recipe.id}: ne peut être validée avec une réserve essentielle`);
     for(const issue of inspectRecipe(recipe,reading,{reviewed})){
-      (issue.level==='error'?errors:warnings).push(`${recipe.id} [${issue.code}] ${issue.message}`);
+      (issue.level==='error'&&!preservedLegacyQuantity(issue,recipe,record,reading,legacy)?errors:warnings).push(`${recipe.id} [${issue.code}] ${issue.message}`);
     }
   }
   for(const id of Object.keys(editorial))if(!records.has(id))errors.push(`${id}: métadonnées orphelines`);
@@ -95,6 +102,17 @@ function tests(){
   detects(recipe,{...reading,groups:[{title:'Riz',ingredients:[0,0]}]},'groups');
   detects(recipe,{...reading,optionalIngredients:[2]},'optional');
   assert.ok(inspectRecipe(recipe,{},{}).every(i=>i.level==='warning'),'Legacy lacunae remain warnings');
+  const legacyRecipe={...recipe,p:['Ajouter 100 g de riz.']},hash=recipeHash(legacyRecipe);
+  const blocked={status:'blocked',sourceHash:hash,reviewedHash:hash,issues:['Dose historique non résolue']};
+  const note={...reading,reviewNote:'À vérifier : dose historique non résolue'};
+  const legacy=new Set([legacyRecipe.id]),fixed={code:'fixed-quantity'};
+  assert.ok(preservedLegacyQuantity(fixed,legacyRecipe,blocked,note,legacy));
+  assert.ok(!preservedLegacyQuantity(fixed,legacyRecipe,blocked,note,new Set()),'Future recipes have no exemption');
+  assert.ok(!preservedLegacyQuantity(fixed,{...legacyRecipe,p:['Ajouter 200 g de riz.']},blocked,note,legacy),'Changed historical content has no exemption');
+  assert.ok(!preservedLegacyQuantity(fixed,legacyRecipe,{...blocked,status:'corrected'},note,legacy),'Validated content must use dynamic quantities');
+  assert.ok(!preservedLegacyQuantity(fixed,legacyRecipe,blocked,reading,legacy),'A visible reservation is mandatory');
+  assert.ok(!preservedLegacyQuantity({code:'reference'},legacyRecipe,blocked,note,legacy),'Invalid tokens remain blocking');
+  assert.ok(!preservedLegacyQuantity({code:'quantity'},legacyRecipe,blocked,note,legacy),'Invalid ingredient quantities remain blocking');
 }
 function catalogueGuardTests(html,inventory){
   const altered=structuredClone(inventory);

@@ -57,6 +57,8 @@ Le registre couvre tous les identifiants : `pending` (à examiner), `unchanged` 
 
 La tolérance historique est limitée aux 1 553 identifiants de `baselineIds`, figés à la base `bd5a54b`. Leurs `sourceHash` ne doivent jamais être recalculés pour faire passer une modification : le contrôle de référence les protège ensemble. Après une relecture, renseigner `reviewedHash`, le lot et les réserves, sans altérer la référence initiale.
 
+Une quantité figée d’une fiche historique **bloquée et entièrement inchangée depuis cette base** reste un avertissement, avec réserve visible et documentée. Cela permet de conserver une recette incertaine sans la réécrire pour satisfaire le test. Cette exception ne concerne ni les nouvelles recettes, ni une fiche corrigée, ni un contenu historique modifié. Les références invalides, quantités non valides et défauts structurels restent bloquants. Des tests négatifs protègent ces limites.
+
 Une nouvelle recette doit avoir une revue et des métadonnées complètes ; le statut `pending` ne permet pas de contourner cette obligation. Les contrôles simulent un ajout non relu, un ajout sans métadonnées et un ajout correctement documenté. Ces exemples de test restent en mémoire et n'ajoutent aucune recette au catalogue publié. Les imports de données personnelles restent hors de ce parcours.
 
 Erreurs bloquantes : identifiant dupliqué/invalide, quantité non numérique ou négative, étape vide, référence d’ingrédient invalide, groupes incomplets/dupliqués, titres incompatibles avec les étapes, référence dynamique vers une quantité inconnue, modification non consignée, statut validé avec incertitude essentielle déclarée.

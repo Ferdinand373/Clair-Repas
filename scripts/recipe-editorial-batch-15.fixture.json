@@ -1,0 +1,397 @@
+{
+  "baselineCommit": "26931be05651e269f42fb008476abacae3b868e3",
+  "batch": "15",
+  "recipes": [
+    {
+      "id": "d094",
+      "status": "corrected",
+      "sourceHash": "40765a72075fc9a304866e4bd41f28064c1c7e68392b48afe7d54e7ce3ab150d",
+      "reviewedHash": "c1e56612f29fa1401ce3e5e4719fd3c23a0bc515359219afd6f42417b36da160",
+      "protectedRecipeSha256": "1f6f31afeeab3265315feb8bc3a7cf22e99b2670b0ea5c3d054301ad0c6faf97",
+      "beforeSteps": [
+        "Mélanger beurre mou et sucre puis ajouter l’œuf.",
+        "Incorporer farine, avoine et chocolat haché.",
+        "Former des cookies et cuire 12 minutes à 180 °C."
+      ],
+      "note": "Beurre mou, avoine et chocolat haché conservés, sans beurre fondu ni repos ajouté ; taille régulière et espace entre cookies précisés."
+    },
+    {
+      "id": "d095",
+      "status": "corrected",
+      "sourceHash": "14efbf51bca0cb6e12f8ba5b2f67ac80161434d6a98b90e945f0746bd2805762",
+      "reviewedHash": "db281fa3632719879df9f0ba8c1ec8dbc64cf88f27bcbf30babed3757db2abfc",
+      "protectedRecipeSha256": "faadc05c19f5105643a85d6c8f97e6bf31f37c7100a28b8324d5625162889faa",
+      "beforeSteps": [
+        "Mélanger farine, sucre et levure.",
+        "Ajouter œuf, lait et beurre fondu sans trop travailler, puis les myrtilles.",
+        "Cuire 20 minutes à 180 °C."
+      ],
+      "note": "Mélange bref, beurre fondu et myrtilles incorporées délicatement conservés. Levure chimique explicitée sans attribuer un grammage universel au sachet."
+    },
+    {
+      "id": "d096",
+      "status": "corrected",
+      "sourceHash": "80e9f5ee31fb4fb6360b209fafd8eb6224d917c3d3d49e668c2ad306a6663e84",
+      "reviewedHash": "4a94e0c29501fb75a3867bc6aced01462776dceaa8472c8cb36741a748370b01",
+      "protectedRecipeSha256": "f1e51c2ccf871f1b46365be5f57e7c19e732a4a9e30a649f13c66c785b4a6512",
+      "beforeSteps": [
+        "Écraser les bananes et mélanger avec œufs, sucre et beurre fondu.",
+        "Ajouter farine, levure et noix.",
+        "Cuire 30 minutes à 180 °C dans un petit moule."
+      ],
+      "note": "Banane écrasée, noix non torréfiées et beurre fondu conservés ; petit moule et cuisson à 180 °C maintenus, sans repos inventé."
+    },
+    {
+      "id": "d097",
+      "status": "corrected",
+      "sourceHash": "e4cb1cc6fb8af2a30ac126b01db0c23673e91ca58d640f4c1dbcb37dae3928c5",
+      "reviewedHash": "36aa55d49f2394866a45c9d15e37ab1976d75f2c8d7b28d5a5659976dcebe597",
+      "protectedRecipeSha256": "30368c0ed7e58a8320c4bf42b78fb92283251d3f7fc1e62bd072006975d25cb3",
+      "beforeSteps": [
+        "Tiédir lait et miel.",
+        "Ajouter œuf, farine, levure et épices.",
+        "Verser dans un petit moule et cuire 35 minutes à 170 °C."
+      ],
+      "note": "Lait et miel seulement tiédis, œuf conservé, cuisson à 170 °C inchangée. Papier de chemisage évite d’inventer une matière grasse absente."
+    },
+    {
+      "id": "d098",
+      "status": "corrected",
+      "sourceHash": "a7516712ad949c24c508b4879d4c67cafa2ff6f9409495ca91c7f2d24567282d",
+      "reviewedHash": "65ad1bef58563a8f7219c1acaadf9c903582e8e858067d853830c50e909f3e2e",
+      "protectedRecipeSha256": "4d774c22b415894c4f5a0a4f2b934c6238c1ed4878822aaa1aeb90cc06d0a067",
+      "beforeSteps": [
+        "Préchauffez le four à 180 °C. Beurrez généreusement un plat de 22 cm environ et répartissez les pruneaux au fond.",
+        "Mélangez farine, sucre et une pincée de sel dans un saladier. Faites un puits et ajoutez les œufs un à un en fouettant depuis le centre.",
+        "Versez le lait progressivement tout en fouettant, puis ajoutez la vanille. La pâte doit être lisse et assez liquide, comme une pâte à crêpes épaisse.",
+        "Versez délicatement la pâte sur les pruneaux. Enfournez 45 à 50 minutes.",
+        "Le far est cuit quand le dessus est bien doré et que le centre ne tremble presque plus. Une lame plantée au milieu doit ressortir humide mais sans pâte liquide.",
+        "Laissez refroidir au moins 30 minutes avant de couper. Il se déguste tiède ou froid et se raffermit en refroidissant."
+      ],
+      "note": "La version finale upsertée est conservée : trois œufs, 50 cl de lait, 180 g de pruneaux, 45–50 minutes à 180 °C, référence deux personnes. La pincée de sel déjà écrite est rétablie dans les ingrédients ; tout le beurre sert au plat."
+    },
+    {
+      "id": "d099",
+      "status": "blocked",
+      "sourceHash": "cc45e2144cfa0a5b6e1e1e6bb822a3d3a05c3d5a006022073a68a96f089a0981",
+      "reviewedHash": "cc45e2144cfa0a5b6e1e1e6bb822a3d3a05c3d5a006022073a68a96f089a0981",
+      "protectedRecipeSha256": "84cee7d6ab7c743d69e4f77ba2ffc328727c5fe19128cbd348ae0ad1aa19b402",
+      "note": "l’œuf est ajouté hors du feu sans cuisson finale attestée. Les archives ne précisent ni température atteinte, ni emploi d’œuf pasteurisé, ni durée de prise au froid. Ne pas supposer que la semoule chaude suffit à cuire l’œuf ; ne pas servir cette préparation comme validée."
+    },
+    {
+      "id": "d100",
+      "status": "corrected",
+      "sourceHash": "c71aeba360437ebcb4b68f1cef6d3a9ecab8897982d72eef621f14a865837def",
+      "reviewedHash": "0f4e79d7d233861f18a81b231e55c9641f5af6cf36a59ada9ad04874a4cf52b3",
+      "protectedRecipeSha256": "793220af4a43cbc5a935a4dd1fc2439b4556165355559c72503a427a9dc995aa",
+      "beforeSteps": [
+        "Couper rhubarbe et fraises et les disposer dans un petit plat.",
+        "Sabler farine, beurre, sucre et poudre d’amande.",
+        "Répartir sur les fruits et cuire 28 minutes à 190 °C."
+      ],
+      "note": "Fruits crus directement dans le plat et pâte sablée au beurre froid conservés ; aucune compotée ni précuisson ajoutée."
+    },
+    {
+      "id": "theme-bistrot-brasserie-17",
+      "status": "corrected",
+      "sourceHash": "c71f8220a9ab2322c45defd3184d7bd286935a583019a4ab2868c1ca9da8b122",
+      "reviewedHash": "da462b11795ee0e2d7b31bec32c7be7b0a0065f448102bb509c6a312f2ef1556",
+      "protectedRecipeSha256": "6d87afd2d457c752123b127852f2b77558382a4fd5981ed323ab7e63f17cebd3",
+      "beforeSteps": [
+        "Préchauffez le four à 150 °C, chaleur traditionnelle. Posez deux ou trois ramequins larges dans un plat à gratin.",
+        "Fendez la gousse de vanille et grattez les graines. Chauffez la crème avec graines et gousse jusqu’aux premiers frémissements puis retirez du feu et laissez infuser 10 minutes.",
+        "Dans un saladier, mélangez les jaunes et le sucre au fouet juste assez pour homogénéiser, sans chercher à faire mousser.",
+        "Retirez la gousse puis versez la crème chaude progressivement sur les jaunes en mélangeant doucement. Répartissez dans les ramequins.",
+        "Versez de l’eau chaude dans le plat à gratin jusqu’à mi-hauteur des ramequins. Enfournez 30 à 40 minutes. Le bord doit être pris et le centre encore légèrement tremblotant quand on bouge le ramequin.",
+        "Sortez du bain-marie, laissez refroidir puis réfrigérez au moins 3 heures.",
+        "Juste avant de servir, saupoudrez une fine couche régulière de cassonade. Caramélisez au chalumeau, ou très brièvement sous un gril très chaud en surveillant sans quitter le four. Laissez durcir 1 minute."
+      ],
+      "note": "Infusion, bain-marie à 150 °C traditionnel et trois heures au frais conservés. Caramélisation au chalumeau ou gril déjà prévue, avec récipients compatibles et sans durée de gril arbitraire."
+    },
+    {
+      "id": "theme-bistrot-brasserie-18",
+      "status": "corrected",
+      "sourceHash": "956e1746a4da9246bb1f707d06ac91901cba4ffe66adc3697bee126b09e7f68a",
+      "reviewedHash": "b793107f86ab9f3b5df9d0b7e763f85ad1988717f74370a377b202eda83eaee1",
+      "protectedRecipeSha256": "cbf1e9874848abe0b70b0537c4bcd8b307b4f6f20337bae29a4e8ee917bfa718",
+      "beforeSteps": [
+        "Séparez soigneusement les blancs des jaunes. Faites chauffer le lait avec la vanille fendue jusqu’aux premiers frémissements, puis retirez du feu 5 minutes.",
+        "Fouettez les jaunes avec 40 g de sucre jusqu’à ce que le mélange soit homogène. Versez progressivement le lait chaud dessus en fouettant, puis remettez tout dans la casserole.",
+        "Cuisez la crème anglaise sur feu doux en remuant constamment avec une spatule. Ne laissez jamais bouillir. Elle est prête vers 82 °C, ou lorsque la trace du doigt reste nette sur le dos de la spatule. Versez immédiatement dans un saladier froid.",
+        "Montez les blancs en neige. Quand ils commencent à tenir, ajoutez les 30 g de sucre restants et fouettez jusqu’à obtenir une neige ferme et brillante.",
+        "Faites frémir une grande casserole d’eau. Formez de grosses quenelles de blanc avec deux cuillères et pochez-les environ 1 minute par face. Égouttez sur du papier absorbant.",
+        "Faites griller les amandes 2 à 3 minutes à sec. Pour le caramel, chauffez les 30 g de sucre dans une petite casserole sans remuer jusqu’à couleur ambrée, puis retirez du feu.",
+        "Répartissez la crème anglaise bien froide, posez les blancs dessus, ajoutez les amandes et quelques filets de caramel. Attention : le caramel chaud peut provoquer de graves brûlures, ne le touchez jamais avec les doigts."
+      ],
+      "note": "Répartition source 40 g pour la crème et 30 g pour les blancs sur 70 g conservée avec tokens proportionnels, caramel séparé. Pochage dans l’eau environ une minute par face conservé ; 71 °C à cœur ajouté comme contrôle de sécurité, sans garantir la cuisson par la couleur."
+    },
+    {
+      "id": "theme-bistrot-brasserie-19",
+      "status": "corrected",
+      "sourceHash": "b0e203f69f2436607b81da97eb6ebd957ee6f90b50ba4dd5d141cb7dcd2b1920",
+      "reviewedHash": "8bc9b9899bde613d4f4b268be74541cbff6cdda6405b0b398d0a4e471c0651e3",
+      "protectedRecipeSha256": "580ee3ce75936ac0fb883febfbc40b452e1cdb265528a90652bf4071a91dfafb",
+      "beforeSteps": [
+        "Préchauffez le four à 190 °C. Épluchez les pommes, coupez-les en quartiers et retirez les pépins. Choisissez un moule ou une poêle de 22 à 24 cm pouvant aller au four.",
+        "Répartissez le sucre dans le moule et chauffez sur feu moyen sans remuer avec une cuillère. Faites simplement tourner légèrement le moule quand le sucre commence à fondre. Arrêtez dès que le caramel est ambré.",
+        "Hors du feu, ajoutez le beurre en morceaux avec prudence : le mélange peut mousser. Ajoutez une petite pincée de sel.",
+        "Rangez les quartiers de pommes très serrés, côté bombé contre le fond. Remettez sur feu doux 10 minutes pour commencer à les attendrir et les enrober de caramel.",
+        "Déroulez la pâte sur les pommes, rentrez délicatement le bord entre les fruits et le moule puis piquez 4 ou 5 fois la pâte avec la pointe d’un couteau.",
+        "Enfournez 30 à 35 minutes, jusqu’à ce que la pâte soit bien dorée. Laissez reposer seulement 5 minutes à la sortie du four.",
+        "Posez un grand plat sur le moule, protégez vos mains avec des maniques et retournez d’un mouvement franc. Ne laissez pas refroidir complètement avant de démouler, sinon le caramel durcirait. Servez tiède."
+      ],
+      "note": "Caramel à sec dans un récipient compatible feu ET four, pommes précuites dix minutes, pâte au-dessus et retournement tiède conservés ; cinq minutes de repos séparées de la cuisson."
+    },
+    {
+      "id": "theme-cuisine-regionale-23",
+      "status": "corrected",
+      "sourceHash": "2199ef7365a2e75dbb84c1a7cbdfb009e5db43e66799f45d4154e51a891db476",
+      "reviewedHash": "25bca680c479dfc9538883c7ed51ebcf9380a69ead4cffca13ac779f0115ecb5",
+      "protectedRecipeSha256": "f433a26636f6ce5a370800e3eeda2c1aeff3b63222192a1c8cba6ed7e0f9372e",
+      "beforeSteps": [
+        "Préchauffez le four à 150 °C. Versez le riz cru dans une terrine ou un plat profond allant au four.",
+        "Ajoutez sucre, cannelle et sel puis mélangez. Versez le lait froid doucement et mélangez une dernière fois.",
+        "Enfournez 2 h 30 à 3 heures sans remuer. Une croûte brune va se former : elle est normale et protège le riz pendant la cuisson.",
+        "Après 2 h 30, vérifiez en soulevant un petit coin de croûte : le riz doit être très tendre et la préparation crémeuse, sans grande quantité de lait liquide.",
+        "Si nécessaire, poursuivez 20 à 30 minutes. Sortez du four et laissez tiédir au moins 30 minutes.",
+        "Servez tiède ou froid en prenant un peu de croûte avec chaque portion. La texture doit être très fondante."
+      ],
+      "note": "Riz cru, lait froid, terrine profonde et cuisson sans remuer conservés. Durée longue laissée en heures, prolongation conditionnelle séparée du repos pour éviter leur confusion."
+    },
+    {
+      "id": "theme-cuisine-regionale-24",
+      "status": "corrected",
+      "sourceHash": "fb0026ae2008d077edff787d781b49c2b29666744168dfa9b586c5b6c7c036cd",
+      "reviewedHash": "83fc40b79aac3ed5c5d0e408e7ab774b0c82e67bf3113446c4ccfda549a0b5a1",
+      "protectedRecipeSha256": "30d1f7efaf7c1e73a140482e741f12bc65cea67cabf55efa0bf8ce551084debd",
+      "beforeSteps": [
+        "Préchauffez le four à 190 °C. Lavez et séchez les mirabelles, coupez-les en deux et retirez les noyaux.",
+        "Foncez un moule à tarte avec la pâte et piquez le fond avec une fourchette. Saupoudrez la poudre d’amandes : elle absorbera une partie du jus des fruits.",
+        "Rangez les demi-mirabelles très serrées, côté coupé vers le haut. Parsemez de 35 g de sucre.",
+        "Enfournez 35 à 40 minutes, jusqu’à ce que la pâte soit dorée et que le jus des fruits bouillonne légèrement.",
+        "À la sortie du four, saupoudrez très légèrement de sucre si les fruits sont acides. Laissez tiédir 20 minutes avant de démouler pour éviter de casser la pâte.",
+        "Servez tiède ou à température ambiante, sans crème pour laisser le goût des mirabelles dominer."
+      ],
+      "note": "Toute la poudre d’amandes sous les fruits et sucre principal à la cuisson conservés. Sucre de finition distinct, facultatif si fruits acides, plafonné à la quantité source ; repos de vingt minutes séparé."
+    },
+    {
+      "id": "theme-cuisine-regionale-25",
+      "status": "blocked",
+      "sourceHash": "c84d00da3e2a5b90571c3365628ece4d9591e5a46a20a9fbff6ceeee708ea217",
+      "reviewedHash": "c84d00da3e2a5b90571c3365628ece4d9591e5a46a20a9fbff6ceeee708ea217",
+      "protectedRecipeSha256": "4cb5c0efb596f700971b78fed460c780240448f1d5ca5d13dfb89fe495d2a301",
+      "note": "la liste contient 220 g de farine mais la pâte n’en utilise que 200 g à la référence ; l’usage des 20 g restants n’est pas indiqué. La cuillère d’eau de la dorure n’a pas d’unité définie. Les archives reproduisent ces lacunes : ne pas attribuer la farine restante au plan de travail sans preuve."
+    },
+    {
+      "id": "theme-cuisine-regionale-26",
+      "status": "blocked",
+      "sourceHash": "85752efe746c42922583bdced4be658349d8919a4e5d71f458c7a4dfa602f656",
+      "reviewedHash": "85752efe746c42922583bdced4be658349d8919a4e5d71f458c7a4dfa602f656",
+      "protectedRecipeSha256": "2f6a076fd2f99045ce695127c09e78f6950eb950f341c99fc806ff78cbeb8c13",
+      "note": "le zeste du citron est entièrement incorporé puis de nouveau demandé au service, sans part réservée ni citron supplémentaire identifié. Ne pas inventer de partage. La cuisson aux œufs doit aussi être contrôlée au cœur, pas seulement par une surface dorée."
+    },
+    {
+      "id": "theme-famille-dimanche-15",
+      "status": "blocked",
+      "sourceHash": "8c05850a40edecf3d33936ed1ebd51f25b058b3883f2b8e2a3d7b5ecdb10c712",
+      "reviewedHash": "8c05850a40edecf3d33936ed1ebd51f25b058b3883f2b8e2a3d7b5ecdb10c712",
+      "protectedRecipeSha256": "30fe87e98fcd705efaf296c22be349a9bfcc92295bb2a7b5e260843dec848997",
+      "note": "le moule doit être beurré puis fariné mais le beurre est absent et toute la farine listée rejoint ensuite la pâte. Les archives ne donnent pas la part réservée au moule ; ne pas remplacer ce beurrage-farinage par une technique choisie arbitrairement."
+    },
+    {
+      "id": "theme-famille-dimanche-17",
+      "status": "blocked",
+      "sourceHash": "26029d9ff73a51781bd4260c2263ad76b1acbb94b441cb43071b84bb422e2251",
+      "reviewedHash": "26029d9ff73a51781bd4260c2263ad76b1acbb94b441cb43071b84bb422e2251",
+      "protectedRecipeSha256": "7a250e21b9b75e4bc71bc796f8db5124653a900819e1597be8ac5c658bd7e688",
+      "note": "la crème fraîche proposée au service est absente de la liste et « une cuillère » n’indique ni unité ni nombre de portions concernées. Le service nature est déjà possible ; l’option crème reste à documenter sans lui attribuer une dose arbitraire."
+    },
+    {
+      "id": "theme-famille-dimanche-18",
+      "status": "corrected",
+      "sourceHash": "f8383658180dd95ac589767e1b7c4df0cbe518c9ee345c667cb5ba28554c49f8",
+      "reviewedHash": "e31fb243d94fcf30d61b4fb1874a2289e1f21dff4920801a274ecf4d3b205b9c",
+      "protectedRecipeSha256": "4e174a801711e23ac5505f8ca4cf4ae35d8110322033d0f940266790cacbbdb3",
+      "beforeSteps": [
+        "Préchauffez le four à 160 °C. Posez un plat ou des ramequins dans un grand plat à gratin pour préparer un bain-marie.",
+        "Faites chauffer le lait avec la vanille jusqu’aux premiers frémissements puis retirez du feu.",
+        "Dans un saladier, mélangez les œufs et le sucre au fouet sans chercher à faire mousser.",
+        "Versez le lait chaud très progressivement sur les œufs en mélangeant sans arrêt. Répartissez dans le plat ou les ramequins.",
+        "Versez de l’eau chaude dans le grand plat jusqu’à mi-hauteur. Enfournez environ 35 à 40 minutes pour des ramequins, un peu plus pour un grand plat.",
+        "La crème est cuite quand les bords sont pris et que le centre tremble encore légèrement. Sortez du bain-marie, laissez refroidir puis réfrigérez au moins 2 heures avant de servir."
+      ],
+      "note": "Bain-marie à 160 °C et minimum deux heures au froid conservés ; lait incorporé progressivement sans faire mousser, cuisson vérifiée à 71 °C."
+    },
+    {
+      "id": "theme-petits-gourmands-17",
+      "status": "blocked",
+      "sourceHash": "cec655b1cca63fc70ffc933c6ff056a08c5c3c859b434fd0ea7b7105a4855071",
+      "reviewedHash": "cec655b1cca63fc70ffc933c6ff056a08c5c3c859b434fd0ea7b7105a4855071",
+      "protectedRecipeSha256": "c9ac5caf1d6ae4d65fc7f3c13e4a2e92b8d12e18c6af0ffe818596d9c047e6b3",
+      "note": "la finition propose d’ajouter du sucre mais cet ingrédient n’est ni listé ni dosé. La version sans sucre est prévue lorsque les fruits sont mûrs ; l’option sucrée doit être précisée avant validation complète, sans inventer une quantité."
+    },
+    {
+      "id": "theme-petits-gourmands-18",
+      "status": "corrected",
+      "sourceHash": "52d36b65057d15e390f5f0f2dd83b3fd3253fd14202289d14a8101ffe51c4947",
+      "reviewedHash": "49b2f7d8e408492035874537e5c2ddd1980812b8d4c97b6598a4f6069717bd29",
+      "protectedRecipeSha256": "3ad75873d8264b7e1f81f3503b20d16fab4fe65a13f72b4e01acfaee248b90a1",
+      "beforeSteps": [
+        "Versez le lait et la vanille dans une casserole et chauffez jusqu’aux premiers frémissements.",
+        "Baissez le feu puis versez la semoule en pluie tout en fouettant pour éviter les grumeaux.",
+        "Faites cuire 5 à 7 minutes à feu doux en remuant constamment. La préparation doit épaissir mais rester souple.",
+        "Ajoutez le sucre en fin de cuisson et mélangez 1 minute.",
+        "Répartissez dans quatre petits bols. Laissez tiédir puis réfrigérez si vous souhaitez la servir froide. Vérifiez toujours la température avant de servir à un enfant."
+      ],
+      "note": "Semoule cuite dans le lait et sucre seulement en fin de cuisson conservés. Temps du paquet pour une préparation au lait prioritaire ; une minute finale de mélange distincte et nombre de bols adapté."
+    },
+    {
+      "id": "theme-petits-gourmands-19",
+      "status": "corrected",
+      "sourceHash": "47260dce338b973bea40493ccfc7b7c06ffed7792efa07139dbab45c30af2cb5",
+      "reviewedHash": "11a4c4e6c921a35290af09390e5e135bf8bd7111563aa4eb5e84bd67e440760c",
+      "protectedRecipeSha256": "14943f32338072b398235c9c0803b5b0a67f8929352884a0e4e509926be051c0",
+      "beforeSteps": [
+        "Préchauffez le four à 180 °C. Placez des caissettes dans un moule à muffins ou graissez légèrement 8 empreintes.",
+        "Écrasez les bananes très finement à la fourchette. Ajoutez yaourt, œufs, sucre et huile puis mélangez.",
+        "Ajoutez farine et levure. Mélangez juste assez pour ne plus voir de farine sèche ; une pâte trop travaillée donnerait des muffins plus fermes.",
+        "Répartissez la pâte dans 8 empreintes en les remplissant aux trois quarts.",
+        "Enfournez 18 à 22 minutes. Un cure-dent planté au centre doit ressortir sec ou avec quelques miettes.",
+        "Laissez refroidir sur une grille. Pour de jeunes enfants, servez en petits morceaux et sans garniture dure ou fruits à coque."
+      ],
+      "note": "Option source des caissettes conservée, sans ajout d’huile pour le moule. Remplissage aux trois quarts maintenu ; huit pièces est un rendement de référence, pas un nombre fixe pour tout repas."
+    },
+    {
+      "id": "theme-petits-gourmands-20",
+      "status": "corrected",
+      "sourceHash": "3af1fe94ced7b82a375531a6d301690d9c9f5df505ca65385ea3e2f6d57217dd",
+      "reviewedHash": "58d73c730b8d5b2158ec756530030d80899c5d0ab9880cc3835275cbffebe04b",
+      "protectedRecipeSha256": "7d704fba940a7ff4a08f0fd3d1aabc1e91d76ae8f0c851b0444cfe5768fb016e",
+      "beforeSteps": [
+        "Préchauffez le four à 175 °C. Beurrez un moule rond de 20 cm ou tapissez-le de papier cuisson.",
+        "Faites fondre doucement le chocolat et le beurre au bain-marie ou au micro-ondes par séquences de 20 secondes, en mélangeant entre chaque.",
+        "Dans un saladier, fouettez les œufs et le sucre seulement jusqu’à ce qu’ils soient bien mélangés.",
+        "Ajoutez le chocolat fondu puis la farine. Mélangez jusqu’à obtenir une pâte homogène.",
+        "Versez dans le moule et enfournez 20 à 24 minutes. Pour cette version familiale destinée aussi aux enfants, le centre doit être cuit et non coulant ; une lame peut ressortir avec quelques miettes humides mais sans pâte liquide.",
+        "Laissez refroidir 15 minutes avant de démouler puis coupez en petites parts adaptées."
+      ],
+      "note": "Papier cuisson et fonte au bain-marie ou par séquences micro-ondes sont déjà proposés dans la source. 175 °C et cœur non coulant conservés ; quinze minutes avant démoulage séparées."
+    },
+    {
+      "id": "theme-petits-gourmands-21",
+      "status": "blocked",
+      "sourceHash": "aab00658c6093b3104f1c46738730fab4648a9209efa1d55ad43c06b29a00dc4",
+      "reviewedHash": "aab00658c6093b3104f1c46738730fab4648a9209efa1d55ad43c06b29a00dc4",
+      "protectedRecipeSha256": "4a2452f37c60bf72d0f8970321703445b01b3502fd36b5f39d469a4c0bfd492e",
+      "note": "tout le lait listé cuit avec le riz, puis une cuillère supplémentaire est proposée pour l’assouplir sans dose ni unité précises. La fréquence de mélange ne doit pas devenir un minuteur de cuisson ; les cinq dernières minutes de sucre sont incluses dans le total. Le paquet doit préciser la cuisson au lait, pas celle à l’eau."
+    },
+    {
+      "id": "theme-bistrot-plus-21",
+      "status": "corrected",
+      "sourceHash": "de24725ed038a3f8dd678d511934d8952691d4067f22196989b9f1d791373e59",
+      "reviewedHash": "6836334138d6166988e139dc4178e6163a0bb53fb8771ad5a32b4ef65ed259b8",
+      "protectedRecipeSha256": "06757a348708efb197905c81e064750d202112fe4de54e76b4b90c2906b2870e",
+      "beforeSteps": [
+        "Préchauffez le four à 200 °C. Portez l’eau, le beurre et le sel à ébullition dans une casserole.",
+        "Retirez du feu, versez toute la farine d’un coup et mélangez vivement. Remettez sur feu moyen 1 à 2 minutes en remuant jusqu’à ce que la pâte forme une boule et laisse une fine pellicule au fond.",
+        "Versez la pâte dans un saladier et laissez tiédir 3 minutes. Ajoutez le premier œuf et mélangez jusqu’à ce que la pâte redevienne lisse, puis incorporez le second de la même façon.",
+        "Formez 12 petits choux sur une plaque couverte de papier cuisson. Enfournez 20 à 25 minutes sans ouvrir la porte pendant les 20 premières minutes. Les choux doivent être gonflés, bien dorés et légers.",
+        "Éteignez le four, entrouvrez la porte et laissez sécher les choux 5 minutes. Faites-les refroidir sur une grille.",
+        "Pour la sauce, chauffez la crème jusqu’aux premiers frémissements puis versez-la sur le chocolat haché. Attendez 1 minute et mélangez jusqu’à obtenir une sauce brillante.",
+        "Coupez les choux en deux, garnissez chacun d’une petite boule de glace vanille puis refermez. Nappez de sauce chocolat chaude au dernier moment."
+      ],
+      "note": "Pâte à choux à l’eau, desséchage, incorporation successive des œufs, 200 °C et séchage four éteint conservés. Nombre de choux rattaché au rendement de référence ; sauce préparée pendant le refroidissement."
+    },
+    {
+      "id": "theme-bistrot-plus-22",
+      "status": "corrected",
+      "sourceHash": "29c20dbcc8fd3701401ab4da4847d8545c30456b319ec5c9de27cd0f0f2d06f9",
+      "reviewedHash": "99b3bb13937262d915887ecc6f4ee28ea2a8f7be892a57beef90a088ace31a90",
+      "protectedRecipeSha256": "1939ec7b2c19a31b6cd7140fabea7c109b62deefe6171060dd5a0318c8478a97",
+      "beforeSteps": [
+        "Rincez rapidement le riz. Versez-le dans une casserole, couvrez d’eau froide, portez à ébullition et laissez blanchir 2 minutes puis égouttez.",
+        "Remettez le riz dans la casserole avec le lait, la gousse de vanille fendue et ses graines. Portez doucement à frémissement.",
+        "Cuisez 35 à 40 minutes sur feu très doux en remuant régulièrement, surtout en fin de cuisson. Le riz doit être très tendre et le mélange encore crémeux.",
+        "Ajoutez les 70 g de sucre pendant les 5 dernières minutes. Retirez la vanille et répartissez dans des coupelles.",
+        "Pour le caramel, chauffez les 80 g de sucre à sec dans une petite casserole sans remuer avec une cuillère. Quand il devient ambré, retirez du feu.",
+        "Ajoutez avec prudence le beurre puis la crème légèrement tiédie ; le mélange mousse fortement. Remettez 1 minute sur feu doux en remuant jusqu’à obtenir une sauce lisse.",
+        "Laissez tiédir le caramel puis versez-en un filet sur le riz au lait. Servez tiède ou froid."
+      ],
+      "note": "Blanchiment de deux minutes conservé, distinct de la cuisson au lait. Sucre dans les cinq dernières minutes, pas cinq minutes en plus. Tous les ingrédients du caramel restent dosés ; service en filet puis reste de sauce à côté, sans imposer une fraction arbitraire."
+    },
+    {
+      "id": "theme-bistrot-plus-23",
+      "status": "corrected",
+      "sourceHash": "21c31034ff3e9d36606bde52811bbb55cd1e7fbf94b19ae89d5cb98e0d19c279",
+      "reviewedHash": "60a294606726cf5ff5898df7c10927194736c790c6dbf013b66280166df640ab",
+      "protectedRecipeSha256": "930a874ad411b3e534359e950a1d9d606e1c8e8c11f6f5b8d617d4a79fdd1bd6",
+      "beforeSteps": [
+        "Préchauffez le four à 160 °C. Placez quatre grands ramequins dans un plat à gratin.",
+        "Versez les 80 g de sucre dans une petite casserole et chauffez sans remuer jusqu’à obtenir un caramel ambré. Répartissez immédiatement dans le fond des ramequins en les inclinant avec précaution.",
+        "Faites chauffer le lait avec la vanille jusqu’aux premiers frémissements puis retirez du feu.",
+        "Mélangez les œufs et les 70 g de sucre au fouet sans les faire mousser. Versez progressivement le lait chaud en mélangeant.",
+        "Répartissez la crème dans les ramequins. Versez de l’eau chaude dans le grand plat jusqu’à mi-hauteur et enfournez 35 à 40 minutes.",
+        "La crème est prête quand les bords sont pris et le centre encore légèrement tremblotant. Sortez du bain-marie, laissez refroidir puis réfrigérez au moins 4 heures.",
+        "Passez une lame fine autour du bord, posez une assiette sur le ramequin et retournez d’un geste franc. Le caramel liquide doit napper la crème."
+      ],
+      "note": "Sucres de la crème et du caramel gardés séparés et dynamiques. Caramel à sec, bain-marie à 160 °C et quatre heures au froid conservés ; nombre de ramequins non figé."
+    },
+    {
+      "id": "theme-bistrot-plus-24",
+      "status": "blocked",
+      "sourceHash": "d3b87160f149088039d5a7b4a92771b3e3056c14264064d54729476d746a161a",
+      "reviewedHash": "d3b87160f149088039d5a7b4a92771b3e3056c14264064d54729476d746a161a",
+      "protectedRecipeSha256": "909fabf36932a7e847d73f6bd9d2a5f85e5fca0bf12d7e86a034f79cc80da5f2",
+      "note": "la source demande le jus de trois citrons et environ 12 cl sans préciser quelle mesure prime, puis le zeste de deux seulement ; ces quantités sont figées. La meringue est seulement colorée en surface et sa sécurité ne peut être déduite de sa couleur : il faut documenter l’emploi de blancs pasteurisés ou une cuisson validée, sans modifier la méthode au hasard."
+    },
+    {
+      "id": "theme-bistrot-plus-25",
+      "status": "corrected",
+      "sourceHash": "c4ab703cbe5363a68e836e5d6d919692f6d85c3dd0143f44fd77cdcdd4c74edb",
+      "reviewedHash": "feb60aa2ec29f53bb17d95afb9221ebba049d70b91fcc2fdd57fcfacbac094ec",
+      "protectedRecipeSha256": "9cde42c5655dc685dc80c32a7e6375a5e3268c9353fbafd9ff2b94c86a22d38b",
+      "beforeSteps": [
+        "Épluchez les poires en gardant la queue. Retirez délicatement le cœur par la base avec un petit couteau si vous le pouvez.",
+        "Portez l’eau, le sucre et la vanille à frémissement dans une casserole suffisamment étroite pour que les poires restent immergées.",
+        "Ajoutez les poires et laissez-les pocher 15 à 25 minutes selon leur maturité, en les retournant à mi-cuisson. Une lame doit entrer facilement sans que le fruit se défasse.",
+        "Laissez refroidir les poires dans leur sirop puis égouttez-les. Faites griller les amandes 2 minutes dans une poêle sèche et réservez.",
+        "Hachez le chocolat. Chauffez la crème jusqu’aux premiers frémissements, versez-la sur le chocolat, attendez 1 minute puis mélangez jusqu’à obtenir une sauce lisse.",
+        "Placez une poire dans chaque coupe avec une boule de glace vanille. Nappez de sauce chocolat chaude et parsemez d’amandes.",
+        "Servez immédiatement pour conserver le contraste entre la poire fraîche, la glace et le chocolat chaud."
+      ],
+      "note": "Poires pochées entières puis refroidies dans leur sirop conservées. Amandes grillées et sauce préparées pendant ce refroidissement ; volumes du sirop et de la sauce liés aux ingrédients."
+    },
+    {
+      "id": "theme-bistrot-plus-26",
+      "status": "corrected",
+      "sourceHash": "054354f9937be5a20fee054d904541d48606f03df266bfa4bd584cbccb3c7d13",
+      "reviewedHash": "63591798fcb0db92d07ad482c54ac1e1486c06755ab009c86a52ff6f5f6f1c0a",
+      "protectedRecipeSha256": "72b8e895766c5dd85ef11ecfd271b486b677089d062a0edee5a81871553c2299",
+      "beforeSteps": [
+        "Préparez d’abord le caramel : chauffez les 80 g de sucre à sec dans une petite casserole jusqu’à couleur ambrée.",
+        "Retirez du feu et ajoutez très prudemment le beurre demi-sel puis la crème légèrement tiédie. Remettez 1 minute sur feu doux en mélangeant jusqu’à ce que la sauce soit lisse, puis réservez.",
+        "Dans un plat creux, fouettez les œufs avec le lait, les 30 g de sucre et la vanille.",
+        "Déposez les tranches de brioche dans ce mélange 20 à 30 secondes par face. Elles doivent être imbibées mais pas au point de se défaire.",
+        "Faites fondre le beurre doux dans une grande poêle sur feu moyen. Cuisez les tranches 3 à 4 minutes par face jusqu’à ce qu’elles soient bien dorées et chaudes à cœur.",
+        "Posez deux tranches par assiette et nappez d’un peu de caramel beurre salé tiède. Servez immédiatement."
+      ],
+      "note": "Sucre de trempage, sucre du caramel, beurre de poêle et beurre demi-sel gardés distincts. Trois à quatre minutes par face séparées, pas une durée globale ; sauce restante servie à côté sans partage inventé."
+    },
+    {
+      "id": "theme-bistrot-plus-27",
+      "status": "blocked",
+      "sourceHash": "8e4e799a625baa0a911948a1b598a378ef88d2dd5509cfd7f3c928e8ab346095",
+      "reviewedHash": "8e4e799a625baa0a911948a1b598a378ef88d2dd5509cfd7f3c928e8ab346095",
+      "protectedRecipeSha256": "30394556cf67168fce301566c6c0c16cc1a0555a585088971aeabea7d2c21a08",
+      "note": "les deux cuillères d’eau pour la levure ne sont pas distinguées des 30 cl ensuite utilisés intégralement dans le sirop. Tout le beurre est incorporé à la pâte puis les moules sont beurrés sans dose supplémentaire. Les levées et l’imbibage dépassent aussi le total annoncé. Ne pas prélever de quantités arbitraires dans le sirop ou la pâte."
+    },
+    {
+      "id": "v74-reg-22",
+      "status": "blocked",
+      "sourceHash": "2ef9e9f12ed68b94d60d727e3635d9179e459712b8c722d4585a520e04ff7ad1",
+      "reviewedHash": "2ef9e9f12ed68b94d60d727e3635d9179e459712b8c722d4585a520e04ff7ad1",
+      "protectedRecipeSha256": "d6a8ecdb786617d5eec3d35f835038d24ef6af6c42b10630d8dcd747dd163332",
+      "note": "tout le beurre listé est enfermé dans la pâte feuilletée, puis le moule doit être beurré sans quantité réservée. La part de sucre à chaque tour peut être calculée, mais elle ne résout pas le beurre manquant. Les archives ne permettent pas de réduire le beurre de feuilletage ni d’inventer une dose pour le moule."
+    }
+  ]
+}

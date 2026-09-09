@@ -188,6 +188,16 @@ P02 publié : `c87dc373c29cae1d6edb9c2ac6191004c69ba52a`, tests `34390827874` et
 
 **Cumul : 430 identifiants examinés, 175 corrigés, 255 bloqués, 1 123 à examiner.** Prochaine fiche globale `gn2-boeuf-gingembre-sesame`, prochaine entrée `a094`, prochain dessert `d094`. Zéro erreur éditoriale et 8 339 avertissements. Les 24 commandes du workflow réussissent ; 144 minuteurs et 4 842 calculs d’ingrédients des lots précédents conservés. Publication à consigner après contrôle HTTPS.
 
+## Publication du lot 14
+
+`26931be05651e269f42fb008476abacae3b868e3` publié. Tests `34400888341`, Pages `34400886269` et déploiement `6358638232` réussis. HTTPS 200 et fichiers identiques au commit : index `07e36c062ddf28fb3bdb3a5820301700f2f5de5a6e09ce94b8142e65d10027f6`, service worker `bb83d9902947556fecf00ad4f1e7f52f7657035e84732aa4abef4ace0d8e7347`. Révision chargée après actualisation normale `sha256:09c5b0f3ae635521f93f527708b43a4ed408f602c2d48f9f0c2200ff98505c11`. Aucun effacement de données ni intervention sur le programme.
+
+## Lot 15 — trente desserts
+
+[Journal, références et décisions individuelles](recipe-editorial-batch-15.md). 20 corrigés, 10 bloqués, aucun conforme sans modification. Une pincée de sel retrouvée dans les étapes du far est rétablie ; autres ingrédients et portions inchangés. Répartition du sucre calculée, cuissons par face et repos distincts. Les dix objets culinaires bloqués restent intacts. La tolérance des quantités figées d’une fiche historique bloquée est strictement limitée au contenu original inchangé, avec tests négatifs et documentation.
+
+**Cumul : 460 identifiants examinés, 195 corrigés, 265 bloqués, 1 093 à examiner.** Prochaine fiche globale `gn2-boeuf-gingembre-sesame`, prochaine entrée `a094`, prochain dessert `v74-reg-27`. Zéro erreur éditoriale et 8 209 avertissements. Les 24 commandes du workflow réussissent ; 185 minuteurs et 5 580 calculs d’ingrédients vérifiés dans les lots 02–15. Publication à consigner après vérification en production.
+
 ## Limites des vérifications
 
 Les tests de structure, quantité, minuteurs, stockage simulé et rendu ne sont pas des essais culinaires. Les formats iPhone/PWA sont simulés, sauf mention explicite d’un appareil physique. Le total de fiches à examiner ne doit jamais être remplacé par le nombre de fiches auxquelles le style commun a été appliqué.
