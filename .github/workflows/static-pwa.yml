@@ -54,6 +54,7 @@ jobs:
       - name: Validate application and PWA invariants
         run: |
           node scripts/validate-static-app.mjs
+          node scripts/validate-recipe-clarity.mjs
           node scripts/validate-planning-dates.mjs
           node scripts/validate-cloud-sync.mjs
           node scripts/validate-repair-tool.mjs

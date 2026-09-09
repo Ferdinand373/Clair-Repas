@@ -1,0 +1,491 @@
+{
+  "baselineCommit": "af033fe6b95a48bc286f4ad2aaa84adeddf21cda",
+  "protectedCatalogSha256": "84fe4ee4e8e9ef1db88acd2bcd2cf917c99fe0c3c235a02fc335b9c9abdd6618",
+  "recipes": [
+    {
+      "id": "n05",
+      "name": "Brochettes de poulet et légumes grillés",
+      "method": "Barbecue",
+      "baseServings": 2,
+      "fixedYield": false,
+      "beforeSteps": [
+        "Couper le poulet et les légumes.",
+        "Monter les brochettes et assaisonner.",
+        "Cuire 12 à 15 minutes au barbecue en les retournant."
+      ],
+      "beforeTime": "30 min",
+      "stepsSha256": "bbf55897fdf01c1830a98d9241fe0b7f915eee16c54be0cd723ec61a2d132c9f",
+      "timers": [
+        [],
+        [],
+        [],
+        [],
+        [
+          15
+        ],
+        []
+      ]
+    },
+    {
+      "id": "n07",
+      "name": "Jambon roulé gratiné et salade",
+      "method": "Four",
+      "baseServings": 2,
+      "fixedYield": false,
+      "beforeSteps": [
+        "Mettre un peu de gruyère dans chaque tranche de jambon et rouler.",
+        "Mélanger la crème et le concentré de tomate.",
+        "Napper, ajouter le reste de gruyère et gratiner 15 minutes à 200 °C.",
+        "Servir avec la salade."
+      ],
+      "beforeTime": "30 min",
+      "stepsSha256": "f739086f09f58589dc7a11a9b3e0f5f85fb430669e3db0e4b049790572019ba5",
+      "timers": [
+        [],
+        [],
+        [],
+        [
+          15
+        ],
+        []
+      ]
+    },
+    {
+      "id": "n11",
+      "name": "Poisson blanc citronné et légumes rôtis",
+      "method": "Air Fryer",
+      "baseServings": 2,
+      "fixedYield": false,
+      "beforeSteps": [
+        "Couper les légumes, les assaisonner et les cuire 12 minutes à 190 °C.",
+        "Ajouter le poisson citronné.",
+        "Poursuivre 10 à 12 minutes."
+      ],
+      "beforeTime": "28 min",
+      "afterTime": "35 min",
+      "stepsSha256": "c54ed22e4944ed6d9fe03d37a82230d9427a61d870e75ba22d4faab8b8147b8e",
+      "timers": [
+        [],
+        [],
+        [
+          12
+        ],
+        [],
+        [
+          12
+        ],
+        []
+      ]
+    },
+    {
+      "id": "n26",
+      "name": "Poulet citron-herbes, semoule et courgettes",
+      "method": "Plancha",
+      "baseServings": 2,
+      "fixedYield": false,
+      "beforeSteps": [
+        "Préparer la semoule.",
+        "Couper la courgette en longues tranches et l’assaisonner.",
+        "Cuire le poulet et la courgette sur la plancha 12 à 15 minutes.",
+        "Ajouter le citron et servir avec la semoule."
+      ],
+      "beforeTime": "25 min",
+      "stepsSha256": "5933468b565a3164519ecd51e92a59524d2167e32cf768e1766c714b85438720",
+      "timers": [
+        [],
+        [],
+        [],
+        [
+          15
+        ],
+        [],
+        []
+      ]
+    },
+    {
+      "id": "n78",
+      "name": "Brochettes de bœuf, champignons et semoule",
+      "method": "Plancha",
+      "baseServings": 2,
+      "fixedYield": false,
+      "beforeSteps": [
+        "Monter les brochettes avec bœuf, champignons et oignon.",
+        "Cuire 8 à 10 minutes sur la plancha.",
+        "Préparer la semoule et servir."
+      ],
+      "beforeTime": "28 min",
+      "stepsSha256": "0ff35f15d65b3a88f860fed46d6166b4f01152ed12b57302b8f90c807add5c31",
+      "timers": [
+        [],
+        [],
+        [],
+        [
+          10
+        ],
+        [],
+        [
+          3
+        ]
+      ]
+    },
+    {
+      "id": "n88",
+      "name": "Pâtes au saumon, petits pois et citron",
+      "method": "Poêle",
+      "baseServings": 2,
+      "fixedYield": false,
+      "beforeSteps": [
+        "Cuire les pâtes et les petits pois.",
+        "Cuire le saumon puis l’émietter.",
+        "Ajouter crème, citron et aneth puis mélanger aux pâtes."
+      ],
+      "beforeTime": "25 min",
+      "stepsSha256": "a767c5ad2e0271c09414cb42697b20be376254e9000f8627bb1581ac77147d5b",
+      "timers": [
+        [],
+        [],
+        [],
+        [
+          15
+        ],
+        [
+          10
+        ],
+        []
+      ]
+    },
+    {
+      "id": "n97",
+      "name": "Côtelettes d’agneau, semoule aux herbes",
+      "method": "Barbecue",
+      "baseServings": 2,
+      "fixedYield": false,
+      "beforeSteps": [
+        "Griller les côtelettes selon la cuisson souhaitée.",
+        "Préparer la semoule.",
+        "Ajouter tomates, concombre, citron et herbes puis servir."
+      ],
+      "beforeTime": "30 min",
+      "stepsSha256": "ef5eb778fb66142a94d1e39d045ec18e81081f6b5da64b1b31970c51695ca8bd",
+      "timers": [
+        [],
+        [],
+        [],
+        [],
+        [
+          12
+        ],
+        [
+          3
+        ]
+      ]
+    },
+    {
+      "id": "e03",
+      "name": "Omelette aux champignons et salade",
+      "method": "Poêle",
+      "baseServings": 2,
+      "fixedYield": false,
+      "beforeSteps": [
+        "Faire revenir les champignons.",
+        "Ajouter les œufs battus et cuire doucement.",
+        "Servir avec la salade."
+      ],
+      "beforeTime": "20 min",
+      "stepsSha256": "90b3064854a2df27f75b6ac9d476dcdbbdb83c41f8467ffde41a53f15e4a6b7c",
+      "timers": [
+        [],
+        [
+          8
+        ],
+        [],
+        [
+          5
+        ],
+        []
+      ]
+    },
+    {
+      "id": "e11",
+      "name": "Croque-monsieur et salade verte",
+      "method": "Air Fryer",
+      "baseServings": 2,
+      "fixedYield": false,
+      "beforeSteps": [
+        "Monter les croque-monsieur.",
+        "Les cuire 7 à 9 minutes à 180 °C.",
+        "Servir avec la salade."
+      ],
+      "beforeTime": "16 min",
+      "stepsSha256": "fe5ed9e0f0610a2b379daf614d312dae07230bca198f67f6e97985070f8cc018",
+      "timers": [
+        [],
+        [],
+        [],
+        [
+          9
+        ],
+        []
+      ]
+    },
+    {
+      "id": "e30",
+      "name": "Salade de haricots rouges, maïs et thon",
+      "method": "Sans cuisson",
+      "baseServings": 2,
+      "fixedYield": false,
+      "beforeSteps": [
+        "Rincer les haricots et le maïs.",
+        "Ajouter le thon, les tomates et l’échalote.",
+        "Assaisonner et servir frais."
+      ],
+      "beforeTime": "12 min",
+      "stepsSha256": "e02f4d36201a4ce2bf14f23ec81425208f6ca7c5f949f256cc122cecaef9cfce",
+      "timers": [
+        [],
+        [],
+        [],
+        []
+      ]
+    },
+    {
+      "id": "e58",
+      "name": "Croques au thon et à la tomate",
+      "method": "Air Fryer",
+      "baseServings": 2,
+      "fixedYield": false,
+      "beforeSteps": [
+        "Garnir le pain de moutarde, thon, tomate et fromage.",
+        "Cuire 7 à 8 minutes à 180 °C.",
+        "Servir avec la salade."
+      ],
+      "beforeTime": "15 min",
+      "stepsSha256": "2897a29c4cd91987e6ecd0d0f0f35674ebd9fe8aea217f845da01aba0d010c53",
+      "timers": [
+        [],
+        [],
+        [],
+        [
+          8
+        ],
+        []
+      ]
+    },
+    {
+      "id": "e63",
+      "name": "Tortilla de pommes de terre au chorizo",
+      "method": "Poêle",
+      "baseServings": 2,
+      "fixedYield": false,
+      "beforeSteps": [
+        "Faire dorer pommes de terre, oignon et chorizo.",
+        "Verser les œufs battus et cuire doucement à couvert.",
+        "Servir avec la salade."
+      ],
+      "beforeTime": "25 min",
+      "afterTime": "35 min",
+      "stepsSha256": "fdf77347a351f6dd849b0223707336ed6f64852495a47f7ad7af8b677e93c0b8",
+      "timers": [
+        [],
+        [
+          15
+        ],
+        [
+          2
+        ],
+        [],
+        [
+          7
+        ],
+        []
+      ]
+    },
+    {
+      "id": "e78",
+      "name": "Gratin de pâtes au thon et tomate",
+      "method": "Four",
+      "baseServings": 2,
+      "fixedYield": false,
+      "beforeSteps": [
+        "Cuire les pâtes et poêler la courgette.",
+        "Mélanger avec thon et coulis.",
+        "Ajouter fromage et origan puis gratiner 12 minutes."
+      ],
+      "beforeTime": "25 min",
+      "afterTime": "35 min",
+      "stepsSha256": "2736f9cd6b763340e2f3335a615dfb0518d9743b987a6d44da74081c00782988",
+      "timers": [
+        [],
+        [],
+        [
+          8
+        ],
+        [],
+        [],
+        [
+          12
+        ]
+      ]
+    },
+    {
+      "id": "e92",
+      "name": "Chili végétarien au riz",
+      "method": "Poêle",
+      "baseServings": 2,
+      "fixedYield": false,
+      "beforeSteps": [
+        "Cuire le riz.",
+        "Faire revenir le poivron.",
+        "Ajouter légumineuses, tomate et épices puis mijoter 12 minutes."
+      ],
+      "beforeTime": "25 min",
+      "stepsSha256": "bdc210cd5a37c59508f9a84c419e523fa8a3b6f2e97e7c57fe08ec2c0220e39a",
+      "timers": [
+        [],
+        [],
+        [
+          8
+        ],
+        [
+          12
+        ],
+        []
+      ]
+    },
+    {
+      "id": "a038",
+      "name": "Gaspacho de concombre à l’aneth",
+      "method": "Sans cuisson",
+      "baseServings": 2,
+      "fixedYield": false,
+      "beforeSteps": [
+        "Couper le concombre en morceaux.",
+        "Mixer avec le yaourt, le citron, l’aneth, l’huile, le sel et le poivre.",
+        "Servir très frais."
+      ],
+      "beforeTime": "12 min",
+      "stepsSha256": "251516b10840b9b400499653cdfa5d4d3bdf8981775d3a79b7cf13fdf9f8f8b5",
+      "timers": [
+        [],
+        [],
+        [],
+        []
+      ]
+    },
+    {
+      "id": "a048",
+      "name": "Velouté de chou-fleur au curry doux",
+      "method": "Casserole",
+      "baseServings": 2,
+      "fixedYield": false,
+      "beforeSteps": [
+        "Faire revenir l’oignon avec le curry.",
+        "Ajouter le chou-fleur et le bouillon puis cuire 20 minutes.",
+        "Mixer avec le lait."
+      ],
+      "beforeTime": "30 min",
+      "stepsSha256": "9bb2a210ac54bcebd063712eaadb458133acb99c2793d54991d58061314cddd3",
+      "timers": [
+        [],
+        [
+          4
+        ],
+        [
+          20
+        ],
+        [],
+        []
+      ]
+    },
+    {
+      "id": "a088",
+      "name": "Quinoa aux herbes et légumes croquants",
+      "method": "Casserole",
+      "baseServings": 2,
+      "fixedYield": false,
+      "beforeSteps": [
+        "Cuire le quinoa, l’égoutter puis le laisser refroidir.",
+        "Couper les légumes en petits dés.",
+        "Mélanger avec citron et herbes."
+      ],
+      "beforeTime": "25 min",
+      "afterTime": "25 min + refroidissement",
+      "stepsSha256": "88e538273622b1e6ea0a3c12fbd5d7b84b7e11bad6766372a6bf0bdd62d3da59",
+      "timers": [
+        [],
+        [],
+        [],
+        [],
+        []
+      ]
+    },
+    {
+      "id": "d028",
+      "name": "Pêches rôties au romarin",
+      "method": "Four",
+      "baseServings": 2,
+      "fixedYield": false,
+      "beforeSteps": [
+        "Couper les pêches en deux et retirer les noyaux.",
+        "Ajouter miel, citron et romarin.",
+        "Cuire 18 minutes à 190 °C."
+      ],
+      "beforeTime": "25 min",
+      "stepsSha256": "46d0923416513cc1c0051faa304561cde322b420e4b2dde37d671b8e65ab3cb0",
+      "timers": [
+        [],
+        [],
+        [],
+        [
+          18
+        ],
+        []
+      ]
+    },
+    {
+      "id": "d036",
+      "name": "Compote pomme-rhubarbe",
+      "method": "Casserole",
+      "baseServings": 2,
+      "fixedYield": false,
+      "beforeSteps": [
+        "Couper pommes et rhubarbe.",
+        "Cuire à couvert 18 minutes avec sucre et eau.",
+        "Écraser et laisser refroidir."
+      ],
+      "beforeTime": "25 min",
+      "stepsSha256": "4c8224b0285a3e3308591011acacc83c0cd6ab4ea5ceb34185618034d8e2783b",
+      "timers": [
+        [],
+        [],
+        [
+          18
+        ],
+        []
+      ]
+    },
+    {
+      "id": "d044",
+      "name": "Crumble poire et chocolat",
+      "method": "Four",
+      "baseServings": 2,
+      "fixedYield": false,
+      "beforeSteps": [
+        "Couper les poires et ajouter le chocolat haché.",
+        "Sabler farine, beurre et sucre.",
+        "Répartir la pâte et cuire 25 minutes à 190 °C."
+      ],
+      "beforeTime": "35 min",
+      "stepsSha256": "552c4864010337910e7bac743e4a9ca32b3698d269db0f9d746a7d447b4b3018",
+      "timers": [
+        [],
+        [],
+        [],
+        [],
+        [
+          25
+        ]
+      ]
+    }
+  ]
+}
