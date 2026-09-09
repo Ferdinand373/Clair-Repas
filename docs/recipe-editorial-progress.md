@@ -198,6 +198,16 @@ P02 publié : `c87dc373c29cae1d6edb9c2ac6191004c69ba52a`, tests `34390827874` et
 
 **Cumul : 460 identifiants examinés, 195 corrigés, 265 bloqués, 1 093 à examiner.** Prochaine fiche globale `gn2-boeuf-gingembre-sesame`, prochaine entrée `a094`, prochain dessert `v74-reg-27`. Zéro erreur éditoriale et 8 209 avertissements. Les 24 commandes du workflow réussissent ; 185 minuteurs et 5 580 calculs d’ingrédients vérifiés dans les lots 02–15. Publication à consigner après vérification en production.
 
+## Publication du lot 15
+
+`c049cb54ed687ef7a302d03455e07e37f5178428` publié sur `main`. Tests `34402756386`, Pages `34402755897` et déploiement `6358953568` réussis. HTTPS 200 et fichiers identiques au commit : index `5850c71d39ad1689e2e92339550a33041ac91d85e23d0bb63726e48dbc8fad92`, service worker `9995b3d658673c4bf4cd80050bb968fddd990470727865b504284fda46c2d841`. Révision chargée `sha256:f13f18fa7c68228105a89d2da3a6af1754e346f8e0abaf08a52f665ead239cb9`. Île flottante de brasserie vérifiée en production à deux personnes : 40 g pour la crème, 30 g pour les blancs et 30 g distincts pour le caramel ; deux boutons d’une minute pour le pochage. Actualisation normale, sans effacer de données.
+
+## Lot 16 — trente entrées et terrines
+
+[Journal, sources et décisions](recipe-editorial-batch-16.md). 17 corrigées, 13 bloquées, aucune conforme sans modification. Trois assaisonnements déjà présents dans les étapes sont rétablis sans dose inventée. Rendements fixes, identifiants, portions, autres ingrédients et appareils conservés. Les températures à cœur corrigées sont justifiées par les références sanitaires, sans changer les fours ni les techniques ; les deux barèmes au foie de porc non établis restent bloqués.
+
+**Cumul : 490 identifiants examinés, 212 corrigés, 278 bloqués, 1 063 à examiner.** Prochaine entrée `theme-bistrot-brasserie-03`, prochaine fiche globale `gn2-boeuf-gingembre-sesame`, prochain dessert `v74-reg-27`. Zéro erreur éditoriale et 8 089 avertissements. 210 minuteurs et 6 378 contrôles d’ingrédients dans les lots 02–16. Les 24 commandes du workflow réussissent ; formats téléphone, tablette et ordinateur contrôlés visuellement. Publication à consigner après contrôle en ligne.
+
 ## Limites des vérifications
 
 Les tests de structure, quantité, minuteurs, stockage simulé et rendu ne sont pas des essais culinaires. Les formats iPhone/PWA sont simulés, sauf mention explicite d’un appareil physique. Le total de fiches à examiner ne doit jamais être remplacé par le nombre de fiches auxquelles le style commun a été appliqué.

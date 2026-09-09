@@ -1,0 +1,345 @@
+{
+  "baselineCommit": "c049cb54ed687ef7a302d03455e07e37f5178428",
+  "batch": "16",
+  "recipes": [
+    {
+      "id": "a094",
+      "status": "corrected",
+      "sourceHash": "0d052522f7d3f64a6111100af9e6bf3c749cf06b396f588bd3c1c78d42ea61b4",
+      "reviewedHash": "e1af686f292aab38e4b9f4f4171c4a38e08ff3721ba029377dc05ef131c2e103",
+      "protectedRecipeSha256": "72c21a2a03d90114eecf4632b8845587d28bd943932e0b4d8b23e6b562d61926",
+      "beforeSteps": [
+        "Mixer la truite avec le fromage frais et le citron.",
+        "Poivrer et ajouter l’aneth.",
+        "Servir frais avec le pain grillé."
+      ],
+      "note": "Poivre déjà demandé rétabli sans quantité inventée. Mousse sans cuisson et pain grillé en accompagnement conservés ; le grille-pain est une précision matérielle, pas une cuisson du poisson."
+    },
+    {
+      "id": "a095",
+      "status": "corrected",
+      "sourceHash": "afea728ff3cb989f686a76421d617a460d966c0d89d9a70a6c6738c62ae2f0fb",
+      "reviewedHash": "aa6eef32c85f3f45c5fc30a026407aad9157bda786515aa182e7070d71aac428",
+      "protectedRecipeSha256": "d3c57e83ac24da5b066f79e6f6ee138296c252d9104ebef23d5b66dc1a1be8d1",
+      "beforeSteps": [
+        "Cuire les œufs 9 minutes puis les hacher.",
+        "Mélanger avec moutarde, fromage blanc et citron.",
+        "Garnir les demi-avocats et poivrer."
+      ],
+      "note": "Poivre source rétabli. Œufs durs neuf minutes, farce à la moutarde/fromage blanc et citron intégral conservés ; aucun ingrédient de mayonnaise ajouté."
+    },
+    {
+      "id": "a096",
+      "status": "corrected",
+      "sourceHash": "eb76ff8608d03221ef143bd51c900fbe1a63455ef5e7c575772d214b98d2dbb3",
+      "reviewedHash": "191de44eafa4b0e76db33090fee94b2a78832430209616c8815685458e9e5d13",
+      "protectedRecipeSha256": "a360b5ab62f429266af19e071899c776a6bc4b8115eae7a8af9056e03d83110d",
+      "beforeSteps": [
+        "Évider les tomates et saler légèrement l’intérieur.",
+        "Mélanger thon, fromage blanc, citron et ciboulette.",
+        "Garnir les tomates et réserver au frais."
+      ],
+      "note": "Sel déjà demandé à l’intérieur des tomates rétabli. Tomates crues et thon en boîte, farce froide et réfrigération conservés ; aucun temps de repos ajouté."
+    },
+    {
+      "id": "a097",
+      "status": "blocked",
+      "sourceHash": "80261e47df85866950d69bba11b6de055a861e495e34e31f171b95a1d81b34cd",
+      "reviewedHash": "80261e47df85866950d69bba11b6de055a861e495e34e31f171b95a1d81b34cd",
+      "protectedRecipeSha256": "32b8b46ae882e2e52e82b74369ee30f5770441d86a3a84e72dd363a9c70b3790",
+      "note": "la version actuelle prévoit un sauté des pieds puis un arrosage d’huile, sans préciser la part d’huile pour chaque action. L’ancienne version n’avait pas ce sauté ni le parmesan et ne justifie pas ce partage. Conserver la version actuelle à quatre portions, ses 195 °C et ses ingrédients ; ne pas revenir à l’archive à deux portions."
+    },
+    {
+      "id": "a098",
+      "status": "corrected",
+      "sourceHash": "6c62ce95b4297374022994c4188a07708f8e2c08adde2490d80b81f22829735a",
+      "reviewedHash": "902e57cb0a1d82bcd246edc29bf5a996f8d074a3d5e50a55b2844573e3a753db",
+      "protectedRecipeSha256": "3a8418da397feaa552e6097671499a23be38b400312b0675c13f6fd1e4e7564b",
+      "beforeSteps": [
+        "Détacher les plus belles feuilles d’endive.",
+        "Mélanger fromage frais, pomme en petits dés et ciboulette.",
+        "Garnir les feuilles et ajouter des lanières de jambon cru."
+      ],
+      "note": "Pomme crue en petits dés, feuilles d’endive et jambon cru conservés. Aucun citron, sel, cuisson ou garniture supplémentaire ajouté."
+    },
+    {
+      "id": "a099",
+      "status": "blocked",
+      "sourceHash": "5fe4ecc1ce5e67cb08dcdba7b2a6d3d405a4fb9a66422a9d89ca1fd36a1a9210",
+      "reviewedHash": "5fe4ecc1ce5e67cb08dcdba7b2a6d3d405a4fb9a66422a9d89ca1fd36a1a9210",
+      "protectedRecipeSha256": "3ed5c96bf50fcff5f0dc169a9eb3464e2bca1fcb0d07cf4ca1726f0109d17a68",
+      "note": "la variété et le calibre des asperges ne sont pas précisés, pas davantage que la cuisson dans l’eau ou dans un panier vapeur. Les durées diffèrent selon ces choix ; les archives ne permettent pas de rattacher les 8–12 minutes à une méthode sûre. Ne pas imposer une cuisson ni changer le saumon fumé en poisson à cuire."
+    },
+    {
+      "id": "a100",
+      "status": "blocked",
+      "sourceHash": "ae4210b929f7b06dd712313a430291d7bdec1671636ebd92161874be21d8a993",
+      "reviewedHash": "ae4210b929f7b06dd712313a430291d7bdec1671636ebd92161874be21d8a993",
+      "protectedRecipeSha256": "062e17a666c1f55cd4979a459fe240394d0d9fe76e7951042cf4a477119550e9",
+      "note": "huile et vinaigre de la sauce sont absents de la liste et leurs doses ne sont pas retrouvées dans les archives. La cuisson des pommes de terre doit aussi préciser calibre et départ ; ne pas inventer une vinaigrette à partir de la seule moutarde."
+    },
+    {
+      "id": "t401",
+      "status": "blocked",
+      "sourceHash": "b1578d738437c4a64de9efd86bd6f581f81bedd13a60a728be211488901ef2cf",
+      "reviewedHash": "b1578d738437c4a64de9efd86bd6f581f81bedd13a60a728be211488901ef2cf",
+      "protectedRecipeSha256": "93494080a3f2dd493a74ab80c9de14830528ea5272b970caaa5bb8acc0e548fc",
+      "note": "la présence de foie de porc impose de vérifier le couple durée-température, pas seulement un passage du cœur entre 70 et 72 °C. Les sources sanitaires distinguent les mélanges de foie et les matrices complexes ; le barème de cette terrine n’est pas attesté. Ne pas considérer le simple changement de couleur ou l’atteinte instantanée de 70 °C comme une validation."
+    },
+    {
+      "id": "t402",
+      "status": "corrected",
+      "sourceHash": "4a2481874d9251766d3bc422f2489eecc7bfb2b42fcf511e85127a511fcbf5fb",
+      "reviewedHash": "1be2d6b5a1f37af4862bd6a25b31428557889a4b11933b15de0fbd3f7100963b",
+      "protectedRecipeSha256": "6b033a987ad27ff119393b0a668086ed14a90ef603caa00411b61eceb95edb55",
+      "beforeSteps": [
+        "Couper 100 g d’échine en petits dés et hacher grossièrement le reste avec le foie et la poitrine.",
+        "Mélanger avec œufs, cognac, échalote, quatre-épices, sel et poivre ; couvrir et laisser mariner 1 heure au frais.",
+        "Tasser dans une terrine, poser le couvercle et cuire 1 h 05 au bain-marie dans un four à 160 °C.",
+        "Vérifier 70 °C à cœur, refroidir rapidement puis laisser maturer 12 heures au réfrigérateur."
+      ],
+      "note": "Cent grammes d’échine en dés et reste haché conservés. Marinade d’une heure rendue visible dans le total. Le foie de volaille impose 74 °C à cœur selon FSIS, au lieu des 70 °C de la source ; four à 160 °C et bain-marie couverts inchangés."
+    },
+    {
+      "id": "t403",
+      "status": "corrected",
+      "sourceHash": "1f81cc071c4f31f6a298a5ef305383476067bb9da0d17ce3acde1510f2ccf5c6",
+      "reviewedHash": "f0ede5118ae1b148fa883ab355167d20e7d713e2dafc4ef7f5be58cf11665237",
+      "protectedRecipeSha256": "998b164c9ed97eed578171d3259f68a5712d359be4361b2d3ab8d3995411db83",
+      "beforeSteps": [
+        "Torréfier les noisettes 8 minutes à 160 °C, les laisser refroidir puis en concasser la moitié.",
+        "Hacher grossièrement les viandes et les mélanger avec œufs, porto, échalote, noisettes, sel et poivre.",
+        "Tasser la farce dans une terrine et cuire au bain-marie 1 h 10 à 160 °C, jusqu’à 70 °C au centre.",
+        "Laisser refroidir sous un poids léger et attendre 12 heures au frais pour obtenir des tranches nettes."
+      ],
+      "note": "Noisettes entières et concassées conservées à parts égales, avec doses concrètes. Foie de volaille : contrôle final à 74 °C documenté au lieu de 70 °C, sans changer le four à 160 °C ni les soixante-dix minutes indicatives."
+    },
+    {
+      "id": "t404",
+      "status": "corrected",
+      "sourceHash": "ca4ef8cd7c856e9ca42b1824766f27f8c5fca61dab208188a99ab676ae09c8c0",
+      "reviewedHash": "b22a322aae7b0b1cad1d4e3095d2581d66ec40ac9071897f8a16421254eba546",
+      "protectedRecipeSha256": "8b9148134265f443a6d955e8484f7f80079f36525b94044d58be49510414a299",
+      "beforeSteps": [
+        "Couper 120 g de poulet en dés et hacher le reste avec la chair à saucisse.",
+        "Mélanger avec œufs, crème, échalote, persil, ciboulette, sel et poivre, puis incorporer les dés de poulet.",
+        "Verser dans une terrine chemisée, couvrir et cuire 55 minutes au bain-marie à 165 °C ; le centre doit atteindre 72 °C.",
+        "Refroidir puis réserver au moins 8 heures au réfrigérateur avant de servir."
+      ],
+      "note": "Part source de 120 g de poulet en dés conservée, reste haché avec la chair à saucisse. Chemisage, couverture et bain-marie à 165 °C préservés ; sécurité de la volaille portée à 74 °C documentés, au lieu de 72 °C."
+    },
+    {
+      "id": "t405",
+      "status": "corrected",
+      "sourceHash": "3311eec8f15141723b44eb21ef2fd76b41112470f9946ca9683226d681cc952c",
+      "reviewedHash": "d05de4cb759d6d218cf8493aac3d436ceea9bae2953ca6387dcf5cc3a48c6d41",
+      "protectedRecipeSha256": "7e41f6204e4017ec5a8b462cc22f152882e266c201e9536800555db904613a08",
+      "beforeSteps": [
+        "Retirer la peau du magret, couper 120 g de chair en lanières et hacher le reste avec gorge et foie.",
+        "Mélanger la farce avec œufs, porto, échalote, thym, sel et poivre, puis ajouter les lanières de canard.",
+        "Tasser dans une terrine et cuire au bain-marie 1 h 10 à 160 °C, jusqu’à 70 °C au cœur.",
+        "Refroidir sous un léger poids et laisser reposer 12 heures au frais avant de trancher."
+      ],
+      "note": "Peau retirée, 120 g de chair de canard en lanières et reste haché conservés. La cuisson finale vérifie 74 °C pour canard et foie de volaille, au lieu de 70 °C ; aucune dose de gras ni couverture ajoutée."
+    },
+    {
+      "id": "t406",
+      "status": "corrected",
+      "sourceHash": "8407a50937d0980ad29a82591692066cda54225e88bfdfad1e2b4306b0f7103b",
+      "reviewedHash": "8fcc0d44bc6e7016d911590c3450800097128fa491edb81bc0e75ab58a69538d",
+      "protectedRecipeSha256": "c03d33e09ee8187d3d7b5a94142a39ee05fc81bec3491cf390214203a887bdc5",
+      "beforeSteps": [
+        "Couper 120 g de lapin en dés et hacher le reste avec la poitrine et le foie.",
+        "Mélanger avec œufs, vin, échalotes, thym, sel et poivre ; incorporer les dés puis laisser mariner 1 heure au frais.",
+        "Tasser dans une terrine, couvrir et cuire au bain-marie 1 h 15 à 160 °C, jusqu’à 70 °C au centre.",
+        "Refroidir, presser légèrement et attendre 12 heures au réfrigérateur."
+      ],
+      "note": "Dés de lapin de 120 g, vin blanc et marinade d’une heure conservés. Cuisson couverte à 160 °C inchangée ; présence de foie de volaille prise en compte par un contrôle final à 74 °C documenté."
+    },
+    {
+      "id": "t407",
+      "status": "corrected",
+      "sourceHash": "630324783a22ba7259468b9b4a1a466a12876fd5a1f2ee19b2a870ea514ee1ee",
+      "reviewedHash": "cd36564162a89be9e3b2159c348dcc729101936f4262f574fa89d1fbe38faf56",
+      "protectedRecipeSha256": "df8365830686d82599a55aa16ae13a3272928b73e3d289525b01d9f6ad5a0b6e",
+      "beforeSteps": [
+        "Faire tremper les pruneaux dans l’armagnac 30 minutes, puis les égoutter en conservant le liquide.",
+        "Hacher lapin et poitrine à grille moyenne, puis mélanger avec œufs, échalotes, thym, armagnac, sel et poivre.",
+        "Tasser la moitié de la farce, aligner les pruneaux, couvrir du reste et cuire au bain-marie 1 h 15 à 160 °C.",
+        "Lorsque le cœur atteint 70 °C, refroidir sous un poids léger et laisser reposer 12 heures au frais."
+      ],
+      "note": "Armagnac de trempage entièrement récupéré dans la farce et rangée centrale de pruneaux conservés. Seuil de 71 °C documenté pour lapin et porc hachés, au lieu de 70 °C ; pas de foie ajouté ni modification du four."
+    },
+    {
+      "id": "t408",
+      "status": "corrected",
+      "sourceHash": "0a480ad40778a635583b01b61fb70581843b34f2f91d4fea383529bfd1a717d4",
+      "reviewedHash": "a8d37ee4a9ec44be5e3db1d513f61426bcf3011eb7839d4bf309fa3632a694ee",
+      "protectedRecipeSha256": "8f78388d426d938810bd97430e899c39c2057ae6d4b96765352a33466f2ebb35",
+      "beforeSteps": [
+        "Parer les foies et faire fondre l’échalote 4 minutes dans 20 g de beurre à feu moyen. Ajouter les foies et les saisir 3 minutes : ils doivent rester rosés.",
+        "Déglacer au cognac 30 secondes puis mixer finement avec œufs, crème, reste de beurre, sel et poivre.",
+        "Passer au tamis, verser dans une terrine et cuire 35 à 40 minutes au bain-marie à 150 °C ; le centre doit rester souple mais pris.",
+        "Refroidir et réserver 8 heures au réfrigérateur avant de servir."
+      ],
+      "note": "Vingt grammes de beurre pour l’échalote et cent pour le mixage conservés. Saisie rosée seulement intermédiaire, déglaçage trente secondes et tamisage préservés. Contrôle à 74 °C ajouté après bain-marie pour les foies de volaille."
+    },
+    {
+      "id": "t409",
+      "status": "blocked",
+      "sourceHash": "665aecb4d12ea58d00f46b0f69456998337b78cecde615f555743c9b619b380c",
+      "reviewedHash": "665aecb4d12ea58d00f46b0f69456998337b78cecde615f555743c9b619b380c",
+      "protectedRecipeSha256": "c7a8a3ee541e2096b3331464acdef114d6a0d5bdacc3d2282cc60d8ec5f34907",
+      "note": "la farce contient du foie de porc mais l’arrêt à 70 °C n’est associé à aucune durée de maintien validée. Le barème nécessaire dépend de la préparation ; ne pas publier cette seule température comme garantie de sécurité. Le partage des œufs et le couvercle de pâte sont explicités dans la source mais ne résolvent pas la cuisson du foie."
+    },
+    {
+      "id": "t410",
+      "status": "blocked",
+      "sourceHash": "723912bc01f2791cc9b80a70931b54ff977cdc9fb88ae4e77f12e19e2102d94b",
+      "reviewedHash": "723912bc01f2791cc9b80a70931b54ff977cdc9fb88ae4e77f12e19e2102d94b",
+      "protectedRecipeSha256": "ac1b4966be129e78005b64a395a003c354c554764fdc8bbeabd3be30454dcb95",
+      "note": "les trois feuilles de gélatine n’ont ni poids ni force définis pour les 40 cl de bouillon prélevés. Le dessalage de deux heures n’est pas intégré au total. Les archives ne permettent pas de choisir arbitrairement le grammage des feuilles ni de déduire le pouvoir gélifiant du bouillon."
+    },
+    {
+      "id": "t411",
+      "status": "corrected",
+      "sourceHash": "a539bc7d08a6d372f27b75846589194c5c0c00d3a22d7ab58d88ddf3d655ed58",
+      "reviewedHash": "17818ee6e1eadfce903e93f7b0da11feb4361f928c8d3187045c48be908a38ae",
+      "protectedRecipeSha256": "50111dffee72459886af8d32203e286d1ee71a0bd7f3a6ff087b8cd17e33e6bf",
+      "beforeSteps": [
+        "Éponger le poisson, le couper en cubes et le placer 15 minutes au congélateur avec la crème.",
+        "Mixer le poisson froid par impulsions, ajouter œufs, crème, zeste de citron, herbes, sel et poivre ; la farce doit rester froide et lisse.",
+        "Verser dans une terrine chemisée et cuire 45 à 50 minutes au bain-marie à 155 °C ; le centre doit atteindre 63 °C.",
+        "Refroidir puis réserver 6 heures au frais avant de démouler et trancher."
+      ],
+      "note": "Refroidissement poisson/crème quinze minutes au congélateur, mixage par impulsions et zeste seul conservés. Température de 71 °C documentée pour la préparation contenant des œufs, au lieu des 63 °C valables pour le poisson seul."
+    },
+    {
+      "id": "t412",
+      "status": "corrected",
+      "sourceHash": "09022f5322453dfbccea4ed77e4b0f7d317c4759eff4b46fb9dddbdbc89935bd",
+      "reviewedHash": "63eac8f71a0e2bff2ef4a12e51c95906c36bb36a2e9f9445f53173068fa0c3ce",
+      "protectedRecipeSha256": "ff91980a885c64868526fb94ad7a1f39258f7054db7c2f1ce680c9e9d625cf59",
+      "beforeSteps": [
+        "Garder poissons, bol et crème très froids. Couper les Saint-Jacques en deux et réserver.",
+        "Mixer brièvement le saumon, ajouter œufs, crème, zeste de citron, aneth, sel et poivre.",
+        "Verser la moitié dans une terrine, disposer les Saint-Jacques au centre puis couvrir du reste de farce. Cuire 50 minutes au bain-marie à 155 °C.",
+        "Arrêter à 63 °C au cœur, refroidir et laisser prendre 6 heures au réfrigérateur."
+      ],
+      "note": "Saint-Jacques coupées en deux et placées au centre, saumon brièvement mixé à froid et zeste seul conservés. Le contrôle final tient compte des œufs : 71 °C documentés au lieu de 63 °C."
+    },
+    {
+      "id": "t413",
+      "status": "corrected",
+      "sourceHash": "9522b740f26539c3e97714bcbfaabbf9eef6bb900a2dcab391a5683962ea6f36",
+      "reviewedHash": "ac60d2eed05498dd0209b5e10f93d792550fa34000a525363e2a3d6ba55499af",
+      "protectedRecipeSha256": "2dd24b47a7966cb9cc919bf844e011653378af2a1d4677dbdcab58eb261b60c6",
+      "beforeSteps": [
+        "Râper les courgettes, les saler légèrement puis les laisser dégorger 15 minutes et les presser fortement.",
+        "Les faire revenir 8 minutes à feu moyen avec huile et ail, jusqu’à évaporation complète de l’eau, puis laisser tiédir.",
+        "Mélanger œufs, crème, parmesan, basilic et courgettes ; verser dans une terrine chemisée.",
+        "Cuire 40 minutes à 175 °C, jusqu’à ce que le centre soit ferme, puis refroidir et réserver 6 heures avant de trancher."
+      ],
+      "note": "Dégorgement, pressage puis sauté conservés, sans blanchiment. Sel listé utilisé au seul salage prévu et poivre listé réintroduit dans la liaison. Total distingue les quinze minutes de dégorgement ; cuisson au four sans bain-marie ajouté."
+    },
+    {
+      "id": "t414",
+      "status": "blocked",
+      "sourceHash": "12854daf635e16704adda63cf37e0224763b440ded729ca46f54b27355fa2a6a",
+      "reviewedHash": "12854daf635e16704adda63cf37e0224763b440ded729ca46f54b27355fa2a6a",
+      "protectedRecipeSha256": "ad854a8669712334599abfd0cc82b85e52f84711a72de4562613497c2585d257",
+      "note": "la graisse rendue doit être répartie entre la liaison des rillettes et leur couche de couverture, sans quantité ni repère de couverture suffisamment défini. Le rendement de graisse dépend des morceaux de porc ; les archives ne donnent pas de dosage. Ne pas ajouter une matière grasse extérieure ni convertir les quarante minutes entre mélanges en durée de cuisson."
+    },
+    {
+      "id": "t415",
+      "status": "blocked",
+      "sourceHash": "386fd8043d0fe0e4a24766eaa86250899a42ee25b24e2a3785c66caea22c69f5",
+      "reviewedHash": "386fd8043d0fe0e4a24766eaa86250899a42ee25b24e2a3785c66caea22c69f5",
+      "protectedRecipeSha256": "1f9160959dddea942aa671987263736d4a7440bc25d1067c1ed226a20d068669",
+      "note": "la source prélève 8–10 cl de graisse de cuisson puis en demande encore pour couvrir les pots, sans préciser le volume à réserver. Cette graisse comprend celle rendue par les cuisses et ne se confond pas avec les 150 g ajoutés au départ. Ne pas inventer une conversion ou une répartition ; conserver le rendement fixe."
+    },
+    {
+      "id": "t416",
+      "status": "corrected",
+      "sourceHash": "1019e0c53c9a6b2e1b7fa75d9e911724d9a47b70a87cd6118a61e2cf86b9d8f9",
+      "reviewedHash": "c6a57a10c835ce8405a6f4daca5aceebfab2139ac823e033091751f006308fd5",
+      "protectedRecipeSha256": "cd91e87b5ec44677c9014240cd674073e4de00f9b125525a54498bc98596913e",
+      "beforeSteps": [
+        "Faire fondre l’échalote 4 minutes dans 20 g de graisse, ajouter le lapin et le colorer légèrement.",
+        "Verser le vin, ajouter thym, sel et poivre, couvrir et cuire 1 h 50 à feu très doux.",
+        "Désosser soigneusement, effilocher la chair et incorporer moutarde et assez de graisse restante pour obtenir des rillettes moelleuses.",
+        "Mettre en pots et réfrigérer au moins 8 heures avant de servir."
+      ],
+      "note": "Vingt grammes de graisse pour l’échalote conservés ; les cent grammes restants constituent la réserve maximale de liaison, ajoutée progressivement selon la texture comme dans la source. Lapin désossé après cuisson, moutarde à la fin, aucune eau ajoutée."
+    },
+    {
+      "id": "t417",
+      "status": "corrected",
+      "sourceHash": "bb43b2c409b71c17494473f7ff58ace509bf09b7e6391fd585d1185a80b021b9",
+      "reviewedHash": "78e0e2ccae509f03d915658c8260c588bca37a6e4bab22a65ab56f7a7663d74e",
+      "protectedRecipeSha256": "3b811c2ea2cd51d1b202835022f9b9632476a699990606e01475b815939f802d",
+      "beforeSteps": [
+        "Faire fondre l’échalote 4 minutes dans 20 g de graisse, ajouter le poulet et le saisir 5 minutes à feu moyen.",
+        "Verser le bouillon, ajouter thym, sel et poivre, couvrir et cuire 55 minutes à feu doux.",
+        "Effilocher très finement le poulet, puis incorporer zeste de citron et assez de jus de cuisson et de graisse pour une texture souple.",
+        "Tasser dans deux pots et laisser prendre 6 heures au réfrigérateur."
+      ],
+      "note": "Vingt grammes de graisse pour la saisie et réserve de quatre-vingts grammes conservés, ajout progressif selon la texture source. Zeste seul, bouillon de cuisson récupéré et effilochage préservés ; poulet vérifié à 74 °C."
+    },
+    {
+      "id": "t418",
+      "status": "blocked",
+      "sourceHash": "437f0222cea22507c0f436e96862bfb84d000d44c423352dc003a0142ab5a92a",
+      "reviewedHash": "437f0222cea22507c0f436e96862bfb84d000d44c423352dc003a0142ab5a92a",
+      "protectedRecipeSha256": "837e4e51348611a27d6d8f657860b09eda5ae03e0fc64484f118bd6d549bb950",
+      "note": "la cuillerée de jus de citron n’indique pas s’il s’agit d’une cuillère à café ou à soupe. La vapeur est bien précisée, mais le saumon opaque seul n’est pas un contrôle de sécurité ; il faut vérifier sa température à cœur. Ne pas remplacer la part de jus par tout le citron ni mixer les rillettes."
+    },
+    {
+      "id": "t419",
+      "status": "blocked",
+      "sourceHash": "03b10c4a130d114b43c0dc072d2311eaaff9fb901bc0c24b361c5f6057da3082",
+      "reviewedHash": "03b10c4a130d114b43c0dc072d2311eaaff9fb901bc0c24b361c5f6057da3082",
+      "protectedRecipeSha256": "334866224253a4e4db4d922164059729ac4398b5babed7788698668e9322dc54",
+      "note": "les une à deux cuillerées de jus de citron n’ont pas d’unité définie. Le zeste et le jus ont des usages distincts ; ne pas remplacer cette plage par le jus entier ni inventer une cuillère à soupe. Conserver la fourchette, sans mixage."
+    },
+    {
+      "id": "t420",
+      "status": "blocked",
+      "sourceHash": "c493861d0432ed5924cac9f0fbeeca9f21c7ac964fe93d004f496915edacd57d",
+      "reviewedHash": "c493861d0432ed5924cac9f0fbeeca9f21c7ac964fe93d004f496915edacd57d",
+      "protectedRecipeSha256": "ce2f1f971c59a2b4d3d0a5a4fddd089c117a79fa1986e0a1d745c9c47a8a677d",
+      "note": "les cuillerées d’huile récupérée de la boîte et de jus de citron n’ont pas d’unité définie. Les deux boîtes de 100 g sont conservées ; ne pas utiliser toute leur huile ni tout le jus pour masquer ces deux quantités manquantes."
+    },
+    {
+      "id": "t421",
+      "status": "blocked",
+      "sourceHash": "bdeb197e0a6ded9c72b443f62731dcfa6c7b31e9fbb89f41e44a993fc89ec6e4",
+      "reviewedHash": "bdeb197e0a6ded9c72b443f62731dcfa6c7b31e9fbb89f41e44a993fc89ec6e4",
+      "protectedRecipeSha256": "fe25cba0e0d549dd993f58736f90a251e7f801050f73f1f81dc2775d8ce0405c",
+      "note": "la cuillerée de jus de citron n’a pas d’unité définie. Le zeste est utilisé séparément et le raifort est bien listé ; ne pas inventer un volume de jus ni remplacer le hachage au couteau par une mousse mixée."
+    },
+    {
+      "id": "theme-bistrot-brasserie-01",
+      "status": "blocked",
+      "sourceHash": "75e51ece7390b2b3c92d470bd6f0172bd8e4596be19e48150245dc5161799f8e",
+      "reviewedHash": "75e51ece7390b2b3c92d470bd6f0172bd8e4596be19e48150245dc5161799f8e",
+      "protectedRecipeSha256": "3e1ef9d4dc18bc6f75e1db4409f490f29df224ceaee498a7889c6ecde4ee39a7",
+      "note": "quatre œufs sont listés pour deux personnes, mais la préparation ne sert que deux moitiés par personne, laissant la moitié des œufs sans usage. L’eau proposée pour assouplir la sauce n’est pas listée. Ne pas choisir arbitrairement entre réduire les œufs ou doubler les moitiés servies ; conserver la référence en attendant confirmation."
+    },
+    {
+      "id": "theme-bistrot-brasserie-02",
+      "status": "corrected",
+      "sourceHash": "ec2dd8dccf7e7c10a33e285dd48c7ffd2e599b7ae17294923b805adb2710eece",
+      "reviewedHash": "e7fd9953847fb1d0f7523615f7852aa483b0f40303a3dc63090ab4c803bc6a1a",
+      "protectedRecipeSha256": "fa918647f59e378dde7f6e7672ac53ff69b3a5af353c5184e8aaac1dfa4054b6",
+      "beforeSteps": [
+        "Coupez les racines et la partie vert foncé des poireaux. Fendez le haut en deux sur quelques centimètres puis rincez soigneusement entre les feuilles pour retirer toute trace de terre.",
+        "Portez une grande casserole d’eau salée à frémissement. Plongez les poireaux et laissez-les cuire 18 à 22 minutes selon leur grosseur. La pointe d’un couteau doit entrer facilement dans la partie blanche.",
+        "Égouttez les poireaux sans les presser puis laissez-les tiédir dans une passoire pendant 10 minutes. Trop d’eau diluerait la vinaigrette.",
+        "Émincez très finement l’échalote. Dans un bol, mélangez moutarde, vinaigre, une pincée de sel et du poivre, puis versez l’huile progressivement en fouettant à la fourchette.",
+        "Disposez 2 poireaux par personne, nappez généreusement de vinaigrette et ajoutez échalote et persil. Servez tiède ou à température ambiante."
+      ],
+      "note": "Cuisson à l’eau frémissante, égouttage sans presser et dix minutes de tiédissement conservés. Toute la vinaigrette et tous les poireaux sont répartis ; échalote et persil restent ajoutés au service."
+    }
+  ]
+}

@@ -7,7 +7,7 @@ import {recipeSource} from './recipe-source.mjs';
 import {recipeHash} from './validate-recipe-editorial.mjs';
 const root=resolve(dirname(fileURLToPath(import.meta.url)),'..');
 const {code,recipes,editorial}=recipeSource(readFileSync(resolve(root,'index.html'),'utf8'));
-const batchNumbers=['02','03','04','05','06','07','08','09','10','11','12','13','14','15'];
+const batchNumbers=['02','03','04','05','06','07','08','09','10','11','12','13','14','15','16'];
 const fixture={recipes:batchNumbers.flatMap(number=>JSON.parse(readFileSync(resolve(root,`scripts/recipe-editorial-batch-${number}.fixture.json`),'utf8')).recipes)};
 const slice=(a,b)=>code.slice(code.indexOf(a),code.indexOf(b,code.indexOf(a)+a.length));
 const context={window:{},$:()=>({value:'8'}),MEAL_TYPES:['mid','eve'],recipeRole:r=>r.role||r.course||'dish',isFavorite:()=>false,recipeFeedbackHTML:()=>'',recipePersonalNoteHTML:()=>''};
@@ -70,7 +70,12 @@ const timers={
   'theme-bistrot-plus-22':[[2],[],[5],[],[1],[]],
   'theme-bistrot-plus-23':[[],[],[],[],[40],[],[]],
   'theme-bistrot-plus-25':[[],[25],[2],[1],[]],
-  'theme-bistrot-plus-26':[[],[1],[],[],[4],[4]]
+  'theme-bistrot-plus-26':[[],[1],[],[],[4],[4]],
+  a094:[[],[],[]],a095:[[9],[],[]],a096:[[],[],[]],a098:[[],[],[]],
+  t402:[[],[],[65],[]],t403:[[8],[],[70],[]],t404:[[],[],[55],[]],t405:[[],[],[70],[]],t406:[[],[],[75],[]],
+  t407:[[30],[],[75],[]],t408:[[4],[3],[],[40],[]],t411:[[15],[],[50],[]],t412:[[],[],[50],[]],
+  t413:[[15],[8],[],[40]],t416:[[4],[110],[],[]],t417:[[4],[5],[55],[],[]],
+  'theme-bistrot-brasserie-02':[[],[22],[10],[],[]]
 };
 const ingredients={
   n01:['poulet','pommes de terre','paprika','huile','sel.*poivre'],
@@ -222,9 +227,26 @@ const ingredients={
   'theme-bistrot-plus-22':['riz rond','lait entier','sucre','gousse de vanille','sucre pour caramel','beurre demi-sel','crème liquide'],
   'theme-bistrot-plus-23':['sucre pour caramel','lait entier','œufs','sucre','vanille'],
   'theme-bistrot-plus-25':['poires fermes','sucre','eau','vanille','chocolat noir','crème liquide','glace vanille','amandes effilées'],
-  'theme-bistrot-plus-26':['brioche légèrement rassise','œufs','lait','sucre','vanille','beurre pour la poêle','sucre pour caramel','beurre demi-sel','crème liquide']
+  'theme-bistrot-plus-26':['brioche légèrement rassise','œufs','lait','sucre','vanille','beurre pour la poêle','sucre pour caramel','beurre demi-sel','crème liquide'],
+  a094:['truite fumée','fromage frais','citron','aneth','tranches de pain','poivrer'],
+  a095:['avocats','œufs','moutarde','fromage blanc','citron','poivrer'],
+  a096:['petites tomates','thon en boîte','fromage blanc','citron','ciboulette','saler'],
+  a098:['endives','jambon cru','fromage frais','pomme','ciboulette'],
+  t402:['échine de porc','foie de volaille','poitrine fumée','œufs','cognac','échalote','quatre-épices','sel','poivre'],
+  t403:['échine','poitrine de porc','foie de volaille','noisettes','œufs','porto','échalote','sel','poivre'],
+  t404:['blancs de poulet','chair à saucisse','œufs','crème liquide','échalote','persil','ciboulette','sel','poivre'],
+  t405:['magret de canard','gorge de porc','foie de volaille','œufs','porto rouge','échalote','thym','sel','poivre'],
+  t406:['chair de lapin désossée','poitrine de porc','foie de volaille','œufs','vin blanc sec','échalotes','thym','sel','poivre'],
+  t407:['chair de lapin désossée','poitrine de porc','pruneaux','œufs','armagnac','échalotes','thym','sel','poivre'],
+  t408:['foies de volaille','beurre','œufs','crème liquide','échalote','cognac','sel','poivre'],
+  t411:['filets de poisson blanc','œufs','crème liquide','citron','ciboulette','persil','sel','poivre'],
+  t412:['saumon frais','noix de Saint-Jacques','œufs','crème liquide','citron','aneth','sel','poivre'],
+  t413:['courgettes','œufs','crème liquide','parmesan','basilic','ail','huile d’olive','sel','poivre'],
+  t416:['lapin en morceaux','graisse de canard','vin blanc sec','échalote','moutarde à l’ancienne','thym','sel','poivre'],
+  t417:['cuisses de poulet désossées','graisse de canard','bouillon','citron','échalote','thym','sel','poivre'],
+  'theme-bistrot-brasserie-02':['poireaux','moutarde','vinaigre de vin','huile','échalote','persil','saler.*poivrer']
 };
-assert.equal(fixture.recipes.length,445);
+assert.equal(fixture.recipes.length,475);
 let quantityChecks=0,timerCount=0;
 for(const record of fixture.recipes){
   const recipe=recipes.find(r=>r.id===record.id);
@@ -401,6 +423,34 @@ assert.deepEqual(editorial['theme-cuisine-regionale-24'].optionalIngredients,[4]
 assert.match(editorial.d099.reviewNote,/œuf.*hors du feu.*Ne pas supposer/);
 assert.match(editorial['theme-cuisine-regionale-25'].reviewNote,/220 g.*200 g.*20 g/);
 assert.match(editorial['theme-bistrot-plus-27'].reviewNote,/eau.*30 cl.*beurre/);
+for(const [id,n] of Object.entries({a094:'poivre',a095:'poivre',a096:'sel'})){
+  assert.deepEqual(recipes.find(r=>r.id===id).i.at(-1),{q:null,u:'',n,k:n});
+  assert.match(fixture.recipes.find(r=>r.id===id).beforeSteps.join(' '),id==='a096'?/saler légèrement/:/poivrer/i);
+}
+for(const count of [1,2,3,4,5,8]){
+  for(const [id,step,grams] of [['t402',0,'100'],['t404',0,'120'],['t405',0,'120'],['t406',0,'120']]){
+    const recipe=recipes.find(r=>r.id===id);
+    assert.equal(recipe.role,'terrine');
+    assert.ok(context.recipeStepText(recipe.p[step],recipe,count).includes(grams+' g'),'fixed-yield meat portion '+id);
+    assert.doesNotMatch(context.recipeHTML(recipe,{people:count}),/data-delta=/);
+  }
+  for(const [id,step,text] of [['t403',0,'35 g de noisettes'],['t408',0,'20 g de beurre'],['t408',2,'100 g de beurre restant'],['t416',0,'100 g de graisse'],['t417',0,'80 g de graisse']]){
+    const recipe=recipes.find(r=>r.id===id);
+    assert.ok(context.recipeStepText(recipe.p[step],recipe,count).includes(text),id+' source split stays fixed');
+  }
+}
+for(const id of ['t402','t403','t404','t405','t406','t408','t417'])assert.match(recipes.find(r=>r.id===id).p.join(' '),/74 °C/);
+for(const id of ['t407','t411','t412','t413','t416'])assert.match(recipes.find(r=>r.id===id).p.join(' '),/71 °C/);
+assert.match(recipes.find(r=>r.id==='t408').p[1],/stade intermédiaire/);
+assert.match(recipes.find(r=>r.id==='t411').p[1],/le jus n’est pas utilisé/);
+assert.match(recipes.find(r=>r.id==='t413').p[3],/sans bain-marie ajouté/);
+assert.match(recipes.find(r=>r.id==='t416').p[2],/Il peut rester de cette réserve/);
+assert.match(editorial.t401.reviewNote,/foie de porc.*durée-température/);
+assert.match(editorial.t409.reviewNote,/70 °C.*durée de maintien/);
+assert.match(editorial.t410.reviewNote,/poids.*force.*40 cl/);
+assert.match(editorial.a097.reviewNote,/version actuelle.*sauté.*quatre portions/);
+assert.equal(recipes.find(r=>r.id==='a097').servings,4);
+assert.match(editorial['theme-bistrot-brasserie-01'].reviewNote,/quatre œufs.*deux moitiés/);
 const corrected=fixture.recipes.filter(r=>r.status==='corrected').length;
 console.log(`✓ Batches ${batchNumbers.join('/')}: ${fixture.recipes.length} individual review records, ${corrected} corrected, ${fixture.recipes.length-corrected} blocked with original content preserved; ${timerCount} manually checked timers`);
 console.log(`✓ ${quantityChecks} ingredient checks at 1/2/3/4/5/8 people; split parmesan quantities, per-face timing and original cooking techniques`);
