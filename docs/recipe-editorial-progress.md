@@ -70,6 +70,16 @@ Le mode de lecture du programme reste accessible. Le maintien physique de l'écr
 
 ## Procédure de reprise
 
+P02 publié : `c87dc373c29cae1d6edb9c2ac6191004c69ba52a`, tests `34390827874` et Pages `34390827273` réussis. Le navigateur a terminé sa mise à jour et charge la révision `sha256:20843507090e9e2038d7b0ac231280227ecf53542721c3155841a4340584b9e1` du lot 03. Le délai d'installation ne nécessitait ni effacement des données ni correction du service worker.
+
+## Lot 04
+
+[Relectures et sources](recipe-editorial-batch-04.md) : 30 nouvelles fiches, 8 corrigées et 22 bloquées, aucune conforme sans modification. Huile de `n82` rétablie depuis la préparation publiée ; les autres ingrédients restent identiques. Les cinq variantes à ordre contradictoire restent explicitement à vérifier.
+
+**Cumul : 110 identifiants examinés, 59 corrigés, 51 bloqués, 1 443 à examiner.** Prochaine fiche : `n100`. Catalogue toujours à 1 553 recettes. Zéro erreur éditoriale, 9 595 avertissements ; 68 minuteurs et 1 668 contrôles de quantité dans les lots 02/03/04, plus les contrôles du premier lot. Formats simulés téléphone, tablette et ordinateur inspectés ; aucun test physique ou culinaire.
+
+## Procédure de reprise à appliquer après le lot 04
+
 1. Lire `CONTRIBUTING.md` et le standard.
 2. Vérifier `main`, la branche et les travaux locaux sans les écraser.
 3. Exécuter `node scripts/validate-recipe-editorial.mjs` pour les nombres exacts.

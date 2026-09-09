@@ -1,0 +1,286 @@
+{
+  "baselineCommit": "c87dc373c29cae1d6edb9c2ac6191004c69ba52a",
+  "batch": "04",
+  "recipes": [
+    {
+      "id": "n74",
+      "status": "corrected",
+      "sourceHash": "c979b63d18b1b984b3d5300808d17c87f2daa56beba66e41cc1a92989aaa0814",
+      "reviewedHash": "b74d8b8fc411ab6523b283f3422da100af1af27b99b33016c3690e01bc79789f",
+      "protectedRecipeSha256": "088316827ee653ccf0f72ae925a322a5f17ee957b60865b7c3689f513ad6c645",
+      "beforeSteps": [
+        "Rafraîchir les pâtes.",
+        "Ajouter le poulet, la salade et les tomates.",
+        "Assaisonner avec la sauce et parsemer de parmesan."
+      ],
+      "note": "Poids de pâtes et poulet déjà cuits conservés ; salade lavée/essorée, tomates coupées, sauce César et parmesan utilisés sans inventer une dose de sauce."
+    },
+    {
+      "id": "n76",
+      "status": "corrected",
+      "sourceHash": "88c50540dd3918807e48e35542d8e7de127b842c7847c768c2789d2572c5dcbb",
+      "reviewedHash": "f7d316cf5aef107ad94b7e21f079d8e8aa59b5de6c5d2374b73aa1a5a818a3f9",
+      "protectedRecipeSha256": "be5590f60fcee7c8284cd40d76fb773fd03ab2178c99ff555d63dee76d2fd87d",
+      "beforeSteps": [
+        "Mélanger viande, œuf, chapelure, oignon et ketchup.",
+        "Former un petit pain de viande.",
+        "Cuire avec les pommes de terre 30 à 35 minutes à 180 °C."
+      ],
+      "note": "Pain de viande et pommes de terre restent cuits ensemble à 180 °C dans l’Air Fryer ; aucun corps gras ou assaisonnement absent ajouté. Capacité et cuisson à cœur contrôlées, durée originale indicative."
+    },
+    {
+      "id": "n80",
+      "status": "corrected",
+      "sourceHash": "31f701e96effb74c8e6b0ba71d904ec7851dbb8b1c0402bfdf7d8e36cea0ca94",
+      "reviewedHash": "538669af8fa6b99e99fedb0707c660df3f232bb7c27351f39386c2d5aed44880",
+      "protectedRecipeSha256": "d3f31a19c2253bc120d1736e5be50c376d2f8cd67ef3c7ebd26086f7b5fc13a4",
+      "beforeSteps": [
+        "Paner légèrement le poulet avec chapelure et parmesan.",
+        "Cuire 20 minutes à 190 °C avec le coulis de tomate.",
+        "Servir avec les spaghetti et le basilic."
+      ],
+      "note": "Enrobage léger chapelure/parmesan puis cuisson au coulis conservés, sans ajouter œuf, huile ou passage à la poêle. Spaghetti au paquet, basilic au service et contrôle du poulet."
+    },
+    {
+      "id": "n81",
+      "status": "corrected",
+      "sourceHash": "6aed1ad48218354fd4893fe3f7327821c614c37d75da5dfd23e5066352f3eda9",
+      "reviewedHash": "b585c7c763460b646e3cf0ac929496095f9a9880dde9c6d1df020fde523378d8",
+      "protectedRecipeSha256": "dd374355d4f9c5f28ce2fe4b4dc7ae5b49e99371a47be6a17b1d38950d42bdc0",
+      "beforeSteps": [
+        "Cuire les côtes et la courgette 18 minutes à 185 °C.",
+        "Ajouter tomates, mozzarella et origan sur la viande.",
+        "Poursuivre 5 minutes."
+      ],
+      "note": "Cuisson en deux phases Air Fryer 18 min puis 5 min à 185 °C conservée, mozzarella après la première phase ; contrôle du porc et repos ajoutés sans huile inventée."
+    },
+    {
+      "id": "n82",
+      "status": "corrected",
+      "sourceHash": "d2557cf44ef72a65b6835edbdbe1755ebe0cfcf5dab515277ac83bbe58e30241",
+      "reviewedHash": "76dc6a7ad0539c3ea2b8d1c8b7851a3eedbb1cfb5eeee421d93ccf8f46633050",
+      "protectedRecipeSha256": "049a38cab935717e8cca60701daf48ef8d5a033f8504f8262fddbeb2292b5a4d",
+      "beforeSteps": [
+        "Cuire les pommes de terre 18 minutes, les égoutter puis les écraser avec le thon, l’œuf, la chapelure et le persil.",
+        "Former des galettes et les dorer 4 minutes par face dans une poêle légèrement huilée.",
+        "Mélanger poivrons finement émincés, tomates et citron, puis servir cette salade fraîche avec les galettes chaudes."
+      ],
+      "note": "Huile rétablie sans dose chiffrée : la préparation publiée dit déjà « poêle légèrement huilée ». Cuisson des galettes séparée en deux faces ; pommes de terre tendres, œuf cuit à cœur et salade citronnée."
+    },
+    {
+      "id": "n84",
+      "status": "corrected",
+      "sourceHash": "707fd2e59615155155e76be53ba0e6097c7c6859344cd8cb61c2ff4ab3022beb",
+      "reviewedHash": "77c3db9fce55de38db9ed8bdedc9a8a72c11079c1a56fdcbc9c3ac3bdc414322",
+      "protectedRecipeSha256": "6ad9a769e6cb46d5d1aaaea277b37c125cd1672cd62ad57ff89f4430f432abed",
+      "beforeSteps": [
+        "Évider les courgettes et hacher la chair.",
+        "Mélanger chair, jambon, crème et fromage puis farcir.",
+        "Cuire 25 minutes à 190 °C et servir avec la semoule."
+      ],
+      "note": "Farce crue aux courgettes, jambon, crème et totalité du fromage conservée ; herbes listées utilisées, sans ajouter une étape de poêle ni réserver arbitrairement du fromage pour gratiner."
+    },
+    {
+      "id": "n98",
+      "status": "corrected",
+      "sourceHash": "adb9244f07c067e691afbc8da608cdae445d3c88ee4f075cfbaf599aed6a25c4",
+      "reviewedHash": "9f3c14b3b021301c625b70ae1d2ac5cad48e484a6d29e4e0be18c5be4d998a51",
+      "protectedRecipeSha256": "a4c844c019e1222d7a90a3c7603ee13b8765c4b5a3e02702e1ca754987a45bda",
+      "beforeSteps": [
+        "Déposer le poulet et les pommes de terre dans un plat.",
+        "Ajouter pesto, tomates et mozzarella.",
+        "Cuire 25 minutes à 190 °C."
+      ],
+      "note": "Poulet, pommes de terre, pesto, tomate et mozzarella restent cuits ensemble au four ; découpe régulière et contrôles de fin explicites, aucune huile ajoutée."
+    },
+    {
+      "id": "n99",
+      "status": "corrected",
+      "sourceHash": "cdfb60852599b844215f81c5bb3a9537867d41b83863cdcd24f587e984a91c5d",
+      "reviewedHash": "eac525b5a6df527f72d9e1403f4a959e0d2074fe9d1e5883368242f774f17ba4",
+      "protectedRecipeSha256": "096bc8a79b92ce808e018a94431b4b7460fb36c1402fdbeaad742ad642657e02",
+      "beforeSteps": [
+        "Cuire les pommes de terre 15 minutes à 190 °C.",
+        "Mélanger parmesan, chapelure et persil sur le cabillaud.",
+        "Ajouter le poisson et poursuivre 10 à 12 minutes."
+      ],
+      "note": "Air Fryer 190 °C conservé : pommes de terre seules 15 min puis poisson 10–12 min. Citron listé servi en quartiers, pas de matière grasse ou liant de panure inventé."
+    },
+    {
+      "id": "n65",
+      "status": "blocked",
+      "sourceHash": "375e2c3c5d8917f7408043fde9d81c8b87232101c2fba976e1d55c0fcf627c18",
+      "reviewedHash": "375e2c3c5d8917f7408043fde9d81c8b87232101c2fba976e1d55c0fcf627c18",
+      "protectedRecipeSha256": "a9dc0c9689eccb43be990ae2499674a50d0e27d34a327a6b18b2f8a0ff998c18",
+      "note": "La cuisson des légumes avant les chipolatas ne précise ni matière grasse ni conduite sur la plancha ; les archives ne complètent pas ces informations."
+    },
+    {
+      "id": "n66",
+      "status": "blocked",
+      "sourceHash": "669f075fba4e244b668646c2916b138ac6984b09c0c14de6c97200da27079e67",
+      "reviewedHash": "669f075fba4e244b668646c2916b138ac6984b09c0c14de6c97200da27079e67",
+      "protectedRecipeSha256": "b2f74746f5552579ff138757e589f392ccf254f385218ad522100d0a78dfd496",
+      "note": "Précuisson des pommes de terre non définie ; coloration seule donnée pour les merguez, huile et paprika non répartis."
+    },
+    {
+      "id": "n67",
+      "status": "blocked",
+      "sourceHash": "22f4368d3af14bbd8857979c688df95c2c6d95397516b19426aed285ea7e8ffb",
+      "reviewedHash": "22f4368d3af14bbd8857979c688df95c2c6d95397516b19426aed285ea7e8ffb",
+      "protectedRecipeSha256": "f27c11d5f572fbc4ee9e8840003e4c66ad89d5ead6f52303db450921ba8f7be7",
+      "note": "Courgette poêlée sans matière grasse ni conduite, comme dans les archives."
+    },
+    {
+      "id": "n68",
+      "status": "blocked",
+      "sourceHash": "29e51ab810bb4170a1a5caec5528be955f03a133065323abcc4934fdbd19a171",
+      "reviewedHash": "29e51ab810bb4170a1a5caec5528be955f03a133065323abcc4934fdbd19a171",
+      "protectedRecipeSha256": "031a591a57c0e54aeefc2c3f0f3c1fbcd6e6eaa13d46de3f0b84d19b95ec52c6",
+      "note": "Variante générée : compotée et olives placées avant la saisie, puis olives à nouveau dans les trois dernières minutes ; type de chorizo et conduite de saisie non définis."
+    },
+    {
+      "id": "n69",
+      "status": "blocked",
+      "sourceHash": "9d3968d6f707dbb37f1d98964057d1a37c594878eefee7f813f4d0b9fec547be",
+      "reviewedHash": "9d3968d6f707dbb37f1d98964057d1a37c594878eefee7f813f4d0b9fec547be",
+      "protectedRecipeSha256": "b038bbd1c4e7d8f07835cd86770d8383b4b050b2841f815d3b9505da7a4d1a41",
+      "note": "Variante générée : pesto/citron ajoutés avant le mijotage puis de nouveau hors du feu et au service ; échalote revenue sans matière grasse, persil inutilisé."
+    },
+    {
+      "id": "n70",
+      "status": "blocked",
+      "sourceHash": "8ba77880a5a49308cb9c32d83a23b65ca37f472b1703464a1f04ab88caf248ce",
+      "reviewedHash": "8ba77880a5a49308cb9c32d83a23b65ca37f472b1703464a1f04ab88caf248ce",
+      "protectedRecipeSha256": "ea4586cdb8244ebc0faae7238c3821bc762452b28b043ef7bfef72369824090c",
+      "note": "Variante générée : infusion estragon/citron avant saisie puis seconde finition avant la crème ; matière grasse absente et persil non utilisé."
+    },
+    {
+      "id": "n71",
+      "status": "blocked",
+      "sourceHash": "06b7a6d8a9338fc70b0bdb1f44b42f1da840180c40bc7c3cef12cbe6b09c98f5",
+      "reviewedHash": "06b7a6d8a9338fc70b0bdb1f44b42f1da840180c40bc7c3cef12cbe6b09c98f5",
+      "protectedRecipeSha256": "3f91bea1b5584d75c7333295489a302016dbbcd3a17f8ffe7daa67c6ca2af8e3",
+      "note": "Filet et échalote à dorer sans matière grasse ; taille de la pièce non précisée, archives identiques."
+    },
+    {
+      "id": "n72",
+      "status": "blocked",
+      "sourceHash": "1286fc3d09e5b57794779351dfb2ed2c76d9ee6e5f58cc57b25c67367369f0d6",
+      "reviewedHash": "1286fc3d09e5b57794779351dfb2ed2c76d9ee6e5f58cc57b25c67367369f0d6",
+      "protectedRecipeSha256": "ba4444fd2d9ad98c49437bb08f9d347ccfcfa17ae6da151620fbcc5b97d636fb",
+      "note": "Poireaux avec « un peu de crème » sans destination du reste ; conduite et matière grasse du saumon absentes."
+    },
+    {
+      "id": "n73",
+      "status": "blocked",
+      "sourceHash": "c9ad6899f8eca35cb383df87e1dbd5d705f08ff4042ef82eebef28f70d1bce31",
+      "reviewedHash": "c9ad6899f8eca35cb383df87e1dbd5d705f08ff4042ef82eebef28f70d1bce31",
+      "protectedRecipeSha256": "9f2c877efd8ae1b5591825838a73bcf7aa46b50ea12dd7a33b5504cae1cae21a",
+      "note": "Poisson dit assaisonné sans assaisonnement listé ; conduite de la cuisson à la poêle absente."
+    },
+    {
+      "id": "n75",
+      "status": "blocked",
+      "sourceHash": "fd669598c8088fefaaf42dee6c9d49d73b04c75910d9a2d257ebb5b04f895803",
+      "reviewedHash": "fd669598c8088fefaaf42dee6c9d49d73b04c75910d9a2d257ebb5b04f895803",
+      "protectedRecipeSha256": "5624637cb240173c91080cd96e4bb8d4b28dfb1748c447c1f2628f714b9b7bf2",
+      "note": "Brochettes définies mais cuisson de l’accompagnement de pommes de terre totalement absente."
+    },
+    {
+      "id": "n77",
+      "status": "blocked",
+      "sourceHash": "e08b1b74931494b368905b7c5e444a6133137fae79de8eeed1da895085578cf7",
+      "reviewedHash": "e08b1b74931494b368905b7c5e444a6133137fae79de8eeed1da895085578cf7",
+      "protectedRecipeSha256": "7ac6225de34021d17942882c9daef207c0846d0727d7c06334b28667c818d086",
+      "note": "Carottes sans mode ni durée ; cuisson du magret seulement peau puis chair, puissance/durée non définies."
+    },
+    {
+      "id": "n79",
+      "status": "blocked",
+      "sourceHash": "8fc2c1bd969a53b47cff1c872f725e3c3ed069d1337e6111e4d5c43bacf4b26b",
+      "reviewedHash": "8fc2c1bd969a53b47cff1c872f725e3c3ed069d1337e6111e4d5c43bacf4b26b",
+      "protectedRecipeSha256": "469df7524d613de7d4d490a19071f88e1f5c34296c1e8245d0124fc2ee440de8",
+      "note": "Poisson pané à poêler sans matière grasse ; préparation de la salade de pommes de terre trop peu définie."
+    },
+    {
+      "id": "n83",
+      "status": "blocked",
+      "sourceHash": "f244f901bc0ab8197ba3982e1d9b1fd24fe0994c6e4448456a76ef79edb04b59",
+      "reviewedHash": "f244f901bc0ab8197ba3982e1d9b1fd24fe0994c6e4448456a76ef79edb04b59",
+      "protectedRecipeSha256": "c41c4c24b0d71162407dbbe8f86dc3bf329f2fd871d8b61f3539e732689aa324",
+      "note": "Viande et oignon à faire revenir sans matière grasse, comme dans l’archive."
+    },
+    {
+      "id": "n85",
+      "status": "blocked",
+      "sourceHash": "73cc460ff742675db453820985eb8ecb5e79764bd829fe8c6e56f635f282c029",
+      "reviewedHash": "73cc460ff742675db453820985eb8ecb5e79764bd829fe8c6e56f635f282c029",
+      "protectedRecipeSha256": "68b4cfc7d15fb6f87f32ee38ed781817438321a41d6e0a09046fb510d0ccab5a",
+      "note": "Variante générée : pesto à trois moments, hors du feu avant tomates puis ajout du parmesan ; type de gnocchis non précisé."
+    },
+    {
+      "id": "n86",
+      "status": "blocked",
+      "sourceHash": "0bb5dab2733575e629ea6e2e6b1f683c3eaeace01fc2a8da9f5494d3f98c6668",
+      "reviewedHash": "0bb5dab2733575e629ea6e2e6b1f683c3eaeace01fc2a8da9f5494d3f98c6668",
+      "protectedRecipeSha256": "e5e008ce7753235e3f0bbde987066add250fbee7ce8e3528aeeb262d3ebfda9b",
+      "note": "Épinards à faire tomber sans conduite initiale ; type de ravioles insuffisant pour garantir cuisson directe à la crème."
+    },
+    {
+      "id": "n90",
+      "status": "blocked",
+      "sourceHash": "4aa26f5845d9912f35f90c43dcfc9a29af3c000e14f58be573ec98cfdea95ff4",
+      "reviewedHash": "4aa26f5845d9912f35f90c43dcfc9a29af3c000e14f58be573ec98cfdea95ff4",
+      "protectedRecipeSha256": "82f5930459befc7aa3f654568e1a60e8f4fdc1d1c3c577c6ddb55a7c848dbde6",
+      "note": "Poulet et légumes revenus sans matière grasse ; « un verre d’eau » de volume inconnu, aucun bouillon ajouté par supposition."
+    },
+    {
+      "id": "n91",
+      "status": "blocked",
+      "sourceHash": "586cb5623ae6923f96b50a78431dd0c93344ad43e10c03a41828805481db2cf3",
+      "reviewedHash": "586cb5623ae6923f96b50a78431dd0c93344ad43e10c03a41828805481db2cf3",
+      "protectedRecipeSha256": "eaa848f65fff90c7ababe3fe8f4b2d5ccb8b24c160772705ef25012cf5b7b389",
+      "note": "Saisie porc/légumes sans matière grasse avant soja, archives identiques."
+    },
+    {
+      "id": "n92",
+      "status": "blocked",
+      "sourceHash": "b7312653101733fda6a9a828d037844f46c79ff9412465a2546bcef33c55db19",
+      "reviewedHash": "b7312653101733fda6a9a828d037844f46c79ff9412465a2546bcef33c55db19",
+      "protectedRecipeSha256": "31e996551df1190430ba80a8b7705cdb6a15dc611b35197e63f72918cf822fdb",
+      "note": "Pommes de terre et oignon à dorer sans matière grasse ; persil inutilisé, durée/conditions de la frittata incomplètes."
+    },
+    {
+      "id": "n93",
+      "status": "blocked",
+      "sourceHash": "eaddbb8da3a8415497f0a854c8e0b6fd7e27150dad7066434a473ca008f402b1",
+      "reviewedHash": "eaddbb8da3a8415497f0a854c8e0b6fd7e27150dad7066434a473ca008f402b1",
+      "protectedRecipeSha256": "c73eab4c75cf3ba92565ba5bd8879b8278ebcbbff3915d7389d3c1b58015d82d",
+      "note": "Oignon/poivron/tomate revenus avant poisson sans matière grasse listée."
+    },
+    {
+      "id": "n94",
+      "status": "blocked",
+      "sourceHash": "efc3b0ec6275c11ab8d8d982f241cd6554e03131228e23cd44bb44f0f961aa87",
+      "reviewedHash": "efc3b0ec6275c11ab8d8d982f241cd6554e03131228e23cd44bb44f0f961aa87",
+      "protectedRecipeSha256": "88e1224109bfb815120f06fe59d131ab9068c12fc46ce8cb83cfd61c241b61af",
+      "note": "Poulet et légumes revenus sans matière grasse, archives identiques."
+    },
+    {
+      "id": "n95",
+      "status": "blocked",
+      "sourceHash": "252b9a4b782533602efbe5481b55363214bbdf5cc34f42d7b8252e543c1f0e3f",
+      "reviewedHash": "252b9a4b782533602efbe5481b55363214bbdf5cc34f42d7b8252e543c1f0e3f",
+      "protectedRecipeSha256": "52b05f4069d2ae54d5af26d447ee280eeeb72fa33d8f2b07a1483a7f8c3fcc54",
+      "note": "Sel/poivre présents dans les étapes mais pas la liste, menthe inutilisée ; conduite de plancha/matière grasse non définie. Larousse propose une plancha huilée, sans établir que c’était le choix original."
+    },
+    {
+      "id": "n96",
+      "status": "blocked",
+      "sourceHash": "b4193a394764abb44846291f170de0cb53ad3756931ce396c0b7a4269aa6fe33",
+      "reviewedHash": "b4193a394764abb44846291f170de0cb53ad3756931ce396c0b7a4269aa6fe33",
+      "protectedRecipeSha256": "fc0c8a04dc2ffce2a5ff65013a1b58cc0be4b85c162f13a3ba3f23100a572eb4",
+      "note": "Variante générée : cidre à deux déglaçages sans répartition, réduction après ajout bouillon ; type/cuisson des saucisses et matière grasse de l’oignon absents."
+    }
+  ]
+}

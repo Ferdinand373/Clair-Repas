@@ -7,7 +7,7 @@ import {recipeSource} from './recipe-source.mjs';
 import {recipeHash} from './validate-recipe-editorial.mjs';
 const root=resolve(dirname(fileURLToPath(import.meta.url)),'..');
 const {code,recipes,editorial}=recipeSource(readFileSync(resolve(root,'index.html'),'utf8'));
-const batchNumbers=['02','03'];
+const batchNumbers=['02','03','04'];
 const fixture={recipes:batchNumbers.flatMap(number=>JSON.parse(readFileSync(resolve(root,`scripts/recipe-editorial-batch-${number}.fixture.json`),'utf8')).recipes)};
 const slice=(a,b)=>code.slice(code.indexOf(a),code.indexOf(b,code.indexOf(a)+a.length));
 const context={window:{},$:()=>({value:'8'}),MEAL_TYPES:['mid','eve'],recipeRole:r=>r.role||r.course||'dish',isFavorite:()=>false,recipeFeedbackHTML:()=>'',recipePersonalNoteHTML:()=>''};
@@ -29,7 +29,9 @@ const timers={
   n35:[[],[7],[4],[4],[]],n39:[[],[4],[6],[12],[5],[]],n41:[[],[],[25],[],[3]],
   n43:[[],[],[15],[3]],n44:[[],[],[],[],[]],n46:[[],[],[],[]],n47:[[],[],[],[]],
   n48:[[],[],[],[]],n51:[[],[],[9],[]],n53:[[],[],[],[20]],n56:[[],[15],[],[18]],
-  n59:[[],[],[12],[10],[]],n61:[[],[],[],[2],[3]],n63:[[],[],[15],[]]
+  n59:[[],[],[12],[10],[]],n61:[[],[],[],[2],[3]],n63:[[],[],[15],[]],
+  n74:[[],[],[]],n76:[[],[],[35],[]],n80:[[],[20],[],[]],n81:[[],[18],[5],[3]],
+  n82:[[18],[],[],[4],[4]],n84:[[],[],[25],[]],n98:[[],[],[25]],n99:[[15],[],[12],[]]
 };
 const ingredients={
   n01:['poulet','pommes de terre','paprika','huile','sel.*poivre'],
@@ -67,9 +69,17 @@ const ingredients={
   n56:['poulet','pommes de terre','citron','ail','huile.*thym','sel.*poivre'],
   n59:['saumon','riz','brocoli','sauce soja','miel','sésame'],
   n61:['bœuf','pommes de terre','oignons','sauce soja','huile','poivrer'],
-  n63:['poulet','semoule','poivron','oignon','curry','yaourt']
+  n63:['poulet','semoule','poivron','oignon','curry','yaourt'],
+  n74:['pâtes déjà cuites','poulet déjà cuit','salade','tomates','parmesan','sauce César'],
+  n76:['viande hachée','œuf','chapelure','oignon','pommes de terre','ketchup'],
+  n80:['poulet','spaghetti','coulis','parmesan','chapelure','basilic'],
+  n81:['porc','mozzarella','tomates','courgette','origan','saler.*poivrer'],
+  n82:['thon','pommes de terre','œuf','chapelure','poivrons','tomates','citron','persil','huile'],
+  n84:['courgettes','jambon','fromage','semoule','crème','herbes'],
+  n98:['poulet','pesto','mozzarella','tomates','pommes de terre','saler.*poivrer'],
+  n99:['cabillaud','parmesan','chapelure','pommes de terre','citron','persil']
 };
-assert.equal(fixture.recipes.length,65);
+assert.equal(fixture.recipes.length,95);
 let quantityChecks=0,timerCount=0;
 for(const record of fixture.recipes){
   const recipe=recipes.find(r=>r.id===record.id);
@@ -112,6 +122,13 @@ assert.match(meatballs.p[0],/4 cm/);
 assert.doesNotMatch(meatballs.p.join(' '),/huit boulettes|5 cl|la moitié du/);
 assert.match(recipes.find(r=>r.id==='n25').p[3],/retourner l’ensemble/);
 assert.match(recipes.find(r=>r.id==='n28').p[1],/ne prévoit pas d’huile/);
+const patties=recipes.find(r=>r.id==='n82');
+assert.deepEqual(patties.i.at(-1),{q:null,u:'',n:'huile',k:'huile'});
+assert.match(fixture.recipes.find(r=>r.id==='n82').beforeSteps.join(' '),/poêle légèrement huilée/);
+assert.match(recipes.find(r=>r.id==='n74').p[0],/pas des poids crus/);
+assert.match(recipes.find(r=>r.id==='n80').p[1],/Aucun œuf ni passage à la poêle/);
+assert.match(recipes.find(r=>r.id==='n81').p[3],/63 °C/);
+assert.match(recipes.find(r=>r.id==='n99').p[2],/sans retourner le poisson/);
 const corrected=fixture.recipes.filter(r=>r.status==='corrected').length;
 console.log(`✓ Batches ${batchNumbers.join('/')}: ${fixture.recipes.length} individual review records, ${corrected} corrected, ${fixture.recipes.length-corrected} blocked with original content preserved; ${timerCount} manually checked timers`);
 console.log(`✓ ${quantityChecks} ingredient checks at 1/2/3/4/5/8 people; split parmesan quantities, per-face timing and original cooking techniques`);
