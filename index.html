@@ -815,6 +815,27 @@ select{min-height:48px;border:1px solid #deebf2;border-radius:16px;background:#f
 @media(max-width:620px){.book-daily-grid{grid-template-columns:1fr 1fr}.book-daily-card:nth-child(3){grid-column:1/-1;min-height:112px}.book-daily-card:nth-child(3) .book-daily-open{min-height:112px}.book-signature-shelves{grid-template-columns:1fr 1fr}.book-shelves.book-library-shelves{grid-template-columns:1fr}.book-intro.book-premium-cover h2{font-size:28px}}
 @media(max-width:390px){.book-signature-shelves{grid-template-columns:1fr}.book-signature-card,.book-signature-inner{min-height:132px}.book-daily-grid{grid-template-columns:1fr}.book-daily-card:nth-child(3){grid-column:auto}.book-daily-card,.book-daily-open,.book-daily-card:nth-child(3) .book-daily-open{min-height:112px}.book-cover-stat{min-width:0;flex:1}.book-intro.book-premium-cover{padding:21px 17px}.book-intro.book-premium-cover h2{font-size:26px}}
 
+/* Shared recipe reading: same hierarchy in the programme and the book. */
+.recipe .recipe-reading{color:#243f4e;font-size:16px;line-height:1.65}
+.recipe .recipe-introduction{margin:0 0 14px;font-size:17px;line-height:1.55;color:#294d60}
+.recipe .recipe-essential{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 18px;margin:14px 0 18px;padding:13px 15px;border:1px solid #d7e4ea;border-radius:12px;background:#f3f8fa}
+.recipe-essential dt{font-size:12px;font-weight:700;color:#4d6570;line-height:1.4}
+.recipe-essential dd{margin:3px 0 0;font-size:14px;font-weight:600;line-height:1.5;overflow-wrap:anywhere}
+.recipe .recipe-review-note{padding:11px 13px;border-left:3px solid #966127;background:#fff7e9;color:#69431e;font-size:14px;line-height:1.6;border-radius:0 8px 8px 0}
+.recipe .recipe-review-note.legacy{border-color:#597685;background:#f2f6f8;color:#425b68}
+.recipe .recipe-reading.recipe-reading h3{margin:22px 0 10px;font-size:16px;line-height:1.4;color:#28556c;letter-spacing:0;text-transform:none}
+.recipe .recipe-reading ul{padding-left:22px;margin:8px 0 16px;line-height:1.7}
+.recipe-reading .ingredient-line{padding:3px 0}
+.recipe .recipe-reading.recipe-reading ol{counter-reset:reading-step;list-style:none;margin:0;padding:0}
+.recipe .recipe-reading.recipe-reading ol>li{position:relative;margin:0 0 14px;padding:15px 15px 15px 47px;border:1px solid #dce7ec;border-radius:12px;background:#fbfdfe;min-height:48px}
+.recipe .recipe-reading.recipe-reading ol>li::before{counter-increment:reading-step;content:counter(reading-step);position:absolute;top:15px;left:12px;width:24px;height:24px;display:grid;place-items:center;border-radius:7px;background:#e6f0f5;color:#28556c;font-size:12px;font-weight:800}
+.recipe .recipe-reading .recipe-step-title{margin:0 0 6px;font-size:16px;font-weight:750;line-height:1.45;color:#234c62}
+.recipe .ingredient-group-title{margin:13px 0 5px;font-size:15px;color:#315567}
+.recipe .recipe-reading .step-timers{margin-top:10px;display:flex;flex-wrap:wrap;gap:8px}
+.recipe .recipe-reading .step-timer{min-height:44px;padding:9px 12px;white-space:normal;text-align:left;font-size:13px;line-height:1.4;color:#235674;background:#eaf4f9;border:1px solid #c6dce9;border-radius:9px}
+.recipe .recipe-useful-tip{margin:18px 0;padding:11px 13px;border-left:3px solid #668794;background:#f1f6f7;font-size:14px}
+.recipe .recipe-reading button:focus-visible{outline:3px solid #286e97;outline-offset:3px}
+@media(max-width:430px){.recipe .recipe-reading{font-size:16px}.recipe .recipe-essential{gap:9px 12px;padding:12px}.recipe .recipe-reading.recipe-reading ol>li{padding:13px 12px 13px 42px}.recipe .recipe-reading.recipe-reading ol>li::before{left:9px;top:14px}}
 </style>
 
 <style id="cr-book-home-style">
@@ -4447,6 +4468,29 @@ noon.forEach(recipe=>{recipe.mealSlots=['mid']});
 evening.forEach(recipe=>{recipe.mealSlots=['eve']});
 const dishLibrary=[...noon,...evening];
 const standaloneLibrary=[...breakfastRecipes,...sauceRecipes,...sideRecipes,...fundamentalRecipes];
+// Reading metadata is additive: historical recipe objects, ids and portions stay intact.
+const RECIPE_EDITORIAL={
+  n05:{intro:'Des morceaux de poulet alternent avec la courgette et le poivron sur les brochettes. Le citron est ajouté après la cuisson.',titles:['Préparer le barbecue','Tailler les légumes','Couper le poulet','Monter les brochettes','Griller et contrôler la cuisson','Citronner et servir'],times:{prep:null,cook:'12 à 15 min',rest:null,total:'30 min indicatives, hors allumage du charbon'}},
+  n07:{intro:'Le jambon est roulé autour du gruyère puis gratiné dans une sauce à la crème et à la tomate. La salade accompagne les rouleaux chauds.',titles:['Préchauffer le four','Rouler le jambon','Préparer la sauce','Faire gratiner','Servir avec la salade'],times:{prep:null,cook:'15 min',rest:null,total:'30 min indicatives'}},
+  n11:{intro:'Les légumes commencent à rôtir avant que les filets citronnés soient posés dessus. La cuisson reste à l’Air Fryer.',titles:['Préparer l’Air Fryer','Tailler les légumes','Commencer les légumes','Préparer le poisson','Terminer la cuisson','Servir'],times:{prep:null,cook:'22 à 24 min par fournée',rest:null,total:'35 min indicatives, hors fournées supplémentaires'}},
+  n26:{intro:'Le poulet et les tranches de courgette cuisent sur la plancha. La semoule gonfle pendant cette cuisson, puis le citron et les herbes terminent le plat.',titles:['Chauffer la plancha','Préparer courgette et aromates','Préparer le poulet','Cuire à la plancha','Faire gonfler la semoule','Terminer et servir'],times:{prep:null,cook:'12 à 15 min ; semoule en parallèle selon le paquet',rest:null,total:'25 min indicatives'}},
+  n78:{intro:'Les brochettes réunissent bœuf, champignons et oignon. Elles sont servies avec une semoule aux herbes.',titles:['Préparer la plancha','Préparer les légumes','Monter les brochettes','Cuire les brochettes','Préparer la semoule','Laisser reposer et servir'],times:{prep:null,cook:'8 à 10 min ; semoule en parallèle selon le paquet',rest:'3 min',total:'28 min indicatives'}},
+  n88:{intro:'Le saumon émietté accompagne les pâtes et les petits pois dans une sauce à la crème, au citron et à l’aneth.',titles:['Vérifier la cuisson du saumon','Préparer le matériel et les aromates','Cuire les pâtes','Cuire les petits pois en parallèle','Cuire et émietter le saumon','Ajouter la crème et servir'],times:{prep:null,cook:null,rest:null,total:'25 min annoncées par la source, cuisson à confirmer'},reviewNote:'À vérifier : méthode de cuisson des pavés et éventuelle matière grasse non précisées. Ne pas pocher le saumon dans la crème pour remplacer l’étape manquante.'},
+  n97:{intro:'Les côtelettes grillées sont accompagnées d’une semoule aux crudités, au citron et aux herbes.',titles:['Préparer le barbecue','Tailler les crudités','Préparer la semoule','Mélanger l’accompagnement','Griller les côtelettes','Laisser reposer et servir'],times:{prep:null,cook:'10 à 12 min pour l’épaisseur précisée ; semoule selon le paquet',rest:'3 min',total:'30 min indicatives, hors allumage du charbon'}},
+  e03:{intro:'Les champignons sont d’abord dorés, puis les œufs cuisent doucement autour d’eux. L’omelette est servie avec la salade.',titles:['Préparer salade et champignons','Faire revenir les champignons','Battre les œufs','Cuire doucement','Plier et servir'],times:{prep:null,cook:'6 à 8 min puis 3 à 5 min',rest:null,total:'20 min indicatives'}},
+  e11:{intro:'Le pain doré contient du jambon et du fromage fondu. Les croques cuisent dans l’Air Fryer et sont servis avec une salade.',titles:['Préparer l’appareil et la salade','Préparer pain et fromage','Assembler les croques','Cuire dans l’Air Fryer','Servir chaud'],times:{prep:null,cook:'7 à 9 min par fournée',rest:null,total:'16 min indicatives, hors fournées supplémentaires'}},
+  e30:{intro:'Haricots rouges, maïs et thon sont mêlés aux tomates et à l’échalote. La vinaigrette enrobe la salade juste avant le service.',titles:['Rincer et égoutter','Couper tomates et échalote','Assembler la salade','Assaisonner et servir'],times:{prep:'12 min indicatives',cook:'Sans cuisson',rest:null,total:'12 min indicatives'}},
+  e58:{intro:'Ces croques sont garnis de thon, tomate, moutarde et fromage, puis dorés à l’Air Fryer.',titles:['Préparer l’appareil et les légumes','Égoutter le thon','Garnir les croques','Faire dorer','Servir avec la salade'],times:{prep:null,cook:'7 à 8 min par fournée',rest:null,total:'15 min indicatives, hors fournées supplémentaires'}},
+  e63:{intro:'Les pommes de terre dorées et le chorizo sont liés par les œufs. La tortilla termine sa cuisson à couvert, sans retournement.',titles:['Tailler les ingrédients','Dorer les pommes de terre','Ajouter le chorizo','Verser les œufs','Cuire à couvert','Découper et servir'],times:{prep:null,cook:'Environ 19 à 24 min, selon la tendreté des pommes de terre',rest:null,total:'35 min indicatives'}},
+  e78:{intro:'Les pâtes, le thon et la courgette sont réunis dans une sauce tomate sous une couche de fromage gratiné.',titles:['Vérifier les informations manquantes','Préparer courgette et thon','Poêler la courgette','Cuire les pâtes en parallèle','Assembler le gratin','Gratiner et servir'],times:{prep:null,cook:'12 min de gratin annoncées ; température à confirmer',rest:null,total:'25 min annoncées par la source, à confirmer'},reviewNote:'À vérifier : matière grasse pour poêler la courgette et température du four absentes de la source.'},
+  e92:{intro:'Haricots rouges et pois chiches mijotent avec le poivron, la tomate, le cumin et le paprika. Le riz est préparé séparément.',titles:['Vérifier la fiche et préparer les légumes','Cuire le riz','Faire revenir le poivron','Faire mijoter','Terminer et servir'],times:{prep:null,cook:'12 min de mijotage ; cuisson initiale du poivron à confirmer',rest:null,total:'25 min annoncées par la source, à confirmer'},reviewNote:'À vérifier : matière grasse et quantité pour faire revenir le poivron non précisées. Le coulis ne remplace pas ce geste.'},
+  a038:{intro:'Le concombre est mixé avec le yaourt, le citron et l’aneth pour une soupe servie froide.',titles:['Vérifier l’assaisonnement et préparer le concombre','Préparer citron et aneth','Mixer','Servir froid'],times:{prep:'12 min indicatives',cook:'Sans cuisson',rest:'Refroidissement si nécessaire',total:'12 min indicatives, hors refroidissement éventuel'},reviewNote:'À vérifier : sel et poivre figurent dans la préparation d’origine mais pas dans les ingrédients.'},
+  a048:{intro:'Le chou-fleur est mixé avec le bouillon et le lait ; le curry parfume ce velouté servi chaud.',titles:['Vérifier la fiche et préparer les légumes','Faire revenir l’oignon','Cuire le chou-fleur','Ajouter le lait et mixer','Servir chaud'],times:{prep:null,cook:'20 min après la cuisson initiale de l’oignon, à confirmer',rest:null,total:'30 min annoncées par la source, à confirmer'},reviewNote:'À vérifier : matière grasse et quantité pour faire revenir oignon et curry non précisées. Ne pas remplacer cette cuisson par du bouillon.'},
+  a088:{intro:'Le quinoa refroidi est mélangé aux légumes croquants, au citron, au persil et à la menthe.',titles:['Rincer le quinoa','Cuire selon le paquet','Refroidir et préparer les légumes','Ajouter citron et herbes','Mélanger et servir'],times:{prep:null,cook:'Selon le paquet',rest:'Refroidissement du quinoa',total:'25 min annoncées + refroidissement, selon le paquet'}},
+  d028:{intro:'Les pêches rôtissent avec le miel, le citron et le romarin. Elles sont servies tièdes avec leur jus.',titles:['Préchauffer le four','Préparer les pêches','Ajouter miel, citron et romarin','Faire rôtir','Servir tiède'],times:{prep:null,cook:'18 min, puis contrôler la tendreté',rest:null,total:'25 min indicatives'}},
+  d036:{intro:'Les pommes et la rhubarbe cuisent ensemble puis sont écrasées. La compote garde de petits morceaux de fruits.',titles:['Préparer les fruits','Ajouter sucre et eau','Cuire à couvert','Écraser et refroidir'],times:{prep:null,cook:'18 min, puis ajuster la consistance',rest:'Refroidissement avant service',total:'25 min annoncées, puis refroidissement'}},
+  d044:{intro:'Les poires et le chocolat cuisent sous une couche de miettes de pâte. Le beurre reste froid pour préparer ce crumble.',titles:['Préchauffer et préparer le plat','Préparer poires et chocolat','Former les miettes','Répartir sans tasser','Cuire et servir tiède'],times:{prep:null,cook:'25 min',rest:null,total:'35 min indicatives'}}
+};
 const recipeLibrary=[...dishLibrary,...starters,...desserts,...standaloneLibrary];
 const recipeIndex=new Map(recipeLibrary.map(recipe=>[recipe.id,recipe]));
 const CR_APP_VERSION='7.5';
@@ -5334,6 +5378,33 @@ function stepTimerDurations(step){
   }
   return durations;
 }
+function stepTimerLabel(step,minutes){
+  const ranges=String(step).matchAll(/(\d{1,3})\s*(?:à|-|–)\s*(\d{1,3})\s*(?:min(?:ute)?s?)\b/gi);
+  for(const match of ranges){
+    if(Number(match[2])===minutes)return `⏱ ${match[1]}–${match[2]} min · repère à ${minutes} min`;
+  }
+  return `⏱ ${minutes} min`;
+}
+function recipeReadingMetadata(recipe){
+  return typeof RECIPE_EDITORIAL==='undefined'?{}:RECIPE_EDITORIAL[recipe.id]||{};
+}
+function recipeEssentialHTML(recipe,reading){
+  const times=reading.times||{};
+  const facts=[['Appareil',recipe.m],['Total indicatif',times.total||recipe.t],
+    ['Préparation',times.prep||'Non détaillée dans la source'],
+    ['Cuisson',times.cook||(recipe.m==='Sans cuisson'?'Sans cuisson':'Non détaillée dans la source')]];
+  if(times.rest)facts.push(['Repos',times.rest]);
+  return `<dl class="recipe-essential">${facts.map(([label,value])=>`<div><dt>${escapeHTML(label)}</dt><dd>${escapeHTML(value||'À préciser')}</dd></div>`).join('')}</dl>`;
+}
+function recipeIngredientsHTML(recipe,reading,count,mealData){
+  const line=index=>{
+    const item=recipe.i[index];
+    const optional=reading.optionalIngredients?.includes(index)||/facultati(?:f|ve)/i.test(item.n);
+    return `<li class="ingredient-line" data-recipe-id="${recipe.id}" data-ingredient-index="${index}"${mealData}>${ingredientTextForRecipe(item,recipe,count)}${optional&&!/facultati(?:f|ve)/i.test(item.n)?' (facultatif)':''}</li>`;
+  };
+  if(reading.groups?.length)return reading.groups.map(group=>`<h4 class="ingredient-group-title">${escapeHTML(group.title)}</h4><ul>${group.ingredients.map(line).join('')}</ul>`).join('');
+  return `<ul>${recipe.i.map((_,index)=>line(index)).join('')}</ul>`;
+}
 function recipeFeedbackHTML(recipe){
   const reaction=recipeReaction(recipe.id);
   return `<div class="recipe-feedback" aria-label="Votre avis sur cette recette">
@@ -5371,34 +5442,39 @@ function updateNoteIndicators(id){
 }
 function recipeHTML(x,{showFavorite=true,people=peopleCount(),dayIndex=null,mealType=''}={}){
   const count=normalizePeopleCount(people);
+  const reading=recipeReadingMetadata(x);
   const mealData=Number.isInteger(dayIndex)&&MEAL_TYPES.includes(mealType)?` data-day="${dayIndex}" data-type="${mealType}"`:'';
   const steps=(x.p||[]).map((sourceStep,index)=>{
     const step=recipeStepText(sourceStep,x,count);
     const timers=stepTimerDurations(step);
     const buttons=timers.length?`<div class="step-timers">${timers.map(minutes=>
-      `<button class="step-timer" data-recipe-id="${x.id}" data-step-index="${index}" data-timer-minutes="${minutes}">⏱ ${minutes} min</button>`
+      `<button class="step-timer" data-recipe-id="${x.id}" data-step-index="${index}" data-timer-minutes="${minutes}">${stepTimerLabel(step,minutes)}</button>`
     ).join('')}</div>`:'';
     const quantityData=sourceStep.includes('{{qty:')?` class="recipe-step-quantities" data-recipe-id="${x.id}" data-step-index="${index}"${mealData}`:'';
-    return `<li><span${quantityData}>${step}</span>${buttons}</li>`;
+    const title=reading.titles?.[index]||`Étape ${index+1}`;
+    return `<li><h4 class="recipe-step-title">${escapeHTML(title)}</h4><span${quantityData}>${step}</span>${buttons}</li>`;
   }).join('');
   const liked=isFavorite(x.id);
   const fixedYield=recipeHasFixedYield(x);
   const portionControl=fixedYield
-    ?`<div class="portion-control fixed-yield"><span class="portion-label fixed">📏 ${x.yieldText}</span></div>`
+    ?`<div class="portion-control fixed-yield"><span class="portion-label fixed">📏 ${x.yieldText||'Rendement fixe · voir les quantités'}</span></div>`
     :`<div class="portion-control" aria-label="Nombre de personnes">
       <button class="portion-adjust" data-delta="-1"${mealData} type="button" aria-label="Une personne en moins" ${count<=1?'disabled':''}>−</button>
       <span class="portion-label"${mealData}><span class="portion-count">${count}</span> ${count===1?'personne':'personnes'}</span>
       <button class="portion-adjust" data-delta="1"${mealData} type="button" aria-label="Une personne en plus" ${count>=8?'disabled':''}>+</button>
     </div>`;
-  return `<div class="recipe-tools">
+  return `<div class="recipe-reading">${reading.intro?`<p class="recipe-introduction">${escapeHTML(reading.intro)}</p>`:''}
+  <div class="recipe-tools">
     ${portionControl}
     ${showFavorite?`<button class="recipe-favorite${liked?' active':''}" data-recipe-id="${x.id}" type="button" aria-pressed="${liked}" aria-label="${liked?'Retirer des favoris':'Ajouter aux favoris'}">${liked?'♥':'♡'}</button>`:''}
   </div>
   ${x.yieldText&&!fixedYield?`<p class="recipe-yield">📏 Rendement de base : ${x.yieldText}</p>`:''}
-  ${recipeFeedbackHTML(x)}
-  ${recipePersonalNoteHTML(x)}
-  <h3>Ingrédients</h3><ul>${x.i.map((v,index)=>`<li class="ingredient-line" data-recipe-id="${x.id}" data-ingredient-index="${index}"${mealData}>${ingredientTextForRecipe(v,x,count)}</li>`).join('')}</ul>
-  <h3>Préparation</h3><p class="wake-note">☀️ Mode cuisine · écran maintenu allumé</p><ol>${steps}</ol>`;
+  ${recipeEssentialHTML(x,reading)}
+  ${reading.reviewNote?`<p class="recipe-review-note">${escapeHTML(reading.reviewNote)}</p>`:!reading.intro?'<p class="recipe-review-note legacy">Fiche historique : précisions culinaires non encore vérifiées.</p>':''}
+  <h3>Ingrédients</h3>${recipeIngredientsHTML(x,reading,count,mealData)}
+  <h3>Préparation</h3><p class="wake-note">☀️ Mode cuisine · écran maintenu allumé</p><ol>${steps}</ol>
+  ${reading.tip?`<aside class="recipe-useful-tip"><strong>Conseil</strong> ${escapeHTML(reading.tip)}</aside>`:''}</div>
+  ${recipeFeedbackHTML(x)}${recipePersonalNoteHTML(x)}`;
 }
 function recipeText(recipe){
   return `${recipe.n} ${(recipe.i||[]).map(item=>item.n).join(' ')}`.toLowerCase();
@@ -8386,7 +8462,10 @@ function refreshPortionDisplays(){
   document.querySelectorAll('.ingredient-line').forEach(line=>{
     const recipe=recipeIndex.get(line.dataset.recipeId);
     const ingredient=recipe&&recipe.i[Number(line.dataset.ingredientIndex)];
-    if(ingredient)line.textContent=ingredientTextForRecipe(ingredient,recipe,portionElementPeopleCount(line));
+    if(ingredient){
+      const optional=recipeReadingMetadata(recipe).optionalIngredients?.includes(Number(line.dataset.ingredientIndex));
+      line.textContent=ingredientTextForRecipe(ingredient,recipe,portionElementPeopleCount(line))+(optional&&!/facultati(?:f|ve)/i.test(ingredient.n)?' (facultatif)':'');
+    }
   });
   document.querySelectorAll('.recipe-step-quantities').forEach(line=>{
     const recipe=recipeIndex.get(line.dataset.recipeId);

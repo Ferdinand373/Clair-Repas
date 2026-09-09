@@ -22,6 +22,7 @@ const context={window:{},$:()=>({value:'8'}),MEAL_TYPES:['mid','eve'],
 vm.runInNewContext(
   code.slice(0,code.indexOf("$('libraryCount').textContent="))+'\n'+
   block('function recipeText(','function inferFamily(')+'\n'+
+  block('function escapeHTML(','let V73_NOTES_RAW')+'\n'+
   block('function formatQty(','function recipeFeedbackHTML(')+'\n'+
   block('function recipeHTML(','function recipeText(')+'\n;this.recipes=recipeLibrary;',
   context,{timeout:15000});
