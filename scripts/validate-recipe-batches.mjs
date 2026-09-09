@@ -7,7 +7,7 @@ import {recipeSource} from './recipe-source.mjs';
 import {recipeHash} from './validate-recipe-editorial.mjs';
 const root=resolve(dirname(fileURLToPath(import.meta.url)),'..');
 const {code,recipes,editorial}=recipeSource(readFileSync(resolve(root,'index.html'),'utf8'));
-const batchNumbers=['02','03','04','05','06','07','08','09','10','11','12','13'];
+const batchNumbers=['02','03','04','05','06','07','08','09','10','11','12','13','14'];
 const fixture={recipes:batchNumbers.flatMap(number=>JSON.parse(readFileSync(resolve(root,`scripts/recipe-editorial-batch-${number}.fixture.json`),'utf8')).recipes)};
 const slice=(a,b)=>code.slice(code.indexOf(a),code.indexOf(b,code.indexOf(a)+a.length));
 const context={window:{},$:()=>({value:'8'}),MEAL_TYPES:['mid','eve'],recipeRole:r=>r.role||r.course||'dish',isFavorite:()=>false,recipeFeedbackHTML:()=>'',recipePersonalNoteHTML:()=>''};
@@ -192,7 +192,7 @@ const ingredients={
   a086:['avocat','orange','pamplemousse','graines de courge','huile d’olive','sel.*poivre'],
   a093:['saumon','œufs','crème légère','citron','aneth']
 };
-assert.equal(fixture.recipes.length,365);
+assert.equal(fixture.recipes.length,415);
 let quantityChecks=0,timerCount=0;
 for(const record of fixture.recipes){
   const recipe=recipes.find(r=>r.id===record.id);
@@ -338,6 +338,11 @@ assert.match(recipes.find(r=>r.id==='a085').p[0],/panier.*sans contact avec l’
 assert.match(recipes.find(r=>r.id==='a085').p[2],/sans réchauffer le saumon/);
 assert.match(editorial.a073.reviewNote,/répartition du beurre/);
 assert.match(editorial.a092.reviewNote,/cuissons séparées/);
+assert.match(editorial['gn2-filet-mignon-basquaise-riz'].reviewNote,/Ne pas servir crue une sauce ayant touché la viande crue/);
+assert.match(editorial['gn2-saucisses-riz-espagnol'].reviewNote,/Ne pas servir crue une sauce ayant touché des saucisses crues/);
+assert.match(editorial['gn-cotes-porc-legumes-racines'].reviewNote,/récipient.*partage.*10 cl/);
+assert.match(editorial['gn2-cotes-porc-cidre-ecrase'].reviewNote,/20 cl.*trois déglaçages/);
+assert.match(editorial['gn2-poisson-blanc-riz-espagnol'].reviewNote,/deux poivrons distincts/);
 const corrected=fixture.recipes.filter(r=>r.status==='corrected').length;
 console.log(`✓ Batches ${batchNumbers.join('/')}: ${fixture.recipes.length} individual review records, ${corrected} corrected, ${fixture.recipes.length-corrected} blocked with original content preserved; ${timerCount} manually checked timers`);
 console.log(`✓ ${quantityChecks} ingredient checks at 1/2/3/4/5/8 people; split parmesan quantities, per-face timing and original cooking techniques`);

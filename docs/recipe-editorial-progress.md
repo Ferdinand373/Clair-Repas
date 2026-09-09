@@ -178,6 +178,16 @@ P02 publié : `c87dc373c29cae1d6edb9c2ac6191004c69ba52a`, tests `34390827874` et
 
 **Cumul : 380 identifiants examinés, 175 corrigés, 205 bloqués, 1 173 à examiner.** Prochaine entrée `a094`, prochain dessert `d094`, prochaine fiche globale `gn-pois-chiches-ratatouille`. Zéro erreur éditoriale, 8 539 avertissements. 144 minuteurs et 4 842 contrôles de quantité dans les lots 02–13. Les 24 commandes du workflow réussissent ; publication à consigner après contrôle en ligne.
 
+## Publication du lot 13
+
+`db525637226b490687873ccf91250a77e3451877` publié. Tests `34400058230`, Pages `34400057221` et déploiement `6358497262` réussis. HTTPS 200 et fichiers identiques au commit : index `68cd55536fec24a36dabf49d707a0c16588a776f4a17a0f24ffc99e6ac5d5e06`, service worker `f574f3370f6fc2b215843ed73867fe249de6083f123eac4bebfca290b8809bf2`. Révision chargée `sha256:d5e76564f71ec8012fa8dc044aa4b5f1ad0f095440112e4c3edc691b2295cc31`. Courge vérifiée en ligne à deux personnes, huile et miel de la liste repris dans les étapes, minuteurs de vingt puis cinq minutes.
+
+## Lot 14 — cinquante variantes et leurs réserves
+
+[Journal et cinquante décisions](recipe-editorial-batch-14.md). 50 bloquées, 0 corrigée et 0 conforme sans modification. Tous les objets culinaires du catalogue restent identiques à la base : aucune cuisson, dose, identité ou portion n’est changée. Les réserves de sauce, récipient et répartition sont précises ; deux avertissements sur la marinade au contact de viande crue sont explicités.
+
+**Cumul : 430 identifiants examinés, 175 corrigés, 255 bloqués, 1 123 à examiner.** Prochaine fiche globale `gn2-boeuf-gingembre-sesame`, prochaine entrée `a094`, prochain dessert `d094`. Zéro erreur éditoriale et 8 339 avertissements. Les 24 commandes du workflow réussissent ; 144 minuteurs et 4 842 calculs d’ingrédients des lots précédents conservés. Publication à consigner après contrôle HTTPS.
+
 ## Limites des vérifications
 
 Les tests de structure, quantité, minuteurs, stockage simulé et rendu ne sont pas des essais culinaires. Les formats iPhone/PWA sont simulés, sauf mention explicite d’un appareil physique. Le total de fiches à examiner ne doit jamais être remplacé par le nombre de fiches auxquelles le style commun a été appliqué.
