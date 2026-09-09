@@ -118,6 +118,16 @@ P02 publié : `c87dc373c29cae1d6edb9c2ac6191004c69ba52a`, tests `34390827874` et
 
 **Cumul : 200 identifiants examinés, 106 corrigés, 94 bloqués, 1 353 à examiner.** Prochaine entrée : `a031`. Prochaine fiche globale : `gn-boulettes-tomate-basilic`, prochain dessert : `d032`. Zéro erreur éditoriale, 9 256 avertissements ; 85 minuteurs et 2 862 contrôles d’ingrédients dans les lots 02–07, plus les tests du premier lot. Tests existants réussis, lecture téléphone/tablette/ordinateur simulée contrôlée. Publication et vérification HTTPS à consigner après le push.
 
+## Publication du lot 07
+
+`b5e8c9ae19b8832e2117f3d1821b298c846de604` publié. Contrôles `34394570055` et `34394570851` réussis ; Pages `34394570001` et déploiement `6357550640` réussis. L’exécution Pages concurrente `34394568710` a été annulée au profit du déploiement réussi. HTTPS 200, index et service worker identiques au commit : SHA-256 `cecc0fac9371830619d1cb80160cb1b12bfb32b2cf9fa3fccc556e2ab0665bb5` et `3f65279bcbb27a897c1ed97cf7b0a242c2ef39ff56102e3ea040f8011f28657d`. Révision du navigateur `sha256:ca0d60f9050c5ec84b3eaac25cbecbe538891afccd873b0933b2a545848200c6`. Rémoulade légère vérifiée en ligne : poivre rétabli, trois étapes titrées et doses cohérentes.
+
+## Lot 08 — trente variantes suivantes
+
+[Journal par identifiant et sources](recipe-editorial-batch-08.md). 0 corrigée, 0 conforme, 30 bloquées. Toutes les préparations et ingrédients restent identiques ; seules les réserves et la présentation des fiches sélectionnées évoluent. Les répétitions de sauce, ingrédients oubliés et températures disparues ne sont pas résolus par des quantités ou appareils inventés.
+
+**Cumul : 230 identifiants examinés, 106 corrigés, 124 bloqués, 1 323 à examiner.** Prochaine fiche globale : `gn-cotes-porc-champignons-polenta`, prochaine entrée : `a031`, prochain dessert : `d032`. Zéro erreur éditoriale, 9 136 avertissements. Les 85 minuteurs et 2 862 calculs des lots précédents restent validés ; contrôles du projet et présentation réexécutés. Ce lot ne compte aucune correction culinaire supplémentaire. Publication à consigner après vérification.
+
 ## Limites des vérifications
 
 Les tests de structure, quantité, minuteurs, stockage simulé et rendu ne sont pas des essais culinaires. Les formats iPhone/PWA sont simulés, sauf mention explicite d’un appareil physique. Le total de fiches à examiner ne doit jamais être remplacé par le nombre de fiches auxquelles le style commun a été appliqué.

@@ -7,7 +7,7 @@ import {recipeSource} from './recipe-source.mjs';
 import {recipeHash} from './validate-recipe-editorial.mjs';
 const root=resolve(dirname(fileURLToPath(import.meta.url)),'..');
 const {code,recipes,editorial}=recipeSource(readFileSync(resolve(root,'index.html'),'utf8'));
-const batchNumbers=['02','03','04','05','06','07'];
+const batchNumbers=['02','03','04','05','06','07','08'];
 const fixture={recipes:batchNumbers.flatMap(number=>JSON.parse(readFileSync(resolve(root,`scripts/recipe-editorial-batch-${number}.fixture.json`),'utf8')).recipes)};
 const slice=(a,b)=>code.slice(code.indexOf(a),code.indexOf(b,code.indexOf(a)+a.length));
 const context={window:{},$:()=>({value:'8'}),MEAL_TYPES:['mid','eve'],recipeRole:r=>r.role||r.course||'dish',isFavorite:()=>false,recipeFeedbackHTML:()=>'',recipePersonalNoteHTML:()=>''};
@@ -123,7 +123,7 @@ const ingredients={
   a025:['maquereau fumé','pomme','citron','fromage blanc','aneth'],
   a026:['œufs','moutarde','fromage blanc','ciboulette'],a029:['courgette','œufs','lait','parmesan','basilic']
 };
-assert.equal(fixture.recipes.length,185);
+assert.equal(fixture.recipes.length,215);
 let quantityChecks=0,timerCount=0;
 for(const record of fixture.recipes){
   const recipe=recipes.find(r=>r.id===record.id);
@@ -193,6 +193,9 @@ assert.match(recipes.find(r=>r.id==='a017').p[3],/Pendant les cuissons/);
 assert.doesNotMatch(recipes.find(r=>r.id==='a029').p.join(' '),/deux ramequins/);
 assert.match(recipes.find(r=>r.id==='a029').p[3],/71 °C/);
 for(const id of ['a023','a030'])assert.equal(recipes.find(r=>r.id===id).role,'terrine');
+assert.match(editorial['gn-poulet-curry-doux'].reviewNote,/Ne pas servir froide une marinade ayant touché du poulet cru/);
+assert.match(editorial['gn-saumon-poireaux-creme'].reviewNote,/température/);
+assert.match(editorial['gn-boeuf-soja-miel'].reviewNote,/gingembre.*absent/);
 const corrected=fixture.recipes.filter(r=>r.status==='corrected').length;
 console.log(`✓ Batches ${batchNumbers.join('/')}: ${fixture.recipes.length} individual review records, ${corrected} corrected, ${fixture.recipes.length-corrected} blocked with original content preserved; ${timerCount} manually checked timers`);
 console.log(`✓ ${quantityChecks} ingredient checks at 1/2/3/4/5/8 people; split parmesan quantities, per-face timing and original cooking techniques`);

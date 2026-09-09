@@ -1,0 +1,246 @@
+{
+  "baselineCommit": "b5e8c9ae19b8832e2117f3d1821b298c846de604",
+  "batch": "08",
+  "recipes": [
+    {
+      "id": "gn-boulettes-tomate-basilic",
+      "status": "blocked",
+      "sourceHash": "107bdaffaf934cbc283e0e7011160538e21998381a7b92588986ae59c1ab6668",
+      "reviewedHash": "107bdaffaf934cbc283e0e7011160538e21998381a7b92588986ae59c1ab6668",
+      "protectedRecipeSha256": "b1a546bff25edf096330899f8a39cc92d5473167e78900bb8f2f89197ec333aa",
+      "note": "la courgette et les tomates sont à faire revenir sans matière grasse définie. Le poivron est grillé sans conduite, puis ajouté deux fois avec le paprika ; l’ordre et les quantités sont à confirmer."
+    },
+    {
+      "id": "gn-pois-chiches-tomate-basilic",
+      "status": "blocked",
+      "sourceHash": "91c5448e487eb31d3597c9d728225978f813806bb273733c56b8b19474bd5c18",
+      "reviewedHash": "91c5448e487eb31d3597c9d728225978f813806bb273733c56b8b19474bd5c18",
+      "protectedRecipeSha256": "4b9c7636b50ece0a2b71689c57b48a3402bc12369f14ee42d03e806ae513470f",
+      "note": "les légumes et pois chiches sont à faire revenir sans matière grasse définie. Le poids égoutté de la boîte est inconnu ; feta et menthe sont demandées avant puis après le mélange final, sans répartition."
+    },
+    {
+      "id": "gn-poulet-provencale",
+      "status": "blocked",
+      "sourceHash": "3e7ef3921eaa3fa4a1b28c00fb9150526d5c659d24dd7189ffd3e04ae5fea803",
+      "reviewedHash": "3e7ef3921eaa3fa4a1b28c00fb9150526d5c659d24dd7189ffd3e04ae5fea803",
+      "protectedRecipeSha256": "c3b029b3706afe4c34ffcc7b4450360bb81caa8c59cfacc6eb5e7e899e393a98",
+      "note": "la cuisson des légumes sur la plancha n’a ni durée ni conduite d’assaisonnement. Le jus d’orange est réduit puis réutilisé pour déglacer sans répartition, et le glaçage précède le poulet dans le texte."
+    },
+    {
+      "id": "gn-dinde-provencale",
+      "status": "blocked",
+      "sourceHash": "c35b044cbedc318bacfe72afa025a3e66343e5715abf63d53a445472ead918f9",
+      "reviewedHash": "c35b044cbedc318bacfe72afa025a3e66343e5715abf63d53a445472ead918f9",
+      "protectedRecipeSha256": "40a62fd3e9c213c16e254a3c6027d414973004d57d5a3935a72b5d9c0c6b69e8",
+      "note": "le pesto est demandé à plusieurs étapes sans répartition de la cuillère prévue. L’enrobage hors du feu est écrit avant la grillade ; cuisson et assaisonnement des légumes restent incomplets."
+    },
+    {
+      "id": "gn-cotes-porc-provencale",
+      "status": "blocked",
+      "sourceHash": "162bf14a2b3c9a2703a19deb0e5543b70d926967b6adb54df4c21a1982019e2f",
+      "reviewedHash": "162bf14a2b3c9a2703a19deb0e5543b70d926967b6adb54df4c21a1982019e2f",
+      "protectedRecipeSha256": "5516e34651f30c8f51a92b5185866bb5fc73cef694e86cf6b5d10bbc784be433",
+      "note": "l’ail apparaît rôti sans étape de cuisson. La récupération d’un jus aux herbes sur la plancha et la conduite des légumes ne sont pas définies ; ne pas ajouter huile ou récipient par supposition."
+    },
+    {
+      "id": "gn-boeuf-provencale",
+      "status": "blocked",
+      "sourceHash": "c4cfe5fe2dd40553187c7a0639bcc81bdbffab9ae5fbd419f1303f797338b181",
+      "reviewedHash": "c4cfe5fe2dd40553187c7a0639bcc81bdbffab9ae5fbd419f1303f797338b181",
+      "protectedRecipeSha256": "488275e07bf57fcd574aeabfcc88b078bd34302204fdcc0cd2fb3e64da576172",
+      "note": "le poivron rôti et le paprika sont introduits à deux moments sans répartition. La cuisson des légumes et du poivron sur la plancha n’est pas détaillée ; aucun assaisonnement mesuré n’est retrouvé."
+    },
+    {
+      "id": "gn-saumon-provencale",
+      "status": "blocked",
+      "sourceHash": "7d4673fc2617ccad7c1e3c61db8d4c99dde846f0cd78f5734758727ae88c05e4",
+      "reviewedHash": "7d4673fc2617ccad7c1e3c61db8d4c99dde846f0cd78f5734758727ae88c05e4",
+      "protectedRecipeSha256": "60c1bc89179f0ce89aae1d881b4054e9150a4734f72908339f102ca8dcd0974d",
+      "note": "la cuisson du saumon manque d’indication sur l’épaisseur, les faces et l’intensité de la plancha. Les légumes n’ont pas de conduite détaillée ; le citron utilisé plusieurs fois n’est pas réparti."
+    },
+    {
+      "id": "gn-poisson-blanc-provencale",
+      "status": "blocked",
+      "sourceHash": "fca3518333110354544dec2a3aa7671e942327346814ce0efc641e012b3a9a87",
+      "reviewedHash": "fca3518333110354544dec2a3aa7671e942327346814ce0efc641e012b3a9a87",
+      "protectedRecipeSha256": "5efc32b0e3744051e8aea5bf205dd16ac75c050170d99ed163d9b820c605ef50",
+      "note": "la fiche combine un mijotage de tomate avec une plancha huilée, sans récipient ni huile listée. Le basilic est absent des ingrédients ; les tomates sont demandées pour la sauce et pour les légumes sans répartition."
+    },
+    {
+      "id": "gn-crevettes-provencale",
+      "status": "blocked",
+      "sourceHash": "2e57ed2aee283265a190bb638697ccdf71cbab9e9d51197b284afdb379f8cb1c",
+      "reviewedHash": "2e57ed2aee283265a190bb638697ccdf71cbab9e9d51197b284afdb379f8cb1c",
+      "protectedRecipeSha256": "26290b42b6a12a182f2a3037ace85a30a307780ac0d65bbabab89e868c03225e",
+      "note": "l’étape de finition parle de poisson alors que la fiche emploie des crevettes. Le citron est utilisé dans le pesto puis en quartier sans répartition, et la conduite des légumes sur la plancha reste manquante."
+    },
+    {
+      "id": "gn-saucisses-provencale",
+      "status": "blocked",
+      "sourceHash": "7358ea5c8c6bbf5a8e7ff0336a88bb461025c5aed0bb30d72a071457683a9133",
+      "reviewedHash": "7358ea5c8c6bbf5a8e7ff0336a88bb461025c5aed0bb30d72a071457683a9133",
+      "protectedRecipeSha256": "4a3e20b9874c177550b2af8d36753bd71bdc296b8e8b8f8479329bc5dd392d36",
+      "note": "l’échalote est caramélisée puis de nouveau fondue et déglacée sans dose de matière grasse ni répartition du balsamique. La sauce sur plancha et la cuisson des légumes restent à préciser."
+    },
+    {
+      "id": "gn-poulet-curry-doux",
+      "status": "blocked",
+      "sourceHash": "5da64d07700b9b8c88f1c2324e0bc8d0a6d3431a91f586324cece1b781e06ce3",
+      "reviewedHash": "5da64d07700b9b8c88f1c2324e0bc8d0a6d3431a91f586324cece1b781e06ce3",
+      "protectedRecipeSha256": "48eef51b6c90cc49d32564ca546ea80a8fd35beb6068022e99b54d2a8a43c8d5",
+      "note": "le yaourt est demandé pour mariner le poulet puis pour une sauce froide, sans portion propre réservée ni répartition. Ne pas servir froide une marinade ayant touché du poulet cru. Le citron est absent ; matière grasse du sauté et partage des currys restent à confirmer."
+    },
+    {
+      "id": "gn-dinde-curry-doux",
+      "status": "blocked",
+      "sourceHash": "afe8ecf756251da3411936abdfcc2f4c58694cad4ea0a703015f700ebf72ed07",
+      "reviewedHash": "afe8ecf756251da3411936abdfcc2f4c58694cad4ea0a703015f700ebf72ed07",
+      "protectedRecipeSha256": "a74dbc0532a0139ee7f5817021678387efc64c0db576697a1d77a0d543a43135",
+      "note": "la matière grasse demandée pour torréfier le paprika et faire revenir les carottes est absente. Les amandes doivent être grillées sans conduite, puis sont ajoutées avant la sauce et à nouveau au dressage."
+    },
+    {
+      "id": "gn-saumon-curry-doux",
+      "status": "blocked",
+      "sourceHash": "7471a5b373a214b573558a8a41bb8d1638d5334ebc79afbec830797130800f6e",
+      "reviewedHash": "7471a5b373a214b573558a8a41bb8d1638d5334ebc79afbec830797130800f6e",
+      "protectedRecipeSha256": "a08e1804fb8f9a1c6f2f5eb9b378e87bfeb59499dd31592c8bc5a3eab0aa6c7e",
+      "note": "le lait de coco est demandé pour mijoter, puis pour napper pendant 4 minutes, puis pour une nouvelle sauce de 5 minutes, sans répartition. L’ordre poêlé/mijoté et la matière grasse des carottes et épices restent à définir."
+    },
+    {
+      "id": "gn-poisson-blanc-curry-doux",
+      "status": "blocked",
+      "sourceHash": "4db941be1d06a889ebbf8ab02c5cf8c360ee9710f6c3fff5c756855efeac3d34",
+      "reviewedHash": "4db941be1d06a889ebbf8ab02c5cf8c360ee9710f6c3fff5c756855efeac3d34",
+      "protectedRecipeSha256": "b42cd997f5ea953dbea37444db87b205c4c3cd973a60ff574d3512f6740b0913",
+      "note": "le basilic de finition est absent de la liste. La tomate est mise à mijoter puis ajoutée après la cuisson du poisson sans répartition ; la matière grasse du sauté de carottes n’est pas définie."
+    },
+    {
+      "id": "gn-crevettes-curry-doux",
+      "status": "blocked",
+      "sourceHash": "4397e5461b0a54b5861539db24592899d5e430dfb19e16cb354e3e4d58d5a094",
+      "reviewedHash": "4397e5461b0a54b5861539db24592899d5e430dfb19e16cb354e3e4d58d5a094",
+      "protectedRecipeSha256": "18622d6241306bc5aad5f7e69cd414168d99d6ea98d8e619d17e66592f3ba73b",
+      "note": "le fenouil est demandé coloré puis comme finition fraîche, sans partage. L’orange est utilisée en jus puis en quartiers sans quantité réservée ; matière grasse des carottes et conduite du fenouil restent à confirmer."
+    },
+    {
+      "id": "gn-pois-chiches-curry-doux",
+      "status": "blocked",
+      "sourceHash": "fe890ee4a921a91cb92a1469697fa5fb4a978d919d7a72b89ac204cc899c4e3e",
+      "reviewedHash": "fe890ee4a921a91cb92a1469697fa5fb4a978d919d7a72b89ac204cc899c4e3e",
+      "protectedRecipeSha256": "feaccd3b929b631675cd789afc450c866b899b9abd43a2ef99aedd26db5dee97",
+      "note": "le cumin est torréfié deux fois sans répartition. Les carottes et pois chiches sont dorés sans matière grasse définie ; le poids égoutté de la boîte reste inconnu."
+    },
+    {
+      "id": "gn-poulet-soja-miel",
+      "status": "blocked",
+      "sourceHash": "de1cc0bed4f995cd7ed27361c65d3be07f1b42cf1fa1b7fec9f94843438542e1",
+      "reviewedHash": "de1cc0bed4f995cd7ed27361c65d3be07f1b42cf1fa1b7fec9f94843438542e1",
+      "protectedRecipeSha256": "4ad61fdfb13404e3ab8753813976a9281562066d88f0560acb99c32a9e68a387",
+      "note": "l’eau pour délayer le miso n’est ni listée ni mesurée ; le gingembre n’est pas défini frais ou en poudre. La matière grasse et la conduite des légumes sautés manquent, et le glaçage est répété sans répartition."
+    },
+    {
+      "id": "gn-dinde-soja-miel",
+      "status": "blocked",
+      "sourceHash": "1038d3e415d49960b530142238f5c30b194f34213e0474c4083d67acdd42d930",
+      "reviewedHash": "1038d3e415d49960b530142238f5c30b194f34213e0474c4083d67acdd42d930",
+      "protectedRecipeSha256": "33af309d916939387907d8a685a2112adad4c7dcbce0ef786601a53313a5a3b2",
+      "note": "la même sauce soja est demandée pour déglacer, pour finir la dinde puis pour les nouilles sans répartition. Le citron est en jus puis en quartier sans réserve ; le sauté des légumes n’a pas de matière grasse ni de conduite."
+    },
+    {
+      "id": "gn-boeuf-soja-miel",
+      "status": "blocked",
+      "sourceHash": "3e19bfb5ac023ea2bcc23c8cee560928d118e6ca12c3376a664448caf4a8d4f5",
+      "reviewedHash": "3e19bfb5ac023ea2bcc23c8cee560928d118e6ca12c3376a664448caf4a8d4f5",
+      "protectedRecipeSha256": "0065d548bc91dec669862743bfe4fbd223d7da93f7e5304394ac22824ee67b35",
+      "note": "le gingembre est annoncé et utilisé mais absent des ingrédients. La sauce soja est demandée plusieurs fois sans partage, et les légumes doivent sauter sans matière grasse ni durée définies."
+    },
+    {
+      "id": "gn-saumon-soja-miel",
+      "status": "blocked",
+      "sourceHash": "877365745e3c86c55be7d6900df412cc3f51aa2ee67e89c4081152ff5f4507fa",
+      "reviewedHash": "877365745e3c86c55be7d6900df412cc3f51aa2ee67e89c4081152ff5f4507fa",
+      "protectedRecipeSha256": "ff145cfe022571908337c6e6f9ab72ce247f3fa505601e17f3d5837ade60a69a",
+      "note": "la cuillerée d’eau du miso n’a pas d’unité ni d’entrée dans la liste. Le badigeonnage est répété sans partage, et les légumes sautés n’ont ni matière grasse ni conduite précise."
+    },
+    {
+      "id": "gn-crevettes-soja-miel",
+      "status": "blocked",
+      "sourceHash": "9cf8b48db2eec44e8466fa166d6226ade47390e978ea1c953ae995979316f73f",
+      "reviewedHash": "9cf8b48db2eec44e8466fa166d6226ade47390e978ea1c953ae995979316f73f",
+      "protectedRecipeSha256": "a7ebdb732bcf79d3c3546c035c333e29f15f77f22bac3d07858be4f1cdad3d17",
+      "note": "le mélange soja-miel est demandé pour laquer, pour badigeonner puis pour les nouilles, sans partage des quantités. La cuisson des légumes sautés manque de matière grasse et de durée."
+    },
+    {
+      "id": "gn-pois-chiches-soja-miel",
+      "status": "blocked",
+      "sourceHash": "566606afa975c0413d2cae878b364a83e3adfdc14aab164e5c6256884bfb1ab1",
+      "reviewedHash": "566606afa975c0413d2cae878b364a83e3adfdc14aab164e5c6256884bfb1ab1",
+      "protectedRecipeSha256": "bd56e0279019638cf1f3153432b8c3288be5301c7bedfbdb324b275f5bc70247",
+      "note": "le cinq-épices est torréfié deux fois sans partage. Le sauté des légumes et le dorage des pois chiches n’ont pas de matière grasse définie ; le poids égoutté de la boîte est inconnu."
+    },
+    {
+      "id": "gn-poulet-poireaux-creme",
+      "status": "blocked",
+      "sourceHash": "771b56f30d4b500ccc978c7e20066312cab062de5159f943c89c963ab0a7d722",
+      "reviewedHash": "771b56f30d4b500ccc978c7e20066312cab062de5159f943c89c963ab0a7d722",
+      "protectedRecipeSha256": "5a25a3131ecea4ac9048187e335d03faa305de3df1f5c572e4b8b07f507b399c",
+      "note": "le profil au four perd la température et ajoute une saisie/sauce minute sans matière grasse ni récipient défini. La cuillerée de jus n’a pas de mesure, et l’ordre moutarde/crème/poulet doit être clarifié."
+    },
+    {
+      "id": "gn-dinde-poireaux-creme",
+      "status": "blocked",
+      "sourceHash": "30836aed439db2fc544647aff3b216a59f24809f7a8feb1dacaca64c4ebc3c32",
+      "reviewedHash": "30836aed439db2fc544647aff3b216a59f24809f7a8feb1dacaca64c4ebc3c32",
+      "protectedRecipeSha256": "1d42c7cca758fbac1499a20e2a656522bd8c97949a5c6a017e29db438fe29a18",
+      "note": "la température du four manque. Une saisie puis une infusion hors du feu précèdent une nouvelle cuisson au four sans organisation claire ; matière grasse et répartition citron confit/estragon ne sont pas définies."
+    },
+    {
+      "id": "gn-filet-mignon-poireaux-creme",
+      "status": "blocked",
+      "sourceHash": "9ca222cb950f28a02983fbc0538d3bba7e4233c393478d2889dc6ffa293bd88c",
+      "reviewedHash": "9ca222cb950f28a02983fbc0538d3bba7e4233c393478d2889dc6ffa293bd88c",
+      "protectedRecipeSha256": "ee2b523617bb7d2e3e914c488d5f2e1405f762c24f06b9f73702c84e21ecdcb1",
+      "note": "la température du four et la matière grasse de saisie ne sont pas définies. L’ail est déclaré rôti sans cuisson préalable ; la récupération du jus et l’ordre de la sauce restent incomplets."
+    },
+    {
+      "id": "gn-saumon-poireaux-creme",
+      "status": "blocked",
+      "sourceHash": "f148a4293b29b6e76148389a8375c75f80c3931a0669395070691acfef87ada5",
+      "reviewedHash": "f148a4293b29b6e76148389a8375c75f80c3931a0669395070691acfef87ada5",
+      "protectedRecipeSha256": "b758222a352da81d456695fdfad0637c621a2d31b10d877a7af3f32f1107a966",
+      "note": "la température de la cuisson au four a disparu du profil. La précuisson concerne-t-elle aussi les poireaux ? Le citron est demandé à plusieurs moments sans répartition ; ne pas choisir une température uniforme par supposition."
+    },
+    {
+      "id": "gn-poisson-blanc-poireaux-creme",
+      "status": "blocked",
+      "sourceHash": "1d3691baddba0e83b513c502f46385f04fa37dec61ff45d19463ee85375fa6ba",
+      "reviewedHash": "1d3691baddba0e83b513c502f46385f04fa37dec61ff45d19463ee85375fa6ba",
+      "protectedRecipeSha256": "7ff12effcae887d6dbebeefdfb07da57d96686282c604a15f49c9668e6f9bc53",
+      "note": "la température du four manque et une saisie avec jus citronné est ajoutée sans matière grasse ni citron dans la liste. La conduite des poireaux et le passage saisie/four restent à préciser."
+    },
+    {
+      "id": "gn-poulet-champignons-polenta",
+      "status": "blocked",
+      "sourceHash": "272ef30ed8128b76f599897103b46d0f4082125db11134b2168190b368d8f766",
+      "reviewedHash": "272ef30ed8128b76f599897103b46d0f4082125db11134b2168190b368d8f766",
+      "protectedRecipeSha256": "c58a4c5398ba21aa1219e79ce1dbc0c1e26c27917ff9f0f6b26607a72ef4b424",
+      "note": "le sauté des champignons et échalotes n’a ni matière grasse ni durée. La polenta manque de liquide défini ; le pesto est demandé avant, après et au dressage sans partage de la cuillère prévue."
+    },
+    {
+      "id": "gn-dinde-champignons-polenta",
+      "status": "blocked",
+      "sourceHash": "2e4a712f7fb1ca70b1d850ecd83177e13e7e85f2925aeb55d43189c0b571491f",
+      "reviewedHash": "2e4a712f7fb1ca70b1d850ecd83177e13e7e85f2925aeb55d43189c0b571491f",
+      "protectedRecipeSha256": "df035a2d1b5154e6d4c629019ec9bb49453a116ae00740f8c6cacace843ba069",
+      "note": "les tomates séchées doivent compoter sans liquide défini puis sont ajoutées à nouveau en fin de cuisson. Le sauté des champignons manque de matière grasse et la polenta de liquide ; ne pas supposer des tomates à l’huile."
+    },
+    {
+      "id": "gn-filet-mignon-champignons-polenta",
+      "status": "blocked",
+      "sourceHash": "64bb284e942c1f4faba58404bba1bece734a4f7f341e017a8098987cedd864e8",
+      "reviewedHash": "64bb284e942c1f4faba58404bba1bece734a4f7f341e017a8098987cedd864e8",
+      "protectedRecipeSha256": "fb31fe299ac714742b7489dda125abb4829e0e910063f1011774bf752630ab34",
+      "note": "l’origan annoncé dans le titre et les étapes est absent de la liste. La sauce tomate est utilisée pour mijoter avant puis après les médaillons sans répartition ; matière grasse du sauté et liquide de polenta manquent."
+    }
+  ]
+}
