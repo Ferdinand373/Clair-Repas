@@ -1,0 +1,321 @@
+{
+  "baselineCommit": "e19c4cdaa46955937fcf027c8bed0332e72414a2",
+  "batch": "03",
+  "recipes": [
+    {
+      "id": "n35",
+      "status": "corrected",
+      "sourceHash": "8f0253f25e44bfc6d2276b875a80c441bec5748cbc05b462701609a0a5d4a822",
+      "reviewedHash": "f644e0fc7c1bb2d1ae0b550af24cdd26141e0a7e977c4d004aed82fe57dc49c0",
+      "protectedRecipeSha256": "935077165b96f54493a6ba7e60f017abe3c906cd3a4dd55780aa4c5567d5ea3d",
+      "beforeSteps": [
+        "Cuire le riz 10 à 12 minutes dans l’eau salée selon le paquet, puis le garder couvert.",
+        "Couper la courgette en petits dés et la faire dorer 7 minutes à feu moyen dans l’huile ; elle doit rester légèrement ferme.",
+        "Ajouter l’ail et le curry 30 secondes, puis verser le lait de coco et laisser frémir 4 minutes.",
+        "Ajouter les crevettes et cuire 3 à 4 minutes, juste jusqu’à ce qu’elles soient roses et opaques ; la sauce doit légèrement napper.",
+        "Servir avec le riz et la coriandre."
+      ],
+      "note": "Riz au paquet sans minuteur arbitraire 10–12 ; ail/coriandre préparés, courgette puis curry/coco puis crevettes. Durée de 30 secondes conservée sans faux bouton en minutes."
+    },
+    {
+      "id": "n39",
+      "status": "corrected",
+      "sourceHash": "5e083e202fdc1d4f39835817c764a1a58b719cf95674b8daa375c2e010c21925",
+      "reviewedHash": "852eaa613dc487351718e1443863a1e18d4566a607a20aff98b0c2c873e5f2a7",
+      "protectedRecipeSha256": "96566637091fce504cac70f84148fdaa643d6f749e8bb76589742f2dc5eb7d16",
+      "beforeSteps": [
+        "Cuire le riz selon le temps du paquet et le garder couvert.",
+        "Faire fondre l’oignon 4 minutes dans l’huile, ajouter l’ail et le bœuf puis cuire 6 minutes à feu assez vif en l’émiettant, jusqu’à ce qu’il soit bien doré.",
+        "Ajouter cumin, paprika et piment et remuer 30 secondes.",
+        "Verser les tomates et laisser frémir 12 minutes à feu doux, puis ajouter les haricots rincés et poursuivre 5 minutes.",
+        "Servir lorsque la sauce est épaisse mais encore moelleuse, avec le riz."
+      ],
+      "note": "Étapes oignon, viande, épices, tomate et haricots séparées sans changer la technique ; sel utilisé, viande hachée contrôlée."
+    },
+    {
+      "id": "n41",
+      "status": "corrected",
+      "sourceHash": "968baf92f443ed0411627dc2a48ee035a92f477db18e8e6402662a0507ccde87",
+      "reviewedHash": "7424fc4e1aa6a55c82eae15eb18e2cc59a3f0e0c26599245f08f09e2ea039031",
+      "protectedRecipeSha256": "1c656d2ac840e39c08b4670ed8880ece1b373ed4917fb2496bcffacbaef9d8f3",
+      "beforeSteps": [
+        "Colorer rapidement le filet mignon.",
+        "Le couvrir de tomates et de mozzarella puis cuire 25 minutes à 190 °C.",
+        "Cuire les pâtes et servir avec le jus du plat et le basilic."
+      ],
+      "note": "Coloration initiale avec huile listée puis four conservés ; 25 min indicatives subordonnées au contrôle à cœur, pâtes au paquet."
+    },
+    {
+      "id": "n43",
+      "status": "corrected",
+      "sourceHash": "3bdaf30892d586b0333ac6c12b244c6f74291cb1e3768c0888233750c6e146c4",
+      "reviewedHash": "8615116d34038da7211c1d51587049b14b7d66d8c784ef9d7f84c1ae2bfd8735",
+      "protectedRecipeSha256": "2c3fb32e21006fee52848ee35a82419817641ea746bcb6a1e62be17452b2acc5",
+      "beforeSteps": [
+        "Cuire le riz.",
+        "Monter les brochettes avec le porc, les poivrons et l’oignon.",
+        "Assaisonner puis griller 12 à 15 minutes en retournant souvent."
+      ],
+      "note": "Cuisson directe moyenne documentée par Weber pour des cubes de porc ; brochettes au poivron/oignon de Clair Repas conservées, riz au paquet et repos explicite."
+    },
+    {
+      "id": "n44",
+      "status": "corrected",
+      "sourceHash": "c7eb9e25228abc288c4763ff3ab57db0399a1480d9fee780915962fc7206384f",
+      "reviewedHash": "0181209ab99d17ab8d27386a7a2242578ccd3f24a47e7e3bec3ca9433e16cbeb",
+      "protectedRecipeSha256": "41b6625e3041c46856c8f7d75c01daba26df6ea7c4e096093c059de676f77e8c",
+      "beforeSteps": [
+        "Préparer une purée avec les pommes de terre, le lait et le beurre.",
+        "Faire dorer les saucisses puis les oignons émincés.",
+        "Servir avec la purée et un peu de moutarde."
+      ],
+      "note": "Purée et saucisses poêlées conservées ; lait dynamique, beurre non quantifié sans dose inventée. Le produit détermine la cuisson/réchauffage des saucisses blanches."
+    },
+    {
+      "id": "n46",
+      "status": "corrected",
+      "sourceHash": "b296df5587714dc1188e0bab47b96120f7b042e71356d6c52a05320dd71b5e69",
+      "reviewedHash": "7b754d2605c9c28fbfca830259b6084cdfd7b7709c18abddd9f22072bbf31086",
+      "protectedRecipeSha256": "6dabb8aa753e01a1ee804d44ecc863fb6b8dea8eedb386d355334e5f221040d4",
+      "beforeSteps": [
+        "Faire dorer les pommes de terre, les lardons et l’oignon.",
+        "Battre les œufs avec le persil.",
+        "Verser dans la poêle et cuire doucement jusqu’à ce que l’omelette soit prise."
+      ],
+      "note": "Graisse des lardons utilisée, sans huile inventée. Pommes de terre dorées avant les œufs ; omelette non retournée comme dans la source."
+    },
+    {
+      "id": "n47",
+      "status": "corrected",
+      "sourceHash": "8b0aa459a63a56b28e5d03dea516a61dcc85ad4b1c8bfc5d9c52b47e1a2304e4",
+      "reviewedHash": "f75a16ecc15bf608cf7ac3953653cd74bdd047910f039054ed1ca818d0c54fae",
+      "protectedRecipeSha256": "e7ea368af0ef1ee89e9b613ba37c77f20e87fabb7de364932383054703eb7902",
+      "beforeSteps": [
+        "Cuire les tortellini.",
+        "Faire revenir la courgette en dés et ajouter le coulis.",
+        "Mélanger avec les tortellini puis ajouter la mozzarella et le basilic."
+      ],
+      "note": "Tortellini au paquet ; courgette revenue avant coulis, fromage ajouté en finition comme dans la source."
+    },
+    {
+      "id": "n48",
+      "status": "corrected",
+      "sourceHash": "868a1c67cb474a255ccd038f07c95e07b35dfd0bd8484ba013ccccb7735ca1e5",
+      "reviewedHash": "64cd86528a4f6910b274ac8d7a5d5394c762d74340f2ef15f28ddd3136bf9c4f",
+      "protectedRecipeSha256": "a817a0f3165273244c4aea31a4f38c1335d7dc7e96d6a430de76b2d991a9bd4e",
+      "beforeSteps": [
+        "Couper le poulet, les tomates et le concombre.",
+        "Ajouter le quinoa et la feta.",
+        "Assaisonner juste avant de servir."
+      ],
+      "note": "Poulet et quinoa déjà cuits conservés ; aucun poids sec ou cuisson supplémentaire introduits dans cette salade sans cuisson."
+    },
+    {
+      "id": "n51",
+      "status": "corrected",
+      "sourceHash": "5b24d109f01558db031481b3ae26fe724ba10c44133718b15305c92c0210c0bb",
+      "reviewedHash": "7ba02af5bbe7989d5f63fd960e728a2358f49acf175052fc453794a0ae1b87e6",
+      "protectedRecipeSha256": "1b96b739bda1acfd74e8672439255208b55370fd628e68f37250b76a297cf263",
+      "beforeSteps": [
+        "Garnir le pain de moutarde, poulet, tomate et fromage.",
+        "Cuire les croques 7 à 9 minutes à 180 °C.",
+        "Servir avec la salade."
+      ],
+      "note": "Poulet déjà cuit et Air Fryer conservés ; montage fermé explicite, moutarde et salade utilisées, garniture vérifiée chaude à cœur."
+    },
+    {
+      "id": "n53",
+      "status": "corrected",
+      "sourceHash": "c636f0b11815148c2a3dea13ad9fb84a579e126d8f1e7e9ef606155dd007b4c1",
+      "reviewedHash": "dc4fa2538a628a9a601247549970ee4826124d294c4f251a723da247918b8d04",
+      "protectedRecipeSha256": "8abe662868a9231e13fc8f7a683ee991d7599caf638eac0f529e74123903fa11",
+      "beforeSteps": [
+        "Couper la courgette en fines rondelles.",
+        "Alterner ravioles, courgette et jambon dans un plat.",
+        "Ajouter la crème et le fromage.",
+        "Cuire 20 minutes à 190 °C."
+      ],
+      "note": "Montage direct puis four 190 °C/20 min conservé. Courgette fine, couches et crème expliquées ; aucune cuisson à l’eau ajoutée aux ravioles."
+    },
+    {
+      "id": "n56",
+      "status": "corrected",
+      "sourceHash": "8aa09965eb5448c989261e6b86b8bf8262df85b18d081c3558e30fc605162a51",
+      "reviewedHash": "05eb0afb489d39ca8acf545801b6139e47e10fe4d06195607ea42159a12ff024",
+      "protectedRecipeSha256": "c46f6453ce7908d64f3a1de920d5101b9e26f072b5050a3e979c6024a5636c25",
+      "beforeSteps": [
+        "Mélanger les pommes de terre avec l’huile, l’ail et le thym.",
+        "Cuire 15 minutes à 190 °C.",
+        "Ajouter le poulet citronné et poursuivre 18 minutes en retournant à mi-cuisson."
+      ],
+      "note": "Ail/thym avec pommes de terre, citron avec poulet comme dans la source. Temps de 33 min de cuisson distingué de la préparation."
+    },
+    {
+      "id": "n59",
+      "status": "corrected",
+      "sourceHash": "9884f8d58bf75e8f701b9ad38836e7f492d513f107dca0ed94ba1ea916dbc116",
+      "reviewedHash": "4ed6867383e65511dd7883b2a130a03ab2647f06bc4912dcb7681dc994893195",
+      "protectedRecipeSha256": "48b56aaf440bfc45a6f450edeffb3f2c78e7ed01d10eb4a2e5cbe5b528252f4d",
+      "beforeSteps": [
+        "Cuire le riz et le brocoli.",
+        "Mélanger soja et miel puis badigeonner le saumon.",
+        "Cuire 10 à 12 minutes à 180 °C et servir avec un peu de sésame."
+      ],
+      "note": "Saumon à 180 °C conservé ; riz au paquet, brocoli à l’eau documenté par Bonduelle, badigeon entier lié aux ingrédients."
+    },
+    {
+      "id": "n61",
+      "status": "corrected",
+      "sourceHash": "602b05fc9e3b8848b1bda0762882ec55f8792b17c3d47d59e310721b556891ff",
+      "reviewedHash": "7e11c9b5b0228978243b0d1f773d533efb71890d6b30ed1245777caacb66a678",
+      "protectedRecipeSha256": "85e6b99f50aa03c787a844c066e56e1c4069f7ba56d7064a59179fd96130975c",
+      "beforeSteps": [
+        "Faire dorer les pommes de terre et réserver.",
+        "Saisir le bœuf avec les oignons.",
+        "Ajouter la sauce soja, remettre les pommes de terre et mélanger 2 minutes."
+      ],
+      "note": "Pommes sautées réservées puis bœuf/oignons saisis conservés ; sauce soja dynamique, deux minutes de mélange final distinctes du repos."
+    },
+    {
+      "id": "n63",
+      "status": "corrected",
+      "sourceHash": "f9762f93abf49e91f6060f0006f70abd314d92fe8a9353d042c5f764095f915d",
+      "reviewedHash": "b14789b75f3e229c72b419e270abba7fcc08ab472411175ecf25708e5fe1aaff",
+      "protectedRecipeSha256": "25b26885ecb63161fe59196bf13e83184d6dfbc488c5014fb2578ed2a31122e7",
+      "beforeSteps": [
+        "Mélanger le poulet avec le yaourt et le curry.",
+        "Monter les brochettes avec poivron et oignon puis cuire 12 à 15 minutes.",
+        "Servir avec la semoule."
+      ],
+      "note": "Marinade yaourt-curry et plancha conservées ; aucun ajout d’huile ni temps de marinade inventés. Semoule au paquet et cuisson à cœur explicités."
+    },
+    {
+      "id": "n36",
+      "status": "blocked",
+      "sourceHash": "e0aa7974b9ba79d1ab5256eef2dd34266e4d8e8f2599218964bf95d48cb9d85c",
+      "reviewedHash": "e0aa7974b9ba79d1ab5256eef2dd34266e4d8e8f2599218964bf95d48cb9d85c",
+      "protectedRecipeSha256": "98808782e183a26a987d8d01cf5cfc49827a43d00a7a0af5f37a65ecdc23f3a2",
+      "note": "L’huile éventuellement contenue dans une boîte de thon n’est pas supposée présente. Le coulis reste ajouté après l’oignon."
+    },
+    {
+      "id": "n37",
+      "status": "blocked",
+      "sourceHash": "59f4e96aaeae2726652ea1b2182493fc1bf17fac20fbb34bb3ca3d6dc05793e1",
+      "reviewedHash": "59f4e96aaeae2726652ea1b2182493fc1bf17fac20fbb34bb3ca3d6dc05793e1",
+      "protectedRecipeSha256": "b3b6382180bfd8ea913834371228f92cdecfd033efad0a166fb58169e9112389",
+      "note": "Ne pas présumer que tous les gnocchis se poêlent directement ; crème ajoutée après poulet conservée."
+    },
+    {
+      "id": "n38",
+      "status": "blocked",
+      "sourceHash": "44f997e3445f78303e4f3d5d5c52639dd1d6ca3273bbd4ea7c73276d117f56e8",
+      "reviewedHash": "44f997e3445f78303e4f3d5d5c52639dd1d6ca3273bbd4ea7c73276d117f56e8",
+      "protectedRecipeSha256": "004178c112ab91f36131672377e1edfd75433f23fdf117521e3567ea8304aba0",
+      "note": "Riz cuit conservé, sans conversion au riz sec dans les étapes ni temps arbitraire pour les petits pois."
+    },
+    {
+      "id": "n40",
+      "status": "blocked",
+      "sourceHash": "547438632bb32fff864932a8b9b132f36ad1518aabca2997403d476c8d4f9272",
+      "reviewedHash": "547438632bb32fff864932a8b9b132f36ad1518aabca2997403d476c8d4f9272",
+      "protectedRecipeSha256": "b494d4a3e2f6e7e2d2f927b5ac1b57349c36583b9a44150c7802201764b9a1fe",
+      "note": "Ne pas compter sur une teneur en graisse inconnue du bœuf ; purée non enrichie arbitrairement de lait ou beurre."
+    },
+    {
+      "id": "n42",
+      "status": "blocked",
+      "sourceHash": "f17ff08c1425055e77c5cd4cf5363ca36792c2e45f0618014cf57f660eb0e42c",
+      "reviewedHash": "f17ff08c1425055e77c5cd4cf5363ca36792c2e45f0618014cf57f660eb0e42c",
+      "protectedRecipeSha256": "9b21ed72769192d90a11ea9ebfcfd0c4c1e05433b0756bd40d34d3303b323430",
+      "note": "Les repères Weber dépendent du poids et des zones directe/indirecte ; ils ne justifient pas une durée unique sans ces données."
+    },
+    {
+      "id": "n45",
+      "status": "blocked",
+      "sourceHash": "a704a973918f4f2d630c98dea457daa37d1fe176813719f5a202a5fc6d3dd94e",
+      "reviewedHash": "a704a973918f4f2d630c98dea457daa37d1fe176813719f5a202a5fc6d3dd94e",
+      "protectedRecipeSha256": "1fcb3d4a87b4263ee4f5c2e8e028bb99ffd7c1446b16ac1e537645c2f1f4ebcb",
+      "note": "La sauce yaourt/citron reste sans ajout. Résolution requise sur le produit avant une réécriture complète."
+    },
+    {
+      "id": "n49",
+      "status": "blocked",
+      "sourceHash": "6c6ec31b6f450183375b118875ccba5e5cb5bb97018a8bb294409eba9899d524",
+      "reviewedHash": "6c6ec31b6f450183375b118875ccba5e5cb5bb97018a8bb294409eba9899d524",
+      "protectedRecipeSha256": "7ba6038441e4f04b41a88dc81b07bd71d3427d29cfe0a9fae760572d45be4b3f",
+      "note": "Ne pas changer automatiquement l’appareil ni l’état des œufs dans la liste sans clarifier cette contradiction."
+    },
+    {
+      "id": "n50",
+      "status": "blocked",
+      "sourceHash": "5b6de755718bc88a8aaaf4692cdfa698d80b1f25db4eb5cc782c230816f9c81d",
+      "reviewedHash": "5b6de755718bc88a8aaaf4692cdfa698d80b1f25db4eb5cc782c230816f9c81d",
+      "protectedRecipeSha256": "e692a7687b91dc42f25321a717ebe0f4063d63352a29a5eaaa28972d84cd90ee",
+      "note": "Ne pas inventer la teneur en graisse du bœuf ; deux minutes par face concernent le wrap déjà garni, pas la cuisson du haché."
+    },
+    {
+      "id": "n52",
+      "status": "blocked",
+      "sourceHash": "939237b06450b50e0c341cb387f9933d5b854146b3e14365d5b6512cd12e515f",
+      "reviewedHash": "939237b06450b50e0c341cb387f9933d5b854146b3e14365d5b6512cd12e515f",
+      "protectedRecipeSha256": "fb4b7f446f1cdbb20e4b652305c0969910ee8a192b79e241851329e3ce10a8b8",
+      "note": "Aucun passage au micro-ondes ni température de four inventés ; semoule à préparer selon paquet, recette non validée."
+    },
+    {
+      "id": "n54",
+      "status": "blocked",
+      "sourceHash": "9c1174ced48dc36c5c7056510c68d05f9f16fb61b682471714fba2bb427b23f3",
+      "reviewedHash": "9c1174ced48dc36c5c7056510c68d05f9f16fb61b682471714fba2bb427b23f3",
+      "protectedRecipeSha256": "8c835a101c1fb258413580ec77f401b09ef978ed100b4d9d8737f4fa47dfe081",
+      "note": "Le cabillaud reste cuit à couvert dans la tomate ; aucune substitution de cuisson de l’oignon dans le coulis."
+    },
+    {
+      "id": "n55",
+      "status": "blocked",
+      "sourceHash": "a75c12b0c484324dd1e9a2af9c705091c24b0f94d1350f07bf7af101bdc057ae",
+      "reviewedHash": "a75c12b0c484324dd1e9a2af9c705091c24b0f94d1350f07bf7af101bdc057ae",
+      "protectedRecipeSha256": "d9cfb299323f8b670f57ec294510ef089a79b55de9c47ca819f21e36e3377085",
+      "note": "Cuisson couverte après coloration conservée ; pas de pochage initial dans les tomates."
+    },
+    {
+      "id": "n57",
+      "status": "blocked",
+      "sourceHash": "927d2d3b5f09491bfa45e0c5794defb4368db3961a7e70eb718dbaa6e486baf4",
+      "reviewedHash": "927d2d3b5f09491bfa45e0c5794defb4368db3961a7e70eb718dbaa6e486baf4",
+      "protectedRecipeSha256": "00acff31b2bb5e8d7ea26fb5964a1921f5a84853fe7cec186eebccc31ced8828",
+      "note": "Dinde dorée avant coulis conservée ; les huit minutes finales ne deviennent pas une cuisson initiale dans la sauce."
+    },
+    {
+      "id": "n58",
+      "status": "blocked",
+      "sourceHash": "308ee4f866025d738b2f6c4bc3e4ed6f68dfeae01a42a29c8165f81a3f9e4fe5",
+      "reviewedHash": "308ee4f866025d738b2f6c4bc3e4ed6f68dfeae01a42a29c8165f81a3f9e4fe5",
+      "protectedRecipeSha256": "ee1772a979daee6cf0297beab7d1f2184a6ae8f76ebbed8101d1f8a5f20352ae",
+      "note": "Cuisson par face du porc connue, mais aucun remplacement automatique de l’accompagnement par vapeur ou eau."
+    },
+    {
+      "id": "n60",
+      "status": "blocked",
+      "sourceHash": "0f270ddc524289bc5a6dab5a90a83b07d9c7c7668db4e86b293553682ad931dd",
+      "reviewedHash": "0f270ddc524289bc5a6dab5a90a83b07d9c7c7668db4e86b293553682ad931dd",
+      "protectedRecipeSha256": "57b8f91ac38f42bc4bdf685e81e0e2896d4813e8c6957c976d793c67347587c6",
+      "note": "Coco ajouté après courgette poêlée conservé ; ne pas remplacer cette cuisson par un pochage dans le lait de coco."
+    },
+    {
+      "id": "n62",
+      "status": "blocked",
+      "sourceHash": "0a4f441d947c8f65e0a706e0b25946b71de3f64bd283339a42d80d2e11727406",
+      "reviewedHash": "0a4f441d947c8f65e0a706e0b25946b71de3f64bd283339a42d80d2e11727406",
+      "protectedRecipeSha256": "10f737fed8bcf88e34e7ec74b131456267d506df1dbdb3173a8b20b0ec7924e7",
+      "note": "Boulettes de la liste conservées, aucune farce inventée. La crème ne remplace pas la cuisson initiale."
+    },
+    {
+      "id": "n64",
+      "status": "blocked",
+      "sourceHash": "35f15d7fda893b861bf972c66b11d0c5fe966abdd34af29519cf6cd7a915778f",
+      "reviewedHash": "35f15d7fda893b861bf972c66b11d0c5fe966abdd34af29519cf6cd7a915778f",
+      "protectedRecipeSha256": "6a171079de3d5e76b6cb3889e140967ef1102b6fe767fc60f227069205b6b7ce",
+      "note": "Lentilles déjà cuites et bouillon conservés ; une recette airfryer ressemblante n’est pas une source pour cette poêle."
+    }
+  ]
+}

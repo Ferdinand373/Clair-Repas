@@ -15,7 +15,7 @@ const V1_FIXTURE_PATH = resolve(ROOT, "scripts", "shopping-contract-v1.fixture.j
 const V2_FIXTURE_PATH = resolve(ROOT, "scripts", "shopping-contract-v2.fixture.json");
 const FIXED_CREATED_AT = "2026-08-29T08:00:00.000Z";
 const SOURCE_VERSION = "7.5";
-const EXPECTED_SANITIZED_INDEX_SHA256 = "c3fdc2fa256c9d9f5b5bfe67325825dd9c449756129fef6087d9409e65631a0c";
+const EXPECTED_SANITIZED_INDEX_SHA256 = "c2b4cb9476cd8345fd912d6669bf5097e03e1027ae6d35e0976c577af75c8297";
 const EXPECTED_QR3_TRANSPORT_SUFFIX_SHA256 = "2f1cba6cfba67518077ac184732451c00f247bfebaf7516951aa15b6637db3d9";
 const EXPECTED_PROTECTED_SHA256 = Object.freeze({
   "v8/clair-cloud-sync.js": "826b44d8ee64b816f14e097a39405068001e529cc8a03885a5156de5d40ef7ea",

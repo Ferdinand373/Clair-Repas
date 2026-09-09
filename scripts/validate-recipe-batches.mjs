@@ -7,7 +7,8 @@ import {recipeSource} from './recipe-source.mjs';
 import {recipeHash} from './validate-recipe-editorial.mjs';
 const root=resolve(dirname(fileURLToPath(import.meta.url)),'..');
 const {code,recipes,editorial}=recipeSource(readFileSync(resolve(root,'index.html'),'utf8'));
-const fixture=JSON.parse(readFileSync(resolve(root,'scripts/recipe-editorial-batch-02.fixture.json'),'utf8'));
+const batchNumbers=['02','03'];
+const fixture={recipes:batchNumbers.flatMap(number=>JSON.parse(readFileSync(resolve(root,`scripts/recipe-editorial-batch-${number}.fixture.json`),'utf8')).recipes)};
 const slice=(a,b)=>code.slice(code.indexOf(a),code.indexOf(b,code.indexOf(a)+a.length));
 const context={window:{},$:()=>({value:'8'}),MEAL_TYPES:['mid','eve'],recipeRole:r=>r.role||r.course||'dish',isFavorite:()=>false,recipeFeedbackHTML:()=>'',recipePersonalNoteHTML:()=>''};
 vm.runInNewContext(code.slice(0,code.indexOf("$('libraryCount').textContent="))+'\n'+
@@ -24,7 +25,11 @@ const timers={
   n21:[[],[10],[9],[9],[3]],n12:[[],[],[],[]],n13:[[],[20],[],[2,3],[]],
   n22:[[],[12],[25],[]],n24:[[],[8],[5,3],[]],n25:[[],[],[],[],[]],
   n28:[[],[15],[],[18],[3]],n29:[[],[],[],[]],n30:[[],[],[],[]],
-  n31:[[],[],[10],[]],n32:[[],[],[4],[4]],n34:[[20],[],[12],[15],[]],a038:[[],[],[],[]]
+  n31:[[],[],[10],[]],n32:[[],[],[4],[4]],n34:[[20],[],[12],[15],[]],a038:[[],[],[],[]],
+  n35:[[],[7],[4],[4],[]],n39:[[],[4],[6],[12],[5],[]],n41:[[],[],[25],[],[3]],
+  n43:[[],[],[15],[3]],n44:[[],[],[],[],[]],n46:[[],[],[],[]],n47:[[],[],[],[]],
+  n48:[[],[],[],[]],n51:[[],[],[9],[]],n53:[[],[],[],[20]],n56:[[],[15],[],[18]],
+  n59:[[],[],[12],[10],[]],n61:[[],[],[],[2],[3]],n63:[[],[],[15],[]]
 };
 const ingredients={
   n01:['poulet','pommes de terre','paprika','huile','sel.*poivre'],
@@ -48,9 +53,23 @@ const ingredients={
   n31:['boulettes','riz','courgette','coulis','oignon','huile'],
   n32:['thon','pommes de terre','tomates','citron','huile d’olive','basilic'],
   n34:['truite','pommes de terre','haricots','citron','aneth','huile'],
-  a038:['concombre','yaourt','citron','aneth','huile d’olive','sel et du poivre']
+  a038:['concombre','yaourt','citron','aneth','huile d’olive','sel et du poivre'],
+  n35:['crevettes','riz','lait de coco','curry','courgette','ail','huile','coriandre','sel'],
+  n39:['bœuf','haricots','tomates concassées','riz','oignon','ail','cumin','paprika','piment','huile','sel'],
+  n41:['filet mignon','pâtes','tomates','mozzarella','basilic','huile'],
+  n43:['porc','poivrons','oignon','riz','huile.*paprika','sel.*poivre'],
+  n44:['saucisses','pommes de terre','oignons','lait','beurre','moutarde'],
+  n46:['œufs','pommes de terre','lardons','oignon','persil','poivrer.*saler'],
+  n47:['tortellini','coulis','mozzarella','courgette','basilic','huile'],
+  n48:['poulet','quinoa','tomates','concombre','feta','vinaigrette'],
+  n51:['pain','poulet','tomate','fromage','salade','moutarde'],
+  n53:['ravioles','courgette','jambon','crème','fromage','poivre.*sel'],
+  n56:['poulet','pommes de terre','citron','ail','huile.*thym','sel.*poivre'],
+  n59:['saumon','riz','brocoli','sauce soja','miel','sésame'],
+  n61:['bœuf','pommes de terre','oignons','sauce soja','huile','poivrer'],
+  n63:['poulet','semoule','poivron','oignon','curry','yaourt']
 };
-assert.equal(fixture.recipes.length,35);
+assert.equal(fixture.recipes.length,65);
 let quantityChecks=0,timerCount=0;
 for(const record of fixture.recipes){
   const recipe=recipes.find(r=>r.id===record.id);
@@ -93,5 +112,6 @@ assert.match(meatballs.p[0],/4 cm/);
 assert.doesNotMatch(meatballs.p.join(' '),/huit boulettes|5 cl|la moitié du/);
 assert.match(recipes.find(r=>r.id==='n25').p[3],/retourner l’ensemble/);
 assert.match(recipes.find(r=>r.id==='n28').p[1],/ne prévoit pas d’huile/);
-console.log(`✓ Batch 02: 35 individual reviews, 22 corrected, 13 blocked with original content preserved; ${timerCount} manually checked timers`);
+const corrected=fixture.recipes.filter(r=>r.status==='corrected').length;
+console.log(`✓ Batches ${batchNumbers.join('/')}: ${fixture.recipes.length} individual review records, ${corrected} corrected, ${fixture.recipes.length-corrected} blocked with original content preserved; ${timerCount} manually checked timers`);
 console.log(`✓ ${quantityChecks} ingredient checks at 1/2/3/4/5/8 people; split parmesan quantities, per-face timing and original cooking techniques`);
