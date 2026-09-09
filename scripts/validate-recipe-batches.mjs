@@ -7,7 +7,7 @@ import {recipeSource} from './recipe-source.mjs';
 import {recipeHash} from './validate-recipe-editorial.mjs';
 const root=resolve(dirname(fileURLToPath(import.meta.url)),'..');
 const {code,recipes,editorial}=recipeSource(readFileSync(resolve(root,'index.html'),'utf8'));
-const batchNumbers=['02','03','04','05','06','07','08','09','10','11','12','13','14','15','16','17','18','19','20','21','22'];
+const batchNumbers=['02','03','04','05','06','07','08','09','10','11','12','13','14','15','16','17','18','19','20','21','22','23'];
 const fixture={recipes:batchNumbers.flatMap(number=>JSON.parse(readFileSync(resolve(root,`scripts/recipe-editorial-batch-${number}.fixture.json`),'utf8')).recipes)};
 const slice=(a,b)=>code.slice(code.indexOf(a),code.indexOf(b,code.indexOf(a)+a.length));
 const context={window:{},$:()=>({value:'8'}),MEAL_TYPES:['mid','eve'],recipeRole:r=>r.role||r.course||'dish',isFavorite:()=>false,recipeFeedbackHTML:()=>'',recipePersonalNoteHTML:()=>''};
@@ -104,7 +104,13 @@ const timers={
   'v31n-donburi-dinde':[[],[],[40],[8],[5]],
   'v31n-orzo-poisson-blanc':[[],[5],[30],[5]],
   'v31n-orzo-tofu':[[],[10],[5],[],[18]],
-  'v31n-brochettes-tabboule-poisson-blanc':[[],[5],[7],[3],[]]
+  'v31n-brochettes-tabboule-poisson-blanc':[[],[5],[7],[3],[]],
+  'v75-chef-constant-05':[[],[8],[],[]],
+  'v75-chef-piege-02':[[],[5],[],[],[]],
+  'bistrot-ext-01':[[],[20],[],[],[]],
+  'bistrot-ext-05':[[],[3],[5],[10],[],[120]],
+  'bistrot-ext-06':[[],[],[],[],[30]],
+  'bistrot-ext-08':[[20],[10],[],[],[],[5],[5]]
 };
 const ingredients={
   n01:['poulet','pommes de terre','paprika','huile','sel.*poivre'],
@@ -302,9 +308,15 @@ const ingredients={
   'v31n-donburi-dinde':['rôti de porc','pruneaux','carottes','pommes de terre','oignon','bouillon','miel','thym'],
   'v31n-orzo-poisson-blanc':['lentilles vertes','lard fumé','carottes','oignon','poireau','bouillon','laurier','moutarde'],
   'v31n-orzo-tofu':['chou-fleur','jambon','farine','beurre','lait','fromage','moutarde','muscade'],
-  'v31n-brochettes-tabboule-poisson-blanc':['poulet','riz','œufs','oignon','bouillon','soja','miel','ciboule']
+  'v31n-brochettes-tabboule-poisson-blanc':['poulet','riz','œufs','oignon','bouillon','soja','miel','ciboule'],
+  'v75-chef-constant-05':['gésiers','frisée','noix','échalote','moutarde','vinaigre','huile de noix','pain','poivr.*sel'],
+  'v75-chef-piege-02':['langoustines','beurre','jus de citron','câpres','pains briochés','ciboulette','huile neutre'],
+  'bistrot-ext-01':['os','pain','échalote','persil','vinaigre','huile','fleur de sel','poivre'],
+  'bistrot-ext-05':['champignons','vin blanc','d’eau','huile d’olive','citron','concentré de tomate','graines de coriandre','laurier','oignon','Saler.*poivrer'],
+  'bistrot-ext-06':['cervelas','oignon rouge','cornichons','moutarde à l’ancienne','vinaigre','huile neutre','persil haché','Poivrer'],
+  'bistrot-ext-08':['pieds de cochon déjà cuits','œufs de la sauce','moutarde','huile','vinaigre','câpres','cornichons','persil.*ciboulette','chapelure','œuf pour panure','farine','huile','Saler.*poivrer']
 };
-assert.equal(fixture.recipes.length,676);
+assert.equal(fixture.recipes.length,707);
 let quantityChecks=0,timerCount=0;
 for(const record of fixture.recipes){
   const recipe=recipes.find(r=>r.id===record.id);
@@ -677,6 +689,39 @@ assert.match(editorial['v31n-croustillant-coleslaw-poulet'].reviewNote,/8 cl.*fi
 assert.match(editorial['v31n-papillote-fenouil-dinde'].reviewNote,/paprika.*manque/);
 assert.match(editorial['v31n-papillote-fenouil-falafels'].reviewNote,/poche.*directement.*ne pas ajouter une saisie/);
 assert.match(editorial['v31n-tacos-tofu'].reviewNote,/ciboulette.*jamais utilisée.*quatre œufs/);
+const batch23=JSON.parse(readFileSync(resolve(root,'scripts/recipe-editorial-batch-23.fixture.json'),'utf8')).recipes;
+assert.equal(batch23.length,31);
+assert.equal(batch23.filter(r=>r.status==='corrected').length,5);
+assert.equal(batch23.filter(r=>r.status==='unchanged').length,1);
+assert.equal(batch23.filter(r=>r.status==='blocked').length,25);
+const prawns23=recipes.find(r=>r.id==='v75-chef-piege-02'),feet23=recipes.find(r=>r.id==='bistrot-ext-08');
+const mushrooms23=recipes.find(r=>r.id==='bistrot-ext-05'),cervelas23=recipes.find(r=>r.id==='bistrot-ext-06');
+for(const count of [1,2,3,4,5,8]){
+  assert.ok(context.recipeStepText(feet23.p[2],feet23,count).includes(context.formatQty(3*count)+' cl d’huile'));
+  assert.ok(context.recipeStepText(feet23.p[5],feet23,count).includes(context.formatQty(count/2)+' c. à soupe d’huile'));
+  assert.ok(context.recipeStepText(feet23.p[1],feet23,count).includes('('+context.formatQty(count/2)+')'));
+  assert.ok(context.recipeStepText(feet23.p[4],feet23,count).includes('('+context.formatQty(count/4)+')'));
+  assert.ok(context.recipeStepText(mushrooms23.p[2],mushrooms23,count).includes(context.formatQty(count*2.5)+' cl d’eau'));
+  assert.ok(context.recipeStepText(cervelas23.p[2],cervelas23,count).includes(context.formatQty(count*1.25)+' c. à soupe d’huile'));
+  assert.match(context.recipeStepText(prawns23.p[2],prawns23,count),/45 à 60 secondes/);
+  assert.match(context.recipeStepText(prawns23.p[3],prawns23,count),/45 à 60 secondes/);
+}
+assert.match(prawns23.p[1],/panier vapeur.*Couvrir.*4 à 5 minutes/);
+for(const index of [2,3])assert.deepEqual(Array.from(context.stepTimerDurations(prawns23.p[index])),[],'mixed 45 seconds–1 minute source stays a seconds range, never a false one-minute timer');
+assert.match(prawns23.p[4],/sans devenir noir.*Retirer aussitôt du feu.*citron.*câpres/);
+assert.match(feet23.p[6],/74 °C/);
+assert.match(feet23.p[1],/œufs de la sauce entiers.*fraction d’œuf.*jaune et blanc compris/);
+assert.equal(feet23.i[3].q,12);assert.equal(feet23.i[11].q,2);
+assert.match(cervelas23.t,/20–30 min de repos \+ préparation/);
+assert.match(mushrooms23.p[4],/jus.*moitié de ce volume.*tout le jus/);
+const gesiers23=recipes.find(r=>r.id==='v75-chef-constant-05');
+assert.deepEqual(gesiers23.i.at(-1),{q:null,u:'',n:'sel et poivre',k:'sel et poivre'});
+assert.match(batch23.find(r=>r.id===gesiers23.id).beforeSteps.join(' '),/Poivrez généreusement.*Goûtez avant de saler/);
+assert.match(editorial['bourgeois-03'].reviewNote,/cinq minutes.*Tox Info Suisse.*vingt minutes/);
+assert.match(editorial['v75-chef-troisgros-05'].reviewNote,/cuillère d’huile.*taille de cuillère.*citron.*moitié/);
+const marrow23=batch23.find(r=>r.id==='bistrot-ext-01');
+assert.equal(marrow23.reviewedHash,marrow23.sourceHash,'all culinary fields of satisfactory recipe remain unchanged');
+assert.deepEqual(recipes.find(r=>r.id===marrow23.id).collections,['bistrot-brasserie','aperitifs-petites-assiettes']);
 const corrected=fixture.recipes.filter(r=>r.status==='corrected').length;
 const unchanged=fixture.recipes.filter(r=>r.status==='unchanged').length;
 console.log(`✓ Batches ${batchNumbers.join('/')}: ${fixture.recipes.length} individual review records, ${corrected} corrected, ${unchanged} unchanged, ${fixture.recipes.length-corrected-unchanged} blocked with original content preserved; ${timerCount} manually checked timers`);

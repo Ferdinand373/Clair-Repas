@@ -1,0 +1,291 @@
+{
+  "baselineCommit": "7fceb1938f1a866a415c9bc46a7dab42e61cc2ef",
+  "batch": "23",
+  "recipes": [
+    {
+      "id": "v75-chef-ducasse-03",
+      "status": "blocked",
+      "sourceHash": "2aad286ff0c67e61712e663053d54f6a167af264ac34c7461b87049fbf624a87",
+      "reviewedHash": "2aad286ff0c67e61712e663053d54f6a167af264ac34c7461b87049fbf624a87",
+      "protectedRecipeSha256": "2217413c22595f2dbc962586169d524614409c9a191e6995964600c05c64d796",
+      "note": "la crème reçoit un tiers des petits pois déjà cuits et un peu de leur jus, sans poids ni volume mesurable. Les quatre feuilles de menthe de la sauce sont figées alors que le reste sert au décor. Fleur de sel et poivre ne sont pas listés ; la cuisson mollet reste à sécuriser sans la transformer en œuf dur."
+    },
+    {
+      "id": "v75-chef-constant-01",
+      "status": "blocked",
+      "sourceHash": "85c893891ab37cd34f1dd0e281c6bfde0b9c85fbea2d0b1664fbfc354789a73d",
+      "reviewedHash": "85c893891ab37cd34f1dd0e281c6bfde0b9c85fbea2d0b1664fbfc354789a73d",
+      "protectedRecipeSha256": "faae134693a1f206e31a2eb347a7f31abcec7785759e641fe312e6a9795636c3",
+      "note": "le beurre est utilisé pour les champignons puis les ramequins sans partage. Une cuillerée de crème par ramequin ne définit pas l’emploi des 16 cl listés. Sel, poivre et mouillettes manquent dans la liste ; la capacité des ramequins et la cuisson des œufs restent à confirmer."
+    },
+    {
+      "id": "v75-chef-constant-05",
+      "status": "corrected",
+      "sourceHash": "b2dfdbaaf283a614ab4b45ef0cfeca0f65098dcab67d08836674dc0e3b6e6bef",
+      "reviewedHash": "f1c9073fe35a73e5670b226e58ef1c78b50733af72556dd1a8588da6bfdbbff6",
+      "protectedRecipeSha256": "9de2eecacb2d8277492cab038bd5b6a1273a8ac448f0b7f2e84c24b396c2db07",
+      "beforeSteps": [
+        "Lavez et essorez la salade. Faites griller le pain puis coupez-le en croûtons.",
+        "Réchauffez les gésiers à feu doux dans leur graisse 8 minutes puis égouttez-les et tranchez-les.",
+        "Mélangez moutarde, vinaigre, échalote ciselée et huile de noix. Poivrez généreusement.",
+        "Assaisonnez la salade juste avant de servir puis ajoutez gésiers chauds, noix et croûtons.",
+        "Goûtez avant de saler : les gésiers sont déjà bien assaisonnés. Servez immédiatement."
+      ],
+      "note": "Gésiers déjà confits réchauffés dans leur propre graisse, et non de la viande crue sautée. Sel et poivre explicitement présents dans les étapes source rétablis sans dose inventée. Vinaigrette liée aux ingrédients ; pain grillé et salade préparés pendant le réchauffage."
+    },
+    {
+      "id": "v75-chef-piege-01",
+      "status": "blocked",
+      "sourceHash": "1cb4d391ec452385c5cbedc245ee4221f7bd682a396cdcbb256597ade7fb5954",
+      "reviewedHash": "1cb4d391ec452385c5cbedc245ee4221f7bd682a396cdcbb256597ade7fb5954",
+      "protectedRecipeSha256": "c9b79b6b77dd64a086ac1c8cade9b4ca97b774a808cdfd038688d7088243fd57",
+      "note": "le plat est beurré puis tout le beurre devient beurre noisette, sans partage défini. Le diamètre du petit plat et la quantité de sauce au nappage manquent ; la fleur de sel n’est pas listée. Le mélilot ou foin alimentaire est facultatif dans la liste mais imposé dans le texte : ne pas substituer une plante non alimentaire."
+    },
+    {
+      "id": "v75-chef-piege-02",
+      "status": "corrected",
+      "sourceHash": "5393f5f04ccd3de4842efdb82167a7abe650519b7d9133bbf2f672e396676667",
+      "reviewedHash": "1228374954db4806d717d3f702cc1c7f22bca672899ea29c484da3bc1d68b805",
+      "protectedRecipeSha256": "2c722cc0d84f70708396670baf350945120ea4adfc3b6bbf8a2fd785a7ac718e",
+      "beforeSteps": [
+        "Décortiquez les langoustines en gardant l’extrémité de la queue. Retirez le boyau noir et séchez-les soigneusement.",
+        "Faites réchauffer les petits pains 4 à 5 minutes à la vapeur ou dans un panier vapeur afin qu’ils deviennent très moelleux.",
+        "Chauffez une poêle très fort avec l’huile. Saisissez les langoustines 45 secondes à 1 minute par face puis réservez.",
+        "Dans une petite casserole, poussez le beurre jusqu’à une couleur noisette très soutenue, sans le brûler. Ajoutez citron et câpres hors du feu.",
+        "Servez les langoustines avec un filet de beurre noir, ciboulette et brioche vapeur à côté."
+      ],
+      "note": "Saisie vive et brioche vapeur conservées. Chaque face des langoustines reste à 45–60 secondes, sans arrondi à une minute ni faux bouton. Beurre noisette très soutenu mais non brûlé, citron et câpres hors du feu ; tous les ingrédients sont employés sans graisse ajoutée."
+    },
+    {
+      "id": "v75-chef-piege-06",
+      "status": "blocked",
+      "sourceHash": "65c809ee27b10b5df67a47d9cb7c15e4efef18db80b736eb5ae31c9d93607489",
+      "reviewedHash": "65c809ee27b10b5df67a47d9cb7c15e4efef18db80b736eb5ae31c9d93607489",
+      "protectedRecipeSha256": "cbef8cd70d3e621895497b73001ba229c62415af5c294e67a054e611eafb7923",
+      "note": "le four est réglé au maximum sans température définie. Quatre disques forment deux poches pour quatre portions de référence, mais diamètre, épaisseur et partage ne sont pas expliqués. Confirmer ces paramètres sans imposer un maximum de 250 °C ni transformer la poche soufflée en pizza plate."
+    },
+    {
+      "id": "v75-chef-guerard-03",
+      "status": "blocked",
+      "sourceHash": "0812d69a6c40ab23688836ddc12b79aa1c33ddd1abd87272b6a298b09fe57f6a",
+      "reviewedHash": "0812d69a6c40ab23688836ddc12b79aa1c33ddd1abd87272b6a298b09fe57f6a",
+      "protectedRecipeSha256": "f68936f3e6ceb29d8df2571ca081cad3704f0ef289f39dd40a6738dca0d55f02",
+      "note": "l’huile sert aux ramequins puis à la sauce sans partage. La source fixe 250 g de homard mixé, 100 g en dés, 5 cl d’eau non listée pour les carottes et environ 8 cl de sauce finale, indépendamment des personnes. Carottes sans durée, assaisonnement absent et cognac facultatif imposé : conserver le homard déjà cuit sans inventer ces répartitions."
+    },
+    {
+      "id": "v75-chef-guerard-06",
+      "status": "blocked",
+      "sourceHash": "3d14bc5927e5e9d705e350b4b635e75d63fd3928ebb544f9b1a7b2531525f679",
+      "reviewedHash": "3d14bc5927e5e9d705e350b4b635e75d63fd3928ebb544f9b1a7b2531525f679",
+      "protectedRecipeSha256": "f3d110d3b2a24ecb11523740e95845654e84583243edeccb6cc44954d369f595",
+      "note": "la vinaigrette contient deux cuillerées d’eau non listées, sans taille de cuillère. Sel et poivre sont absents et l’assaisonnement des asperges est pourtant demandé. La cuisson mollet doit rester identifiée ; ne pas remplacer les champignons crus par une cuisson pour modifier cette salade."
+    },
+    {
+      "id": "v75-chef-robuchon-02",
+      "status": "blocked",
+      "sourceHash": "44550f2a10d7e18fb033ace4b800846fdb80cf527c18b742d0df61398c3f0212",
+      "reviewedHash": "44550f2a10d7e18fb033ace4b800846fdb80cf527c18b742d0df61398c3f0212",
+      "protectedRecipeSha256": "8f5e685f56e0497fc955c24563d023037ad092749f1d2022803264b4480e5bbd",
+      "note": "les feuilles de gélatine n’ont ni poids ni force. Le lait conservé pour mixer et les deux couches de gelée ne sont pas mesurés ; la seconde réserve peut prendre pendant le premier refroidissement. Confirmer volumes, maintien liquide et assaisonnement absent sans inventer un partage ni supprimer le choix caviar ou œufs de truite."
+    },
+    {
+      "id": "v75-chef-robuchon-03",
+      "status": "blocked",
+      "sourceHash": "24e8cf17ad6149613fe9b6445c4759aae491f5199b65d9e68fbfbdc61efefbe6",
+      "reviewedHash": "24e8cf17ad6149613fe9b6445c4759aae491f5199b65d9e68fbfbdc61efefbe6",
+      "protectedRecipeSha256": "de893051920ea36ad38a586a4d4c16ceadc333147d50c22325d6ee14f12cbc7d",
+      "note": "huit feuilles de brick doivent fournir douze enveloppes sans dimensions ni découpe décrites. Les douze feuilles de basilic vont toutes dans les croustillants, mais la sauce citron-basilic en redemande ; le sel est absent. Ne pas prélever des feuilles dans les enveloppes ni ajouter une quantité de basilic pour résoudre ce partage."
+    },
+    {
+      "id": "v75-chef-robuchon-06",
+      "status": "blocked",
+      "sourceHash": "9c0b94b88ca26a9f702259770b2013a25d206af88c0d50d5dc2d48d654725656",
+      "reviewedHash": "9c0b94b88ca26a9f702259770b2013a25d206af88c0d50d5dc2d48d654725656",
+      "protectedRecipeSha256": "d10c35bb67076262f5a5305a00c08570719339941389f1b2d2c65c19289db567",
+      "note": "le petit morceau de céleri-rave n’a aucun poids ni taille de référence. L’assaisonnement est demandé sans être listé. Garder le sauté d’échalote au beurre et le foie gras mi-cuit déposé à la fin ; ni quantité de céleri arbitraire ni poêlage d’un foie gras cru ne résolvent la source."
+    },
+    {
+      "id": "v75-chef-pic-01",
+      "status": "blocked",
+      "sourceHash": "0fde85e672d38310d8946d893d23ee77da6e6a22dc7716a6a13e4a3d8eed6227",
+      "reviewedHash": "0fde85e672d38310d8946d893d23ee77da6e6a22dc7716a6a13e4a3d8eed6227",
+      "protectedRecipeSha256": "ea8b3bb356f93fdc6910fbde9766a1ec29088df2a0bf628356412d4c4b90186f",
+      "note": "dimensions des carrés, quantité de farce par pièce et fermeture en berlingot ne sont pas détaillées. Le café listé à une demi-cuillère à café devient un assaisonnement très léger sans quantité définie ; sel absent. Ne pas ajuster arbitrairement l’hydratation de la pâte ou déplacer les champignons filtrés dans la farce au comté."
+    },
+    {
+      "id": "v75-chef-pic-06",
+      "status": "blocked",
+      "sourceHash": "54e2cd748a5c5d7621f82206340f6d7cf706d6427ea1db1054917ac497d5af36",
+      "reviewedHash": "54e2cd748a5c5d7621f82206340f6d7cf706d6427ea1db1054917ac497d5af36",
+      "protectedRecipeSha256": "aa77165c4d1755b8a7381ee125dcf560a4101c700efc9f90a145a26eaeadef68",
+      "note": "seuls 10 cl des 20 cl de bouillon infusé sont utilisés, sans emploi ni réserve du reste. Le sel n’est pas listé et le jus réduit final n’a pas de geste distinct. Préciser le partage réel sans supposer que l’autre moitié va dans le yaourt ni imposer une nouvelle réduction."
+    },
+    {
+      "id": "v75-chef-loiseau-02",
+      "status": "blocked",
+      "sourceHash": "2076de24e0713c91b5d874b36d66c626ae1106c4ab1f321701836a7b2d442150",
+      "reviewedHash": "2076de24e0713c91b5d874b36d66c626ae1106c4ab1f321701836a7b2d442150",
+      "protectedRecipeSha256": "adf133ec79fc53000ef76b76a33b312478c6708b020d14721391e93dfb4b446a",
+      "note": "l’ail est blanchi trois fois en changeant l’eau, sans durée ni repère de tendreté avant mixage. Le sel est absent et les 4–5 minutes de coloration des cuisses de grenouille ne définissent pas une cuisson à cœur vérifiée. Préserver les trois blanchiments : ce ne sont pas trois minutes de cuisson."
+    },
+    {
+      "id": "v75-chef-loiseau-05",
+      "status": "blocked",
+      "sourceHash": "c110f1590e191917bcaf110db4541869e2f344753d4c090bce53d80f13d0f400",
+      "reviewedHash": "c110f1590e191917bcaf110db4541869e2f344753d4c090bce53d80f13d0f400",
+      "protectedRecipeSha256": "d32a3e410164447b4ea18bb37b3129ce4bfe09d0548296613d80279415729e35",
+      "note": "le beurre sert à dorer les garnitures puis le reste devient beurre manié, sans quantité réservée. Seule une petite part du liant est ajoutée sans mesure. Le vinaigre de pochage manque dans la liste ; ne pas inventer un partage beurre-farine ni retirer le pochage des œufs."
+    },
+    {
+      "id": "v75-chef-troisgros-05",
+      "status": "blocked",
+      "sourceHash": "69fd664bb3afb323c18524753e7f93cc4d1bd6facccf51e515091403c72198b4",
+      "reviewedHash": "69fd664bb3afb323c18524753e7f93cc4d1bd6facccf51e515091403c72198b4",
+      "protectedRecipeSha256": "60fe3f7a6cb395084167abab4de06c6e87b64e668fd9dc68496966c5e9a7d91e",
+      "note": "une cuillère d’huile va dans la chair et un filet au service, sans taille de cuillère ni volume final. Le sel de la sauce manque dans la liste. Le citron est bien partagé par moitié ; cette information ne résout pas le partage de l’huile. Garder aubergines entières à 230 °C et paprika fumé, sans ajout de tahini ni fumage différent."
+    },
+    {
+      "id": "bistrot-ext-01",
+      "status": "unchanged",
+      "sourceHash": "09cec9ace0d25135f933dbb1be7e1b5349782fcd444cd173725ac933fe7de8da",
+      "reviewedHash": "09cec9ace0d25135f933dbb1be7e1b5349782fcd444cd173725ac933fe7de8da",
+      "protectedRecipeSha256": "11bf1cc99d182d68e4e29665de5598e6bd8ca41761541179457fa2315c13057b",
+      "note": "Préparation déjà claire : os fendus dans la longueur, préchauffage et plaque, moelle vers le haut, cuisson 15–20 min à 220 °C avec repère de texture, salade d’herbes en parallèle et service. Tous les ingrédients sont utilisés et aucune quantité figée dans les étapes ; cinq phrases conservées intégralement. Seuls introduction, titres et temps structurés sont ajoutés."
+    },
+    {
+      "id": "bistrot-ext-02",
+      "status": "blocked",
+      "sourceHash": "9919ae98d3ddde513304f8a44332d5ef0468fc02fef4622c8cccbcd7da06fc2d",
+      "reviewedHash": "9919ae98d3ddde513304f8a44332d5ef0468fc02fef4622c8cccbcd7da06fc2d",
+      "protectedRecipeSha256": "5b4d23be3516cf79e5a50a7776b223260c77c16d975c5f795eb995dab9ee8a0b",
+      "note": "les 30 g de beurre pour le roux laissent une quantité calculable pour les moules, mais le fromage est partagé entre moules, appareil à 90 g et dessus sans répartition des 30 g restants. Capacité des ramequins et contrôle de l’appareil aux œufs à confirmer ; ne pas inventer un partage égal du fromage."
+    },
+    {
+      "id": "bistrot-ext-03",
+      "status": "blocked",
+      "sourceHash": "7e6c6f57efc2f269f469d9f7ef5868c85b1966478cf69201f4026b05d0efc08f",
+      "reviewedHash": "7e6c6f57efc2f269f469d9f7ef5868c85b1966478cf69201f4026b05d0efc08f",
+      "protectedRecipeSha256": "15367557264eb5e49b3de434bcdf78d2ccf80287dff24cf18e63a84d3fdedb8b",
+      "note": "les quatre feuilles de gélatine n’ont ni poids ni force et la première couche de 5 mm dépend de ramequins sans taille. Poivre jamais utilisé, salade et cornichons absents de la liste ; confirmer aussi le maintien liquide de la gelée réservée et la cuisson des œufs sans changer leur texture par défaut."
+    },
+    {
+      "id": "bistrot-ext-04",
+      "status": "blocked",
+      "sourceHash": "d3dc53f8550f90826a3a97175910c2d218ae53e820a8fcedc23f31a597ad53e1",
+      "reviewedHash": "d3dc53f8550f90826a3a97175910c2d218ae53e820a8fcedc23f31a597ad53e1",
+      "protectedRecipeSha256": "a6162c92188aedd6e48b336b1d4c87910ad0fb3ec058d38e453a657fe701d94d",
+      "note": "le bain-marie des jaunes au citron n’a ni durée ni température de contrôle, seulement un épaississement. Une référence technique confirme l’émulsion, mais utilise du beurre clarifié et d’autres proportions : elle ne valide pas ce barème précis. Garder la crème fouettée et la hollandaise, sans les remplacer par une mayonnaise ni imposer une température qui ferait coaguler les jaunes."
+    },
+    {
+      "id": "bistrot-ext-05",
+      "status": "corrected",
+      "sourceHash": "ba36dd19d7d58b5afe9c5c0b0b6961029d13e3eae54134e17db8b1e16ed941dd",
+      "reviewedHash": "2768c9887a80a4cc163030e03344a4d30fe9ec697cdac29a5133d7b78dd0f4ff",
+      "protectedRecipeSha256": "5d7efa695b688c91f742fc52778d8d6babef1263858f08a08089f7a57e208304",
+      "beforeSteps": [
+        "Nettoyez les champignons et gardez-les entiers s’ils sont petits. Émincez finement l’oignon.",
+        "Faites revenir l’oignon 3 minutes dans l’huile sans coloration. Ajoutez vin, eau, jus de citron, tomate, coriandre et laurier.",
+        "Portez à frémissement 5 minutes pour former un court-bouillon parfumé.",
+        "Ajoutez les champignons et cuisez 8 à 10 minutes à découvert.",
+        "Retirez les champignons, faites réduire le jus de moitié puis reversez-le dessus.",
+        "Laissez refroidir et réfrigérez au moins 2 heures. Servez frais, mais pas glacé."
+      ],
+      "note": "Sauté d’oignon sans coloration, court-bouillon puis champignons à découvert conservés. Quantités de vin, eau et huile liées aux ingrédients, assaisonnement listé enfin utilisé, réduction du jus après retrait des champignons expliquée. Repos de deux heures explicitement distinct du temps actif."
+    },
+    {
+      "id": "bistrot-ext-06",
+      "status": "corrected",
+      "sourceHash": "a5712344c8f9ad6b9aedaab8ec37a8c317a993f0d8c0849d805cc4f399fc86ab",
+      "reviewedHash": "70d978f5126d61c2e72c22da5d3e781a271b08f0970beb64c060fc990c8a63c4",
+      "protectedRecipeSha256": "78e37b92465644f7ed3bbb1ca5e5baa275578afe3bc17089f7edb7bcebf685a4",
+      "beforeSteps": [
+        "Retirez la peau du cervelas puis coupez-le en rondelles assez fines.",
+        "Émincez très finement l’oignon rouge et coupez les cornichons en petites rondelles.",
+        "Mélangez moutarde, vinaigre et huile dans un saladier. Poivrez généreusement.",
+        "Ajoutez cervelas, oignon, cornichons et persil puis mélangez délicatement.",
+        "Laissez reposer 20 à 30 minutes avant de servir pour que la vinaigrette parfume bien la charcuterie."
+      ],
+      "note": "Préparation froide conservée et changements limités aux gestes, aux quantités de vinaigrette et au repos au réfrigérateur. Le titre de durée inclut désormais les 20–30 minutes de repos déjà présentes dans la source, sans inventer un chronométrage de préparation."
+    },
+    {
+      "id": "bistrot-ext-07",
+      "status": "blocked",
+      "sourceHash": "f1b6e0617a08102e8c6478c9ce10857681108aa3b847fa6a33d511df3b3e77e8",
+      "reviewedHash": "f1b6e0617a08102e8c6478c9ce10857681108aa3b847fa6a33d511df3b3e77e8",
+      "protectedRecipeSha256": "bbd851d13eb7b74d23be9515bfdc9083b6fb929397d3d03188ae714113dfd6d5",
+      "note": "le poisson cru reçoit le court-bouillon bouillant puis refroidit sans cuisson contrôlée : épaisseur, quantité immergée, température à cœur et refroidissement ne sont pas définis. La marinade acide ne garantit pas la destruction des parasites. Le pain du service est absent ; ne pas inventer un temps de pochage pour valider cette méthode par inertie."
+    },
+    {
+      "id": "bistrot-ext-08",
+      "status": "corrected",
+      "sourceHash": "ae5ae56f37c98b6eff96b8da76b62605f7287c791b8d740ce68d461893f23730",
+      "reviewedHash": "884dd6fa8e5eaeb4780b800ac06058704f4692e8fb8f8421624606551f6f6eee",
+      "protectedRecipeSha256": "b564d594f091b55ec501ab3746d5accace38dad01cf51844dd64376ea91ef476",
+      "beforeSteps": [
+        "Demandez au charcutier des pieds déjà cuits et désossés. Tassez la chair en quatre petits palets et placez-les 20 minutes au frais.",
+        "Faites cuire deux œufs 10 minutes, refroidissez-les puis séparez jaunes et blancs.",
+        "Écrasez les jaunes avec moutarde et vinaigre, puis montez avec l’huile. Ajoutez blancs hachés, câpres, cornichons et herbes.",
+        "Passez les palets de pied de cochon dans farine, œuf battu puis chapelure.",
+        "Faites-les dorer 4 à 5 minutes par face dans une poêle avec l’huile.",
+        "Servez bien croustillant avec la gribiche froide ou à température ambiante."
+      ],
+      "note": "Deux huiles et deux usages d’œufs conservés séparément : 12 cl d’huile dans la sauce et 2 cuillères à soupe dans la poêle aux portions de référence, œufs durs distincts de l’œuf à panure. Quantités dynamiques, service par personne et deux faces séparées ; pieds déjà cuits réchauffés à cœur."
+    },
+    {
+      "id": "bourgeois-01",
+      "status": "blocked",
+      "sourceHash": "aa2d8f6d2b84c9fd71b5ffd4f69393961fd8d29b9d14bdc3856fd91371df4f0a",
+      "reviewedHash": "aa2d8f6d2b84c9fd71b5ffd4f69393961fd8d29b9d14bdc3856fd91371df4f0a",
+      "protectedRecipeSha256": "fec9e6e8666fa10c1997016f02dbc37cc7d9f0aaf73e9efd087a6f2d96f780b5",
+      "note": "tout le beurre est incorporé à la pâte, puis la poêle est beurrée sans quantité supplémentaire ou réserve définie. Deux crêpes sont imposées sans diamètre ni adaptation aux personnes. Garder le bouillon filtré et les crêpes en julienne, sans transformer les légumes de parfum en garniture pour éviter de les filtrer."
+    },
+    {
+      "id": "bourgeois-02",
+      "status": "blocked",
+      "sourceHash": "ecb5e18a851db1f9b163328480b28db05abedebf8ccd7037060c2f78fc3c0f90",
+      "reviewedHash": "ecb5e18a851db1f9b163328480b28db05abedebf8ccd7037060c2f78fc3c0f90",
+      "protectedRecipeSha256": "2ebd6854586a41e10cf12225ccdbe1dc6a2e04ec6f5a449bc345d5577949d9c3",
+      "note": "quelques bouquets sont réservés sans poids puis cuits à part sans procédé ni durée. La crème et le jaune sont ajoutés hors du feu sans contrôle de cuisson défini. Conserver le poireau revenu au beurre puis le roux, sans le remplacer par un simple pochage au bouillon ni inventer la quantité de garniture."
+    },
+    {
+      "id": "bourgeois-03",
+      "status": "blocked",
+      "sourceHash": "a5160077ce6c2bff0806df97284446e827c4e28a1970885c9767058393727262",
+      "reviewedHash": "a5160077ce6c2bff0806df97284446e827c4e28a1970885c9767058393727262",
+      "protectedRecipeSha256": "fbf8ee512683ce7516309c2bc40867159c10906b441041af650a908531a18744",
+      "note": "les morilles séchées ne cuisent que cinq minutes : Tox Info Suisse demande au moins vingt minutes après trempage ; ces cinq minutes ne doivent pas être suivies comme une cuisson suffisante. Les 10 cl d’eau de trempage ne sont ni listés ni liés aux personnes. Le beurre est utilisé deux fois sans partage et les pointes d’asperges cuisent à part sans procédé défini. Ne pas simplement prolonger un sauté à sec ni déplacer les morilles dans le velouté sans source."
+    },
+    {
+      "id": "bourgeois-04",
+      "status": "blocked",
+      "sourceHash": "272bf54e122ffdb173daf03b42380f37617f0d4e48eb905d9a9eb21b2c5436ae",
+      "reviewedHash": "272bf54e122ffdb173daf03b42380f37617f0d4e48eb905d9a9eb21b2c5436ae",
+      "protectedRecipeSha256": "11fb570f0e764a6a1b18956c35916ed07cd685104bab87da0f5fcaf5a85897f3",
+      "note": "le partage de beurre peut être déduit de 10 g pour les épinards et 15 g pour la béchamel, mais la sauce n’a pas de durée et le gril n’a ni intensité ni position. Le jaune annoncé coulant après pochage et gratinage demande un protocole vérifié ; ne pas durcir automatiquement les œufs pour modifier leur texture."
+    },
+    {
+      "id": "bourgeois-05",
+      "status": "blocked",
+      "sourceHash": "dbe9e7f6c20247f88499019bf8be94fa8e852fd719bf229109ccb9c8e74a22eb",
+      "reviewedHash": "dbe9e7f6c20247f88499019bf8be94fa8e852fd719bf229109ccb9c8e74a22eb",
+      "protectedRecipeSha256": "f6a4534bd7d424770c294024a3044a2f77f12c3ddae66ecc73cfcb03c2229c1a",
+      "note": "les escalopes de foie gras cru sont saisies seulement 45–60 secondes par face, sans épaisseur ni contrôle de cuisson établi. Le poivre listé n’est jamais utilisé. Conserver la poêle sèche du foie et le beurre réservé aux pommes ; ne pas inventer un barème à cœur ou ajouter de matière grasse à la saisie."
+    },
+    {
+      "id": "bourgeois-06",
+      "status": "blocked",
+      "sourceHash": "a948620fa6c438a4f5b161c1cee216f5e4e93f7ce680d81601850df685399a02",
+      "reviewedHash": "a948620fa6c438a4f5b161c1cee216f5e4e93f7ce680d81601850df685399a02",
+      "protectedRecipeSha256": "b3f35e4aa72b1722b61c9c7f4ad65197b10e6206a52ce345db7936a0f9d7bc4d",
+      "note": "le saumon refroidit dans son court-bouillon sans contrôle ni limite de refroidissement. Le citron sert au décor puis à la mayonnaise sans partage mesuré ; sel et poivre ne sont pas utilisés. La mayonnaise maison est un ingrédient déjà préparé, pas une recette à inventer ici ; confirmer aussi épaisseur et cuisson du poisson."
+    },
+    {
+      "id": "bourgeois-07",
+      "status": "blocked",
+      "sourceHash": "803ad8e6e0e0eea4968586e3bcd14d61ef711414e9f41ed0d4f10f427e121533",
+      "reviewedHash": "803ad8e6e0e0eea4968586e3bcd14d61ef711414e9f41ed0d4f10f427e121533",
+      "protectedRecipeSha256": "e85e808a05acfbcd891bc8a0cf40d508db7db2574efc35b91b5959f19ec8e807",
+      "note": "tout le beurre est utilisé pour les poireaux ; aucune graisse ni méthode sans ajout n’est définie pour saisir les Saint-Jacques. La ciboulette n’est jamais utilisée et les quatre rectangles de feuilletage n’ont pas de dimensions. Le temps mixte une minute à une minute trente par face n’est pas un minuteur d’une minute ; conserver ces durées sans arrondi arbitraire."
+    }
+  ]
+}

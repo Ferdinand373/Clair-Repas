@@ -268,6 +268,16 @@ P02 publié : `c87dc373c29cae1d6edb9c2ac6191004c69ba52a`, tests `34390827874` et
 
 **Cumul : 691 identifiants examinés, 241 corrigés, 450 bloqués, 862 à examiner.** Prochaine fiche globale `v31n-papillote-fenouil-tofu`, prochaine entrée `v75-chef-ducasse-03`. Zéro erreur éditoriale, 7 281 avertissements, 280 minuteurs et 7 782 contrôles d’ingrédients dans les corrections des lots 02–22. Les 24 commandes du workflow et les contrôles visuels aux trois formats simulés passent. Publication à consigner après contrôle HTTPS.
 
+## Publication du lot 22
+
+`7fceb1938f1a866a415c9bc46a7dab42e61cc2ef` publié sur `main`. Tests `34410662974`, Pages `34410662683` et déploiement `6360273600` réussis. HTTPS 200 et fichiers identiques au commit : index `e7a54b66c5d09cdf76573fb68944ead62ced3ee55e2a9bd3ae420028b4357dca`, service worker `e5a434847cafb5b74306dc247c8772dd829ed195da58986a4612b0a4ec193d66`. Révision chargée après actualisation normale `sha256:3255451bfcaa4979bab37c7844cf9c6a3dcc92ebeb0f864c1aed9bbd8c346b4e`. Oyakodon vérifié en production à deux personnes : 300 g de poulet, 140 g de riz, quatre œufs, 18 cl de bouillon et minuteurs 5/7/2–3 avec borne de trois minutes explicitée. Pochage conservé, aucune donnée effacée.
+
+## Lot 23 — trente et une entrées
+
+[Journal, sources et décisions](recipe-editorial-batch-23.md). 5 corrigées, 1 conforme sans réécriture, 25 réservées. Gésiers, langoustines, champignons, cervelas et pied de cochon clarifiés sans changement de technique ; os à moelle conservé mot pour mot. Huile et œufs distincts de la gribiche vérifiés, secondes sans minuteur arrondi, cuisson insuffisante des morilles signalée explicitement.
+
+**Cumul : 722 identifiants examinés, 246 corrigés, 475 bloqués, 1 conforme sans réécriture, 831 à examiner.** Prochaine fiche globale `v31n-papillote-fenouil-tofu`. Zéro erreur éditoriale, 7 159 avertissements, 292 minuteurs et 8 112 calculs d’ingrédients des lots 02–23. Les 24 commandes du workflow passent ; affichage et mode cuisine contrôlés aux trois formats simulés. Publication à consigner après contrôle HTTPS.
+
 ## Limites des vérifications
 
 Les tests de structure, quantité, minuteurs, stockage simulé et rendu ne sont pas des essais culinaires. Les formats iPhone/PWA sont simulés, sauf mention explicite d’un appareil physique. Le total de fiches à examiner ne doit jamais être remplacé par le nombre de fiches auxquelles le style commun a été appliqué.
