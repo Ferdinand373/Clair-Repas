@@ -7,7 +7,7 @@ import {recipeSource} from './recipe-source.mjs';
 import {recipeHash} from './validate-recipe-editorial.mjs';
 const root=resolve(dirname(fileURLToPath(import.meta.url)),'..');
 const {code,recipes,editorial}=recipeSource(readFileSync(resolve(root,'index.html'),'utf8'));
-const batchNumbers=['02','03','04','05','06'];
+const batchNumbers=['02','03','04','05','06','07'];
 const fixture={recipes:batchNumbers.flatMap(number=>JSON.parse(readFileSync(resolve(root,`scripts/recipe-editorial-batch-${number}.fixture.json`),'utf8')).recipes)};
 const slice=(a,b)=>code.slice(code.indexOf(a),code.indexOf(b,code.indexOf(a)+a.length));
 const context={window:{},$:()=>({value:'8'}),MEAL_TYPES:['mid','eve'],recipeRole:r=>r.role||r.course||'dish',isFavorite:()=>false,recipeFeedbackHTML:()=>'',recipePersonalNoteHTML:()=>''};
@@ -37,7 +37,12 @@ const timers={
   d012:[[],[],[]],d013:[[],[],[5]],d014:[[],[],[]],d015:[[],[],[]],d016:[[],[],[]],
   d017:[[],[10],[]],d019:[[],[],[]],d020:[[],[],[]],d021:[[],[],[]],d022:[[],[],[]],
   d023:[[],[],[]],d024:[[],[10],[],[]],d025:[[],[],[]],d026:[[],[],[28]],
-  d027:[[],[],[22]],d029:[[],[15],[3]],d031:[[],[],[12]]
+  d027:[[],[],[22]],d029:[[],[15],[3]],d031:[[],[],[12]],
+  a001:[[],[],[]],a002:[[],[],[]],a004:[[],[],[5]],a005:[[],[],[]],
+  a006:[[],[],[]],a007:[[],[],[10]],a009:[[],[],[]],a010:[[],[],[]],
+  a011:[[20],[],[]],a012:[[22],[],[10]],a013:[[],[],[]],a014:[[],[],[]],
+  a015:[[],[],[]],a016:[[],[],[]],a017:[[],[9],[12],[],[]],
+  a020:[[],[],[]],a021:[[],[],[]],a025:[[],[],[]],a026:[[9],[],[]],a029:[[],[],[],[25]]
 };
 const ingredients={
   n01:['poulet','pommes de terre','paprika','huile','sel.*poivre'],
@@ -98,9 +103,27 @@ const ingredients={
   d023:['clémentines','grenade','menthe'],d024:['rhubarbe','fraises','sucre','eau'],
   d025:['ananas','mangue','banane','citron vert'],d026:['pommes','miel','cannelle','eau'],
   d027:['poires','miel','vanille','eau'],d029:['abricots','amandes effilées','miel','eau'],
-  d031:['bananes','chocolat noir','noix de coco']
+  d031:['bananes','chocolat noir','noix de coco'],
+  a001:['tomates','échalote','basilic','huile d’olive','vinaigre balsamique','sel.*poivre'],
+  a002:['concombre','yaourt nature','citron','menthe','sel.*poivre'],
+  a004:['carottes','orange','cumin','huile d’olive','sel.*poivre'],
+  a005:['betteraves cuites','pomme','noix','vinaigre de cidre','huile de noix','sel.*poivre'],
+  a006:['céleri-rave','moutarde','fromage blanc','citron','persil','poivre'],
+  a007:['chou rouge','pomme','vinaigre de cidre','huile','miel'],
+  a009:['fenouil','orange','olives','huile d’olive','sel.*poivre'],
+  a010:['courgette','parmesan','citron','huile d’olive','sel.*poivre'],
+  a011:['poivrons','ail','persil','huile d’olive','sel.*poivre'],
+  a012:['aubergine','citron','ail','menthe','huile d’olive'],
+  a013:['chou-fleur','tomates','concombre','citron','persil et la menthe'],
+  a014:['melon','jambon cru','poivrer','basilic'],a015:['pastèque','feta','menthe','citron'],
+  a016:['tomates','pêches','mozzarella','basilic','huile d’olive','poivre'],
+  a017:['asperges','œufs','moutarde','vinaigre','huile'],
+  a020:['avocat','crevettes déjà cuites','citron','fromage blanc','ciboulette','poivrer'],
+  a021:['pamplemousse','avocat','crevettes déjà cuites','huile d’olive','poivrer'],
+  a025:['maquereau fumé','pomme','citron','fromage blanc','aneth'],
+  a026:['œufs','moutarde','fromage blanc','ciboulette'],a029:['courgette','œufs','lait','parmesan','basilic']
 };
-assert.equal(fixture.recipes.length,155);
+assert.equal(fixture.recipes.length,185);
 let quantityChecks=0,timerCount=0;
 for(const record of fixture.recipes){
   const recipe=recipes.find(r=>r.id===record.id);
@@ -156,6 +179,20 @@ assert.match(recipes.find(r=>r.id==='d024').t,/refroidissement/);
 assert.match(recipes.find(r=>r.id==='d024').p[2],/sans remettre sur le feu/);
 assert.match(recipes.find(r=>r.id==='d029').p[2],/toutes les amandes.*3 minutes/);
 assert.match(recipes.find(r=>r.id==='d031').p[0],/sans percer la peau du dessous/);
+const restoredSeasonings={a001:'sel et poivre',a002:'sel et poivre',a004:'sel et poivre',a005:'sel et poivre',a006:'poivre',a009:'sel et poivre',a010:'sel et poivre',a011:'sel et poivre',a016:'poivre',a020:'poivre',a021:'poivre'};
+for(const [id,n] of Object.entries(restoredSeasonings)){
+  assert.deepEqual(recipes.find(r=>r.id===id).i.at(-1),{q:null,u:'',n,k:n});
+  const before=fixture.recipes.find(r=>r.id===id).beforeSteps.join(' ');
+  assert.match(before,/poivr/i,id+' seasoning explicitly in the source');
+  if(n==='sel et poivre')assert.match(before,/\bsel\b|saler/i);
+}
+assert.match(recipes.find(r=>r.id==='a012').p[0],/Garder toute l’huile pour la marinade/);
+assert.match(recipes.find(r=>r.id==='a012').p[1],/Pendant cette cuisson/);
+assert.match(recipes.find(r=>r.id==='a017').p[2],/En parallèle/);
+assert.match(recipes.find(r=>r.id==='a017').p[3],/Pendant les cuissons/);
+assert.doesNotMatch(recipes.find(r=>r.id==='a029').p.join(' '),/deux ramequins/);
+assert.match(recipes.find(r=>r.id==='a029').p[3],/71 °C/);
+for(const id of ['a023','a030'])assert.equal(recipes.find(r=>r.id===id).role,'terrine');
 const corrected=fixture.recipes.filter(r=>r.status==='corrected').length;
 console.log(`✓ Batches ${batchNumbers.join('/')}: ${fixture.recipes.length} individual review records, ${corrected} corrected, ${fixture.recipes.length-corrected} blocked with original content preserved; ${timerCount} manually checked timers`);
 console.log(`✓ ${quantityChecks} ingredient checks at 1/2/3/4/5/8 people; split parmesan quantities, per-face timing and original cooking techniques`);

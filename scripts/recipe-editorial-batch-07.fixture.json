@@ -1,0 +1,346 @@
+{
+  "baselineCommit": "f6f6b236cc11389e9735b2a6e6d2015cc77513d9",
+  "batch": "07",
+  "recipes": [
+    {
+      "id": "a001",
+      "status": "corrected",
+      "sourceHash": "f99605ee0246a458a22f9bd1f71e065dc0573cf6445ac4a96098173ce5861cf9",
+      "reviewedHash": "92664c38e6e2050e636ade3065c04dc402b99e3e481b19eb8b9566087489e0ee",
+      "protectedRecipeSha256": "46f0138bd3aed7ad54443ee75f65da8df9d8bfdb928bf6cfce8ae1fdbeafa563",
+      "beforeSteps": [
+        "Couper les tomates en quartiers et émincer très finement l’échalote.",
+        "Assaisonner avec l’huile, le vinaigre, le sel et le poivre.",
+        "Ajouter le basilic juste avant de servir."
+      ],
+      "note": "Sel et poivre rétablis depuis la préparation et les archives, sans dose inventée. Quartiers, échalote et assaisonnement explicités."
+    },
+    {
+      "id": "a002",
+      "status": "corrected",
+      "sourceHash": "0790eafcb3ea5b33c0954e05ae955713914ae44482958baa4efb508bb6b46f8b",
+      "reviewedHash": "c42edf351b4359b69d36b1513b791084747c1348f445771130fe784d417ebd7b",
+      "protectedRecipeSha256": "f26db60a49f913d54d79bc9de884a5456b45ffabd55eced873eb59e977df931d",
+      "beforeSteps": [
+        "Émincer finement le concombre et le saler très légèrement.",
+        "Mélanger le yaourt avec le citron, la menthe et du poivre.",
+        "Enrober le concombre et servir bien frais."
+      ],
+      "note": "Salage léger conservé ; aucun dégorgement ou temps de repos ajouté. Sel et poivre déjà demandés rétablis dans les ingrédients."
+    },
+    {
+      "id": "a003",
+      "status": "blocked",
+      "sourceHash": "870564c76fea48b5ebc1b82fe9393ae29dd8ccf7e31b31754138be8880b0274d",
+      "reviewedHash": "870564c76fea48b5ebc1b82fe9393ae29dd8ccf7e31b31754138be8880b0274d",
+      "protectedRecipeSha256": "c26a358a52389f198e1ddd92903d31a42f76e4d8223779fa41d605162d0cd384",
+      "note": "le pain doit être grillé alors que la fiche est classée « Sans cuisson ». Confirmer s’il est déjà grillé ou préciser l’appareil et la conduite ; la source ne tranche pas."
+    },
+    {
+      "id": "a004",
+      "status": "corrected",
+      "sourceHash": "40a8769c477ad96320e0a30886d98adf5be0f20290ce4f981cb5ee27ee3f592d",
+      "reviewedHash": "620026882bec7305a6de20d56d927189ff7f0498e04b67f270c855f4b0f818ed",
+      "protectedRecipeSha256": "571ee55d356a201de9ef066f4e65febf26f5f1e5794044415396b15456c27c98",
+      "beforeSteps": [
+        "Râper les carottes.",
+        "Mélanger le jus d’orange, le cumin, l’huile, le sel et le poivre.",
+        "Assaisonner les carottes et laisser reposer 5 minutes."
+      ],
+      "note": "Épluchage et jus d’orange explicités ; cumin et huile dynamiques, sel/poivre de la source rétablis et repos réel de cinq minutes conservé."
+    },
+    {
+      "id": "a005",
+      "status": "corrected",
+      "sourceHash": "5b225e68000c42e12c5ffec3d74c9e5005a7d233e933fe51f91d1c79caef87cf",
+      "reviewedHash": "5abd8e3ea3e0f1a8f95b8afc266b6da6e5a90c473442adbf8ebf8290568836cb",
+      "protectedRecipeSha256": "30f1dad488243f82c89c3b8d97b6a623c11b18c8afc894f60fe26a9c35fadfb8",
+      "beforeSteps": [
+        "Couper les betteraves et la pomme en petits dés.",
+        "Concasser les noix.",
+        "Mélanger avec le vinaigre, l’huile, le sel et le poivre."
+      ],
+      "note": "Betteraves déjà cuites et pomme crue conservées ; noix concassées expliquées. Sel/poivre explicitement présents dans la source rétablis."
+    },
+    {
+      "id": "a006",
+      "status": "corrected",
+      "sourceHash": "038b884f9eb153db9529ed0be69cda5ad1cb6daad005c48ad261405f8429d841",
+      "reviewedHash": "a56ed6c24a82cafdbbe42424184ef0f7c8904636bff9af1e1af014ab29d26a79",
+      "protectedRecipeSha256": "91cf8b0bd59d0de1b61e1421124bdc6b720c9f408748eb51d910ff215b2289cd",
+      "beforeSteps": [
+        "Râper le céleri-rave et l’arroser de citron.",
+        "Mélanger la moutarde et le fromage blanc.",
+        "Enrober le céleri de sauce, poivrer et ajouter le persil."
+      ],
+      "note": "Céleri épluché puis citronné dès le râpage ; sauce sans mayonnaise conservée. Seul le poivre présent dans la source est rétabli."
+    },
+    {
+      "id": "a007",
+      "status": "corrected",
+      "sourceHash": "13073e0944826f53a751ad262e99d1f6cdb77cd4735223dfa50ab0e107e2faad",
+      "reviewedHash": "16c27b4c10d185f9e64e78a35893e69769a5388f8e6f13aae5a3d75544e56b58",
+      "protectedRecipeSha256": "e87c805d6761210ce81fbee0b8d287a857910fae4009f8adfc0c9dd8c8bad30f",
+      "beforeSteps": [
+        "Émincer très finement le chou et couper la pomme en bâtonnets.",
+        "Fouetter le vinaigre, l’huile et le miel.",
+        "Mélanger et laisser s’attendrir 10 minutes avant de servir."
+      ],
+      "note": "Chou finement émincé, pomme épépinée ; sauce entière et repos de dix minutes, sans assaisonnement supplémentaire."
+    },
+    {
+      "id": "a008",
+      "status": "blocked",
+      "sourceHash": "9c1217e43eb7657c851f9fbc3ef16173f57fc863c05036b47b4471deb09cf7a6",
+      "reviewedHash": "9c1217e43eb7657c851f9fbc3ef16173f57fc863c05036b47b4471deb09cf7a6",
+      "protectedRecipeSha256": "3876e1cb11571981d3bef2cc3215fd3188b276be0dd390bf9b48c7797db11874",
+      "note": "la sauce demande « une cuillerée d’eau », sans taille de cuillère ni eau dans la liste. La mesure reste à retrouver ; ne pas la convertir arbitrairement en cuillère à soupe."
+    },
+    {
+      "id": "a009",
+      "status": "corrected",
+      "sourceHash": "2966dccd6c64c96565a9c0f464dc9b3bff0af406292e70317bea313726191231",
+      "reviewedHash": "5bd89c9ce8efea2aba61324f551ffbefc52d84b2918e379e79628b67ed3583a7",
+      "protectedRecipeSha256": "f31e88ef0de7a6b851711d931ab917424b9c03211c85efe7043ae1b0b50bbf8b",
+      "beforeSteps": [
+        "Émincer le fenouil le plus finement possible.",
+        "Peler l’orange à vif et récupérer les quartiers.",
+        "Mélanger avec les olives, l’huile, le sel et le poivre."
+      ],
+      "note": "Pelage à vif et segments expliqués ; fenouil cru fin, olives dénoyautées pour le service. Sel/poivre de la source rétablis."
+    },
+    {
+      "id": "a010",
+      "status": "corrected",
+      "sourceHash": "e7f4dfcb450a9dcd496955114e269d4809632423acfcd9a94a95ef4ffe7189cb",
+      "reviewedHash": "72e85d371287bf8866260d3153bd1bfa07c0157d2f7ada711ef38f6fb0b343b6",
+      "protectedRecipeSha256": "a9e4312fe815b37a52674fbce1a444ac10e9e00cdf3df2e3b2b5d496550cdf5b",
+      "beforeSteps": [
+        "Tailler la courgette en rubans avec un économe.",
+        "Assaisonner de citron, d’huile, de sel et de poivre.",
+        "Ajouter les copeaux de parmesan au dernier moment."
+      ],
+      "note": "Rubans crus conservés, citron pressé et parmesan en copeaux au dernier moment ; sel/poivre retrouvés dans la préparation."
+    },
+    {
+      "id": "a011",
+      "status": "corrected",
+      "sourceHash": "765d40cf48b05ae3d5867f9bd5978526d4912e1b4b7329de6f6563569b47b491",
+      "reviewedHash": "d67669f2fef8f4e65bd7961bfcaf36902813a16b0e23a8b6263d0f5b0846092b",
+      "protectedRecipeSha256": "ca819e8089b045d163943337d99736da0a5a051fcca13b6d7a87f3bc83aa2e84",
+      "beforeSteps": [
+        "Griller les poivrons 20 minutes à 220 °C en les retournant.",
+        "Les laisser tiédir, retirer la peau et les couper en lanières.",
+        "Ajouter ail, persil, huile, sel et poivre."
+      ],
+      "note": "Four 220 °C et retournement conservés, peau cloquée et tiédissement explicités ; huile uniquement après cuisson. Sel/poivre d’origine rétablis."
+    },
+    {
+      "id": "a012",
+      "status": "corrected",
+      "sourceHash": "3c2dc58177e88a0d9536f94ec2b0dc2d8868ca280c927bdd9bbaf6d279d88de9",
+      "reviewedHash": "fccaf291bbc263ab02ad3f06f323f340ffb4f39dd090cad28c2c12b14f8d422e",
+      "protectedRecipeSha256": "1d4475dd950b39156b672e7ef16fe9c9d6159ec852fe1eecee5a30824c7d88d2",
+      "beforeSteps": [
+        "Couper l’aubergine en rondelles et cuire 22 minutes à 200 °C.",
+        "Mélanger citron, ail, menthe et huile.",
+        "Verser sur les aubergines tièdes et laisser mariner 10 minutes."
+      ],
+      "note": "Cuisson sèche des rondelles conservée : toute l’huile reste dans la marinade après cuisson. Préparation simultanée et repos dix minutes explicités."
+    },
+    {
+      "id": "a013",
+      "status": "corrected",
+      "sourceHash": "1db96d3dbdfd24845fa79144b1e0cc60d3a78396fe4d33dfef2569afddc0905d",
+      "reviewedHash": "e8ac0851c84f6e8fce4975a90b135d2ee0b07459c2e7d987d032b32cf5902582",
+      "protectedRecipeSha256": "790bfc3646961cdeffd7caf4c6c46f445712066937d7ef7f4570d40738b86b39",
+      "beforeSteps": [
+        "Mixer brièvement le chou-fleur cru pour obtenir une semoule.",
+        "Couper tomate et concombre en petits dés.",
+        "Mélanger avec le citron et les herbes puis réserver au frais."
+      ],
+      "note": "Chou-fleur cru en grains, pas de semoule de blé ; herbes et citron entièrement utilisés, aucune huile ajoutée."
+    },
+    {
+      "id": "a014",
+      "status": "corrected",
+      "sourceHash": "bf680e66f5960f2128279b74340db2490d1c6a7af5b527807860d0174d3d5153",
+      "reviewedHash": "093d48d16e99e2e9d841288f41ec123c376bf0e61cba9f4dd0fe0a9c91fbc8a6",
+      "protectedRecipeSha256": "d0514e0f13468d0fe800849ab7023bfff928a21c99a1fa878e3819568f31d367",
+      "beforeSteps": [
+        "Couper le melon en quartiers ou en billes.",
+        "Disposer le jambon cru sans le tasser.",
+        "Poivrer et ajouter quelques feuilles de basilic."
+      ],
+      "note": "Écorce et graines du melon retirées, jambon cru disposé sans cuisson ; poivre et basilic conservés."
+    },
+    {
+      "id": "a015",
+      "status": "corrected",
+      "sourceHash": "1f7615fc3ecb6eacb220a888817f485a1f5bb53a8c74294d16111eba5d4b3003",
+      "reviewedHash": "0e21ff668d616460a1a673b606f0292ea4729b3070373653544e6102387c4cd2",
+      "protectedRecipeSha256": "862ff27a3c89bf2b580f421410541c7c9602d4551df0db8c3df754980e733853",
+      "beforeSteps": [
+        "Couper la pastèque en cubes et émietter la feta.",
+        "Ajouter la menthe et un filet de citron.",
+        "Mélanger délicatement et servir très frais."
+      ],
+      "note": "Pastèque épépinée et feta émiettée ; jus de citron réparti sur tout le plat, sans huile non prévue."
+    },
+    {
+      "id": "a016",
+      "status": "corrected",
+      "sourceHash": "e7509eb0ff4ef27cb0688b21ae01a377cc11e51a1b4aa5feb2a9999087e09aa6",
+      "reviewedHash": "73e2251c6b4191f30430770dc2541f79da92ed29a6201f562ba7f438462f58bd",
+      "protectedRecipeSha256": "e3eea7268825c0f0df939cef2d3fd3570d40031018dac9888d62b2c8902e346b",
+      "beforeSteps": [
+        "Couper tomates, pêches et mozzarella en quartiers.",
+        "Les alterner dans les assiettes.",
+        "Assaisonner d’huile, de poivre et de basilic."
+      ],
+      "note": "Pêches dénoyautées et mozzarella égouttée ; huile dynamique et poivre retrouvé dans la source, sans vinaigre ajouté."
+    },
+    {
+      "id": "a017",
+      "status": "corrected",
+      "sourceHash": "70e2a3419f252778d5f98d03e3887b65e6d6e94d85c12f22e795547573d2e807",
+      "reviewedHash": "844f2bc7063480a458b0f2f06c4e241c47f1efc6204ff403360a79f53337dc37",
+      "protectedRecipeSha256": "86fedc4bb22b34325db598ceab7485565d79f82ed61e2c8ece92a60bf2f8b6f4",
+      "beforeSteps": [
+        "Cuire l’œuf 9 minutes et les asperges 8 à 12 minutes selon leur taille.",
+        "Écraser le jaune et hacher le blanc.",
+        "Napper les asperges de vinaigrette et parsemer d’œuf."
+      ],
+      "note": "Deux cuissons simultanées séparées et vinaigrette détaillée. Durées originales 9 et 8–12 conservées comme repères, épluchage selon couleur et tendreté étayés par Asperges d’Alsace."
+    },
+    {
+      "id": "a018",
+      "status": "blocked",
+      "sourceHash": "7113056236dc040752a794720817d428de3fad284d38b114c6f3d66bd6957a91",
+      "reviewedHash": "7113056236dc040752a794720817d428de3fad284d38b114c6f3d66bd6957a91",
+      "protectedRecipeSha256": "45e09e31878b344a1db241115c62f1e25235352654e7297f24417f22aae5cd09",
+      "note": "l’état des petits pois et leur poids écossé ne sont pas précisés. Les cinq minutes d’origine ne valent pas pour tous les produits ; le sel de l’eau est également absent de la liste."
+    },
+    {
+      "id": "a019",
+      "status": "blocked",
+      "sourceHash": "29121d3dacd9df2271e5e0b7ed31eb01737f5e25f8675806df65decc0620e855",
+      "reviewedHash": "29121d3dacd9df2271e5e0b7ed31eb01737f5e25f8675806df65decc0620e855",
+      "protectedRecipeSha256": "0b5ca588b85b3f00e6af0bc3027f27946c2dfd212369de49c6561f67f923771f",
+      "note": "les fonds d’artichauts ne sont pas définis comme frais, surgelés ou déjà cuits. La cuisson n’a ni durée ni conduite, et la vinaigrette ne comporte pas d’huile listée ; ne pas en inventer la dose."
+    },
+    {
+      "id": "a020",
+      "status": "corrected",
+      "sourceHash": "b35729590659edcca64b5c2fba3b9324812278fd1cf2adeb64f73944962dbecb",
+      "reviewedHash": "7dbee4ea508f53e862fc9ea9a9ebb5651ca4d65362cb515789d62c6e15370a49",
+      "protectedRecipeSha256": "e7db243d0d53e67e09177af5c107d16485b3ec8b6175c50cf83cc23baa15ae8d",
+      "beforeSteps": [
+        "Couper l’avocat en dés et arroser de citron.",
+        "Mélanger avec les crevettes, le fromage blanc et la ciboulette.",
+        "Poivrer et servir bien frais."
+      ],
+      "note": "Crevettes déjà cuites conservées ; découpe d’avocat, citron et fromage blanc explicités. Poivre de la préparation rétabli."
+    },
+    {
+      "id": "a021",
+      "status": "corrected",
+      "sourceHash": "9d97c9144a5f3c288f363f616439913b7e18c437f8447eb2eb118c8cfff754af",
+      "reviewedHash": "91c7113e2dd5cf389b2051ad3eaae5338f069b8a092b81e16c00fc650e0aa620",
+      "protectedRecipeSha256": "2d9c3d3264c5d7d06c3f3fc9ddf66c1dfb63b7a43792866de64234c968807269",
+      "beforeSteps": [
+        "Peler le pamplemousse à vif et récupérer les segments.",
+        "Couper l’avocat et ajouter les crevettes.",
+        "Mélanger délicatement avec l’huile et un tour de poivre."
+      ],
+      "note": "Pelage à vif du pamplemousse expliqué, jus recueilli et crevettes cuites conservées. Poivre déjà demandé rétabli sans grammage."
+    },
+    {
+      "id": "a022",
+      "status": "blocked",
+      "sourceHash": "aa3ce9bd494062d7150246f737c8acff22f35a565e3e988ae709f3b6aa4823e5",
+      "reviewedHash": "aa3ce9bd494062d7150246f737c8acff22f35a565e3e988ae709f3b6aa4823e5",
+      "protectedRecipeSha256": "a016283c88b829be338e512a6c916960f697f3e3a7b7f3ee04adc31dab2ef1f1",
+      "note": "« saumon très frais » ne suffit pas à définir un poisson adapté à la consommation crue. Faire confirmer la préparation antiparasitaire par le poissonnier ; le citron ne la remplace pas. Sel et poivre sont aussi absents des ingrédients."
+    },
+    {
+      "id": "a023",
+      "status": "blocked",
+      "sourceHash": "a335b85214ceb66da4ebfc30c848d736e2daa9515f2da8e83d476ec3e802c0c6",
+      "reviewedHash": "a335b85214ceb66da4ebfc30c848d736e2daa9515f2da8e83d476ec3e802c0c6",
+      "protectedRecipeSha256": "ad15508044422b30331c573173503eea286a1c10be78b3eb6297b4dff4a267dc",
+      "note": "la fiche « Sans cuisson » demande du pain grillé sans préciser s’il l’est déjà. Le poivre est absent des ingrédients et le poids égoutté de la boîte de thon n’est pas défini. Le rendement fixe existant reste conservé."
+    },
+    {
+      "id": "a024",
+      "status": "blocked",
+      "sourceHash": "f246be4d72f162d3022b755f294e295e0fe40360b3a93eefc659b9a148cd71f6",
+      "reviewedHash": "f246be4d72f162d3022b755f294e295e0fe40360b3a93eefc659b9a148cd71f6",
+      "protectedRecipeSha256": "8b9daaf772247af8de83dc52766718e0dca2e1b8bd017ff9cd5d31adca01a454",
+      "note": "le pain est demandé grillé dans une fiche « Sans cuisson », sans état initial ni appareil précisé. Le poids égoutté de la boîte de sardines reste aussi à définir."
+    },
+    {
+      "id": "a025",
+      "status": "corrected",
+      "sourceHash": "61a544547e267d525672125c4c396143855db2bc85f83a28cf74f5e83aa48ef2",
+      "reviewedHash": "a1dda9ef503ee46d744daf681cb61ab5abee09de1dcd7f42c07f5c653be28cf4",
+      "protectedRecipeSha256": "e9ced7a4bb896704648c83306c9946cf1cdc7effe6d22f3bb45bc75932089946",
+      "beforeSteps": [
+        "Retirer la peau du maquereau et l’émietter.",
+        "Couper la pomme en petits dés et l’arroser de citron.",
+        "Mélanger avec le fromage blanc et l’aneth."
+      ],
+      "note": "Maquereau fumé conservé sans nouvelle cuisson ; peau/arêtes retirées, pomme citronnée et sauce dynamique."
+    },
+    {
+      "id": "a026",
+      "status": "corrected",
+      "sourceHash": "4a517d6989765754d2eb4cec7784bdc80add610b7d3fc2b3acb6743bc99a1f65",
+      "reviewedHash": "1cb54d7432ab0bb0e2a62713ea7d2cf62dc318f3b312e0816df3d0b1ab960e85",
+      "protectedRecipeSha256": "4b4c0c9a8936d94ec1c647bb1a449033d80137874b8f6c1ce47ea5e20e67487a",
+      "beforeSteps": [
+        "Cuire les œufs 9 minutes, les refroidir puis les écaler.",
+        "Mélanger les jaunes avec la moutarde et le fromage blanc.",
+        "Garnir les blancs et ajouter la ciboulette."
+      ],
+      "note": "Point de départ des neuf minutes précisé ; écalage et répartition de tous les jaunes, fromage blanc/moutarde dynamiques, aucun ajout."
+    },
+    {
+      "id": "a027",
+      "status": "blocked",
+      "sourceHash": "971d7755771221d420c6e5cd8b1c156427a100154809d1257c9d672759794721",
+      "reviewedHash": "971d7755771221d420c6e5cd8b1c156427a100154809d1257c9d672759794721",
+      "protectedRecipeSha256": "1f850ca3a30071ef4e3115a4ddb0425de3b39c98fd90f8c9b90691a4f10ba2ae",
+      "note": "le vinaigre de l’eau de pochage n’est ni listé ni dosé. La conduite pour faire tomber les épinards avec l’ail est également incomplète ; ne pas ajouter une matière grasse ou une dose de vinaigre sans source."
+    },
+    {
+      "id": "a028",
+      "status": "blocked",
+      "sourceHash": "1af31f0e6f168f221f23ebef0b962e9d7e6b5dda51f3000c700efb92dab7bed4",
+      "reviewedHash": "1af31f0e6f168f221f23ebef0b962e9d7e6b5dda51f3000c700efb92dab7bed4",
+      "protectedRecipeSha256": "a1f83854fc159d5e29370c0f29fea82cd478eb88f4fb75bcf99440f415a28ecb",
+      "note": "la matière grasse pour faire revenir échalote et champignons est absente et le persil n’est jamais utilisé. Le nombre de ramequins est figé à deux dans la préparation ; sa répartition reste à corriger après clarification."
+    },
+    {
+      "id": "a029",
+      "status": "corrected",
+      "sourceHash": "48ee22798baf952014276f0a6ede338748f53fc71795e6331564323e2a4e7ed0",
+      "reviewedHash": "0cf0b2520c17eb0c3a81a7cde712affef9db28364db69eb89dd57000bca57725",
+      "protectedRecipeSha256": "a7ad4476bbc80d1891af7c96609cd069e7e7f7769fe968302cdd9a19a28a7294",
+      "beforeSteps": [
+        "Râper la courgette et la presser pour retirer l’eau.",
+        "Mélanger avec les œufs, le lait, le parmesan et le basilic.",
+        "Verser dans deux ramequins et cuire 25 minutes à 180 °C."
+      ],
+      "note": "Courgette pressée sans précuisson ajoutée ; lait/parmesan dynamiques. Ramequins adaptés au volume sans nombre figé, cuisson originale et repère de centre pris."
+    },
+    {
+      "id": "a030",
+      "status": "blocked",
+      "sourceHash": "dd3312d68b298c2596b9075957949b62db90803eda95ef0d9a13e89719d5e64e",
+      "reviewedHash": "dd3312d68b298c2596b9075957949b62db90803eda95ef0d9a13e89719d5e64e",
+      "protectedRecipeSha256": "ac0d1c6048553a0c7eb13dd640c2f89579f8e224b890fb22afd2375cd0bd1045",
+      "note": "la précuisson des légumes à la poêle n’indique ni matière grasse ni conduite. Ne pas remplacer cette étape par une cuisson à l’eau ou inventer une dose d’huile. Le rendement fixe de la terrine reste conservé."
+    }
+  ]
+}

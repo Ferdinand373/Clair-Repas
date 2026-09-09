@@ -108,6 +108,16 @@ P02 publié : `c87dc373c29cae1d6edb9c2ac6191004c69ba52a`, tests `34390827874` et
 6. Après contrôle du diff, actualiser les empreintes de livraison avec le patch produit par `node scripts/release-integrity-patch.mjs` ; appliquer et vérifier ce patch. Ne pas actualiser une empreinte de revue pour faire passer un changement non relu.
 7. Exécuter les validations du workflow, contrôler le navigateur, publier un lot limité et vérifier le commit servi en HTTPS. Consigner les résultats et les nombres cumulés ci-dessous.
 
+## Publication du lot 06
+
+`f6f6b236cc11389e9735b2a6e6d2015cc77513d9` publié sur `main`. Tests `34393535267`, Pages `34393534246` et déploiement `6357372224` réussis. HTTPS 200 et fichiers identiques au commit : index `d8f324b7c044b0498c3c392db2b4550707b2764ed6c8d447d1ad48e0be90bf75`, service worker `acccbdd68d5eca0e8cc9b025f8ea82dda5301a9807a8309474926ea3f1b8efe1`. Révision chargée : `sha256:73ac34f212bc6398378275c517d3274c436192894de87c28c0c843ad43a14ae6`. Fraises au balsamique vérifiées en ligne : dix minutes de repos séparées de la préparation et bon bouton de dix minutes.
+
+## Lot 07 — 30 entrées
+
+[Journal et sources](recipe-editorial-batch-07.md). 20 corrigées et 10 bloquées ; aucune conforme sans modification. Onze assaisonnements déjà demandés dans les anciennes étapes sont rétablis sans grammage inventé. Autres ingrédients, identifiants, portions, appareils et classements inchangés. Les deux rendements fixes du lot restent inchangés.
+
+**Cumul : 200 identifiants examinés, 106 corrigés, 94 bloqués, 1 353 à examiner.** Prochaine entrée : `a031`. Prochaine fiche globale : `gn-boulettes-tomate-basilic`, prochain dessert : `d032`. Zéro erreur éditoriale, 9 256 avertissements ; 85 minuteurs et 2 862 contrôles d’ingrédients dans les lots 02–07, plus les tests du premier lot. Tests existants réussis, lecture téléphone/tablette/ordinateur simulée contrôlée. Publication et vérification HTTPS à consigner après le push.
+
 ## Limites des vérifications
 
 Les tests de structure, quantité, minuteurs, stockage simulé et rendu ne sont pas des essais culinaires. Les formats iPhone/PWA sont simulés, sauf mention explicite d’un appareil physique. Le total de fiches à examiner ne doit jamais être remplacé par le nombre de fiches auxquelles le style commun a été appliqué.
