@@ -238,6 +238,16 @@ P02 publié : `c87dc373c29cae1d6edb9c2ac6191004c69ba52a`, tests `34390827874` et
 
 **Cumul : 601 identifiants examinés, 237 corrigés, 364 bloqués, 952 à examiner.** Les 154 desserts sont désormais examinés : 108 corrigés et 46 bloqués, sans prétendre résoudre les réserves. Prochaine entrée `v75-chef-ducasse-03`, prochaine fiche globale `gn2-saumon-estragon-petits-pois`. Zéro erreur éditoriale et 7 647 avertissements. 268 minuteurs et 7 590 contrôles d’ingrédients dans les corrections des lots 02–19 ; 2 532 rendus réservés du lot 17 conservés. Les 24 commandes du workflow et les contrôles visuels aux trois formats passent. Publication à consigner après vérification en ligne.
 
+## Publication du lot 19
+
+`730f4629c45ecac21b589a45b360d46c2d885722` publié sur `main`. Tests `34407978746`, Pages `34407977433` et déploiement `6359837026` réussis. HTTPS 200 et fichiers identiques au commit : index `124ae1c07e9781b96b3f7330f91e8c5a263e4db7add4c80a7c50c307a4456b7d`, service worker `9d40a68f4700e472ac3ae59d62669831c7e2fc6768953e7a094b57aa3141fa18`. Révision chargée après actualisation normale `sha256:f7b66beff9083df968a144e0120ff7b8529a9c70e0d93a3d206a858997562423`. Café liégeois vérifié en production : quatre boules et deux expressos à deux personnes, unité visible dans l’étape, trois étapes et minuteur de refroidissement des coupes. Aucune donnée effacée.
+
+## Lot 20 — trente plats et variantes
+
+[Journal et décisions](recipe-editorial-batch-20.md). 2 corrigées, 28 réservées, aucune conforme sans modification. Les deux archives confirment les trente préparations finales. Rôti de porc et lentilles au lard précisés sans changement d’ingrédients ni de technique ; réserves individualisées pour sauces répétées, matière grasse non définie, mesures manquantes et cuissons ambiguës.
+
+**Cumul : 631 identifiants examinés, 239 corrigés, 392 bloqués, 922 à examiner.** Prochaine fiche globale `v31n-orzo-tofu`, prochaine entrée `v75-chef-ducasse-03`. Zéro erreur éditoriale, 7 526 avertissements, 274 minuteurs et 7 686 contrôles d’ingrédients dans les corrections des lots 02–20. Les 24 commandes du workflow réussissent ; affichage et défilement contrôlés aux trois formats simulés. Publication à consigner après vérification en ligne.
+
 ## Limites des vérifications
 
 Les tests de structure, quantité, minuteurs, stockage simulé et rendu ne sont pas des essais culinaires. Les formats iPhone/PWA sont simulés, sauf mention explicite d’un appareil physique. Le total de fiches à examiner ne doit jamais être remplacé par le nombre de fiches auxquelles le style commun a été appliqué.

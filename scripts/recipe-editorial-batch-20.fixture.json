@@ -1,0 +1,258 @@
+{
+  "baselineCommit": "730f4629c45ecac21b589a45b360d46c2d885722",
+  "batch": "20",
+  "recipes": [
+    {
+      "id": "gn2-saumon-estragon-petits-pois",
+      "status": "blocked",
+      "sourceHash": "b4065d3a8faf3297ad1f4f6bcd8915d10855f47e78e99fd1466bb2b1aa627806",
+      "reviewedHash": "b4065d3a8faf3297ad1f4f6bcd8915d10855f47e78e99fd1466bb2b1aa627806",
+      "protectedRecipeSha256": "81ea53ac3274d34eb8be548a7ce1a9fdb9984e9874fad08788288ec21eddf04c",
+      "note": "le trait de citron du déglaçage est absent de la liste. Les câpres et le persil sont utilisés avant la sauce puis à nouveau au service sans réserve définie. Les six minutes concernent les petits pois, pas automatiquement les pommes de terre vapeur ; le temps des pommes de terre manque."
+    },
+    {
+      "id": "gn2-poisson-blanc-estragon-petits-pois",
+      "status": "blocked",
+      "sourceHash": "8f9a879d4e4aa83276d7466c69743f7273cbd7469e57cb384a1a9b58c87f594a",
+      "reviewedHash": "8f9a879d4e4aa83276d7466c69743f7273cbd7469e57cb384a1a9b58c87f594a",
+      "protectedRecipeSha256": "8d2699c975885b518202c47f4db2dc86c1647aada17c8b56ab3f4163103a53e7",
+      "note": "une cuisson vive avec finition au pesto est annoncée avant une seconde cuisson à feu moyen. Le pesto citronné est ajouté deux fois puis encore demandé au service, avec un quartier de citron non réservé sur le demi-fruit. Les archives ne définissent pas ces parts ni le temps des pommes de terre vapeur."
+    },
+    {
+      "id": "gn2-veau-estragon-petits-pois",
+      "status": "blocked",
+      "sourceHash": "02759aaa704d91f5936d66d47a709a4e85aafe93d0c18a6649f072e51273835e",
+      "reviewedHash": "02759aaa704d91f5936d66d47a709a4e85aafe93d0c18a6649f072e51273835e",
+      "protectedRecipeSha256": "babb3381af31a1f90929e14b340e255ec470bf397d0baaf3ed09f557284594d4",
+      "note": "l’échalote est caramélisée puis déglacée avant le veau, et cette même opération est répétée ensuite avec la même cuillère de balsamique. Les parts ou le doublon doivent être confirmés. La durée vapeur des pommes de terre n’est pas donnée ; ne pas leur attribuer les six minutes des petits pois."
+    },
+    {
+      "id": "gn2-poulet-toscane-haricots",
+      "status": "blocked",
+      "sourceHash": "932c23f7ee3c3f61552b22f7523529fea8b2b4fa4ea30fb40edae08c451d0f79",
+      "reviewedHash": "932c23f7ee3c3f61552b22f7523529fea8b2b4fa4ea30fb40edae08c451d0f79",
+      "protectedRecipeSha256": "3698ea1e7683a194f32f5e02cf6cdf55a959440b6fc4e00a35fade15dfbe9a95",
+      "note": "le pesto est demandé hors du feu pendant la saisie, répété à l’étape suivante puis encore en touches au dressage, sans partage de la cuillère listée. Les épinards arrivent après cette finition censée ne plus cuire. Le poids égoutté de la boîte de haricots manque ; ne pas inventer un calibre de boîte ni l’ordre des sauces."
+    },
+    {
+      "id": "gn2-dinde-toscane-haricots",
+      "status": "blocked",
+      "sourceHash": "4fd4ff1d1961560822819ae41730c7397582f1397f412ec5a239068d2ccf3148",
+      "reviewedHash": "4fd4ff1d1961560822819ae41730c7397582f1397f412ec5a239068d2ccf3148",
+      "protectedRecipeSha256": "f0d99a271b52c02aad4100d07a907673d9aa8d2e41755dcfe46730cfaadfe500",
+      "note": "tomates et olives sont compotées avant de réunir les éléments, puis les olives et tomates séchées sont de nouveau ajoutées pendant les trois dernières minutes. Cette insertion et les trois minutes des épinards peuvent se chevaucher, mais la source ne le précise pas. Le poids égoutté des haricots est absent."
+    },
+    {
+      "id": "gn2-filet-mignon-toscane-haricots",
+      "status": "blocked",
+      "sourceHash": "6f6ca42a442918d294a22f51561c46e86f6053eeedb99f98482f52b833cfa3bf",
+      "reviewedHash": "6f6ca42a442918d294a22f51561c46e86f6053eeedb99f98482f52b833cfa3bf",
+      "protectedRecipeSha256": "c2778a67242bb19a9ba3181698161e6632220e726e462282df85fcb59e76044e",
+      "note": "tout le coulis est déjà mijoté avec les haricots, mais de la tomate est redemandée avec les olives et l’origan sans réserve. L’origan n’est pas identifié dans les herbes italiennes listées. Les deux séquences de mijotage et le poids égoutté de la boîte doivent être confirmés."
+    },
+    {
+      "id": "gn2-saumon-toscane-haricots",
+      "status": "blocked",
+      "sourceHash": "35cc8faf63257d04c380e33d540abdae5f3ebac5f8e1e7e21e070aefef4a5b48",
+      "reviewedHash": "35cc8faf63257d04c380e33d540abdae5f3ebac5f8e1e7e21e070aefef4a5b48",
+      "protectedRecipeSha256": "17fbb370c1c683095600295ebb7145827437da4e67c2b769ca9e586b24415b76",
+      "note": "le citron de déglaçage manque à la liste. Câpres et persil sont ajoutés avant les épinards puis répétés au dressage, sans part réservée. La boîte de haricots n’a pas de poids égoutté ; ne pas ajouter un agrume ou une quantité de conserve supposés."
+    },
+    {
+      "id": "gn2-poisson-blanc-toscane-haricots",
+      "status": "blocked",
+      "sourceHash": "af7df17ab171b1377793589844d98e97159cc4458b1e180d9bb0222ddf412137",
+      "reviewedHash": "af7df17ab171b1377793589844d98e97159cc4458b1e180d9bb0222ddf412137",
+      "protectedRecipeSha256": "daed4bbbcd35f7db4c2be91910919833812b8477c76d5ac397b33c166598ed1b",
+      "note": "le texte alterne feu vif et feu moyen et répète l’ajout de pesto citronné, avant de demander encore du pesto et un quartier de citron au service. Les parts de l’unique cuillère de pesto et du demi-citron ne sont pas fixées. La cuisson des épinards après la finition hors du feu doit être organisée."
+    },
+    {
+      "id": "gn2-saucisses-toscane-haricots",
+      "status": "blocked",
+      "sourceHash": "9f394e1ee6a63c14b64fd8ac75d94ee662afa29808d5a7735a9335716252fbe4",
+      "reviewedHash": "9f394e1ee6a63c14b64fd8ac75d94ee662afa29808d5a7735a9335716252fbe4",
+      "protectedRecipeSha256": "d3336bdf1838a595427562080ad4b22b4494024f7b3107565f09de602affcdee",
+      "note": "les deux gousses sont listées comme ail ordinaire mais doivent être écrasées rôties : aucun procédé, temps ou appareil de rôtissage n’est donné. Ne pas utiliser de l’ail cru à la place. Les herbes du jus et de finition ne sont pas distinguées et le poids égoutté des haricots manque."
+    },
+    {
+      "id": "gn2-boulettes-toscane-haricots",
+      "status": "blocked",
+      "sourceHash": "ecf5a326bee3645785148d9f81afe6557996005422f79a8d1e8000ee25ca668e",
+      "reviewedHash": "ecf5a326bee3645785148d9f81afe6557996005422f79a8d1e8000ee25ca668e",
+      "protectedRecipeSha256": "dd854a28c7b4732c2d5d7ac8406681d1497f9343431985963b398956f60885f1",
+      "note": "l’échalote et la seule cuillère de balsamique servent deux fois à la même opération, avant puis après les boulettes. La source ne tranche pas doublon ou partage. Le poids égoutté des haricots et le contrôle de cuisson de la viande hachée restent à préciser."
+    },
+    {
+      "id": "gn2-tofu-toscane-haricots",
+      "status": "blocked",
+      "sourceHash": "bb8c67f16cb7b3da80d3fa77f18c5ba174eb02b54b59fb56b8b9ab0de79cbad4",
+      "reviewedHash": "bb8c67f16cb7b3da80d3fa77f18c5ba174eb02b54b59fb56b8b9ab0de79cbad4",
+      "protectedRecipeSha256": "2bb408c4a7fcbd1e878cf656da8d347f71dad4dac50401ac19060b2b47a97dcc",
+      "note": "la cuillère de pesto est incorporée hors du feu deux fois sans partage. Les noix sont également ajoutées puis répétées au service. Les épinards sont cuits après l’arrêt censé préserver le pesto ; la boîte de haricots n’a pas de poids égoutté. Ne pas supprimer l’une des étapes par supposition."
+    },
+    {
+      "id": "v31n-donburi-poulet",
+      "status": "blocked",
+      "sourceHash": "3cd4184ce14760f6a9fb1c5c2202775b84fdb8efccaf15633926889a72e648b9",
+      "reviewedHash": "3cd4184ce14760f6a9fb1c5c2202775b84fdb8efccaf15633926889a72e648b9",
+      "protectedRecipeSha256": "f3b24a8402adeba78f3676219e1a99748e910a43c4882d2940999f331b920b12",
+      "note": "la cuisson couverte des pommes de terre utilise un fond d’eau absent de la liste et non quantifié. La matière grasse ou la méthode sans matière grasse pour dorer le poulet puis faire sauter les pommes et champignons n’est pas définie. Ne pas remplacer ces sautés par une cuisson dans la crème ou le cidre."
+    },
+    {
+      "id": "v31n-donburi-dinde",
+      "status": "corrected",
+      "sourceHash": "3e04112d997da311b37bb8b522a583ce9d78fd0e710bf0a653b6f21e15591dd3",
+      "reviewedHash": "db03e6b18a5641803bbbfcf4315e3345732aa81edcf72df8291c1902a7d11c0c",
+      "protectedRecipeSha256": "d1ca350ac69525e20c644e3f752aa417763a22ca7acbbbc6d0b3fe42949d8d21",
+      "beforeSteps": [
+        "Préchauffer le four à 190 °C et déposer le rôti dans un plat avec l’oignon émincé.",
+        "Répartir autour les carottes en bâtonnets, les pommes de terre, les pruneaux et le thym, puis verser le bouillon.",
+        "Cuire 40 minutes en arrosant deux fois le rôti avec le jus du plat.",
+        "Badigeonner les carottes de miel, poursuivre 8 minutes et laisser reposer la viande 5 minutes avant de trancher."
+      ],
+      "note": "Identifiant historique conservé malgré le nom ancien de donburi : la recette finale est bien un rôti de porc de 500 g. Légumes et pruneaux cuisent autour du rôti dans le bouillon ; tout le miel glace les carottes. Four, deux phases et repos de cinq minutes conservés, contrôle à cœur sourcé ajouté."
+    },
+    {
+      "id": "v31n-donburi-filet-mignon",
+      "status": "blocked",
+      "sourceHash": "e2b2e8239dec89c417609796143f3291bd5f45e3dd4c44f6a7eb7cb0e77827d3",
+      "reviewedHash": "e2b2e8239dec89c417609796143f3291bd5f45e3dd4c44f6a7eb7cb0e77827d3",
+      "protectedRecipeSha256": "d7f5e7da98f194593045821b44cd748db22900a8026bcde818f4fb8dd6b8317c",
+      "note": "le veau fariné doit colorer en cocotte sans matière grasse listée ni méthode alternative expliquée. Le morceau vendu comme veau à mijoter n’est pas précisé : vingt-cinq minutes ne garantissent pas son attendrissement. Ne pas remplacer la viande par de l’escalope pour justifier le temps express."
+    },
+    {
+      "id": "v31n-donburi-cotes-porc",
+      "status": "blocked",
+      "sourceHash": "f9d0b62bc01bf3f7ca13b649fa4f183465b3866e2f33b0d9d7c266250f24f1a4",
+      "reviewedHash": "f9d0b62bc01bf3f7ca13b649fa4f183465b3866e2f33b0d9d7c266250f24f1a4",
+      "protectedRecipeSha256": "c96deb685dc87e4308f60d5abfb113a51217d5770b338bf12f2078dec969f7f7",
+      "note": "la matière grasse ou la méthode sans ajout pour saisir l’onglet et faire fondre les échalotes n’est pas indiquée ; aucun beurre ni huile n’est listé. Le gratin et la sauce utilisent bien des liquides distincts, à conserver. Le repos de la viande n’est pas mesuré et sa cuisson à cœur reste à préciser."
+    },
+    {
+      "id": "v31n-donburi-boeuf",
+      "status": "blocked",
+      "sourceHash": "63c7668cc0e25f4ab9248df99173da03c5ff9702a337fbb668a2084df90fa08a",
+      "reviewedHash": "63c7668cc0e25f4ab9248df99173da03c5ff9702a337fbb668a2084df90fa08a",
+      "protectedRecipeSha256": "d116aaaef0850ee76d142f5686982be6ac868e872525fa593e9575cf88595b8d",
+      "note": "la liaison demande une louche de bouillon sans volume précis. Le bouillon est prélevé puis reversé, pas ajouté, mais son volume de liaison ne peut pas être rendu comme une quantité concrète à partir des 50 cl sans inventer une fraction. Préciser cette mesure et le contrôle de cuisson du poulet ; conserver le pochage."
+    },
+    {
+      "id": "v31n-donburi-saumon",
+      "status": "blocked",
+      "sourceHash": "9e24867178f5578ccf30a461e7df73aebe31eaac486920e851a1fc59e83514be",
+      "reviewedHash": "9e24867178f5578ccf30a461e7df73aebe31eaac486920e851a1fc59e83514be",
+      "protectedRecipeSha256": "8d2d72936e33e21acce5bc35887b3785c6882f0561c1a5062daff70352362c85",
+      "note": "la matière grasse de coloration n’est pas définie et le morceau d’agneau ne permet pas de confirmer ce mijotage court. Les petits pois doivent entrer pendant les quatre dernières minutes des quinze, pas après. Préserver ces durées relatives, sans ajouter quatre minutes ni inventer un morceau tendre."
+    },
+    {
+      "id": "v31n-donburi-poisson-blanc",
+      "status": "blocked",
+      "sourceHash": "1e2b0aee7a026efe83a7ed8cedb0417133663973ab7128af526699db92d22b5e",
+      "reviewedHash": "1e2b0aee7a026efe83a7ed8cedb0417133663973ab7128af526699db92d22b5e",
+      "protectedRecipeSha256": "631cf6565b572700e8385b9840da325eac24d49b52cc1af8acbfcaf1e1bbb845",
+      "note": "les paupiettes et les légumes doivent dorer puis revenir sans matière grasse ni procédé sans ajout indiqué. La farce des paupiettes n’est pas précisée pour définir le contrôle à cœur ; le calibre et la durée vapeur des pommes de terre manquent. Ne pas supposer une farce déjà cuite."
+    },
+    {
+      "id": "v31n-donburi-crevettes",
+      "status": "blocked",
+      "sourceHash": "e9ad98c849c42b3af8b286e19279bcf8ccba1df317cad708a582d80305c0e910",
+      "reviewedHash": "e9ad98c849c42b3af8b286e19279bcf8ccba1df317cad708a582d80305c0e910",
+      "protectedRecipeSha256": "c0c49c66dfe11f92f8b8b4c440173fbf88f98bb215abf4d97c622a09a0536c93",
+      "note": "une petite louche d’eau des pâtes est réservée mais jamais utilisée ; son rôle éventuel dans la sauce n’est pas donné. La matière grasse pour dorer poulet, échalote et champignons manque aussi. Les pâtes doivent renvoyer au paquet, sans déplacer arbitrairement l’eau réservée dans la crème."
+    },
+    {
+      "id": "v31n-donburi-boulettes",
+      "status": "blocked",
+      "sourceHash": "6cbf4cd3b3935fa9dcca70be4c739e22a407c2d07b7b39d54c3702e53505fe96",
+      "reviewedHash": "6cbf4cd3b3935fa9dcca70be4c739e22a407c2d07b7b39d54c3702e53505fe96",
+      "protectedRecipeSha256": "7243ab533c71b1e3d4ae13461d2a8635716458a92ac10e6eadf381ccce69fedb",
+      "note": "le lait et tout le beurre entrent dans la purée mais l’oignon doit ensuite revenir sans matière grasse définie. L’assaisonnement demandé n’est pas listé. La source place les carottes dans la purée, pas avec la viande : conserver cette technique et ne pas y déplacer les légumes."
+    },
+    {
+      "id": "v31n-donburi-tofu",
+      "status": "blocked",
+      "sourceHash": "b18a5bcfae7725b21fe9bec7b5f0719899abffac4de2892031d393980838d4b1",
+      "reviewedHash": "b18a5bcfae7725b21fe9bec7b5f0719899abffac4de2892031d393980838d4b1",
+      "protectedRecipeSha256": "84a25cdfeff44dc84a4fc5187ad36bba29ebe7ffd0f0b141d71a9d1f8067b050",
+      "note": "les échalotes doivent fondre sans graisse précisée ; les 40 g de beurre sont déjà destinés à la purée. Le canard est listé confit et effiloché, sans quantité de graisse disponible. Ne pas déduire une réserve de graisse du canard ni déplacer une part du beurre arbitrairement."
+    },
+    {
+      "id": "v31n-orzo-poulet",
+      "status": "blocked",
+      "sourceHash": "0689c980cd79a76d65cf1d31cd759fcea711b0e59b4b5812924747bec8073fbe",
+      "reviewedHash": "0689c980cd79a76d65cf1d31cd759fcea711b0e59b4b5812924747bec8073fbe",
+      "protectedRecipeSha256": "a01bb818c2cf5e516b9879d5347e874ab7ac721c5b74cc1cf53310c2242bf1d9",
+      "note": "les saucisses fumées ne sont pas précisées déjà cuites ou à cuire, ce qui change le contrôle du réchauffage. L’huile et le poivre sont listés mais jamais utilisés dans les étapes ; leur emploi doit être confirmé. Ne pas choisir un type de saucisse ni répartir l’huile entre les deux poêlées à la place de la source."
+    },
+    {
+      "id": "v31n-orzo-dinde",
+      "status": "blocked",
+      "sourceHash": "d1c778f0f34c333d53bac9310efff8dae7a59dcaeb626a740a8ac9107fde757d",
+      "reviewedHash": "d1c778f0f34c333d53bac9310efff8dae7a59dcaeb626a740a8ac9107fde757d",
+      "protectedRecipeSha256": "d8e59c1af85a68693c41ef10d8cfd6a01129d5f2ed24887191c0ea0745990783",
+      "note": "tout le beurre est utilisé dans la purée, tandis que jambon puis champignons sont saisis sans graisse ni méthode sans ajout décrite. La cuisson des pommes de terre et des champignons manque de durée et de repère. Ne pas ponctionner le beurre de purée pour compléter la poêle."
+    },
+    {
+      "id": "v31n-orzo-filet-mignon",
+      "status": "blocked",
+      "sourceHash": "a23b5b57f6a23cf4190c5d3cd834cf90e33844992218b89ff009bfc6f3c916a0",
+      "reviewedHash": "a23b5b57f6a23cf4190c5d3cd834cf90e33844992218b89ff009bfc6f3c916a0",
+      "protectedRecipeSha256": "2601f208f6e9e5a8b84e9e282d2a36162ef78c8ef53cdc851d2532cd74833f51",
+      "note": "le poulet puis les légumes sont dorés sans matière grasse listée et sans indication de peau ou de graisse rendue à réutiliser. Ne pas remplacer la coloration par un pochage dans le bouillon. La durée vapeur des pommes de terre et le contrôle à cœur du poulet restent à préciser."
+    },
+    {
+      "id": "v31n-orzo-cotes-porc",
+      "status": "blocked",
+      "sourceHash": "4d4e4972ddf0972c04209916949fbf51d53c1ddf1acd91777e95fc3b9df2c4c3",
+      "reviewedHash": "4d4e4972ddf0972c04209916949fbf51d53c1ddf1acd91777e95fc3b9df2c4c3",
+      "protectedRecipeSha256": "846dd47da956ac26d73ec2f1b7ae9e5022ff6bdb37f6dc0791820ae5a91250d6",
+      "note": "le persil listé n’est jamais employé. La matière grasse ou la méthode sans ajout pour les médaillons et échalotes n’est pas définie ; aucune durée des légumes vapeur n’est donnée. Les archives ne fixent pas le rôle du persil ni le partage d’une éventuelle graisse."
+    },
+    {
+      "id": "v31n-orzo-boeuf",
+      "status": "blocked",
+      "sourceHash": "e2cb16e5bb5e08e1b57e537bfcedae1deec56dc4072362c851b49f411cc4a52d",
+      "reviewedHash": "e2cb16e5bb5e08e1b57e537bfcedae1deec56dc4072362c851b49f411cc4a52d",
+      "protectedRecipeSha256": "d8e90c7ff4b68c4377f6eb1af5b9d0e4dfab355175ee434a7ff6f92c74ca8cf1",
+      "note": "la précuisson de douze minutes des grenailles n’indique ni eau, ni vapeur, ni taille des pommes de terre. L’huile est listée sans usage décrit entre les grenailles et la saisie du bœuf. Ne pas inventer une précuisson ou déplacer les ingrédients pour rendre les trente minutes plausibles."
+    },
+    {
+      "id": "v31n-orzo-saumon",
+      "status": "blocked",
+      "sourceHash": "287fbee3da174b97dfbd846e509fd81b7239fc0917904a592085700c15e2ca25",
+      "reviewedHash": "287fbee3da174b97dfbd846e509fd81b7239fc0917904a592085700c15e2ca25",
+      "protectedRecipeSha256": "3617a49dc0e8d1ce060ba9066b609c9659a652ce6dedd14204d978f800f0ad44",
+      "note": "le poulet est doré puis poireaux et pomme doivent fondre sans matière grasse définie. Le cidre est ajouté après ces opérations, pas pour les remplacer. Le riz n’a pas de renvoi au paquet et le contrôle de cuisson du poulet reste à préciser. Ne pas transformer cette saisie en cuisson directement dans le cidre."
+    },
+    {
+      "id": "v31n-orzo-poisson-blanc",
+      "status": "corrected",
+      "sourceHash": "d44216ed2aab60399b818a2813fd7ac9dac1c257dc6b1e51d7dc4213ff97e0f2",
+      "reviewedHash": "51ba1060cde366c2535bb7d3cb36e67f5743ef18ef07f2bb5860ae5b04598f16",
+      "protectedRecipeSha256": "d8d605168c4c83f41f0ec4afe7101c8540cbfb34cc9c354165a1ff1980fb4890",
+      "beforeSteps": [
+        "Rincer les lentilles et couper le lard en gros lardons.",
+        "Faire revenir lard et oignon 5 minutes, ajouter carottes, poireau, lentilles et laurier.",
+        "Verser le bouillon et laisser frémir 30 minutes à découvert.",
+        "Vérifier la cuisson des lentilles, incorporer la moutarde et laisser reposer 5 minutes avant de servir."
+      ],
+      "note": "Lard et oignon revenus ensemble, lentilles au bouillon à découvert puis repos conservés. Tous les légumes sont nettoyés et coupés ; moutarde ajoutée à la fin et laurier retiré au service. Durée des lentilles indicative selon le paquet et la tendreté, sans import d’un volume d’eau d’une autre recette."
+    },
+    {
+      "id": "v31n-orzo-crevettes",
+      "status": "blocked",
+      "sourceHash": "7ce14c76ff8e66034a02f2289d24dad5bdda03e5ad7a79e3f2c331184224fa7a",
+      "reviewedHash": "7ce14c76ff8e66034a02f2289d24dad5bdda03e5ad7a79e3f2c331184224fa7a",
+      "protectedRecipeSha256": "9ac67eb30e19116cfe9792710e9e1165fa7eca8f83362eed64252129393aa675",
+      "note": "la matière grasse de saisie du veau et de l’échalote n’est pas définie ; aucun beurre ni huile n’est listé. Le riz et les petits pois n’ont ni méthode détaillée ni durée. Le citron est listé entier et ses zeste et jus ont bien un usage : ne pas ajouter un autre agrume pour résoudre les lacunes de cuisson."
+    },
+    {
+      "id": "v31n-orzo-boulettes",
+      "status": "blocked",
+      "sourceHash": "aba51c08174107c458575dbec5d4f20c159e9e02055207bcb2cc0dc42983cbd1",
+      "reviewedHash": "aba51c08174107c458575dbec5d4f20c159e9e02055207bcb2cc0dc42983cbd1",
+      "protectedRecipeSha256": "9831061fb53bc920111133b33953136e0dd01ced82659fce56f304a0172f2037",
+      "note": "le poulet doit être frotté avec ail et citron entiers sans expliquer s’ils sont coupés, pressés ou râpés. L’écrasé reçoit ensuite un peu de jus de rôti sans quantité concrète. Le jus clair ne suffit pas à garantir la cuisson de la volaille. Confirmer ces gestes et la part de jus ; conserver le beurre réservé aux pommes de terre."
+    }
+  ]
+}

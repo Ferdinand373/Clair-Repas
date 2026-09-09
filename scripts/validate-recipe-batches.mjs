@@ -7,7 +7,7 @@ import {recipeSource} from './recipe-source.mjs';
 import {recipeHash} from './validate-recipe-editorial.mjs';
 const root=resolve(dirname(fileURLToPath(import.meta.url)),'..');
 const {code,recipes,editorial}=recipeSource(readFileSync(resolve(root,'index.html'),'utf8'));
-const batchNumbers=['02','03','04','05','06','07','08','09','10','11','12','13','14','15','16','17','18','19'];
+const batchNumbers=['02','03','04','05','06','07','08','09','10','11','12','13','14','15','16','17','18','19','20'];
 const fixture={recipes:batchNumbers.flatMap(number=>JSON.parse(readFileSync(resolve(root,`scripts/recipe-editorial-batch-${number}.fixture.json`),'utf8')).recipes)};
 const slice=(a,b)=>code.slice(code.indexOf(a),code.indexOf(b,code.indexOf(a)+a.length));
 const context={window:{},$:()=>({value:'8'}),MEAL_TYPES:['mid','eve'],recipeRole:r=>r.role||r.course||'dish',isFavorite:()=>false,recipeFeedbackHTML:()=>'',recipePersonalNoteHTML:()=>''};
@@ -100,7 +100,9 @@ const timers={
   'bistrot-ext-36':[[2],[1],[],[]],
   'bistrot-ext-38':[[],[4],[],[],[16]],
   'bourgeois-32':[[],[],[],[],[],[14]],
-  'bourgeois-36':[[],[],[1],[],[],[12]]
+  'bourgeois-36':[[],[],[1],[],[],[12]],
+  'v31n-donburi-dinde':[[],[],[40],[8],[5]],
+  'v31n-orzo-poisson-blanc':[[],[5],[30],[5]]
 };
 const ingredients={
   n01:['poulet','pommes de terre','paprika','huile','sel.*poivre'],
@@ -294,9 +296,11 @@ const ingredients={
   'bistrot-ext-36':['glace vanille','chocolat','crème liquide','crème entière','sucre glace','amandes effilées'],
   'bistrot-ext-38':['beurre','farine','lait','œufs','sucre','Grand Marnier','orange','sucre pour les moules'],
   'bourgeois-32':['chocolat','beurre','farine','lait','œufs','sucre','beurre prévu pour les moules','sucre pour les moules'],
-  'bourgeois-36':['crêpes','œufs','sucre','oranges','fécule de maïs','lait','beurre','Grand Marnier']
+  'bourgeois-36':['crêpes','œufs','sucre','oranges','fécule de maïs','lait','beurre','Grand Marnier'],
+  'v31n-donburi-dinde':['rôti de porc','pruneaux','carottes','pommes de terre','oignon','bouillon','miel','thym'],
+  'v31n-orzo-poisson-blanc':['lentilles vertes','lard fumé','carottes','oignon','poireau','bouillon','laurier','moutarde']
 };
-assert.equal(fixture.recipes.length,586);
+assert.equal(fixture.recipes.length,616);
 let quantityChecks=0,timerCount=0;
 for(const record of fixture.recipes){
   const recipe=recipes.find(r=>r.id===record.id);
@@ -601,6 +605,25 @@ assert.match(editorial['v75-chef-piege-05'].reviewNote,/œufs entiers.*crème an
 assert.match(editorial['v75-chef-lignac-06'].reviewNote,/crème vanillée.*absente/);
 assert.match(editorial['bourgeois-35'].reviewNote,/feuilles de gélatine.*poids.*force/);
 assert.match(recipes.find(r=>r.id==='bourgeois-32').p[2],/Ne pas ajouter ici le sucre réservé aux blancs/);
+const batch20=JSON.parse(readFileSync(resolve(root,'scripts/recipe-editorial-batch-20.fixture.json'),'utf8')).recipes;
+assert.equal(batch20.length,30);
+assert.equal(batch20.filter(r=>r.status==='corrected').length,2);
+const roast20=recipes.find(r=>r.id==='v31n-donburi-dinde'),lentils20=recipes.find(r=>r.id==='v31n-orzo-poisson-blanc');
+assert.equal(roast20.n,'Rôti de porc aux pruneaux, carottes glacées');
+assert.equal(lentils20.n,'Lentilles au lard fumé et carottes');
+for(const count of [1,2,3,4,5,8]){
+  assert.ok(context.recipeStepText(roast20.p[1],roast20,count).includes(context.formatQty(10*count)+' cl de bouillon'));
+  assert.ok(context.recipeStepText(roast20.p[3],roast20,count).includes(context.formatQty(count/2)+' c. à café de miel'));
+  assert.ok(context.recipeStepText(lentils20.p[2],lentils20,count).includes(context.formatQty(count*40)+' cl de bouillon'));
+  assert.match(context.recipeStepText(roast20.p[2],roast20,count),/40 minutes à 190 °C/);
+}
+assert.match(roast20.p[4],/63 °C.*reposer 5 minutes/);
+assert.match(lentils20.p[2],/à découvert.*indications des lentilles/);
+assert.match(lentils20.p[3],/Retirer le laurier/);
+assert.match(editorial['gn2-saumon-estragon-petits-pois'].reviewNote,/citron.*absent.*six minutes.*petits pois/);
+assert.match(editorial['gn2-saucisses-toscane-haricots'].reviewNote,/rôties.*aucun procédé/);
+assert.match(editorial['v31n-donburi-crevettes'].reviewNote,/eau des pâtes.*jamais utilisée/);
+assert.match(editorial['v31n-donburi-boulettes'].reviewNote,/carottes dans la purée/);
 const corrected=fixture.recipes.filter(r=>r.status==='corrected').length;
 const unchanged=fixture.recipes.filter(r=>r.status==='unchanged').length;
 console.log(`✓ Batches ${batchNumbers.join('/')}: ${fixture.recipes.length} individual review records, ${corrected} corrected, ${unchanged} unchanged, ${fixture.recipes.length-corrected-unchanged} blocked with original content preserved; ${timerCount} manually checked timers`);
