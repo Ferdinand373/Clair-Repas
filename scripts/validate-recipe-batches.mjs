@@ -7,7 +7,7 @@ import {recipeSource} from './recipe-source.mjs';
 import {recipeHash} from './validate-recipe-editorial.mjs';
 const root=resolve(dirname(fileURLToPath(import.meta.url)),'..');
 const {code,recipes,editorial}=recipeSource(readFileSync(resolve(root,'index.html'),'utf8'));
-const batchNumbers=['02','03','04','05','06','07','08','09','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25'];
+const batchNumbers=['02','03','04','05','06','07','08','09','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26'];
 const fixture={recipes:batchNumbers.flatMap(number=>JSON.parse(readFileSync(resolve(root,`scripts/recipe-editorial-batch-${number}.fixture.json`),'utf8')).recipes)};
 const slice=(a,b)=>code.slice(code.indexOf(a),code.indexOf(b,code.indexOf(a)+a.length));
 const context={window:{},$:()=>({value:'8'}),MEAL_TYPES:['mid','eve'],recipeRole:r=>r.role||r.course||'dish',isFavorite:()=>false,recipeFeedbackHTML:()=>'',recipePersonalNoteHTML:()=>''};
@@ -125,7 +125,14 @@ const timers={
   s421:[[10],[],[],[]],s422:[[],[],[],[15]],s423:[[],[],[],[20]],
   s429:[[],[],[4],[]],s431:[[5],[4],[25],[],[]],s433:[[3],[],[5],[]],
   s436:[[],[8],[2],[]],s437:[[],[],[4],[]],s438:[[],[],[],[]],
-  s439:[[],[],[],[30]],s440:[[],[],[],[]]
+  s439:[[],[],[],[30]],s440:[[],[],[],[]],
+  c401:[[20],[1],[],[]],c402:[[],[],[25],[]],c403:[[],[10],[8],[10]],c404:[[],[],[40],[]],
+  c407:[[],[],[],[]],c408:[[],[10],[2],[]],c409:[[],[],[18],[17]],c410:[[],[6],[8],[]],
+  c412:[[],[5],[10],[]],c413:[[],[],[],[]],c420:[[],[],[],[35]],c423:[[],[25,1],[],[]],
+  c425:[[],[20],[],[]],c428:[[],[],[5],[3]],c429:[[],[5],[20],[]],c430:[[],[5],[18],[]],
+  c431:[[],[],[20],[3]],c433:[[7],[],[2],[]],c434:[[],[],[25],[7]],c435:[[],[22],[],[5]],
+  c437:[[],[7],[1],[]],c438:[[10],[],[],[25]],c439:[[],[],[],[32]],c440:[[],[25],[],[5]],
+  c441:[[],[5],[2],[25],[]],c442:[[],[],[],[1]],c448:[[],[],[10],[]],c449:[[],[],[],[30]],c450:[[5],[10],[],[10]]
 };
 const ingredients={
   n01:['poulet','pommes de terre','paprika','huile','sel.*poivre'],
@@ -374,9 +381,38 @@ const ingredients={
   s437:['bleu','crème','bouillon','moutarde','poivrer'],
   s438:['poivrons','amandes','tomate','ail','vinaigre de xérès','huile d’olive','paprika fumé','sel'],
   s439:['persil','coriandre','ail','origan','vinaigre','huile d’olive','piment','sel'],
-  s440:['tahini','citron','ail','d’eau froide','huile d’olive','sel']
+  s440:['tahini','citron','ail','d’eau froide','huile d’olive','sel'],
+  c401:['pommes de terre','lait','beurre','muscade','sel','poivre'],
+  c402:['pommes de terre','Saler','persil','beurre'],
+  c403:['pommes de terre','huile','beurre','ail','thym','sel','poivre'],
+  c404:['pommes de terre','huile','paprika','Saler'],
+  c407:['polenta','bouillon','lait','parmesan','beurre','saler.*poivrer'],
+  c408:['haricots','beurre','ail','persil','sel','poivrer'],
+  c409:['courgette','poivron','carottes','oignon','huile d’olive','thym','sel','poivre'],
+  c410:['carottes','courgette','brocoli','huile','citron','sel'],
+  c412:['carottes','courgette','poivron','champignons','échalote','huile','persil','sel','poivre'],
+  c413:['laitue','échalote','vinaigre','huile','moutarde','sel','poivre'],
+  c420:['grenailles','huile d’olive','ail','thym','sel.*poivre'],
+  c423:['céleri','pommes de terre','lait','beurre','salée.*poivre.*muscade'],
+  c425:['panais','pommes de terre','lait','beurre','sel.*Poivrer'],
+  c428:['épinards','crème','beurre','ail','sel.*poivre.*muscade'],
+  c429:['endives','beurre','bouillon','sucre','citron','sel.*poivre'],
+  c430:['fenouils','beurre','bouillon','citron','saler.*poivrer'],
+  c431:['poireaux','beurre','eau','sel.*poivre'],
+  c433:['brocoli','amandes','beurre','citron','sel.*poivre'],
+  c434:['chou-fleur','parmesan','huile d’olive','paprika','sel.*poivre'],
+  c435:['choux','noisettes','huile','miel','sel.*poivre'],
+  c437:['courgettes','ail','huile d’olive','basilic','saler.*poivrer'],
+  c438:['tomates','chapelure','ail','persil','huile d’olive','sel.*poivre'],
+  c439:['aubergines','huile d’olive','ail','thym','sel.*poivre'],
+  c440:['courge','huile d’olive','sauge','beurre','sel.*poivre'],
+  c441:['artichauts','carotte','oignon','ail','vin blanc','bouillon de légumes','huile d’olive','thym.*saler.*poivrer','citron'],
+  c442:['riz','eau','sel','beurre si vous le souhaitez'],
+  c448:['flageolets déjà cuits et égouttés','ail','beurre','bouillon','persil','saler.*poivrer'],
+  c449:['pois chiches déjà cuits','huile d’olive','paprika fumé','cumin','sel'],
+  c450:['haricots blancs','tomates concassées','oignon','ail','thym','huile d’olive','Saler.*poivrer','eau']
 };
-assert.equal(fixture.recipes.length,785);
+assert.equal(fixture.recipes.length,835);
 let quantityChecks=0,timerCount=0;
 for(const record of fixture.recipes){
   const recipe=recipes.find(r=>r.id===record.id);
@@ -856,6 +892,47 @@ assert.match(editorial.s404.reviewNote,/conserver deux tiers.*évaporer deux tie
 assert.match(editorial.s407.reviewNote,/cuillerées.*taille de cuillère/);
 assert.match(editorial.s427.reviewNote,/beurre d’écrevisse et bisque.*pas équivalents/);
 assert.match(editorial.s434.reviewNote,/noisette de beurre.*pas mesurée/);
+const batch26=JSON.parse(readFileSync(resolve(root,'scripts/recipe-editorial-batch-26.fixture.json'),'utf8')).recipes;
+assert.equal(batch26.length,50);
+assert.equal(batch26.filter(r=>r.status==='corrected').length,28);
+assert.equal(batch26.filter(r=>r.status==='unchanged').length,1);
+assert.equal(batch26.filter(r=>r.status==='blocked').length,21);
+const beans26=recipes.find(r=>r.id==='c450'),polenta26=recipes.find(r=>r.id==='c407');
+const rice26=recipes.find(r=>r.id==='c442'),artichokes26=recipes.find(r=>r.id==='c441');
+for(const count of [1,2,3,4,5,8]){
+  assert.ok(context.recipeStepText(beans26.p[2],beans26,count).includes(context.formatQty(4*count)+' cl d’eau'));
+  assert.ok(context.recipeStepText(polenta26.p[0],polenta26,count).includes(context.formatQty(22.5*count)+' cl de bouillon'));
+  assert.ok(context.recipeStepText(polenta26.p[0],polenta26,count).includes(context.formatQty(5*count)+' cl de lait'));
+  assert.ok(context.recipeStepText(polenta26.p[3],polenta26,count).includes(context.formatQty(15*count)+' g de parmesan'));
+  assert.ok(context.recipeStepText(rice26.p[1],rice26,count).includes(context.formatQty(.75*count)+' l d’eau'));
+  assert.ok(context.recipeStepText(rice26.p[3],rice26,count).includes(context.formatQty(5*count)+' g de beurre'));
+  assert.ok(context.recipeStepText(artichokes26.p[2],artichokes26,count).includes(context.formatQty(5*count)+' cl de vin blanc'));
+  assert.ok(context.recipeStepText(artichokes26.p[3],artichokes26,count).includes(context.formatQty(10*count)+' cl de bouillon de légumes'));
+  assert.match(context.recipeStepText(recipes.find(r=>r.id==='c409').p[3],recipes.find(r=>r.id==='c409'),count),/12 à 17 minutes à 210 °C/);
+}
+for(const recipe of [polenta26,rice26]){
+  assert.equal(recipe.t,'Durée du paquet + préparation');
+  assert.deepEqual(Array.from(context.stepTimerDurations(recipe.p[2])),[]);
+  assert.match(recipe.p[2],/durée indiquée sur le paquet/);
+}
+assert.deepEqual(beans26.i.at(-1),{q:8,u:'cl',n:'eau',k:'eau'});
+assert.deepEqual(artichokes26.i.at(-1),{q:null,u:'',n:'citron',k:'citron'});
+assert.match(batch26.find(r=>r.id===beans26.id).beforeSteps.join(' '),/8 cl d’eau/);
+assert.match(batch26.find(r=>r.id===artichokes26.id).beforeSteps.join(' '),/frotter immédiatement au citron/);
+assert.match(artichokes26.p[1],/faire revenir.*5 minutes/);
+assert.doesNotMatch(artichokes26.p.join(' '),/lard|bouillon de volaille/);
+assert.match(rice26.p[2],/à découvert/);
+assert.match(recipes.find(r=>r.id==='c437').p[1],/5 à 7 minutes/);
+assert.match(recipes.find(r=>r.id==='c437').p[2],/cuisson 1 minute/);
+for(const [id,indices] of [['c402',[0,1,2]],['c413',[0,1,3]]]){
+  const r=recipes.find(r=>r.id===id),before=batch26.find(r=>r.id===id).beforeSteps;
+  for(const index of indices)assert.equal(r.p[index],before[index]);
+}
+assert.equal(batch26.find(r=>r.id==='c404').sourceHash,batch26.find(r=>r.id==='c404').reviewedHash);
+assert.match(editorial.c432.reviewNote,/morilles.*Tox Info Suisse.*vingt minutes/);
+assert.match(editorial.c411.reviewNote,/cuillerées.*taille.*cuissons séparées/);
+assert.match(editorial.c422.reviewNote,/farine.*pas.*fécule/);
+assert.match(editorial.c443.reviewNote,/notice.*huit minutes/);
 const corrected=fixture.recipes.filter(r=>r.status==='corrected').length;
 const unchanged=fixture.recipes.filter(r=>r.status==='unchanged').length;
 console.log(`✓ Batches ${batchNumbers.join('/')}: ${fixture.recipes.length} individual review records, ${corrected} corrected, ${unchanged} unchanged, ${fixture.recipes.length-corrected-unchanged} blocked with original content preserved; ${timerCount} manually checked timers`);

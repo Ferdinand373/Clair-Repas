@@ -298,6 +298,16 @@ P02 publié : `c87dc373c29cae1d6edb9c2ac6191004c69ba52a`, tests `34390827874` et
 
 **Cumul : 800 identifiants examinés, 286 corrigés, 505 bloqués, 9 conformes sans réécriture, 753 à examiner.** Les 40 sauces sont examinées. Zéro erreur éditoriale, 6 876 avertissements, 350 minuteurs et 9 894 calculs d’ingrédients des lots 02–25. Les 24 commandes du workflow réussissent ; affichage et mode cuisine contrôlés aux trois formats simulés. Publication à consigner après contrôle HTTPS. Les accompagnements et plats restants suivent.
 
+## Publication du lot 25
+
+`4f0b4e54a746544284e7420416a4fb5621777aab` publié sur `main`. Tests `34414671649`, Pages `34414670568` et déploiement `6360951007` réussis. HTTPS 200 et fichiers identiques au commit : index `2d33e099d30d75a133ded958aa2e5e98e578def629babd98acf5c48614413ca6`, service worker `4470fe446568a2e8982ddb67afd86d0e59657b62902ee3031315b74a95392dc0`. Révision chargée après mise à jour normale `sha256:8db86a72bcc8fee9d506253fcf835d91f62d70e78dd72119bd8b30ccbb664b18`. Sauce au vin blanc contrôlée en production à deux personnes : 7½ cl au départ puis 2½ cl restants, 12½ g de beurre uniquement en finition et minuteur de crème 3–4 minutes correctement attaché. Aucune donnée effacée.
+
+## Lot 26 — cinquante accompagnements
+
+[Journal, sources et décisions](recipe-editorial-batch-26.md). 28 corrigés, 1 conforme sans réécriture, 21 réservés. Eau des haricots blancs et citron des artichauts retrouvés dans la source ; cuisson créole et polenta selon le paquet, sans minuteur générique. Minutes de retournement et de finition comprises dans la durée prévue, purées au presse-purée et braisages conservés.
+
+**Cumul : 850 identifiants examinés, 314 corrigés, 526 bloqués, 10 conformes sans réécriture, 703 à examiner.** Zéro erreur éditoriale, 6 676 avertissements, 399 minuteurs et 10 890 calculs d’ingrédients des lots 02–26. Les 24 commandes du workflow réussissent ; affichage, défilement et mode cuisine contrôlés aux trois formats simulés. Publication à consigner après contrôle HTTPS. Prochaine fiche globale `v31n-papillote-fenouil-tofu` ; l’accompagnement chef `v75-chef-robuchon-01` reste à examiner.
+
 ## Limites des vérifications
 
 Les tests de structure, quantité, minuteurs, stockage simulé et rendu ne sont pas des essais culinaires. Les formats iPhone/PWA sont simulés, sauf mention explicite d’un appareil physique. Le total de fiches à examiner ne doit jamais être remplacé par le nombre de fiches auxquelles le style commun a été appliqué.

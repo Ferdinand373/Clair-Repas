@@ -1,0 +1,574 @@
+{
+  "baselineCommit": "4f0b4e54a746544284e7420416a4fb5621777aab",
+  "batch": "26",
+  "recipes": [
+    {
+      "id": "c401",
+      "status": "corrected",
+      "sourceHash": "1c93afa2e8a62664962095c8799df40bf5948fc698ac8a346ed8cf81162eea10",
+      "reviewedHash": "e4d333196ca5b2003fc6bda3168a2ec1dcf47c319145b183e7ecde7cc9cebfbe",
+      "protectedRecipeSha256": "555661ab8fa2ad88a96c2e04e2cfcaead9ea8c53b2ee2f873336c762df159a24",
+      "beforeSteps": [
+        "Peler et couper les pommes de terre en morceaux réguliers, puis les cuire 20 minutes dans l’eau salée à léger frémissement.",
+        "Les égoutter soigneusement et les remettre 1 minute dans la casserole à feu doux pour les sécher.",
+        "Les écraser au presse-purée, puis incorporer le lait chaud progressivement.",
+        "Ajouter beurre, muscade et poivre ; la purée doit être lisse, souple et jamais collante."
+      ],
+      "note": "Lait chauffé pendant la cuisson, séchage et presse-purée expliqués ; beurre, muscade et poivre liés aux ingrédients. Cuisson à l’eau puis séchage d’une minute conservés, sans mixeur ni crème ajoutée."
+    },
+    {
+      "id": "c402",
+      "status": "corrected",
+      "sourceHash": "504c5235b669ba76ca93f8401dd2369e012e5ebb6938d695a29141e08ae81964",
+      "reviewedHash": "86c9dec428970411ed9e7c7b26af13f158ea2b539b62327e37c9be57a67450eb",
+      "protectedRecipeSha256": "c42399416dab849f48b0e1c753bb8705f841da14c52af10ba6acf1222597a44d",
+      "beforeSteps": [
+        "Peler les pommes de terre ou les brosser, puis les couper de taille égale si nécessaire.",
+        "Les placer dans un panier vapeur au-dessus d’une eau frémissante et couvrir.",
+        "Cuire 20 à 25 minutes selon la taille ; la pointe d’un couteau doit entrer sans résistance.",
+        "Saler et ajouter persil et beurre juste avant de servir, sans écraser les pommes de terre."
+      ],
+      "note": "Les trois premières étapes déjà claires sont conservées mot pour mot. Seule la finition précise de laver, sécher et hacher le persil avant le service, avec le beurre mesuré ; cuisson vapeur et choix de peau inchangés."
+    },
+    {
+      "id": "c403",
+      "status": "corrected",
+      "sourceHash": "894e8728146a2880e060432173c4c8567daf72b64e7ea01a1307b8ddb7049157",
+      "reviewedHash": "76ac0e5450b814e7a4d9fd0043217edecd1fa291a84b1c005e30e0f2b31ff91f",
+      "protectedRecipeSha256": "d49a0d191b83b2d68929030f9e568cde832ffcaedbff947a858922bde19cebe8",
+      "beforeSteps": [
+        "Couper les pommes de terre en cubes de 2 cm, les rincer puis les sécher parfaitement.",
+        "Chauffer l’huile à feu moyen-vif, ajouter les pommes de terre en une seule couche et les cuire 10 minutes sans trop remuer.",
+        "Baisser à feu moyen, couvrir 8 minutes puis découvrir, ajouter beurre, ail et thym.",
+        "Poursuivre 8 à 10 minutes en retournant régulièrement ; elles doivent être tendres à cœur et bien dorées dehors."
+      ],
+      "note": "Cubes source de 2 cm conservés, rinçage et séchage expliqués. Cuissons 10 minutes à découvert, 8 couvertes puis 8–10 découvertes distinguées ; beurre et ail seulement à la dernière phase, sel et poivre listés enfin employés."
+    },
+    {
+      "id": "c404",
+      "status": "unchanged",
+      "sourceHash": "5299e0150b34d663497593d0c4541578e9a00fb7653c4834aa7926737329f203",
+      "reviewedHash": "5299e0150b34d663497593d0c4541578e9a00fb7653c4834aa7926737329f203",
+      "protectedRecipeSha256": "f3713b107faa0e2ec61606b428fb6feaee98344f96acee0e050a2b6cba021c07",
+      "note": "Quatre étapes déjà suffisantes : plaque préchauffée, bâtonnets de 1 cm rincés et séchés, huile et paprika, une seule couche, retournement à mi-cuisson, sel au service et repères intérieur/extérieur. Texte culinaire conservé intégralement."
+    },
+    {
+      "id": "c405",
+      "status": "blocked",
+      "sourceHash": "2576373fa518ab83cf1e825cd979261b8794269e001ef542d4845bf15191f8ee",
+      "reviewedHash": "2576373fa518ab83cf1e825cd979261b8794269e001ef542d4845bf15191f8ee",
+      "protectedRecipeSha256": "190f1e50d00d8de8547a1ca1fe5eb8feba34bac288a33fcd4020ce74f88ce683",
+      "note": "le riz long n’est pas précisé alors qu’un volume fixe de bouillon et quatorze minutes sans ouvrir sont imposés. Il faut vérifier les indications du produit pour ce pilaf par absorption ; ne pas le transformer en riz cuit à grande eau. Les vingt-cinq minutes couvrent déjà les opérations successives, hors préparation de l’oignon."
+    },
+    {
+      "id": "c406",
+      "status": "blocked",
+      "sourceHash": "88cb707b65c4bef11ef9e9e124f90bb2ad54a34b0edeef9a8580486dc7429352",
+      "reviewedHash": "88cb707b65c4bef11ef9e9e124f90bb2ad54a34b0edeef9a8580486dc7429352",
+      "protectedRecipeSha256": "27c7b5028911e75f22d5a50e64df712f5fb96dbb94bdfb09a4e5fd2fb2562374",
+      "note": "la semoule moyenne n’est pas identifiée comme couscous précuit alors que cinq minutes exactement d’hydratation sont imposées. Le rapport eau/grains et le repos doivent correspondre au produit. Ne pas remplacer automatiquement une semoule non précuite par du couscous ni modifier l’eau sans notice."
+    },
+    {
+      "id": "c407",
+      "status": "corrected",
+      "sourceHash": "255ab6877ba46d86227d8e10fae3e9e63d3004b47cfaa3da31e4e816d4609536",
+      "reviewedHash": "e2a7fef26e3bbcf3131a2712f83fa31af1df77d650ea6ddc143915d3a7b4d734",
+      "protectedRecipeSha256": "6d1a20d6d09714c2574d4d9df44c3ccdb4b725c995cdef420611d32266433c22",
+      "beforeSteps": [
+        "Porter bouillon et lait au frémissement dans une casserole à fond épais.",
+        "Verser la polenta en pluie en fouettant pour éviter les grumeaux.",
+        "Cuire à feu doux selon le temps du paquet, généralement 6 à 10 minutes, en remuant constamment.",
+        "Hors du feu, incorporer parmesan et beurre ; la polenta doit couler lentement de la cuillère et rester crémeuse."
+      ],
+      "note": "Durée renvoyée exclusivement au paquet : les 6–10 minutes génériques ne couvrent pas toutes les polentas. Volumes de lait/bouillon conservés, parmesan râpé et assaisonnement listé utilisés ; casserole et finition hors du feu inchangées."
+    },
+    {
+      "id": "c408",
+      "status": "corrected",
+      "sourceHash": "c2b91c4885450462fc45441772c5391c19222862e9d4f9baaec49b5325ed03e7",
+      "reviewedHash": "97abb4c53b35b6285e03b815c92a8bb63b7fc22f860efd0a403e0d9a5193745a",
+      "protectedRecipeSha256": "7b25e77f02ad7e9efb9825b8fe64ae437f56b2d10bf2cc81307d0c4f8f2008f1",
+      "beforeSteps": [
+        "Équeuter les haricots et les plonger dans une grande casserole d’eau bouillante salée.",
+        "Cuire 8 à 10 minutes afin qu’ils soient tendres mais encore légèrement fermes, puis les égoutter.",
+        "Faire mousser le beurre avec l’ail 30 secondes à feu moyen, ajouter les haricots et les sauter 2 minutes.",
+        "Poivrer et ajouter le persil hors du feu ; les haricots doivent rester verts et non détrempés."
+      ],
+      "note": "Haricots lavés et équeutés, ail et persil préparés ; eau de cuisson égouttée avant le beurre. Huit à dix minutes puis sauté de deux minutes conservés ; trente secondes d’ail sans minuteur arrondi."
+    },
+    {
+      "id": "c409",
+      "status": "corrected",
+      "sourceHash": "db55e5d3c0d9e49b9dd58c2c71c4c7af3850e0909fc6034b0c52b4e6fa53b449",
+      "reviewedHash": "6fc97da76baeca9532489ee2a54a340261508f9e586a62d751621d680e718212",
+      "protectedRecipeSha256": "71f738883685c58363c38cd0b8b35e3bbdd4ef3e68fbe8beb7adf29c83e5e04a",
+      "beforeSteps": [
+        "Préchauffer le four à 210 °C et couper tous les légumes en morceaux d’environ 2 cm.",
+        "Les mélanger avec huile, thym, sel et poivre, puis les étaler sans les superposer.",
+        "Cuire 30 à 35 minutes à 210 °C en les retournant après 18 minutes.",
+        "Servir lorsque les bords sont dorés et le cœur tendre, sans que les légumes soient mous."
+      ],
+      "note": "Légumes lavés, épluchés ou épépinés avant découpe source de 2 cm. Les 18 minutes avant retournement sont incluses dans les 30–35 minutes : deux phases 18 puis 12–17, sans addition trompeuse de deux cuissons complètes."
+    },
+    {
+      "id": "c410",
+      "status": "corrected",
+      "sourceHash": "3eee27461c7e45c8362c34d3f206917ea38dbe22b55bab1df2624fca6f57b199",
+      "reviewedHash": "4c6f1597c9e21731bb58683121069abea0abe0968a7707c193a2f5d3097118c6",
+      "protectedRecipeSha256": "7e8bb0f05e5f5e45f61fc0e4a80623fcf0c868d34ac59e373202ef41bef4f640",
+      "beforeSteps": [
+        "Couper carottes en bâtonnets, courgette en demi-rondelles épaisses et brocoli en petits bouquets.",
+        "Cuire d’abord les carottes 6 minutes dans le panier vapeur au-dessus d’une eau frémissante.",
+        "Ajouter brocoli et courgette, couvrir et poursuivre 7 à 8 minutes ; les légumes doivent être tendres mais encore fermes.",
+        "Assaisonner immédiatement avec huile, citron et sel, sans noyer les légumes."
+      ],
+      "note": "Préparations des légumes et citron pressé précisées ; carottes seules puis ajout des autres légumes conservé. La cuisson n’est pas remplacée par une immersion et aucun citron supplémentaire n’est ajouté."
+    },
+    {
+      "id": "c411",
+      "status": "blocked",
+      "sourceHash": "178ab45b137e7a91317d9a63123ee95c05859e3bc5fa8d913a8d61c88f8950f8",
+      "reviewedHash": "178ab45b137e7a91317d9a63123ee95c05859e3bc5fa8d913a8d61c88f8950f8",
+      "protectedRecipeSha256": "f520cc38b45eaa7ecc1f13880b61d07f9f9517ae76134040758a424ed5fe4697",
+      "note": "les deux cuillerées successives d’huile n’indiquent pas leur taille ; les trois cuillères à soupe listées ne suffisent pas à prouver ce partage. La cuisson de l’oignon et de l’ail avant la tomate n’a pas de durée ni de repère, et sel/poivre sont oubliés. Conserver les cuissons séparées, sans tout faire pocher ensemble."
+    },
+    {
+      "id": "c412",
+      "status": "corrected",
+      "sourceHash": "ebf8e50facf5c40eeafb1502ae9a378b1775c2c95ba2009fb72e28b2f60fab6f",
+      "reviewedHash": "b2b16a9a9e87cc611a9c2f11f0000a1d0310d563eb80f91813f8ff35c99d7176",
+      "protectedRecipeSha256": "0b9dfe032c54f39e91a19ea0773b97761c7acb1f58bded92fb86a57ef867ca5b",
+      "beforeSteps": [
+        "Tailler carottes en fins bâtonnets et les autres légumes en morceaux de taille régulière.",
+        "Chauffer l’huile à feu assez vif et saisir carottes et poivron 5 minutes.",
+        "Ajouter échalote, courgette et champignons et poursuivre 8 à 10 minutes en remuant régulièrement.",
+        "Saler, poivrer et ajouter le persil ; les légumes doivent être dorés et encore légèrement croquants."
+      ],
+      "note": "Lavage, épluchage et découpes explicités ; carottes et poivron commencent avant courgette et champignons. Poêlage assez vif, persil en finition, aucune eau ou graisse supplémentaire."
+    },
+    {
+      "id": "c413",
+      "status": "corrected",
+      "sourceHash": "84e588dbf7791b09c0364f5d510c25b5b23f10da7b2a4f716c638d5e605602f3",
+      "reviewedHash": "ca3458345a5d15cf978e3166a6b8fc966860b8a6c707a950b513b39ba952b6ca",
+      "protectedRecipeSha256": "54c92751c5631be51a5aac66707027108e229f3c24453cbd7cc43cbfab9851a4",
+      "beforeSteps": [
+        "Laver la laitue dans deux eaux, l’essorer parfaitement puis déchirer les grandes feuilles.",
+        "Dissoudre le sel dans le vinaigre, ajouter moutarde et poivre puis fouetter avec l’huile.",
+        "Ciseler très finement l’échalote et l’ajouter à la vinaigrette.",
+        "Assaisonner la salade seulement au moment de servir et mélanger 20 secondes ; les feuilles doivent rester fermes et brillantes."
+      ],
+      "note": "Une seule étape modifiée : ciseler est remplacé par peler puis hacher très finement l’échalote. Lavage, vinaigrette, assaisonnement au dernier moment et vingt secondes de mélange sont conservés intégralement."
+    },
+    {
+      "id": "c414",
+      "status": "blocked",
+      "sourceHash": "b4ac731eb697f975de33c465f9f65dd630036d04ac226c821d1f07667cc33bef",
+      "reviewedHash": "b4ac731eb697f975de33c465f9f65dd630036d04ac226c821d1f07667cc33bef",
+      "protectedRecipeSha256": "68f2bf8b9503f1f0ed5dd16a7aed753c750acf0b82a4ead7788929bfaa1accaf",
+      "note": "le persil listé n’est jamais utilisé. L’eau est à la fois fixée à 15 cl et demandée juste à hauteur sans récipient défini ; le disque percé et les deux découpes demandent aussi des précisions. Confirmer la correspondance volume/récipient sans verser un complément d’eau arbitraire."
+    },
+    {
+      "id": "c415",
+      "status": "blocked",
+      "sourceHash": "c5250a82571fb809f2e6b722e445496c164ed4872fe9e262cd7183ce48d084d6",
+      "reviewedHash": "c5250a82571fb809f2e6b722e445496c164ed4872fe9e262cd7183ce48d084d6",
+      "protectedRecipeSha256": "8468ad1605fd8d4f84039238fc018a590a400a13b4847aa730b430faaa73a1ca",
+      "note": "les pommes de terre ne sont ni pelées ni découpées dans le texte, et la taille des rosaces n’est pas précisée. Le contrôle du centre contenant les jaunes manque ; les pointes dorées ne suffisent pas. Ne pas inventer un diamètre de rosace ou modifier le temps sans vérifier le format prévu."
+    },
+    {
+      "id": "c416",
+      "status": "blocked",
+      "sourceHash": "c8d0e8954b08283215c28a2ba93b12778190e8a0a650cfddf1381eec627356a9",
+      "reviewedHash": "c8d0e8954b08283215c28a2ba93b12778190e8a0a650cfddf1381eec627356a9",
+      "protectedRecipeSha256": "57be8254c965c7ad948c030d8cdab55daf4d1882755551ada68b279400975213",
+      "note": "le beurre est utilisé généreusement dans le moule puis entre les couches sans répartition mesurée. Diamètre du petit moule, épaisseur des rondelles et hauteur de l’empilement ne sont pas définis. Ne pas modifier ces conditions au hasard pour garantir les 40–45 minutes de cuisson."
+    },
+    {
+      "id": "c417",
+      "status": "blocked",
+      "sourceHash": "2155bfb9811f74e71b34c772e7c9b7154f2dac37628a66f513cc76d870306dc2",
+      "reviewedHash": "2155bfb9811f74e71b34c772e7c9b7154f2dac37628a66f513cc76d870306dc2",
+      "protectedRecipeSha256": "3293ccbdfa2b3bde35b799fdb2def85ada1744e38bc3f27d03b30239ca1a9589",
+      "note": "le bouillon est fixé à 35 cl et demandé à mi-hauteur sans taille de plat ni épaisseur des rondelles. Le préchauffage et le contrôle du centre manquent. Confirmer le montage sans ajouter du liquide au jugé ni raccourcir la cuisson en modifiant les tranches."
+    },
+    {
+      "id": "c418",
+      "status": "blocked",
+      "sourceHash": "89a55552ed9d8ac0dad8247396aeebeff354ecb17be948d848829952bf2d78c9",
+      "reviewedHash": "89a55552ed9d8ac0dad8247396aeebeff354ecb17be948d848829952bf2d78c9",
+      "protectedRecipeSha256": "13e486c38da2ac94af94db59599d938561ad2e16134f3b8dd0f0f12bd28dbbce",
+      "note": "les gros cylindres n’ont ni diamètre ni hauteur. Les 5–6 minutes de dorure ne sont pas clairement totales ou par face, et 20 cl de bouillon doivent arriver à mi-hauteur sans récipient défini. Ne pas doubler silencieusement le minuteur ni changer le format des pommes de terre."
+    },
+    {
+      "id": "c419",
+      "status": "blocked",
+      "sourceHash": "1a8a92a8ab9dc86ed00c193789616f71aea44d4e777d9f266035efc63638db64",
+      "reviewedHash": "1a8a92a8ab9dc86ed00c193789616f71aea44d4e777d9f266035efc63638db64",
+      "protectedRecipeSha256": "fd260cfdec9029dd7b91704522822ff4d124130360674bf0779f9231b26f01f5",
+      "note": "la cuisson à l’eau n’a ni durée, ni découpe ni préparation de la peau définies ; le temps total de trente minutes ne permet pas d’en déduire un barème. Préserver l’écrasé avec morceaux et l’ail ajouté après cuisson, sans emprunter la cuisson d’une autre purée."
+    },
+    {
+      "id": "c420",
+      "status": "corrected",
+      "sourceHash": "edefc8b3039acbc49b23d83c80c1274d65e351aa5cc8c5e1aafb19d2055606df",
+      "reviewedHash": "1599acbb0aa26e7fecb0fe4496527948e81b12dbe56a820c0e68bba74db9c932",
+      "protectedRecipeSha256": "9dfa787f472d2bf6362ac7b47e0039c7ce6eeaea958922a311840722475cf20e",
+      "beforeSteps": [
+        "Brosser les grenailles, les sécher et couper seulement les plus grosses en deux.",
+        "Les mélanger avec huile, ail en chemise, thym, sel et poivre.",
+        "Étaler sans superposer sur une plaque chaude.",
+        "Rôtir 30 à 35 minutes à 205 °C en remuant une fois."
+      ],
+      "note": "Préchauffage du four et de la plaque explicité à la température source. Ail en chemise expliqué sans retirer la peau, cuisson et retournement conservés, repère de tendreté ajouté."
+    },
+    {
+      "id": "c421",
+      "status": "blocked",
+      "sourceHash": "f40aec4a6174dda5a31b4b64d45324afb7e6951850ec8d3c1a5d625bd3081d72",
+      "reviewedHash": "f40aec4a6174dda5a31b4b64d45324afb7e6951850ec8d3c1a5d625bd3081d72",
+      "protectedRecipeSha256": "c5a3a5e0e0f593bf533387c98ba7a1135fcede2fed8b9e6e2b161ca00a1f673e",
+      "note": "la pâte à choux est demandée sans expliquer ébullition, ajout de farine, desséchage, refroidissement et incorporation des œufs. Taille des boules et durée de friture manquent malgré les 170 °C indiqués. La purée sèche est un ingrédient déjà préparé ; ne pas inventer sa composition."
+    },
+    {
+      "id": "c422",
+      "status": "blocked",
+      "sourceHash": "f4af6d9b6faee981603d4bb1280f9f5d8c170c8d40b155ef9baeb80c50b04d72",
+      "reviewedHash": "f4af6d9b6faee981603d4bb1280f9f5d8c170c8d40b155ef9baeb80c50b04d72",
+      "protectedRecipeSha256": "70479097b252ef06c3ffc72447e3d7d403d82ffc20fda3f737666d9c4fa7442b",
+      "note": "la farine des mains n’est pas listée et ne doit pas être remplacée automatiquement par la fécule prévue dans la pâte. Cuisson initiale et dimensions des billes manquent ; dorure seule insuffisante pour vérifier le centre lié au jaune. Conserver cette version moulée, sans la transformer en pommes noisette taillées à cru."
+    },
+    {
+      "id": "c423",
+      "status": "corrected",
+      "sourceHash": "857aaa6fa78cc763769580192faedcb452500a03893bdd60aa31b8d7931d8f92",
+      "reviewedHash": "967869f027f34f74578db63594c30af77760f3f713f571d006a3f17b7e6b5a80",
+      "protectedRecipeSha256": "b7baac6c22a5ff9194da7a0ebc06dc4c06bb040b1bd3a71205f1f2fd3580b1af",
+      "beforeSteps": [
+        "Couper céleri et pommes de terre en cubes réguliers.",
+        "Cuire 20 à 25 minutes dans l’eau salée puis égoutter et sécher 1 minute.",
+        "Passer au presse-purée et incorporer lait chaud puis beurre.",
+        "Assaisonner de poivre et muscade ; la texture doit être fine mais pas liquide."
+      ],
+      "note": "Céleri et pommes de terre pelés et coupés régulièrement, lait chauffé pendant cuisson, séchage d’une minute explicité. Presse-purée conservé sans mixage ni crème ajoutée ; tous les assaisonnements utilisés."
+    },
+    {
+      "id": "c424",
+      "status": "blocked",
+      "sourceHash": "d312852fc75d7792e72dbcecebd83eb28d073ffd020409e78627f6c2270deb63",
+      "reviewedHash": "d312852fc75d7792e72dbcecebd83eb28d073ffd020409e78627f6c2270deb63",
+      "protectedRecipeSha256": "e056ba875872537328b0b3a36ba81a088019fe5279bd8ac144ac6e84c73facb8",
+      "note": "la cuisson des carottes et pommes de terre n’a ni durée ni taille de découpe ; les trente minutes annoncées ne permettent pas de déduire leur cuisson commune. Ne pas emprunter le barème d’une purée de céleri ou inventer un volume de lait absent de cette purée au beurre."
+    },
+    {
+      "id": "c425",
+      "status": "corrected",
+      "sourceHash": "6f68f919180c60610a3dfc2870725c92531eae46bb29157d2cf828baefd9cd3c",
+      "reviewedHash": "697f569319a4f5577816a7e049cdc10d9a9b25b1528fe0b4869a868acba121fd",
+      "protectedRecipeSha256": "8639cbf8a10bb02810c5d89b98e293f51e5a6f2da39499b103e61f8b66569adf",
+      "beforeSteps": [
+        "Peler panais et pommes de terre puis les couper en morceaux.",
+        "Cuire 20 minutes à l’eau salée jusqu’à tendreté.",
+        "Égoutter, sécher puis passer au presse-purée.",
+        "Ajouter lait chaud et beurre ; poivrer généreusement."
+      ],
+      "note": "Séchage expliqué sans lui inventer une durée fixe ; lait chaud préparé en parallèle, beurre mesuré et poivre en finition. Panais et pommes de terre restent cuits ensemble puis passés au presse-purée."
+    },
+    {
+      "id": "c426",
+      "status": "blocked",
+      "sourceHash": "66380ee9b2218bcd0d924000a57e9a17a5a28e5a27c65efc221383570e03859c",
+      "reviewedHash": "66380ee9b2218bcd0d924000a57e9a17a5a28e5a27c65efc221383570e03859c",
+      "protectedRecipeSha256": "4d04434ac4ce0105a5b454f34e37cf0b638df0a4d0f59db8e892bac83e3b54d6",
+      "note": "la moitié de citron listée ne correspond qu’à quelques gouttes de jus dans la préparation, sans affectation du reste. Le sel est utilisé pour l’option à l’eau mais pas pour la vapeur. Confirmer le citron et les deux modes sans imposer tout le jus ni supprimer la cuisson vapeur."
+    },
+    {
+      "id": "c427",
+      "status": "blocked",
+      "sourceHash": "64fbb54dbdd6bbca253b47bab750129abe3f105b4e68198bde908d7669d6e1b1",
+      "reviewedHash": "64fbb54dbdd6bbca253b47bab750129abe3f105b4e68198bde908d7669d6e1b1",
+      "protectedRecipeSha256": "94941022b83ad42f73ff1e6075fb56d6681e94b79ba860873e9418a8434d6efb",
+      "note": "les petits pois ne sont pas identifiés frais ou surgelés alors que 12–15 minutes sont imposées ; les petits oignons n’ont pas de calibre. Le partage du beurre est bien connu par moitiés, mais il ne résout pas ces conditions de cuisson. Ne pas remplacer les petits pois par un produit choisi arbitrairement."
+    },
+    {
+      "id": "c428",
+      "status": "corrected",
+      "sourceHash": "e29fdd5022bf9f1854cd3a5659657c1590e9afcc1f86512e9e3f676f62dccd02",
+      "reviewedHash": "5537f89d9a53d9cd7011aafc3e19fc3cd8b141608ff0a6fa29e6302cd60a6ed6",
+      "protectedRecipeSha256": "15de2a22eac3af7fefc5635e0de37a960050ac4973dca142e9832f80324b2f20",
+      "beforeSteps": [
+        "Laver puis essorer les épinards.",
+        "Faire fondre le beurre avec l’ail puis ajouter les épinards par poignées.",
+        "Cuire 4 à 5 minutes jusqu’à évaporation de l’eau rendue.",
+        "Ajouter crème et muscade puis faire réduire 3 minutes."
+      ],
+      "note": "Ail pelé et haché, épinards préparés et ajoutés progressivement. Eau évaporée avant la crème, sel/poivre listés utilisés ; pas de blanchiment ni de hachage automatique ajouté."
+    },
+    {
+      "id": "c429",
+      "status": "corrected",
+      "sourceHash": "771d3461b17376adb2f075fe9d1b000968bd97a888524743f2ad15c5580838ff",
+      "reviewedHash": "c98eae7599e902425e870542124fe7bb074821e8eff20d3a32f947cc90f4c6a5",
+      "protectedRecipeSha256": "7976f932ea5430bb87429758de2345d59bc7c5c812dab43c9490fb5e31186561",
+      "beforeSteps": [
+        "Retirer le cône dur à la base des endives puis les couper en deux.",
+        "Les dorer face coupée dans le beurre 5 minutes.",
+        "Ajouter sucre, citron et bouillon, couvrir et cuire 20 minutes à feu doux.",
+        "Découvrir et laisser réduire jusqu’à léger glaçage."
+      ],
+      "note": "Nettoyage, retrait du cône et citron pressé explicités. Dorure sur face coupée avant braisage conservée, volumes liés à la liste, sel et poivre utilisés ; réduction finale décrite sans temps inventé."
+    },
+    {
+      "id": "c430",
+      "status": "corrected",
+      "sourceHash": "965ad0b683fd5abb14ab9aac5f6a22d7db230101e1770fc3669b7a1a7d073741",
+      "reviewedHash": "8f5a25d45c32fcf4e53e2c7ca3173064ca2f37003bc0954661177f46d891905a",
+      "protectedRecipeSha256": "3ed42fe7caeec2c3d1e73257489ffac29986b6427b12bb28e054e9f3df79d014",
+      "beforeSteps": [
+        "Couper chaque fenouil en quartiers en gardant un peu du pied.",
+        "Les dorer 5 minutes dans le beurre.",
+        "Ajouter bouillon, sel et poivre puis couvrir 18 minutes.",
+        "Découvrir, réduire le jus et ajouter le citron juste avant de servir."
+      ],
+      "note": "Fenouil nettoyé et découpé en gardant le pied qui tient les quartiers. Dorure avant braisage, bouillon mesuré, citron en finition et assaisonnements conservés."
+    },
+    {
+      "id": "c431",
+      "status": "corrected",
+      "sourceHash": "32b7fb0dbfd5188326fd127ce310c328a175941e3bd22f455340ab49404ee7bf",
+      "reviewedHash": "03f99c770f26c868debbeef56254e91f5d8f38e771350afffa0fb1306463c46f",
+      "protectedRecipeSha256": "c9633ffa754c4bb095b2e442c8946114ea65dd89e836df8018cafb1b1d4fced7",
+      "beforeSteps": [
+        "Nettoyer soigneusement les poireaux puis les couper en tronçons.",
+        "Les ranger dans une sauteuse avec beurre, eau, sel et poivre.",
+        "Couvrir et cuire 18 à 20 minutes à feu doux.",
+        "Découvrir 3 minutes pour faire évaporer le liquide sans colorer fortement."
+      ],
+      "note": "Lavage entre les feuilles et découpe régulière explicités ; eau mesurée et cuisson couverte conservées. Trois minutes découvertes distinctes, sans faire dorer fortement ni ajouter de bouillon."
+    },
+    {
+      "id": "c432",
+      "status": "blocked",
+      "sourceHash": "f9acf46a23f741b192b36f0e416aba3961523313506cfd9678afb7c65ec49daa",
+      "reviewedHash": "f9acf46a23f741b192b36f0e416aba3961523313506cfd9678afb7c65ec49daa",
+      "protectedRecipeSha256": "1272d37a39eea62401e1c977e03117a7ed5577b024ebbf7cd3f48fb1e02c140f",
+      "note": "le choix entre champignons de Paris et mélange forestier non composé ne permet pas de valider une cuisson unique de 6–8 minutes. Si le mélange contient des morilles, Tox Info Suisse demande au moins vingt minutes après préparation adaptée. Confirmer les espèces et leur état sans les remplacer automatiquement par des champignons de Paris."
+    },
+    {
+      "id": "c433",
+      "status": "corrected",
+      "sourceHash": "eac595d403a64d10c68573d435c05a2f9019c74e2845622bc9a2cbd05cee097e",
+      "reviewedHash": "702712220fcf0a22ad549da4f43eaa4c281dfbd37cdf5146569dd6a13e285182",
+      "protectedRecipeSha256": "aa3211f3bba6d2d7c3e688e707fe7da25fc72ea4664db61d176d9a4644ef2510",
+      "beforeSteps": [
+        "Détailler le brocoli en bouquets et cuire 6 à 7 minutes à la vapeur.",
+        "Faire griller les amandes à sec jusqu’à légère coloration.",
+        "Faire mousser le beurre puis ajouter le brocoli 2 minutes.",
+        "Ajouter citron, amandes, sel et poivre."
+      ],
+      "note": "Brocoli lavé, vapeur couverte, amandes grillées sans graisse puis réservées. Beurre uniquement après torréfaction, citron pressé et assaisonnements mesurés ; deux minutes de poêlage distinctes."
+    },
+    {
+      "id": "c434",
+      "status": "corrected",
+      "sourceHash": "66137517be94de3e8444f485463a32fe1d4c850330da3c4ead357b3e856ac430",
+      "reviewedHash": "9c33116c6f10395f3dfaa60db7b5e6f292e036033c16e2844d0be677fcea88b0",
+      "protectedRecipeSha256": "577185695f1e19863bb85d40cfd7643057e9f91960a2ee375f11fc5700f49772",
+      "beforeSteps": [
+        "Couper le chou-fleur en bouquets de taille régulière.",
+        "Le mélanger avec huile, paprika, sel et poivre.",
+        "Rôtir 25 minutes à 210 °C en retournant à mi-cuisson.",
+        "Ajouter le parmesan et poursuivre 5 à 7 minutes."
+      ],
+      "note": "Préchauffage et plaque explicités, parmesan râpé ajouté seulement après la première cuisson. Les 25 minutes puis 5–7 minutes sont séparées ; aucune huile supplémentaire ni cuisson Airfryer."
+    },
+    {
+      "id": "c435",
+      "status": "corrected",
+      "sourceHash": "54533aa3b08e2b599f0eaa51a27568194810de0a6abd123f08335b3f9a2eb566",
+      "reviewedHash": "c57e195e2eb1d20071d3bd3b770fd4c79f201d4ee20c380c06ddd343e283fb93",
+      "protectedRecipeSha256": "6e1bbda2247d2ab8069ea02d9dcdde45099e918f7752fa45a3b594023c05c742",
+      "beforeSteps": [
+        "Couper les choux en deux et les mélanger avec huile, sel et poivre.",
+        "Les rôtir face coupée vers la plaque 22 minutes à 205 °C.",
+        "Ajouter noisettes concassées et miel.",
+        "Poursuivre 5 minutes puis servir immédiatement."
+      ],
+      "note": "Préchauffage et nettoyage des choux ajoutés, position face coupée vers la plaque conservée. Miel et noisettes seulement après 22 minutes pour les cinq dernières ; contrôle du cœur et surveillance de la garniture."
+    },
+    {
+      "id": "c436",
+      "status": "blocked",
+      "sourceHash": "ad85d00704d13a7481fbcec928e47fec37bef3610e04e6042fc8439c62a7f3e3",
+      "reviewedHash": "ad85d00704d13a7481fbcec928e47fec37bef3610e04e6042fc8439c62a7f3e3",
+      "protectedRecipeSha256": "f13661613a1bd1384c2e2ab891e93309f16dfa384bb393708816cf5caf9db1ec",
+      "note": "l’eau est fixée à 15 cl et demandée à mi-hauteur sans dimensions de sauteuse. L’intensité du feu pendant les 15–18 minutes couvertes et le contrôle de tendreté manquent. Ne pas ajouter de liquide au jugé ni changer les quartiers pour faire correspondre le volume."
+    },
+    {
+      "id": "c437",
+      "status": "corrected",
+      "sourceHash": "4458fbcd5e8baebf3b077004987306655dd26cf496fae8dfcb911bd57e3e6279",
+      "reviewedHash": "30fa42ef4473f00f6d21930eb47f955fcea95ce37847d49d1febd1c6ba259159",
+      "protectedRecipeSha256": "3115275772960342a1bbac86a76c84021ed1b24435ead094366fe93b1559267d",
+      "beforeSteps": [
+        "Couper les courgettes en demi-rondelles épaisses.",
+        "Les saisir dans l’huile 6 à 8 minutes à feu vif sans surcharger la poêle.",
+        "Ajouter l’ail pour la dernière minute.",
+        "Saler, poivrer et ajouter le basilic hors du feu."
+      ],
+      "note": "L’ail de la dernière minute est inclus dans les 6–8 minutes source : première phase 5–7 minutes puis une minute avec ail. Courgettes et basilic préparés, aucune cuisson supplémentaire ajoutée ni poêle surchargée."
+    },
+    {
+      "id": "c438",
+      "status": "corrected",
+      "sourceHash": "c9090cb3e8cc2df30a7034fe5a00344f68890e1567d40f22ecb6cc6e6abe7d70",
+      "reviewedHash": "d6e97fde9f293f2df3f235a7b620eef28a00869000ee4d25214d7ded88a69e98",
+      "protectedRecipeSha256": "09abf7df0c0475fc5c0362d7b5b227e89f6478392de4ebda14a97d63cb2a6e91",
+      "beforeSteps": [
+        "Couper les tomates en deux, saler légèrement et laisser égoutter 10 minutes face coupée vers le bas.",
+        "Mélanger chapelure, ail, persil, poivre et huile.",
+        "Déposer les tomates dans un plat et répartir la persillade.",
+        "Cuire 20 à 25 minutes à 190 °C sans laisser les tomates s’effondrer."
+      ],
+      "note": "Préchauffage organisé pendant égouttage, ail et persil hachés avant mélange. Huile uniquement dans la chapelure, tomates remises face coupée vers le haut et garniture répartie sans nombre fixe de convives."
+    },
+    {
+      "id": "c439",
+      "status": "corrected",
+      "sourceHash": "11cb48b85ff2a6a10b48ce5d757ea5872d96bc50007c92eae548cb6b5ea29882",
+      "reviewedHash": "3e5220052cdac96c14253866eb5d99048d46045abcfd2ad012ac134734c05347",
+      "protectedRecipeSha256": "e81f14bfcec7802d9faaaf004f595644a71e004f675b30c4988980a46ab30833",
+      "beforeSteps": [
+        "Couper les aubergines en quartiers ou grosses tranches.",
+        "Les mélanger avec huile, ail, thym, sel et poivre.",
+        "Les étaler sur une plaque sans superposition.",
+        "Rôtir 28 à 32 minutes à 210 °C en retournant une fois."
+      ],
+      "note": "Préchauffage, lavage et préparation de l’ail explicités. Les deux découpes source restent possibles, disposées sans superposition ; retournement unique et contrôle de chair fondante, pas de précuisson inventée."
+    },
+    {
+      "id": "c440",
+      "status": "corrected",
+      "sourceHash": "f6a19cd2d49fccfe90bf639bc090b18a1ff7a64b8cb4f61f32ee9c35c91da1f6",
+      "reviewedHash": "e3b074051058295e06da1ea2d8d93e7831063db563ba0543b3237902e04d2bec",
+      "protectedRecipeSha256": "e603527d4bec9ac4317ffd1d3cfaf0a09bf321da0adb552d80c2cb0f69fa0706",
+      "beforeSteps": [
+        "Couper la courge en cubes de 2 à 3 cm.",
+        "Les mélanger avec huile, sel et poivre puis rôtir 25 minutes à 205 °C.",
+        "Faire mousser le beurre avec la sauge.",
+        "Verser sur la courge et remettre 5 minutes au four."
+      ],
+      "note": "Préparation de la courge et préchauffage explicités ; cubes source de 2–3 cm, huile au départ et beurre à la sauge en finition. Beurre préparé pendant le rôtissage, sans ajouter de cinq minutes au mauvais moment."
+    },
+    {
+      "id": "c441",
+      "status": "corrected",
+      "sourceHash": "677244d5db0b0a52c85f81dd9909387c0e77d86e37f65701e88a99f2141cd1aa",
+      "reviewedHash": "9b91ba38556a1d717343a64aa54c94428a7408a207d907ce6d9570bb83efe037",
+      "protectedRecipeSha256": "c899f9bd93cc14177580384dca3ddc6974874be8bcaade985b127988ec1ce168",
+      "beforeSteps": [
+        "Tourner les artichauts en retirant les feuilles dures et frotter immédiatement au citron.",
+        "Faire revenir oignon et carotte 5 minutes dans l’huile.",
+        "Ajouter artichauts, ail, thym et vin puis réduire 2 minutes.",
+        "Ajouter le bouillon, couvrir et mijoter 20 à 25 minutes jusqu’à tendreté."
+      ],
+      "note": "Citron de frottage explicitement présent dans la source rétabli sans dose inventée. Tournage expliqué à partir des techniques consultées, sans reprendre lard ou bouillon de volaille externes ; cocotte, vin et bouillon de légumes CR conservés."
+    },
+    {
+      "id": "c442",
+      "status": "corrected",
+      "sourceHash": "cf04a8ff214911f96266a158a00acc06b3b1784d0d428620b761d1069e572064",
+      "reviewedHash": "609b88336e83f8525808451211dc7f4c597f6921c233690addb856baae63812b",
+      "protectedRecipeSha256": "b7406dbf963cc3c3b2b9d03596da0c3c4aa70bee07a68f7dd04400b82c2b62a9",
+      "beforeSteps": [
+        "Rincer le riz jusqu’à ce que l’eau soit presque claire.",
+        "Le verser dans une grande quantité d’eau bouillante salée.",
+        "Cuire à découvert selon le paquet, généralement 10 à 12 minutes.",
+        "Égoutter parfaitement, laisser sécher 1 minute puis ajouter éventuellement le beurre."
+      ],
+      "note": "Eau de cuisson liée à la liste ; durée exclusivement selon paquet, sans minuteur générique de 10–12 minutes. Égouttage et minute de séchage conservés, beurre toujours facultatif et mesuré."
+    },
+    {
+      "id": "c443",
+      "status": "blocked",
+      "sourceHash": "352ed6437f457bb13bfd95bfdbc8e331a399773c83da92f8eea20d1ea6bd1a77",
+      "reviewedHash": "352ed6437f457bb13bfd95bfdbc8e331a399773c83da92f8eea20d1ea6bd1a77",
+      "protectedRecipeSha256": "02b3a548a67a102f4c7aee0b5d298cafd087eed2a5b35bd34b3adfd4a2a5535e",
+      "note": "le basmati n’est pas spécifié alors que 24 cl d’eau et onze minutes d’absorption sont imposés. La notice du produit doit confirmer ces paramètres et les huit minutes de repos. Les gousses de cardamome et le laurier ne sont pas retirés avant le service ; ne pas inventer leur écrasement ou un trempage absent."
+    },
+    {
+      "id": "c444",
+      "status": "blocked",
+      "sourceHash": "3df5ac377c50ea6a90b0ed931ccd76f28f73b741a31dbee7184c3ee6357b9235",
+      "reviewedHash": "3df5ac377c50ea6a90b0ed931ccd76f28f73b741a31dbee7184c3ee6357b9235",
+      "protectedRecipeSha256": "b6c51541b0e3fd3c7d9613c05e5434de2aebc0ae63f4ff61c6dc6da05a18e7f7",
+      "note": "le sel demandé à la cuisson manque dans la liste et une moitié de citron ne sert qu’à quelques gouttes sans quantité définie. Les quatorze minutes et le volume d’eau doivent correspondre au quinoa utilisé. Ne pas remplacer le jus manquant par tout le citron ni ajuster le liquide sans source."
+    },
+    {
+      "id": "c445",
+      "status": "blocked",
+      "sourceHash": "0008e90b075a7ed770de842cfc31ac76b82de88d70610a9935607663fd79e384",
+      "reviewedHash": "0008e90b075a7ed770de842cfc31ac76b82de88d70610a9935607663fd79e384",
+      "protectedRecipeSha256": "4e3193ce671dc93f3f02a96fd986acf431b51a24305ac2ea38e3e96301a1f89d",
+      "note": "le calibre du boulgour n’est pas indiqué alors que volume de bouillon et cuisson couverte de 10–12 minutes sont fixés. Sel et poivre restent inutilisés. Confirmer la notice sans passer à un simple gonflement hors du feu qui changerait le pilaf."
+    },
+    {
+      "id": "c446",
+      "status": "blocked",
+      "sourceHash": "1db8b319bc000168c01ce70e606cb6e90d34bfc0ba0a0aea619f93187dec234c",
+      "reviewedHash": "1db8b319bc000168c01ce70e606cb6e90d34bfc0ba0a0aea619f93187dec234c",
+      "protectedRecipeSha256": "4a92c8ca4a98c02adde864fd4d22a479cc7e2096158d3487204c7fc0b5514f35",
+      "note": "le beurre est bien partagé par moitié, mais le suage de l’échalote n’a pas de durée ni de repère. La cuisson 28–30 minutes et 45 cl de bouillon doivent être vérifiées pour l’orge perlé choisi ; le couvert n’est pas précisé. Ne pas modifier l’eau ou transformer la méthode en risotto par ajouts successifs."
+    },
+    {
+      "id": "c447",
+      "status": "blocked",
+      "sourceHash": "38d30615aad7bb9179ed359560f79c8c18277c2daaa12015fc200d4649a9f4cb",
+      "reviewedHash": "38d30615aad7bb9179ed359560f79c8c18277c2daaa12015fc200d4649a9f4cb",
+      "protectedRecipeSha256": "daf107b1868aa4c2db9da795c80eb9b77ec6b499c57eda886e16b5c035c685ec",
+      "note": "une cuillère à café de moutarde facultative est listée mais seule une pointe est ajoutée, sans emploi du reste. Poivre oublié, découpes de carotte et oignon et portée du retrait des aromates non définies. Conserver le départ à froid sans inventer une quantité de moutarde ni retirer automatiquement toute la garniture."
+    },
+    {
+      "id": "c448",
+      "status": "corrected",
+      "sourceHash": "4dcc3a69a43024de7aa82db766dc04bf25c4a6ea7dc2174ed199fbeb34a03ef6",
+      "reviewedHash": "cb08110cc80fad0354bae1b8cceb922acc92c5a7cfae1f3eda7cd232c68848a6",
+      "protectedRecipeSha256": "bbf172cd830735676919ba39004bf9ce0591337f870441eb8b677ba27b00506b",
+      "beforeSteps": [
+        "Faire fondre doucement l’ail dans le beurre 30 secondes.",
+        "Ajouter les flageolets et le bouillon.",
+        "Cuire 10 minutes à petit frémissement jusqu’à ce que le jus soit presque absorbé.",
+        "Poivrer et ajouter le persil avant de servir."
+      ],
+      "note": "Ail et persil préparés ; flageolets déjà cuits et égouttés explicitement conservés, pas de cuisson de haricots secs. Bouillon lié à la quantité, dix minutes de frémissement, sel listé utilisé avec prudence."
+    },
+    {
+      "id": "c449",
+      "status": "corrected",
+      "sourceHash": "4d90a4adc7b4ed2c89885a29c2bb8e68d8507b66ee9986c65f41739fa39de4f3",
+      "reviewedHash": "b4445d8d0368fea6f0ae35158d507ff66de2e0e11b175b1ef7d53bc884408518",
+      "protectedRecipeSha256": "d1bcf5b4988b22c3fbcbfd00ea9fbe6c49bf350600e4696bbdd7d94b0d2e37be",
+      "beforeSteps": [
+        "Rincer puis sécher très soigneusement les pois chiches.",
+        "Les mélanger avec huile, paprika, cumin et sel.",
+        "Les étaler sur une plaque sans les superposer.",
+        "Rôtir 25 à 30 minutes à 200 °C en remuant deux fois."
+      ],
+      "note": "Préchauffage ajouté à la température source, pois chiches déjà cuits et égouttés maintenus. Séchage, couche unique et deux brassages conservés, repère de surface dorée sans cuisson de pois chiches secs."
+    },
+    {
+      "id": "c450",
+      "status": "corrected",
+      "sourceHash": "92a37cf467fcc1e7d30e5935e6198640a10711aa110bf17722ea097737efaa18",
+      "reviewedHash": "98ce9e20627cf032ddd45dea1018b245fe2017b6ba89c6d86554f1dafabcc733",
+      "protectedRecipeSha256": "36d96b94c1834903d97655c75801fe1e36eaa56dec92604fabfcc6f43141315c",
+      "beforeSteps": [
+        "Faire fondre oignon et ail dans l’huile 5 minutes.",
+        "Ajouter tomates et thym puis mijoter 10 minutes.",
+        "Ajouter les haricots blancs et 8 cl d’eau.",
+        "Cuire encore 10 minutes à feu doux jusqu’à sauce courte."
+      ],
+      "note": "Les 8 cl d’eau explicitement demandés dans la source sont rétablis dans la liste et deviennent dynamiques. Oignon et ail préparés, haricots déjà cuits égouttés, sel/poivre listés employés ; deux mijotages distincts conservés."
+    }
+  ]
+}
