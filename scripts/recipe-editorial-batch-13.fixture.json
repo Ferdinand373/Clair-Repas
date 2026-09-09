@@ -1,0 +1,311 @@
+{
+  "baselineCommit": "9c16fda7bec94998e9b94a9f91de3878f219d6ae",
+  "batch": "13",
+  "recipes": [
+    {
+      "id": "a063",
+      "status": "blocked",
+      "sourceHash": "f08afa6e7bc36000ee52e02ed45c2517ee643d085acb32b5bb0f5261f10f7887",
+      "reviewedHash": "f08afa6e7bc36000ee52e02ed45c2517ee643d085acb32b5bb0f5261f10f7887",
+      "protectedRecipeSha256": "b0a302b7d90fb4523654f52a1dd6adb3e01bad6e16adaf530e1b053965a1a8b0",
+      "note": "la cuisson des épinards « faire tomber » ne précise ni matière grasse, ni feu, ni durée. Les archives n’apportent pas ces détails ; ne pas remplacer cette technique par un blanchiment ou ajouter une dose d’huile."
+    },
+    {
+      "id": "a064",
+      "status": "corrected",
+      "sourceHash": "b40d2d20cb701fa4b0d0cee38f8404a3fbfea38f2d3e8a65e5d0fa7dd67fbe62",
+      "reviewedHash": "ca0d676dd3850ab698602b4352aabdb848cf49cf64dca2608ff8430ec85bc740",
+      "protectedRecipeSha256": "1fe3eb4632d48ec4c7e029c1137487fff15b8281662991e34ed72de20dc1339d",
+      "beforeSteps": [
+        "Frotter le pain avec l’ail et le griller 5 minutes à 200 °C.",
+        "Couper les tomates en dés et les assaisonner.",
+        "Répartir les tomates et le basilic sur le pain chaud."
+      ],
+      "note": "Ail frotté avant grillage et tomates crues conservés. Toute l’huile listée sert à assaisonner les tomates, sans dose supplémentaire, sel ou citron ajoutés."
+    },
+    {
+      "id": "a065",
+      "status": "blocked",
+      "sourceHash": "953e9614dd6d7f29a95e61e518156d45e8b0cb9f3ee2caf9af54b0717bd249f3",
+      "reviewedHash": "953e9614dd6d7f29a95e61e518156d45e8b0cb9f3ee2caf9af54b0717bd249f3",
+      "protectedRecipeSha256": "6bf15d0cb16dd734f6ab88f2a850f5ca599f93522a17350c3957b9603ad3e19b",
+      "note": "la matière grasse du sauté échalote/champignons n’est pas listée. Ne pas la prélever dans un ingrédient absent ni remplacer le sauté par une cuisson à l’eau."
+    },
+    {
+      "id": "a066",
+      "status": "blocked",
+      "sourceHash": "33755132723193643b88e3d8eeb302894715fc4e4113c2593d6570d0bf815713",
+      "reviewedHash": "33755132723193643b88e3d8eeb302894715fc4e4113c2593d6570d0bf815713",
+      "protectedRecipeSha256": "496aec93573bd3df316e5009e8cd8be3ec1dc8288f197e8e9765af8dae072846",
+      "note": "la précuisson des carottes n’a ni méthode, ni durée, ni taille de découpe définies. Ne pas choisir eau ou vapeur à la place de la source, ni conserver deux ramequins pour tous les convives."
+    },
+    {
+      "id": "a067",
+      "status": "blocked",
+      "sourceHash": "36e0e90fd0f91d66b1dd8f6793bfeb7c6dd8def6990b0472a44d45f933e99539",
+      "reviewedHash": "36e0e90fd0f91d66b1dd8f6793bfeb7c6dd8def6990b0472a44d45f933e99539",
+      "protectedRecipeSha256": "ff6d5574d445b0472354dcd123f0eef61648c61d9ca86c97f238e4dfff0d9536",
+      "note": "le poireau doit fondre sans matière grasse ni liquide défini. Le gruyère ne permet pas de déduire ce mode de précuisson ; ne pas ajouter du beurre ou cuire dans du bouillon."
+    },
+    {
+      "id": "a068",
+      "status": "corrected",
+      "sourceHash": "9b942bee9ff353a9951044deba1568f396c31f70db8ef5dd1d0332b60ea5e8b4",
+      "reviewedHash": "e29f3460fd8d23dac5d5089b253ebe575831c50bb1eedc2f2eef10449de2133f",
+      "protectedRecipeSha256": "e11ec83f681494b92e7ba9128728064f0adadff33b538e33dfacae8b367b3f54",
+      "beforeSteps": [
+        "Répartir les tomates dans un petit plat.",
+        "Fouetter œufs, lait, farine, sel et poivre.",
+        "Verser sur les tomates et cuire 25 minutes à 180 °C, puis ajouter le basilic."
+      ],
+      "note": "Sel et poivre déjà demandés dans les étapes rétablis sans quantité inventée. Tomates crues, basilic après cuisson et four à 180 °C conservés ; aucun graissage ou beurre ajouté."
+    },
+    {
+      "id": "a069",
+      "status": "corrected",
+      "sourceHash": "2c319b33ce36bf3678f5e007606cc5bd63a510d6e7fd60a1096b851e0d9aa1a8",
+      "reviewedHash": "8d995792f9f7a65b48c7ae1fea408f7bc6794b26798d00aa31ceb71d392d46fd",
+      "protectedRecipeSha256": "0debc0c2c101dc59811bdf7c2ba0881dfbf4c1405a16cd88a32542ec170dbab3",
+      "beforeSteps": [
+        "Râper la courgette, la saler puis la presser.",
+        "Mélanger avec l’œuf, la farine et les herbes.",
+        "Former de petites galettes et les dorer 3 minutes par face."
+      ],
+      "note": "Sel déjà demandé rétabli ; courgette salée puis pressée, non précuite. Petites galettes minces, huile mesurée et deux faces de trois minutes distinctes ; aucune attente ajoutée."
+    },
+    {
+      "id": "a070",
+      "status": "blocked",
+      "sourceHash": "5753af0565a38b2fc37028232250f4a1d202bb8ebd92e5867024122c84cfce2e",
+      "reviewedHash": "5753af0565a38b2fc37028232250f4a1d202bb8ebd92e5867024122c84cfce2e",
+      "protectedRecipeSha256": "5c9f0eb26180e7cd6c11e018831db7936971842d9f851b4296bf0a89ff0a3ffb",
+      "note": "le citron de la sauce au yaourt est absent de la liste et sa dose n’est pas définie. La tenue des boulettes de pois chiches cuits sans liant doit aussi être vérifiée ; ne pas remplacer les pois chiches par des secs trempés."
+    },
+    {
+      "id": "a071",
+      "status": "corrected",
+      "sourceHash": "dc81a2f806d36717602fd2c2c64375bf7b26a8d705ac3be96261232b5a91ff72",
+      "reviewedHash": "07530ead2dafb4e8a41dbe19c0324578c681940cf5a9f6b0bc682b7878066b9d",
+      "protectedRecipeSha256": "fe1db78d451a59e9948c42c76373ba5eb03369cc765516371c77021b1c9d4023",
+      "beforeSteps": [
+        "Émietter le poisson et mélanger avec farine, œuf, oignon, persil et paprika.",
+        "Former de petites bouchées.",
+        "Cuire 12 à 14 minutes à 190 °C en les retournant à mi-cuisson."
+      ],
+      "note": "Poisson déjà cuit conservé, pas remplacé par du poisson cru ni une pâte frite. Petites bouchées et cuisson airfryer historique explicitées ; repère de réchauffage à 74 °C ajouté."
+    },
+    {
+      "id": "a072",
+      "status": "blocked",
+      "sourceHash": "9a8779b60dea0b35994986ac968f635a45c7b9181999cc39c2a9ef0d2226c37c",
+      "reviewedHash": "9a8779b60dea0b35994986ac968f635a45c7b9181999cc39c2a9ef0d2226c37c",
+      "protectedRecipeSha256": "9b0fd8029c890d2c4f7713a33856f42fe8f35b481d96311857eebe3ef8dc4374",
+      "note": "la liste ne distingue pas crevettes crues et déjà cuites. La conduite de saisie et le repère sanitaire dépendent de cet état ; confirmer le produit avant de réécrire les 3–4 minutes en durée garantie."
+    },
+    {
+      "id": "a073",
+      "status": "blocked",
+      "sourceHash": "d55b6c5be234b0b36cfd87c1a56e0d47baa49e1099c62baa7012db16aff71985",
+      "reviewedHash": "d55b6c5be234b0b36cfd87c1a56e0d47baa49e1099c62baa7012db16aff71985",
+      "protectedRecipeSha256": "305bfe3639b8c553dbd117592c45f3f6eede404fca23f05f75db71a3ab0f516f",
+      "note": "la répartition du beurre entre fondue de poireau et saisie des noix n’est pas donnée. Ne pas utiliser une dose entière dans chaque cuisson ni inventer une moitié ; le calibre des noix manque pour valider le temps à cœur."
+    },
+    {
+      "id": "a074",
+      "status": "corrected",
+      "sourceHash": "03034b8b371460f3c59e478506ba5c6f55e63dde0d139b79679806b19d6fb04b",
+      "reviewedHash": "a6158ffc3f80ba7b900f41d21c953876dbf4b023a48b35d0d11adb9a351c5acb",
+      "protectedRecipeSha256": "4ad9ff1d06b1a220ff5332b6cbf3d1ba9f7739191f00bd5a068834b420a4fd20",
+      "beforeSteps": [
+        "Nettoyer soigneusement les moules.",
+        "Faire fondre l’échalote, ajouter vin et moules puis couvrir 5 à 7 minutes.",
+        "Jeter les moules restées fermées et ajouter le persil."
+      ],
+      "note": "Nettoyage et tri des coquillages expliqués, échalote fondue dans tout le beurre listé puis vin/moules couverts. Cuisson au vin blanc conservée, pas de bière ni d’ail ajoutés."
+    },
+    {
+      "id": "a075",
+      "status": "corrected",
+      "sourceHash": "77bdcff81dab5827ce21963cb4c64bcb92b72e003311dc6d431b08a15bf36db8",
+      "reviewedHash": "c3653ec3daa47c82c73d773221acf82e84cf2c9a523b724377cda7f0ff6aeef6",
+      "protectedRecipeSha256": "3b9dbf7ab27040c2be7b5eee1955175670dc278f52e8d406e6ed9255d3cdac58",
+      "beforeSteps": [
+        "Sécher soigneusement les calamars.",
+        "Les saisir 3 à 4 minutes à feu vif avec l’huile.",
+        "Ajouter ail et persil une minute, puis le citron hors du feu."
+      ],
+      "note": "Saisie vive 3–4 minutes puis persillade une minute conservées, avec deux minuteurs ; citron uniquement hors du feu. Température interne générale des produits de la mer ajoutée sans cuisson longue inventée."
+    },
+    {
+      "id": "a076",
+      "status": "blocked",
+      "sourceHash": "3a2933429584d70f010de7df672e695bd4b35d47627405677a5e1011ae12b105",
+      "reviewedHash": "3a2933429584d70f010de7df672e695bd4b35d47627405677a5e1011ae12b105",
+      "protectedRecipeSha256": "93ec548673245d7078d3484765879da18afde3df205c25724617e68b1ed49ade",
+      "note": "la matière grasse du sauté des légumes n’est pas listée et sa quantité est inconnue. Ne pas remplacer « faire revenir » par une cuisson à l’eau ni huiler les bricks sans source."
+    },
+    {
+      "id": "a077",
+      "status": "corrected",
+      "sourceHash": "75bd8a33a6f73d8afd6d22db291383cd91f6448d1ff8df5c58d05174a5f8d29a",
+      "reviewedHash": "e4fdb080a5f6fc32e4b34f92312b8bef662895eb6767c69f80a800e6f105079f",
+      "protectedRecipeSha256": "48a5a9b062d47312b2ab545f729ebdc9733993e68afea1b453a7e6e2a40d7e45",
+      "beforeSteps": [
+        "Cuire les œufs 9 minutes puis les hacher avec le thon, le persil et le citron.",
+        "Garnir et plier les feuilles de brick.",
+        "Dorer 3 minutes par face dans une poêle légèrement huilée."
+      ],
+      "note": "L’huile déjà demandée pour une poêle légèrement huilée est rétablie sans volume inventé. Œufs durs hachés, thon en boîte et citron conservés ; pliage en enveloppe et trois minutes par face détaillés."
+    },
+    {
+      "id": "a078",
+      "status": "blocked",
+      "sourceHash": "91abf82e37e4a5948ab06e8454c36e2ff6145775f785c9cc6b071534f4870724",
+      "reviewedHash": "91abf82e37e4a5948ab06e8454c36e2ff6145775f785c9cc6b071534f4870724",
+      "protectedRecipeSha256": "6d56d8fcac2e90603a8e7496b6748cf936b2e030e0c8512666c08323b292368b",
+      "note": "le sauté du chou et de la carotte n’a pas de matière grasse listée. La cuisson des vermicelles dépend du paquet, mais cela ne résout pas le sauté ; ne pas remplacer ce dernier par une cuisson vapeur."
+    },
+    {
+      "id": "a079",
+      "status": "blocked",
+      "sourceHash": "22f2902aaa53b97ad49f9064ddd328c78ba4f06c0a55ebe0c64039abbac37619",
+      "reviewedHash": "22f2902aaa53b97ad49f9064ddd328c78ba4f06c0a55ebe0c64039abbac37619",
+      "protectedRecipeSha256": "3642c0efe0934e6023edfdeb1e5b9a0d283e71e7bc5503fcb3216e316ad7fecc",
+      "note": "la précuisson du chou-fleur ne précise ni méthode ni durée ; son égouttage influe sur la tenue des croquettes. Ne pas inventer une cuisson à l’eau ou ajouter de la chapelure pour compenser."
+    },
+    {
+      "id": "a080",
+      "status": "corrected",
+      "sourceHash": "c107d4289f408b82a261ad8663a1221e26027750b0cde535dfae5f72e496f006",
+      "reviewedHash": "b00e9ce8b606cf0f188c2a48ed0e305d401364af1c71c55a1736fac97c8f3305",
+      "protectedRecipeSha256": "870e4b41cdc6149212cd62778d88877e0d729d8bc4fbd182326bee888797afee",
+      "beforeSteps": [
+        "Cuire les grenailles 22 minutes à 190 °C avec l’huile, le sel et le poivre.",
+        "Mélanger le yaourt, le citron et les herbes.",
+        "Servir les pommes de terre tièdes avec la sauce fraîche."
+      ],
+      "note": "Sel et poivre rétablis depuis la première étape. Grenailles non épluchées et entières conservées, sauce préparée pendant leur cuisson ; pas de température de four transposée."
+    },
+    {
+      "id": "a081",
+      "status": "blocked",
+      "sourceHash": "001d925309f92f7c6f5304d96f8a0e3f838eb418301cd4b4cf11293670547e1a",
+      "reviewedHash": "001d925309f92f7c6f5304d96f8a0e3f838eb418301cd4b4cf11293670547e1a",
+      "protectedRecipeSha256": "5a0fdbc19943944446258d7ee35a3573061ec40ee0f0565de0d06fa3f6e25642",
+      "note": "huile et vinaigre de la vinaigrette ne sont ni listés ni dosés. Le persil listé n’est pas utilisé dans les étapes ; ne pas inventer une sauce avec seulement la moutarde et l’échalote."
+    },
+    {
+      "id": "a082",
+      "status": "corrected",
+      "sourceHash": "0988573cb1019cd312de566ef5e46286142f5cf1d7b1f177bdea0857c41d96da",
+      "reviewedHash": "368c5e67bbf0ae5eaa7df387cbf3d4efaec7e42303b18b5d6b07ea7eb2d7db40",
+      "protectedRecipeSha256": "59b880485d55b4db8b483daba2167fd197d44752e937db3ef98128e0f36e926d",
+      "beforeSteps": [
+        "Émincer très finement les champignons.",
+        "Les arroser aussitôt de citron et d’huile.",
+        "Ajouter parmesan, persil, sel et poivre."
+      ],
+      "note": "Sel et poivre déjà présents dans la finition rétablis sans grammage. Champignons crus émincés, citron entier et huile intégrale conservés ; aucun temps de marinade ajouté."
+    },
+    {
+      "id": "a083",
+      "status": "blocked",
+      "sourceHash": "ea7c06fa4ce30aeab3fda6dec2fd6d3b9a6a3b81141269f7602f9538ef2cfdb9",
+      "reviewedHash": "ea7c06fa4ce30aeab3fda6dec2fd6d3b9a6a3b81141269f7602f9538ef2cfdb9",
+      "protectedRecipeSha256": "b90f4b224102ac711bd3768968c08f3f0aba8f0f7ec574c3aecc6faa25b46b30",
+      "note": "le rôtissage au paprika ne précise pas s’il est volontairement sans matière grasse. La quantité d’eau de la sauce et la part utilisée pour « napper légèrement » restent inconnues ; ne pas inventer un partage du tahini."
+    },
+    {
+      "id": "a084",
+      "status": "corrected",
+      "sourceHash": "b535ed621b722500d78c0219f8f4b484119c68aba066b1654e869d93f4317a5d",
+      "reviewedHash": "02411a0264f152bdb6b884bea669a94cb794af37db99f4bda43f4dff47c32362",
+      "protectedRecipeSha256": "ca4b41b56068cf44c40217404baa7054ff1453e96d1785a3ce4530f4597ce5bb",
+      "beforeSteps": [
+        "Couper la courge en petits quartiers et l’assaisonner.",
+        "Rôtir 25 minutes à 200 °C.",
+        "Ajouter miel, thym et noisettes concassées pour les 5 dernières minutes."
+      ],
+      "note": "Les cinq dernières minutes restent incluses dans les vingt-cinq minutes totales : vingt minutes de courge puis cinq avec miel, thym et noisettes. Toute l’huile reste au départ, miel et noisettes à la fin."
+    },
+    {
+      "id": "a085",
+      "status": "corrected",
+      "sourceHash": "d33bd4c60a18265e9f3bb1c3e0efa82f73aaf6adc4bcc7423c61c526d7ac5f0b",
+      "reviewedHash": "734c1f9de56ef09ae2a226ebad83b6ef044bd08766069721ac6e64475833b12c",
+      "protectedRecipeSha256": "a7591fb5ffe8d8dfba51e2edc350fa92dbcf286f66dd1e10072962b2386973f4",
+      "beforeSteps": [
+        "Cuire les poireaux 15 minutes à la vapeur puis les laisser tiédir.",
+        "Mélanger fromage blanc, citron et aneth.",
+        "Ajouter le saumon fumé en lanières et servir avec la sauce."
+      ],
+      "note": "Vapeur quinze minutes et saumon fumé ajouté au service conservés, sans faire cuire le saumon ni transformer la sauce. Montage du panier vapeur et sauce simultanée expliqués."
+    },
+    {
+      "id": "a086",
+      "status": "corrected",
+      "sourceHash": "edd2e16d3919c88b6701551579a920723d96244f03f59d8aefb1ffd6cd353318",
+      "reviewedHash": "df920eee21101c2057726195a0b484d4fa8e8a6e3b97bc561a8a663a3c114cf6",
+      "protectedRecipeSha256": "2dfefb8366337c6f1ee457c4f6fc7d6160db02cca2ef6d964482a03a0661bc01",
+      "beforeSteps": [
+        "Peler les agrumes à vif et couper l’avocat.",
+        "Répartir dans deux assiettes.",
+        "Ajouter les graines, l’huile, le sel et le poivre."
+      ],
+      "note": "Sel et poivre rétablis depuis la finition. Agrumes pelés à vif expliqués, graines non torréfiées et huile entière conservées ; nombre d’assiettes non figé à deux."
+    },
+    {
+      "id": "a087",
+      "status": "blocked",
+      "sourceHash": "42713f49e5b739cf786a74d8466f0adf30f544376719687739ad0209da9c48da",
+      "reviewedHash": "42713f49e5b739cf786a74d8466f0adf30f544376719687739ad0209da9c48da",
+      "protectedRecipeSha256": "365483805c6714fd2af60ae1b37b4c0e89da570d44d69615cf0768adbafe24da",
+      "note": "sel, poivre et huile demandés à la fin sont absents de la liste. Le « filet » ne donne pas de dose d’assaisonnement à répartir avec le citron ; ne pas lui attribuer une cuillère arbitraire."
+    },
+    {
+      "id": "a089",
+      "status": "blocked",
+      "sourceHash": "e62fd6a6a8f5d9dd1800c27db208b6ec8797b6c068fb690f8cfc6c8f0f05f37a",
+      "reviewedHash": "e62fd6a6a8f5d9dd1800c27db208b6ec8797b6c068fb690f8cfc6c8f0f05f37a",
+      "protectedRecipeSha256": "afa0e0eb11bd104cefb5f28cad27df6afa72c7d15cce62129600b64b6c904810",
+      "note": "le filet d’huile demandé n’est pas listé ni mesuré. Le boulgour doit suivre son paquet, mais cela ne permet pas d’inventer l’assaisonnement manquant ; le refroidissement est aussi à distinguer du temps annoncé."
+    },
+    {
+      "id": "a090",
+      "status": "blocked",
+      "sourceHash": "fe5caf75a647e9b8fbd5bcbc47075aeee9d0cdb515573e32945d9bc81e405b58",
+      "reviewedHash": "fe5caf75a647e9b8fbd5bcbc47075aeee9d0cdb515573e32945d9bc81e405b58",
+      "protectedRecipeSha256": "83cf9fb98b0bf5b3ea6f4377113da044f66206b0547fd277f7a9236c8cc25b20",
+      "note": "la matière grasse nécessaire au sauté de l’aubergine et de l’oignon n’est pas listée ni dosée. Ne pas remplacer ce sauté par un mijotage dans les tomates dès le départ."
+    },
+    {
+      "id": "a091",
+      "status": "blocked",
+      "sourceHash": "48d590d81d8f030244f24057c79e0ccb0c8dd5e8a36bc1d22ed20e1b0c685c5c",
+      "reviewedHash": "48d590d81d8f030244f24057c79e0ccb0c8dd5e8a36bc1d22ed20e1b0c685c5c",
+      "protectedRecipeSha256": "13c08b4dd99f16bf04cd9108d460594b6c47262604eeb462231a3dafd46f6457",
+      "note": "la fondue d’oignon et de poivron ne précise ni matière grasse ni conduite du feu. Ne pas faire cuire directement tous les légumes dans les tomates pour contourner cette première cuisson."
+    },
+    {
+      "id": "a092",
+      "status": "blocked",
+      "sourceHash": "ce13ba0efbe664a4cacff73530862670a035b230715c38e2e49c318430267cfc",
+      "reviewedHash": "ce13ba0efbe664a4cacff73530862670a035b230715c38e2e49c318430267cfc",
+      "protectedRecipeSha256": "6ee8811bda2d6a817b7031a75035764419c647303c1fbdb24cf55d1d6e386a31",
+      "note": "les cuissons séparées de l’aubergine, de la courgette et du poivron n’ont ni matière grasse, ni feu, ni durées. Le texte ne distingue pas clairement les tomates au premier passage ; ne pas transformer en cuisson groupée."
+    },
+    {
+      "id": "a093",
+      "status": "corrected",
+      "sourceHash": "447cbcc557cabbbddf30ae7470cedb1b8a31bb69d0c331dda8291a36cf28ec83",
+      "reviewedHash": "ea8b497afdbabe6182a228050800bb06f20e981254a068d3d218f19dce9a9867",
+      "protectedRecipeSha256": "c92d1ed276ac847bf5a0c8753964b3f123b882cc706dbf5f6d236254a31ad5c7",
+      "beforeSteps": [
+        "Mixer grossièrement le saumon avec œufs, crème, citron et aneth.",
+        "Verser dans un petit moule chemisé.",
+        "Cuire 30 minutes au bain-marie à 170 °C et laisser refroidir avant de trancher."
+      ],
+      "note": "Rendement fixe de terrine et toutes ses quantités conservés, même si les convives du repas changent. Mixage grossier, moule chemisé et bain-marie à 170 °C conservés ; refroidissement distinct, repère de prise aux œufs à 71 °C."
+    }
+  ]
+}

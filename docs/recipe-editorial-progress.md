@@ -168,6 +168,16 @@ P02 publié : `c87dc373c29cae1d6edb9c2ac6191004c69ba52a`, tests `34390827874` et
 
 **Cumul : 350 identifiants examinés, 162 corrigés, 188 bloqués, 1 203 à examiner.** Prochain dessert `d094`, prochaine entrée `a063`, prochaine fiche globale `gn-pois-chiches-ratatouille`. Zéro erreur éditoriale et 8 653 avertissements. 128 minuteurs et 4 410 calculs d’ingrédients dans les lots 02–12 ; les 24 commandes du workflow réussissent. Publication à consigner après contrôle en ligne.
 
+## Publication du lot 12
+
+`9c16fda7bec94998e9b94a9f91de3878f219d6ae` publié. Tests `34399261897`, Pages `34399261483` et déploiement `6358361850` réussis. HTTPS 200 et fichiers identiques au commit : index `c8977c9b1c084c547f58f8f76c79b43fd6ac993004b6d6340d923d1041f5c4aa`, service worker `a4e343ef1d83a8746b4b1d46cfd50a2a4445cd2e38e6402014ff04b4b6a3ddd0`. Révision chargée après mise à jour normale : `sha256:97b01bb780a1cf1fe4e0da4c0bfc6a75e84f59d09f7c0280efdb0a144ac4d4ad`. Îles flottantes contrôlées en production à deux personnes : 30 g + 30 g de sucre, crème à 82–84 °C et deux boutons distincts de deux minutes.
+
+## Lot 13 — trente entrées et une terrine
+
+[Journal et décisions individuelles](recipe-editorial-batch-13.md). 13 corrigées, 17 bloquées, aucune conforme sans modification. Six ingrédients explicitement retrouvés dans les étapes sont rétablis sans quantité inventée. Toutes les portions et tous les dosages chiffrés restent inchangés ; la terrine garde son rendement fixe. Les cinq dernières minutes de la courge restent incluses dans les vingt-cinq de cuisson.
+
+**Cumul : 380 identifiants examinés, 175 corrigés, 205 bloqués, 1 173 à examiner.** Prochaine entrée `a094`, prochain dessert `d094`, prochaine fiche globale `gn-pois-chiches-ratatouille`. Zéro erreur éditoriale, 8 539 avertissements. 144 minuteurs et 4 842 contrôles de quantité dans les lots 02–13. Les 24 commandes du workflow réussissent ; publication à consigner après contrôle en ligne.
+
 ## Limites des vérifications
 
 Les tests de structure, quantité, minuteurs, stockage simulé et rendu ne sont pas des essais culinaires. Les formats iPhone/PWA sont simulés, sauf mention explicite d’un appareil physique. Le total de fiches à examiner ne doit jamais être remplacé par le nombre de fiches auxquelles le style commun a été appliqué.

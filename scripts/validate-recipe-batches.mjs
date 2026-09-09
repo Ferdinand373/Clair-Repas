@@ -7,7 +7,7 @@ import {recipeSource} from './recipe-source.mjs';
 import {recipeHash} from './validate-recipe-editorial.mjs';
 const root=resolve(dirname(fileURLToPath(import.meta.url)),'..');
 const {code,recipes,editorial}=recipeSource(readFileSync(resolve(root,'index.html'),'utf8'));
-const batchNumbers=['02','03','04','05','06','07','08','09','10','11','12'];
+const batchNumbers=['02','03','04','05','06','07','08','09','10','11','12','13'];
 const fixture={recipes:batchNumbers.flatMap(number=>JSON.parse(readFileSync(resolve(root,`scripts/recipe-editorial-batch-${number}.fixture.json`),'utf8')).recipes)};
 const slice=(a,b)=>code.slice(code.indexOf(a),code.indexOf(b,code.indexOf(a)+a.length));
 const context={window:{},$:()=>({value:'8'}),MEAL_TYPES:['mid','eve'],recipeRole:r=>r.role||r.course||'dish',isFavorite:()=>false,recipeFeedbackHTML:()=>'',recipePersonalNoteHTML:()=>''};
@@ -55,7 +55,10 @@ const timers={
   d069:[[],[],[30],[]],d070:[[],[],[30]],d071:[[],[],[30]],d072:[[],[],[30],[]],
   d073:[[2],[35],[]],d074:[[],[8],[]],d075:[[],[],[]],d077:[[],[],[],[2],[2],[]],
   d082:[[],[],[32]],d083:[[],[],[32]],d085:[[],[],[],[],[40],[20]],d086:[[],[],[35]],
-  d087:[[],[],[30]],d088:[[],[],[30]],d089:[[],[],[20]],d091:[[],[],[30]],d092:[[],[20],[12]],d093:[[],[],[14]]
+  d087:[[],[],[30]],d088:[[],[],[30]],d089:[[],[],[20]],d091:[[],[],[30]],d092:[[],[20],[12]],d093:[[],[],[14]],
+  a064:[[5],[],[]],a068:[[],[],[25]],a069:[[],[],[3],[3]],a071:[[],[],[14]],
+  a074:[[],[],[7],[]],a075:[[],[4],[1],[]],a077:[[9],[],[],[3],[3]],
+  a080:[[22],[],[]],a082:[[],[],[]],a084:[[],[20],[5]],a085:[[15],[],[]],a086:[[],[],[]],a093:[[],[],[30],[]]
 };
 const ingredients={
   n01:['poulet','pommes de terre','paprika','huile','sel.*poivre'],
@@ -174,9 +177,22 @@ const ingredients={
   d089:['chocolat noir','beurre','œufs','sucre','farine'],
   d091:['œufs','farine','sucre','beurre','chocolat noir','vanille','levure chimique'],
   d092:['œufs','farine','sucre','beurre','citron','levure chimique'],
-  d093:['blancs d’œufs','poudre d’amande','sucre glace','farine','beurre']
+  d093:['blancs d’œufs','poudre d’amande','sucre glace','farine','beurre'],
+  a064:['pain','tomates','ail','basilic','huile d’olive'],
+  a068:['tomates cerises','œufs','lait','farine','basilic','sel.*poivre'],
+  a069:['courgette','œuf','farine','persil.*ciboulette','huile','saler'],
+  a071:['poisson blanc déjà cuit','farine','œuf','oignon nouveau','persil','paprika'],
+  a074:['moules','échalote','vin blanc','persil','beurre'],
+  a075:['calamar','ail','persil','citron','huile d’olive'],
+  a077:['feuilles de brick','thon','œufs','persil','citron','huile'],
+  a080:['pommes de terre grenaille','yaourt nature','citron','ciboulette.*persil','huile','sel.*poivre'],
+  a082:['champignons de Paris','parmesan','citron','huile d’olive','persil','sel.*poivre'],
+  a084:['courge','noisettes','miel','thym','huile'],
+  a085:['poireaux','saumon fumé','fromage blanc','citron','aneth'],
+  a086:['avocat','orange','pamplemousse','graines de courge','huile d’olive','sel.*poivre'],
+  a093:['saumon','œufs','crème légère','citron','aneth']
 };
-assert.equal(fixture.recipes.length,335);
+assert.equal(fixture.recipes.length,365);
 let quantityChecks=0,timerCount=0;
 for(const record of fixture.recipes){
   const recipe=recipes.find(r=>r.id===record.id);
@@ -199,7 +215,7 @@ for(const record of fixture.recipes){
   for(const count of [1,2,3,4,5,8]){
     const output=context.recipeHTML(recipe,{people:count,dayIndex:1,mealType:'eve'});
     for(const ingredient of recipe.i){
-      const quantity=ingredient.q==null?null:ingredient.q*count/(recipe.servings||2);
+      const quantity=ingredient.q==null?null:context.recipeHasFixedYield(recipe)?ingredient.q:ingredient.q*count/(recipe.servings||2);
       const text=context.ingredientText(ingredient,quantity,count);
       assert.equal(context.ingredientTextForRecipe(ingredient,recipe,count),text);
       assert.ok(output.includes('>'+text+'</li>'),record.id+' '+count+' people ingredient '+ingredient.n);
@@ -301,6 +317,27 @@ assert.match(recipes.find(r=>r.id==='d075').p[1],/temps et le feu indiqués sur 
 assert.match(recipes.find(r=>r.id==='d092').t,/20 min de repos.*10–12 min de cuisson.*préparation/);
 assert.match(recipes.find(r=>r.id==='d093').p[1],/sans les monter en neige/);
 assert.doesNotMatch(recipes.find(r=>r.id==='d093').p.join(' '),/2 heures|deux heures/);
+for(const [id,n] of Object.entries({a068:'sel et poivre',a069:'sel',a077:'huile',a080:'sel et poivre',a082:'sel et poivre',a086:'sel et poivre'})){
+  assert.deepEqual(recipes.find(r=>r.id===id).i.at(-1),{q:null,u:'',n,k:n});
+  const before=fixture.recipes.find(r=>r.id===id).beforeSteps.join(' ');
+  assert.match(before,id==='a077'?/poêle légèrement huilée/:id==='a069'?/la saler/:/sel.*poivre/);
+}
+const salmonTerrine=recipes.find(r=>r.id==='a093');
+assert.equal(salmonTerrine.role,'terrine');
+assert.equal(salmonTerrine.servings,2);
+for(const count of [1,2,3,4,5,8]){
+  assert.equal(context.ingredientTextForRecipe(salmonTerrine.i[0],salmonTerrine,count),'250 g saumon');
+  assert.ok(context.recipeStepText(salmonTerrine.p[0],salmonTerrine,count).includes('10 cl de crème légère'));
+  const output=context.recipeHTML(salmonTerrine,{people:count});
+  assert.doesNotMatch(output,/data-people-delta/,'fixed yield must not gain an adjustable portion control');
+}
+assert.match(recipes.find(r=>r.id==='a084').p[1],/Rôtir la courge 20 minutes/);
+assert.match(recipes.find(r=>r.id==='a084').p[2],/Poursuivre la cuisson 5 minutes/);
+assert.match(recipes.find(r=>r.id==='a071').p[2],/airfryer.*190 °C.*notice.*préchauffage/);
+assert.match(recipes.find(r=>r.id==='a085').p[0],/panier.*sans contact avec l’eau/);
+assert.match(recipes.find(r=>r.id==='a085').p[2],/sans réchauffer le saumon/);
+assert.match(editorial.a073.reviewNote,/répartition du beurre/);
+assert.match(editorial.a092.reviewNote,/cuissons séparées/);
 const corrected=fixture.recipes.filter(r=>r.status==='corrected').length;
 console.log(`✓ Batches ${batchNumbers.join('/')}: ${fixture.recipes.length} individual review records, ${corrected} corrected, ${fixture.recipes.length-corrected} blocked with original content preserved; ${timerCount} manually checked timers`);
 console.log(`✓ ${quantityChecks} ingredient checks at 1/2/3/4/5/8 people; split parmesan quantities, per-face timing and original cooking techniques`);
