@@ -7,7 +7,7 @@ import {recipeSource} from './recipe-source.mjs';
 import {recipeHash} from './validate-recipe-editorial.mjs';
 const root=resolve(dirname(fileURLToPath(import.meta.url)),'..');
 const {code,recipes,editorial}=recipeSource(readFileSync(resolve(root,'index.html'),'utf8'));
-const batchNumbers=['02','03','04','05','06','07','08','09','10','11','12','13','14','15','16'];
+const batchNumbers=['02','03','04','05','06','07','08','09','10','11','12','13','14','15','16','17'];
 const fixture={recipes:batchNumbers.flatMap(number=>JSON.parse(readFileSync(resolve(root,`scripts/recipe-editorial-batch-${number}.fixture.json`),'utf8')).recipes)};
 const slice=(a,b)=>code.slice(code.indexOf(a),code.indexOf(b,code.indexOf(a)+a.length));
 const context={window:{},$:()=>({value:'8'}),MEAL_TYPES:['mid','eve'],recipeRole:r=>r.role||r.course||'dish',isFavorite:()=>false,recipeFeedbackHTML:()=>'',recipePersonalNoteHTML:()=>''};
@@ -246,7 +246,7 @@ const ingredients={
   t417:['cuisses de poulet désossées','graisse de canard','bouillon','citron','échalote','thym','sel','poivre'],
   'theme-bistrot-brasserie-02':['poireaux','moutarde','vinaigre de vin','huile','échalote','persil','saler.*poivrer']
 };
-assert.equal(fixture.recipes.length,475);
+assert.equal(fixture.recipes.length,525);
 let quantityChecks=0,timerCount=0;
 for(const record of fixture.recipes){
   const recipe=recipes.find(r=>r.id===record.id);
@@ -451,6 +451,37 @@ assert.match(editorial.t410.reviewNote,/poids.*force.*40 cl/);
 assert.match(editorial.a097.reviewNote,/version actuelle.*sauté.*quatre portions/);
 assert.equal(recipes.find(r=>r.id==='a097').servings,4);
 assert.match(editorial['theme-bistrot-brasserie-01'].reviewNote,/quatre œufs.*deux moitiés/);
+const batch17=JSON.parse(readFileSync(resolve(root,'scripts/recipe-editorial-batch-17.fixture.json'),'utf8')).recipes;
+assert.equal(batch17.length,50);
+let reservedQuantityChecks=0;
+for(const record of batch17){
+  assert.equal(record.status,'blocked');
+  const recipe=recipes.find(r=>r.id===record.id);
+  assert.equal(recipe.servings||2,2);
+  assert.match(editorial[record.id].times.total,/annoncées, non vérifiées/);
+  for(const count of [1,2,3,4,5,8]){
+    const output=context.recipeHTML(recipe,{people:count,dayIndex:1,mealType:'eve'});
+    assert.ok(output.includes('À vérifier'));
+    for(const ingredient of recipe.i){
+      const qty=ingredient.q==null?null:ingredient.q*count/2;
+      assert.ok(output.includes('>'+context.ingredientText(ingredient,qty,count)+'</li>'),record.id+' reserved recipe ingredient at '+count);
+      reservedQuantityChecks++;
+    }
+    const attached=[...output.matchAll(/data-step-index="(\d+)" data-timer-minutes="(\d+)"/g)].map(([,step,min])=>[+step,+min]);
+    // The sourceHash assertion above proves these preparation strings are unchanged.
+    assert.deepEqual(attached,recipe.p.flatMap((step,index)=>Array.from(context.stepTimerDurations(step),min=>[index,min])),record.id+' original timers stay attached to their steps');
+    assert.doesNotMatch(output,/\{\{|undefined|NaN/);
+  }
+}
+assert.match(editorial['gn2-crevettes-gingembre-sesame'].reviewNote,/poisson nacré.*crevettes/);
+assert.match(editorial['gn2-filet-mignon-airfryer-boulgour'].reviewNote,/origan.*récipient.*panier perforé/);
+assert.match(editorial['gn2-saucisses-grillade-persillee'].reviewNote,/seule gousse.*crue.*rôtie/);
+assert.match(editorial['gn2-saumon-grillade-persillee'].reviewNote,/demi-citron.*quartier.*feuille de cuisson/);
+assert.match(editorial['gn2-dinde-airfryer-boulgour'].reviewNote,/matière grasse.*pas listée/);
+assert.deepEqual(Array.from(context.stepTimerDurations(recipes.find(r=>r.id==='gn2-cotes-porc-airfryer-boulgour').p[1])),[2,18]);
+assert.deepEqual(Array.from(context.stepTimerDurations(recipes.find(r=>r.id==='gn2-poisson-blanc-airfryer-boulgour').p[2])),[4]);
+assert.match(editorial['gn2-cotes-porc-airfryer-boulgour'].times.cook,/2 min après grillade/);
 const corrected=fixture.recipes.filter(r=>r.status==='corrected').length;
 console.log(`✓ Batches ${batchNumbers.join('/')}: ${fixture.recipes.length} individual review records, ${corrected} corrected, ${fixture.recipes.length-corrected} blocked with original content preserved; ${timerCount} manually checked timers`);
 console.log(`✓ ${quantityChecks} ingredient checks at 1/2/3/4/5/8 people; split parmesan quantities, per-face timing and original cooking techniques`);
+console.log(`✓ Batch 17: ${reservedQuantityChecks} ingredient renders at 1/2/3/4/5/8 people; all 50 reservations visible, original methods and timer attachments preserved`);

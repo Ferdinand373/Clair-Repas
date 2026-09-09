@@ -208,6 +208,16 @@ P02 publié : `c87dc373c29cae1d6edb9c2ac6191004c69ba52a`, tests `34390827874` et
 
 **Cumul : 490 identifiants examinés, 212 corrigés, 278 bloqués, 1 063 à examiner.** Prochaine entrée `theme-bistrot-brasserie-03`, prochaine fiche globale `gn2-boeuf-gingembre-sesame`, prochain dessert `v74-reg-27`. Zéro erreur éditoriale et 8 089 avertissements. 210 minuteurs et 6 378 contrôles d’ingrédients dans les lots 02–16. Les 24 commandes du workflow réussissent ; formats téléphone, tablette et ordinateur contrôlés visuellement. Publication à consigner après contrôle en ligne.
 
+## Publication du lot 16
+
+`f8c0d20f53e6e015278016f8a6e129243fa3150a` publié sur `main`. Tests `34404163926`, Pages `34404162639` et déploiement `6359183795` réussis. HTTPS 200 et fichiers identiques au commit : index `58e88e6af43b9fe975db296fae7b8d0834dc24499cdbfa1d306df8cf2f8d695e`, service worker `4a2a5e0ac5b7915ccaa6e0c9de8a87d3ebb53652742acc4f495c5a93312b2dc9`. Révision chargée `sha256:5b5a6f32baebcf44d8f98a7fd8228e97b13bc8f6b014dfa5f3789092f3a019d4`. Terrine de foies de volaille vérifiée en ligne : 20 g puis 100 g de beurre, rendement fixe, cuisson finale à 74 °C et minuteurs 4/3/35–40 minutes. Actualisation normale, sans effacer de données.
+
+## Lot 17 — cinquante variantes et leurs réserves
+
+[Journal et décisions individuelles](recipe-editorial-batch-17.md). 50 bloquées, 0 corrigée, 0 conforme sans modification. Les cinquante listes et préparations sont identiques dans les deux archives ; leurs lacunes ne sont pas comblées arbitrairement. Tous les objets culinaires du catalogue restent intacts. Réserves précises sur les sauces répétées, les récipients, les ingrédients absents et les cuissons contradictoires.
+
+**Cumul : 540 identifiants examinés, 212 corrigés, 328 bloqués, 1 013 à examiner.** Prochaine fiche globale `gn2-saumon-estragon-petits-pois`, prochaine entrée `theme-bistrot-brasserie-03`, prochain dessert `v74-reg-27`. Zéro erreur éditoriale et 7 889 avertissements. 2 532 rendus d’ingrédients supplémentaires pour les fiches réservées, à 1/2/3/4/5/8 personnes ; 210 minuteurs et 6 378 calculs d’ingrédients des corrections précédentes conservés. Les 24 commandes du workflow réussissent et les trois formats sont contrôlés visuellement. Publication à consigner après contrôle en ligne.
+
 ## Limites des vérifications
 
 Les tests de structure, quantité, minuteurs, stockage simulé et rendu ne sont pas des essais culinaires. Les formats iPhone/PWA sont simulés, sauf mention explicite d’un appareil physique. Le total de fiches à examiner ne doit jamais être remplacé par le nombre de fiches auxquelles le style commun a été appliqué.

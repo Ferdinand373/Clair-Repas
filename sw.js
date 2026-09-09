@@ -18,7 +18,7 @@ const DATA_SCHEMA = 2;
 const CLOUD_APP_ID = "clair-repas";
 const CLOUD_ENABLED = true;
 const CLOUD_DIRECT_SYNC_PROTOCOL = "clair-personal-sync/v1";
-const CORE_REVISION = "sha256:5b5a6f32baebcf44d8f98a7fd8228e97b13bc8f6b014dfa5f3789092f3a019d4";
+const CORE_REVISION = "sha256:6abc80626f75d336bbc198e851643e572f46bc894229a7a02923a24d7dbce37c";
 const BOOT_GRACE_MS = 18000;
 
 function fnv1a(text) {
@@ -85,8 +85,8 @@ const PRE_SHOPPING_V2_FOUNDATION_CORE_FILES = FOUNDATION_CORE_FILES.filter(
   path => path !== "./shopping-v2-engine.js"
 );
 const CORE_DIGESTS = Object.freeze({
-  "./": "sha256:58e88e6af43b9fe975db296fae7b8d0834dc24499cdbfa1d306df8cf2f8d695e",
-  "./index.html": "sha256:58e88e6af43b9fe975db296fae7b8d0834dc24499cdbfa1d306df8cf2f8d695e",
+  "./": "sha256:5e6ad69d0651176334ebba07050d9d0ebd591bb5c8bd5fa329c24606f6afc6f4",
+  "./index.html": "sha256:5e6ad69d0651176334ebba07050d9d0ebd591bb5c8bd5fa329c24606f6afc6f4",
   "./manifest.webmanifest": "sha256:49b30612587c379d6bb8c6d9ade4e299ff244b41f0bd03e2fcca0a5495834e2a",
   "./icon-192.png": "sha256:8d0d516fdcb7d76a40df62dc92d4f312a1557b9e105917026780e465c32fa9f8",
   "./icon-512.png": "sha256:334f3158730e33ad8232ea229a39f9193b45274f1a72b2f55467b1e625924f70",

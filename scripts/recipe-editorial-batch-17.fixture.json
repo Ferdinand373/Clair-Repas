@@ -1,0 +1,406 @@
+{
+  "baselineCommit": "f8c0d20f53e6e015278016f8a6e129243fa3150a",
+  "batch": "17",
+  "recipes": [
+    {
+      "id": "gn2-boeuf-gingembre-sesame",
+      "status": "blocked",
+      "sourceHash": "d267c2ed39289429f70767c51b980d616e977b3e186a847604e28f1dba3202f6",
+      "reviewedHash": "d267c2ed39289429f70767c51b980d616e977b3e186a847604e28f1dba3202f6",
+      "protectedRecipeSha256": "bc234cfc6607716474e21997c3c056b95a740913c41599c3ab508ee455454f0e",
+      "note": "la cuisson douce contredit la saisie vive du bœuf. Le soja est demandé dans le ponzu puis seul, et le ponzu versé deux fois, sans partage de la cuillère listée. Matière grasse du sauté de légumes absente ; riz non minuté."
+    },
+    {
+      "id": "gn2-saumon-gingembre-sesame",
+      "status": "blocked",
+      "sourceHash": "aedcec83b2a1e8b51aa51a6d4a2083cbac0c9e7783e2dfe26566e5a75509a68b",
+      "reviewedHash": "aedcec83b2a1e8b51aa51a6d4a2083cbac0c9e7783e2dfe26566e5a75509a68b",
+      "protectedRecipeSha256": "09b1653dbb7b48ea1242ff0b44f1935e03f0da01ae229c48829d90b983679331",
+      "note": "le miso est badigeonné avant d’être délayé ; la cuillerée d’eau n’a pas d’unité. Matière grasse du sauté de brocoli/carottes et intensité de cuisson du saumon non définies ; ne pas inventer une dilution."
+    },
+    {
+      "id": "gn2-poisson-blanc-gingembre-sesame",
+      "status": "blocked",
+      "sourceHash": "adf34cb00d1edd893b8d6c49fc6699da9bddde3c1e098acdccc7e21d67c3126c",
+      "reviewedHash": "adf34cb00d1edd893b8d6c49fc6699da9bddde3c1e098acdccc7e21d67c3126c",
+      "protectedRecipeSha256": "3b68634658404832c08bad281c394421a462fd08ae045dcabff33e732175302a",
+      "note": "le poisson est annoncé mijoté au coco puis cuit par face à la poêle, avant une nouvelle cuisson du coco/curry. Récipients, ordre et partage de cette sauce ne sont pas définis ; matière grasse des légumes et des épices absente."
+    },
+    {
+      "id": "gn2-crevettes-gingembre-sesame",
+      "status": "blocked",
+      "sourceHash": "c72cd1bd2e9c913683501cff59873f32112462ec656e09e7866fe84d3dd60511",
+      "reviewedHash": "c72cd1bd2e9c913683501cff59873f32112462ec656e09e7866fe84d3dd60511",
+      "protectedRecipeSha256": "cc81c4c0fb756821814dda17026f6cea7b5dc81e8d59a7b7f7507f388b9e46ba",
+      "note": "le gingembre est employé aux légumes puis deux fois aux crevettes, et le soja ajouté à trois moments sans répartition. La mention « poisson nacré » ne décrit pas ces crevettes, dont l’état cru ou déjà cuit manque. Matière grasse du sauté absente."
+    },
+    {
+      "id": "gn2-tofu-gingembre-sesame",
+      "status": "blocked",
+      "sourceHash": "a19d5a17a895d78b6d025de2dbcf688369e042c35f73c1e26d62ab48b6410026",
+      "reviewedHash": "a19d5a17a895d78b6d025de2dbcf688369e042c35f73c1e26d62ab48b6410026",
+      "protectedRecipeSha256": "ba12d97a8a10af3058b4641349edeca73b761012a1aa68e415d3ec23d9630ae5",
+      "note": "soja et citron servent au déglaçage puis à l’assaisonnement hors du feu, avant un nouvel ajout de soja et un quartier de citron. Leur partage manque, ainsi que la matière grasse pour dorer tofu et légumes."
+    },
+    {
+      "id": "gn2-poulet-coco-citron-vert",
+      "status": "blocked",
+      "sourceHash": "8f01338e425579b9c2f29b5d2cecf841bcc7bd02d3f4047463a3ac615a5dbb3a",
+      "reviewedHash": "8f01338e425579b9c2f29b5d2cecf841bcc7bd02d3f4047463a3ac615a5dbb3a",
+      "protectedRecipeSha256": "b211702791bdd120f5768c2daefa86c6de49721f399afb1ed461f665ec8309f4",
+      "note": "le laquage soja-miel est demandé avant puis après la saisie détaillée, suivi d’un bain de coco. L’ordre des cuissons et l’usage du glaçage ne sont pas établis ; matière grasse du sauté et état des haricots verts manquent."
+    },
+    {
+      "id": "gn2-dinde-coco-citron-vert",
+      "status": "blocked",
+      "sourceHash": "922a50ab4a8017b0db3ad1c5016bb5ef6497f11ca02d88ec7a247ccdf37246ea",
+      "reviewedHash": "922a50ab4a8017b0db3ad1c5016bb5ef6497f11ca02d88ec7a247ccdf37246ea",
+      "protectedRecipeSha256": "5378f5a02626e466f0b533bebcdf39fced81068a21ac4d03e56b4527322ee3f5",
+      "note": "le gingembre est employé aux légumes puis dans le miso, sans partage. Eau de dilution non dosée et finition sans ébullition suivie d’un frémissement au coco ; matière grasse du sauté et état des haricots non précisés."
+    },
+    {
+      "id": "gn2-saumon-coco-citron-vert",
+      "status": "blocked",
+      "sourceHash": "a62113be772102880d6a57796a35676a9d08ff54e3b52e5ab2ffb9d5b3e163a2",
+      "reviewedHash": "a62113be772102880d6a57796a35676a9d08ff54e3b52e5ab2ffb9d5b3e163a2",
+      "protectedRecipeSha256": "1cc47b8c527f1ba9dd38c2a6724df58da9a771f3cedf5cb31456bd4b2d1e1253",
+      "note": "le lait de coco est demandé au mijotage, à une sauce de quatre minutes puis aux légumes pendant cinq minutes, sans répartition des 20 cl. Cuisson du saumon par face et mijotage se superposent ; matière grasse des légumes et épices absente."
+    },
+    {
+      "id": "gn2-poisson-blanc-coco-citron-vert",
+      "status": "blocked",
+      "sourceHash": "79cd9e4c370e8eee6aa6a31ce6d4a2be95145eed29024b40e0a260a2faa6c384",
+      "reviewedHash": "79cd9e4c370e8eee6aa6a31ce6d4a2be95145eed29024b40e0a260a2faa6c384",
+      "protectedRecipeSha256": "3c0ef1f5ed35524868fbc6fc4aaedbcfc77b21c34386e4ccb956ec08a2f1b1a0",
+      "note": "sauté vif et cuisson à feu moyen sont associés sans organisation. Le gingembre est employé aux légumes puis deux fois au poisson sans partage ; matière grasse absente, état des haricots verts non défini."
+    },
+    {
+      "id": "gn2-crevettes-coco-citron-vert",
+      "status": "blocked",
+      "sourceHash": "54d4e65c719f02ee33912ba27af6e0459eef0f6e2500f42af9cb62879fbf5e28",
+      "reviewedHash": "54d4e65c719f02ee33912ba27af6e0459eef0f6e2500f42af9cb62879fbf5e28",
+      "protectedRecipeSha256": "a935fbd6439a4d9a486d92831479129de5d33de7d0178560c5b7bdfb8b78010e",
+      "note": "cuisson douce et saisie vive se contredisent. Le ponzu citron-soja est versé avant le frémissement au coco puis encore au service sans partage ; état des crevettes/haricots et matière grasse du sauté manquent."
+    },
+    {
+      "id": "gn2-tofu-coco-citron-vert",
+      "status": "blocked",
+      "sourceHash": "b035e6a1e9d5ac647f61d2e324bffc86defd8d8a6507bc40e0143f8d18cc7539",
+      "reviewedHash": "b035e6a1e9d5ac647f61d2e324bffc86defd8d8a6507bc40e0143f8d18cc7539",
+      "protectedRecipeSha256": "62f86b31e92f42f4299bbc1076a8df03309893f888510f8eef083b86183e0f80",
+      "note": "le citron sert au déglaçage, à la finition puis en quartier sans partage ; le citron vert du coco est distinct. Le soja est utilisé avant puis après la dorure. Matière grasse du tofu et des légumes absente."
+    },
+    {
+      "id": "gn2-pois-chiches-coco-citron-vert",
+      "status": "blocked",
+      "sourceHash": "23b1623dbc1a589a71f92220bf6f2bef7ce244194ab98e517481900919d8b076",
+      "reviewedHash": "23b1623dbc1a589a71f92220bf6f2bef7ce244194ab98e517481900919d8b076",
+      "protectedRecipeSha256": "c003a6879df25a932109e2d7210b28b81cc3756c344598f4531a56f1b7f87c3d",
+      "note": "le soja est caramélisé avant le rinçage et la dorure des pois chiches puis demandé de nouveau. Poids égoutté de la boîte et matière grasse du sauté manquent ; ne pas transformer ce sauté en cuisson au coco dès le départ."
+    },
+    {
+      "id": "gn2-poulet-italienne-polenta",
+      "status": "blocked",
+      "sourceHash": "7a404e270aa8f5b0ccaa4e62a6a2b3fdec2a757b46fff40734832d56c5488171",
+      "reviewedHash": "7a404e270aa8f5b0ccaa4e62a6a2b3fdec2a757b46fff40734832d56c5488171",
+      "protectedRecipeSha256": "eb0888bbe95b1a3b0793d83cfc5ae5d9b0d08a940be9f2af6d1fdd48e6742921",
+      "note": "le pesto est incorporé hors du feu puis la fiche demande de mijoter sept minutes, sans dire ce qui mijote. La cuillère de pesto est aussi utilisée au dressage sans réserve ; matière grasse de l’oignon/poulet et liquide de polenta non définis."
+    },
+    {
+      "id": "gn2-dinde-italienne-polenta",
+      "status": "blocked",
+      "sourceHash": "dae7d327e08148618fe7704c1c639a65477c69da04e0f4b04100e279b1b17ac7",
+      "reviewedHash": "dae7d327e08148618fe7704c1c639a65477c69da04e0f4b04100e279b1b17ac7",
+      "protectedRecipeSha256": "beec11eb704e85c564387f7db10410e23b89cf1882c1b47456a369fc43e472b7",
+      "note": "les olives sont ajoutées à l’oignon, compotées puis redemandées avec les tomates séchées sans partage. Matière grasse et liquide de polenta absents ; articulation des trois dernières minutes et du mijotage suivant à confirmer."
+    },
+    {
+      "id": "gn2-filet-mignon-italienne-polenta",
+      "status": "blocked",
+      "sourceHash": "804fd6016c20e3eb9884ea7c9cb85d17a72184f4080b900220c596f73a076fa5",
+      "reviewedHash": "804fd6016c20e3eb9884ea7c9cb85d17a72184f4080b900220c596f73a076fa5",
+      "protectedRecipeSha256": "bc9a561ebf54dfd5612928699e25ea3ec37dfb19d758fc7269e4bfb229b088e2",
+      "note": "l’origan demandé est absent des ingrédients. Coulis et olives servent à trois actions sans partage, avec mijotages de cinq puis sept minutes ; liquide de polenta et matière grasse de l’oignon/médaillons manquent."
+    },
+    {
+      "id": "gn2-boeuf-italienne-polenta",
+      "status": "blocked",
+      "sourceHash": "1abc6ae144006eac5fa1293432f88371e082137ff8c62ae1a55dcd5565e6d882",
+      "reviewedHash": "1abc6ae144006eac5fa1293432f88371e082137ff8c62ae1a55dcd5565e6d882",
+      "protectedRecipeSha256": "41555f946e22b887af2423f32c65b9e85d01d94048b204e4f21cab5dc9307195",
+      "note": "l’ail listé cru est demandé rôti sans cuisson décrite. Matière grasse de l’oignon et du bœuf, liquide de polenta et préparation concernée par les sept minutes de mijotage ne sont pas définis."
+    },
+    {
+      "id": "gn2-saumon-italienne-polenta",
+      "status": "blocked",
+      "sourceHash": "3910ca6e748ac47ed66bfc0d06d3fa46b6bb1f9d7621852435b27507f96691f9",
+      "reviewedHash": "3910ca6e748ac47ed66bfc0d06d3fa46b6bb1f9d7621852435b27507f96691f9",
+      "protectedRecipeSha256": "1dab5fed596035e986064c7b1585e51da876add391e30e0c6a124999accb18f8",
+      "note": "le citron du déglaçage est absent. Les câpres servent à la sauce tomate puis au jus du poisson sans partage ; matière grasse, liquide de polenta et ordre de cuisson/finition non établis."
+    },
+    {
+      "id": "gn2-poisson-blanc-italienne-polenta",
+      "status": "blocked",
+      "sourceHash": "9b0bb5fe7463b4155f6afe67527664883f182ead4d3392a9a511a87a5ed99a64",
+      "reviewedHash": "9b0bb5fe7463b4155f6afe67527664883f182ead4d3392a9a511a87a5ed99a64",
+      "protectedRecipeSha256": "c8e71ff490bb6078ef0dfafd8091aafea266babd0215e1595bc363cca4badfb5",
+      "note": "feu vif et feu moyen se contredisent. Le demi-citron sert au pesto et au quartier final sans partage ; finition crue suivie d’un mijotage non attribué. Matière grasse et liquide de polenta absents."
+    },
+    {
+      "id": "gn2-crevettes-italienne-polenta",
+      "status": "blocked",
+      "sourceHash": "7a3ba2d9604afc15581423490c4c214ea959e50d224df7958dabe8aaa906b9ff",
+      "reviewedHash": "7a3ba2d9604afc15581423490c4c214ea959e50d224df7958dabe8aaa906b9ff",
+      "protectedRecipeSha256": "350ff244468db2765347e26cf29717b1ec08def5c52196f4832082402642c007",
+      "note": "cuisson douce et saisie vive se contredisent ; état cru ou cuit des crevettes non précisé. Le jus de citron revient au dressage sans réserve, puis le mijotage suit une finition fraîche. Matière grasse et liquide de polenta manquent."
+    },
+    {
+      "id": "gn2-boulettes-italienne-polenta",
+      "status": "blocked",
+      "sourceHash": "fb803ed2838a2ae4850d6a0686394b6bc1a60e5f2b248dc989d0881a86a67def",
+      "reviewedHash": "fb803ed2838a2ae4850d6a0686394b6bc1a60e5f2b248dc989d0881a86a67def",
+      "protectedRecipeSha256": "8ab64c19ebdcd2fc6546d4e85d7c99d308102b96916f8569a30463a78dd48e82",
+      "note": "échalote et balsamique sont cuits puis redemandés sans partage. Matière grasse de la sauce et des boulettes, liquide de polenta et ordre des sucs ne sont pas définis ; ne pas doubler le déglaçage."
+    },
+    {
+      "id": "gn2-tofu-italienne-polenta",
+      "status": "blocked",
+      "sourceHash": "da5ddc9a54efaaed5b7d09e2534813e86dcd920a73d220606bb650fe517bee46",
+      "reviewedHash": "da5ddc9a54efaaed5b7d09e2534813e86dcd920a73d220606bb650fe517bee46",
+      "protectedRecipeSha256": "5af4edd8d0952b6698e411b1dbe78cbd091ebbbefc82f627ba0ba464dc43ef57",
+      "note": "le pesto doit rester hors du feu, mais un mijotage de sept minutes suit sans préparation désignée. Les noix sont demandées à deux finitions sans partage ; matière grasse du tofu/oignon et liquide de polenta absents."
+    },
+    {
+      "id": "gn2-poulet-mediterraneenne-four",
+      "status": "blocked",
+      "sourceHash": "6ae23a817422c7dd7f9f050d96ebc81bce34e58ebc6e4e274d0bf63efe751f70",
+      "reviewedHash": "6ae23a817422c7dd7f9f050d96ebc81bce34e58ebc6e4e274d0bf63efe751f70",
+      "protectedRecipeSha256": "1ccf0201dca2a585e001bb6a4bf9efb3a32a9a7b823a8faaca802bf77e130bef",
+      "note": "la saisie préalable du poulet n’a ni récipient ni durée avant vingt-deux minutes au four. Assaisonnement des légumes absent de la liste et pesto réparti entre enrobage et dressage sans doses ; ne pas supprimer la saisie ni ajouter une huile au hasard."
+    },
+    {
+      "id": "gn2-dinde-mediterraneenne-four",
+      "status": "blocked",
+      "sourceHash": "1a659fa2c2db3f1af083e0954e26fb073eeee5e18ffae670b590f10ad41ca9df",
+      "reviewedHash": "1a659fa2c2db3f1af083e0954e26fb073eeee5e18ffae670b590f10ad41ca9df",
+      "protectedRecipeSha256": "f703eaf976aa27a9ef4901fe4a973ccf0d78a372895dbbe59525292027b12b37",
+      "note": "tomates et olives sont demandées en compotée avant la dinde, puis olives et tomates séchées à la fin, puis olives au service sans partage. Assaisonnement des légumes absent et récipient de la compotée non défini."
+    },
+    {
+      "id": "gn2-filet-mignon-mediterraneenne-four",
+      "status": "blocked",
+      "sourceHash": "c08d67c097c3e0579bb463d2b6554e2c5a172d2b19eaa3bf1e3b916df4bcd9f1",
+      "reviewedHash": "c08d67c097c3e0579bb463d2b6554e2c5a172d2b19eaa3bf1e3b916df4bcd9f1",
+      "protectedRecipeSha256": "2b3b4ff8042e05347db24752f3e6cfd9fb69927d0feecd204f00185f3e3371e0",
+      "note": "la grillade du poivron n’a ni mode ni durée ; les deux minutes couvertes viennent après cette grillade. Assaisonnement des légumes absent, insertion du poivron avant ou après les vingt-cinq minutes de porc à clarifier."
+    },
+    {
+      "id": "gn2-saumon-mediterraneenne-four",
+      "status": "blocked",
+      "sourceHash": "abc7514ecbb0a5b72ed884771a0282411d2e646b0854cdf3190b84adced49437",
+      "reviewedHash": "abc7514ecbb0a5b72ed884771a0282411d2e646b0854cdf3190b84adced49437",
+      "protectedRecipeSha256": "5c844eb5fff58e910f692a2ceef6b1db50738d926437b65c2205a4f1acffb728",
+      "note": "la cuisson dite douce n’est pas reliée aux 200 °C des légumes : maintien ou changement de température non précisé. Assaisonnement des légumes absent et citron demandé au poisson puis au dressage sans réserve."
+    },
+    {
+      "id": "gn2-poisson-blanc-mediterraneenne-four",
+      "status": "blocked",
+      "sourceHash": "5e6a50a41392c39b71d0bdb646d682a42b4cb38db62ee8e50b99e3516908f72a",
+      "reviewedHash": "5e6a50a41392c39b71d0bdb646d682a42b4cb38db62ee8e50b99e3516908f72a",
+      "protectedRecipeSha256": "fea026eb04ce86cf5df7762abba6280d7339d4e53abdabd5f80d238a3eae858d",
+      "note": "le basilic demandé est absent. Tomates et olives sont mijotées puis ajoutées aux dernières minutes et au service sans partage ; la correspondance de ce mijotage avec le four est indéfinie. Assaisonnement des légumes absent."
+    },
+    {
+      "id": "gn2-boulettes-mediterraneenne-four",
+      "status": "blocked",
+      "sourceHash": "9689c23ce56b12c94fd8551a5fb61c528c5a666532bda09df11c369f38f16145",
+      "reviewedHash": "9689c23ce56b12c94fd8551a5fb61c528c5a666532bda09df11c369f38f16145",
+      "protectedRecipeSha256": "86442bd13b855d29068c9661fbca7dbf10742feacc6895084ab749d5440fa7a5",
+      "note": "les boulettes sont saisies puis mises au four sans durée ni récipient pour la saisie. L’ail listé cru est demandé rôti sans préparation ; assaisonnement des légumes et origine du jus aux herbes manquent."
+    },
+    {
+      "id": "gn2-falafels-mediterraneenne-four",
+      "status": "blocked",
+      "sourceHash": "bace28d866254a1f02609c76e74aa53768f8fe49499398d72cc4730deea0aac0",
+      "reviewedHash": "bace28d866254a1f02609c76e74aa53768f8fe49499398d72cc4730deea0aac0",
+      "protectedRecipeSha256": "102dcbd2eac66e4711da09b774fc821c0f411fc0d2c77657a12f642ac8380273",
+      "note": "l’assaisonnement des légumes n’est pas listé. Les falafels ne sont identifiés ni crus, ni précuits, ni surgelés : les quinze minutes au four ne peuvent pas être validées pour tous ces produits. La sauce harissa-yaourt doit rester froide."
+    },
+    {
+      "id": "gn2-pois-chiches-mediterraneenne-four",
+      "status": "blocked",
+      "sourceHash": "5965d9bacaa5a9586a05ad3a3b071e496d39abb87a344adef26ba5fdad2b4c1c",
+      "reviewedHash": "5965d9bacaa5a9586a05ad3a3b071e496d39abb87a344adef26ba5fdad2b4c1c",
+      "protectedRecipeSha256": "8b19ecfa29f6d1ecdf09f38907e1619a84837d6202b74dbd3760432c14b1fdb1",
+      "note": "la boîte de pois chiches n’a pas de poids égoutté. Assaisonnement des légumes et eau du tahini non définis ; sauce délayée deux fois. Ne pas ajouter d’huile ni choisir un volume d’eau pour imposer une texture."
+    },
+    {
+      "id": "gn2-tofu-mediterraneenne-four",
+      "status": "blocked",
+      "sourceHash": "2c00df83a0ebd153340e748c4cfbd7c40d9b3f93b68b667f2aeba243f90ff2ae",
+      "reviewedHash": "2c00df83a0ebd153340e748c4cfbd7c40d9b3f93b68b667f2aeba243f90ff2ae",
+      "protectedRecipeSha256": "f23fdba0fc5d4b8a8d049f2289ff9c0c2141b599de955a49714fd25c2545ba60",
+      "note": "la feta est demandée à trois reprises sans partage ; les deux minutes de repos précèdent la cuisson détaillée. Assaisonnement des légumes absent de la liste ; ne pas utiliser la feta ou les olives pour inventer ce premier assaisonnement."
+    },
+    {
+      "id": "gn2-poulet-grillade-persillee",
+      "status": "blocked",
+      "sourceHash": "f12a710d0f045bbbfcfc2c719b8876a57f09e8f2979fc9881982063303713984",
+      "reviewedHash": "f12a710d0f045bbbfcfc2c719b8876a57f09e8f2979fc9881982063303713984",
+      "protectedRecipeSha256": "79ce59769878d3f29779276c92f0f4aa9a5f2cdebc11b11b87c1662cc4ca17ce",
+      "note": "la sauce moutarde demande des sucs et une cuillerée de jus sans récipient de collecte sur le barbecue ni unité de cuillère. Huile de sauce non dosée ; calibre de patate douce et durée de grillade du maïs/garniture manquent."
+    },
+    {
+      "id": "gn2-dinde-grillade-persillee",
+      "status": "blocked",
+      "sourceHash": "d604f64d3caf82b4aa822f71fe6f2a9b5782ed164bd7d2122f9ffbb9dfd74741",
+      "reviewedHash": "d604f64d3caf82b4aa822f71fe6f2a9b5782ed164bd7d2122f9ffbb9dfd74741",
+      "protectedRecipeSha256": "67672efd7450994f09c025850a281af3829886df87c60a3a526cc85ae97e4b22",
+      "note": "le couvert puis l’infusion hors du feu précèdent la grillade détaillée, sans récipient ni durée. Huile de sauce non dosée et patate douce précuite entière sans calibre ; grillade de la garniture non minutée."
+    },
+    {
+      "id": "gn2-filet-mignon-grillade-persillee",
+      "status": "blocked",
+      "sourceHash": "6dd4a40253b7065d01e29d2639765cba0eee14a207c2906bf7a89b7c32ea0460",
+      "reviewedHash": "6dd4a40253b7065d01e29d2639765cba0eee14a207c2906bf7a89b7c32ea0460",
+      "protectedRecipeSha256": "2f1b5d194bd20091af0d5a51411a018a39f0a64d806d7a4f891ac8688e8fcd4d",
+      "note": "le cidre est demandé pour braiser puis déglacer de nouveau, sans partage ni récipient sur le barbecue. Huile de sauce non dosée, précuisson de patate douce et grillade de la garniture à préciser ; ne pas verser le cidre sur les braises."
+    },
+    {
+      "id": "gn2-cotes-porc-grillade-persillee",
+      "status": "blocked",
+      "sourceHash": "a1dd1ba9701a31fd35d129f8abd3e375d2a595ffa15f26e514f8d1252e058448",
+      "reviewedHash": "a1dd1ba9701a31fd35d129f8abd3e375d2a595ffa15f26e514f8d1252e058448",
+      "protectedRecipeSha256": "b3d9830d7b95adf67dcae9b9ee2da3e9240014b0fe17bb5b0a10cb5fdd4bf7d2",
+      "note": "la crème au poivre est réduite dans des sucs de grillade sans récipient de collecte, puis ajoutée encore sans partage. Huile de sauce, précuisson de patate douce et grillade du maïs/garniture non définies."
+    },
+    {
+      "id": "gn2-saumon-grillade-persillee",
+      "status": "blocked",
+      "sourceHash": "5f90c6650550c434656bcb6195b808b42ad91f596faa3ae4ceab7b1d70d126bf",
+      "reviewedHash": "5f90c6650550c434656bcb6195b808b42ad91f596faa3ae4ceab7b1d70d126bf",
+      "protectedRecipeSha256": "79ab1794357ea5e15b2aa027407dcb9b29ca35a51325eaa8a5ae869a0493a33e",
+      "note": "le demi-citron sert au pesto puis au quartier final sans partage. La feuille de cuisson doit être identifiée et compatible avec ce barbecue ; huile de sauce et cuisson de la garniture ne sont pas précisées."
+    },
+    {
+      "id": "gn2-saucisses-grillade-persillee",
+      "status": "blocked",
+      "sourceHash": "47be050083cabee91ee605799088bf8e825692bc242889ca56c749fd57139439",
+      "reviewedHash": "47be050083cabee91ee605799088bf8e825692bc242889ca56c749fd57139439",
+      "protectedRecipeSha256": "7649a9db4c37e4c2e602fa05d3383b52bc6a598b3f09fe7ce80e85a8bccecd4d",
+      "note": "la seule gousse d’ail est employée crue dans la sauce puis demandée rôtie dans le jus, sans partage ni cuisson. Collecte du jus, huile de sauce et grillade de la garniture non définies."
+    },
+    {
+      "id": "gn2-veau-grillade-persillee",
+      "status": "blocked",
+      "sourceHash": "bd615989e368c14b341b634a5a05b228db2984634bd7bfb1f478b5548184a5d0",
+      "reviewedHash": "bd615989e368c14b341b634a5a05b228db2984634bd7bfb1f478b5548184a5d0",
+      "protectedRecipeSha256": "424cb57b6ebb3db76ec2283136373e2bee76fcc6495ea6766c969392072160ae",
+      "note": "le poivron doit griller avant deux minutes couvertes, sans durée de grillade. Huile de sauce non dosée et précuisson de patate douce sans calibre ; ni chaleur du barbecue ni temps du maïs/garniture ne sont indiqués."
+    },
+    {
+      "id": "gn2-poulet-airfryer-boulgour",
+      "status": "blocked",
+      "sourceHash": "0fa71fc5e9d1432fcd7c9598f0489f4ed4e31a14cf2e876a2e6bd18a827614dc",
+      "reviewedHash": "0fa71fc5e9d1432fcd7c9598f0489f4ed4e31a14cf2e876a2e6bd18a827614dc",
+      "protectedRecipeSha256": "9a1ca278854d91b090b57bf9008565bca145650c0f284d2a45832b7850edec76",
+      "note": "la compotée de tomates séchées/olives n’a ni récipient ni liquide défini avant la cuisson au panier. Les mêmes ingrédients sont redemandés aux trois dernières minutes, sans partage ; aucun jus de tomate supplémentaire n’est listé."
+    },
+    {
+      "id": "gn2-dinde-airfryer-boulgour",
+      "status": "blocked",
+      "sourceHash": "2feb50591de85f566bd2e6d762add6a662870adad862d8872b0413b89e4e72fd",
+      "reviewedHash": "2feb50591de85f566bd2e6d762add6a662870adad862d8872b0413b89e4e72fd",
+      "protectedRecipeSha256": "0193632cbf9c03c0d56d38f3d1f1e28dfafe74c0e1e5004dd1a00d8b6d14ee07",
+      "note": "la torréfaction du paprika dans une matière grasse ne correspond pas au panier décrit, et cette matière grasse n’est pas listée. Méthode des amandes grillées et partage entre deux finitions manquent ; ne pas transformer la cuisson en poêlée."
+    },
+    {
+      "id": "gn2-filet-mignon-airfryer-boulgour",
+      "status": "blocked",
+      "sourceHash": "4d6a40492f7d3912f847d798db0c1f898b3f3a3959be313e4dbe94706d64e21b",
+      "reviewedHash": "4d6a40492f7d3912f847d798db0c1f898b3f3a3959be313e4dbe94706d64e21b",
+      "protectedRecipeSha256": "f3f4e07d2912263d28cfc657d1733ecbe46721c783c95324a107856b8662798a",
+      "note": "l’origan demandé manque. Le coulis doit mijoter avant puis après la cuisson au panier sans récipient compatible ni partage. Ne pas verser une sauce dans un panier perforé ni inventer une cuisson annexe."
+    },
+    {
+      "id": "gn2-cotes-porc-airfryer-boulgour",
+      "status": "blocked",
+      "sourceHash": "6b72ccb3d07b0dff2bccd8a1f3ac5e0c93846f810daeb80a900ced996caca459",
+      "reviewedHash": "6b72ccb3d07b0dff2bccd8a1f3ac5e0c93846f810daeb80a900ced996caca459",
+      "protectedRecipeSha256": "0159a002a75178d210cc0e01d1c739b9a524279a0384940cff833a98afa76fa7",
+      "note": "le poivron est annoncé grillé sans appareil ni durée avant deux minutes couvertes. Son insertion avant ou après les dix-huit minutes de porc reste ambiguë ; ne pas compter les deux minutes comme une grillade complète."
+    },
+    {
+      "id": "gn2-saumon-airfryer-boulgour",
+      "status": "blocked",
+      "sourceHash": "4411f26bf49d010ebbe89fcd9f629a012282d6a65fc595c21a05857a55e37583",
+      "reviewedHash": "4411f26bf49d010ebbe89fcd9f629a012282d6a65fc595c21a05857a55e37583",
+      "protectedRecipeSha256": "973ad96a41c0e4f94bb2fef5ed6262e39a3867d9a04722292b60bca48a0491af",
+      "note": "la cuisson dite douce n’indique pas si les 190 °C des légumes sont maintenus pour le saumon. Le jus de citron est ajouté au poisson puis redemandé en gouttes au dressage sans réserve ; ne pas imposer une nouvelle température ou un partage arbitraire."
+    },
+    {
+      "id": "gn2-poisson-blanc-airfryer-boulgour",
+      "status": "blocked",
+      "sourceHash": "7a38a706c43f5372c45836fbbe335bf68a9fd0d0ff357031aadfa3c0f7f019a7",
+      "reviewedHash": "7a38a706c43f5372c45836fbbe335bf68a9fd0d0ff357031aadfa3c0f7f019a7",
+      "protectedRecipeSha256": "6fe2cf122ff277bbd616b5fdd3240986a611c72a09d157e10ba45ac6a515d6c9",
+      "note": "épices revenues et coco mijoté sont demandés avant la cuisson au panier, puis la sauce frémit encore quatre minutes. Matière grasse, récipient compatible et partage du coco ne sont pas définis ; ne pas verser la sauce dans le panier perforé."
+    },
+    {
+      "id": "gn2-boulettes-airfryer-boulgour",
+      "status": "blocked",
+      "sourceHash": "510cfc6864f691b31f12c0958efa8a6b77ac91e3c60099d04fdf61be4ecb601c",
+      "reviewedHash": "510cfc6864f691b31f12c0958efa8a6b77ac91e3c60099d04fdf61be4ecb601c",
+      "protectedRecipeSha256": "29b5a973663a214587916238c2ce42a3bc8139e52aff27aaf11b150c2b7a0bce",
+      "note": "échalote et balsamique sont cuits puis redemandés sans partage ; aucun récipient ni matière grasse ne sont définis pour caraméliser et déglacer autour de la cuisson au panier. Ne pas inventer des sucs récupérables."
+    },
+    {
+      "id": "gn2-falafels-airfryer-boulgour",
+      "status": "blocked",
+      "sourceHash": "8a401be1977c2e6952e4dfa8f4266aefa7bec88923a0bbdade75c995d1f865ac",
+      "reviewedHash": "8a401be1977c2e6952e4dfa8f4266aefa7bec88923a0bbdade75c995d1f865ac",
+      "protectedRecipeSha256": "c033353068388a004d6bf2acab19dac6f1dbcaa57b48111ddc74a1b2b0f53df0",
+      "note": "état cru, précuit ou surgelé des falafels non indiqué : les dix minutes ne sont pas universelles. Eau de dilution du tahini non mesurée et sauce préparée deux fois ; ne pas choisir le produit ou sa dilution à la place de la source."
+    },
+    {
+      "id": "gn2-tofu-airfryer-boulgour",
+      "status": "blocked",
+      "sourceHash": "98c3eb50be563f882c8520b3ccc756b406b35bb02ef2515b90f8f7b75a0bb6f0",
+      "reviewedHash": "98c3eb50be563f882c8520b3ccc756b406b35bb02ef2515b90f8f7b75a0bb6f0",
+      "protectedRecipeSha256": "26ed1710e74e33fb78785c2e1da81d08d53818e7ee470fe0a9d8b815f48a0c13",
+      "note": "le cumin est torréfié avant la cuisson puis de nouveau après, sans partage ni récipient pour cette action à sec. Les petites épices ne sont pas décrites comme placées dans un plat adapté ; ne pas inventer une torréfaction au panier soufflant. Le titre comporte aussi « croustillant » deux fois."
+    },
+    {
+      "id": "gn2-poulet-estragon-petits-pois",
+      "status": "blocked",
+      "sourceHash": "cfbc7e49a5a0b85138473229bc80a2f0cba121b7de3b03ee2f3b36488bbe168c",
+      "reviewedHash": "cfbc7e49a5a0b85138473229bc80a2f0cba121b7de3b03ee2f3b36488bbe168c",
+      "protectedRecipeSha256": "8bfc56f4287bce5adaa961ef1159e34e1b159a63a414d146cf56e7bc752e87bb",
+      "note": "l’estragon infusé hors du feu et la finition au citron précèdent la saisie détaillée puis la crème chauffée quatre minutes. Ordre et partage de l’estragon manquent ; matière grasse, vapeur des pommes de terre et état des petits pois non précisés."
+    },
+    {
+      "id": "gn2-dinde-estragon-petits-pois",
+      "status": "blocked",
+      "sourceHash": "9d50a8cdfe1dc8611e72fc6eb674a9311a5c7a2a5646adb8d7405c64116f6a75",
+      "reviewedHash": "9d50a8cdfe1dc8611e72fc6eb674a9311a5c7a2a5646adb8d7405c64116f6a75",
+      "protectedRecipeSha256": "bad7f6185774cc95b024ecfe95d2cd6c50ffeaf28c734ecf1893ffd73581b0ee",
+      "note": "les deux moutardes ne sont pas affectées clairement à la sauce au jus puis à la crème. La cuillerée de jus n’a pas d’unité ; matière grasse, vapeur des pommes de terre et état des petits pois manquent."
+    },
+    {
+      "id": "gn2-filet-mignon-estragon-petits-pois",
+      "status": "blocked",
+      "sourceHash": "1c27ffdd311da7d5c03693e775b810faab5caa2bf06c2ade0590f19c2e616da2",
+      "reviewedHash": "1c27ffdd311da7d5c03693e775b810faab5caa2bf06c2ade0590f19c2e616da2",
+      "protectedRecipeSha256": "df81f34a69dbf0da0fdc38f01bd764137f9955458168974ae35e0b83152cac09",
+      "note": "les 12 cl de crème sont demandés dans les sucs, pendant trois minutes puis encore quatre minutes avec moutarde et estragon, sans partage. Matière grasse des médaillons, vapeur des pommes de terre et état des petits pois manquent."
+    },
+    {
+      "id": "gn2-cotes-porc-estragon-petits-pois",
+      "status": "blocked",
+      "sourceHash": "885b6067a54b6fcafe06fe42dedd590c0bd0bb75f683f1461c84f143fdec91fd",
+      "reviewedHash": "885b6067a54b6fcafe06fe42dedd590c0bd0bb75f683f1461c84f143fdec91fd",
+      "protectedRecipeSha256": "e470b8d4868e0096e02bad7d92914f2c5ff43f7c6c530f23b02b9701183504ef",
+      "note": "les gousses d’ail crues sont demandées rôties sans cuisson décrite. Matière grasse des côtes, temps/calibre des pommes vapeur et état des petits pois non définis ; ne pas remplacer l’ail rôti par l’ail cru."
+    }
+  ]
+}
