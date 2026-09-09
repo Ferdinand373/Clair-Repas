@@ -248,6 +248,16 @@ P02 publié : `c87dc373c29cae1d6edb9c2ac6191004c69ba52a`, tests `34390827874` et
 
 **Cumul : 631 identifiants examinés, 239 corrigés, 392 bloqués, 922 à examiner.** Prochaine fiche globale `v31n-orzo-tofu`, prochaine entrée `v75-chef-ducasse-03`. Zéro erreur éditoriale, 7 526 avertissements, 274 minuteurs et 7 686 contrôles d’ingrédients dans les corrections des lots 02–20. Les 24 commandes du workflow réussissent ; affichage et défilement contrôlés aux trois formats simulés. Publication à consigner après vérification en ligne.
 
+## Publication du lot 20
+
+`aa5971677d4a6c81ce5a1be4613a7ad02bba71a7` publié sur `main`. Tests `34409126967`, Pages `34409125528` et déploiement `6360028090` réussis. HTTPS 200 et fichiers identiques au commit : index `8e62828a1b3c38c7ca3a017624f95a03bf6325e1b0fdfa410e4a2144199a76dc`, service worker `0b48af8410c3cd04e9302dbe65f50099878faa8184b2e00f49a3a57cf04f2419`. Révision chargée après actualisation normale `sha256:79a8fda75a94cadca7d5ccf64897a52fb341268f59ab55ac491ad4b64e0c141e`. Lentilles vérifiées en production à deux personnes : 300 g de lentilles, 80 cl de bouillon, une cuillère à café de moutarde, étapes et minuteurs 5/30/5. Aucune donnée effacée.
+
+## Lot 21 — trente plats européens
+
+[Journal, sources et décisions](recipe-editorial-batch-21.md). 1 corrigée, 29 réservées, aucune conforme sans modification. Le gratin conserve la vapeur et la béchamel au beurre, avec gestes, ordre et quantités précisés. Les incohérences de liquide, graisse, ingrédients restants ou produits non identifiés sont réservées sans modifier les objets culinaires concernés.
+
+**Cumul : 661 identifiants examinés, 240 corrigés, 421 bloqués, 892 à examiner.** Prochaine fiche globale `v31n-tacos-tofu`, prochaine entrée `v75-chef-ducasse-03`. Zéro erreur éditoriale, 7 404 avertissements, 277 minuteurs et 7 734 contrôles d’ingrédients dans les corrections des lots 02–21. Les 24 commandes du workflow passent ; contrôles visuels et défilement aux trois formats simulés réussis. Publication à consigner après contrôle en ligne.
+
 ## Limites des vérifications
 
 Les tests de structure, quantité, minuteurs, stockage simulé et rendu ne sont pas des essais culinaires. Les formats iPhone/PWA sont simulés, sauf mention explicite d’un appareil physique. Le total de fiches à examiner ne doit jamais être remplacé par le nombre de fiches auxquelles le style commun a été appliqué.

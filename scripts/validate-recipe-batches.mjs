@@ -7,7 +7,7 @@ import {recipeSource} from './recipe-source.mjs';
 import {recipeHash} from './validate-recipe-editorial.mjs';
 const root=resolve(dirname(fileURLToPath(import.meta.url)),'..');
 const {code,recipes,editorial}=recipeSource(readFileSync(resolve(root,'index.html'),'utf8'));
-const batchNumbers=['02','03','04','05','06','07','08','09','10','11','12','13','14','15','16','17','18','19','20'];
+const batchNumbers=['02','03','04','05','06','07','08','09','10','11','12','13','14','15','16','17','18','19','20','21'];
 const fixture={recipes:batchNumbers.flatMap(number=>JSON.parse(readFileSync(resolve(root,`scripts/recipe-editorial-batch-${number}.fixture.json`),'utf8')).recipes)};
 const slice=(a,b)=>code.slice(code.indexOf(a),code.indexOf(b,code.indexOf(a)+a.length));
 const context={window:{},$:()=>({value:'8'}),MEAL_TYPES:['mid','eve'],recipeRole:r=>r.role||r.course||'dish',isFavorite:()=>false,recipeFeedbackHTML:()=>'',recipePersonalNoteHTML:()=>''};
@@ -102,7 +102,8 @@ const timers={
   'bourgeois-32':[[],[],[],[],[],[14]],
   'bourgeois-36':[[],[],[1],[],[],[12]],
   'v31n-donburi-dinde':[[],[],[40],[8],[5]],
-  'v31n-orzo-poisson-blanc':[[],[5],[30],[5]]
+  'v31n-orzo-poisson-blanc':[[],[5],[30],[5]],
+  'v31n-orzo-tofu':[[],[10],[5],[],[18]]
 };
 const ingredients={
   n01:['poulet','pommes de terre','paprika','huile','sel.*poivre'],
@@ -298,9 +299,10 @@ const ingredients={
   'bourgeois-32':['chocolat','beurre','farine','lait','œufs','sucre','beurre prévu pour les moules','sucre pour les moules'],
   'bourgeois-36':['crêpes','œufs','sucre','oranges','fécule de maïs','lait','beurre','Grand Marnier'],
   'v31n-donburi-dinde':['rôti de porc','pruneaux','carottes','pommes de terre','oignon','bouillon','miel','thym'],
-  'v31n-orzo-poisson-blanc':['lentilles vertes','lard fumé','carottes','oignon','poireau','bouillon','laurier','moutarde']
+  'v31n-orzo-poisson-blanc':['lentilles vertes','lard fumé','carottes','oignon','poireau','bouillon','laurier','moutarde'],
+  'v31n-orzo-tofu':['chou-fleur','jambon','farine','beurre','lait','fromage','moutarde','muscade']
 };
-assert.equal(fixture.recipes.length,616);
+assert.equal(fixture.recipes.length,646);
 let quantityChecks=0,timerCount=0;
 for(const record of fixture.recipes){
   const recipe=recipes.find(r=>r.id===record.id);
@@ -624,6 +626,30 @@ assert.match(editorial['gn2-saumon-estragon-petits-pois'].reviewNote,/citron.*ab
 assert.match(editorial['gn2-saucisses-toscane-haricots'].reviewNote,/rôties.*aucun procédé/);
 assert.match(editorial['v31n-donburi-crevettes'].reviewNote,/eau des pâtes.*jamais utilisée/);
 assert.match(editorial['v31n-donburi-boulettes'].reviewNote,/carottes dans la purée/);
+const batch21=JSON.parse(readFileSync(resolve(root,'scripts/recipe-editorial-batch-21.fixture.json'),'utf8')).recipes;
+assert.equal(batch21.length,30);
+assert.equal(batch21.filter(r=>r.status==='corrected').length,1);
+const gratin21=recipes.find(r=>r.id==='v31n-orzo-tofu');
+assert.equal(gratin21.n,'Gratin de chou-fleur au jambon et béchamel légère');
+assert.equal(gratin21.m,'Four');
+for(const count of [1,2,3,4,5,8]){
+  const sauce=context.recipeStepText(gratin21.p[2],gratin21,count),assembly=context.recipeStepText(gratin21.p[3],gratin21,count);
+  assert.ok(sauce.includes(context.formatQty(20*count)+' g de beurre'));
+  assert.ok(sauce.includes(context.formatQty(20*count)+' g de farine'));
+  assert.ok(sauce.includes(context.formatQty(22.5*count)+' cl de lait'));
+  assert.ok(sauce.includes(context.formatQty(count/2)+' c. à café de moutarde'));
+  assert.ok(assembly.includes(context.formatQty(45*count)+' g de fromage'));
+  assert.match(context.recipeStepText(gratin21.p[4],gratin21,count),/18 minutes à 200 °C/);
+  assert.match(context.recipeStepText(gratin21.p[0],gratin21,count),/environ 3 cm/);
+}
+assert.match(gratin21.p[1],/panier vapeur.*Couvrir.*10 minutes/);
+assert.match(gratin21.p[2],/Pendant cette cuisson.*beurre.*farine.*lait.*5 minutes/);
+assert.doesNotMatch(gratin21.p.join(' '),/huile|sel|graisser/);
+assert.deepEqual(Array.from(context.stepTimerDurations(recipes.find(r=>r.id==='v31n-couscous-minute-boeuf').p[1])),[],'two minutes less than the packet is not a two-minute cooking timer');
+assert.match(editorial['v31n-couscous-minute-poulet'].reviewNote,/10 cl.*140 g.*liquide/);
+assert.match(editorial['v31n-nouilles-wok-poisson-blanc'].reviewNote,/moitié de l’oignon.*aucun emploi/);
+assert.match(editorial['v31n-tacos-filet-mignon'].reviewNote,/oignon.*jamais utilisé/);
+assert.match(editorial['v31n-tacos-crevettes'].reviewNote,/citron.*partagé.*quantités/);
 const corrected=fixture.recipes.filter(r=>r.status==='corrected').length;
 const unchanged=fixture.recipes.filter(r=>r.status==='unchanged').length;
 console.log(`✓ Batches ${batchNumbers.join('/')}: ${fixture.recipes.length} individual review records, ${corrected} corrected, ${unchanged} unchanged, ${fixture.recipes.length-corrected-unchanged} blocked with original content preserved; ${timerCount} manually checked timers`);

@@ -1,0 +1,252 @@
+{
+  "baselineCommit": "aa5971677d4a6c81ce5a1be4613a7ad02bba71a7",
+  "batch": "21",
+  "recipes": [
+    {
+      "id": "v31n-orzo-tofu",
+      "status": "corrected",
+      "sourceHash": "10dc220f9917ac66a501bcffe7daffc5dd882f0fa8b1ee1661b255ac39cd9bf6",
+      "reviewedHash": "a69c5af36f2d253f68e8d5e579c84e8d9bba880a13b1e82aa68b37636a2ad56b",
+      "protectedRecipeSha256": "c0dc295c33879dacc6e1021e97b3364f0e7d084e423d972babaa47b4cb6b9767",
+      "beforeSteps": [
+        "Détailler le chou-fleur et le cuire 10 minutes à la vapeur afin qu’il reste ferme.",
+        "Faire fondre le beurre, incorporer la farine puis verser le lait progressivement en fouettant ; cuire 5 minutes.",
+        "Ajouter moutarde et muscade, puis répartir chou-fleur et jambon dans un plat et napper de sauce.",
+        "Parsemer de fromage et gratiner 18 minutes à 200 °C."
+      ],
+      "note": "Le chou-fleur reste précuit à la vapeur, puis nappé de béchamel et gratiné au four. Tout le beurre reste dans la sauce ; aucun graissage du plat ni assaisonnement absent n’est ajouté. Gestes du roux expliqués, lait et fromage liés à leurs ingrédients, durées et température source conservées."
+    },
+    {
+      "id": "v31n-couscous-minute-poulet",
+      "status": "blocked",
+      "sourceHash": "8964fe6e8748924a986031cc84540e06b7a8c6924b379f3a031ead02716eddcb",
+      "reviewedHash": "8964fe6e8748924a986031cc84540e06b7a8c6924b379f3a031ead02716eddcb",
+      "protectedRecipeSha256": "b1b6e2f6712b978c07adb5ef71d9999409470b0351696fc9e0d02242b09ef150",
+      "note": "les seuls 10 cl de bouillon listés pour 140 g de polenta ne définissent pas une hydratation cohérente avec un produit identifié. Confirmer le liquide et son volume, puis le temps du paquet. L’huile n’a pas d’usage explicite et le contrôle à cœur du poulet manque ; ne pas remplacer les saltimbocca par une autre recette."
+    },
+    {
+      "id": "v31n-couscous-minute-dinde",
+      "status": "blocked",
+      "sourceHash": "22c1c158d209db544f75531723af324f311532ea3edcf250540c9c752487e748",
+      "reviewedHash": "22c1c158d209db544f75531723af324f311532ea3edcf250540c9c752487e748",
+      "protectedRecipeSha256": "febbd06679380e6550184468853187caf115c92f3850f5026f9426a0801db108",
+      "note": "aucune matière grasse ni méthode sans ajout n’est indiquée pour dorer les escalopes panées et poêler les courgettes. Le liquide de la semoule n’est pas défini. Le citron sert bien en zeste puis en jus : ne pas créer un nouvel agrume ni inventer une dose d’huile pour combler ces lacunes."
+    },
+    {
+      "id": "v31n-couscous-minute-filet-mignon",
+      "status": "blocked",
+      "sourceHash": "e4df0822320c52d72957615e8cd7e653a04c95982c15a577b65b83bc9dfa7495",
+      "reviewedHash": "e4df0822320c52d72957615e8cd7e653a04c95982c15a577b65b83bc9dfa7495",
+      "protectedRecipeSha256": "1387c15d2f04f27e63360f10d996c62467ce992860c76030070171cee3178252",
+      "note": "poulet et légumes doivent dorer puis revenir sans matière grasse listée ni précision sur une peau ou une graisse rendue. Les pâtes n’ont pas de renvoi au paquet ; le contrôle de cuisson de la volaille manque. Conserver la coloration avant le mijotage à couvert, sans la remplacer par une cuisson dans la tomate."
+    },
+    {
+      "id": "v31n-couscous-minute-cotes-porc",
+      "status": "blocked",
+      "sourceHash": "e7539da5a40f8bb84a025503b2e06055f31d1828c09e0d26f674d9b75c7dee8c",
+      "reviewedHash": "e7539da5a40f8bb84a025503b2e06055f31d1828c09e0d26f674d9b75c7dee8c",
+      "protectedRecipeSha256": "6f41cafe08d0b2ac0b33cebb852a0d981e330290b5a433ae57b7fd3103022e16",
+      "note": "les anchois ne sont pas identifiés à l’huile et aucune graisse n’est listée pour faire fondre ail et anchois. Une louche d’eau des pâtes est réservée, puis un peu est ajouté sans volume concret. Confirmer ce prélèvement et son emploi ; les deux minutes de finition ne remplacent pas les indications du paquet."
+    },
+    {
+      "id": "v31n-couscous-minute-boeuf",
+      "status": "blocked",
+      "sourceHash": "a4bc6db75b860ee1766eb11df6c3e8371e04d1ce2fd68374df41a2745cc5474c",
+      "reviewedHash": "a4bc6db75b860ee1766eb11df6c3e8371e04d1ce2fd68374df41a2745cc5474c",
+      "protectedRecipeSha256": "cdbb8868cdadba357ff7238d00fcbfad722995be5a825ad9fe808635f9f78e36",
+      "note": "l’huile de rôtissage de l’aubergine manque dans la liste et la préparation de l’ail et de l’oignon revenus n’est pas décrite. La durée des pâtes est relative au paquet : les deux minutes retranchées ne sont pas un minuteur de cuisson. Confirmer l’huile et le sauté, sans pocher l’oignon dans le coulis à leur place."
+    },
+    {
+      "id": "v31n-couscous-minute-saumon",
+      "status": "blocked",
+      "sourceHash": "2e6872923c9235a042ec2c0490a8795b639f6be4f738bf81918a275bdf6320d7",
+      "reviewedHash": "2e6872923c9235a042ec2c0490a8795b639f6be4f738bf81918a275bdf6320d7",
+      "protectedRecipeSha256": "d99ce9346f68298493ea242c36277eee6160e136ee136da8c46b7e8c97a4ed5c",
+      "note": "la louche d’eau réservée puis ajoutée au besoin n’a pas de volume concret ; l’huile listée n’a pas d’emploi explicite. Les crevettes décortiquées ne sont pas précisées crues ou déjà cuites, ce qui change le sens des quatre minutes. Confirmer ces points avant de valider cuisson et liaison."
+    },
+    {
+      "id": "v31n-couscous-minute-poisson-blanc",
+      "status": "blocked",
+      "sourceHash": "291f6d2baf005d7d62ecf7656e3f7a1143e1040d3e6ae5d00892f71770f424e1",
+      "reviewedHash": "291f6d2baf005d7d62ecf7656e3f7a1143e1040d3e6ae5d00892f71770f424e1",
+      "protectedRecipeSha256": "6f6bcd68c3eadd822465458d74333ba5834b1be0cbe996235accd3a0c0da2029",
+      "note": "le type de gnocchi n’est pas défini : à pocher, à poêler ou déjà cuits. La source les met directement dans les tomates rôties pour douze minutes au four, sans préciser une précuisson ni la quantité de jus nécessaire. Ne pas transformer cette cuisson en ajoutant arbitrairement eau, pochage ou produit différent."
+    },
+    {
+      "id": "v31n-couscous-minute-crevettes",
+      "status": "blocked",
+      "sourceHash": "ce5368c14ef92ff91d1787e3ae6c02c43390ca9d26e6d2b0e8e2c7aca522e475",
+      "reviewedHash": "ce5368c14ef92ff91d1787e3ae6c02c43390ca9d26e6d2b0e8e2c7aca522e475",
+      "protectedRecipeSha256": "53473d6415783742c9527dbbdacf50834ecf6890a73cf3aa0b6579abfadccaa6",
+      "note": "la matière grasse pour faire fondre l’échalote et nacrer le riz n’est pas listée. La courgette doit entrer après huit minutes à l’intérieur des dix-sept minutes de cuisson du riz, pas après celles-ci. Confirmer la matière grasse et le produit sans remplacer le nacrage par un pochage ni ajouter huit minutes."
+    },
+    {
+      "id": "v31n-couscous-minute-boulettes",
+      "status": "blocked",
+      "sourceHash": "7a9c52097537f950c00226246130ed41fd6b43dea897d6dfd7de2971dc5639d9",
+      "reviewedHash": "7a9c52097537f950c00226246130ed41fd6b43dea897d6dfd7de2971dc5639d9",
+      "protectedRecipeSha256": "82f4a4a47469a85c55f27fc5cc0ab6645592934e6f9231f66ac38fec29f4c4b4",
+      "note": "tout le beurre est destiné à la liaison finale ; aucune graisse n’est définie pour poêler les champignons, faire fondre l’échalote et nacrer le riz. Le partage des champignons est explicite, mais ne résout pas cette lacune. Les petits pois et champignons entrent après onze minutes à l’intérieur des dix-huit minutes, pas en supplément."
+    },
+    {
+      "id": "v31n-couscous-minute-tofu",
+      "status": "blocked",
+      "sourceHash": "44e2519cadba28f64527ddb9ce28555aefe547e9f1efce0c3ece20a7e5815c7a",
+      "reviewedHash": "44e2519cadba28f64527ddb9ce28555aefe547e9f1efce0c3ece20a7e5815c7a",
+      "protectedRecipeSha256": "dc40c55c78353eeb0f42e9bc59635b4dd913f71abd48aedb9aaf44a4551bb8d6",
+      "note": "l’huile demandée pour badigeonner les aubergines est absente de la liste. Le sauté d’oignon et d’ail n’a pas de matière grasse définie. La réserve porte sur ces ingrédients et gestes, pas sur la méthode au four : conserver les deux températures et ne pas remplacer le rôtissage par une précuisson à l’eau."
+    },
+    {
+      "id": "v31n-nouilles-wok-poulet",
+      "status": "blocked",
+      "sourceHash": "86b8c2f85417d88ddf4bf199b038b51d23eac7be36e531278e72b3a2409c1939",
+      "reviewedHash": "86b8c2f85417d88ddf4bf199b038b51d23eac7be36e531278e72b3a2409c1939",
+      "protectedRecipeSha256": "e308a28e344633bbb95afd7ead45ac75b0386b8b3fb74f191522a87da4f38532",
+      "note": "la source réserve une cuillerée de graisse de chorizo sans préciser cuillère à café ou à soupe. Cette graisse sert à la saisie suivante, mais son volume ne peut pas devenir une quantité précise arbitraire. Le chorizo n’est pas identifié sec ou à cuire et le contrôle à cœur du poulet manque ; le riz doit renvoyer au paquet."
+    },
+    {
+      "id": "v31n-nouilles-wok-dinde",
+      "status": "blocked",
+      "sourceHash": "b25e6b8b359d53aaf36cea93a971e1e4dc77b8f9be3e9d6429690caa0e62daea",
+      "reviewedHash": "b25e6b8b359d53aaf36cea93a971e1e4dc77b8f9be3e9d6429690caa0e62daea",
+      "protectedRecipeSha256": "095eb888e29d70067aea2135a2620640ca4c74f1d1d9b3be02b9803aa609ed72",
+      "note": "aucune graisse n’est définie pour dorer le poulet, faire revenir les légumes et torréfier les vermicelles. Le poids égoutté de la boîte d’artichauts manque et le temps des vermicelles dépend du produit. Les quatre dernières minutes des artichauts sont incluses dans les dix à douze minutes, pas ajoutées après."
+    },
+    {
+      "id": "v31n-nouilles-wok-filet-mignon",
+      "status": "blocked",
+      "sourceHash": "5777ad944891651882ed1144c6d7a85d063a118431e31c04e3df89e5d7f27dfe",
+      "reviewedHash": "5777ad944891651882ed1144c6d7a85d063a118431e31c04e3df89e5d7f27dfe",
+      "protectedRecipeSha256": "2e660138c25ccb937e9a92409ec7fc534aef853a2d8068b06da61ba8778a8b77",
+      "note": "la matière grasse ou le procédé sans ajout pour faire revenir oignon, ail et poivron n’est pas indiqué. Ne pas remplacer ce sauté par un pochage dans la tomate. Le calibre des pommes de terre vapeur et le contrôle de cuisson à cœur du merlu restent à préciser ; la cuisson finale doit rester au four."
+    },
+    {
+      "id": "v31n-nouilles-wok-cotes-porc",
+      "status": "blocked",
+      "sourceHash": "dd236566a3162cb3ef99d9a01ad65bc8d3cddba4412b6b6bd73ae7cb15493778",
+      "reviewedHash": "dd236566a3162cb3ef99d9a01ad65bc8d3cddba4412b6b6bd73ae7cb15493778",
+      "protectedRecipeSha256": "0115eb0fae9e34d4e00dde313adfe9392a95bb6b2fe77dc457b2d76df1ac9766",
+      "note": "le morceau de porc, la matière grasse de coloration, le poids égoutté des pois chiches et l’assaisonnement à rectifier ne sont pas définis. Les pois chiches et épinards entrent dans les six dernières minutes des dix-huit ; ne pas allonger automatiquement le mijotage ni supposer un morceau tendre."
+    },
+    {
+      "id": "v31n-nouilles-wok-boeuf",
+      "status": "blocked",
+      "sourceHash": "c3dc922a014fade90ea07be18407baed648d8f6de3864aded4552352af6cca19",
+      "reviewedHash": "c3dc922a014fade90ea07be18407baed648d8f6de3864aded4552352af6cca19",
+      "protectedRecipeSha256": "1b9d4970800e9a897b28b72f4e09b8354686d4deef5e0dc6dc868eee4d364aa8",
+      "note": "aucune matière grasse ou méthode sans ajout n’est donnée pour dorer les boulettes puis faire revenir l’oignon. Le riz est seulement indiqué cuit, sans préparation ; le contrôle de viande hachée manque. La moitié du paprika est bien réservée à la sauce : conserver ce partage sans déplacer les amandes dans la farce."
+    },
+    {
+      "id": "v31n-nouilles-wok-saumon",
+      "status": "blocked",
+      "sourceHash": "f0aca5ae502592b6ad5ffe874079dbde94f70a7a1a53183143dc32f97cc08e41",
+      "reviewedHash": "f0aca5ae502592b6ad5ffe874079dbde94f70a7a1a53183143dc32f97cc08e41",
+      "protectedRecipeSha256": "6a06c1e64c89161b2791587c0b3736d04545edf1882fb0798feb867a99dcbe92",
+      "note": "le citron et l’ail sont placés entiers dans la liste sans geste de préparation. Le poulet est demandé assaisonné sans assaisonnement identifié ; la salade de tomates est un accompagnement déjà nommé, sans composition. Les cuisses et leur contrôle à cœur doivent être précisés : les cinq dernières minutes des olives font partie des vingt-cinq."
+    },
+    {
+      "id": "v31n-nouilles-wok-poisson-blanc",
+      "status": "blocked",
+      "sourceHash": "d69d95ee19304ff4a123ccb4c2d5b477d31e48e946e8dd9ef4960f05677583d8",
+      "reviewedHash": "d69d95ee19304ff4a123ccb4c2d5b477d31e48e946e8dd9ef4960f05677583d8",
+      "protectedRecipeSha256": "fb90c388edf9028ce3a91b2833a42d77873ea05d2ad92d5a83398b08267ad49e",
+      "note": "seule la moitié de l’oignon est utilisée ; l’autre n’a aucun emploi. Menthe et persil entrent dans les boulettes puis sont redemandés dans le riz et la sauce sans réserves décrites. La matière grasse de cuisson et le format du yaourt manquent ; ne pas supprimer la moitié d’oignon ni inventer les parts d’herbes."
+    },
+    {
+      "id": "v31n-nouilles-wok-crevettes",
+      "status": "blocked",
+      "sourceHash": "046c1f4bb9b10439db71bdef1695b4dec4afd0e9abf9e5d09d9cfa0b8db3106e",
+      "reviewedHash": "046c1f4bb9b10439db71bdef1695b4dec4afd0e9abf9e5d09d9cfa0b8db3106e",
+      "protectedRecipeSha256": "b572d814f36f6b22ac7842965d514765137c0457db29443122c48beece3bd4f1",
+      "note": "seul un trait de citron est demandé alors qu’un fruit entier est listé, sans usage du reste ni mesure du jus. Le poisson nacré seul ne garantit pas sa cuisson ; le boulgour doit aussi renvoyer au produit. Ne pas presser tout le citron ni ajouter de l’huile pour combler la réserve."
+    },
+    {
+      "id": "v31n-nouilles-wok-boulettes",
+      "status": "blocked",
+      "sourceHash": "6612bb2e844262516a76377cfec05e0c227f5be1de44b116b409ce43cdb04537",
+      "reviewedHash": "6612bb2e844262516a76377cfec05e0c227f5be1de44b116b409ce43cdb04537",
+      "protectedRecipeSha256": "f47ebfa57e278d079b88cd68994dedba67028c6fb57b263eb11868a2a56649a2",
+      "note": "l’huile de rôtissage des aubergines manque dans la liste ; la matière grasse pour faire revenir oignon et bœuf n’est pas définie. Tout le beurre est destiné à la béchamel, dont le procédé n’est pas détaillé. Ne pas prélever arbitrairement ce beurre pour la viande ni remplacer les aubergines rôties par des aubergines pochées."
+    },
+    {
+      "id": "v31n-nouilles-wok-tofu",
+      "status": "blocked",
+      "sourceHash": "11074b7a18400bc5b0ee3a7ac8a94012c1c1f20e5301dae5641e8824ff5bcc6c",
+      "reviewedHash": "11074b7a18400bc5b0ee3a7ac8a94012c1c1f20e5301dae5641e8824ff5bcc6c",
+      "protectedRecipeSha256": "c6632b4fd896edba667d53a6018cb40acf2324ccbcfaae86d06e52ccff1a1fb7",
+      "note": "la matière grasse pour faire revenir oignon et chair de courgette n’est pas définie. Le fond d’eau au four manque dans la liste et n’a pas de volume concret. Le boulgour est déjà cuit dans les ingrédients : ne pas convertir ses 180 g en poids sec ni ajouter une seconde cuisson pour résoudre les autres lacunes."
+    },
+    {
+      "id": "v31n-tacos-poulet",
+      "status": "blocked",
+      "sourceHash": "7692c34fe294907cb0062a82f688db917dc1b26f7d29b70ffb14c9c1595e9033",
+      "reviewedHash": "7692c34fe294907cb0062a82f688db917dc1b26f7d29b70ffb14c9c1595e9033",
+      "protectedRecipeSha256": "1dc8f9fab6077137deee10c0ec20513ec88fd301fb7ba4a0489e1a2ae92652fc",
+      "note": "la moutarde de tartinage n’est pas listée. Ni graisse de coloration des roulades, ni liquide ou procédé de compotage du chou ne sont définis. Les pommes de terre sont cuites à l’eau puis nommées vapeur au service. Confirmer ces points sans prendre pour le chou une part arbitraire du bouillon destiné aux roulades."
+    },
+    {
+      "id": "v31n-tacos-dinde",
+      "status": "blocked",
+      "sourceHash": "d729014e78ea8fa4853ff43a3a8ee79775bb1e2938acea11dc32d93e545a8e2f",
+      "reviewedHash": "d729014e78ea8fa4853ff43a3a8ee79775bb1e2938acea11dc32d93e545a8e2f",
+      "protectedRecipeSha256": "f9a64f88d1ee6b9a6ecfd114b0ce49530c8a7fb2993dc9116e3496c05446c036",
+      "note": "les matières grasses pour les pommes sautées et les galettes ne sont pas listées. Les quatre galettes correspondent seulement aux portions de référence et ne doivent pas rester quatre si le nombre de convives change ; leur épaisseur et le contrôle de viande hachée manquent. Le yaourt est compté en pot sans poids."
+    },
+    {
+      "id": "v31n-tacos-filet-mignon",
+      "status": "blocked",
+      "sourceHash": "09209ccede8a200cba5f01fce4f22043a3e7a4425269867bfa464aac117345fb",
+      "reviewedHash": "09209ccede8a200cba5f01fce4f22043a3e7a4425269867bfa464aac117345fb",
+      "protectedRecipeSha256": "16477729d7c84ada9265334f6bfc86ffc3567d2cb81e190640b47b881d7b1718",
+      "note": "l’oignon listé n’est jamais utilisé et le sel de l’eau n’est pas listé. Les saucisses blanches ne sont pas identifiées crues ou déjà cuites : dix minutes à frémissement ne peuvent pas être validées pour tous les produits. La salade de concombre est un accompagnement composé déjà nommé, sans recette à inventer."
+    },
+    {
+      "id": "v31n-tacos-cotes-porc",
+      "status": "blocked",
+      "sourceHash": "68bdf9cf5d096178630ae7fd43e534705dd0108b25cbb4ff5c580f172526624d",
+      "reviewedHash": "68bdf9cf5d096178630ae7fd43e534705dd0108b25cbb4ff5c580f172526624d",
+      "protectedRecipeSha256": "91f5c42e6e22ad1b5fb822e31d6e3f441face12b70cb75a76b790f84e2dcc5d2",
+      "note": "le porc fumé n’est pas précisé cru ou déjà cuit, ni défini par son morceau ; cela conditionne les trente minutes de mijotage. Aucune matière grasse ou méthode sans ajout n’est indiquée pour faire revenir les légumes. Ne pas transformer ce sauté en pochage ni considérer le fumage comme une cuisson."
+    },
+    {
+      "id": "v31n-tacos-boeuf",
+      "status": "blocked",
+      "sourceHash": "d44ba816981840179dd33a1016df34d7f0e8e0f3bf67c1126c00a843dfe05e0c",
+      "reviewedHash": "d44ba816981840179dd33a1016df34d7f0e8e0f3bf67c1126c00a843dfe05e0c",
+      "protectedRecipeSha256": "8a83f69396dcd8c724de22d25c1cfc1ebc6e105ab7b7f60486cc6fa0c4ef5111",
+      "note": "aucune graisse ou méthode sans ajout n’est définie pour le poulet, les légumes et la seconde poêle de spätzle. Les spätzle frais ne sont pas identifiés déjà cuits ou à cuire : cinq minutes de poêle seules demandent confirmation. Le contrôle à cœur du poulet manque, sans autoriser son pochage dans la crème à la place de la saisie."
+    },
+    {
+      "id": "v31n-tacos-saumon",
+      "status": "blocked",
+      "sourceHash": "e7fdf46e7dd575b593ccbf1773b4ed4b3d08110749ecbc453c2580b6046be36c",
+      "reviewedHash": "e7fdf46e7dd575b593ccbf1773b4ed4b3d08110749ecbc453c2580b6046be36c",
+      "protectedRecipeSha256": "35e596fd05111ae63fdf8c97070c15b1538393e30efe4414f6bfa4f33de05b16",
+      "note": "aucune graisse n’est définie pour dorer les oignons, poêler les champignons puis sauter les spätzle. Le tiers d’oignons réservés est mesuré après cuisson et n’a pas de poids concret ; le produit de spätzle n’est pas identifié. Ne pas déplacer la crème avant ces sautés ni inventer une masse d’oignons cuits."
+    },
+    {
+      "id": "v31n-tacos-poisson-blanc",
+      "status": "blocked",
+      "sourceHash": "5d4a70c166293580d470c1a812d11eb8821f78ea50bcfb1c149bf6ccb251fd14",
+      "reviewedHash": "5d4a70c166293580d470c1a812d11eb8821f78ea50bcfb1c149bf6ccb251fd14",
+      "protectedRecipeSha256": "25fdc6ded1078d7dc2a9f96f50fa4cd691e2cdba3ebf06cb120fd211a3b3a490",
+      "note": "les boulettes doivent dorer sans matière grasse listée ni procédé sans ajout défini. Leur taille et leur contrôle de cuisson à cœur ne sont pas précisés ; les pommes vapeur n’ont pas de calibre. Conserver le déglaçage au bouillon après coloration, sans cuire la viande directement dans la sauce pour contourner la lacune."
+    },
+    {
+      "id": "v31n-tacos-crevettes",
+      "status": "blocked",
+      "sourceHash": "d157d622852745a0debe6730a130d375ef49febf79983601ca7df6df781319ae",
+      "reviewedHash": "d157d622852745a0debe6730a130d375ef49febf79983601ca7df6df781319ae",
+      "protectedRecipeSha256": "4b6aa22d23bf21b27c7214c5c388c0d99402c3c49d62250f6c330b75ec90f889",
+      "note": "le citron est partagé entre la couche moutarde-miel et la sauce au yaourt sans quantités définies : un peu puis citron ne fixe pas ce partage. La répartition de l’aneth est bien donnée par moitié mais ne résout pas le jus. Le poids du pot de yaourt et le contrôle à cœur du saumon restent à préciser."
+    },
+    {
+      "id": "v31n-tacos-boulettes",
+      "status": "blocked",
+      "sourceHash": "c73ac9a89b3905c58ae5a5ed1b035589177f6803c1d580e022990bfeef2da250",
+      "reviewedHash": "c73ac9a89b3905c58ae5a5ed1b035589177f6803c1d580e022990bfeef2da250",
+      "protectedRecipeSha256": "469fb64ca6ecc47bd08d42fe1535f40889cf20de0623f47fda25f66c4f90fda4",
+      "note": "poireaux et pomme doivent fondre à couvert sans graisse ou liquide défini ; le poisson cuit dans une seconde poêle sans méthode précisée. La crème n’arrive qu’après la fondue : ne pas l’utiliser pour remplacer cette première cuisson. Le citron de service et le contrôle à cœur du poisson restent à expliciter."
+    }
+  ]
+}
