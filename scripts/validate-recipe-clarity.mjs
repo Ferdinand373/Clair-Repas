@@ -5,6 +5,7 @@ import {createHash} from 'node:crypto';
 import {dirname,resolve} from 'node:path';
 import {fileURLToPath} from 'node:url';
 import vm from 'node:vm';
+import {validateEditorial} from './validate-recipe-editorial.mjs';
 
 const root=resolve(dirname(fileURLToPath(import.meta.url)),'..');
 const html=readFileSync(resolve(root,'index.html'),'utf8');
@@ -31,13 +32,11 @@ const sha=value=>createHash('sha256').update(JSON.stringify(value)).digest('hex'
 const selected=new Map(fixture.recipes.map(r=>[r.id,r]));
 assert.equal(selected.size,20);
 assert.equal(recipes.length,1553);
-const protectedRows=recipes.map(r=>{
-  const copy={...r};
-  if(selected.has(r.id)){delete copy.p;if(selected.get(r.id).afterTime)delete copy.t;}
-  return copy;
-});
-assert.equal(sha(protectedRows),fixture.protectedCatalogSha256,
-  'All ingredients, reference servings, ids, names, appliances and non-selected recipes must stay unchanged');
+// Later individually reviewed batches may edit other recipes. The old global
+// fingerprint remains in the fixture as historical evidence, not a catalogue
+// freeze. The per-id inventory now guards every pending and reviewed recipe.
+const inventory=JSON.parse(readFileSync(resolve(root,'docs/recipe-editorial-inventory.json'),'utf8'));
+assert.deepEqual(validateEditorial({html,inventory}).errors,[]);
 
 // Manually reviewed ingredient coverage: each entry corresponds to one ingredient.
 const ingredientTerms={
@@ -55,7 +54,7 @@ const ingredientTerms={
   e63:['œufs','pommes de terre','chorizo','oignon','salade','huile'],
   e78:['pâtes','thon','coulis','fromage','courgette','origan'],
   e92:['haricots rouges','pois chiches','riz','coulis','poivron','cumin.*paprika'],
-  a038:['concombre','yaourt','citron','aneth','huile'],
+  a038:['concombre','yaourt','citron','aneth','huile','sel et du poivre'],
   a048:['chou-fleur','oignon','bouillon','curry','lait'],
   a088:['quinoa','concombre','tomate','citron','persil.*menthe'],
   d028:['pêches','miel','romarin','citron'],
@@ -66,6 +65,8 @@ let timerCount=0,quantityChecks=0;
 for(const entry of fixture.recipes){
   const recipe=recipes.find(r=>r.id===entry.id);
   assert.ok(recipe,entry.id);
+  const protectedRecipe={...recipe};delete protectedRecipe.p;delete protectedRecipe.t;
+  assert.equal(sha(protectedRecipe),entry.protectedRecipeSha256,entry.id+' protected ingredients, identity and reference portions');
   assert.equal(recipe.n,entry.name);
   assert.equal(recipe.m,entry.method);
   assert.equal(Number(recipe.servings)||2,entry.baseServings);
@@ -120,7 +121,7 @@ assert.equal(context.recipeStepText('{{qty:0:0.5}}',{role:'terrine',i:[{q:200,u:
 assert.equal(context.recipeStepText('{{qty:0}}',{i:[{q:null,n:'sel'}]},3),'la quantité indiquée dans les ingrédients');
 assert.equal(context.recipeStepText('{{qty:99}}',byId('e11'),3),'la quantité indiquée dans les ingrédients');
 for(const recipe of recipes.filter(r=>!selected.has(r.id))){
-  for(const step of recipe.p)assert.equal(context.recipeStepText(step,recipe,5),step,'Untouched recipes retain their exact step text');
+  for(const step of recipe.p)if(!step.includes('{{qty:'))assert.equal(context.recipeStepText(step,recipe,5),step,'Steps without quantity tokens retain their exact text');
 }
 
 // Exercise the actual in-place refresh + meal setter with four independent slots.
@@ -143,7 +144,10 @@ assert.match(globalLine.textContent,/160 g de fromage/);
 assert.deepEqual(context.plan,[{midPeople:2,evePeople:5},{midPeople:3,evePeople:2}]);
 
 // Preserve original techniques and expose source gaps rather than inventing them.
-for(const id of ['a048','e78','e92','n88','a038'])assert.match(byId(id).p[0],/^À vérifier/);
+for(const id of ['a048','e78','e92','n88'])assert.match(byId(id).p[0],/^À vérifier/);
+assert.doesNotMatch(byId('a038').p.join(' '),/À vérifier/);
+assert.equal(byId('a038').i.at(-1).n,'sel et poivre');
+assert.equal(byId('a038').i.at(-1).q,null);
 assert.match(byId('a048').p[1],/^Faire revenir l’oignon avec le curry/);
 assert.doesNotMatch(byId('a048').p.join(' '),/Verser un dixième|cuire 4 minutes/);
 assert.match(byId('e78').p[2],/^Poêler les dés de courgette/);
@@ -167,7 +171,7 @@ const timerCases=[
 for(const [step,expected] of timerCases)assert.deepEqual(Array.from(context.stepTimerDurations(step)),expected,step);
 console.log(`✓ Editorial batch: 20 reviewed recipes, ${new Set(fixture.recipes.map(r=>r.method)).size} methods, ${timerCount} correctly attached timers`);
 console.log(`✓ ${quantityChecks} ingredient/render checks at 1/2/3/4/5/8 people; original fixed-yield exception preserved`);
-console.log('✓ 1553 ids/names/ingredient lists/reference portions and 1533 other recipes unchanged');
+console.log('✓ First-batch identities, reference portions and ingredients protected; source-restored seasoning exception recorded for a038; catalogue guarded per id');
 console.log('✓ Relative package times excluded; ranges, per-face and additional active durations preserved');
 console.log('✓ Concrete step quantities refresh per meal (2/4/3/2 → 2/5/3/2), fixed yields and other recipes preserved');
-console.log('✓ Original techniques restored; 5 source gaps explicitly flagged in the application');
+console.log('✓ Original techniques preserved; 4 first-batch source gaps remain explicit; a038 seasoning restored from the source');

@@ -465,7 +465,8 @@ await check("11. Sel et poivre is never split", () => {
       assert.match(api.normalizeSearchText(item.n || item.k), safeSplitPattern, `${item.n}: unsafe split`);
     }
   }
-  assert.equal(compoundCount, 468, "Unexpected compoundSource corpus count");
+  // Editorial batch 02 restores the source-listed seasoning in a038.
+  assert.equal(compoundCount, 469, "Unexpected compoundSource corpus count");
   assert.equal(splitCount, 19, "Only the audited vinaigrette compounds may split");
   return `${compoundCount} compound occurrences; ${splitCount} safe splits; 0 unexpected`;
 });

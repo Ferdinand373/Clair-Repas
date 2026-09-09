@@ -24,7 +24,8 @@
           15
         ],
         []
-      ]
+      ],
+      "protectedRecipeSha256": "8fcc44f4156de04760fbce4331341f28a2a3e087b796bc83694459a0b07258a6"
     },
     {
       "id": "n07",
@@ -48,7 +49,8 @@
           15
         ],
         []
-      ]
+      ],
+      "protectedRecipeSha256": "99a84374f7e4d87d5b31330fccfeb0e777747e1ad3dc3b52b68cff19a224b356"
     },
     {
       "id": "n11",
@@ -75,7 +77,8 @@
           12
         ],
         []
-      ]
+      ],
+      "protectedRecipeSha256": "e47aeb9fee3c63fb2b31881aa4e57c2f795d040f28d82092ff3208bfdd060172"
     },
     {
       "id": "n26",
@@ -100,7 +103,8 @@
         ],
         [],
         []
-      ]
+      ],
+      "protectedRecipeSha256": "fc7988aa2bf71c1b8a56ed0e8805938b70b1e9a4ca158f524aface51779e6799"
     },
     {
       "id": "n78",
@@ -126,7 +130,8 @@
         [
           3
         ]
-      ]
+      ],
+      "protectedRecipeSha256": "33ab9e1f295455464ce9dd299fcac56d25c86133bf8a1a4780bd5647664ca8e2"
     },
     {
       "id": "n88",
@@ -150,7 +155,8 @@
         ],
         [],
         []
-      ]
+      ],
+      "protectedRecipeSha256": "57b563c682b982c910f57b5170708070e598964afb3f472680233243dfae5de6"
     },
     {
       "id": "n97",
@@ -176,7 +182,8 @@
         [
           3
         ]
-      ]
+      ],
+      "protectedRecipeSha256": "96c24e9a85922b885bca1393b382a58b7f09bd74142430060d4e6ec85ef262b8"
     },
     {
       "id": "e03",
@@ -201,7 +208,8 @@
           5
         ],
         []
-      ]
+      ],
+      "protectedRecipeSha256": "533faa05fc515286e72c154e7dc2b78de4af816580d8d8d45430722ff76602c9"
     },
     {
       "id": "e11",
@@ -224,7 +232,8 @@
           9
         ],
         []
-      ]
+      ],
+      "protectedRecipeSha256": "e979380005f0b863fbb89836ee47ad9c49a32a1cac219d2a3ecf7c33a096cb67"
     },
     {
       "id": "e30",
@@ -244,7 +253,8 @@
         [],
         [],
         []
-      ]
+      ],
+      "protectedRecipeSha256": "5b2e9297efd2b100c112f99199e0452dbc6ee89e29e574f96f47f46c93effa8c"
     },
     {
       "id": "e58",
@@ -267,7 +277,8 @@
           8
         ],
         []
-      ]
+      ],
+      "protectedRecipeSha256": "f645bb89d565337db9f279419fb9e1a23bc39e8562beabe8f9567af910f5ddb0"
     },
     {
       "id": "e63",
@@ -296,7 +307,8 @@
           7
         ],
         []
-      ]
+      ],
+      "protectedRecipeSha256": "87eca08383680af6a911daf16f8182619fedf5a9a6b6297b1882c8c29440e449"
     },
     {
       "id": "e78",
@@ -320,7 +332,8 @@
         [
           12
         ]
-      ]
+      ],
+      "protectedRecipeSha256": "1f4b751e4b7c55b2f737bbc854e3122371fa96634a360912c6ce45b7a00f71f1"
     },
     {
       "id": "e92",
@@ -343,7 +356,8 @@
           12
         ],
         []
-      ]
+      ],
+      "protectedRecipeSha256": "3b3d484df4c38b4c4fc73da1ae17768ae9a73524074e33b17336e00ba64d2878"
     },
     {
       "id": "a038",
@@ -357,13 +371,15 @@
         "Servir très frais."
       ],
       "beforeTime": "12 min",
-      "stepsSha256": "f33144d48c3d3b8266bff61dd60412317850c0720794fe2ad7c3f102dd31dc3c",
+      "stepsSha256": "c516644855c641c2ab527166d445439643f6b69f81a863e8915aca7d73613276",
       "timers": [
         [],
         [],
         [],
         []
-      ]
+      ],
+      "protectedRecipeSha256": "6b36bbb0d6412aa56dd988974cca1f077bfba9f37e4010c68b4ce5e20ab35ebe",
+      "sourceCorrection": "Lot 02 : sel et poivre ajoutés depuis la préparation des archives ; aucune quantité fixe inventée."
     },
     {
       "id": "a048",
@@ -386,7 +402,8 @@
         ],
         [],
         []
-      ]
+      ],
+      "protectedRecipeSha256": "20ad65efd2ce41f19fa3e8beea2353e97bbaf6ee32cb8bf67592d810f8af9d99"
     },
     {
       "id": "a088",
@@ -408,7 +425,8 @@
         [],
         [],
         []
-      ]
+      ],
+      "protectedRecipeSha256": "261af73bf43b0e7db616f51cb1649a5c6b320f4ba3eb62221502a7c170780dd9"
     },
     {
       "id": "d028",
@@ -431,7 +449,8 @@
           18
         ],
         []
-      ]
+      ],
+      "protectedRecipeSha256": "aabf2eca89375b760fe0bfb8ea7e7cc91bd8b6c1f282568a9ff71209475f05c0"
     },
     {
       "id": "d036",
@@ -453,7 +472,8 @@
           18
         ],
         []
-      ]
+      ],
+      "protectedRecipeSha256": "ba47e3711c96c82a7e0a95efc4823b63865ca4569268a7262e95d8c1ff2c2348"
     },
     {
       "id": "d044",
@@ -476,7 +496,8 @@
         [
           25
         ]
-      ]
+      ],
+      "protectedRecipeSha256": "f13a251273fba4c208c0e5c16c4b4d21a8c9f9ff9b20f04a2afe13c78dc04897"
     }
   ]
 }

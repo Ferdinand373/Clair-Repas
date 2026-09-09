@@ -1,0 +1,97 @@
+import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+import {dirname,resolve} from 'node:path';
+import {fileURLToPath} from 'node:url';
+import vm from 'node:vm';
+import {recipeSource} from './recipe-source.mjs';
+import {recipeHash} from './validate-recipe-editorial.mjs';
+const root=resolve(dirname(fileURLToPath(import.meta.url)),'..');
+const {code,recipes,editorial}=recipeSource(readFileSync(resolve(root,'index.html'),'utf8'));
+const fixture=JSON.parse(readFileSync(resolve(root,'scripts/recipe-editorial-batch-02.fixture.json'),'utf8'));
+const slice=(a,b)=>code.slice(code.indexOf(a),code.indexOf(b,code.indexOf(a)+a.length));
+const context={window:{},$:()=>({value:'8'}),MEAL_TYPES:['mid','eve'],recipeRole:r=>r.role||r.course||'dish',isFavorite:()=>false,recipeFeedbackHTML:()=>'',recipePersonalNoteHTML:()=>''};
+vm.runInNewContext(code.slice(0,code.indexOf("$('libraryCount').textContent="))+'\n'+
+  slice('function recipeText(','function inferFamily(')+'\n'+
+  slice('function escapeHTML(','let V73_NOTES_RAW')+'\n'+
+  slice('function formatQty(','function recipeFeedbackHTML(')+'\n'+
+  slice('function recipeHTML(','function recipeText('),context,{timeout:15000});
+// Independent manual expectations: a range is its stated upper reference,
+// each face has its own action, package-dependent times have no fixed button.
+const timers={
+  n01:[[],[15],[],[20],[]],n02:[[],[15],[10],[10],[3]],n06:[[],[],[],[]],
+  n10:[[],[],[],[5],[]],n15:[[],[],[],[]],n16:[[],[],[15],[],[]],
+  n18:[[],[],[8],[8],[]],n19:[[],[6],[4],[20],[],[]],n20:[[],[8],[5],[]],
+  n21:[[],[10],[9],[9],[3]],n12:[[],[],[],[]],n13:[[],[20],[],[2,3],[]],
+  n22:[[],[12],[25],[]],n24:[[],[8],[5,3],[]],n25:[[],[],[],[],[]],
+  n28:[[],[15],[],[18],[3]],n29:[[],[],[],[]],n30:[[],[],[],[]],
+  n31:[[],[],[10],[]],n32:[[],[],[4],[4]],n34:[[20],[],[12],[15],[]],a038:[[],[],[],[]]
+};
+const ingredients={
+  n01:['poulet','pommes de terre','paprika','huile','sel.*poivre'],
+  n02:['échines','courgette','poivron','oignon','beurre ou d’huile','saler.*poivrer'],
+  n06:['saucisses','courgette','poivron','oignon','huile','sel.*poivre'],
+  n10:['pâtes','poulet','tomates','ail','basilic','huile d’olive'],
+  n15:['pommes de terre','knacks','oignon','salade','beurre ou d’huile','persil'],
+  n16:['saumon','pommes de terre','crème','aneth','citron','saler.*poivrer'],
+  n18:['poulet','semoule','carottes','citron','huile.*herbes','saler.*poivrer'],
+  n19:['spaghetti','bœuf','œuf','chapelure','tomates concassées','oignon','ail','huile d’olive','origan','parmesan','sel.*poivre'],
+  n20:['crevettes','riz','courgette','ail','citron','huile.*persil'],
+  n21:['côtes','pommes de terre','tomates','oignon','beurre ou d’huile','saler.*poivrer'],
+  n12:['steaks','pommes de terre','salade','échalote','beurre','saler.*poivrer'],
+  n13:['magret','courgettes','miel','vinaigre balsamique','saler.*poivrer'],
+  n22:['cuisses','pommes de terre','carottes','paprika','huile','sel.*poivre'],
+  n24:['bœuf','nouilles','poivron','oignon','sauce soja','huile'],
+  n25:['œufs','pommes de terre','oignon','salade','huile','sel.*poivre'],
+  n28:['côtes','pommes de terre','carottes','miel','moutarde','saler.*poivrer'],
+  n29:['chipolatas','ratatouille','semoule','oignon','huile','herbes de Provence'],
+  n30:['merguez','poivrons','oignon','semoule','huile','cumin'],
+  n31:['boulettes','riz','courgette','coulis','oignon','huile'],
+  n32:['thon','pommes de terre','tomates','citron','huile d’olive','basilic'],
+  n34:['truite','pommes de terre','haricots','citron','aneth','huile'],
+  a038:['concombre','yaourt','citron','aneth','huile d’olive','sel et du poivre']
+};
+assert.equal(fixture.recipes.length,35);
+let quantityChecks=0,timerCount=0;
+for(const record of fixture.recipes){
+  const recipe=recipes.find(r=>r.id===record.id);
+  assert.equal(recipeHash(recipe),record.reviewedHash,record.id+' approved content');
+  const protectedRecipe={...recipe};delete protectedRecipe.p;delete protectedRecipe.t;
+  assert.equal(recipeHash(protectedRecipe),record.protectedRecipeSha256,record.id+' identity, ingredients and servings');
+  if(record.status==='blocked'){
+    assert.equal(record.reviewedHash,record.sourceHash,record.id+' uncertain culinary content was not rewritten');
+    assert.match(editorial[record.id].reviewNote,/À vérifier/);
+    continue;
+  }
+  assert.ok(!editorial[record.id].reviewNote,record.id+' no essential reservation');
+  assert.equal(ingredients[record.id].length,recipe.i.length,record.id+' one manual ingredient term per ingredient');
+  for(const term of ingredients[record.id])assert.match(recipe.p.join(' '),new RegExp(term,'i'),record.id+' ingredient '+term);
+  assert.equal(timers[record.id].length,recipe.p.length,record.id+' timer steps');
+  recipe.p.forEach((step,index)=>{
+    assert.deepEqual(Array.from(context.stepTimerDurations(step)),timers[record.id][index],record.id+' timer step '+(index+1));
+    timerCount+=timers[record.id][index].length;
+  });
+  for(const count of [1,2,3,4,5,8]){
+    const output=context.recipeHTML(recipe,{people:count,dayIndex:1,mealType:'eve'});
+    for(const ingredient of recipe.i){
+      const quantity=ingredient.q==null?null:ingredient.q*count/(recipe.servings||2);
+      const text=context.ingredientText(ingredient,quantity,count);
+      assert.equal(context.ingredientTextForRecipe(ingredient,recipe,count),text);
+      assert.ok(output.includes('>'+text+'</li>'),record.id+' '+count+' people ingredient '+ingredient.n);
+      quantityChecks++;
+    }
+    assert.doesNotMatch(output,/\{\{|undefined|NaN/);
+    const attached=[...output.matchAll(/data-step-index="(\d+)" data-timer-minutes="(\d+)"/g)].map(([,step,min])=>[+step,+min]);
+    assert.deepEqual(attached,timers[record.id].flatMap((mins,step)=>mins.map(min=>[step,min])));
+  }
+}
+const meatballs=recipes.find(r=>r.id==='n19');
+for(const [count,share] of [[1,'7½'],[2,'15'],[3,'22½'],[4,'30'],[5,'37½'],[8,'60']]){
+  assert.ok(context.recipeStepText(meatballs.p[0],meatballs,count).includes(share+' g de parmesan'));
+  assert.ok(context.recipeStepText(meatballs.p[5],meatballs,count).includes(share+' g de parmesan'));
+}
+assert.match(meatballs.p[0],/4 cm/);
+assert.doesNotMatch(meatballs.p.join(' '),/huit boulettes|5 cl|la moitié du/);
+assert.match(recipes.find(r=>r.id==='n25').p[3],/retourner l’ensemble/);
+assert.match(recipes.find(r=>r.id==='n28').p[1],/ne prévoit pas d’huile/);
+console.log(`✓ Batch 02: 35 individual reviews, 22 corrected, 13 blocked with original content preserved; ${timerCount} manually checked timers`);
+console.log(`✓ ${quantityChecks} ingredient checks at 1/2/3/4/5/8 people; split parmesan quantities, per-face timing and original cooking techniques`);

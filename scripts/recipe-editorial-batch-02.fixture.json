@@ -1,0 +1,413 @@
+{
+  "baselineCommit": "58f7d6fed7d5265ee6f02a02d1d669382bda3933",
+  "batch": "02",
+  "recipes": [
+    {
+      "id": "n01",
+      "status": "corrected",
+      "sourceHash": "bfbcc21c786728eda32b26954c09be9bc1e947e61516f82574420a4890171b3b",
+      "reviewedHash": "372c6a5d32437e7a6f0484719ed38aad7b34ab7f5dab2b0c855b11183015b42c",
+      "protectedRecipeSha256": "6f09edd655f821b748945c521e6b18d2ad68bfc1fac1dd231abcceaf59a1c986",
+      "beforeSteps": [
+        "Couper les pommes de terre et les mélanger avec l’huile, le paprika, le sel et le poivre.",
+        "Cuire 15 minutes à 190 °C.",
+        "Ajouter le poulet assaisonné.",
+        "Poursuivre 18 à 20 minutes en retournant à mi-cuisson."
+      ],
+      "note": "Découpe, préparation de l’appareil et contrôle à cœur explicités. Les 33–35 min de cuisson ne sont plus confondues avec un total incluant la préparation."
+    },
+    {
+      "id": "n02",
+      "status": "corrected",
+      "sourceHash": "ec512fffed0f1bc0c21e3c9d3c490537670751ea02d5d8736485c8cf53960385",
+      "reviewedHash": "23db2d84ea924dd9c48aacd314aca4bff0bde7a544e59b050c4492e170a5673f",
+      "protectedRecipeSha256": "321e4e625e1b7f225f356b7598b64bf69fad297dde3b3c6f2d775e242a2de013",
+      "beforeSteps": [
+        "Émincer les légumes et les faire revenir 12 à 15 minutes.",
+        "Les réserver au chaud.",
+        "Cuire les échines 8 à 10 minutes par face.",
+        "Servir avec les légumes."
+      ],
+      "note": "Ordre légumes puis viande conservé ; deux faces et repos distingués. Durée totale de 30 min non garantie par la somme des étapes initiales."
+    },
+    {
+      "id": "n06",
+      "status": "corrected",
+      "sourceHash": "70af5d295fc3bea60682b6328ea0a6defaa02c8a15b7cff1cf05414ad5b41a56",
+      "reviewedHash": "ef37b5b3e5e956419dc81ee63948a47997ae101ef8cb0dfcb08ab3c6ca0d9e24",
+      "protectedRecipeSha256": "77dc470531bf441dd6056567a8dea85306410d1e3753ca8a2828434d6934d6ac",
+      "beforeSteps": [
+        "Couper les légumes.",
+        "Cuire les saucisses et les légumes sur la plancha chaude.",
+        "Retourner régulièrement et servir dès que les légumes sont tendres."
+      ],
+      "note": "Aucune durée inventée pour des saucisses dont le type varie ; indications du fabricant et contrôle à cœur. Légumes grillés conservés."
+    },
+    {
+      "id": "n10",
+      "status": "corrected",
+      "sourceHash": "9e0ea801775a9d86c85874c466d10228340bf3e65956aacebbd59ad819fbb172",
+      "reviewedHash": "a4dc14f4fd3aa0d6e6008cffe3e58d0ba316bf2742821583e6b689f2e140768c",
+      "protectedRecipeSha256": "e9df3f60926e59b176b35619b1a3d96c14163020b3be42f6bbda3ee7393b5086",
+      "beforeSteps": [
+        "Cuire les pâtes.",
+        "Faire revenir le poulet en morceaux avec l’ail.",
+        "Ajouter les tomates et cuire 5 minutes.",
+        "Mélanger avec les pâtes et le basilic."
+      ],
+      "note": "Cuisson des pâtes selon paquet ; ail préparé, huile utilisée et cuisson du poulet contrôlée sans durée initiale inventée."
+    },
+    {
+      "id": "n15",
+      "status": "corrected",
+      "sourceHash": "e09e10466e37e1c59bfad228ecc55f3e9c494e2b354964c663adb9e3ce113944",
+      "reviewedHash": "9456c9d8adefdb670942e26944ef54598dd2686c77278067b324a7792883aac2",
+      "protectedRecipeSha256": "86f5c327270f82ee8906ca53f796416dd209f0a5976e5b9f21f99a57b8947b09",
+      "beforeSteps": [
+        "Faire revenir les pommes de terre avec l’oignon jusqu’à ce qu’elles soient dorées.",
+        "Réchauffer les knacks.",
+        "Servir avec une petite salade et du persil."
+      ],
+      "note": "Pommes de terre sautées sans substitution de cuisson ; réchauffage des knacks selon le produit, persil effectivement utilisé."
+    },
+    {
+      "id": "n16",
+      "status": "corrected",
+      "sourceHash": "9b99bcc71d75887ccf1fc502a70ebba80df0365600d3687adcd83ae5487cb1da",
+      "reviewedHash": "674aad35eb97db121143c690cb00c22f6b990b8d9fd6303917384d2b3486d7b1",
+      "protectedRecipeSha256": "820a142c6f2aa019a638b4447d302e46d1ae0bf2d22d7994c5570cde6c6b4757",
+      "beforeSteps": [
+        "Cuire les pommes de terre à la vapeur.",
+        "Cuire le saumon 15 minutes à 180 °C.",
+        "Chauffer doucement la crème avec l’aneth et un peu de citron.",
+        "Servir ensemble."
+      ],
+      "note": "Cuisson vapeur et four conservées. Citron entier de la liste utilisé dans la crème, ajout progressif sans répartition arbitraire."
+    },
+    {
+      "id": "n18",
+      "status": "corrected",
+      "sourceHash": "55998adcf84552bbc9638964a16bd0aeb4b05e02114ed719a698ddb2e295747a",
+      "reviewedHash": "9452ba1d64e6cb6ea31d5f1cca314f920e5ed5fe08ebbdbe215eaefe9a5bab77",
+      "protectedRecipeSha256": "b6fd68721a52fabe5ad839924fcce9d4db949bf074f8d8d49590b1c4cbd32546",
+      "beforeSteps": [
+        "Préparer la semoule selon les indications du paquet.",
+        "Faire dorer les escalopes 6 à 8 minutes par face.",
+        "Ajouter le jus de citron et les herbes en fin de cuisson.",
+        "Servir avec la semoule et les carottes râpées ou poêlées."
+      ],
+      "note": "Alternative initiale carottes râpées ou poêlées conservée et explicitée ; semoule au paquet, durée par face clairement séparée."
+    },
+    {
+      "id": "n19",
+      "status": "corrected",
+      "sourceHash": "07a49aae64a09e734acb021082423b5a53a18534084c21190e4ab78c2ce7b580",
+      "reviewedHash": "69a693cb73517053bbc10d2a3742d6e9c3941e015b7f7e8d488bfbd88c95c0c9",
+      "protectedRecipeSha256": "ad309063766819274b81ba2a8e0735838250babff21dd96adc865083d4e7a2b5",
+      "beforeSteps": [
+        "Mélanger le bœuf avec l’œuf, la chapelure, la moitié du parmesan, du sel et du poivre, puis former huit boulettes.",
+        "Dorer les boulettes 6 minutes dans l’huile en les retournant, puis les réserver.",
+        "Faire fondre l’oignon 4 minutes, ajouter l’ail, les tomates et l’origan, puis remettre les boulettes et laisser frémir 20 minutes ; la sauce doit être nappante.",
+        "Cuire les spaghetti al dente selon le temps du paquet et réserver 5 cl d’eau de cuisson.",
+        "Mélanger pâtes, sauce et eau de cuisson si nécessaire, puis servir avec le reste de parmesan."
+      ],
+      "note": "Parmesan partagé par références dynamiques. Le nombre fixe de huit boulettes devient une taille régulière. Eau de cuisson ajoutée progressivement selon la consistance, sans dose figée."
+    },
+    {
+      "id": "n20",
+      "status": "corrected",
+      "sourceHash": "102414ee4a5aeab2928413d1ea534627ff2a5bc62824388b8700e77c35a87c43",
+      "reviewedHash": "c9ae9d09a2aa5621176f03d144e158a2f23e8e3b25f6f95a3ddb64804406286a",
+      "protectedRecipeSha256": "1bcfdbb9a52fb0bf8a0a46044c33c4c0aacf6a7781a510ab937ef53c2b49eeea",
+      "beforeSteps": [
+        "Cuire le riz.",
+        "Faire revenir la courgette en dés pendant 8 minutes.",
+        "Ajouter l’ail puis les crevettes et cuire 4 à 5 minutes.",
+        "Terminer avec le citron et le persil."
+      ],
+      "note": "Riz au paquet, courgette/ail préparés ; distinction explicite entre crevettes crues à cuire et déjà cuites à réchauffer."
+    },
+    {
+      "id": "n21",
+      "status": "corrected",
+      "sourceHash": "73405cd4d6715fb4c348938aec99f59ff3f91c30322e24b90096dacdddac8097",
+      "reviewedHash": "e250b3e74848c91363a6e1bf7fa8098b004dd14e969fc385bb20abcf6a72b072",
+      "protectedRecipeSha256": "ed89b087b116fec44411951c1f2c59398db4f033c319c4ecee65ba9d58a95773",
+      "beforeSteps": [
+        "Cuire les pommes de terre à la vapeur.",
+        "Faire revenir l’oignon et les tomates pendant 10 minutes.",
+        "Cuire les côtes de porc 7 à 9 minutes par face.",
+        "Servir avec les pommes vapeur et les tomates."
+      ],
+      "note": "Vapeur organisée en parallèle ; tomates et côtes dans des poêles distinctes ; contrôle à cœur et repos du porc."
+    },
+    {
+      "id": "n12",
+      "status": "corrected",
+      "sourceHash": "bf6f500e30219cd93cd493a4a4fac208f0d22033f3f2f00398f4aec4e0ceff31",
+      "reviewedHash": "d4a10401048923a05428ba532350a0d06fc7683dade5e2c905ad1b7d7071fe5d",
+      "protectedRecipeSha256": "babee6b52ecfa967b87a7ed5a5c539a341f10bd4e3f2446159eaf6405de9905d",
+      "beforeSteps": [
+        "Faire sauter les pommes de terre avec l’échalote.",
+        "Cuire les steaks selon la cuisson souhaitée.",
+        "Servir avec la salade assaisonnée."
+      ],
+      "note": "Pommes sautées conservées ; salade assaisonnée avec le sel et le poivre effectivement listés, sans inventer de vinaigrette. Cuisson sûre de la viande hachée."
+    },
+    {
+      "id": "n13",
+      "status": "corrected",
+      "sourceHash": "83657807eec25a0dd2bd39ba011f7d76bd91a3617a13dc4e844c00349f938944",
+      "reviewedHash": "10911b98e27775540d3b7ab79d4f921ff83b00b05f0a976b2f1027da33fffd30",
+      "protectedRecipeSha256": "751b641b6403352d75df7d6b682245a91f7ca253c8c71f722fc68557e9684340",
+      "beforeSteps": [
+        "Quadriller la peau du magret.",
+        "Cuire côté peau puis côté chair sur la plancha.",
+        "Griller les courgettes en rondelles.",
+        "Déglacer rapidement avec le miel et le balsamique."
+      ],
+      "note": "Conduite de la plancha adaptée de Chef Damien : départ à froid côté peau, fonte douce 20 min puis saisie 2 min côté chair et repos. Ce complément documenté n’est pas présenté comme la source retrouvée. Température de sécurité volaille ajoutée ; cuisson rosée non promise."
+    },
+    {
+      "id": "n22",
+      "status": "corrected",
+      "sourceHash": "218e7188ce2d9b78e3b59585a0074412932232adfc7e118b9cf0043ba4fe9b2f",
+      "reviewedHash": "62d825d35c12b86e17647c4db556aec2f08bea2e54d741946a52a8cab25f14bf",
+      "protectedRecipeSha256": "a52e0b5806e44156b4623b7b37fda076bf00db474d4f1949fb6c5a272392c476",
+      "beforeSteps": [
+        "Couper les pommes de terre et les carottes.",
+        "Mélanger les légumes avec l’huile, le paprika, le sel et le poivre.",
+        "Cuire 12 minutes à 190 °C.",
+        "Ajouter les cuisses de poulet et poursuivre 25 minutes en retournant à mi-cuisson."
+      ],
+      "note": "Deux cuissons successives conservées ; durée de 37 min distincte de la préparation. Contrôle au cœur des cuisses et capacité du panier explicités."
+    },
+    {
+      "id": "n24",
+      "status": "corrected",
+      "sourceHash": "f26764266e179390ad2b2b423e2a3edc7b417d6f02e297e005cfdcb6c20a8227",
+      "reviewedHash": "048b92ccc5f308a1b7b6ac6338f4f7b22b9b53dda375204991a41bbbddc57d13",
+      "protectedRecipeSha256": "e34f4ca8c8592730de2a1e3d57dc7ef297bacac0f5a90537d478f6ab650a05c6",
+      "beforeSteps": [
+        "Cuire les nouilles.",
+        "Faire revenir l’oignon et le poivron pendant 8 minutes.",
+        "Ajouter le bœuf et saisir 4 à 5 minutes.",
+        "Verser la sauce soja et mélanger avec les nouilles."
+      ],
+      "note": "Nouilles au paquet ; sauce soja dynamique, découpes et ordre de saisie précisés. Le repos de sécurité du bœuf entier est distingué de sa saisie."
+    },
+    {
+      "id": "n25",
+      "status": "corrected",
+      "sourceHash": "3d8a6863362d46cb5a36769ee8f5777761429e632e8faabecda2883725840b8e",
+      "reviewedHash": "bdb8e096ad387deb9db433717722df355a88c6236ccfed9871c19c20a5e2f3f7",
+      "protectedRecipeSha256": "0f2cc6a65eb179b633bd4b9501c90e510bed3b5be0f571038e6deb523ab93b5f",
+      "beforeSteps": [
+        "Couper les pommes de terre en petits dés et les cuire avec l’oignon.",
+        "Battre les œufs, saler et poivrer.",
+        "Verser sur les pommes de terre et cuire doucement.",
+        "Retourner la tortilla à l’aide d’une assiette et servir avec la salade."
+      ],
+      "note": "Retournement à l’assiette conservé et détaillé. Pas de cuisson au four ni de suppression du retournement. Durée non inventée, repères de prise des œufs."
+    },
+    {
+      "id": "n28",
+      "status": "corrected",
+      "sourceHash": "9f284507da3470cbf17c3ba41e0eda85dec54f41356d12c1dd80b63107cb799d",
+      "reviewedHash": "aca3f713af35a93e810e58d88804ad3dfa6ad1f0149e4537fe9ce61e6ba131fc",
+      "protectedRecipeSha256": "3cdb767855fd17b9a257f6de36c9564617c76b8b02e7003ee1a85e5f8a810320",
+      "beforeSteps": [
+        "Couper les pommes de terre et les carottes puis les cuire 15 minutes à 190 °C.",
+        "Mélanger le miel et la moutarde et en badigeonner les côtes.",
+        "Ajouter la viande et poursuivre 16 à 18 minutes en retournant à mi-cuisson."
+      ],
+      "note": "Aucune huile ajoutée à la liste ; légumes rôtis et badigeon miel-moutarde conservés. Contrôle du porc et repos ajoutés."
+    },
+    {
+      "id": "n29",
+      "status": "corrected",
+      "sourceHash": "378643a02683aa3972175529aa5c89ccddfd7790a81c5e295b4b78487cfef527",
+      "reviewedHash": "5f199afd994f3560e3796e21abee8c0756713729d9d58b1118b4ed5a396d868d",
+      "protectedRecipeSha256": "7ecfa54340347bd1fcb1ce723e280071026d5044b57ca9cd617bde7f599d2dc6",
+      "beforeSteps": [
+        "Faire dorer les chipolatas avec l’oignon.",
+        "Réchauffer la ratatouille dans la même poêle.",
+        "Préparer la semoule et servir ensemble."
+      ],
+      "note": "Ratatouille en boîte conservée ; herbes auparavant omises utilisées. Pas de sauce ni de légumes supplémentaires. Cuisson des chipolatas vérifiée, semoule au paquet."
+    },
+    {
+      "id": "n30",
+      "status": "corrected",
+      "sourceHash": "35e9c345ca6a3f9e4ee0732b0f304fda6f9657765b2aa8dc3b8a8c4f3d0ad95e",
+      "reviewedHash": "59c13704a1a12d5e3bfe35a23f6d27da081a8a293ac3aa9c56360a10953731d4",
+      "protectedRecipeSha256": "c27c1fa04eaf5884834fb662cdfba6b01757a5dddbb41e8f3a7a8e0c5cf02003",
+      "beforeSteps": [
+        "Émincer les poivrons et l’oignon.",
+        "Cuire les légumes et les merguez sur la plancha.",
+        "Préparer la semoule avec une pincée de cumin.",
+        "Servir dès que les merguez sont bien dorées."
+      ],
+      "note": "Cuisson plancha inchangée, critère de cuisson des merguez ne repose plus sur leur coloration. Semoule et cumin préparés pendant la cuisson."
+    },
+    {
+      "id": "n31",
+      "status": "corrected",
+      "sourceHash": "a56f8f49734fe2afa6f97cf8cf942190f542075eaeb10ecace4493aaf2981d01",
+      "reviewedHash": "4ef3854558843d3af433f5c51e581b2a6392631738b68b2c9115497dad272368",
+      "protectedRecipeSha256": "e468f23c33180b7623ada2868a30df9490966178ad2d78c488214480b23fb24a",
+      "beforeSteps": [
+        "Cuire le riz.",
+        "Faire dorer les boulettes avec l’oignon.",
+        "Ajouter la courgette en dés puis le coulis de tomate.",
+        "Laisser mijoter 10 minutes et servir avec le riz."
+      ],
+      "note": "Boulettes achetées telles qu’elles figurent dans les ingrédients, pas de recette de façonnage inventée. Dix minutes de mijotage conservées et contrôlées."
+    },
+    {
+      "id": "n32",
+      "status": "corrected",
+      "sourceHash": "40d373702d500010552f56f728452c5908ee08bda179d5b14dab0aba21838729",
+      "reviewedHash": "62389d6a65d073bfa763197e16bfcff3781edcd029b7db59da235503a5b1c97e",
+      "protectedRecipeSha256": "7a0573e59392e52b09593b784deeab036e351000c2000a5774fb300238f92fdd",
+      "beforeSteps": [
+        "Cuire les pommes de terre à la vapeur.",
+        "Griller les steaks de thon 2 à 4 minutes par face selon l’épaisseur.",
+        "Couper les tomates et les assaisonner.",
+        "Servir avec le citron et le basilic."
+      ],
+      "note": "Plancha et vapeur conservées ; durée par face séparée et température à cœur ajoutée. Tomates assaisonnées avec huile et citron déjà présents."
+    },
+    {
+      "id": "n34",
+      "status": "corrected",
+      "sourceHash": "6fb8081a56e1c42d89a17fa0021a5d49c689e3bb4d59edefc571522040b9bbeb",
+      "reviewedHash": "88a80fda3c0ec6ed538cc9a026e376cf62fd1a044f624420e68e2006f7687fdc",
+      "protectedRecipeSha256": "50baef516fcf9a557f433e8fe3da1ce3e629f01cc82fb35edf40463810d73ec0",
+      "beforeSteps": [
+        "Rôtir les pommes de terre 20 minutes à 200 °C.",
+        "Ajouter les filets de truite assaisonnés et poursuivre 12 minutes.",
+        "Cuire les haricots verts et servir avec le citron et l’aneth."
+      ],
+      "note": "Four conservé à 200 °C ; cuisson des haricots frais documentée, surgelés au paquet. Truite assaisonnée avec citron/aneth de la liste sans ajouter sel ou poivre absents."
+    },
+    {
+      "id": "a038",
+      "status": "corrected",
+      "sourceHash": "69da050b98fd0f7a27228f502a71770199b2063bbcc9fec85887a7a42ba3f439",
+      "reviewedHash": "9d999d0d9ac1b4006849f2c4a9e2a96aa402a38e301d34805969029cebbfa59d",
+      "protectedRecipeSha256": "6b36bbb0d6412aa56dd988974cca1f077bfba9f37e4010c68b4ce5e20ab35ebe",
+      "beforeSteps": [
+        "À vérifier : la préparation d’origine cite du sel et du poivre, absents de sa liste d’ingrédients. Leur dosage reste à confirmer. Utiliser le concombre et le yaourt déjà froids. Laver le concombre et l’aneth. Couper les extrémités du concombre puis le tailler en morceaux de 2 cm. La source ne demande ni de l’éplucher ni de l’épépiner.",
+        "Sécher l’aneth et détacher ses pluches. Presser le citron et retirer les pépins. Mettre le concombre dans le bol d’un blender ou dans un récipient haut adapté au mixeur plongeant.",
+        "Ajouter tout le yaourt, le jus de citron, l’huile d’olive et l’aneth. Mixer jusqu’à obtenir une soupe lisse, sans morceaux de concombre. Avec un mixeur plongeant, garder sa tête immergée pour éviter les projections.",
+        "Répartir dans des bols et servir froid. Si le mélange a tiédi pendant la préparation, le couvrir et le placer au réfrigérateur jusqu’à ce qu’il soit bien froid. Remuer avant de servir."
+      ],
+      "note": "Sel et poivre rétablis dans i, sans dose fixe : ils figurent déjà dans la préparation des archives. Assaisonner progressivement au goût lève la réserve sans changer la recette."
+    },
+    {
+      "id": "n03",
+      "status": "blocked",
+      "sourceHash": "02870ce620b424642f0888fceaac883d0b2835ca586853085d834d7d628f270d",
+      "reviewedHash": "02870ce620b424642f0888fceaac883d0b2835ca586853085d834d7d628f270d",
+      "protectedRecipeSha256": "c21bf422fd21c58b7d7c617fc6ade5ba700a22c9b0f2ca40736e405da14c8e95",
+      "note": "Riz et Air Fryer identifiés ; aucune cuisson dans du liquide substituée à la courgette poêlée."
+    },
+    {
+      "id": "n04",
+      "status": "blocked",
+      "sourceHash": "4f5253c185ae719da721b7c638c7bd373b4713185dbd72e8b00d233371226eac",
+      "reviewedHash": "4f5253c185ae719da721b7c638c7bd373b4713185dbd72e8b00d233371226eac",
+      "protectedRecipeSha256": "874dbe98674905fafbdba0f2b0b264bd079e9b075ee19b86e8ee9d2ecaaa9425",
+      "note": "Ne pas inventer d’huile ni remplacer les pommes sautées par des pommes à l’eau."
+    },
+    {
+      "id": "n08",
+      "status": "blocked",
+      "sourceHash": "108b48a0078d259117d6657318ef2fa309f6bf279e7c079348c4381147483a78",
+      "reviewedHash": "108b48a0078d259117d6657318ef2fa309f6bf279e7c079348c4381147483a78",
+      "protectedRecipeSha256": "93ce610805fc8cf34bd8d7e6e18b93b295226591ef93fd07c2792c230d4a2d04",
+      "note": "Panure œuf puis chapelure conservée, sans farine inventée ; source insuffisante pour fixer la cuisson du schnitzel."
+    },
+    {
+      "id": "n09",
+      "status": "blocked",
+      "sourceHash": "6afe93bc997d900b81f006ed63336e9a77775db4bdc65b22232b516bbb4a2dc9",
+      "reviewedHash": "6afe93bc997d900b81f006ed63336e9a77775db4bdc65b22232b516bbb4a2dc9",
+      "protectedRecipeSha256": "03dad2bdf0ef0bbb7f00190f4d2dd79d6ed1369e276e14d03a1adda39ce7fc88",
+      "note": "Four à 190 °C conservé, sans transformer la saisie initiale en pochage dans la crème."
+    },
+    {
+      "id": "n14",
+      "status": "blocked",
+      "sourceHash": "547e3f51bc6c8d9d906966336f9ddbf7d15f4daead38201a60f11080d5c16170",
+      "reviewedHash": "547e3f51bc6c8d9d906966336f9ddbf7d15f4daead38201a60f11080d5c16170",
+      "protectedRecipeSha256": "b4387dab6c858823cf6c62b673f785487932e778679285d576e3a7daa37694b8",
+      "note": "Oignon et poulet revenus avant crème et moutarde : ordre strictement conservé."
+    },
+    {
+      "id": "n17",
+      "status": "blocked",
+      "sourceHash": "a638c77cc3dc3db7207468515711f7ae0997300a0f23323e2a555f9bd63cd46f",
+      "reviewedHash": "a638c77cc3dc3db7207468515711f7ae0997300a0f23323e2a555f9bd63cd46f",
+      "protectedRecipeSha256": "fa7d4c26703d6b03d7f46d864892727d8cb25fe0889adc756ea117b4b8581e37",
+      "note": "Une durée de barbecue serait arbitraire sans la pièce ; aucun passage des pommes de terre au four ajouté."
+    },
+    {
+      "id": "n23",
+      "status": "blocked",
+      "sourceHash": "981bc7111c088f816f702dbcf3a01b9761d7ed4a49f112bb17f6e2638a721bc2",
+      "reviewedHash": "981bc7111c088f816f702dbcf3a01b9761d7ed4a49f112bb17f6e2638a721bc2",
+      "protectedRecipeSha256": "c10311fe52d3262be168ff493b41ec489daf8831c8816fdd1e27bd0096386b6b",
+      "note": "Poisson couvert dans la tomate conservé, sans cuire l’oignon directement dans le coulis."
+    },
+    {
+      "id": "n27",
+      "status": "blocked",
+      "sourceHash": "d0a06c3333a35d5c5dd44b16c402b0093531cca00761efd1c33d5065d7deab0b",
+      "reviewedHash": "d0a06c3333a35d5c5dd44b16c402b0093531cca00761efd1c33d5065d7deab0b",
+      "protectedRecipeSha256": "fa12750f1f50ab215242e6bfbda34c794f6521dac12b8ea021ffabc8d3f42c49",
+      "note": "La crème reste ajoutée après la cuisson ; pas de pochage substitué aux escalopes poêlées."
+    },
+    {
+      "id": "n33",
+      "status": "blocked",
+      "sourceHash": "0759d3d312479cc1ea353249fcc0856d22c3e1a3bf60daa1b4fa3deb269a2a3b",
+      "reviewedHash": "0759d3d312479cc1ea353249fcc0856d22c3e1a3bf60daa1b4fa3deb269a2a3b",
+      "protectedRecipeSha256": "cd651bd01d04e0c362d1ef403b64f83c290c32a2d53c537425916202984e59fd",
+      "note": "Pas de durée de cuisson inventée à partir du mot réchauffer ; état des petits pois à rétablir dans la source."
+    },
+    {
+      "id": "a048",
+      "status": "blocked",
+      "sourceHash": "e13c48f0d9305edbc0d409dfe0c5a5c1b5ee0184568f261a18b7639f72642c61",
+      "reviewedHash": "e13c48f0d9305edbc0d409dfe0c5a5c1b5ee0184568f261a18b7639f72642c61",
+      "protectedRecipeSha256": "20ad65efd2ce41f19fa3e8beea2353e97bbaf6ee32cb8bf67592d810f8af9d99",
+      "note": "Nouvelle recherche : archives concordantes, pas de source originale externe identifiée. La réserve publiée et le geste faire revenir restent inchangés."
+    },
+    {
+      "id": "e92",
+      "status": "blocked",
+      "sourceHash": "91c36a385b08c9442d3c4dd68b0929275a43866d775c6d7f4dea0991457d72ca",
+      "reviewedHash": "91c36a385b08c9442d3c4dd68b0929275a43866d775c6d7f4dea0991457d72ca",
+      "protectedRecipeSha256": "3b3d484df4c38b4c4fc73da1ae17768ae9a73524074e33b17336e00ba64d2878",
+      "note": "Nouvelle recherche : aucune source originale permettant de rétablir cette quantité. Le coulis ne remplace toujours pas la cuisson initiale."
+    },
+    {
+      "id": "e78",
+      "status": "blocked",
+      "sourceHash": "85342b90b8cae2d0655a0b32b86a549b701787cb36bfceaa6d7bc4f43cfdd33f",
+      "reviewedHash": "85342b90b8cae2d0655a0b32b86a549b701787cb36bfceaa6d7bc4f43cfdd33f",
+      "protectedRecipeSha256": "1f4b751e4b7c55b2f737bbc854e3122371fa96634a360912c6ce45b7a00f71f1",
+      "note": "Ni 200 °C ni une cuisson de la courgette dans la tomate ne sont réintroduits. Les réserves publiées sont maintenues."
+    },
+    {
+      "id": "n88",
+      "status": "blocked",
+      "sourceHash": "e0112a4102d4adb5ad301ee6a7b35c222b541b8718de53714f9257dcd3b125aa",
+      "reviewedHash": "e0112a4102d4adb5ad301ee6a7b35c222b541b8718de53714f9257dcd3b125aa",
+      "protectedRecipeSha256": "57b563c682b982c910f57b5170708070e598964afb3f472680233243dfae5de6",
+      "note": "La recette ressemblante de Good Food poche le saumon avec crème et eau : ce n’est pas la technique de cette source. Aucun remplacement publié."
+    }
+  ]
+}
