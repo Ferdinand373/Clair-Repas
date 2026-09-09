@@ -1,0 +1,381 @@
+{
+  "baselineCommit": "36bfd03f6af368ad21f6cf83682b0c5b57e9a336",
+  "batch": "06",
+  "recipes": [
+    {
+      "id": "d001",
+      "status": "corrected",
+      "sourceHash": "8b2ca99e846aab04c7223959511a2abe7f8c2bd47c80950941ecf2245d8a7797",
+      "reviewedHash": "081e2eafb1aa21aa29d1d9f32950230fdb21309e2e1994a5a4c42bb872198126",
+      "protectedRecipeSha256": "b20709a33b31b812674ec15038e1eeed49a45872fdc2b254c2f45c01240c166d",
+      "beforeSteps": [
+        "Équeuter et couper les fraises.",
+        "Les mélanger avec le citron et le sucre.",
+        "Ajouter la menthe juste avant de servir."
+      ],
+      "note": "Fraises rincées avant équeutage ; jus de citron explicite, sucre et menthe entièrement utilisés."
+    },
+    {
+      "id": "d002",
+      "status": "corrected",
+      "sourceHash": "fc8395250540aebf2948838bbe5ef1536ccf245cbec18ab2f0a01ccf6200c710",
+      "reviewedHash": "e6c09d78ac8fd300dadb1b6daebb491ed210149acf9276add1283e9520c52d78",
+      "protectedRecipeSha256": "462de44fc3fb6a031d2befd6c7634e7d69a35750602a81233395f6de77ffe322",
+      "beforeSteps": [
+        "Rincer délicatement les fruits.",
+        "Couper les fraises et ajouter le citron.",
+        "Mélanger sans écraser et terminer avec le basilic."
+      ],
+      "note": "Rinçage et mélange délicat conservés ; équeutage, jus sans pépins et basilic préparé explicités."
+    },
+    {
+      "id": "d003",
+      "status": "corrected",
+      "sourceHash": "91f3b9feeb88f14f4ef094d4fcddfbacfbcca5ce5c9083193b8db9dd76c12897",
+      "reviewedHash": "064f696eff82588ad046241b3e11099bf5ee1047d208c077ff0c01b4e2e57fb0",
+      "protectedRecipeSha256": "1653cc0a72aa9374a37a64ac7b2fc1113dc9115a73081578b289477a0c229f3a",
+      "beforeSteps": [
+        "Couper le melon en cubes ou en billes.",
+        "Ajouter le zeste et le jus de citron vert.",
+        "Parsemer de menthe et servir frais."
+      ],
+      "note": "Écorce/graines du melon retirées ; zeste vert uniquement, jus et menthe employés sans sucre ajouté."
+    },
+    {
+      "id": "d004",
+      "status": "corrected",
+      "sourceHash": "c5c8d0f02d2dfa3ce593d349f50e66a33d0baebba2e76ab7616db46d8ffaeca1",
+      "reviewedHash": "adfc3f0d2fe7a7edfe02f2f6b079252366853e706ae507419167349e6310a770",
+      "protectedRecipeSha256": "1e11b1ae19cc97e7838089bdad1dac854a7f2f975e7bf71179f3ac810b141f9c",
+      "beforeSteps": [
+        "Retirer les pépins et couper la pastèque.",
+        "Arroser de citron.",
+        "Ajouter la menthe et réserver au frais."
+      ],
+      "note": "Écorce et pépins retirés ; jus de citron et menthe préparés, attente au frais non transformée en durée arbitraire."
+    },
+    {
+      "id": "d005",
+      "status": "corrected",
+      "sourceHash": "1b91838e418a1f979ad386ca093d35c670b4c49df21b5fb2b16413a57a46276f",
+      "reviewedHash": "827779ede3c63635246de675ace2cb81a826ebb1a56ed9a23a1c0ac580586a7e",
+      "protectedRecipeSha256": "b0485c3aee9de9d6bf2eb7a8888ea1e137ecc29eed5372f6b087b1501f6ed83e",
+      "beforeSteps": [
+        "Couper les pêches en quartiers.",
+        "Ajouter les framboises, le citron et le miel.",
+        "Mélanger délicatement et servir frais."
+      ],
+      "note": "Noyaux retirés et framboises ménagées ; miel citronné réparti sans ajout de sucre ou macération inventée."
+    },
+    {
+      "id": "d006",
+      "status": "corrected",
+      "sourceHash": "7d32db76dc0af76c5ac4d492391f8c3b0c2bacaf4930a0a3324d6d65423518b1",
+      "reviewedHash": "6db2dba336f6994354f86e625e4db14b4a711e731ebe479d8531e0105b261004",
+      "protectedRecipeSha256": "3a6e5289ee628dbf681d75943ef02998183d32e700212398053ba403cc0609d9",
+      "beforeSteps": [
+        "Couper les nectarines en fines tranches.",
+        "Mélanger miel et citron puis verser sur les fruits.",
+        "Ajouter quelques feuilles de thym citron."
+      ],
+      "note": "Tranches fines et thym citron effeuillé ; tout le miel et le jus employés."
+    },
+    {
+      "id": "d007",
+      "status": "corrected",
+      "sourceHash": "7a42bd291b506e59f7f555a6c245f1029225c8f69992a9d5194f3d9f3176ced6",
+      "reviewedHash": "91110e51d2c55baf49e25eb354209a35f316e6869af69d088e90967ad869b676",
+      "protectedRecipeSha256": "662cc0d336e4e2ccb7165c0aaa01cce23add1ab75f3aa5e5fda7855a53e9679b",
+      "beforeSteps": [
+        "Couper les abricots en quartiers.",
+        "Délayer le miel avec le citron.",
+        "Verser sur les fruits et ajouter très peu de lavande."
+      ],
+      "note": "Pincée de lavande liée au calcul existant ; seulement lavande alimentaire, aucun arôme ou huile essentielle substitués."
+    },
+    {
+      "id": "d008",
+      "status": "corrected",
+      "sourceHash": "2adf0da9c14f8e535f0188b8855b02f9bc68c842256f67a8d7e85bf679fd7a0d",
+      "reviewedHash": "9e5bb777f5e8610a8f4ff726ffd7cc740a865dc9b04b8d35a6c56e006f28277b",
+      "protectedRecipeSha256": "3dff9a3a42307f86d9f9304c0820320dea5b6a65d0b25b328aa3ca575cb226f6",
+      "beforeSteps": [
+        "Retirer la peau et le cœur de l’ananas.",
+        "Le couper en tranches très fines.",
+        "Ajouter citron vert et menthe puis servir frais."
+      ],
+      "note": "Carpaccio conservé, yeux et cœur dur retirés ; tranches fines explicites, jus de citron sans ajout de zeste non prévu."
+    },
+    {
+      "id": "d009",
+      "status": "corrected",
+      "sourceHash": "90e231e1bb1efb762124d77f896146d5a0f0605bf6e84f0919e2f9060c992a5c",
+      "reviewedHash": "2ee6caf503e25bbdd22a712b1412d76be0013345bbe91980ea6117e4e84c48c8",
+      "protectedRecipeSha256": "2bba4678f11995264077506f6dd53fbe52ae787167e4d22a2132549804620c3a",
+      "beforeSteps": [
+        "Peler les oranges à vif et les couper en rondelles.",
+        "Arroser d’un peu de miel.",
+        "Saupoudrer de cannelle et ajouter la menthe."
+      ],
+      "note": "Pelage à vif expliqué ; miel et cannelle dynamiques entièrement répartis, menthe rincée."
+    },
+    {
+      "id": "d011",
+      "status": "corrected",
+      "sourceHash": "0a6e08b19b05858d5a456e4f673517c54665f7dc38ac4b9b601857f54149cbb3",
+      "reviewedHash": "5891489c3b8d007cb186e377d1ac54ce7ef584d0669f1f37d600dfb160700707",
+      "protectedRecipeSha256": "d745a855597bc5f9ff9391036521a5f7afe2c9e655a5f4eb9614d9103e7c5951",
+      "beforeSteps": [
+        "Peler les kiwis et couper la pomme.",
+        "Ajouter aussitôt le citron.",
+        "Mélanger avec le miel."
+      ],
+      "note": "Découpe et épépinage de la pomme précisés ; kiwi et miel utilisés, citron immédiatement après découpe."
+    },
+    {
+      "id": "d012",
+      "status": "corrected",
+      "sourceHash": "41c760336a3d1b917169dd054219107a6106d4efda3e21d55ef0622ae7c8dbe5",
+      "reviewedHash": "81afcf5171d99b8984588c680f4d32927cc5b7f47bf4655fdab70c189ba26440",
+      "protectedRecipeSha256": "d8eedfb237f9442cc7e9dcf886dfba690bc5228cb6ccedc598e6e4be375ea06d",
+      "beforeSteps": [
+        "Couper les poires en fines lamelles et les citronner.",
+        "Râper le chocolat noir.",
+        "Parsemer les poires juste avant de servir."
+      ],
+      "note": "Cœur de poire retiré, chocolat entier râpé au service ; aucun chocolat fondu ni cuisson ajoutés."
+    },
+    {
+      "id": "d013",
+      "status": "corrected",
+      "sourceHash": "caf09057fc8efedd5e62a17035cc6d6a3bd9d4d6a4743c4fac8a1771f37ff565",
+      "reviewedHash": "aa70313c6559b2e85fd8328403ea2ae81e25a2cc0aae86e9fdd256ad64db89cc",
+      "protectedRecipeSha256": "b593505e32291f1026682f0c197dbed4a9468d980707805a1701c8aaf6259db2",
+      "beforeSteps": [
+        "Couper les pommes en petits dés et les citronner.",
+        "Ajouter raisins secs et cannelle.",
+        "Mélanger et laisser reposer 5 minutes."
+      ],
+      "note": "Repos réel de cinq minutes conservé ; raisins non réhydratés arbitrairement et cannelle dynamique."
+    },
+    {
+      "id": "d014",
+      "status": "corrected",
+      "sourceHash": "af9a1d1524c28c9b9f7272cf2d7a71a13d9c7f11e43d47782d1e129eec51e92f",
+      "reviewedHash": "1076b53ddff563de66d66b00693c91ce88e48d4aa78140e564dea76ff9bff5a5",
+      "protectedRecipeSha256": "1fde1ad9ae29ebe7e84a9f90d0b3226fd99116eadc2dfa48df70012857583af9",
+      "beforeSteps": [
+        "Couper les gros grains de raisin en deux et retirer les pépins si nécessaire.",
+        "Concasser les noix.",
+        "Mélanger avec un filet de miel."
+      ],
+      "note": "Raisin lavé/égrappé ; noix concassées expliqué, miel entier plutôt qu’un filet non réparti."
+    },
+    {
+      "id": "d015",
+      "status": "corrected",
+      "sourceHash": "65217d643954d97e7c64b6f0735338d47f7dcc15a9a0e598bcb2ee74b7b35d00",
+      "reviewedHash": "2f06756901576c25972558a12c27631d743dd6848b2bf4127b3f4c333b20958e",
+      "protectedRecipeSha256": "0ff50b5e0692d07b0c241a2e8163a1b4977310f9abbe2fabcf1513d3584f0430",
+      "beforeSteps": [
+        "Couper la mangue en cubes.",
+        "Prélever la pulpe des fruits de la passion.",
+        "Mélanger avec le citron vert."
+      ],
+      "note": "Découpe de la mangue autour du noyau et prélèvement de pulpe explicités ; graines de passion conservées."
+    },
+    {
+      "id": "d016",
+      "status": "corrected",
+      "sourceHash": "844064e7cc4bcbd14b161b98a8a1b666de218d0fabe47a3bd53a4532d368b765",
+      "reviewedHash": "fa425531dad949c731b6d51e0929afae413834ac94029f40cebb7d0377f16130",
+      "protectedRecipeSha256": "a1137adc761c91cc45c6851bb3a1c5053d521ac9d1c6a366146ff365c0c21dfc",
+      "beforeSteps": [
+        "Couper les bananes en rondelles et les citronner.",
+        "Répartir dans deux coupelles.",
+        "Saupoudrer légèrement de cacao."
+      ],
+      "note": "Deux coupelles figées supprimées ; toutes les quantités restent adaptées, cacao tamisé sans sucre supplémentaire."
+    },
+    {
+      "id": "d017",
+      "status": "corrected",
+      "sourceHash": "4ab06e71b40e5108eb7e6941a17ec86711cb50305d5799b6d2f333e198851ebc",
+      "reviewedHash": "9ffe6a46f06019e0ff37a4e3de556ec9d1346be7b47c26e775d992d6a4b03a46",
+      "protectedRecipeSha256": "8671ddca2ad1be5d65e7ef10d57047f754a0f86e40574747877f994bcf424982",
+      "beforeSteps": [
+        "Couper les fraises.",
+        "Ajouter sucre et balsamique puis laisser reposer 10 minutes.",
+        "Terminer avec le basilic."
+      ],
+      "note": "Dix minutes de macération distinguées de la préparation ; sucre et balsamique dynamiques, basilic seulement à la fin."
+    },
+    {
+      "id": "d019",
+      "status": "corrected",
+      "sourceHash": "52f22f334f958ba8eacadc8ef165b53b2dc15c202b1e6980453b752c439a2f20",
+      "reviewedHash": "8462a63008c48311b0b0784b3824e2b8f14c12ba7e09779a6cca4df5f0f7660d",
+      "protectedRecipeSha256": "a5ace8ddf8e2615f678a14d075e5f0de408872b898689de8e7063aa209ed7f99",
+      "beforeSteps": [
+        "Dénoyauter les cerises et les couper en deux.",
+        "Concasser les amandes.",
+        "Mélanger avec un trait de citron."
+      ],
+      "note": "Cerises rincées/dénoyautées, petites amandes concassées et citron utilisé ; aucune torréfaction ajoutée."
+    },
+    {
+      "id": "d020",
+      "status": "corrected",
+      "sourceHash": "1f970f09846523fdd6e4d5f1bbfa0c4ba9178c09796e1dc38ae4cedd5d0fbab4",
+      "reviewedHash": "439c66e8d94988cb905c530be00f8b82e401f964b4f3d8a9a8bf35c353817d0b",
+      "protectedRecipeSha256": "85924c46a556b5127fb51d22ffa017da7705591265f9f4e15b763ca27805fe32",
+      "beforeSteps": [
+        "Couper les prunes en quartiers.",
+        "Mélanger citron et miel.",
+        "Verser sur les fruits et ajouter la menthe."
+      ],
+      "note": "Prunes lavées/dénoyautées et menthe préparée, miel citronné complètement utilisé."
+    },
+    {
+      "id": "d021",
+      "status": "corrected",
+      "sourceHash": "f499d883137f8fac33058d33613e5330bf91dff457c26daca87662e070d805c4",
+      "reviewedHash": "c35ac767cfeb423c0e44b9229f0a0e1895bd49fd8f8b3d40feb200a4d8df53aa",
+      "protectedRecipeSha256": "a976921e816830d71497521d6cb61a679043ed996066016e6c22b4fe1e926734",
+      "beforeSteps": [
+        "Couper les figues en quartiers.",
+        "Concasser les noix.",
+        "Ajouter un filet de miel et servir."
+      ],
+      "note": "Queue dure retirée et noix concassées expliquées ; figues crues conservées, miel dynamique."
+    },
+    {
+      "id": "d022",
+      "status": "corrected",
+      "sourceHash": "254fe09c4c400c047830892617de229948b17e48e0b1972e36c3c68d5ac33796",
+      "reviewedHash": "e80bf0d90086fdd219c1b906b2e8fe5b254e9ca1c99d235c93eab31602f37d31",
+      "protectedRecipeSha256": "a6846ad52d135dd2ab6f5fa25b4b3ee856e1094988c28a00ba4dbe47bc947968",
+      "beforeSteps": [
+        "Peler les kakis et l’orange.",
+        "Couper les fruits en morceaux.",
+        "Ajouter un filet de citron et mélanger délicatement."
+      ],
+      "note": "Fruits mûrs, peau et parties blanches retirées ; chair délicate non écrasée, sans sucre ajouté."
+    },
+    {
+      "id": "d023",
+      "status": "corrected",
+      "sourceHash": "ec27b5f7daf0265b3ce96adbc2d84a4a19fcc54e91e723968f012ac3ddf15863",
+      "reviewedHash": "cfca178f7fd7baad9e204729b7c9f220c5d457c8dfc0883c50e619f76daf7991",
+      "protectedRecipeSha256": "7c408696edd8236d511c802e0533953df4d55b8563084ca65e334747df79253f",
+      "beforeSteps": [
+        "Peler les clémentines et séparer les quartiers.",
+        "Prélever les graines de grenade.",
+        "Mélanger et ajouter la menthe."
+      ],
+      "note": "Graines de grenade libérées et membranes blanches retirées ; quartiers de clémentine et menthe préparés."
+    },
+    {
+      "id": "d024",
+      "status": "corrected",
+      "sourceHash": "dcd1c106abb2e8b9d453376a361693de0dc43553a842f6f0c53edad3cf16b973",
+      "reviewedHash": "8b93c61c35a753515f1a5453bef796b617446e38c82aa5657b7ab721b1cfc72b",
+      "protectedRecipeSha256": "b13ba54cd8b7cf7b1acb57b3902000d930d6641e772471d37c74d4eac43bfb4c",
+      "beforeSteps": [
+        "Cuire la rhubarbe avec le sucre et l’eau pendant 10 minutes.",
+        "Laisser tiédir puis ajouter les fraises coupées.",
+        "Réserver au frais avant de servir."
+      ],
+      "note": "Tiges seules de rhubarbe, sucre/eau dynamiques ; fraises crues ajoutées après tiédissement, refroidissement non inclus arbitrairement dans 20 min."
+    },
+    {
+      "id": "d025",
+      "status": "corrected",
+      "sourceHash": "a93c53a7e0217306008aab1a960bdbb55904e723fd646ba551904415bb5dc92d",
+      "reviewedHash": "be0459f2cbb09324e9d333d1c39746d7c050b3d2211483ef93ae54784e97e4fd",
+      "protectedRecipeSha256": "dbbec10e314b82a5f9d09cfd0cfaf51f157af528d2920c803ab5b9f7780c5ab3",
+      "beforeSteps": [
+        "Couper tous les fruits en morceaux réguliers.",
+        "Ajouter le jus et le zeste de citron vert.",
+        "Mélanger et servir frais."
+      ],
+      "note": "Découpes des trois fruits précisées ; zeste vert seulement, banane citronnée dès l’assemblage."
+    },
+    {
+      "id": "d026",
+      "status": "corrected",
+      "sourceHash": "16359a4c43974e97d3f2f5f964c76c23fc4fb37cc58f5704b36376d100a80cd6",
+      "reviewedHash": "fa4dc72e898a55fd68211500de725f59d6dcc013a3ea88fbd2fd19c7cb0e1351",
+      "protectedRecipeSha256": "29c6b3b9fef0e92c660ea5be3a091490e7e56e6f21f6747b6576c56ebd1c3458",
+      "beforeSteps": [
+        "Évider les pommes sans les percer.",
+        "Ajouter miel et cannelle au centre.",
+        "Verser l’eau dans le plat et cuire 28 minutes à 180 °C."
+      ],
+      "note": "Pommes évidées sans trou au fond, préchauffage et plat explicités ; eau/miel/cannelle dynamiques et 28 min avec tendreté."
+    },
+    {
+      "id": "d027",
+      "status": "corrected",
+      "sourceHash": "9eb9ebab7f19d7e7bde45d28614d72c2bdd89e5b87e7340b65c5cc184a1a33a2",
+      "reviewedHash": "9d96486dade561eb26a23ecd4e07378621ae6e7d71c195967212649a45348b13",
+      "protectedRecipeSha256": "2c8e42f1e9191ec529f67dd66300d205323c7cd89ce367425ff7ae3a61e60d96",
+      "beforeSteps": [
+        "Couper les poires en deux et retirer le cœur.",
+        "Déposer dans un plat avec miel, vanille et eau.",
+        "Cuire 22 minutes à 190 °C."
+      ],
+      "note": "Poires rôties conservées, face coupée vers le haut et mélange miel/vanille/eau explicites ; aucune graisse ajoutée."
+    },
+    {
+      "id": "d029",
+      "status": "corrected",
+      "sourceHash": "02f6a2d6e37becf58701d26049617551680d0ec3b6cc79b6882f03cea78345e7",
+      "reviewedHash": "858469c30bef32f9c506214e321e77e62558a0e2b3283625addceb41c00809aa",
+      "protectedRecipeSha256": "774e1010f1d623b7d9465ae6bfd7a413710a4128ef9ffd54a30afe8999e54c6f",
+      "beforeSteps": [
+        "Couper les abricots en deux.",
+        "Ajouter miel et eau puis cuire 15 minutes à 190 °C.",
+        "Parsemer d’amandes et poursuivre 3 minutes."
+      ],
+      "note": "Dénoyautage et plat précisés, miel/eau liés aux ingrédients ; amandes ajoutées seulement pour les trois dernières minutes."
+    },
+    {
+      "id": "d031",
+      "status": "corrected",
+      "sourceHash": "9e1288b14c32d88f5effac8d446ebbf958664f149941d4faa9da509c73f7df87",
+      "reviewedHash": "c0a63a434e3aa03092ba715c4b4227a86ef6f9103db3022d958e37b3729cbcaf",
+      "protectedRecipeSha256": "6266b383c7ea0569fe7a8a1f5fbdd48fb905eceaaf45c038614fd2a704367943",
+      "beforeSteps": [
+        "Fendre les bananes dans leur peau.",
+        "Glisser le chocolat dans l’ouverture.",
+        "Cuire 12 minutes à 190 °C puis ajouter la noix de coco."
+      ],
+      "note": "Peau conservée comme récipient, incision sans traverser le fond, chocolat entièrement réparti et coco ajoutée après cuisson."
+    },
+    {
+      "id": "d010",
+      "status": "blocked",
+      "sourceHash": "746438561d5863970f85ed246d7d37f4ed4346634d2454e454b912b82379dc6a",
+      "reviewedHash": "746438561d5863970f85ed246d7d37f4ed4346634d2454e454b912b82379dc6a",
+      "protectedRecipeSha256": "1254b6e846eb8f972d609754be2f317553caa9934283a572b7ba6439cfb87d8a",
+      "note": "Ne pas choisir une forme de gingembre dont la puissance et le geste diffèrent sans source."
+    },
+    {
+      "id": "d018",
+      "status": "blocked",
+      "sourceHash": "24d90c7338695333b52a5490e8e963d7d0fc356709ba50587f33971a0d8fa65c",
+      "reviewedHash": "24d90c7338695333b52a5490e8e963d7d0fc356709ba50587f33971a0d8fa65c",
+      "protectedRecipeSha256": "10806188c3567690a7216088ef31d05b052bff387dc5bb50edf706c41b785ccf",
+      "note": "Ne pas changer le classement ni remplacer la torréfaction par des amandes crues sans confirmation."
+    },
+    {
+      "id": "d030",
+      "status": "blocked",
+      "sourceHash": "13f68b518abe36416b7e598cd52aa985c9c122202f9754c53e21c9b3512e857c",
+      "reviewedHash": "13f68b518abe36416b7e598cd52aa985c9c122202f9754c53e21c9b3512e857c",
+      "protectedRecipeSha256": "07e6824e6b46373db8e700435e0d282cb05fa8bd3ddbeceaa6a7b12d9ac1f7fb",
+      "note": "La source comparable de L’atelier des Chefs utilise du beurre et un caramel préalable, différents de la fiche ; pas de beurre ou méthode nouvelle ajoutés."
+    }
+  ]
+}

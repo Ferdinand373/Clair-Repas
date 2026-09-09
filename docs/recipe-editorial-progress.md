@@ -88,7 +88,17 @@ P02 publié : `c87dc373c29cae1d6edb9c2ac6191004c69ba52a`, tests `34390827874` et
 
 **Cumul : 140 identifiants examinés, 59 corrigés, 81 bloqués, 1 413 à examiner.** Prochaine fiche dans l'ordre : `gn-boulettes-tomate-basilic`. Le nombre de fiches corrigées n'augmente pas pour ce lot. Contrôles existants et rendus réussis ; zéro erreur éditoriale, 9 475 avertissements. Réserves et défilement inspectés dans le navigateur aux formats simulés téléphone/tablette/ordinateur, pas sur appareil physique.
 
-## Procédure de reprise à appliquer après le lot 05
+## Publication du lot 05
+
+`36bfd03f6af368ad21f6cf83682b0c5b57e9a336` publié sur `main`. Tests `34392595613`, Pages `34392595253` et déploiement `6357205765` réussis. HTTPS 200 et fichiers identiques au commit : index `ef58b89fd6c33e7cecac593322d3ea1e82773de6fe05fa40049cfc3d289f4299`, service worker `d9dd4a19f0499ab0eb59d598227dbd5559268de282ae52435434fc7ef257ecba`. Révision chargée dans le navigateur : `sha256:a502af39d3390549b78e5d57a1c8fe780fe3a400b3acfdf7e79458bbe871881d`. Réserve de `n100` visible en production, sans changement de préparation.
+
+## Lot 06 — 30 desserts
+
+[Journal et références](recipe-editorial-batch-06.md). 27 corrigés, 3 bloqués (`d010`, `d018`, `d030`), aucun conforme sans modification. Tous les ingrédients et portions conservés. `d017` distingue ses dix minutes de repos de la préparation ; `d024` indique le refroidissement en plus des vingt minutes annoncées. Les autres libellés historiques de durée restent identiques.
+
+**Cumul : 170 identifiants examinés, 86 corrigés, 84 bloqués, 1 383 à examiner.** Prochaine fiche globale : `gn-boulettes-tomate-basilic` ; prochain dessert : `d032`. Ce lot change volontairement de famille, sans omettre les variantes encore à examiner. Zéro erreur bloquante et 9 359 avertissements. Les tests des lots 02 à 06 couvrent 76 minuteurs et 2 250 calculs d'ingrédients ; le lot initial conserve ses 660 contrôles et ses vingt fiches.
+
+## Procédure de reprise à appliquer après le lot 06
 
 1. Lire `CONTRIBUTING.md` et le standard.
 2. Vérifier `main`, la branche et les travaux locaux sans les écraser.

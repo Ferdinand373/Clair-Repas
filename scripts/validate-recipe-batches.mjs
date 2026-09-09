@@ -7,7 +7,7 @@ import {recipeSource} from './recipe-source.mjs';
 import {recipeHash} from './validate-recipe-editorial.mjs';
 const root=resolve(dirname(fileURLToPath(import.meta.url)),'..');
 const {code,recipes,editorial}=recipeSource(readFileSync(resolve(root,'index.html'),'utf8'));
-const batchNumbers=['02','03','04','05'];
+const batchNumbers=['02','03','04','05','06'];
 const fixture={recipes:batchNumbers.flatMap(number=>JSON.parse(readFileSync(resolve(root,`scripts/recipe-editorial-batch-${number}.fixture.json`),'utf8')).recipes)};
 const slice=(a,b)=>code.slice(code.indexOf(a),code.indexOf(b,code.indexOf(a)+a.length));
 const context={window:{},$:()=>({value:'8'}),MEAL_TYPES:['mid','eve'],recipeRole:r=>r.role||r.course||'dish',isFavorite:()=>false,recipeFeedbackHTML:()=>'',recipePersonalNoteHTML:()=>''};
@@ -31,7 +31,13 @@ const timers={
   n48:[[],[],[],[]],n51:[[],[],[9],[]],n53:[[],[],[],[20]],n56:[[],[15],[],[18]],
   n59:[[],[],[12],[10],[]],n61:[[],[],[],[2],[3]],n63:[[],[],[15],[]],
   n74:[[],[],[]],n76:[[],[],[35],[]],n80:[[],[20],[],[]],n81:[[],[18],[5],[3]],
-  n82:[[18],[],[],[4],[4]],n84:[[],[],[25],[]],n98:[[],[],[25]],n99:[[15],[],[12],[]]
+  n82:[[18],[],[],[4],[4]],n84:[[],[],[25],[]],n98:[[],[],[25]],n99:[[15],[],[12],[]],
+  d001:[[],[],[]],d002:[[],[],[]],d003:[[],[],[]],d004:[[],[],[]],d005:[[],[],[]],
+  d006:[[],[],[]],d007:[[],[],[]],d008:[[],[],[]],d009:[[],[],[]],d011:[[],[],[]],
+  d012:[[],[],[]],d013:[[],[],[5]],d014:[[],[],[]],d015:[[],[],[]],d016:[[],[],[]],
+  d017:[[],[10],[]],d019:[[],[],[]],d020:[[],[],[]],d021:[[],[],[]],d022:[[],[],[]],
+  d023:[[],[],[]],d024:[[],[10],[],[]],d025:[[],[],[]],d026:[[],[],[28]],
+  d027:[[],[],[22]],d029:[[],[15],[3]],d031:[[],[],[12]]
 };
 const ingredients={
   n01:['poulet','pommes de terre','paprika','huile','sel.*poivre'],
@@ -77,9 +83,24 @@ const ingredients={
   n82:['thon','pommes de terre','œuf','chapelure','poivrons','tomates','citron','persil','huile'],
   n84:['courgettes','jambon','fromage','semoule','crème','herbes'],
   n98:['poulet','pesto','mozzarella','tomates','pommes de terre','saler.*poivrer'],
-  n99:['cabillaud','parmesan','chapelure','pommes de terre','citron','persil']
+  n99:['cabillaud','parmesan','chapelure','pommes de terre','citron','persil'],
+  d001:['fraises','citron','menthe','sucre'],
+  d002:['fraises','framboises','myrtilles','citron','basilic'],
+  d003:['melon','citron vert','menthe'],d004:['pastèque','citron','menthe'],
+  d005:['pêches','framboises','citron','miel'],d006:['nectarines','citron','miel','thym citron'],
+  d007:['abricots','miel','citron','lavande alimentaire'],d008:['ananas','citron vert','menthe'],
+  d009:['oranges','cannelle','miel','menthe'],d011:['kiwis','pomme','citron','miel'],
+  d012:['poires','chocolat noir','citron'],d013:['pommes','raisins secs','cannelle','citron'],
+  d014:['raisin','noix','miel'],d015:['mangue','fruits de la passion','citron vert'],
+  d016:['bananes','citron','cacao non sucré'],d017:['fraises','vinaigre balsamique','sucre','basilic'],
+  d019:['cerises','amandes','citron'],d020:['prunes','citron','menthe','miel'],
+  d021:['figues','noix','miel'],d022:['kakis','orange','citron'],
+  d023:['clémentines','grenade','menthe'],d024:['rhubarbe','fraises','sucre','eau'],
+  d025:['ananas','mangue','banane','citron vert'],d026:['pommes','miel','cannelle','eau'],
+  d027:['poires','miel','vanille','eau'],d029:['abricots','amandes effilées','miel','eau'],
+  d031:['bananes','chocolat noir','noix de coco']
 };
-assert.equal(fixture.recipes.length,125);
+assert.equal(fixture.recipes.length,155);
 let quantityChecks=0,timerCount=0;
 for(const record of fixture.recipes){
   const recipe=recipes.find(r=>r.id===record.id);
@@ -129,6 +150,12 @@ assert.match(recipes.find(r=>r.id==='n74').p[0],/pas des poids crus/);
 assert.match(recipes.find(r=>r.id==='n80').p[1],/Aucun œuf ni passage à la poêle/);
 assert.match(recipes.find(r=>r.id==='n81').p[3],/63 °C/);
 assert.match(recipes.find(r=>r.id==='n99').p[2],/sans retourner le poisson/);
+assert.doesNotMatch(recipes.find(r=>r.id==='d016').p.join(' '),/deux coupelles/);
+assert.match(recipes.find(r=>r.id==='d017').t,/repos \+ préparation/);
+assert.match(recipes.find(r=>r.id==='d024').t,/refroidissement/);
+assert.match(recipes.find(r=>r.id==='d024').p[2],/sans remettre sur le feu/);
+assert.match(recipes.find(r=>r.id==='d029').p[2],/toutes les amandes.*3 minutes/);
+assert.match(recipes.find(r=>r.id==='d031').p[0],/sans percer la peau du dessous/);
 const corrected=fixture.recipes.filter(r=>r.status==='corrected').length;
 console.log(`✓ Batches ${batchNumbers.join('/')}: ${fixture.recipes.length} individual review records, ${corrected} corrected, ${fixture.recipes.length-corrected} blocked with original content preserved; ${timerCount} manually checked timers`);
 console.log(`✓ ${quantityChecks} ingredient checks at 1/2/3/4/5/8 people; split parmesan quantities, per-face timing and original cooking techniques`);
