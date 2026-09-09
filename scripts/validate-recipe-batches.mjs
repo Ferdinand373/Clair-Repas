@@ -7,7 +7,7 @@ import {recipeSource} from './recipe-source.mjs';
 import {recipeHash} from './validate-recipe-editorial.mjs';
 const root=resolve(dirname(fileURLToPath(import.meta.url)),'..');
 const {code,recipes,editorial}=recipeSource(readFileSync(resolve(root,'index.html'),'utf8'));
-const batchNumbers=['02','03','04','05','06','07','08','09','10','11','12','13','14','15','16','17','18'];
+const batchNumbers=['02','03','04','05','06','07','08','09','10','11','12','13','14','15','16','17','18','19'];
 const fixture={recipes:batchNumbers.flatMap(number=>JSON.parse(readFileSync(resolve(root,`scripts/recipe-editorial-batch-${number}.fixture.json`),'utf8')).recipes)};
 const slice=(a,b)=>code.slice(code.indexOf(a),code.indexOf(b,code.indexOf(a)+a.length));
 const context={window:{},$:()=>({value:'8'}),MEAL_TYPES:['mid','eve'],recipeRole:r=>r.role||r.course||'dish',isFavorite:()=>false,recipeFeedbackHTML:()=>'',recipePersonalNoteHTML:()=>''};
@@ -89,7 +89,18 @@ const timers={
   'theme-bistrot-plus-04':[[],[40],[10],[],[],[]],
   'theme-bistrot-plus-05':[[],[],[6],[9],[],[]],
   'theme-bistrot-plus-07':[[],[],[],[],[30],[10]],
-  'v74-reg-05':[[30],[],[],[],[],[10]]
+  'v74-reg-05':[[30],[],[],[],[],[10]],
+  'v74-reg-28':[[],[],[],[],[10],[40],[10]],
+  'v74-reg-30':[[],[],[],[45],[20]],
+  'v74-bis-08':[[1],[3],[],[35],[5],[],[1],[],[]],
+  'v74-bis-09':[[],[],[],[],[45],[30]],
+  'v75-chef-constant-06':[[10],[],[3],[3],[]],
+  'v75-chef-loiseau-06':[[3],[],[],[],[]],
+  'bistrot-ext-35':[[10],[],[]],
+  'bistrot-ext-36':[[2],[1],[],[]],
+  'bistrot-ext-38':[[],[4],[],[],[16]],
+  'bourgeois-32':[[],[],[],[],[],[14]],
+  'bourgeois-36':[[],[],[1],[],[],[12]]
 };
 const ingredients={
   n01:['poulet','pommes de terre','paprika','huile','sel.*poivre'],
@@ -272,9 +283,20 @@ const ingredients={
   'theme-bistrot-plus-04':['artichaut','moutarde','vinaigre','huile','échalote','ciboulette','sel.*poivre'],
   'theme-bistrot-plus-05':['salade','tranches de baguette','bûche de chèvre','lardons fumés','cerneaux de noix','moutarde','vinaigre','huile','miel','poivre'],
   'theme-bistrot-plus-07':['museau de bœuf déjà cuit','échalotes','cornichons','moutarde','vinaigre de vin','huile','persil haché','sel.*poivre','pain de campagne'],
-  'v74-reg-05':['faisselle','échalotes','ail','ciboulette','persil','vinaigre de vin','huile de noix ou d’olive','saler.*poivrer','pain de campagne','radis']
+  'v74-reg-05':['faisselle','échalotes','ail','ciboulette','persil','vinaigre de vin','huile de noix ou d’olive','saler.*poivrer','pain de campagne','radis'],
+  'v74-reg-28':['pâte brisée','fromage de chèvre','œufs','sucre','farine','vanille','sel'],
+  'v74-reg-30':['pâte','pommes','œufs','crème fraîche','sucre','poudre d’amandes','calvados','vanille'],
+  'v74-bis-08':['d’eau','beurre','farine','œufs','amandes effilées','lait','jaunes','sucre','maïzena','praliné','beurre mou','sucre glace'],
+  'v74-bis-09':['pâte sablée','poires','beurre mou','sucre','poudre d’amandes','œufs','farine','rhum','amandes effilées'],
+  'v75-chef-constant-06':['brioche','œufs','lait','sucre','beurre','pruneaux','jus d’orange','cannelle','crème fraîche facultative'],
+  'v75-chef-loiseau-06':['chocolat','corn flakes','beurre','orange confite','orange bio','fleur de sel'],
+  'bistrot-ext-35':['glace café','expressos froids','crème liquide entière','sucre glace','chocolat noir râpé'],
+  'bistrot-ext-36':['glace vanille','chocolat','crème liquide','crème entière','sucre glace','amandes effilées'],
+  'bistrot-ext-38':['beurre','farine','lait','œufs','sucre','Grand Marnier','orange','sucre pour les moules'],
+  'bourgeois-32':['chocolat','beurre','farine','lait','œufs','sucre','beurre prévu pour les moules','sucre pour les moules'],
+  'bourgeois-36':['crêpes','œufs','sucre','oranges','fécule de maïs','lait','beurre','Grand Marnier']
 };
-assert.equal(fixture.recipes.length,555);
+assert.equal(fixture.recipes.length,586);
 let quantityChecks=0,timerCount=0;
 for(const record of fixture.recipes){
   const recipe=recipes.find(r=>r.id===record.id);
@@ -547,6 +569,38 @@ assert.deepEqual(Array.from(context.stepTimerDurations(recipes.find(r=>r.id==='t
 assert.match(editorial['v75-chef-bocuse-01'].reviewNote,/foie gras cru.*foie gras cuit.*composition différente/);
 assert.match(editorial['theme-bistrot-plus-06'].reviewNote,/foie de porc.*durée-température/);
 assert.match(editorial['v74-reg-03'].reviewNote,/gélatine.*poids.*force.*volume final/);
+const batch19=JSON.parse(readFileSync(resolve(root,'scripts/recipe-editorial-batch-19.fixture.json'),'utf8')).recipes;
+for(const [id,step,perPerson] of [['bistrot-ext-35',2,2],['bistrot-ext-36',3,3]]){
+  const recipe=recipes.find(r=>r.id===id);
+  for(const count of [1,2,3,4,5,8])assert.ok(context.recipeStepText(recipe.p[step],recipe,count).includes((count*perPerson)+' boules de glace'),'scoop unit is visible in the action');
+}
+assert.equal(batch19.length,31);
+assert.equal(batch19.filter(r=>r.status==='corrected').length,11);
+for(const [count,cheeseSugar,whiteSugar] of [[1,'15','5'],[2,'30','10'],[3,'45','15'],[4,'60','20'],[5,'75','25'],[8,'120','40']]){
+  const cake=recipes.find(r=>r.id==='v74-reg-28');
+  assert.ok(context.recipeStepText(cake.p[1],cake,count).includes(cheeseSugar+' g de sucre'));
+  assert.ok(context.recipeStepText(cake.p[2],cake,count).includes(whiteSugar+' g de sucre'));
+  const brioche=recipes.find(r=>r.id==='v75-chef-constant-06');
+  for(const step of [1,2])assert.ok(context.recipeStepText(brioche.p[step],brioche,count).includes(context.formatQty(count*5)+' g de sucre'));
+  const souffle=recipes.find(r=>r.id==='bistrot-ext-38');
+  assert.ok(context.recipeStepText(souffle.p[0],souffle,count).includes(context.formatQty(count*2.5)+' g de beurre'));
+  assert.ok(context.recipeStepText(souffle.p[1],souffle,count).includes(context.formatQty(count*5)+' g de beurre'));
+  const crepes=recipes.find(r=>r.id==='bourgeois-36');
+  assert.equal(context.recipeStepText(crepes.p[0],crepes,count).split('('+context.formatQty(count/4)+')').length-1,2,'source oranges split into cream and service');
+  const paris=recipes.find(r=>r.id==='v74-bis-08');
+  assert.ok(context.recipeStepText(paris.p[0],paris,count).includes(context.formatQty(50*count/8)+' g de beurre'));
+  assert.ok(context.recipeStepText(paris.p[7],paris,count).includes(context.formatQty(120*count/8)+' g de beurre mou'));
+}
+assert.deepEqual(recipes.find(r=>r.id==='v75-chef-constant-06').i.at(-1),{q:null,u:'',n:'crème fraîche',k:'crème fraîche'});
+assert.match(batch19.find(r=>r.id==='v75-chef-constant-06').beforeSteps.join(' '),/si souhaité, une cuillerée de crème fraîche/);
+for(const [id,indices] of [['v75-chef-constant-06',[8]],['v74-reg-30',[6]],['v74-bis-09',[7]],['bourgeois-36',[7]]])assert.deepEqual(editorial[id].optionalIngredients,indices);
+assert.match(recipes.find(r=>r.id==='v74-bis-08').p[3],/vingt-cinq/);
+assert.deepEqual(Array.from(context.stepTimerDurations(recipes.find(r=>r.id==='v74-bis-08').p[3])),[35]);
+for(const id of ['v74-reg-30','v74-bis-09','v74-bis-08'])assert.match(editorial[id].times.total,/annoncées au total, dont/);
+assert.match(editorial['v75-chef-piege-05'].reviewNote,/œufs entiers.*crème anglaise.*blancs montés/);
+assert.match(editorial['v75-chef-lignac-06'].reviewNote,/crème vanillée.*absente/);
+assert.match(editorial['bourgeois-35'].reviewNote,/feuilles de gélatine.*poids.*force/);
+assert.match(recipes.find(r=>r.id==='bourgeois-32').p[2],/Ne pas ajouter ici le sucre réservé aux blancs/);
 const corrected=fixture.recipes.filter(r=>r.status==='corrected').length;
 const unchanged=fixture.recipes.filter(r=>r.status==='unchanged').length;
 console.log(`✓ Batches ${batchNumbers.join('/')}: ${fixture.recipes.length} individual review records, ${corrected} corrected, ${unchanged} unchanged, ${fixture.recipes.length-corrected-unchanged} blocked with original content preserved; ${timerCount} manually checked timers`);

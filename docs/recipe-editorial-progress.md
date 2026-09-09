@@ -228,6 +228,16 @@ P02 publié : `c87dc373c29cae1d6edb9c2ac6191004c69ba52a`, tests `34390827874` et
 
 **Cumul : 570 identifiants examinés, 226 corrigés, 344 bloqués, 983 à examiner.** Prochaine entrée `v75-chef-ducasse-03`, prochaine fiche globale `gn2-saumon-estragon-petits-pois`, prochain dessert `v74-reg-27`. Zéro erreur éditoriale et 7 778 avertissements. 244 minuteurs et 7 074 contrôles d’ingrédients dans les corrections des lots 02–18, plus les 2 532 rendus réservés du lot 17. Les 24 commandes du workflow réussissent et les trois formats sont contrôlés visuellement. Publication à consigner après contrôle en ligne.
 
+## Publication du lot 18
+
+`30c33c8da911544e74ac61a3191260027a93b1d4` publié sur `main`. Tests `34406640370`, Pages `34406638704` et déploiement `6359604898` réussis. HTTPS 200 et fichiers identiques au commit : index `b0c6ca87124e033152cddf3497713adae4b613f6e0ad0d43ec6cb821c86b956c`, service worker `ed9fda4e634ca98c41ab8ad5e92e0e8a5a71b569e6543e891fd4cf21be6b5775`. Révision chargée après actualisation normale `sha256:59d0824116e874e9b0cd095a9f72a887a62ba547fd9a0f8f1155e5a045cfbaab`. Gougères bourguignonnes vérifiées en production : 50 g puis 20 g de comté à deux personnes, quatre minuteurs correctement placés, sans minuteur parasite de vingt minutes. Aucune donnée effacée.
+
+## Lot 19 — les trente et un desserts restants
+
+[Journal et sources](recipe-editorial-batch-19.md). 11 corrigées, 20 réservées, aucune conforme sans modification. Partages de sucre et de beurre liés aux ingrédients, crème facultative source rétablie et cuissons des préparations aux œufs explicitées. Les écarts d’identité et de technique non résolus restent visibles, sans réécriture de ces fiches.
+
+**Cumul : 601 identifiants examinés, 237 corrigés, 364 bloqués, 952 à examiner.** Les 154 desserts sont désormais examinés : 108 corrigés et 46 bloqués, sans prétendre résoudre les réserves. Prochaine entrée `v75-chef-ducasse-03`, prochaine fiche globale `gn2-saumon-estragon-petits-pois`. Zéro erreur éditoriale et 7 647 avertissements. 268 minuteurs et 7 590 contrôles d’ingrédients dans les corrections des lots 02–19 ; 2 532 rendus réservés du lot 17 conservés. Les 24 commandes du workflow et les contrôles visuels aux trois formats passent. Publication à consigner après vérification en ligne.
+
 ## Limites des vérifications
 
 Les tests de structure, quantité, minuteurs, stockage simulé et rendu ne sont pas des essais culinaires. Les formats iPhone/PWA sont simulés, sauf mention explicite d’un appareil physique. Le total de fiches à examiner ne doit jamais être remplacé par le nombre de fiches auxquelles le style commun a été appliqué.
