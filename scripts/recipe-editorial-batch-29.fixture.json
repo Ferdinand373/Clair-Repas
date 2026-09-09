@@ -1,0 +1,488 @@
+{
+  "baselineCommit": "10bdae223cf2e5e915e82296ef3844c1aa4ab684",
+  "batch": "29",
+  "recipes": [
+    {
+      "id": "theme-cuisine-regionale-18",
+      "status": "blocked",
+      "sourceHash": "95fc39907e9e82a5dcd38a82e58564cd1e40e3e0325aa1b76035c4dbb5aae6bf",
+      "reviewedHash": "95fc39907e9e82a5dcd38a82e58564cd1e40e3e0325aa1b76035c4dbb5aae6bf",
+      "protectedRecipeSha256": "eadfc2eca7ae34c25e167b6ac357bc8aecacfe0141c5fc8a41a428da6310fa5a",
+      "note": "le riz d’accompagnement est absent de la liste et aucune quantité pour les portions de référence n’est retrouvée dans les archives. Un renvoi au paquet pourrait définir sa cuisson mais ne résout pas cette quantité. Les deux parts de piment sont connues ; conserver le poulet doré puis mijoté et rendre déterminant le contrôle à 74 °C lors de la future correction, sans se fier au seul jus clair."
+    },
+    {
+      "id": "theme-cuisine-regionale-19",
+      "status": "blocked",
+      "sourceHash": "35962b5e65eee63d806061c03eb5882ec8c8752da083e95c2a854542220ba6cf",
+      "reviewedHash": "35962b5e65eee63d806061c03eb5882ec8c8752da083e95c2a854542220ba6cf",
+      "protectedRecipeSha256": "08253ac3e7409d9dc557a0cdd88dedfafdcf2d6c13f3048fd27ca98e1e7bcf3d",
+      "note": "les 20 cl de jus prélevés sur les moules et la cuillère de sauce servant à détendre le jaune ne sont pas liés à une quantité adaptable ; taille de la cuillère et sort du jus restant inconnus. Le poivre est oublié. La liaison au jaune peu cuit demande aussi une maîtrise sanitaire, sans la faire bouillir ni inventer un nouveau procédé."
+    },
+    {
+      "id": "theme-cuisine-regionale-20",
+      "status": "corrected",
+      "sourceHash": "d5e3d7012b3f9cbaee566e17db8af4f1cb8d5df360a728334e5787ea92d32cf0",
+      "reviewedHash": "ab163baeaa975994eca96b861d3c3f124270119d8b135766f30600425e2aa15c",
+      "protectedRecipeSha256": "479b58891cb876195ce0e6e45450ad57633a497d3c9f784c29090ed5d6b65fea",
+      "beforeSteps": [
+        "Ne piquez pas la saucisse de Morteau. Déposez-la dans une casserole d’eau froide, portez doucement à frémissement et cuisez 35 à 40 minutes sans forte ébullition.",
+        "Pendant ce temps, épluchez les pommes de terre et coupez-les en gros morceaux. Cuisez-les 20 minutes dans une autre casserole d’eau salée, jusqu’à ce qu’elles soient tendres.",
+        "Chauffez la cancoillotte très doucement dans une petite casserole avec l’ail finement haché. Elle doit devenir fluide sans bouillir.",
+        "Égouttez la saucisse et laissez-la reposer 3 minutes avant de la couper en tranches épaisses.",
+        "Égouttez les pommes de terre et répartissez-les dans les assiettes avec les tranches de saucisse.",
+        "Nappez de cancoillotte chaude, poivrez et ajoutez du persil. Servez immédiatement."
+      ],
+      "note": "Sel déjà demandé pour les pommes de terre rétabli sans dose inventée. Pochage de la Morteau entière sans perçage confirmé par le site de l’IGP ; sa plage de 35–45 minutes selon le calibre élargit explicitement les 35–40 minutes de CR, avec priorité à la notice du produit. Aucune transposition au four ou à la vapeur."
+    },
+    {
+      "id": "theme-cuisine-regionale-21",
+      "status": "blocked",
+      "sourceHash": "3e2bd21f0339f371dc73487850f8ebad99a5a7df24d6c0fa555619fd38f44591",
+      "reviewedHash": "3e2bd21f0339f371dc73487850f8ebad99a5a7df24d6c0fa555619fd38f44591",
+      "protectedRecipeSha256": "1ece3fe3320537d6b991b78b403a881dba82311eb87a04b59035de94ea06a182",
+      "note": "la dorure en deux fois pendant quatre à cinq minutes ne précise pas si cette durée vaut par fournée ou au total. Le poivre est oublié et les pâtes, polenta ou pommes de terre de service sont absentes. La cuisson après ajout des olives distingue mal durée nécessaire et simple réduction à découvert ; conserver les cubes de veau, pas de hachage ajouté."
+    },
+    {
+      "id": "theme-famille-dimanche-05",
+      "status": "blocked",
+      "sourceHash": "d76acb3c133653d214aba208d0419e61a5f21304accf8d5f464e52085f9cf074",
+      "reviewedHash": "d76acb3c133653d214aba208d0419e61a5f21304accf8d5f464e52085f9cf074",
+      "protectedRecipeSha256": "f3e3d6157ebb6d59950109e7920e85ee9877761cd76d32ac096645a1122c80ef",
+      "note": "l’eau de 15 cl et la gousse d’ail placée à l’intérieur sont figées dans les étapes malgré les portions variables. Le protocole vise un poulet entier de 1,4 kg : l’effet du changement de quantité sur le nombre et le calibre des oiseaux doit être explicité. Les 95 minutes annoncées ne couvrent pas sortie préalable, four et repos ; les arrosages répétés ne sont pas des cuissons supplémentaires."
+    },
+    {
+      "id": "theme-famille-dimanche-06",
+      "status": "blocked",
+      "sourceHash": "6f2fb6fe56eafa0ba7c974be9f4d5945d5c64a1902c6d0a8cc1365199eb14f78",
+      "reviewedHash": "6f2fb6fe56eafa0ba7c974be9f4d5945d5c64a1902c6d0a8cc1365199eb14f78",
+      "protectedRecipeSha256": "ceff1b7466104d49d36f93bde0a322d28dabb2144ae14f746fafe81d23ceefb3",
+      "note": "deux gousses d’ail sont figées pour piquer le rôti et les autres vont dans le plat, sans adaptation de cette répartition aux convives. Les pommes de terre ou haricots verts ne sont pas listés ni préparés. La durée totale ne distingue pas les vingt-cinq minutes de sortie préalable ; garder le repos de dix minutes et le contrôle thermique, pas un jus clair seul."
+    },
+    {
+      "id": "theme-famille-dimanche-07",
+      "status": "blocked",
+      "sourceHash": "a2eedcefeeb57276256bc64ed8a147a23dc3db1370ab07a667a3cad37c0f359f",
+      "reviewedHash": "a2eedcefeeb57276256bc64ed8a147a23dc3db1370ab07a667a3cad37c0f359f",
+      "protectedRecipeSha256": "0da23a043684d4c317e3ba1099974edfd8a8a2c63eb3343cf70da87cd1d0ec9d",
+      "note": "les 55–58 °C annoncés pour un gigot rosé sont inférieurs au repère sanitaire de 63 °C avant retrait du feu. La remontée au repos n’est pas mesurée ni garantie ; ne pas changer silencieusement le degré de cuisson voulu. Les 75 minutes ne distinguent pas les 45 minutes de sortie préalable et le poids réel doit être considéré."
+    },
+    {
+      "id": "theme-famille-dimanche-08",
+      "status": "blocked",
+      "sourceHash": "ed113884efec3adac3d574e707afb1fa476a1f4e803267f074ffac669529d4db",
+      "reviewedHash": "ed113884efec3adac3d574e707afb1fa476a1f4e803267f074ffac669529d4db",
+      "protectedRecipeSha256": "7d6d832626ca952f05e73f79102c26805644174eae6f285e88f57125e20dacd0",
+      "note": "les températures de sortie de 50–52 °C ou 55–58 °C sont inférieures au repère sanitaire de 63 °C ; le repos ne garantit pas cette température finale. Le temps de four est prévu pour 800 g et le total de 55 minutes omet la sortie préalable. Ne pas déclarer saignant ou à point entièrement validé en modifiant silencieusement la préférence culinaire."
+    },
+    {
+      "id": "theme-famille-dimanche-09",
+      "status": "corrected",
+      "sourceHash": "c9e5a27d05472d723d61aec3f939bcbbaec826ae47ee7861a9410bcc6ea61b2f",
+      "reviewedHash": "0b072521479d7734857244ccdc828ca6f634e71527b793d036073b8d92cb1757",
+      "protectedRecipeSha256": "63cc5e3c8c50f64bf9e07866eab4fdc848533b89091fa5b264704fc7c6dd386b",
+      "beforeSteps": [
+        "Coupez la viande en cubes de 4 cm et séchez-les. Épluchez les carottes et coupez-les en rondelles épaisses. Émincez l’oignon.",
+        "Chauffez l’huile dans une cocotte sur feu vif. Dorez la viande en deux ou trois fois afin que chaque morceau touche le fond. Réservez.",
+        "Baissez sur feu moyen, faites revenir l’oignon 5 minutes puis ajoutez l’ail 30 secondes. Versez le vin blanc et grattez les sucs.",
+        "Remettez la viande, ajoutez le bouillon et le bouquet garni. Portez à frémissement, couvrez et cuisez 1 h 15 à feu très doux.",
+        "Ajoutez les carottes, couvrez de nouveau et poursuivez 45 minutes. Elles doivent être tendres et la viande très fondante.",
+        "Découvrez les 10 dernières minutes si le jus est trop abondant. Retirez le bouquet garni, goûtez et rectifiez l’assaisonnement. Servez très chaud."
+      ],
+      "note": "Cuisson couverte en deux temps conservée : 75 minutes avant carottes puis 45 minutes avec elles, dont dix dernières éventuellement à découvert. Vin et bouillon mesurés, aromates préparés et retirés. Dorure jusqu’à coloration, sans durée arbitraire ajoutée ni huile supplémentaire entre fournées."
+    },
+    {
+      "id": "theme-famille-dimanche-10",
+      "status": "blocked",
+      "sourceHash": "c5a5c7151c6af45ae9c4f4adf7b2b500e80064bc94e3c053c1842f3e44ad2c05",
+      "reviewedHash": "c5a5c7151c6af45ae9c4f4adf7b2b500e80064bc94e3c053c1842f3e44ad2c05",
+      "protectedRecipeSha256": "7ff4289d8a1230ebe7760cce0b16a5b43f34bdf363a4e75a26fd7f86fcfd80a2",
+      "note": "le calibre et la composition de la farce des paupiettes ne sont pas connus ; le simple repère bien cuit à cœur ne précise pas le contrôle correspondant. Pâtes, riz ou purée sont absents de la liste et de la préparation. Ne pas inventer une farce maison ni déduire sa cuisson du seul nom veau."
+    },
+    {
+      "id": "theme-famille-dimanche-11",
+      "status": "blocked",
+      "sourceHash": "7fcae24ce5de83c392cb8fad2cfc8d29d85a1b904d76fe012b0fc9fad0608c31",
+      "reviewedHash": "7fcae24ce5de83c392cb8fad2cfc8d29d85a1b904d76fe012b0fc9fad0608c31",
+      "protectedRecipeSha256": "68587cc8394139694ff77745292558654f6cc226d52f6d41840d3c42d6da56b0",
+      "note": "les 10 cl d’eau du mijotage manquent dans la liste et restent figés ; les pâtes fraîches ou pommes de terre d’accompagnement ne sont ni listées ni organisées. Le calibre des morceaux de lapin est inconnu et la cuisson près de l’os ne comporte pas de contrôle thermique. Conserver la distinction des deux moutardes et la crème de finition."
+    },
+    {
+      "id": "theme-famille-dimanche-12",
+      "status": "blocked",
+      "sourceHash": "64ec296eede15ef10f5cc54b38fb75813940ffc11a81188464fafe34486a9b45",
+      "reviewedHash": "64ec296eede15ef10f5cc54b38fb75813940ffc11a81188464fafe34486a9b45",
+      "protectedRecipeSha256": "f8817adfdab3d89d6b31a26ec1f9a36a7f79fee07f0883c76a62b35c7f0832a1",
+      "note": "l’oignon revient sans matière grasse définie ; le lait restant après essorage du pain n’a pas d’affectation. Le riz de service n’est pas listé. Le seuil à cœur de 70 °C demande une durée de maintien ou une référence adaptée à la farce, sans se fier au simple aspect ; ne pas ajouter une huile arbitraire ni remplacer le suage par une cuisson dans la tomate."
+    },
+    {
+      "id": "theme-famille-dimanche-13",
+      "status": "blocked",
+      "sourceHash": "87e367e61a84e048e457c8b4c54c7304ce6b9b5666d7d9433cea1ca8c26fae57",
+      "reviewedHash": "87e367e61a84e048e457c8b4c54c7304ce6b9b5666d7d9433cea1ca8c26fae57",
+      "protectedRecipeSha256": "b9a371973c97544a15a66367b9b97cea1b9ca52f4320288ab6cc76ef213e2f58",
+      "note": "la cuisson alternative dans très peu d’eau ne définit ni volume ni récipient et l’eau n’est pas listée. Le partage connu de l’emmental pourrait être calculé, mais choisir uniquement la vapeur supprimerait une technique source. Conserver les deux possibilités tant que la variante étuvée n’est pas précisée."
+    },
+    {
+      "id": "theme-famille-dimanche-14",
+      "status": "blocked",
+      "sourceHash": "d5f317d73ebe8e9b392741a24fcc18b3d00bb40670ee99d3edd98ab603b864f7",
+      "reviewedHash": "d5f317d73ebe8e9b392741a24fcc18b3d00bb40670ee99d3edd98ab603b864f7",
+      "protectedRecipeSha256": "8bddead50571fdd1cc00b9af29c14c4f746d8bc7887f6ac4f667383cec548991",
+      "note": "les trois tiers de bolognaise sont utilisés après un prélèvement non mesuré au fond du plat. Béchamel et parmesan n’ont pas de partage défini entre les couches. Les dimensions du plat et la notice des neuf feuilles ne sont pas précisées ; vérifier la précuisson avant le montage. Ne pas inventer la quantité de chaque couche."
+    },
+    {
+      "id": "theme-petits-gourmands-05",
+      "status": "blocked",
+      "sourceHash": "5631a74ec27085816b8924413256b5942898e9ac95dbd7a737723ddaf1b7e64c",
+      "reviewedHash": "5631a74ec27085816b8924413256b5942898e9ac95dbd7a737723ddaf1b7e64c",
+      "protectedRecipeSha256": "c5be27bd85befb21a76ab18abaf34e9e4dd6115b6345413ba263863e4d3d83a1",
+      "note": "la petite tasse d’eau réservée n’a pas de volume ni de part réellement réincorporée. L’état frais ou surgelé des petits pois n’est pas indiqué pour leurs quatre minutes avec les pâtes. Ce temps est compris dans la cuisson des coquillettes, pas ajouté après ; ne pas inventer de volume d’eau pour valider la liaison."
+    },
+    {
+      "id": "theme-petits-gourmands-06",
+      "status": "blocked",
+      "sourceHash": "3c34ca283e2a899071752bb56e44d739b4fe44315f69e965813c2ea6d9320611",
+      "reviewedHash": "3c34ca283e2a899071752bb56e44d739b4fe44315f69e965813c2ea6d9320611",
+      "protectedRecipeSha256": "c1f9d71776ed164ae1d23fc2d3338995ea47d64064df8e6f02fd4fa8ff79d9f2",
+      "note": "seulement un peu du persil est incorporé sans affectation du reste, et le sel listé est oublié. Le volume égal d’eau pour la semoule doit être confirmé par le paquet. Les boulettes de trois centimètres nécessitent un contrôle à cœur, pas seulement l’absence de rose ; aucun partage de persil ou de sel inventé."
+    },
+    {
+      "id": "theme-petits-gourmands-07",
+      "status": "corrected",
+      "sourceHash": "76184dd97f2296d2586ae154439b3e649487eb100b5f12cfb1510a6025dbf025",
+      "reviewedHash": "ef31dfc26aa0bf1a51f741522064d866c5131b6edb49cd53aaf4dce80ed80f8c",
+      "protectedRecipeSha256": "a546a15b6a71265d5ff033d5051b64cc29156f57b2a18e644857bc3cd7aff772",
+      "beforeSteps": [
+        "Épluchez les pommes de terre, coupez-les en morceaux et faites-les cuire 20 minutes dans une casserole d’eau légèrement salée, jusqu’à ce qu’elles soient très tendres.",
+        "Pendant ce temps, hachez finement l’oignon et râpez la carotte. Faites-les revenir 6 minutes dans l’huile sur feu moyen.",
+        "Ajoutez le bœuf haché et faites-le cuire 7 à 8 minutes en l’émiettant, jusqu’à ce qu’il ne reste plus aucune partie rosée.",
+        "Égouttez les pommes de terre. Écrasez-les au presse-purée avec le beurre et le lait tiède jusqu’à obtenir une purée souple.",
+        "Préchauffez le four à 200 °C. Étalez la viande dans un plat, recouvrez de purée puis parsemez de fromage.",
+        "Enfournez 20 minutes, puis 2 à 3 minutes sous le gril si nécessaire. Laissez reposer 8 minutes avant de servir afin que le plat ne soit pas brûlant et se tienne mieux."
+      ],
+      "note": "Purée au presse-purée, garniture de bœuf émietté et gratin conservés. Huile, beurre et lait mesurés ; cuisson des pommes de terre parallèle à la garniture. Contrôles à cœur sourcés pour le bœuf haché et le gratin, gril seulement si nécessaire et repos avant service inchangés ; aucune matière grasse ajoutée au plat."
+    },
+    {
+      "id": "theme-petits-gourmands-08",
+      "status": "corrected",
+      "sourceHash": "d50bd43fff1821f6cbf58fdb72321f9a67d2527da9e6f630092b7c53b5905daf",
+      "reviewedHash": "e7388abfccf0506d94b047614b24e4af5f0d77fd87151447a104372d3de8042a",
+      "protectedRecipeSha256": "9115bb2ec570c6b3c69e1fa0948255bd029d37fb581f79602089be2ad115c2d1",
+      "beforeSteps": [
+        "Préchauffez le four à 200 °C. Coupez le poulet en bandes épaisses et régulières puis épongez-les avec du papier absorbant.",
+        "Préparez trois assiettes : farine dans la première, œuf battu dans la deuxième, chapelure mélangée au parmesan dans la troisième.",
+        "Passez chaque morceau dans la farine, puis l’œuf, puis la chapelure en appuyant doucement pour la faire adhérer.",
+        "Posez les morceaux sur une plaque couverte de papier cuisson et badigeonnez-les légèrement d’huile. Enfournez 18 à 22 minutes en les retournant à mi-cuisson.",
+        "Coupez le morceau le plus épais : la chair doit être entièrement blanche et le jus clair ; un thermomètre doit indiquer au moins 74 °C au cœur.",
+        "Laissez tiédir 3 minutes. Pour de jeunes enfants, coupez les bandes en bouchées adaptées avant de servir."
+      ],
+      "note": "Panure farine-œuf-chapelure/parmesan conservée, huile liée à la quantité listée et sel déjà listé affecté au poulet. Le contrôle à 74 °C remplace la seule couleur comme critère. Retournement à mi-cuisson inclus dans les 18–22 minutes, pas de friture ni Air Fryer ajouté."
+    },
+    {
+      "id": "theme-petits-gourmands-09",
+      "status": "corrected",
+      "sourceHash": "3329dfd2ead92e88a58bb7ad8c284abafd34bc5a50992d7de4953242f4116ab7",
+      "reviewedHash": "5437935cd4ab8d095d1b886c58b283b68051f32a883ce107964995c1729cafcb",
+      "protectedRecipeSha256": "b2687af8ad6e78cecb9759e57a4e0b5f7b51f642b80e773bff9c7ddf437f8990",
+      "beforeSteps": [
+        "Passez soigneusement les doigts sur les filets de poisson pour vérifier qu’il ne reste aucune arête. Coupez-les en portions régulières.",
+        "Épluchez pommes de terre et carottes, coupez-les en morceaux et faites-les cuire ensemble 20 à 25 minutes dans l’eau jusqu’à ce qu’ils soient très tendres.",
+        "Préparez trois assiettes avec farine, œuf battu et chapelure. Passez le poisson successivement dans les trois.",
+        "Chauffez l’huile dans une poêle sur feu moyen. Faites cuire le poisson 4 à 5 minutes par face selon son épaisseur. La chair doit être opaque et se détacher facilement en lamelles.",
+        "Égouttez les légumes et écrasez-les avec beurre et lait tiède. Ajustez pour obtenir une purée souple.",
+        "Avant de servir à un enfant, ouvrez de nouveau le poisson en petits morceaux pour vérifier l’absence d’arêtes et laissez suffisamment tiédir."
+      ],
+      "note": "Poisson pané à la poêle et purée mêlant carotte et pomme de terre conservés. Huile de poêle, lait et beurre de purée mesurés ; sel déjà listé affecté à la purée, contrôle thermique du poisson ajouté. Deux vérifications d’arêtes et service tiédi conservés, sans friture ni beurre supplémentaire."
+    },
+    {
+      "id": "theme-petits-gourmands-10",
+      "status": "corrected",
+      "sourceHash": "207bb854ad8e70b6af73719a120374bfadbc019694d27726a374ace17102e1b6",
+      "reviewedHash": "d2e21f3837fd85cc68194e4bf73dc446386a87e6a3c77e4db21b6be64987e13f",
+      "protectedRecipeSha256": "447427cf33b869a00a5aae238add71c540aa51f6b506730339e7a0f14b601e2e",
+      "beforeSteps": [
+        "Émincez très finement l’oignon. Faites-le revenir 4 minutes dans l’huile sur feu moyen.",
+        "Ajoutez les tomates concassées et laissez mijoter 10 minutes. La sauce doit épaissir légèrement.",
+        "Pendant ce temps, faites cuire les gnocchis dans une casserole d’eau frémissante selon le paquet. Égouttez-les dès qu’ils remontent à la surface.",
+        "Ajoutez les gnocchis dans la sauce tomate, mélangez délicatement puis ajoutez la mozzarella coupée en petits dés et le parmesan.",
+        "Couvrez 2 minutes à feu doux pour faire fondre le fromage. Ajoutez un peu de basilic très finement coupé.",
+        "Servez tiède. Pour de jeunes enfants, coupez les gros gnocchis en deux si nécessaire pour obtenir des bouchées adaptées."
+      ],
+      "note": "Gnocchis pochés selon paquet puis enrobés à la poêle, mozzarella et parmesan inchangés. Huile mesurée, produits préparés et sel déjà listé affecté à la sauce. La remontée à la surface n’est plus une consigne concurrente à la notice ; aucune poêlée directe de gnocchis crus ajoutée."
+    },
+    {
+      "id": "theme-petits-gourmands-11",
+      "status": "blocked",
+      "sourceHash": "3eed4dc5f83233aa94d47eb36a2c7d2b5fccb2d93534ceb58e3e37ce9ac0a07c",
+      "reviewedHash": "3eed4dc5f83233aa94d47eb36a2c7d2b5fccb2d93534ceb58e3e37ce9ac0a07c",
+      "protectedRecipeSha256": "348da2746ca9d2adc357ee3453bb24411023efabc492fe2c33f360ec5e7bb18e",
+      "note": "le bouillon commence par environ un tiers sans mesure précise et l’eau chaude de finition est absente de la liste. Le riz rond n’est pas identifié pour valider son absorption en dix-huit à vingt minutes ; sel oublié et calibre du poulet non défini. Ne pas convertir la seule chair blanche en preuve sanitaire ni ajouter de bouillon arbitraire."
+    },
+    {
+      "id": "theme-petits-gourmands-12",
+      "status": "corrected",
+      "sourceHash": "445d756eb6a2cd3e6898ca594234938cc4b10d2e017fb32ce00d95db87495d1f",
+      "reviewedHash": "e79b4b2c8d825ee25f5e1f7faec5485c5b08f5609b9a0a5316fe549c75c13c4e",
+      "protectedRecipeSha256": "799af86cd9b26b61602867b9fc973082f982bde2a8a3d70666f9c27b2e689399",
+      "beforeSteps": [
+        "Préchauffez le four à 200 °C. Coupez le brocoli en très petites fleurettes, en retirant les tiges dures.",
+        "Faites cuire les pâtes dans l’eau bouillante. Ajoutez le brocoli dans la même casserole 5 minutes avant la fin. Égouttez bien.",
+        "Préparez une béchamel : faites fondre le beurre, ajoutez la farine et mélangez 1 minute. Versez le lait progressivement en fouettant puis faites épaissir 4 à 5 minutes.",
+        "Coupez le jambon en petits morceaux. Mélangez pâtes, brocoli, jambon, béchamel et la moitié du fromage.",
+        "Versez dans un plat à gratin, ajoutez le reste de fromage et enfournez 20 minutes jusqu’à ce que le dessus soit doré.",
+        "Laissez reposer 5 à 10 minutes. Vérifiez que les morceaux de brocoli sont très tendres avant de servir aux plus jeunes."
+      ],
+      "note": "Pâtes selon paquet, cinq minutes de brocoli réellement comprises dans la cuisson commune, fromage réparti en deux quantités dynamiques. Pour les pâtes qui cuisent en moins de cinq minutes, une casserole séparée est explicitement proposée afin de respecter les deux durées : adaptation d’organisation, pas changement de mode de cuisson. Sel déjà listé affecté à la béchamel."
+    },
+    {
+      "id": "theme-petits-gourmands-13",
+      "status": "blocked",
+      "sourceHash": "90b07e808010876fbfad44ae9ed6517b36f4485f66ebe0b220c748574e554222",
+      "reviewedHash": "90b07e808010876fbfad44ae9ed6517b36f4485f66ebe0b220c748574e554222",
+      "protectedRecipeSha256": "7fd829b1b9bae12af00d95808985c08e6b7b80ca3fb1664696e681e06439f0b1",
+      "note": "quelques gouttes d’huile sont utilisées alors qu’une cuillère à soupe est listée, sans préciser le sort du reste. Le coulis n’est utilisé qu’en fine couche et son reste n’est pas affecté. Le format et la notice des petits pains pita ne sont pas définis ; ne pas répartir arbitrairement toute l’huile pour valider la recette."
+    },
+    {
+      "id": "theme-petits-gourmands-14",
+      "status": "corrected",
+      "sourceHash": "9b1eeb4e54a7e73adddd6f0e40ffb8813a0ea951ca0a49d1f4bd1ec680a4cab3",
+      "reviewedHash": "d360dfdd0cf4f461d5b9441a45e64c850d27326caf67fce7f3670d55d6f9aa49",
+      "protectedRecipeSha256": "36aba161b11e942f2188bd06e2fc229ff1e502163b9cc143c6742d00ecda6f63",
+      "beforeSteps": [
+        "Lavez les épinards puis hachez-les très finement. Faites-les tomber 2 à 3 minutes dans une poêle avec la moitié du beurre puis laissez-les tiédir.",
+        "Battez les œufs avec le lait et une petite pincée de sel. Ajoutez les épinards et la moitié du fromage.",
+        "Faites fondre le reste du beurre dans une grande poêle antiadhésive sur feu moyen-doux. Versez les œufs et cuisez doucement 5 à 7 minutes.",
+        "Quand le dessus est presque pris, ajoutez le reste du fromage puis repliez ou roulez délicatement l’omelette avec une spatule.",
+        "Poursuivez la cuisson 2 à 3 minutes à feu doux. Pour les enfants, l’œuf doit être entièrement cuit, sans partie liquide.",
+        "Laissez tiédir puis coupez en petites bandes ou bouchées faciles à manger."
+      ],
+      "note": "Beurre et emmental partagés comme dans la source mais affichés en quantités concrètes recalculées. Épinards tombés puis tiédis, omelette repliée ou roulée et finition douce conservés. Contrôle à cœur ajouté pour les œufs, sans cuisson liquide présentée comme sûre pour les enfants."
+    },
+    {
+      "id": "theme-petits-gourmands-15",
+      "status": "blocked",
+      "sourceHash": "116f02ba004673fe69bc91b42ad92749823d33d30368bc9b2d1b337c87fdb5b4",
+      "reviewedHash": "116f02ba004673fe69bc91b42ad92749823d33d30368bc9b2d1b337c87fdb5b4",
+      "protectedRecipeSha256": "3556b44afb851d0c15a1b5f18026ffba5b90be5aff1d74acc15fada7962cdbcb",
+      "note": "le fond d’eau de la cuisson alternative du saumon n’est pas défini ni listé, et les huit croquettes sont figées sans diamètre ou épaisseur. Le sel est oublié. La finition contient de l’œuf ajouté après précuisson : bien chaud au centre n’est pas un contrôle suffisant. Conserver les deux méthodes de poisson sans en supprimer une pour contourner la lacune."
+    },
+    {
+      "id": "theme-petits-gourmands-16",
+      "status": "blocked",
+      "sourceHash": "fad757145e78b90727f9504d14b4697b2ae6fedd7ef8892d6e36ac3d3b20c574",
+      "reviewedHash": "fad757145e78b90727f9504d14b4697b2ae6fedd7ef8892d6e36ac3d3b20c574",
+      "protectedRecipeSha256": "fa687bbfe9a5e54351a462ba1b1af2b6e4aa9f0af3f0b0b4b3221824efcb7eee",
+      "note": "les 10 cl d’eau de sauce ne sont pas listés, puis une petite tasse d’eau de cuisson est réservée sans volume ni part réellement ajoutée. Le sel est oublié. La cuisson du bœuf haché ne doit pas se valider par sa seule absence de rose ; conserver les légumes revenus dans l’huile avant la tomate."
+    },
+    {
+      "id": "theme-bistrot-plus-08",
+      "status": "blocked",
+      "sourceHash": "1ee44b056e1fb964e8fb8afc7f157ea0e88dc09b5c2af6892267b607c6d3c4fd",
+      "reviewedHash": "1ee44b056e1fb964e8fb8afc7f157ea0e88dc09b5c2af6892267b607c6d3c4fd",
+      "protectedRecipeSha256": "5bb9a54db52400d8221a2d285a727d602bcb38572a23a36151c2693d189e9272",
+      "note": "le litre d’huile est un bain de friture dont la hauteur minimale dépend du récipient et ne doit pas être multipliée aveuglément avec les convives. L’épaisseur des steaks n’est pas définie et le thermomètre n’a pas de température cible. Une rondelle de beurre par steak ne définit pas la répartition du rouleau ; ne pas modifier silencieusement le saignant recherché."
+    },
+    {
+      "id": "theme-bistrot-plus-09",
+      "status": "blocked",
+      "sourceHash": "2b0df357316af2ba922d6acd5ed3e2c3a89e741c7b15af9f603809abec4435fa",
+      "reviewedHash": "2b0df357316af2ba922d6acd5ed3e2c3a89e741c7b15af9f603809abec4435fa",
+      "protectedRecipeSha256": "6a8bc4fb44832d9c2e01b30fee1bb6828337f5d58d74bae5c9b33d5c646c3157",
+      "note": "la crème se partage entre intérieur et dessus sans quantités, et le beurre de l’extérieur ne laisse pas de part définie pour les œufs au plat. La salade n’est pas listée, le nombre de croques et d’œufs est figé. Conserver poêle puis four et œufs séparés, sans inventer une graisse ni remplacer le jaune coulant demandé."
+    },
+    {
+      "id": "theme-bistrot-plus-10",
+      "status": "blocked",
+      "sourceHash": "47d319153f5db0c3457e629e73bfc30413902d49aef886bab92fc337f348d213",
+      "reviewedHash": "47d319153f5db0c3457e629e73bfc30413902d49aef886bab92fc337f348d213",
+      "protectedRecipeSha256": "0a577bf4de6838251d57b416f372571ed6b00f1e834dffae56cf7a8b3b539ea4",
+      "note": "les deux louches de bouillon ajoutées aux lentilles ne définissent pas de volume adaptable ; sel de finition absent et poivre oublié. Produit et calibre des saucisses fumées ne sont pas précisés. Le dessalage éventuel, les vingt-cinq dernières minutes et la cuisson des lentilles doivent être organisés sans additionner des temps déjà inclus."
+    },
+    {
+      "id": "theme-bistrot-plus-12",
+      "status": "corrected",
+      "sourceHash": "58690ff1c625c25aae9a01752b3321cc877acc93fcd17afce88ea30ce3459e90",
+      "reviewedHash": "0783d7abb8e8107872f50e014219158cae7bcc37893b1a30efbb5d26ab1f29a7",
+      "protectedRecipeSha256": "8774c36a14bdf454505c5011c24e429bb312c5e16547bf411efe693001e32d02",
+      "beforeSteps": [
+        "Sortez les cuisses de leur graisse et retirez l’excédent sans gratter complètement la peau. Réservez 3 cuillères à soupe de graisse pour les pommes de terre.",
+        "Épluchez les pommes de terre, coupez-les en rondelles de 4 à 5 mm puis rincez-les rapidement et séchez-les parfaitement.",
+        "Faites chauffer la graisse de canard dans une grande poêle. Ajoutez les pommes de terre en une couche régulière et cuisez 25 à 30 minutes à feu moyen, en les retournant toutes les 5 minutes.",
+        "Pendant ce temps, posez les cuisses côté peau dans une seconde poêle froide. Faites chauffer progressivement 10 minutes côté peau puis 5 à 7 minutes de l’autre côté. La peau doit devenir croustillante et la viande très chaude à cœur.",
+        "Quand les pommes de terre sont tendres et dorées, ajoutez l’ail finement haché et poursuivez 1 minute seulement pour ne pas le brûler.",
+        "Hors du feu, ajoutez le persil, poivrez et salez avec prudence car le confit est déjà salé.",
+        "Servez une cuisse par personne avec les pommes sarladaises bien chaudes."
+      ],
+      "note": "Graisse de canard réservée dans la source liée à sa quantité par repas, sans graisse supplémentaire. Pommes en rondelles de 4–5 mm, cuisses déjà confites démarrées en poêle froide et persillade hors du feu conservées. Le retournement des pommes reste un rappel, pas une cuisson de cinq minutes ; contrôle du réchauffage à cœur ajouté."
+    },
+    {
+      "id": "theme-bistrot-plus-13",
+      "status": "corrected",
+      "sourceHash": "2bc310fb0312c6c29d43f84923aa51fedf02a98e67325588dd7fa7003f38496e",
+      "reviewedHash": "a2fe1dc94bba3e9d9cb8463d9af20a3090ffd8e38f917fbbb02c3c7b876cd261",
+      "protectedRecipeSha256": "cf9170fe1015ceba90f885f0175332ecbecf5a68fdc7f5279037db77e0142120",
+      "beforeSteps": [
+        "Épluchez les pommes de terre et faites-les cuire 20 à 25 minutes à la vapeur ou dans l’eau salée. Elles doivent être tendres sans se défaire.",
+        "Sortez le foie du réfrigérateur 15 minutes avant cuisson. Retirez les petites membranes visibles sur les bords et épongez soigneusement les tranches.",
+        "Chauffez l’huile et la moitié du beurre dans une grande poêle sur feu assez vif. Déposez le foie et saisissez-le 2 à 3 minutes par face selon son épaisseur.",
+        "Pour une cuisson sûre, le foie doit être bien chaud à cœur ; si vous utilisez un thermomètre, visez environ 70 °C. Évitez néanmoins de prolonger inutilement la cuisson, qui le rendrait sec.",
+        "Réservez les tranches sur des assiettes chaudes. Baissez le feu, ajoutez le reste du beurre, l’ail haché et le persil pendant 30 secondes.",
+        "Versez le vinaigre avec prudence, grattez les sucs pendant 20 secondes puis retirez du feu.",
+        "Salez et poivrez le foie, nappez de persillade et servez avec les pommes vapeur."
+      ],
+      "note": "Deux parts égales de beurre calculées ; persil et vinaigre mesurés. Pommes vapeur ou à l’eau, foie saisi puis persillade rapide et déglaçage conservés. Le contrôle sanitaire passe de 70 °C approximatifs à 71 °C d’après la recommandation des abats, distincte de celle des pièces de veau entières. Aucune seconde ajoutée ou arrondie en minuteur."
+    },
+    {
+      "id": "theme-bistrot-plus-14",
+      "status": "blocked",
+      "sourceHash": "a68639ff6d5840ba5bdc320a629575546311eb81c3006984d14b16b307181d50",
+      "reviewedHash": "a68639ff6d5840ba5bdc320a629575546311eb81c3006984d14b16b307181d50",
+      "protectedRecipeSha256": "20977caefdc975e1e9644548c8b2361a5a8ead055fac07635ed75feec76fc57e",
+      "note": "une cuillère à soupe de jus est prélevée sur un citron entier sans référence de partage avec les quartiers de service. Les pommes vapeur ne sont pas listées. Épaisseur des ailes et couverture par le court-bouillon doivent être vérifiées ; ne pas transformer le beurre noisette en beurre noir ou ajouter de citron sans mesure."
+    },
+    {
+      "id": "theme-bistrot-plus-15",
+      "status": "blocked",
+      "sourceHash": "02bc2b1bcf2af4c7ae58462e96a42798ef699656826d5d3cbebfafbc96fb5e63",
+      "reviewedHash": "02bc2b1bcf2af4c7ae58462e96a42798ef699656826d5d3cbebfafbc96fb5e63",
+      "protectedRecipeSha256": "16ab43633bee69cdfedc44bf6e14147d2b8d20669f90a89b56786f94cb1b2e76",
+      "note": "le sel évoqué et les accompagnements de service sont absents de la liste. La réduction de moitié du Madère n’est pas minutée et l’état exact du jambon à l’os n’est pas défini pour son réchauffage. Les deux parts de beurre sont connues mais ne suffisent pas à valider les autres lacunes."
+    },
+    {
+      "id": "theme-bistrot-plus-16",
+      "status": "blocked",
+      "sourceHash": "925cb445276143ac30224cecca291793aa5b826d9255fb6a3749da148ba6dfd9",
+      "reviewedHash": "925cb445276143ac30224cecca291793aa5b826d9255fb6a3749da148ba6dfd9",
+      "protectedRecipeSha256": "3a11798545dfffa9e168c0ffca7e6a68ee9ad794ffbc9ebbc41846dea2433dfe",
+      "note": "l’estragon listé haché est partagé en deux moitiés mais quelques feuilles sont prélevées en plus pour la finition, sans quantité distincte ni affectation finale explicite. La réduction du vin de moitié n’a pas de repère de durée. Conserver le poulet doré puis mijoté, le contrôle à 74 °C et la crème de finition, sans inventer une troisième part d’estragon."
+    },
+    {
+      "id": "theme-bistrot-plus-17",
+      "status": "blocked",
+      "sourceHash": "33bb14700e4a4dd8cf998873483e6d51aa89016593db2105412a68a2995fa554",
+      "reviewedHash": "33bb14700e4a4dd8cf998873483e6d51aa89016593db2105412a68a2995fa554",
+      "protectedRecipeSha256": "411ed2ce7f5a7eca262e834a29ce2e99eaf35a307cfa2dd73e7695ef58604f85",
+      "note": "le bain d’un litre d’huile dépend du récipient, pas seulement des convives. Épaisseur des steaks hachés, contrôle sanitaire à cœur et durée des œufs ne sont pas établis ; cuire selon le goût ne suffit pas pour du haché. Conserver beurre pour les œufs et deux bains de friture sans réaffecter arbitrairement la graisse aux steaks."
+    },
+    {
+      "id": "theme-bistrot-plus-18",
+      "status": "blocked",
+      "sourceHash": "66840a091663df57ec8dba72f8c5152969da691d118372af80ea8e61957dfb6d",
+      "reviewedHash": "66840a091663df57ec8dba72f8c5152969da691d118372af80ea8e61957dfb6d",
+      "protectedRecipeSha256": "b2c32da4886c1ae599bde4a89393e7ef16ed818466a7741369ff4b6dcc6bbdd0",
+      "note": "la découpe des carottes et navets n’est pas précisée pour les trente minutes communes ; l’état frais ou surgelé des petits pois n’est pas indiqué. La dorure de l’agneau ne porte pas de durée par fournée. Conserver l’ajout successif des légumes et le bouquet, sans cuire tous les légumes dès le début ni inventer leurs formats."
+    },
+    {
+      "id": "theme-bistrot-plus-19",
+      "status": "blocked",
+      "sourceHash": "410a445edead8be882071824aef2bac0fae2f4e7220a31b01e7c2c9d943947fd",
+      "reviewedHash": "410a445edead8be882071824aef2bac0fae2f4e7220a31b01e7c2c9d943947fd",
+      "protectedRecipeSha256": "7c7fe6adcf887bfe81e4198bfb2f10eda6d3f2e68cc171ec87102a5a31565ecd",
+      "note": "une cuillère d’huile est prélevée sans unité explicite sur les deux cuillères à soupe listées. Le poivre est oublié et les pommes sautées ne sont pas clairement organisées pendant la cuisson des cordons bleus. Le partage du beurre est connu, mais ne pas supposer la taille de la cuillère d’huile ni changer la panure ou les escalopes de poulet."
+    },
+    {
+      "id": "theme-bistrot-plus-20",
+      "status": "blocked",
+      "sourceHash": "6f66766dbe21aebdea38af2f47fa2a9974b01adeb719d32f4e7be01e7e5c3c3b",
+      "reviewedHash": "6f66766dbe21aebdea38af2f47fa2a9974b01adeb719d32f4e7be01e7e5c3c3b",
+      "protectedRecipeSha256": "aeddc9283eab98869c3e3ecba60cc059426bc7ff460f53e111d30dbac0c75a75",
+      "note": "les pommes vapeur de service ne sont ni listées ni préparées, et les légumes du bouillon ne sont pas découpés ou affectés au service. Les deux usages du vinaigre sont mesurés dans la source mais encore figés pour six personnes. Conserver les œufs durs de gribiche, sans les remplacer par des jaunes crus ni inventer un autre accompagnement."
+    },
+    {
+      "id": "v74-reg-01",
+      "status": "blocked",
+      "sourceHash": "215cdb10e62f3a05b1a948d9dc1139a966a9c7050bbc20a023570cbd6db46c27",
+      "reviewedHash": "215cdb10e62f3a05b1a948d9dc1139a966a9c7050bbc20a023570cbd6db46c27",
+      "protectedRecipeSha256": "6f647c809df08b35f8257bd663c74aa9cd68d4563262ae8f89fb8c66599d600d",
+      "note": "eau de complément absente et terrine non dimensionnée pour le niveau aux deux tiers. L’oignon de marinade et les deux autres sont figés malgré les portions variables ; sort des aromates filtrés non explicite. Le temps annoncé n’intègre pas les six heures de marinade. Conserver les trois viandes marinées crues puis cuites ensemble, sans saisie ajoutée."
+    },
+    {
+      "id": "v74-reg-04",
+      "status": "blocked",
+      "sourceHash": "2b38dbc042728a598243e69ee577362a2239a344b52cf32108747abeaea4bddd",
+      "reviewedHash": "2b38dbc042728a598243e69ee577362a2239a344b52cf32108747abeaea4bddd",
+      "protectedRecipeSha256": "f4cc6a0df0be6eee294b04a36dc8219dc1569d495b2c59b1287a9da201d50049",
+      "note": "calibre et notice du saucisson à cuire inconnus pour le pochage de vingt-cinq minutes. La levure sèche n’est pas identifiée pour sa réhydratation et les temps de levée manquent de conditions et de repères. Le partage de trois œufs est encore figé. Le total ne distingue pas les levées et les opérations parallèles ; ne pas inventer un format de moule."
+    },
+    {
+      "id": "v74-reg-06",
+      "status": "blocked",
+      "sourceHash": "502beef5a99480934e58aca0ac364e1311c2d864d31c0b2dbd16cfd4c150a75c",
+      "reviewedHash": "502beef5a99480934e58aca0ac364e1311c2d864d31c0b2dbd16cfd4c150a75c",
+      "protectedRecipeSha256": "caed0b732dc58ed9fbc413dd667dea285f7f7535a7a69785a70a7ad5662af0c8",
+      "note": "le sel évoqué et polenta, crozets ou pommes de terre de service ne sont pas listés. Calibre et état des diots restent à identifier pour le contrôle à cœur ; les dix dernières minutes à découvert sont incluses dans les trente-cinq à quarante minutes. Ne pas augmenter ce temps de dix minutes ni cuire les diots dans un autre appareil."
+    },
+    {
+      "id": "v74-reg-07",
+      "status": "blocked",
+      "sourceHash": "b8e988dfb1b39efde00b07b914ad54fbe2d7d376be6072b7d4f17c211d48d8fc",
+      "reviewedHash": "b8e988dfb1b39efde00b07b914ad54fbe2d7d376be6072b7d4f17c211d48d8fc",
+      "protectedRecipeSha256": "ffee7c051596cfee9e3eabb0448925a56fef52a2538d2526da11f72b2e272fe3",
+      "note": "la cuisson des saucisses est proposée à la poêle ou au gril sans calibre, notice ni contrôle à cœur. Aucune graisse n’est affectée à la variante poêle puisque le beurre sert à la purée ; le poivre est oublié. Conserver le travail de la tome fraîche à feu doux, sans fromage de substitution ni beurre réaffecté."
+    },
+    {
+      "id": "v74-reg-08",
+      "status": "blocked",
+      "sourceHash": "66e3487cb4c3e421413380db963cb1b0587b6207f9d0cf5478ee700f1d810d1a",
+      "reviewedHash": "66e3487cb4c3e421413380db963cb1b0587b6207f9d0cf5478ee700f1d810d1a",
+      "protectedRecipeSha256": "da096e0b7866fdb5e2f4cd0280b24dd65bc0bcac47ca6a23317dd0cfef3af152",
+      "note": "l’alternative Morteau ou saucisse fumée n’identifie ni état ni calibre ; trente à trente-cinq minutes ne couvrent pas nécessairement la recommandation de l’IGP Morteau, dépendante de la taille. Sel de finition absent et poivre oublié. Découpe des carottes, poireaux et navets insuffisante ; ne pas supprimer le dessalage préalable de la palette."
+    },
+    {
+      "id": "v74-reg-10",
+      "status": "blocked",
+      "sourceHash": "fc0c296790a0d769874bf2cda82c493ef44f7695719635e83b590d77b200abfe",
+      "reviewedHash": "fc0c296790a0d769874bf2cda82c493ef44f7695719635e83b590d77b200abfe",
+      "protectedRecipeSha256": "3507dd525f13d4d0f0dc9befedd1039815881e83118f13577154ceb5a9651228",
+      "note": "seule une partie de la chair récupérée des légumes entre dans la farce sans mesure ni affectation du reste ; lait essoré et chapeaux des courgettes non affectés. Les 5 cl d’eau du plat manquent dans la liste. Le calibre et le contrôle à cœur de la farce doivent être précisés, sans remplacer la farce porc-bœuf ni ajouter une cuisson de l’oignon."
+    },
+    {
+      "id": "v74-reg-11",
+      "status": "blocked",
+      "sourceHash": "6df874a031ef6ba1e4bacb5bf895fe17205eafe5fc0852a0525638b79aa4ad2e",
+      "reviewedHash": "6df874a031ef6ba1e4bacb5bf895fe17205eafe5fc0852a0525638b79aa4ad2e",
+      "protectedRecipeSha256": "db324002212e43d0559fcc913ae3a82b7db726507eaabe211d88139837213ef5",
+      "note": "la liste propose du poisson déjà dessalé ou du cabillaud, tandis que les étapes repartent d’une morue salée. Les légumes n’ont ni tailles ni durées de cuisson, les quelques gouttes de citron ne définissent pas l’emploi du fruit et le poivre est oublié. Le choix de jaunes crus nécessite aussi une maîtrise sanitaire ; aucune émulsion ou dose de citron improvisée."
+    },
+    {
+      "id": "v74-reg-12",
+      "status": "blocked",
+      "sourceHash": "498bf7a8955b23da446fc260a6e8add600b98d5f8e74ca86323f4a2ef8294228",
+      "reviewedHash": "498bf7a8955b23da446fc260a6e8add600b98d5f8e74ca86323f4a2ef8294228",
+      "protectedRecipeSha256": "19cacb8bbed90d2f1d94ec14cbe3db18dc8610c28f72157f6c9cb63d38089c0a",
+      "note": "le sel de finition est absent et les conditions de trempage des haricots ne sont pas précisées. Taille des légumes, dessalage éventuel du jambon et contrôle du canard réchauffé restent à établir. Le bouillon est décrit par couverture sans récipient ni volume ; conserver les haricots secs trempés, sans les remplacer par un poids cuit."
+    },
+    {
+      "id": "v74-reg-13",
+      "status": "blocked",
+      "sourceHash": "c6d436d954c7609df5cd82caa38ffab51cd93622b8b81350382adb2e7df3006e",
+      "reviewedHash": "c6d436d954c7609df5cd82caa38ffab51cd93622b8b81350382adb2e7df3006e",
+      "protectedRecipeSha256": "169b9e15ccadb451bba9f19497f006a75dcd5bee007b5ff083faeeae63756fef",
+      "note": "les pommes de terre vapeur ou le riz de service sont absents de la liste et de l’organisation. Le piment est réparti en deux moitiés mais la seconde peut n’être utilisée qu’en partie selon le goût. La technique doit rester une découpe au couteau de 1 à 1,5 cm, pas du veau haché ; ne pas inventer de poids ou de préparation de l’accompagnement."
+    },
+    {
+      "id": "v74-reg-16",
+      "status": "blocked",
+      "sourceHash": "cf54a20d2e6e3c37d67b35ca6f76ad4afd81aed36525150a7f5facfdf68385b3",
+      "reviewedHash": "cf54a20d2e6e3c37d67b35ca6f76ad4afd81aed36525150a7f5facfdf68385b3",
+      "protectedRecipeSha256": "5dee1f1e2908847d9f41d786226a4b2853ae0fb1a943bbb52dfcf4ac2ce55fc6",
+      "note": "les six feuilles de gélatine n’ont ni poids ni force gélifiante, et 60 cl de jus sont prélevés sans mécanisme d’adaptation au rendement réel. Le refroidissement des quatre viandes n’est pas encadré ; frites, cornichons et salade manquent dans la liste. Conserver l’alternative four ou plaque sans prétendre que leurs conditions sont identiques."
+    },
+    {
+      "id": "v74-reg-18",
+      "status": "blocked",
+      "sourceHash": "da67e31e4aea904fa46482d3665fe44103bffccd3ffee8de5c2f2b100b500811",
+      "reviewedHash": "da67e31e4aea904fa46482d3665fe44103bffccd3ffee8de5c2f2b100b500811",
+      "protectedRecipeSha256": "2bb2238c309c0898cdbede907934893db0f74296eb8d4eb08712f1806f5007ba",
+      "note": "l’état cru ou cuit des crevettes n’est pas précisé alors qu’elles ne font que réchauffer en finition. Le citron sert à quelques gouttes sans affectation du reste ; sel et poivre ne sont pas tous employés, accompagnement absent. Tri des moules, calibre des filets et réduction du liquide demandent aussi des précisions, sans transformer le pochage de sole en poêlée."
+    },
+    {
+      "id": "v74-reg-19",
+      "status": "blocked",
+      "sourceHash": "0b2ab66c7f15bc13fad304ee13e6c98d6111ef440562b244e09eeb5df95564ed",
+      "reviewedHash": "0b2ab66c7f15bc13fad304ee13e6c98d6111ef440562b244e09eeb5df95564ed",
+      "protectedRecipeSha256": "67a354830b89ed2be3b74e9423611e1ea5b9535f313bc44ff9a437d7e9109e80",
+      "note": "l’eau de complément et les pommes vapeur de service sont absentes de la liste ; le récipient n’est pas défini pour le niveau de liquide. Le pied et le bouquet sont retirés, mais le sort des clous de girofle n’est pas explicité. La suggestion de réchauffage le lendemain manque de conditions de refroidissement et de réchauffage ; ne pas réduire arbitrairement la cuisson longue."
+    }
+  ]
+}

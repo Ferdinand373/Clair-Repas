@@ -7,7 +7,7 @@ import {recipeSource} from './recipe-source.mjs';
 import {recipeHash} from './validate-recipe-editorial.mjs';
 const root=resolve(dirname(fileURLToPath(import.meta.url)),'..');
 const {code,recipes,editorial}=recipeSource(readFileSync(resolve(root,'index.html'),'utf8'));
-const batchNumbers=['02','03','04','05','06','07','08','09','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28'];
+const batchNumbers=['02','03','04','05','06','07','08','09','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29'];
 const fixture={recipes:batchNumbers.flatMap(number=>JSON.parse(readFileSync(resolve(root,`scripts/recipe-editorial-batch-${number}.fixture.json`),'utf8')).recipes)};
 const slice=(a,b)=>code.slice(code.indexOf(a),code.indexOf(b,code.indexOf(a)+a.length));
 const context={window:{},$:()=>({value:'8'}),MEAL_TYPES:['mid','eve'],recipeRole:r=>r.role||r.course||'dish',isFavorite:()=>false,recipeFeedbackHTML:()=>'',recipePersonalNoteHTML:()=>''};
@@ -145,7 +145,17 @@ const timers={
   'theme-cuisine-regionale-08':[[],[5],[5],[35],[10],[5],[2]],
   'theme-cuisine-regionale-12':[[25],[8,5],[3],[],[],[25,5]],
   'theme-cuisine-regionale-13':[[],[25],[5],[],[5],[]],
-  'theme-cuisine-regionale-14':[[],[5],[8,1],[],[120],[30]]
+  'theme-cuisine-regionale-14':[[],[5],[8,1],[],[120],[30]],
+  'theme-cuisine-regionale-20':[[45],[20],[],[3],[],[]],
+  'theme-famille-dimanche-09':[[],[],[5],[75],[45],[]],
+  'theme-petits-gourmands-07':[[20],[6],[8],[],[],[20,3,8]],
+  'theme-petits-gourmands-08':[[],[],[],[22],[],[3]],
+  'theme-petits-gourmands-09':[[],[25],[],[5],[],[]],
+  'theme-petits-gourmands-10':[[4],[10],[],[],[2],[]],
+  'theme-petits-gourmands-12':[[],[5],[1,5],[],[20],[10]],
+  'theme-petits-gourmands-14':[[3],[],[7],[],[3],[]],
+  'theme-bistrot-plus-12':[[],[],[30],[10,7],[1],[],[]],
+  'theme-bistrot-plus-13':[[25],[15],[3],[],[],[],[]]
 };
 const ingredients={
   n01:['poulet','pommes de terre','paprika','huile','sel.*poivre'],
@@ -437,9 +447,19 @@ const ingredients={
   'theme-cuisine-regionale-08':['poulet','pommes','champignon','échalote','cidre','calvados','crème','beurre','sel et le poivre'],
   'theme-cuisine-regionale-12':['pommes de terre','reblochon','lardon','oignon','vin blanc','huile','poivrer','salée','salade verte'],
   'theme-cuisine-regionale-13':['pommes de terre','tome fraîche','ail','huile','persil','saler.*poivrer','salade','jambon d’Auvergne'],
-  'theme-cuisine-regionale-14':['bœuf','bière brune','oignon','pain d’épices','moutarde','beurre','farine','cassonade','bouquet garni','saler.*poivrer']
+  'theme-cuisine-regionale-14':['bœuf','bière brune','oignon','pain d’épices','moutarde','beurre','farine','cassonade','bouquet garni','saler.*poivrer'],
+  'theme-cuisine-regionale-20':['Morteau','pommes de terre','cancoillotte','ail','persil','poivrer','salée'],
+  'theme-famille-dimanche-09':['bœuf','carotte','oignon','ail','vin blanc','bouillon de bœuf','huile','bouquet garni','sel et le poivre'],
+  'theme-petits-gourmands-07':['bœuf','pommes de terre','oignon','carotte','lait','beurre','emmental','huile','salée'],
+  'theme-petits-gourmands-08':['poulet','chapelure','parmesan','œuf','farine','huile d’olive','sel'],
+  'theme-petits-gourmands-09':['cabillaud','chapelure','œuf','farine','pommes de terre','carotte','lait','beurre','huile','sel'],
+  'theme-petits-gourmands-10':['gnocchis','tomates concassées','oignon','mozzarella','parmesan','huile d’olive','basilic','sel'],
+  'theme-petits-gourmands-12':['pâtes','brocoli','jambon','beurre','farine','lait','emmental','sel'],
+  'theme-petits-gourmands-14':['œuf','épinard','emmental','lait','beurre','sel'],
+  'theme-bistrot-plus-12':['canard confites','pommes de terre','graisse de canard','ail','persil','poivrer.*saler'],
+  'theme-bistrot-plus-13':['foie','pommes de terre','beurre','huile','ail','persil','vinaigre de vin','saler.*poivrer']
 };
-assert.equal(fixture.recipes.length,895);
+assert.equal(fixture.recipes.length,945);
 let quantityChecks=0,timerCount=0;
 for(const record of fixture.recipes){
   const recipe=recipes.find(r=>r.id===record.id);
@@ -1045,6 +1065,54 @@ assert.match(carbonnade28.p[5],/Si la sauce reste trop liquide.*20 à 30 minutes
 assert.match(editorial['theme-cuisine-regionale-10'].reviewNote,/papier.*250 °C.*218 °C/);
 assert.match(editorial['theme-bistrot-brasserie-06'].reviewNote,/béchamel.*sans quantités/);
 assert.match(editorial['v39-brandade-morue'].reviewNote,/15 cl de lait.*quantité reprise/);
+const batch29=JSON.parse(readFileSync(resolve(root,'scripts/recipe-editorial-batch-29.fixture.json'),'utf8')).recipes;
+assert.equal(batch29.length,50);assert.equal(batch29.filter(r=>r.status==='corrected').length,10);
+assert.equal(batch29.filter(r=>r.status==='blocked').length,40);
+const basque29=recipes.find(r=>r.id==='theme-cuisine-regionale-18');
+const morteau29=recipes.find(r=>r.id==='theme-cuisine-regionale-20');
+const beef29=recipes.find(r=>r.id==='theme-famille-dimanche-09');
+const pasta29=recipes.find(r=>r.id==='theme-petits-gourmands-12');
+const omelette29=recipes.find(r=>r.id==='theme-petits-gourmands-14');
+const duck29=recipes.find(r=>r.id==='theme-bistrot-plus-12');
+const liver29=recipes.find(r=>r.id==='theme-bistrot-plus-13');
+for(const [r,n,proof] of [[morteau29,'sel',/eau salée/]]){
+  assert.deepEqual(r.i.at(-1),{q:null,u:'',n,k:n});
+  assert.match(batch29.find(x=>x.id===r.id).beforeSteps.join(' '),proof);
+}
+for(const count of [1,2,3,4,5,8]){
+  for(const [r,steps,q,unit] of [[pasta29,[3,4],50,' g d’emmental'],[omelette29,[0,2],5,' g de beurre'],[omelette29,[1,3],35,' g d’emmental'],[liver29,[2,4],15,' g de beurre']]){
+    for(const step of steps)assert.ok(context.recipeStepText(r.p[step],r,count).includes(context.formatQty(q*count/r.servings)+unit),r.id+' explicit share at '+count+' people');
+  }
+  assert.ok(context.recipeStepText(beef29.p[2],beef29,count).includes(context.formatQty(15*count/4)+' cl de vin blanc'));
+  assert.ok(context.recipeStepText(beef29.p[3],beef29,count).includes(context.formatQty(60*count/4)+' cl de bouillon de bœuf'));
+  assert.ok(context.recipeStepText(duck29.p[0],duck29,count).includes(context.formatQty(3*count/4)+' c. à soupe de graisse de canard'));
+  assert.match(context.recipeStepText(beef29.p[0],beef29,count),/4 cm/);
+  assert.match(context.recipeStepText(beef29.p[4],beef29,count),/45 minutes.*dix dernières minutes.*même cuisson/);
+  assert.match(context.recipeStepText(pasta29.p[4],pasta29,count),/20 minutes à 200 °C/);
+  assert.match(context.recipeStepText(duck29.p[1],duck29,count),/4 à 5 mm/);
+  for(const record of batch29.filter(r=>r.status==='blocked')){
+    const output=context.recipeHTML(recipes.find(r=>r.id===record.id),{people:count,dayIndex:1,mealType:'eve'});
+    assert.ok(output.includes(context.escapeHTML(editorial[record.id].reviewNote)),record.id+' visible precise reservation');
+    assert.doesNotMatch(output,/\{\{|undefined|NaN/);
+  }
+}
+assert.match(morteau29.p[0],/Ne pas la piquer.*entière.*eau froide.*premiers frémissements.*35 à 45 minutes.*suivre la notice/);
+assert.equal(basque29.i.length,9,'unquantified rice was not silently added to call the basquaise validated');
+assert.equal(batch29.find(x=>x.id===basque29.id).status,'blocked');
+assert.match(editorial[basque29.id].reviewNote,/riz.*absent.*aucune quantité.*renvoi au paquet/);
+assert.match(beef29.p[1],/plusieurs fournées.*pas la cuisson à cœur.*pas de durée fixe/);
+assert.match(pasta29.p[1],/5 minutes dans la même eau.*cinq minutes avant.*minuteur.*à son ajout.*moins de cinq minutes.*séparément/);
+assert.match(omelette29.p[3],/Replier ou rouler/);
+assert.match(omelette29.p[4],/71 °C/);
+assert.match(duck29.p[3],/poêle froide.*10 minutes.*5 à 7 minutes.*74 °C/);
+assert.match(duck29.p[2],/toutes les cinq minutes/);
+assert.match(liver29.p[3],/71 °C/);
+assert.match(liver29.p[4],/30 secondes/);assert.match(liver29.p[5],/20 secondes/);
+assert.match(editorial['theme-cuisine-regionale-19'].reviewNote,/20 cl.*cuillère.*taille.*jaune/i);
+assert.match(editorial['theme-famille-dimanche-07'].reviewNote,/55–58 °C.*63 °C.*pas.*garantie/);
+assert.match(editorial['theme-bistrot-plus-08'].reviewNote,/litre d’huile.*récipient/);
+assert.match(editorial['v74-reg-16'].reviewNote,/gélatine.*poids.*force gélifiante/);
+assert.match(editorial['v74-reg-18'].reviewNote,/cru ou cuit des crevettes/);
 const corrected=fixture.recipes.filter(r=>r.status==='corrected').length;
 const unchanged=fixture.recipes.filter(r=>r.status==='unchanged').length;
 console.log(`✓ Batches ${batchNumbers.join('/')}: ${fixture.recipes.length} individual review records, ${corrected} corrected, ${unchanged} unchanged, ${fixture.recipes.length-corrected-unchanged} blocked with original content preserved; ${timerCount} manually checked timers`);

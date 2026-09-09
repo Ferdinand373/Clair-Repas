@@ -328,6 +328,16 @@ P02 publié : `c87dc373c29cae1d6edb9c2ac6191004c69ba52a`, tests `34390827874` et
 
 **Cumul : 910 identifiants examinés, 328 corrigés, 572 bloqués, 10 conformes sans réécriture, 643 à examiner.** Zéro erreur éditoriale, 6 431 avertissements, 458 minuteurs et 11 610 calculs d’ingrédients des lots 02–28. Les 24 commandes du workflow passent ; six contrôles visuels du Livre et du mode cuisine aux trois formats simulés, avec défilement et dernière étape accessibles. Publication à consigner après contrôle HTTPS. Les plats restants suivent.
 
+## Publication du lot 28
+
+`10bdae223cf2e5e915e82296ef3844c1aa4ab684` publié sur `main`. Tests `34417729828`, Pages `34417729053` et déploiement `6361431874` réussis. HTTPS 200 et fichiers identiques au commit : index `17d5641d6ac3092aa95435565e0ad323f4bc7f71fe347d904f1d20025bcd12b1`, service worker `1f20fa30c169d160347b4b72af459b409fd077bdc42d4244ba73ae5741e7d6a1`. Révision chargée après actualisation normale `sha256:2e232d7a78bbe4ad415db9e1b790cabace05886f1af1e85a87d848e03e7ec11c`. Endives vérifiées en production à deux personnes : 10 cl d’eau dans la liste et l’étape, béchamel 30 g/30 g/40 cl, quatre minuteurs 20/1/5/20 et étuvage conservé. Aucune donnée effacée.
+
+## Lot 29 — cinquante plats régionaux, familiaux et de bistrot
+
+[Journal, sources et décisions](recipe-editorial-batch-29.md). 10 corrigées, 40 réservées, aucune conforme sans réécriture. Répartitions de beurre et fromage calculées, graisse du confit liée à sa mesure, cuisson des pâtes selon paquet et contrôle de la Morteau selon la source IGP. Un sel demandé dans la source rétabli sans dose inventée. Le basquaise reste réservé : le poids du riz d’accompagnement est absent des archives ; aucun riz ni quantité arbitraire ajouté.
+
+**Cumul : 960 identifiants examinés, 338 corrigés, 612 bloqués, 10 conformes sans réécriture, 593 à examiner.** Zéro erreur éditoriale, 6 224 avertissements, 492 minuteurs et 12 078 calculs d’ingrédients des lots 02–29. Les 24 commandes du workflow passent ; six contrôles visuels du Livre et du mode cuisine aux trois formats simulés, avec dernières étapes accessibles et minuteur dégagé. Publication à consigner après contrôle HTTPS. Les plats restants suivent.
+
 ## Limites des vérifications
 
 Les tests de structure, quantité, minuteurs, stockage simulé et rendu ne sont pas des essais culinaires. Les formats iPhone/PWA sont simulés, sauf mention explicite d’un appareil physique. Le total de fiches à examiner ne doit jamais être remplacé par le nombre de fiches auxquelles le style commun a été appliqué.
