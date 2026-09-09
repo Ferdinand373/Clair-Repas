@@ -288,6 +288,16 @@ P02 publié : `c87dc373c29cae1d6edb9c2ac6191004c69ba52a`, tests `34390827874` et
 
 **Cumul : 760 identifiants examinés, 267 corrigés, 488 bloqués, 5 conformes sans réécriture, 793 à examiner.** Tous les petits-déjeuners et fondamentaux sont examinés, sans prétendre résoudre leurs réserves. Zéro erreur éditoriale, 7 022 avertissements, 321 minuteurs et 8 934 calculs d’ingrédients des lots 02–24. Les 24 commandes du workflow réussissent ; affichage et dernière étape du mode cuisine contrôlés aux trois formats simulés. Publication à consigner après contrôle HTTPS. Les sauces et accompagnements restent à traiter.
 
+## Publication du lot 24
+
+`c4a920f46261ddf899a5b99a3923b53505099284` publié sur `main`. Tests `34413779450`, Pages `34413772701` et déploiement `6360799456` réussis. HTTPS 200 et fichiers identiques au commit : index `f390c82a358deb2cb59796a86d8eae38209028f23dd1639df15475f0063a7bff`, service worker `5c6588e551cc803419ae9220cc3f668c52a1773204ddd9f85e554e2b05bd92a0`. Révision chargée après mise à jour normale `sha256:8ebf1d3b9397c260e9de68577bee326511e292fdfc14fd62146704cb3169af02`. Caramel contrôlé en production à deux personnes : 25 g puis 50 g, préparation à sec inchangée et aucun minuteur arbitraire. Aucune donnée effacée.
+
+## Lot 25 — quarante sauces
+
+[Journal, sources et décisions](recipe-editorial-batch-25.md). 19 corrigées, 4 conformes sans réécriture, 17 réservées. Quantités de réduction et moutardes liées aux ingrédients, gestes du mortier et du couteau conservés. Choix d’œufs pasteurisés documenté pour les émulsions crues ou peu cuites complètes ; cuillerées ambiguës, partages de beurre et autres informations manquantes restent réservés. Aucun ingrédient ajouté ni portion modifiée.
+
+**Cumul : 800 identifiants examinés, 286 corrigés, 505 bloqués, 9 conformes sans réécriture, 753 à examiner.** Les 40 sauces sont examinées. Zéro erreur éditoriale, 6 876 avertissements, 350 minuteurs et 9 894 calculs d’ingrédients des lots 02–25. Les 24 commandes du workflow réussissent ; affichage et mode cuisine contrôlés aux trois formats simulés. Publication à consigner après contrôle HTTPS. Les accompagnements et plats restants suivent.
+
 ## Limites des vérifications
 
 Les tests de structure, quantité, minuteurs, stockage simulé et rendu ne sont pas des essais culinaires. Les formats iPhone/PWA sont simulés, sauf mention explicite d’un appareil physique. Le total de fiches à examiner ne doit jamais être remplacé par le nombre de fiches auxquelles le style commun a été appliqué.

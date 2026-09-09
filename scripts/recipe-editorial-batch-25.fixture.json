@@ -1,0 +1,440 @@
+{
+  "baselineCommit": "c4a920f46261ddf899a5b99a3923b53505099284",
+  "batch": "25",
+  "recipes": [
+    {
+      "id": "s401",
+      "status": "unchanged",
+      "sourceHash": "9e1f897c8cfd0914b350873a676947fb7284ccfce50131cdbfe2617fea1a84e1",
+      "reviewedHash": "9e1f897c8cfd0914b350873a676947fb7284ccfce50131cdbfe2617fea1a84e1",
+      "protectedRecipeSha256": "2eb51a7145fcd972be4c191381f98724e9024ec5b4d25f6b872af1b0a73d7707",
+      "note": "Les quatre étapes sont déjà suffisantes : roux sans coloration, lait froid progressif, frémissement et repère nappant, tous les assaisonnements employés. Texte culinaire entièrement conservé ; volume de rendement historique approximatif, non mesuré."
+    },
+    {
+      "id": "s402",
+      "status": "corrected",
+      "sourceHash": "832605fff31d70b9f902de252dbe3f69a2a958250b2b79b7c4b0caf2411458e3",
+      "reviewedHash": "204011370fca0387febc79fc73b2db352ad9d85a7b6de27edb7e57cd166100c3",
+      "protectedRecipeSha256": "8761d89e7e412a788e36ca9a334cb2f85f777e01f8df6e2ee6bd29f3ca3e858c",
+      "beforeSteps": [
+        "Faire fondre l’oignon ciselé 6 minutes à feu moyen-doux dans l’huile, sans coloration.",
+        "Ajouter l’ail 30 secondes puis les tomates, l’origan, le sel et le poivre.",
+        "Laisser frémir 25 minutes à feu doux, sans couvercle, en remuant trois fois.",
+        "Mixer si une texture lisse est souhaitée ; la sauce terminée doit être épaisse et nappante."
+      ],
+      "note": "Oignon et ail pelés et coupés avant cuisson ; suage sans coloration, trente secondes d’ail et réduction à découvert conservés. Pas de sucre ni d’eau ajoutés, mixage toujours facultatif."
+    },
+    {
+      "id": "s403",
+      "status": "corrected",
+      "sourceHash": "885ea7d6586db9ec17b43e3655aa0c47b71874c9055b4cf33ec3ae02d299756a",
+      "reviewedHash": "17939c298131811c702894ec3e8c446d8b07bdf66723bc5c3820aac5a53fe4a4",
+      "protectedRecipeSha256": "ecc7d400b6d086b4886735ed582ebd0e69d1a671e2de3f8b2cb6ab2878e33116",
+      "beforeSteps": [
+        "Faire fondre l’échalote 3 minutes à feu moyen dans le beurre, sans la brunir. Ajouter le poivre et chauffer 30 secondes.",
+        "Verser le cognac hors de la flamme, remettre sur feu moyen et laisser réduire presque à sec pendant 2 minutes.",
+        "Ajouter le fond de veau et réduire de moitié, puis verser la crème.",
+        "Laisser frémir 3 à 4 minutes à feu doux ; la sauce doit napper le dos d’une cuillère. Saler avec prudence."
+      ],
+      "note": "Échalote préparée, cognac mesuré versé loin de la flamme sans flambage, réduction du fond explicitée avant la crème. Tous les ingrédients restent identiques ; durée variable de concentration du fond non inventée."
+    },
+    {
+      "id": "s404",
+      "status": "blocked",
+      "sourceHash": "0eca9ab15ca2a2895234a1371b9ab367136ab68dec9073f2576b856ddd77699c",
+      "reviewedHash": "0eca9ab15ca2a2895234a1371b9ab367136ab68dec9073f2576b856ddd77699c",
+      "protectedRecipeSha256": "eb45eacc82ed3e04a8cdb5ed9a5144622d93b433425b1ebd535eaeca164aaa1a",
+      "note": "la réduction « aux deux tiers » ne précise pas s’il faut conserver deux tiers du volume ou en évaporer deux tiers. Le beurre initial de 5 g est figé malgré les convives et sel/poivre ne sont pas employés. Le partage 5 g puis reste est connu, mais le degré de réduction doit être confirmé avant réécriture."
+    },
+    {
+      "id": "s405",
+      "status": "corrected",
+      "sourceHash": "dac62cde36a93f1490a4a8995321d03c1dcc198b6f1ee11eb0f15e97f7c21b5c",
+      "reviewedHash": "fccce1d5573a5bbb42eedf8f64e229d4b3646058df750ffe0d66803cf4f8547c",
+      "protectedRecipeSha256": "1d3f5da931b72e74f8df672318e679c98471a729562a823569ce4e8cdbfc575b",
+      "beforeSteps": [
+        "Faire fondre l’échalote 3 minutes à feu moyen-doux dans le beurre.",
+        "Ajouter le bouillon et réduire de moitié pendant 3 minutes à feu moyen.",
+        "Verser la crème et laisser frémir 3 minutes à feu doux.",
+        "Retirer du feu, incorporer les deux moutardes et poivrer ; ne plus faire bouillir afin de garder une saveur nette et une texture lisse."
+      ],
+      "note": "Échalote pelée et hachée, réduction du bouillon repérée, deux moutardes mesurées et ajoutées hors du feu. L’ordre et les trois cuissons de trois minutes restent distincts, sans ajout de sel absent de la liste."
+    },
+    {
+      "id": "s406",
+      "status": "corrected",
+      "sourceHash": "81a92c3fa15e7a01388ee6f012842fa0991118871ef43643dc9363e39edf1ea8",
+      "reviewedHash": "4526affa69474004fa0c4988d5faf165d9bcb85217f6bdb02c7cab0c32b84d1c",
+      "protectedRecipeSha256": "5186724ac52cd228083014c062fa0dea2f775c3fc5ec25cad14844184319fef5",
+      "beforeSteps": [
+        "Émincer les champignons et les saisir 6 minutes à feu assez vif dans le beurre, jusqu’à évaporation de leur eau.",
+        "Ajouter l’échalote et cuire 3 minutes à feu moyen.",
+        "Verser le bouillon et réduire de moitié, puis ajouter la crème et frémir 4 minutes à feu doux.",
+        "Saler, poivrer et ajouter le persil ; la sauce doit être onctueuse avec des morceaux de champignons encore visibles."
+      ],
+      "note": "Nettoyage, découpe et persil préparés ; champignons saisis avant l’échalote, fond réduit avant la crème. Les morceaux et le poêlage au beurre sont conservés, sans remplacer la saisie par un pochage."
+    },
+    {
+      "id": "s407",
+      "status": "blocked",
+      "sourceHash": "ae92b94e06c1f9738d26ef2d1354a167ab76d95ff95e3b25833a1668a0d7ce60",
+      "reviewedHash": "ae92b94e06c1f9738d26ef2d1354a167ab76d95ff95e3b25833a1668a0d7ce60",
+      "protectedRecipeSha256": "b276bdffadc4dda7c6e531269d56f10439a005932675e55aaa64760c706d8f67",
+      "note": "les deux cuillerées de réduction n’ont pas de taille de cuillère ni de règle d’adaptation. Le poivre blanc listé est oublié. La référence externe ajoute de l’eau et utilise une autre conduite du feu : elle ne justifie pas de remplacer la méthode CR à la crème, sans ébullition."
+    },
+    {
+      "id": "s408",
+      "status": "corrected",
+      "sourceHash": "70ee8610146f13a40d8c6f396c02afeb4d0afd843557359168a92e3ec12b9bb2",
+      "reviewedHash": "35de3b35b483f32be3e3867dbcd8349b00d6f66f14867a1a46fe5c73fab7157d",
+      "protectedRecipeSha256": "4cad2274ac961630c2aef5574ca76de698181bf5de8a13143465f28e9cd5f822",
+      "beforeSteps": [
+        "Faire fondre le beurre puis le garder tiède. Fouetter les jaunes avec l’eau dans un bol au bain-marie très doux.",
+        "Continuer à fouetter 3 à 4 minutes : le mélange doit épaissir sans dépasser environ 65 °C.",
+        "Verser le beurre tiède en filet en fouettant constamment, puis ajouter le citron.",
+        "Saler et poivrer ; servir immédiatement. La sauce doit être lisse, mousseuse et nappante, jamais huileuse."
+      ],
+      "note": "Adaptation sanitaire explicite et sourcée : jaunes issus d’œufs pasteurisés pour l’émulsion peu cuite. Eau, citron, beurre fondu entier, bain-marie doux et plafond source de 65 °C préservés ; pas de beurre clarifié imposé ni de cuisson arbitraire à 71 °C qui changerait la sauce."
+    },
+    {
+      "id": "s409",
+      "status": "blocked",
+      "sourceHash": "57210d5e205d691dbb325fcc704da91ce0c8c15e63d8936d659e8284d8cedc65",
+      "reviewedHash": "57210d5e205d691dbb325fcc704da91ce0c8c15e63d8936d659e8284d8cedc65",
+      "protectedRecipeSha256": "23de25f8048bddfe9f6fef39a9d4b146539d8ac7e00455411c9988b19646bd7a",
+      "note": "les deux cuillerées de réduction ne sont pas mesurées et le bain-marie n’a pas de température contrôlée. Le choix sanitaire des jaunes et les conditions de service de cette sauce peu cuite doivent être définis. Ne pas remplacer ses proportions par celles d’une béarnaise externe au beurre clarifié."
+    },
+    {
+      "id": "s410",
+      "status": "blocked",
+      "sourceHash": "1c515b6f8f56e119d1105da83fb454b58cc5505ef17ac39e24bd9d4fb6793b88",
+      "reviewedHash": "1c515b6f8f56e119d1105da83fb454b58cc5505ef17ac39e24bd9d4fb6793b88",
+      "protectedRecipeSha256": "a66a04ae33d04a927e2b0165493b7b2fe379000077398e12e1e0f11e626dbd87",
+      "note": "5 g de beurre sont utilisés au début mais toute la quantité froide semble à nouveau demandée à la fin, sans désigner le reste. « Réduire aux deux tiers » reste ambigu. Confirmer le partage et le volume visé, sans ajouter de moelle absente de cette version."
+    },
+    {
+      "id": "s411",
+      "status": "corrected",
+      "sourceHash": "4365bc6da7236b99e61fa63d08ec91fe2b1cbea617b7b7163a3b6e816fc11535",
+      "reviewedHash": "caac5ae0fa6e772f352d14163f544fa41fff86033ec53b25781e4d87f24dc529",
+      "protectedRecipeSha256": "7dbd2fae72ca2cb1d52ab5adb5eb32ddf6aa1a45c7841e7177437e93df8ae832",
+      "beforeSteps": [
+        "Sortir tous les ingrédients 15 minutes avant afin qu’ils soient à température proche.",
+        "Fouetter jaune, moutarde, sel et poivre dans un bol stable.",
+        "Verser l’huile d’abord goutte à goutte puis en fin filet, en fouettant constamment jusqu’à épaississement.",
+        "Ajouter le vinaigre pour détendre et rectifier l’assaisonnement ; la mayonnaise doit former un bec ferme sur le fouet."
+      ],
+      "note": "Jaune pasteurisé recommandé par la FDA pour la mayonnaise crue, sans changer le montage ni les proportions. Quinze minutes de mise à température source conservées et séparées du travail ; huile et vinaigre liés à la liste, pas d’eau ajoutée."
+    },
+    {
+      "id": "s412",
+      "status": "corrected",
+      "sourceHash": "d385e300ecc9cdaedfce5bf966b942c45279f0b4551b45a80a67cd1b73a8f628",
+      "reviewedHash": "89f275a7e20e5fc06474769a12be723bddecdbea57938f6a7788e8d4ff159ccb",
+      "protectedRecipeSha256": "717155a43a7b95500c4c114cc3e929bdfadb443daae5912457f12adf1b1b8c28",
+      "beforeSteps": [
+        "Écraser l’ail avec le sel au mortier jusqu’à obtenir une pâte parfaitement lisse.",
+        "Ajouter le jaune et mélanger 30 secondes.",
+        "Incorporer l’huile très progressivement, d’abord goutte à goutte puis en filet, en fouettant sans interruption.",
+        "Ajouter le citron ; la sauce doit être très épaisse, lisse et tenir à la cuillère."
+      ],
+      "note": "Aïoli au jaune conservé, sans le transformer en autre version sans œuf. Ail pelé puis écrasé au mortier, huile progressive et citron dosé ; jaune pasteurisé choisi pour la sécurité de la sauce crue, conformément à la FDA."
+    },
+    {
+      "id": "s413",
+      "status": "corrected",
+      "sourceHash": "8d549f08730da9e3c7772d77c6bbf1bfc31e847d21c68cd15dd6a51f2ac26480",
+      "reviewedHash": "8283d17921ea7f696506fb508d677bf0c61e25c33e0ddec3c47a46ae4151fcc2",
+      "protectedRecipeSha256": "991c35ae7ac6f0c8732750b2d21111d2271fd6186643054f8c28f47d1825588c",
+      "beforeSteps": [
+        "Égoutter puis hacher très finement cornichons et câpres. Ciseler échalote et herbes.",
+        "Mélanger la mayonnaise avec le citron et le poivre.",
+        "Incorporer tous les éléments sans trop battre afin de garder une texture épaisse.",
+        "Réserver 30 minutes au réfrigérateur si possible ; la sauce doit être fraîche, acidulée et riche en petits morceaux."
+      ],
+      "note": "Condiments égouttés, échalote pelée et herbes préparées ; mayonnaise déjà prête et froide, sans reconstituer sa recette. Repos facultatif de trente minutes distingué du travail et conservé comme tel."
+    },
+    {
+      "id": "s414",
+      "status": "unchanged",
+      "sourceHash": "20518d3f3ed7e3962e8c36e20ead792e95dc398a237170859edf6c78f8aad09a",
+      "reviewedHash": "20518d3f3ed7e3962e8c36e20ead792e95dc398a237170859edf6c78f8aad09a",
+      "protectedRecipeSha256": "c097c5f8f46620aed829e53b0fa803006721cf41ac5cef2b8c8333d24b6a2400",
+      "note": "Quatre étapes courtes déjà suffisantes, avec mayonnaise et ketchup prêts, ordre des ajouts, vingt secondes sans minuteur arrondi et attente au froid. Aucun ingrédient oublié, aucune cuisson ni préparation de mayonnaise ajoutée."
+    },
+    {
+      "id": "s415",
+      "status": "blocked",
+      "sourceHash": "2ce9fb94f6168e353c8c1218626464fd069dd6c9642f53921999cc47d7d03f35",
+      "reviewedHash": "2ce9fb94f6168e353c8c1218626464fd069dd6c9642f53921999cc47d7d03f35",
+      "protectedRecipeSha256": "3b39fe7dfa27a5c119a82c9f956ea64223b245179d38d1900986999737fe2b13",
+      "note": "les deux cuillerées de jus de citron n’ont pas de taille, alors qu’un citron entier est listé. Monder reste inexpliqué et peut impliquer une cuisson malgré l’appareil Sans cuisson. Confirmer la mesure et la technique facultative, sans imposer une quantité de jus arbitraire."
+    },
+    {
+      "id": "s416",
+      "status": "corrected",
+      "sourceHash": "96074ed46bf5540a214f222bb3d32938f0f8482b5e29cedee5a86654d8465002",
+      "reviewedHash": "2b8df37aedc55a9606f66de83108efd7ad1cf8f74e45afa3aad40e13bdd1c513",
+      "protectedRecipeSha256": "633d986cea4778b21a0d594124907ea0fab474aacb729d512dd4f2d17ea26fad",
+      "beforeSteps": [
+        "Laver puis sécher parfaitement le basilic pour éviter d’oxyder la sauce.",
+        "Piler ail, sel et pignons au mortier jusqu’à obtenir une pâte.",
+        "Ajouter le basilic par petites poignées, puis le parmesan.",
+        "Incorporer l’huile progressivement ; le pesto doit rester épais, granuleux et vert, sans être chauffé."
+      ],
+      "note": "Mortier et texture granuleuse conservés, ail pelé et parmesan râpé explicités. Basilic séché sans prétendre que cela empêche à lui seul l’oxydation ; ni torréfaction des pignons ni citron ajoutés."
+    },
+    {
+      "id": "s417",
+      "status": "unchanged",
+      "sourceHash": "e822e7c4e469814b12327257095dfa44d9f50d7df6c89344a9d306d1510a6254",
+      "reviewedHash": "e822e7c4e469814b12327257095dfa44d9f50d7df6c89344a9d306d1510a6254",
+      "protectedRecipeSha256": "fd87f50e2b74aead5e824c067e7804a5b48e74125d74f4edba5facf99e0cc92d",
+      "note": "Quatre étapes déjà claires : sel dissous dans le vinaigre, moutarde avant huile, trente secondes de fouet, mélange avant service. Toutes les quantités sont dans la liste et aucune fraction figée ne figure dans les étapes."
+    },
+    {
+      "id": "s418",
+      "status": "blocked",
+      "sourceHash": "661d10ef467eb139cb89be94e5a65008e578c567a2bc943a4f4c9892b70b2635",
+      "reviewedHash": "661d10ef467eb139cb89be94e5a65008e578c567a2bc943a4f4c9892b70b2635",
+      "protectedRecipeSha256": "089460c2a55379c2e9c3d70f892d236a22fffe31278bdba5344ee65655774602",
+      "note": "la cuillerée d’eau de correction n’est ni listée ni mesurée. Confirmer la taille et le caractère facultatif avant de l’ajouter ; ne pas remplacer ce geste par une nouvelle proportion de vinaigre ou de miel."
+    },
+    {
+      "id": "s419",
+      "status": "blocked",
+      "sourceHash": "bc5e2bd5797b6adef2abc377fc5c4dc0a27f8098b813445efe61f0edd36c1c9c",
+      "reviewedHash": "bc5e2bd5797b6adef2abc377fc5c4dc0a27f8098b813445efe61f0edd36c1c9c",
+      "protectedRecipeSha256": "38691e08aa9a3270c68d653260cbe64a2fb25c4ba0811016f6fae74b683cc4cb",
+      "note": "une cuillerée de jus de citron est demandée sans taille, avec un citron entier dans la liste et son zeste. La portion de jus réellement utilisée doit être retrouvée, sans verser automatiquement tout le citron ni inventer une cuillère à soupe."
+    },
+    {
+      "id": "s420",
+      "status": "blocked",
+      "sourceHash": "3453fc1ec006aba162b67102bc3e07bfa6442a08a859884d523d5a1b3350a514",
+      "reviewedHash": "3453fc1ec006aba162b67102bc3e07bfa6442a08a859884d523d5a1b3350a514",
+      "protectedRecipeSha256": "d65ab48df7d83bb512bc137d2d1112d8d7cb9c85cc02f1b921e55cbf22b5fef5",
+      "note": "les deux cuillerées de bouillon réservées à la fécule et celles de jus de citron ne précisent pas leur unité. Sel et poivre listés ne sont pas utilisés. Il faut retrouver les deux mesures pour lier correctement les parts dynamiques, sans supposer qu’elles désignent la même cuillère."
+    },
+    {
+      "id": "s421",
+      "status": "corrected",
+      "sourceHash": "2293323ebb869437fb6fa8ebf5b9518f32532f9685485872e0da9840210c91f4",
+      "reviewedHash": "1b4f934406b3b564a4c9cd32fc89acc2446868fb99d96ca3cbc0727e2029c163",
+      "protectedRecipeSha256": "a20c4dfb3bd5d035d552171de168c86521ad95676d9f92f358708c359b651d98",
+      "beforeSteps": [
+        "Cuire les œufs 10 minutes, les refroidir puis séparer jaunes et blancs.",
+        "Écraser les jaunes avec la moutarde et le vinaigre, puis incorporer l’huile progressivement comme pour une mayonnaise.",
+        "Hacher les blancs, câpres, cornichons et herbes puis les incorporer à la sauce.",
+        "Saler, poivrer et servir à température ambiante avec tête de veau, poisson froid, légumes ou pied de cochon."
+      ],
+      "note": "Départ de cuisson des œufs explicité dans l’eau bouillante et résultat dur contrôlé. Refroidissement, écalage, blancs et jaunes séparés, condiments préparés ; huile mesurée et émulsion expliquée sans jaune cru ajouté."
+    },
+    {
+      "id": "s422",
+      "status": "corrected",
+      "sourceHash": "e0afc19b0009190def2d90f9b81d2cd74172f0f704eefdcb2a88f6604b8c824d",
+      "reviewedHash": "97f64dbac308b372adf2b60a7b060ac3df6f68bd7c0c89ee142c5760c034579e",
+      "protectedRecipeSha256": "20155897c76f840107bddbbe8e4e2eef17e17b610f2b129b9561e69efdeab7b7",
+      "beforeSteps": [
+        "Dissoudre le sel dans le vinaigre puis ajouter moutarde et poivre.",
+        "Verser l’huile en fouettant pour former une vinaigrette bien liée.",
+        "Ciseler très finement échalote, câpres et herbes.",
+        "Mélanger l’ensemble et laisser reposer 15 minutes avant de servir."
+      ],
+      "note": "Vinaigrette conservée sans cuisson, égouttage des câpres et préparation des herbes explicités. Repos de quinze minutes désormais séparé des douze minutes annoncées de travail ; aucune mayonnaise ajoutée."
+    },
+    {
+      "id": "s423",
+      "status": "corrected",
+      "sourceHash": "2b438b9b9ed02665d7bc95c54c6b954d1a8f14ea9d5e76e39b00b827d9c0e9c0",
+      "reviewedHash": "cfa1beb09515be51bb4a5f7e16187704d22198fc2b15e9cb5f60ec8625550165",
+      "protectedRecipeSha256": "ead1d3d0b435a665568b342a22db7a893f708d8cb2a53892434e7a5adc55d98c",
+      "beforeSteps": [
+        "Hacher très finement câpres, cornichons et échalote.",
+        "Mélanger la mayonnaise avec la moutarde et le citron.",
+        "Ajouter les condiments et les herbes ciselées.",
+        "Réserver 20 minutes au frais ; la sauce doit rester épaisse et bien relevée."
+      ],
+      "note": "Mayonnaise maison déjà prête conservée comme ingrédient, avec rappel des œufs pasteurisés. Égouttage et herbes explicités, repos vingt minutes ajouté au temps affiché ; pas de supplément de sel ou poivre absent."
+    },
+    {
+      "id": "s424",
+      "status": "blocked",
+      "sourceHash": "c14d6b79bf89a12987a403064d86d354634b83f8a9bcc51500e5c6a35d0acae4",
+      "reviewedHash": "c14d6b79bf89a12987a403064d86d354634b83f8a9bcc51500e5c6a35d0acae4",
+      "protectedRecipeSha256": "081ba356c42c438208772bac9f45eb54a15418ffe4fed642f3e9effedfe9f203",
+      "note": "les deux cuillerées de réduction ne sont pas définies, le beurre seulement tiède n’est pas explicitement fondu et le bain-marie n’a pas de repère de température. Poivre oublié et choix sanitaire des jaunes à préciser ; ne pas prétendre résoudre ces points par le seul renvoi à une béarnaise."
+    },
+    {
+      "id": "s425",
+      "status": "blocked",
+      "sourceHash": "41e3c6ad8b94275ad7e790f986d44da5009ce44b059de00d21c3ec5207fa9a10",
+      "reviewedHash": "41e3c6ad8b94275ad7e790f986d44da5009ce44b059de00d21c3ec5207fa9a10",
+      "protectedRecipeSha256": "37f530049e09ede65fdaff006db4d91cb0534cc060ff2b0fb8b443371e0cf33c",
+      "note": "la mesure des deux cuillerées de jus d’orange, la fonte du beurre, la température du bain-marie et le choix sanitaire des jaunes ne sont pas définis. Le poivre blanc listé est oublié. Conserver l’orange sanguine ou ordinaire prévue, sans inventer son rendement en jus."
+    },
+    {
+      "id": "s426",
+      "status": "blocked",
+      "sourceHash": "4a2918649850ce29fd8c76c7d7ed02e7c8a80b8915423ab52cd922397278b3c3",
+      "reviewedHash": "4a2918649850ce29fd8c76c7d7ed02e7c8a80b8915423ab52cd922397278b3c3",
+      "protectedRecipeSha256": "9c075f84c86a9af31af64a6d93e32039f9aa325de3df8ca0d2e169b83ce4596a",
+      "note": "sel et poivre sont oubliés et le jaune ajouté hors du feu n’a pas de conditions sanitaires de service ou de cuisson ultérieure. Le rendement de 25 cl est à confirmer face aux 45 cl de lait et au fromage, sans réduction décrite. Ne pas retirer le jaune ni remplacer cette liaison par une cuisson prolongée improvisée."
+    },
+    {
+      "id": "s427",
+      "status": "blocked",
+      "sourceHash": "c67d992bbe68e5987c0fb639a16bb5ee9c6521e29ccf23fe5e50c27a75b9d698",
+      "reviewedHash": "c67d992bbe68e5987c0fb639a16bb5ee9c6521e29ccf23fe5e50c27a75b9d698",
+      "protectedRecipeSha256": "d23cdcb1cdc1e5f2b5d6ee3b5c8f79f02fe01ad12a4c6e5437b26b629c8c74c9",
+      "note": "beurre d’écrevisse et bisque sont proposés à volume égal sans préciser le produit ni sa concentration, alors qu’ils ne sont pas équivalents. Roux blond et rendement de 25 cl pour 45 cl de liquides sont à confirmer. La référence de Nantua emploie une base différente ; ne pas remplacer le fumet CR par du lait pour lui ressembler."
+    },
+    {
+      "id": "s428",
+      "status": "blocked",
+      "sourceHash": "d7b1cba910850b630a53e9f854eba8ba563f514ed2d454f8b1cfbab81a26f466",
+      "reviewedHash": "d7b1cba910850b630a53e9f854eba8ba563f514ed2d454f8b1cfbab81a26f466",
+      "protectedRecipeSha256": "9b0f382ad6d1637dd453e0d51e17ebef91429ba33305fe48b9cff36a5a6e872b",
+      "note": "la coloration du roux blond très clair n’est pas expliquée et le rendement final de 25 cl reste à confirmer pour 45 cl de fond et 12 cl de crème, sans réduction mesurée. Ne pas réduire arbitrairement plus longtemps ni changer les proportions pour atteindre ce rendement."
+    },
+    {
+      "id": "s429",
+      "status": "corrected",
+      "sourceHash": "c129b6586ce94e371d56e06f99f9e083956211b3e89f36f7b569617a8b92520c",
+      "reviewedHash": "73593dcc8a0608cf262495b3b389baee6272477d83d6c3a04814e758a54982d4",
+      "protectedRecipeSha256": "83316c52e1d57f20dac17c0d3d576d36470c0dd6e8f7a35c79bd445d52ab1586",
+      "beforeSteps": [
+        "Faire réduire les échalotes et le vin blanc des deux tiers.",
+        "Ajouter le fumet et réduire à nouveau de moitié.",
+        "Verser la crème et laisser frémir 3 à 4 minutes.",
+        "Filtrer puis incorporer le beurre froid hors du feu ; servir avec poisson poché ou rôti."
+      ],
+      "note": "Les réductions successives sont distinguées : vin diminué des deux tiers puis ensemble vin-fumet diminué de moitié. Beurre ajouté uniquement après filtrage, sel et poivre listés enfin employés. Pas de suage dans une matière grasse absente."
+    },
+    {
+      "id": "s430",
+      "status": "blocked",
+      "sourceHash": "08e3bfd493ae39b7af5a114eed7b8e9fd7d9f79e0e3a32c5569e2db6882a4a24",
+      "reviewedHash": "08e3bfd493ae39b7af5a114eed7b8e9fd7d9f79e0e3a32c5569e2db6882a4a24",
+      "protectedRecipeSha256": "6cb63717aec988375fd4c2daf866b431ac39a1ab9dcdd87cc8c67d8206ca3a8b",
+      "note": "une cuillère à café de citron est listée mais seules quelques gouttes sont utilisées, sans affectation du reste. Le degré de réduction et le résultat final ne suffisent pas à confirmer le rendement. Conserver le sauté au beurre et le choix cidre ou vin blanc, sans transformer le tout en pochage."
+    },
+    {
+      "id": "s431",
+      "status": "corrected",
+      "sourceHash": "c7cd0674561abe1bd734efba5e9599078865b4633af20e85c126309306922649",
+      "reviewedHash": "4706bc9258622dd997598d54aa30e291bede77b657283dcab355f5c3643e253e",
+      "protectedRecipeSha256": "dd2f10be2a9963d294a32307dd0e03648d82db4a8d0bc5f92c4ad569088d8b66",
+      "beforeSteps": [
+        "Faire fortement revenir les carapaces dans l’huile 5 minutes.",
+        "Ajouter carotte, échalote et ail puis cuire 4 minutes ; déglacer au cognac puis au vin blanc.",
+        "Ajouter tomates, fumet et estragon puis mijoter 25 minutes.",
+        "Écraser les carapaces, filtrer finement et faire réduire jusqu’à consistance nappante."
+      ],
+      "note": "Légumes coupés et sauté des carapaces conservés avant déglaçage, sans flambage ajouté. Cognac versé hors de la flamme, réduction et filtration fine expliquées ; estragon et assaisonnement présents dans la liste utilisés."
+    },
+    {
+      "id": "s432",
+      "status": "blocked",
+      "sourceHash": "067a9548028ac5abc2948cb2c96c26346329e3a6ec0de3042f164eb4037d10b4",
+      "reviewedHash": "067a9548028ac5abc2948cb2c96c26346329e3a6ec0de3042f164eb4037d10b4",
+      "protectedRecipeSha256": "f9eb830b938148aad70fa1fd386b549c5a292f1298fbfcb7992b93e4da9da2ef",
+      "note": "les échalotes doivent fondre sans matière grasse indiquée, alors que le beurre froid paraît entièrement réservé au montage final. Le partage du beurre et le sens de la réduction aux deux tiers sont à retrouver ; sel et poivre sont également oubliés."
+    },
+    {
+      "id": "s433",
+      "status": "corrected",
+      "sourceHash": "d3d0db38719e85d76d58328310974ad938d904bc303c4c9f3ae1557c6a55ee38",
+      "reviewedHash": "f3efd5c11a5367c24c945f24fe90fd122ba5b6c6df6b1cd4a21fbe4e966a2860",
+      "protectedRecipeSha256": "2b78fb74ea92b785d42d2b8b0c7d97becab8ba3c297ddbdf1a62f2864fe0a588",
+      "beforeSteps": [
+        "Faire fondre l’échalote dans le beurre 3 minutes.",
+        "Ajouter le vin blanc et réduire de moitié.",
+        "Verser le fond de veau et réduire 5 minutes.",
+        "Hors du feu, ajouter moutarde et cornichons en julienne ; servir avec porc ou saucisse."
+      ],
+      "note": "Échalote hachée, cornichons égouttés et taillés en fins bâtonnets, poivre listé employé. Moutarde toujours hors du feu ; vin réduit avant le fond, sans beurre supplémentaire ni cuisson de porc dans cette fiche de sauce."
+    },
+    {
+      "id": "s434",
+      "status": "blocked",
+      "sourceHash": "7dd27f134b09cc17a862ed448e7c7dbb51d3205373a2a4dcd3bb5fe6488d3e49",
+      "reviewedHash": "7dd27f134b09cc17a862ed448e7c7dbb51d3205373a2a4dcd3bb5fe6488d3e49",
+      "protectedRecipeSha256": "ad5643fd77019d312add160764c3971c9f334bd5cacd8a8c6816ac535e221861",
+      "note": "la noisette de beurre initiale n’est pas mesurée et le beurre froid final n’est pas désigné comme le reste. Sel et poivre listés ne sont pas employés. Confirmer cette répartition sans inventer une dose de suage ni ajouter du beurre à la liste."
+    },
+    {
+      "id": "s435",
+      "status": "blocked",
+      "sourceHash": "43986a7c58e7533479dc2ab617a72e04f7dc4379b8d9fd242b82727d0719e5fc",
+      "reviewedHash": "43986a7c58e7533479dc2ab617a72e04f7dc4379b8d9fd242b82727d0719e5fc",
+      "protectedRecipeSha256": "67aa45d4e6148529d5258efb2e4af1ccab1c6bce1d8ec9761965c260aebcfe6e",
+      "note": "la finition demande de rectifier un assaisonnement non listé, sans dire s’il s’agit de sel, de poivre ou d’un autre condiment. La durée et le repère de cuisson de l’échalote après les champignons ne sont pas donnés. Ne pas ajouter automatiquement du sel ni modifier le fond pour combler ces lacunes."
+    },
+    {
+      "id": "s436",
+      "status": "corrected",
+      "sourceHash": "2dabc5a7ea1e0142957b682807860940baf35741925b7e1f016f588d56eb1346",
+      "reviewedHash": "0642010d5e4407b8f65f5578acc5f8467a504b498d10b7ae733989316ea41cb3",
+      "protectedRecipeSha256": "0990e81ec165028a5227ea65565a1665d00800961918edf4330ae26b6c0d4d9c",
+      "beforeSteps": [
+        "Faire réduire échalote, vin rouge, vinaigre et laurier des deux tiers.",
+        "Ajouter le fond de veau et réduire encore 8 minutes.",
+        "Ajouter gelée de groseille et crème puis frémir 2 minutes.",
+        "Filtrer, poivrer et servir avec gibier ou viande rôtie."
+      ],
+      "note": "Réduction directe sans matière grasse conservée, laurier filtré et gelée mesurée. Les deux tiers s’appliquent au liquide de départ, sans durée de réduction inventée ; le fond puis la crème gardent leurs huit et deux minutes."
+    },
+    {
+      "id": "s437",
+      "status": "unchanged",
+      "sourceHash": "40cc66225b4f78a39618711997452452cc3a391b3358b88061cfbe19cc0b6920",
+      "reviewedHash": "40cc66225b4f78a39618711997452452cc3a391b3358b88061cfbe19cc0b6920",
+      "protectedRecipeSha256": "684e404c95de2bf7b0aa54d649e418847a36848ce2cf6e459216b7630ca140d8",
+      "note": "Sauce simple déjà claire : fromage émietté dans une petite casserole, fonte douce, crème frémissante trois à quatre minutes et moutarde hors du feu. Tous les ingrédients utilisés, aucune température précise ou cuisson supplémentaire à inventer."
+    },
+    {
+      "id": "s438",
+      "status": "corrected",
+      "sourceHash": "9e162e563fc32cda0821f37066a2c91deff9ce42ebcaf0cb8f1580f9bba703e8",
+      "reviewedHash": "6734ba04dffd4e79abe5f9cc850ab5e1e54c0a53e34d724190afb196ce6dc922",
+      "protectedRecipeSha256": "3ac32aafc457a82f662771bf6fc91bd585bccb127722d10cea38ac25862c92d1",
+      "beforeSteps": [
+        "Mixer grossièrement poivron, tomate, ail et amandes.",
+        "Ajouter vinaigre, paprika et sel.",
+        "Verser l’huile progressivement en mixant par impulsions.",
+        "Garder une texture légèrement granuleuse ; servir avec légumes grillés, poisson ou pommes de terre."
+      ],
+      "note": "Poivrons et amandes déjà grillés, tomate déjà rôtie ou pelée explicités comme ingrédients préparés ; aucune cuisson au four ajoutée à Sans cuisson. Ail pelé, quantités liées et mixage bref granuleux conservé."
+    },
+    {
+      "id": "s439",
+      "status": "corrected",
+      "sourceHash": "7610342bc1d04c49c2b167e07f624126ef05d12efcfb9a5fd3a3af0baf0f11b1",
+      "reviewedHash": "60410d9f867c65e00008e4a02ba020a4d3b007d057d929b5ba1da1444166ac41",
+      "protectedRecipeSha256": "bcfe8b8317c472ee1ab7b2d6ea85e224538d9575e4de08d84f02dbb299e1b05f",
+      "beforeSteps": [
+        "Hacher finement les herbes et l’ail au couteau.",
+        "Mélanger avec origan, piment, vinaigre et sel.",
+        "Ajouter l’huile sans mixer.",
+        "Laisser reposer 30 minutes à température ambiante avant de servir."
+      ],
+      "note": "Herbes lavées et séchées, ail pelé, coriandre explicitement facultative ; hachage au couteau et repos trente minutes conservés. Huile et vinaigre mesurés, aucun mixage ni cuisson ajoutés."
+    },
+    {
+      "id": "s440",
+      "status": "corrected",
+      "sourceHash": "778eb1a8500b0c6911f88ebd4055d23ef10ae632205fa3da33296bcb8ab31bc9",
+      "reviewedHash": "b928f11827eabd3bcae1d14e7732a52fcf21eaddbd1328a72d0fd9c7db2f2fdc",
+      "protectedRecipeSha256": "36f909d3ed26dea1e08e549e81f7caf3319ac1af94d1b9c627b08e56eb896c4f",
+      "beforeSteps": [
+        "Mélanger tahini, jus de citron, ail râpé et sel.",
+        "Ajouter l’eau froide progressivement : la sauce épaissit d’abord puis devient crémeuse.",
+        "Ajouter l’huile d’olive et fouetter jusqu’à texture lisse.",
+        "Servir avec légumes rôtis, falafels, pois chiches ou crudités."
+      ],
+      "note": "Citron pressé et filtré, ail pelé puis râpé ; eau froide limitée au volume listé et ajout progressif expliqué. Aucun supplément d’eau au jugé ni autre ingrédient, épaississement temporaire du tahini conservé."
+    }
+  ]
+}

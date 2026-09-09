@@ -7,7 +7,7 @@ import {recipeSource} from './recipe-source.mjs';
 import {recipeHash} from './validate-recipe-editorial.mjs';
 const root=resolve(dirname(fileURLToPath(import.meta.url)),'..');
 const {code,recipes,editorial}=recipeSource(readFileSync(resolve(root,'index.html'),'utf8'));
-const batchNumbers=['02','03','04','05','06','07','08','09','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24'];
+const batchNumbers=['02','03','04','05','06','07','08','09','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25'];
 const fixture={recipes:batchNumbers.flatMap(number=>JSON.parse(readFileSync(resolve(root,`scripts/recipe-editorial-batch-${number}.fixture.json`),'utf8')).recipes)};
 const slice=(a,b)=>code.slice(code.indexOf(a),code.indexOf(b,code.indexOf(a)+a.length));
 const context={window:{},$:()=>({value:'8'}),MEAL_TYPES:['mid','eve'],recipeRole:r=>r.role||r.course||'dish',isFavorite:()=>false,recipeFeedbackHTML:()=>'',recipePersonalNoteHTML:()=>''};
@@ -117,7 +117,15 @@ const timers={
   f402:[[],[],[],[90],[]],f403:[[],[2],[],[25],[]],f404:[[],[],[45],[],[]],f405:[[],[],[20],[]],
   f406:[[],[],[3],[]],f407:[[],[],[12],[]],f408:[[],[],[],[60]],f409:[[],[],[],[60]],
   f411:[[],[],[],[30]],f412:[[],[],[],[30]],f414:[[5],[],[],[],[]],f415:[[],[],[],[1],[]],
-  f416:[[],[],[],[]],f417:[[],[],[],[]],f420:[[],[],[],[]]
+  f416:[[],[],[],[]],f417:[[],[],[],[]],f420:[[],[],[],[]],
+  s401:[[1],[],[6],[]],s402:[[6],[],[25],[]],s403:[[3],[2],[],[4]],
+  s405:[[3],[3],[3],[]],s406:[[6],[3],[],[4]],s408:[[],[4],[],[]],
+  s411:[[15],[],[],[]],s412:[[],[],[],[]],s413:[[],[],[],[30]],
+  s414:[[],[],[],[]],s416:[[],[],[],[]],s417:[[],[],[],[]],
+  s421:[[10],[],[],[]],s422:[[],[],[],[15]],s423:[[],[],[],[20]],
+  s429:[[],[],[4],[]],s431:[[5],[4],[25],[],[]],s433:[[3],[],[5],[]],
+  s436:[[],[8],[2],[]],s437:[[],[],[4],[]],s438:[[],[],[],[]],
+  s439:[[],[],[],[30]],s440:[[],[],[],[]]
 };
 const ingredients={
   n01:['poulet','pommes de terre','paprika','huile','sel.*poivre'],
@@ -343,9 +351,32 @@ const ingredients={
   f412:['farine','œufs','lait','beurre fondu','sucre','levure chimique'],
   f414:['lait entier','jaunes','sucre','gousse de vanille'],
   f415:['lait','jaunes','sucre','fécule de maïs','gousse de vanille','beurre'],
-  f416:['crème','sucre glace','vanille'],f417:['sucre'],f420:['persil','ail','huile d’olive facultative','sel']
+  f416:['crème','sucre glace','vanille'],f417:['sucre'],f420:['persil','ail','huile d’olive facultative','sel'],
+  s401:['beurre','farine','lait','muscade','sel','poivre'],
+  s402:['tomates concassées','oignon','ail','huile d’olive','origan','sel','poivre'],
+  s403:['poivre noir concassé','échalote','cognac','fond de veau','crème','beurre','sel'],
+  s405:['échalote','beurre','bouillon','crème','moutarde de Dijon','moutarde à l’ancienne','poivrer'],
+  s406:['champignons','échalote','beurre','bouillon','crème','persil','Saler.*poivrer'],
+  s408:['jaunes','beurre','jus de citron','d’eau mesurée','sel','poivre blanc'],
+  s411:['jaune','moutarde','huile','vinaigre','sel','poivre'],
+  s412:['jaune','ail','huile d’olive','jus de citron','sel'],
+  s413:['mayonnaise','cornichons','câpres','échalote','persil','ciboulette','jus de citron','poivre'],
+  s414:['mayonnaise','ketchup','cognac','citron','Tabasco','paprika'],
+  s416:['basilic','pignons','parmesan','ail','huile d’olive','sel'],
+  s417:['vinaigre','huile','moutarde','sel','poivre'],
+  s421:['œufs','moutarde','huile','vinaigre','câpres','cornichons','persil','ciboulette','Saler.*poivrer'],
+  s422:['vinaigre','huile','moutarde','échalote','câpres','persil','ciboulette','estragon','sel.*poivre'],
+  s423:['mayonnaise maison','moutarde forte','câpres','cornichons','échalote','persil','ciboulette','jus de citron'],
+  s429:['échalotes','vin blanc','fumet de poisson','crème','beurre froid','Saler.*poivrer'],
+  s431:['carapaces','échalote','carotte','ail','vin blanc','cognac','tomates concassées','fumet','huile','estragon.*saler.*poivrer'],
+  s433:['échalote','vin blanc','fond de veau','moutarde','cornichons','beurre','poivrer'],
+  s436:['échalote','vin rouge','fond de veau','gelée de groseille','crème','vinaigre','laurier','Poivrer'],
+  s437:['bleu','crème','bouillon','moutarde','poivrer'],
+  s438:['poivrons','amandes','tomate','ail','vinaigre de xérès','huile d’olive','paprika fumé','sel'],
+  s439:['persil','coriandre','ail','origan','vinaigre','huile d’olive','piment','sel'],
+  s440:['tahini','citron','ail','d’eau froide','huile d’olive','sel']
 };
-assert.equal(fixture.recipes.length,745);
+assert.equal(fixture.recipes.length,785);
 let quantityChecks=0,timerCount=0;
 for(const record of fixture.recipes){
   const recipe=recipes.find(r=>r.id===record.id);
@@ -791,6 +822,40 @@ assert.match(editorial.f419.reviewNote,/120 g.*beurre seul.*persil et citron/);
 assert.match(editorial.b411.reviewNote,/trois minutes trente.*pas devenir un minuteur de trois minutes/);
 assert.match(editorial.f401.reviewNote,/quinze dernières minutes.*incluses.*quarante-cinq/);
 assert.match(recipes.find(r=>r.id==='f420').p[3],/huile reste facultative/);
+const batch25=JSON.parse(readFileSync(resolve(root,'scripts/recipe-editorial-batch-25.fixture.json'),'utf8')).recipes;
+assert.equal(batch25.length,40);
+assert.equal(batch25.filter(r=>r.status==='corrected').length,19);
+assert.equal(batch25.filter(r=>r.status==='unchanged').length,4);
+assert.equal(batch25.filter(r=>r.status==='blocked').length,17);
+const hollandaise25=recipes.find(r=>r.id==='s408'),wine25=recipes.find(r=>r.id==='s429');
+const mustard25=recipes.find(r=>r.id==='s405'),tahini25=recipes.find(r=>r.id==='s440');
+for(const count of [1,2,3,4,5,8]){
+  assert.ok(context.recipeStepText(wine25.p[0],wine25,count).includes(context.formatQty(15*count/4)+' cl de vin blanc'));
+  assert.ok(context.recipeStepText(wine25.p[0],wine25,count).includes(context.formatQty(5*count/4)+' cl de vin'));
+  assert.ok(context.recipeStepText(wine25.p[3],wine25,count).includes(context.formatQty(25*count/4)+' g de beurre froid'));
+  assert.ok(context.recipeStepText(mustard25.p[3],mustard25,count).includes(context.formatQty(count/2)+' c. à soupe de moutarde de Dijon'));
+  assert.ok(context.recipeStepText(mustard25.p[3],mustard25,count).includes(context.formatQty(count/2)+' c. à café de moutarde à l’ancienne'));
+  assert.ok(context.recipeStepText(tahini25.p[2],tahini25,count).includes(context.formatQty(6*count/4)+' cl d’eau froide'));
+  assert.match(context.recipeStepText(hollandaise25.p[1],hollandaise25,count),/3 à 4 minutes.*65 °C/);
+}
+for(const id of ['s408','s411','s412'])assert.match(recipes.find(r=>r.id===id).p.join(' '),/œuf[s]? pasteurisé/);
+assert.doesNotMatch(hollandaise25.p.join(' '),/beurre clarifié|71 °C/);
+for(const id of ['s403','s431'])assert.match(recipes.find(r=>r.id===id).p[1],/toute flamme.*cognac.*[Nn]e pas flamber|toute flamme.*cognac.*ne pas verser.*ne pas flamber/);
+assert.match(editorial.s413.times.rest,/facultatives/);
+assert.match(recipes.find(r=>r.id==='s422').t,/15 min de repos/);
+assert.match(recipes.find(r=>r.id==='s423').t,/20 min de repos/);
+assert.match(recipes.find(r=>r.id==='s439').p[0],/coriandre si vous la choisissez/);
+assert.match(recipes.find(r=>r.id==='s439').p[0],/couteau.*sans les mixer/);
+assert.match(recipes.find(r=>r.id==='s438').p[0],/déjà grillés.*déjà rôtie ou pelée/);
+assert.match(recipes.find(r=>r.id==='s416').p[2],/piler.*sans chercher une purée parfaitement lisse/);
+assert.match(recipes.find(r=>r.id==='s421').p[0],/œufs entiers.*fraction d’œuf.*jaune et blanc compris/);
+for(const id of ['s401','s414','s417','s437']){
+  const r=batch25.find(x=>x.id===id);assert.equal(r.sourceHash,r.reviewedHash);
+}
+assert.match(editorial.s404.reviewNote,/conserver deux tiers.*évaporer deux tiers/);
+assert.match(editorial.s407.reviewNote,/cuillerées.*taille de cuillère/);
+assert.match(editorial.s427.reviewNote,/beurre d’écrevisse et bisque.*pas équivalents/);
+assert.match(editorial.s434.reviewNote,/noisette de beurre.*pas mesurée/);
 const corrected=fixture.recipes.filter(r=>r.status==='corrected').length;
 const unchanged=fixture.recipes.filter(r=>r.status==='unchanged').length;
 console.log(`✓ Batches ${batchNumbers.join('/')}: ${fixture.recipes.length} individual review records, ${corrected} corrected, ${unchanged} unchanged, ${fixture.recipes.length-corrected-unchanged} blocked with original content preserved; ${timerCount} manually checked timers`);
