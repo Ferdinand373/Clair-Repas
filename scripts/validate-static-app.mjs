@@ -9,7 +9,7 @@ import { TextDecoder, TextEncoder } from "node:util";
 import vm from "node:vm";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
-const PRODUCTION_V75_INDEX_BLOB = "a7834f0813dd09821bae3fe87b81e84f9e0db6db";
+const PRODUCTION_V75_INDEX_BLOB = "5d292eb3d0e4d4394e16ce2f080d9ebcdcaab0bf";
 const CLAIR_REPAS_PERSONAL_KEYS = Object.freeze([
   "crFavMeals",
   "crRecentRecipesV25",
@@ -1536,12 +1536,13 @@ await check("Kitchen timer layout follows dock and control heights", () => {
   return "hidden, visible, larger dock/controls, resize and safe-area clearance";
 });
 
-await check("Kitchen timer lifecycle remains independent of layout", async () => {
+await check("Kitchen timer pause, resume, reset, restoration and alert", async () => {
   const code = inlineScripts[0];
   const start = code.indexOf("const TIMER_KEY=");
   const end = code.indexOf("// Keep the timer and recipe scroll clearance", start);
   assert.ok(start > 0 && end > start);
-  const stored = new Map();
+  const stored = new Map([["crFavMeals", '["personal-favorite"]']]);
+  const savedTimer = () => JSON.parse(stored.get("crKitchenTimerV22") || "null");
   let now = 1000000;
   let beeps = 0;
   let vibrations = 0;
@@ -1555,7 +1556,9 @@ await check("Kitchen timer lifecycle remains independent of layout", async () =>
     };
   };
   const makeSandbox = () => {
-    const elements = Object.fromEntries(["kitchenTimer", "timerCount", "timerLabel", "timerStop"]
+    const activeIntervals = new Set();
+    let intervalId = 0;
+    const elements = Object.fromEntries(["kitchenTimer", "timerCount", "timerLabel", "timerState", "timerPause", "timerReset", "timerStop"]
       .map(id => [id, { textContent: "", classList: classList() }]));
     const context = {
       CR_APP_VERSION: "7.5",
@@ -1579,22 +1582,65 @@ await check("Kitchen timer lifecycle remains independent of layout", async () =>
           return { gain: { setValueAtTime() {}, exponentialRampToValueAtTime() {} }, connect() {} };
         }
       } },
-      setInterval: () => 1,
-      clearInterval() {},
+      setInterval() { activeIntervals.add(++intervalId); return intervalId; },
+      clearInterval(id) { activeIntervals.delete(id); },
       show() {}
     };
     vm.runInNewContext(code.slice(start, end), context);
-    return { context, elements };
+    return { context, elements, activeIntervals };
   };
-  let { context, elements } = makeSandbox();
+  let { context, elements, activeIntervals } = makeSandbox();
   context.startKitchenTimer({ id: "timer-test", n: "Recette test" }, 2, 0);
   assert.equal(elements.timerCount.textContent, "02:00");
   assert.equal(elements.kitchenTimer.classList.contains("show"), true);
-  now += 30000;
+  assert.equal(elements.timerPause.textContent, "Pause");
+  assert.equal(activeIntervals.size, 1);
+  now += 30667;
   context.updateTimerUI();
   assert.equal(elements.timerCount.textContent, "01:30");
-  ({ context, elements } = makeSandbox());
-  assert.equal(elements.timerCount.textContent, "01:30", "Reload resumes the saved deadline");
+  elements.timerPause.onclick();
+  assert.equal(savedTimer().remainingMs, 89333, "Pause preserves milliseconds, not rounded display seconds");
+  assert.equal(savedTimer().status, "paused");
+  assert.equal(savedTimer().endAt, null);
+  assert.equal(elements.timerState.textContent, "En pause");
+  assert.equal(elements.timerPause.textContent, "Reprendre");
+  assert.equal(activeIntervals.size, 0);
+  now += 24 * 60 * 60 * 1000;
+  context.updateTimerUI();
+  assert.equal(elements.timerCount.textContent, "01:30", "Paused time does not elapse");
+  assert.equal(beeps, 0);
+  assert.equal(vibrations, 0);
+  ({ context, elements, activeIntervals } = makeSandbox());
+  assert.equal(elements.timerState.textContent, "En pause", "Paused state survives reload even after 24 hours");
+  assert.equal(activeIntervals.size, 0);
+  assert.equal(context.kitchenTimerRemainingMs(), 89333);
+  elements.timerPause.onclick();
+  assert.equal(savedTimer().endAt, now + 89333);
+  assert.equal(savedTimer().status, "running");
+  assert.equal(activeIntervals.size, 1);
+  now += 1234;
+  elements.timerPause.onclick();
+  assert.equal(savedTimer().remainingMs, 88099, "Repeated pause/resume does not introduce drift");
+  now += 7000;
+  elements.timerPause.onclick();
+  now += 99;
+  ({ context, elements, activeIntervals } = makeSandbox());
+  assert.equal(context.kitchenTimerRemainingMs(), 88000, "Running reload preserves the absolute deadline");
+  assert.equal(elements.timerState.textContent, "En cours");
+  assert.equal(activeIntervals.size, 1);
+  elements.timerReset.onclick();
+  assert.equal(savedTimer().remainingMs, 120000);
+  assert.equal(savedTimer().status, "paused");
+  assert.equal(activeIntervals.size, 0);
+  now += 150000;
+  context.updateTimerUI();
+  assert.equal(elements.timerCount.textContent, "02:00", "Reset does not restart the timer");
+  assert.equal(beeps, 0);
+  ({ context, elements, activeIntervals } = makeSandbox());
+  assert.equal(elements.timerCount.textContent, "02:00");
+  assert.equal(elements.timerState.textContent, "En pause");
+  elements.timerReset.onclick();
+  assert.equal(savedTimer().remainingMs, 120000, "Reset while paused remains paused at the original duration");
   context.startKitchenTimer({ id: "timer-test", n: "Recette test" }, 1, 1);
   assert.equal(elements.timerCount.textContent, "01:00", "Selecting another step resets the countdown");
   now += 60000;
@@ -1602,16 +1648,62 @@ await check("Kitchen timer lifecycle remains independent of layout", async () =>
   await Promise.resolve();
   assert.equal(elements.timerCount.textContent, "C’est prêt !");
   assert.equal(elements.timerStop.textContent, "Fermer");
+  assert.equal(elements.timerPause.disabled, true);
+  assert.equal(savedTimer().status, "done");
+  assert.equal(activeIntervals.size, 0);
   assert.equal(beeps, 2);
   assert.equal(vibrations, 1);
   context.updateTimerUI();
   await Promise.resolve();
   assert.equal(beeps, 2, "The completed timer only alerts once");
+  ({ context, elements, activeIntervals } = makeSandbox());
+  context.updateTimerUI();
+  await Promise.resolve();
+  assert.equal(beeps, 2, "Reloading a completed timer must not replay the alert");
+  assert.equal(vibrations, 1);
+  assert.equal(elements.timerCount.textContent, "C’est prêt !");
+  elements.timerReset.onclick();
+  assert.equal(elements.timerCount.textContent, "01:00", "Reset after completion uses the initially selected minute");
+  assert.equal(elements.timerState.textContent, "En pause");
+  assert.equal(elements.timerPause.disabled, false);
+  now += 61000;
+  context.updateTimerUI();
+  assert.equal(beeps, 2);
+  elements.timerPause.onclick();
+  now += 60000;
+  context.updateTimerUI();
+  await Promise.resolve();
+  assert.equal(beeps, 4, "A restarted active countdown alerts on its own completion");
+  assert.equal(vibrations, 2);
   elements.timerStop.onclick();
   assert.equal(elements.kitchenTimer.classList.contains("show"), false);
-  assert.equal(stored.size, 0);
+  assert.equal(stored.has("crKitchenTimerV22"), false);
   assert.equal(context.document.body.classList.contains("timer-running"), false);
-  return "start, countdown, restore, reset, one-shot alert and stop";
+  context.startKitchenTimer({ id: "timer-test", n: "Recette test" }, 1, 0);
+  elements.timerPause.onclick();
+  elements.timerStop.onclick();
+  assert.equal(stored.has("crKitchenTimerV22"), false, "Stop also clears a paused timer");
+  assert.equal(activeIntervals.size, 0);
+
+  stored.set("crKitchenTimerV22", JSON.stringify({ recipeId: "legacy", label: "Legacy", minutes: 2, endAt: now + 90500 }));
+  ({ context, elements, activeIntervals } = makeSandbox());
+  assert.equal(context.kitchenTimerRemainingMs(), 90500, "Existing active timers remain compatible");
+  elements.timerReset.onclick();
+  assert.equal(savedTimer().remainingMs, 120000);
+  elements.timerStop.onclick();
+  context.startKitchenTimer({ id: "timer-test", n: "Recette test" }, 1, 0);
+  now += 61000;
+  ({ context, elements, activeIntervals } = makeSandbox());
+  await Promise.resolve();
+  assert.equal(beeps, 6, "An active timer that expires while closed alerts when restored");
+  assert.equal(vibrations, 3);
+  elements.timerStop.onclick();
+  for (const invalid of [null, {}, [], {minutes: -1}, {minutes: 1, status: "paused", remainingMs: -1}, {minutes: 1, status: "paused", remainingMs: null}, {minutes: 1, status: "paused", remainingMs: 60001}, {minutes: 1, status: "running", endAt: null}]) {
+    assert.equal(context.restoredKitchenTimer(invalid), null);
+  }
+  assert.equal(stored.size, 1);
+  assert.equal(stored.get("crFavMeals"), '["personal-favorite"]', "Personal data stays untouched");
+  return "millisecond precision, repeated pause/resume, paused/running/done reload, reset without restart, legacy timer, one-shot alert and stop";
 });
 
 await check("Recipe-library integrity", () => {

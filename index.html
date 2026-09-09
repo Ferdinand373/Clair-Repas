@@ -16,7 +16,7 @@
   --green:#3f7657;--green-soft:#e3f0e8;--line:#e6ddd3;
   --purple:#665581;--gold:#9a6a18;
   --dock-bottom:calc(10px + env(safe-area-inset-bottom,0px));
-  --dock-height:62px;--timer-height:64px;
+  --dock-height:62px;--timer-height:110px;
   --timer-bottom:calc(var(--dock-bottom) + var(--dock-height) + 12px);
   --timer-clearance:calc(var(--timer-bottom) + var(--timer-height) + 16px)
 }
@@ -227,13 +227,18 @@ header .subtitle{font-size:14px;line-height:1.35}
 .welcome-start{min-height:50px;border:1px solid var(--green);border-radius:14px;background:var(--green);color:white;font-size:15px;font-weight:900}
 .welcome-more{min-height:43px;border:1px solid var(--line);border-radius:12px;background:white;color:var(--text);font-weight:800}
 @media(max-width:390px){.trust-strip{grid-template-columns:1fr}.product-actions{grid-template-columns:1fr}.product-actions .product-primary{grid-column:auto}.welcome-card{padding:17px}.welcome-card h2{font-size:23px}}
-.kitchen-timer{position:fixed;left:50%;bottom:var(--timer-bottom);transform:translateX(-50%);width:min(440px,calc(100% - 24px));padding:10px 11px 10px 14px;border-radius:16px;background:#28231f;color:white;box-shadow:0 12px 30px rgba(30,24,19,.28);display:none;align-items:center;gap:11px;z-index:30}
+.kitchen-timer{position:fixed;left:50%;bottom:var(--timer-bottom);transform:translateX(-50%);width:min(440px,calc(100% - 24px));padding:10px 11px 10px 14px;border-radius:16px;background:#28231f;color:white;box-shadow:0 12px 30px rgba(30,24,19,.28);display:none;flex-wrap:wrap;align-items:center;gap:10px;z-index:30}
 .kitchen-timer.show{display:flex}
 .kitchen-timer.done{background:var(--green)}
-.timer-copy{min-width:0;flex:1}
+.timer-copy{min-width:0;flex:1 1 100%}
 .timer-label{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:11px;color:#d8d1ca}
+.timer-status-row{display:flex;align-items:center;flex-wrap:wrap;gap:6px 12px;margin-top:3px}
+.timer-state{font-size:12px;font-weight:800;color:#e4ddd7}
+.kitchen-timer.paused .timer-state{color:#ffe49c}
 .timer-count{display:block;margin-top:1px;font-size:20px;line-height:1;font-variant-numeric:tabular-nums}
-.timer-stop{flex:0 0 auto;min-width:44px;min-height:44px;padding:8px 10px;border:1px solid rgba(255,255,255,.3);border-radius:10px;background:transparent;color:white;font-weight:800}
+.timer-actions{display:flex;flex-wrap:wrap;gap:8px;width:100%}
+.timer-stop{flex:1 1 96px;min-width:max-content;min-height:44px;padding:8px 6px;border:1px solid rgba(255,255,255,.3);border-radius:10px;background:transparent;color:white;font-size:13px;font-weight:800;line-height:1.25}
+.timer-stop:disabled{opacity:.5;cursor:default}
 .toast{position:fixed;left:50%;bottom:calc(22px + env(safe-area-inset-bottom));transform:translateX(-50%);background:#28231f;color:white;padding:11px 15px;border-radius:999px;display:none;z-index:31;max-width:88%;text-align:center}
 body.timer-running .toast{bottom:var(--timer-clearance)}
 body.timer-running main,body.timer-running .browser-content{padding-bottom:var(--timer-clearance)}
@@ -1094,9 +1099,16 @@ select{min-height:48px;border:1px solid #deebf2;border-radius:16px;background:#f
 <div class="kitchen-timer" id="kitchenTimer" role="status" aria-live="polite">
   <div class="timer-copy">
     <span class="timer-label" id="timerLabel">Minuteur de cuisine</span>
-    <strong class="timer-count" id="timerCount">00:00</strong>
+    <div class="timer-status-row">
+      <strong class="timer-count" id="timerCount">00:00</strong>
+      <span class="timer-state" id="timerState">En cours</span>
+    </div>
   </div>
-  <button class="timer-stop" id="timerStop">Arrêter</button>
+  <div class="timer-actions" role="group" aria-label="Commandes du minuteur">
+    <button class="timer-stop" id="timerPause" type="button">Pause</button>
+    <button class="timer-stop" id="timerReset" type="button">Réinitialiser</button>
+    <button class="timer-stop" id="timerStop" type="button">Arrêter</button>
+  </div>
 </div>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
@@ -8357,9 +8369,12 @@ function beepAt(context,delay,frequency){
 function signalTimer(){
   if(timerSignalled)return;
   timerSignalled=true;
+  const completedTimer=kitchenTimer;
+  const completedEndAt=kitchenTimer.endAt;
   const context=timerAudioContext();
   if(context){
     context.resume().then(()=>{
+      if(kitchenTimer!==completedTimer||kitchenTimer.status!=='done'||kitchenTimer.endAt!==completedEndAt)return;
       beepAt(context,0,880);
       beepAt(context,0.38,1040);
     }).catch(()=>{});
@@ -8375,41 +8390,74 @@ function saveTimer(){
   if(kitchenTimer)localStorage.setItem(TIMER_KEY,JSON.stringify(kitchenTimer));
   else localStorage.removeItem(TIMER_KEY);
 }
+function restoredKitchenTimer(saved){
+  if(!saved||typeof saved!=='object'||Array.isArray(saved))return null;
+  const minutes=Number(saved.minutes);
+  const duration=Math.round(minutes*60*1000);
+  if(!Number.isFinite(duration)||duration<=0)return null;
+  const status=saved.status===undefined?'running':saved.status;
+  if(!['running','paused','done'].includes(status))return null;
+  const endAt=Number(saved.endAt);
+  const remainingMs=Number(saved.remainingMs);
+  if(status==='running'&&(!Number.isFinite(endAt)||endAt<=0))return null;
+  if(saved.status===undefined&&endAt<=Date.now()-12*60*60*1000)return null;
+  if(status==='paused'&&(typeof saved.remainingMs!=='number'||!Number.isFinite(remainingMs)||remainingMs<0||remainingMs>duration))return null;
+  return {...saved,minutes,status,endAt:status==='paused'?null:endAt,remainingMs:status==='paused'?remainingMs:status==='done'?0:duration};
+}
+function kitchenTimerRemainingMs(){
+  if(!kitchenTimer)return 0;
+  return kitchenTimer.status==='running'
+    ?Math.max(0,kitchenTimer.endAt-Date.now())
+    :kitchenTimer.remainingMs;
+}
 function updateTimerUI(){
   const bar=$('kitchenTimer');
   if(!kitchenTimer){
     if(timerInterval){clearInterval(timerInterval);timerInterval=null}
-    bar.classList.remove('show','done');
+    bar.classList.remove('show','done','paused');
     document.body.classList.remove('timer-running');
     document.title=`Clair Repas V${CR_APP_VERSION}`;
     return;
   }
-  const remaining=Math.max(0,Math.ceil((kitchenTimer.endAt-Date.now())/1000));
-  const done=remaining===0;
+  const remainingMs=kitchenTimerRemainingMs();
+  if(kitchenTimer.status==='running'&&remainingMs===0){
+    kitchenTimer.status='done';
+    kitchenTimer.remainingMs=0;
+    saveTimer();
+    signalTimer();
+  }
+  const paused=kitchenTimer.status==='paused';
+  const done=kitchenTimer.status==='done';
   bar.classList.add('show');
   bar.classList.toggle('done',done);
+  bar.classList.toggle('paused',paused);
   document.body.classList.add('timer-running');
   $('timerLabel').textContent=done?`${kitchenTimer.label} · terminé`:`${kitchenTimer.label} · minuteur`;
-  $('timerCount').textContent=done?'C’est prêt !':timerClock(remaining);
+  $('timerCount').textContent=done?'C’est prêt !':timerClock(Math.ceil(remainingMs/1000));
+  $('timerState').textContent=paused?'En pause':done?'Terminé':'En cours';
+  $('timerPause').textContent=paused?'Reprendre':'Pause';
+  $('timerPause').disabled=done||(paused&&remainingMs===0);
   $('timerStop').textContent=done?'Fermer':'Arrêter';
-  if(done){
+  document.title=paused?'Minuteur en pause · Clair Repas':done?'Minuteur terminé · Clair Repas':`Clair Repas V${CR_APP_VERSION}`;
+  if(paused||done){
     if(timerInterval){clearInterval(timerInterval);timerInterval=null}
-    document.title='Minuteur terminé · Clair Repas';
-    signalTimer();
   }
 }
 function startTimerTick(){
-  if(!timerInterval)timerInterval=setInterval(updateTimerUI,1000);
+  if(kitchenTimer?.status==='running'&&!timerInterval)timerInterval=setInterval(updateTimerUI,1000);
 }
 function startKitchenTimer(recipe,minutes,stepIndex){
+  minutes=Number(minutes);
+  const duration=Math.round(minutes*60*1000);
+  if(!Number.isFinite(duration)||duration<=0)return;
   unlockTimerAudio();
   const stepNumber=Number.isFinite(Number(stepIndex))?Number(stepIndex)+1:null;
   kitchenTimer={
     recipeId:recipe.id,
     label:stepNumber?`${recipe.n} · étape ${stepNumber}`:recipe.n,
     stepIndex:stepNumber?stepNumber-1:null,
-    minutes,
-    endAt:Date.now()+minutes*60*1000
+    minutes,status:'running',remainingMs:duration,
+    endAt:Date.now()+duration
   };
   timerSignalled=false;
   saveTimer();
@@ -8417,18 +8465,47 @@ function startKitchenTimer(recipe,minutes,stepIndex){
   updateTimerUI();
   show(`Minuteur ${minutes} min lancé`);
 }
+function toggleKitchenTimerPause(){
+  if(!kitchenTimer||kitchenTimer.status==='done')return;
+  if(kitchenTimer.status==='paused'){
+    if(kitchenTimer.remainingMs<=0)return;
+    unlockTimerAudio();
+    kitchenTimer.endAt=Date.now()+kitchenTimer.remainingMs;
+    kitchenTimer.status='running';
+  }else{
+    const remainingMs=kitchenTimerRemainingMs();
+    if(remainingMs===0){updateTimerUI();return}
+    kitchenTimer.remainingMs=remainingMs;
+    kitchenTimer.endAt=null;
+    kitchenTimer.status='paused';
+  }
+  saveTimer();
+  startTimerTick();
+  updateTimerUI();
+}
+function resetKitchenTimer(){
+  if(!kitchenTimer)return;
+  kitchenTimer.remainingMs=Math.round(kitchenTimer.minutes*60*1000);
+  kitchenTimer.endAt=null;
+  kitchenTimer.status='paused';
+  timerSignalled=false;
+  saveTimer();
+  updateTimerUI();
+}
 function stopKitchenTimer(){
   kitchenTimer=null;
   timerSignalled=false;
   saveTimer();
   updateTimerUI();
 }
+$('timerPause').onclick=toggleKitchenTimerPause;
+$('timerReset').onclick=resetKitchenTimer;
 $('timerStop').onclick=stopKitchenTimer;
 try{
   const savedTimer=JSON.parse(localStorage.getItem(TIMER_KEY)||'null');
-  if(savedTimer&&Number(savedTimer.endAt)>Date.now()-12*60*60*1000)kitchenTimer=savedTimer;
+  kitchenTimer=restoredKitchenTimer(savedTimer);
 }catch(e){}
-if(kitchenTimer&&Number(kitchenTimer.endAt)>Date.now())startTimerTick();
+startTimerTick();
 updateTimerUI();
 
 // Keep the timer and recipe scroll clearance above the dock at its actual size.
