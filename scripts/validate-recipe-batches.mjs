@@ -7,7 +7,7 @@ import {recipeSource} from './recipe-source.mjs';
 import {recipeHash} from './validate-recipe-editorial.mjs';
 const root=resolve(dirname(fileURLToPath(import.meta.url)),'..');
 const {code,recipes,editorial}=recipeSource(readFileSync(resolve(root,'index.html'),'utf8'));
-const batchNumbers=['02','03','04','05','06','07','08','09','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27'];
+const batchNumbers=['02','03','04','05','06','07','08','09','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28'];
 const fixture={recipes:batchNumbers.flatMap(number=>JSON.parse(readFileSync(resolve(root,`scripts/recipe-editorial-batch-${number}.fixture.json`),'utf8')).recipes)};
 const slice=(a,b)=>code.slice(code.indexOf(a),code.indexOf(b,code.indexOf(a)+a.length));
 const context={window:{},$:()=>({value:'8'}),MEAL_TYPES:['mid','eve'],recipeRole:r=>r.role||r.course||'dish',isFavorite:()=>false,recipeFeedbackHTML:()=>'',recipePersonalNoteHTML:()=>''};
@@ -133,7 +133,19 @@ const timers={
   c431:[[],[],[20],[3]],c433:[[7],[],[2],[]],c434:[[],[],[25],[7]],c435:[[],[22],[],[5]],
   c437:[[],[7],[1],[]],c438:[[10],[],[],[25]],c439:[[],[],[],[32]],c440:[[],[25],[],[5]],
   c441:[[],[5],[2],[25],[]],c442:[[],[],[],[1]],c448:[[],[],[10],[]],c449:[[],[],[],[30]],c450:[[5],[10],[],[10]],
-  'v31n-bowl-quinoa-courge-saucisses':[[10],[],[],[10],[10],[3]]
+  'v31n-bowl-quinoa-courge-saucisses':[[10],[],[],[10],[10],[3]],
+  'v39-endives-jambon':[[20],[],[1,5],[],[20]],
+  'v39-gratin-chou-fleur':[[10],[1],[5],[],[20]],
+  'v39-roti-porc':[[20],[2],[],[50],[10]],
+  'v39-sole-meuniere':[[],[],[5],[4],[],[]],
+  'v39-moules-marinieres':[[],[],[3],[1],[6,1],[]],
+  q403:[[12],[],[5,6],[22]],q405:[[],[10],[5],[8],[]],
+  'theme-bistrot-brasserie-09':[[20],[18],[8],[7,2],[1],[]],
+  'theme-cuisine-regionale-07':[[],[5],[1],[25],[8],[]],
+  'theme-cuisine-regionale-08':[[],[5],[5],[35],[10],[5],[2]],
+  'theme-cuisine-regionale-12':[[25],[8,5],[3],[],[],[25,5]],
+  'theme-cuisine-regionale-13':[[],[25],[5],[],[5],[]],
+  'theme-cuisine-regionale-14':[[],[5],[8,1],[],[120],[30]]
 };
 const ingredients={
   n01:['poulet','pommes de terre','paprika','huile','sel.*poivre'],
@@ -412,9 +424,22 @@ const ingredients={
   c448:['flageolets déjà cuits et égouttés','ail','beurre','bouillon','persil','saler.*poivrer'],
   c449:['pois chiches déjà cuits','huile d’olive','paprika fumé','cumin','sel'],
   c450:['haricots blancs','tomates concassées','oignon','ail','thym','huile d’olive','Saler.*poivrer','eau'],
-  'v31n-bowl-quinoa-courge-saucisses':['bœuf','courgette','poivrons','oignon','sauce soja','vinaigre balsamique','boulgour','persil']
+  'v31n-bowl-quinoa-courge-saucisses':['bœuf','courgette','poivrons','oignon','sauce soja','vinaigre balsamique','boulgour','persil'],
+  'v39-endives-jambon':['endive','jambon','beurre','farine','lait','gruyère','citron','muscade','sel et poivre','eau'],
+  'v39-gratin-chou-fleur':['chou-fleur','beurre','farine','lait','gruyère','muscade','sel.*poivre'],
+  'v39-roti-porc':['rôti','pommes de terre','carotte','oignon','ail','bouillon','huile','thym','saler.*poivrer'],
+  'v39-sole-meuniere':['sole','farine','beurre','citron','persil','saler.*poivrer'],
+  'v39-moules-marinieres':['moule','échalote','beurre','vin blanc','ail','persil','poivre'],
+  q403:['poivron','boulgour','pois chiches','tomate','oignon','cumin','huile d’olive','persil','salée'],
+  q405:['poulet','riz complet','pak-choï','carotte','gingembre','sauce soja','huile de sésame','citron vert'],
+  'theme-bistrot-brasserie-09':['saucisse','pommes de terre','lait','beurre','oignon','farine','bouillon de bœuf','huile','saler.*poivrer'],
+  'theme-cuisine-regionale-07':['poisson','pommes de terre','poireau','oignon','carotte','vin blanc','fumet de poisson','beurre','persil','sel.*poivr|poivr.*sel','pain de campagne'],
+  'theme-cuisine-regionale-08':['poulet','pommes','champignon','échalote','cidre','calvados','crème','beurre','sel et le poivre'],
+  'theme-cuisine-regionale-12':['pommes de terre','reblochon','lardon','oignon','vin blanc','huile','poivrer','salée','salade verte'],
+  'theme-cuisine-regionale-13':['pommes de terre','tome fraîche','ail','huile','persil','saler.*poivrer','salade','jambon d’Auvergne'],
+  'theme-cuisine-regionale-14':['bœuf','bière brune','oignon','pain d’épices','moutarde','beurre','farine','cassonade','bouquet garni','saler.*poivrer']
 };
-assert.equal(fixture.recipes.length,865);
+assert.equal(fixture.recipes.length,895);
 let quantityChecks=0,timerCount=0;
 for(const record of fixture.recipes){
   const recipe=recipes.find(r=>r.id===record.id);
@@ -964,6 +989,62 @@ assert.match(editorial['v39-hachis-parmentier'].reviewNote,/40 g.*30 g.*reste en
 assert.match(editorial['v31n-bowl-quinoa-courge-tofu'].reviewNote,/ne pas y verser la marinade.*crevettes crues/);
 assert.match(editorial['v31n-gratin-chou-fleur-tofu'].reviewNote,/cumin et persil.*seulement.*six galettes/);
 assert.match(editorial['v39-quiche-lorraine'].reviewNote,/24 cm.*nombre de moules/);
+const batch28=JSON.parse(readFileSync(resolve(root,'scripts/recipe-editorial-batch-28.fixture.json'),'utf8')).recipes;
+assert.equal(batch28.length,30);assert.equal(batch28.filter(r=>r.status==='corrected').length,13);
+assert.equal(batch28.filter(r=>r.status==='blocked').length,17);
+const endives28=recipes.find(r=>r.id==='v39-endives-jambon');
+const cauliflower28=recipes.find(r=>r.id==='v39-gratin-chou-fleur');
+const sole28=recipes.find(r=>r.id==='v39-sole-meuniere');
+const auge28=recipes.find(r=>r.id==='theme-cuisine-regionale-08');
+const truffade28=recipes.find(r=>r.id==='theme-cuisine-regionale-13');
+const carbonnade28=recipes.find(r=>r.id==='theme-cuisine-regionale-14');
+const tartiflette28=recipes.find(r=>r.id==='theme-cuisine-regionale-12');
+assert.deepEqual(endives28.i.at(-1),{q:10,u:'cl',n:'eau',k:'eau'});
+assert.match(batch28.find(r=>r.id===endives28.id).beforeSteps[0],/10 cl d’eau/);
+for(const [id,names,proof] of [
+  ['q403',['sel'],/l’eau salée/],
+  ['theme-cuisine-regionale-07',['pain de campagne'],/avec du pain de campagne/],
+  ['theme-cuisine-regionale-12',['sel','salade verte'],/eau salée.*avec une salade verte/],
+  ['theme-cuisine-regionale-13',['salade','jambon d’Auvergne'],/souvent avec une salade et du jambon d’Auvergne/]
+]){
+  assert.deepEqual(recipes.find(r=>r.id===id).i.slice(-names.length),names.map(n=>({q:null,u:'',n,k:n})));
+  assert.match(batch28.find(r=>r.id===id).beforeSteps.join(' '),proof);
+}
+assert.deepEqual(editorial[truffade28.id].optionalIngredients,[6,7]);
+assert.equal(editorial[tartiflette28.id].optionalIngredients,undefined);
+assert.equal(editorial['theme-cuisine-regionale-07'].optionalIngredients,undefined);
+for(const count of [1,2,3,4,5,8]){
+  assert.ok(context.recipeStepText(endives28.p[0],endives28,count).includes(context.formatQty(10*count/2)+' cl d’eau'));
+  for(const [recipe,first,last,qFirst,qLast] of [[cauliflower28,2,3,40,60],[sole28,2,4,25,25],[auge28,1,4,15,10]]){
+    const unit=recipe===cauliflower28?' g de gruyère':' g de beurre';
+    assert.ok(context.recipeStepText(recipe.p[first],recipe,count).includes(context.formatQty(qFirst*count/2)+unit));
+    assert.ok(context.recipeStepText(recipe.p[last],recipe,count).includes(context.formatQty(qLast*count/2)+unit));
+  }
+  assert.match(context.recipeStepText(truffade28.p[0],truffade28,count),/4 à 5 mm/);
+  assert.match(context.recipeStepText(tartiflette28.p[5],tartiflette28,count),/20 à 25 minutes à 200 °C.*reposer 5 minutes/);
+  assert.match(context.recipeStepText(carbonnade28.p[4],carbonnade28,count),/120 minutes.*après une heure/);
+  for(const record of batch28.filter(r=>r.status==='blocked')){
+    const output=context.recipeHTML(recipes.find(r=>r.id===record.id),{people:count,dayIndex:1,mealType:'eve'});
+    assert.ok(output.includes(context.escapeHTML(editorial[record.id].reviewNote)),record.id+' precise visible reservation');
+    assert.doesNotMatch(output,/\{\{|undefined|NaN/);
+  }
+}
+assert.match(sole28.p[0],/qty:3:0.5.*qty:3:0.5/);
+assert.match(sole28.p[5],/couper le feu.*jus de citron préparé/);
+assert.match(auge28.p[2],/Écarter la cocotte du feu.*sans flamber/);
+assert.match(auge28.p[3],/thermomètre.*74 °C.*jus clair ne suffit/);
+assert.match(recipes.find(r=>r.id==='v39-roti-porc').p[4],/63 °C.*reposer 10 minutes/);
+assert.match(recipes.find(r=>r.id==='theme-bistrot-brasserie-09').p[1],/71 °C/);
+assert.match(recipes.find(r=>r.id==='theme-cuisine-regionale-07').p[4],/pocher 6 à 8 minutes.*63 °C/);
+assert.match(recipes.find(r=>r.id==='q405').p[0],/durée indiquées sur son paquet/);
+assert.match(recipes.find(r=>r.id==='q403').p[1],/durée de son paquet/);
+assert.doesNotMatch(recipes.find(r=>r.id==='q405').p[0],/30|35/);
+assert.match(truffade28.p[1],/toutes les cinq minutes/);
+assert.doesNotMatch(truffade28.p.join(' '),/beurre|lardon/);
+assert.match(carbonnade28.p[5],/Si la sauce reste trop liquide.*20 à 30 minutes.*Retirer le bouquet garni/);
+assert.match(editorial['theme-cuisine-regionale-10'].reviewNote,/papier.*250 °C.*218 °C/);
+assert.match(editorial['theme-bistrot-brasserie-06'].reviewNote,/béchamel.*sans quantités/);
+assert.match(editorial['v39-brandade-morue'].reviewNote,/15 cl de lait.*quantité reprise/);
 const corrected=fixture.recipes.filter(r=>r.status==='corrected').length;
 const unchanged=fixture.recipes.filter(r=>r.status==='unchanged').length;
 console.log(`✓ Batches ${batchNumbers.join('/')}: ${fixture.recipes.length} individual review records, ${corrected} corrected, ${unchanged} unchanged, ${fixture.recipes.length-corrected-unchanged} blocked with original content preserved; ${timerCount} manually checked timers`);

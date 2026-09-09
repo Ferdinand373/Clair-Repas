@@ -318,6 +318,16 @@ P02 publié : `c87dc373c29cae1d6edb9c2ac6191004c69ba52a`, tests `34390827874` et
 
 **Cumul : 880 identifiants examinés, 315 corrigés, 555 bloqués, 10 conformes sans réécriture, 673 à examiner.** Les 51 accompagnements sont examinés. Zéro erreur éditoriale, 6 555 avertissements, 403 minuteurs et 10 938 calculs d’ingrédients des lots 02–27. Les 24 commandes du workflow passent ; affichage, défilement et mode cuisine contrôlés aux trois formats simulés. Publication à consigner après contrôle HTTPS. Les plats restants suivent.
 
+## Publication du lot 27
+
+`c51225815842c5bc2ef0b232c00c2eff0632e67e` publié sur `main`. Tests `34416575436`, Pages `34416574534` et déploiement `6361251442` réussis. HTTPS 200 et fichiers identiques au commit : index `6a3fc637535e509f4d6ee37f3ec8f8b2209232d22f6dddddc04c85619671cd99`, service worker `ac96f2853d6740d68350125aedbc8f4ef37903d644a4170b6908d8e8f59acaad`. Révision chargée après mise à jour normale `sha256:8e5cf0bac931d241c93b4cb26b3f69705b7b78281a76f8010008f5f78ab5fcd3`. Brochettes vérifiées en production à deux personnes : une cuillère à soupe de chaque liquide, plancha conservée, quatre minuteurs correctement attachés et contrôle à cœur distinct de la coloration. Aucune donnée effacée.
+
+## Lot 28 — trente classiques et plats régionaux
+
+[Journal, sources et décisions](recipe-editorial-batch-28.md). 13 corrigées, 17 réservées, aucune conforme sans réécriture. Répartitions de beurre et gruyère calculées, sept ingrédients déjà demandés dans les étapes rétablis sans dose inventée, cuisson du riz et boulgour selon paquet. Précuissons en peau, meunière, cuisson vapeur et mijotages conservés ; contrôles sanitaires à cœur ajoutés avec références. Aucun partage incertain de sauce ou de matière grasse imposé.
+
+**Cumul : 910 identifiants examinés, 328 corrigés, 572 bloqués, 10 conformes sans réécriture, 643 à examiner.** Zéro erreur éditoriale, 6 431 avertissements, 458 minuteurs et 11 610 calculs d’ingrédients des lots 02–28. Les 24 commandes du workflow passent ; six contrôles visuels du Livre et du mode cuisine aux trois formats simulés, avec défilement et dernière étape accessibles. Publication à consigner après contrôle HTTPS. Les plats restants suivent.
+
 ## Limites des vérifications
 
 Les tests de structure, quantité, minuteurs, stockage simulé et rendu ne sont pas des essais culinaires. Les formats iPhone/PWA sont simulés, sauf mention explicite d’un appareil physique. Le total de fiches à examiner ne doit jamais être remplacé par le nombre de fiches auxquelles le style commun a été appliqué.

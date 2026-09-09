@@ -1,0 +1,344 @@
+{
+  "baselineCommit": "c51225815842c5bc2ef0b232c00c2eff0632e67e",
+  "batch": "28",
+  "recipes": [
+    {
+      "id": "v39-tartiflette",
+      "status": "blocked",
+      "sourceHash": "9999d2c3c0f45d32515a6d9f90d29de6037f0efd018858ba17b05fc93647184c",
+      "reviewedHash": "9999d2c3c0f45d32515a6d9f90d29de6037f0efd018858ba17b05fc93647184c",
+      "protectedRecipeSha256": "609e6d17e8471dd325a8fb1c7f71d98a639f02ef048fcc7ffed6060690a80b0b",
+      "note": "l’huile listée n’est jamais utilisée et le sel de l’eau de cuisson manque dans la liste. Leur affectation n’est pas résolue par la recette externe du Reblochon, qui cuit les pommes de terre à la poêle et répartit autrement le fromage. Ne pas copier ce procédé à la place de la précuisson en peau de CR."
+    },
+    {
+      "id": "v39-endives-jambon",
+      "status": "corrected",
+      "sourceHash": "87b04b5cd12e0350da164b92cde68bb4e13e714d77a74f3cb435ad6bd3b3c701",
+      "reviewedHash": "49b58b29b093ab1393007f38e4644c54fa4da28da239042d45ff038e6508f12b",
+      "protectedRecipeSha256": "b11cb197ecd0bb88365a3198a234a5c6426a7379418c9dcf278cee6afe5169fe",
+      "beforeSteps": [
+        "Retirer le cône amer des endives et les cuire 20 minutes à couvert avec 10 cl d’eau et le jus de citron.",
+        "Égoutter les endives tête en bas puis les presser délicatement afin qu’elles ne rendent pas d’eau dans le gratin.",
+        "Faire fondre le beurre, ajouter la farine 1 minute, puis verser le lait progressivement en fouettant ; cuire 5 minutes, jusqu’à ce que la béchamel nappe la cuillère. Ajouter muscade, sel et poivre.",
+        "Enrouler chaque endive dans une tranche de jambon, les ranger dans un plat et napper de béchamel.",
+        "Parsemer de gruyère et gratiner 20 minutes à 200 °C, jusqu’à ce que le dessus soit bien doré."
+      ],
+      "note": "Les 10 cl d’eau source sont rétablis dans la liste et calculés par repas. Endives entières, cuisson couverte citronnée et égouttage conservés ; béchamel et four préchauffé organisés pendant cuisson, sans précuisson à grande eau ni beurre de plat ajouté."
+    },
+    {
+      "id": "v39-gratin-chou-fleur",
+      "status": "corrected",
+      "sourceHash": "96cd4e841195ab81d7101ef870d5bd0ad0d34c9c88d2f0e42a3155b508dfcebd",
+      "reviewedHash": "89aff440db739479fafce54bbb7fddbbd27db5e011d00a4c4df3b16efea70b1a",
+      "protectedRecipeSha256": "f918aa9b4ac37bd695c34315e96eeea9d04e7b0b3a0d71b5e4a733b2b8c3ec42",
+      "beforeSteps": [
+        "Détailler le chou-fleur en bouquets et le cuire 9 à 10 minutes à la vapeur ; il doit être tendre mais encore ferme.",
+        "Faire fondre le beurre, ajouter la farine et cuire 1 minute, puis verser le lait progressivement en fouettant.",
+        "Laisser épaissir 5 minutes à feu moyen, jusqu’à ce que la béchamel nappe la cuillère, puis ajouter muscade, sel, poivre et 40 g de gruyère.",
+        "Ranger le chou-fleur dans un plat, couvrir de béchamel et parsemer du reste de gruyère.",
+        "Gratiner 18 à 20 minutes à 200 °C, jusqu’à obtenir une surface uniformément dorée."
+      ],
+      "note": "Les 40 g de gruyère dans la sauce et le reste des 100 g en surface deviennent deux quantités dynamiques. Vapeur, béchamel au beurre et four à 200 °C conservés ; préchauffage, égouttage et chronologie précisés."
+    },
+    {
+      "id": "v39-roti-porc",
+      "status": "corrected",
+      "sourceHash": "a2dd211a6d1fd2a2256f4f04b9a506eab23fbc1565b26dd2e7f505b272a6657f",
+      "reviewedHash": "e31d548c5b8a636c8c25ca2b4b5befe66eb1ed1f144e6c53bdf8b405354b1693",
+      "protectedRecipeSha256": "12343a95d969730a737fbf9f9dd79790636467a3c09e3262b741c6a6c7e9090e",
+      "beforeSteps": [
+        "Sortir le rôti 20 minutes avant la cuisson, le saler et le poivrer, puis le dorer 2 minutes sur chaque face dans une poêle avec l’huile.",
+        "Déposer dans un plat avec pommes de terre en quartiers, carottes, oignon, ail et thym ; verser le bouillon autour de la viande.",
+        "Cuire 45 à 50 minutes à 180 °C en retournant les légumes et en arrosant le rôti deux fois.",
+        "Vérifier que le jus qui s’écoule est clair et que les légumes sont tendres et dorés.",
+        "Laisser reposer le rôti 10 minutes sous une feuille de papier cuisson avant de le trancher."
+      ],
+      "note": "Rôti entier doré avant le four, huile et bouillon mesurés, légumes préparés pendant la sortie préalable. Le jus clair est remplacé par le contrôle sanitaire à 63 °C et le repos source de dix minutes ; aucune pièce remplacée ni durée par face multipliée arbitrairement."
+    },
+    {
+      "id": "v39-sole-meuniere",
+      "status": "corrected",
+      "sourceHash": "ad87143a3248bc90d9eed51f33437c03e78420b0cf02dedcc9e5ab7cb4bfeb3f",
+      "reviewedHash": "6aed555c54c2d798739229b347de67b783b958388f35316ba52bd574db9a05ba",
+      "protectedRecipeSha256": "2b94a6c1134df6f134b882d41d6ad6d865595fea9e0655293221280d5d4764f7",
+      "beforeSteps": [
+        "Demandez au poissonnier de dépouiller les soles si vous ne souhaitez pas le faire. À la maison, rincez-les rapidement puis séchez-les très soigneusement avec du papier absorbant.",
+        "Salez et poivrez les poissons des deux côtés. Versez la farine dans une grande assiette et farinez légèrement chaque sole. Secouez pour retirer l’excédent : une couche trop épaisse deviendrait pâteuse.",
+        "Faites fondre 25 g de beurre dans une grande poêle sur feu moyen-vif. Quand il mousse, posez les soles. Cuisez 4 à 5 minutes sur la première face sans les déplacer.",
+        "Retournez délicatement avec deux spatules et poursuivez 3 à 4 minutes. La chair près de l’arête doit être blanche et se détacher facilement. Déposez les soles sur des assiettes chaudes.",
+        "Essuyez rapidement la poêle si la farine a brûlé. Ajoutez le reste du beurre et chauffez jusqu’à obtenir une couleur noisette et une odeur de biscuit, sans le laisser noircir.",
+        "Coupez le feu, ajoutez le jus d’un demi-citron avec prudence puis le persil. Versez immédiatement ce beurre noisette sur les soles et servez avec le reste du citron."
+      ],
+      "note": "Les 25 g puis 25 g de beurre, le demi-citron de sauce et le citron de service deviennent des références dynamiques. Farinage léger, retournement aux spatules et beurre noisette hors du feu conservés ; contrôle de cuisson du poisson ajouté sans changer les deux durées source."
+    },
+    {
+      "id": "v39-brandade-morue",
+      "status": "blocked",
+      "sourceHash": "daf66d8e32e294967400aec6139b8fc6581fbcdec750621a5b84e2412f4d2136",
+      "reviewedHash": "daf66d8e32e294967400aec6139b8fc6581fbcdec750621a5b84e2412f4d2136",
+      "protectedRecipeSha256": "5d383353d02b030e1dc1b32149a03837d594b430cc02b85e21ea5ac670892aac",
+      "note": "les 15 cl de lait servent au pochage puis seulement en partie à l’assemblage, sans quantité reprise ni affectation du reste. L’ail et le laurier ne sont pas retirés ou incorporés explicitement. Vérifier la couverture de la morue par ce faible volume sans ajouter un lait ou une eau arbitraire ; la morue est déjà dessalée."
+    },
+    {
+      "id": "v39-moules-marinieres",
+      "status": "corrected",
+      "sourceHash": "617b53396cf02b3858de87e45296da40ab0608e4d5499e32733852fe466c436b",
+      "reviewedHash": "6c3406eefa40757e8f340fa051f797dcfdf72a84f267f8bd593a6c43e358d11c",
+      "protectedRecipeSha256": "3e15d403a951d889a3ffb73b56fe12b20b23af458358d5fb2c01a32ac8c76ce8",
+      "beforeSteps": [
+        "Triez les moules : jetez celles dont la coquille est cassée. Si une moule ouverte ne se referme pas après une légère pression, jetez-la également.",
+        "Grattez les coquilles si nécessaire et retirez les filaments qui dépassent. Rincez rapidement les moules dans plusieurs eaux froides sans les laisser tremper.",
+        "Émincez les échalotes et hachez l’ail. Faites fondre le beurre dans une grande cocotte sur feu moyen et faites-les revenir 3 minutes sans coloration.",
+        "Versez le vin blanc et portez à forte ébullition 1 minute. Ajoutez toutes les moules, couvrez immédiatement et montez sur feu vif.",
+        "Cuisez 4 à 6 minutes en secouant la cocotte deux fois, couvercle maintenu. Ouvrez : les moules doivent être ouvertes. Prolongez 1 minute si beaucoup sont encore fermées.",
+        "Ajoutez le persil et du poivre. Mélangez. Jetez les moules qui restent fermées après cuisson et servez aussitôt avec le jus de cuisson filtré au besoin."
+      ],
+      "note": "Tri et cuisson des moules conservés, persil lavé et haché, beurre et vin mesurés. Durée principale et éventuelle minute supplémentaire distinctes ; minuteurs attachés sans arrondir ni ajouter un temps de repos."
+    },
+    {
+      "id": "v39-paella",
+      "status": "blocked",
+      "sourceHash": "8731dc982d32286a0e672ac7aec53c7ace5cf53c6fc92b83249c34aac8acb631",
+      "reviewedHash": "8731dc982d32286a0e672ac7aec53c7ace5cf53c6fc92b83249c34aac8acb631",
+      "protectedRecipeSha256": "6afeac920d68b758f30bdb03bb42a1d321a49598e85b0da0b7dfb87d98a81f60",
+      "note": "taille des morceaux de poulet et état des petits pois ne sont pas définis pour la cuisson commune. Les moules ne sont pas triées avant cuisson et le riz demande un produit compatible avec le bouillon et les 20–22 minutes. Sel et poivre sont inutilisés ; ne pas rendre un grain tendre en ajoutant du bouillon sans mesure ni garantir le poulet par sa seule dorure."
+    },
+    {
+      "id": "q401",
+      "status": "blocked",
+      "sourceHash": "ec87795289260e5dc9772d6438eb364e3ac493a30e337e7ca90594467b71d338",
+      "reviewedHash": "ec87795289260e5dc9772d6438eb364e3ac493a30e337e7ca90594467b71d338",
+      "protectedRecipeSha256": "8179977afbdca21012ea01166785e95e8fc5960a83945fd06a7de8cac420a771",
+      "note": "le sel de l’orge et les deux cuillerées d’eau des lentilles ne sont pas listés ; la taille de la cuillère reste inconnue. La cuisson de l’orge doit suivre sa notice, le citron n’est pas précisé en jus ou zeste et les légumes n’ont pas de découpe définie. Ne pas déplacer l’huile des légumes vers les lentilles."
+    },
+    {
+      "id": "q402",
+      "status": "blocked",
+      "sourceHash": "8c9ce697d2f53b91da89c2af20f5e2601f61ed3875cbaf19d48542728922c4eb",
+      "reviewedHash": "8c9ce697d2f53b91da89c2af20f5e2601f61ed3875cbaf19d48542728922c4eb",
+      "protectedRecipeSha256": "e93bbb63a75cc9578df9454a95dfea8f8d8b1454d9ddcf569186d0533b195ae3",
+      "note": "les deux volumes d’eau et quatorze minutes du quinoa ne sont pas confirmés par sa notice. Le calibre de la truite et la taille des poireaux manquent, le poivre listé est oublié et le repère nacré ne suffit pas seul. Conserver les poireaux précuits puis la truite au-dessus, sans remplacer la vapeur par une immersion."
+    },
+    {
+      "id": "q403",
+      "status": "corrected",
+      "sourceHash": "6c497aa846cdd34763932887d057dfd81ae456f55347c31f680638ab8cb408b9",
+      "reviewedHash": "138e703bc9ded1e640595d0a24ea479ceff066671471cfcfab1a6e52b55a8279",
+      "protectedRecipeSha256": "5e304bb1347c09c298ffe6cfc02cf83d784d40fb1dad61bf61615e99cf0069d0",
+      "beforeSteps": [
+        "Préchauffer le four à 190 °C. Couper les poivrons en deux, retirer graines et membranes et les précuire 12 minutes.",
+        "Cuire le boulgour 10 minutes dans l’eau salée puis l’égoutter.",
+        "Faire fondre l’oignon 5 minutes, ajouter tomates en dés, pois chiches et cumin et cuire 6 minutes ; incorporer boulgour et persil.",
+        "Garnir les poivrons et cuire 22 minutes à 190 °C ; ils doivent être tendres et la farce rester moelleuse."
+      ],
+      "note": "Sel demandé pour le boulgour rétabli sans dose inventée ; huile déjà listée affectée au seul suage de l’oignon, sans graisser le plat. Boulgour selon paquet, légumes préparés, poivrons précuits et farce aux pois chiches déjà cuits conservés."
+    },
+    {
+      "id": "q404",
+      "status": "blocked",
+      "sourceHash": "047c7665cea8f2d3a10842dd2b1ca99294e4d5306f10d68d0f0caba0ac98f933",
+      "reviewedHash": "047c7665cea8f2d3a10842dd2b1ca99294e4d5306f10d68d0f0caba0ac98f933",
+      "protectedRecipeSha256": "e449145c8780f277515e68a93bab7d6aab984c450be32449eca984f49fce37d7",
+      "note": "les 25 minutes d’orge puis huit minutes de légumes et sept à neuf de poisson s’additionnent sans notice du grain ni marge de préparation dans les quarante minutes annoncées. Épaisseur du cabillaud et forme du citron manquent. Le poisson nacré ne suffit pas à valider la cuisson ; conserver le pochage dans le bouillon."
+    },
+    {
+      "id": "q405",
+      "status": "corrected",
+      "sourceHash": "c6471d2147bbc57c87f66944682e8162f4db972b33d027400308ef4dd877f043",
+      "reviewedHash": "fcf145945a0d3a675fafaddf6dbace830f1256a007a7d162775725126160f834",
+      "protectedRecipeSha256": "07f33167c8983548580c0772f8196b8b0aa71fb579b2029e94ee12976f7219cf",
+      "beforeSteps": [
+        "Cuire le riz complet selon le paquet, généralement 30 à 35 minutes, puis le garder couvert.",
+        "Couper le poulet en lanières, le mélanger avec gingembre, soja et huile de sésame et laisser reposer 10 minutes.",
+        "Cuire carottes et pak-choï 5 minutes à la vapeur, ajouter le poulet au-dessus et poursuivre 8 minutes ; le centre doit être entièrement opaque.",
+        "Servir sur le riz avec le jus de citron vert, sans ajouter de sauce grasse."
+      ],
+      "note": "Riz complet uniquement selon paquet, marinade mesurée et tenue au froid, légumes préparés avant vapeur. L’opacité du poulet est complétée par un contrôle à 74 °C ; vapeur et jus de citron au service conservés, sans saisie ni sauce ajoutée."
+    },
+    {
+      "id": "theme-bistrot-brasserie-06",
+      "status": "blocked",
+      "sourceHash": "1e7fe2f965bbfe41ce766fd91d45bc6ae1de047ca6342c869ee6fa5dec23629c",
+      "reviewedHash": "1e7fe2f965bbfe41ce766fd91d45bc6ae1de047ca6342c869ee6fa5dec23629c",
+      "protectedRecipeSha256": "91e961ca49a41938225a7c0175abd1b1ae5e075ff7e06860722adb19b959275b",
+      "note": "la béchamel est partagée entre intérieur et dessus sans quantités définies. La salade assaisonnée manque dans la liste, notamment son assaisonnement. Les deux croques fixes doivent aussi suivre les convives. Conserver la poêle puis le gril, même si l’appareil principal affiché est la poêle."
+    },
+    {
+      "id": "theme-bistrot-brasserie-07",
+      "status": "blocked",
+      "sourceHash": "0cc4925ee8d8181ce58f6e514117b0b2108a5603ca2d5b316720d8405680b307",
+      "reviewedHash": "0cc4925ee8d8181ce58f6e514117b0b2108a5603ca2d5b316720d8405680b307",
+      "protectedRecipeSha256": "a3d5be94e345dc9226aacaddd90322e715e919a4204e646f7e2b3261e0738b3d",
+      "note": "épaisseur des bavettes et contrôle à cœur non précisés pour la cuisson saignante annoncée. La minute par face supplémentaire est un ajustement et non un minuteur indépendant. La sortie préalable de vingt minutes et la sauce ne sont pas clairement comprises dans le total ; conserver les deux parts de beurre identifiées sans changer arbitrairement le degré de cuisson."
+    },
+    {
+      "id": "theme-bistrot-brasserie-08",
+      "status": "blocked",
+      "sourceHash": "2238ac9290b4bbd7b2e628d6bd7fbc1d995f8021e3198fe8419079973c67bdbf",
+      "reviewedHash": "2238ac9290b4bbd7b2e628d6bd7fbc1d995f8021e3198fe8419079973c67bdbf",
+      "protectedRecipeSha256": "7d633c55a582478b76bc58e955438474283804f4984319700b2c3c0d2dcc8660",
+      "note": "la cuisson saignante en deux à trois minutes par face ne définit ni épaisseur ni contrôle à cœur. Les frites ou pommes de terre de service ne figurent pas dans la liste. Le total inclut mal la sortie préalable ; préciser aussi l’ajout prudent du cognac sans transformer le déglaçage en flambage."
+    },
+    {
+      "id": "theme-bistrot-brasserie-09",
+      "status": "corrected",
+      "sourceHash": "2f7d5b90f9d34a8e32689bd0704bf72488c7870e4eaaf0f7dea43788920eaea0",
+      "reviewedHash": "d69b14cc6f1194d3d179c142588572d7811a1397982e488e9a1f79bb4af2d3fa",
+      "protectedRecipeSha256": "a6654b17bf2e007325b5d9383193e8454cb94c642ce3559376dc615c3d9ed674",
+      "beforeSteps": [
+        "Épluchez les pommes de terre, coupez-les en morceaux de taille régulière et mettez-les dans une casserole d’eau froide salée. Portez à ébullition puis cuisez 18 à 20 minutes, jusqu’à ce qu’un couteau entre sans résistance.",
+        "Pendant ce temps, émincez les oignons. Chauffez l’huile dans une poêle sur feu moyen et faites cuire les saucisses 15 à 18 minutes en les retournant régulièrement. Elles doivent être bien colorées et cuites à cœur.",
+        "Retirez les saucisses et gardez-les au chaud. Dans la même poêle, faites revenir les oignons 8 minutes. Saupoudrez de farine, mélangez 30 secondes puis versez le bouillon en grattant le fond.",
+        "Laissez le jus d’oignon frémir 5 à 7 minutes. Il doit légèrement épaissir. Remettez les saucisses 2 minutes dans la sauce.",
+        "Égouttez les pommes de terre et remettez-les 1 minute dans la casserole chaude pour évaporer l’humidité. Écrasez-les au presse-purée ; n’utilisez pas de mixeur, qui les rendrait collantes.",
+        "Faites tiédir le lait. Incorporez beurre puis lait petit à petit jusqu’à obtenir une purée souple. Salez, poivrez et servez avec les saucisses et le jus d’oignon."
+      ],
+      "note": "Saucisses et purée restent préparées en parallèle, sans beurre supplémentaire dans la poêle. Huile, bouillon, farine, beurre et lait liés aux ingrédients ; repère à 71 °C ajouté pour les saucisses, source sanitaire, sans remplacer leur cuisson par une simple coloration."
+    },
+    {
+      "id": "theme-bistrot-brasserie-10",
+      "status": "blocked",
+      "sourceHash": "ff516545488dd197f0d94b60c2ebead37ea96369407f2ccf509939c5173bae89",
+      "reviewedHash": "ff516545488dd197f0d94b60c2ebead37ea96369407f2ccf509939c5173bae89",
+      "protectedRecipeSha256": "cedb28c5c3b23a66c355f5cefb3b6ad62649d55b704ab35fdb3e6dc38f6df0f8",
+      "note": "le calibre et la notice des boudins ne sont pas identifiés pour vérifier le perçage conseillé et les huit à dix minutes de réchauffage. Le poivre listé est oublié et la purée facultative n’est pas listée. Ne pas remplacer le procédé de perçage par une consigne opposée sans source du produit."
+    },
+    {
+      "id": "theme-bistrot-brasserie-15",
+      "status": "blocked",
+      "sourceHash": "2aeac280e1351bd4465c966e397461e283dbad8d793173f0010d406e636b492a",
+      "reviewedHash": "2aeac280e1351bd4465c966e397461e283dbad8d793173f0010d406e636b492a",
+      "protectedRecipeSha256": "594ce2cb880d226ed02a4fd97a33d4103dbcb509e56862e12c5498896a7501ef",
+      "note": "calibre et notice des andouillettes manquent pour vérifier le temps et la température à cœur. Le sel évoqué et la purée ou les frites de service sont absents de la liste. Les trente-cinq minutes ne distinguent pas la sortie préalable de quinze minutes et les opérations successives."
+    },
+    {
+      "id": "theme-cuisine-regionale-07",
+      "status": "corrected",
+      "sourceHash": "df81fe1fbeecbd362d869e38e2374059e760bc17a6c571555afd58c3b34551e8",
+      "reviewedHash": "1bd6acffebf6541eb89e5f613b8af478837258958e0bba66841ee27195ffc429",
+      "protectedRecipeSha256": "fd46c085452fff5c8659ee574067d52f86cdbc8015c1f65b4da0a764f17c3059",
+      "beforeSteps": [
+        "Coupez le poisson en gros morceaux de 4 à 5 cm et gardez-le au frais. Épluchez les pommes de terre et la carotte, nettoyez le poireau puis coupez tous les légumes en morceaux réguliers.",
+        "Faites fondre le beurre dans une cocotte sur feu moyen. Ajoutez oignon et poireau et faites-les suer 5 minutes sans coloration.",
+        "Ajoutez carotte et pommes de terre, versez le vin blanc et laissez bouillir 1 minute. Ajoutez le fumet, poivrez et portez à frémissement.",
+        "Couvrez à moitié et cuisez 20 à 25 minutes. Vérifiez que les pommes de terre sont presque tendres avant d’ajouter le poisson.",
+        "Déposez les morceaux de poisson dans le bouillon sans trop remuer. Laissez pocher 6 à 8 minutes à très petits frémissements. Le poisson est cuit quand sa chair devient opaque et se détache en lamelles.",
+        "Goûtez le bouillon, salez si nécessaire et parsemez de persil. Servez très chaud avec du pain de campagne."
+      ],
+      "note": "Pain de campagne présent dans le service source rétabli sans quantité inventée. Poisson gardé au froid puis poché, légumes revenus au beurre et demi-couverture conservés ; volumes de vin et fumet adaptés au repas, contrôle à 63 °C ajouté sans saisir le poisson."
+    },
+    {
+      "id": "theme-cuisine-regionale-08",
+      "status": "corrected",
+      "sourceHash": "3052eca72405df91c7298fd7f49a924ebf303f506475071c3549f4563fbef4a3",
+      "reviewedHash": "8266ba523fcc14ce48e7368b6b19d5d98ed2d91d0068d24d5ff7ca57e9323a75",
+      "protectedRecipeSha256": "97cf66a580ccaeeef7166b9e2728ad907b143a9d6e42b1b0d36526901d9e3b5f",
+      "beforeSteps": [
+        "Épongez les cuisses de poulet, salez et poivrez. Émincez les échalotes et coupez les champignons en quartiers.",
+        "Faites fondre 15 g de beurre dans une cocotte sur feu moyen-vif. Faites dorer le poulet 4 à 5 minutes par face puis réservez-le.",
+        "Faites revenir échalotes et champignons 5 minutes dans la cocotte. Versez le calvados et laissez bouillir 30 secondes sans chercher à flamber.",
+        "Ajoutez le cidre en grattant les sucs, remettez le poulet, couvrez à moitié et laissez mijoter 35 minutes à feu doux. Le jus qui sort de la partie la plus épaisse du poulet doit être clair.",
+        "Pendant ce temps, épluchez les pommes, coupez-les en quartiers et faites-les dorer 8 à 10 minutes dans une poêle avec le reste de beurre.",
+        "Retirez le poulet de la cocotte. Ajoutez la crème à la sauce et laissez réduire 5 minutes à feu moyen jusqu’à ce qu’elle nappe la cuillère.",
+        "Remettez le poulet et les pommes dans la sauce 2 minutes. Goûtez et rectifiez l’assaisonnement avant de servir."
+      ],
+      "note": "Les 15 g de beurre de cocotte et les 10 g des pommes deviennent des quantités calculées. Poulet doré puis mijoté au cidre, pommes séparées et calvados sans flambage conservés. Le jus clair est remplacé par un contrôle au thermomètre à 74 °C, sans inventer une nouvelle cuisson."
+    },
+    {
+      "id": "theme-cuisine-regionale-09",
+      "status": "blocked",
+      "sourceHash": "45fcfc248124c3f0fd39d106d2aadb1eb1fc40519205af57255b692783df94ab",
+      "reviewedHash": "45fcfc248124c3f0fd39d106d2aadb1eb1fc40519205af57255b692783df94ab",
+      "protectedRecipeSha256": "ed62181912ee725207370c5cf0b328c3489799600fb0b1cd65aeb58a67a1a1c5",
+      "note": "graisse ou huile de départ absente et cuillère sans taille définie ; eau mesurée, sel des pommes de terre et moutarde de service également absents. La notice de la Morteau n’est pas identifiée. Ne pas inventer de graisse ni transformer les viandes et la choucroute déjà cuites en produits crus."
+    },
+    {
+      "id": "theme-cuisine-regionale-10",
+      "status": "blocked",
+      "sourceHash": "d228ead70e52b7c1f0b26f06edc0f19cbea32d7c1fd98b8685f26d280746a3e5",
+      "reviewedHash": "d228ead70e52b7c1f0b26f06edc0f19cbea32d7c1fd98b8685f26d280746a3e5",
+      "protectedRecipeSha256": "f356098d9c4c6017384f86302a4bdaafa953de1017a099b16d60618de938804a",
+      "note": "le papier cuisson n’est pas identifié pour un four au maximum, idéalement 250 °C. Certains fabricants le limitent à environ 218 °C : vérifier sa notice et celle du four avant emploi, sans abaisser arbitrairement la température de la recette. Le poids et l’épaisseur de la pâte restent également indéfinis."
+    },
+    {
+      "id": "theme-cuisine-regionale-11",
+      "status": "blocked",
+      "sourceHash": "f29863bf41956c52a18ea39acd063dc4d517bec79f6a41aece930e378342b5ce",
+      "reviewedHash": "f29863bf41956c52a18ea39acd063dc4d517bec79f6a41aece930e378342b5ce",
+      "protectedRecipeSha256": "336e57a6c074d5fa3eaf9aa11c1571ff480f016807a7268bd54471d8cf59f2e9",
+      "note": "le beurre du plat est demandé en plus de celui entièrement utilisé dans le roux, sans part réservée. Calibre et notice des quenelles ne sont pas précisés ; une part indéfinie du comté est utilisée et le riz ou la salade de service n’est pas listé. Ne pas inventer une précuisson des quenelles."
+    },
+    {
+      "id": "theme-cuisine-regionale-12",
+      "status": "corrected",
+      "sourceHash": "55550638acd698adab7a6144fd64760cc572e162b45a19f8e11c37f3b81589c4",
+      "reviewedHash": "5503b588582bef77b8777b2c90db78951dfdded71113d67e8621e3e5e6fde384",
+      "protectedRecipeSha256": "ac84b9b01fcc2ab0985c7359fe75eb3941e9aaf9820732c9b040ba153920feb6",
+      "beforeSteps": [
+        "Cuisez les pommes de terre entières avec leur peau dans une casserole d’eau salée pendant 20 à 25 minutes. Elles doivent être presque tendres mais encore fermes. Égouttez et laissez tiédir.",
+        "Émincez les oignons. Faites-les revenir 8 minutes avec l’huile sur feu moyen, puis ajoutez les lardons et poursuivez 5 minutes.",
+        "Versez le vin blanc et laissez réduire 2 à 3 minutes. Poivrez. Inutile de saler fortement car lardons et reblochon le sont déjà.",
+        "Préchauffez le four à 200 °C. Pelez les pommes de terre si vous le souhaitez puis coupez-les en rondelles épaisses.",
+        "Mélangez pommes de terre, oignons et lardons dans un plat. Coupez le reblochon en deux dans l’épaisseur puis encore en deux. Posez les morceaux croûte vers le haut.",
+        "Enfournez 20 à 25 minutes. Le fromage doit être entièrement fondu et le dessus bien doré. Laissez reposer 5 minutes avant de servir avec une salade verte."
+      ],
+      "note": "Sel de précuisson et salade de service présents dans les étapes source rétablis sans dose inventée. Huile affectée aux oignons comme dans la source, pommes de terre entières en peau, reblochon croûte vers le haut et repos conservés ; pas de remplacement par la variante externe à la poêle."
+    },
+    {
+      "id": "theme-cuisine-regionale-13",
+      "status": "corrected",
+      "sourceHash": "f7ac41c86648bbc8c66d7c49b816f1235c8ed5589ab96c6641454ac27c11efa6",
+      "reviewedHash": "cf6d2d51c8671019c3d4df7fbd02f4d0bcaca7b26ee1bbcd543c05e626d1e982",
+      "protectedRecipeSha256": "908d7b8cfdbe39edfc01d3a89b8e2f1adb0d43664c8cc69cf9a92c56d6e2d069",
+      "beforeSteps": [
+        "Épluchez les pommes de terre et coupez-les en rondelles de 4 à 5 mm. Rincez-les rapidement puis séchez-les très bien.",
+        "Chauffez l’huile dans une grande poêle sur feu moyen. Ajoutez les pommes de terre, couvrez et cuisez 20 à 25 minutes en les retournant toutes les 5 minutes.",
+        "Quand elles sont tendres, retirez le couvercle et augmentez légèrement le feu 5 minutes pour les faire dorer. Ajoutez l’ail haché, salez modérément et poivrez.",
+        "Coupez la tome en fines lamelles. Baissez le feu et répartissez-la sur les pommes de terre.",
+        "Mélangez lentement avec une spatule pendant 3 à 5 minutes. Le fromage doit fondre et former de longs fils qui enrobent les pommes de terre.",
+        "Parsemez de persil et servez immédiatement, souvent avec une salade et du jambon d’Auvergne."
+      ],
+      "note": "Rondelles de 4–5 mm, huile, cuisson couverte puis dorure et fromage filant conservés. Le retournement toutes les cinq minutes n’est pas un second temps de cuisson. Salade et jambon de service, explicitement proposés dans la source, rétablis comme facultatifs sans quantité inventée ; aucun beurre ni lardon de la variante Robuchon ajouté."
+    },
+    {
+      "id": "theme-cuisine-regionale-14",
+      "status": "corrected",
+      "sourceHash": "ad6824e2122fa39babae4f856989a9080f837149bb0f2070413c683fa53fa335",
+      "reviewedHash": "69676cc632328e54cbd167bd5b210f08f0142cb6dd750884d021d2a00516b469",
+      "protectedRecipeSha256": "238900e12e2d62c259226dbf781a824c4db674da3e7bc374a9bfe0880d91e217",
+      "beforeSteps": [
+        "Coupez le bœuf en gros cubes et épongez-les. Émincez les oignons.",
+        "Faites fondre le beurre dans une cocotte sur feu vif et dorez la viande en plusieurs fois, environ 5 minutes par fournée. Réservez.",
+        "Baissez sur feu moyen, ajoutez les oignons et la cassonade et cuisez 8 minutes. Saupoudrez la farine, mélangez 1 minute.",
+        "Remettez la viande, versez la bière et grattez le fond. Ajoutez le bouquet garni. Tartinez le pain d’épices de moutarde et posez-le sur le dessus, côté moutarde vers le bas.",
+        "Portez à frémissement, couvrez et laissez mijoter 2 heures à feu très doux. Remuez après 1 heure : le pain d’épices se dissoudra dans la sauce.",
+        "Retirez le couvercle et poursuivez 20 à 30 minutes si la sauce est trop liquide. La viande doit être très tendre et la sauce brune, douce et nappante. Goûtez et assaisonnez."
+      ],
+      "note": "Dorure par fournées, pain d’épices moutardé et mijotage à la bière conservés. Liquides et condiments mesurés ; remuer après une heure reste un geste à mi-cuisson, pas une seconde cuisson. La réduction finale est conditionnelle ; retrait du bouquet précisé, sans eau ni graisse supplémentaire."
+    },
+    {
+      "id": "theme-cuisine-regionale-15",
+      "status": "blocked",
+      "sourceHash": "d46317fd18a00a561440b87536799da038502dac73a64e7299eb4f7025fa4dea",
+      "reviewedHash": "d46317fd18a00a561440b87536799da038502dac73a64e7299eb4f7025fa4dea",
+      "protectedRecipeSha256": "9bc7a8448c4724eec2c10dfd851d2b651e104f1b025d9ca392a7202a2b59bcab",
+      "note": "la cuisson des œufs au plat ne précise ni matière grasse ni durée ou repère de cuisson. Les œufs et les deux plats sont figés dans les étapes, et les frites et la salade sont absentes de la liste. Ne pas remplacer ces œufs par un autre mode de cuisson ni inventer une huile."
+    },
+    {
+      "id": "theme-cuisine-regionale-16",
+      "status": "blocked",
+      "sourceHash": "24ab048b48469496dea9d884f34f16391645f0ab46b12adebdbb1a9af571a16c",
+      "reviewedHash": "24ab048b48469496dea9d884f34f16391645f0ab46b12adebdbb1a9af571a16c",
+      "protectedRecipeSha256": "f564784006b5fa4f8c0129ea5c35fc73fc2e99784e990bc28297ce6cdc41b1fb",
+      "note": "deux bandes de zeste sont demandées sans taille ni adaptation aux convives, tandis qu’une orange entière figure dans la liste. Eau de complément et accompagnement ne sont pas listés ; dorure des cubes sans durée. Les vingt dernières minutes à découvert font partie des deux heures trente et ne doivent pas s’y ajouter."
+    },
+    {
+      "id": "theme-cuisine-regionale-17",
+      "status": "blocked",
+      "sourceHash": "e0c6fd804978aa4b3e2aa01dd6331cbddca048adf3250b15047d710dc9bcb7a6",
+      "reviewedHash": "e0c6fd804978aa4b3e2aa01dd6331cbddca048adf3250b15047d710dc9bcb7a6",
+      "protectedRecipeSha256": "440b22987b283394423114b8cb8358dee80b8b40184390f48f18e9fca24e7d73",
+      "note": "l’eau de complément est absente de la liste, et la taille de la poitrine n’est pas précisée. La notice et le contrôle à cœur des saucisses ne sont pas documentés. Il faut distinguer les gestes toutes les trente minutes des quatre-vingt-dix minutes totales, dont les quinze dernières à 190 °C ; haricots cuits et canard confit doivent rester tels quels."
+    }
+  ]
+}
