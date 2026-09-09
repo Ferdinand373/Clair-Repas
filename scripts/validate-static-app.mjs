@@ -9,7 +9,7 @@ import { TextDecoder, TextEncoder } from "node:util";
 import vm from "node:vm";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
-const PRODUCTION_V75_INDEX_BLOB = "9a666cfb64357c85ad067b690cb9194650e33cf3";
+const PRODUCTION_V75_INDEX_BLOB = "a7834f0813dd09821bae3fe87b81e84f9e0db6db";
 const CLAIR_REPAS_PERSONAL_KEYS = Object.freeze([
   "crFavMeals",
   "crRecentRecipesV25",
@@ -1479,6 +1479,139 @@ await check("Compatible newest snapshot selection", () => {
     newPreboot
   );
   return "newest valid snapshot wins; malformed records skipped";
+});
+
+await check("Kitchen timer layout follows dock and control heights", () => {
+  const code = inlineScripts[0];
+  const start = code.indexOf("function updateKitchenTimerLayout(){");
+  const end = code.indexOf("function mealComponentRecipe(", start);
+  assert.ok(start > 0 && end > start);
+  const properties = new Map();
+  const dock = { height: 62, getBoundingClientRect() { return { height: this.height }; } };
+  const timer = { height: 0, getBoundingClientRect() { return { height: this.height }; } };
+  let resized;
+  let resizeEvent;
+  let writes = 0;
+  const observed = [];
+  const sandbox = {
+    document: {
+      documentElement: { style: {
+        getPropertyValue: name => properties.get(name) || "",
+        setProperty(name, value) { properties.set(name, value); writes += 1; }
+      } },
+      querySelector: selector => selector === ".premium-dock" ? dock : timer
+    },
+    $: () => timer,
+    window: {
+      ResizeObserver: true,
+      addEventListener(event, callback) { assert.equal(event, "resize"); resizeEvent = callback; }
+    },
+    ResizeObserver: class {
+      constructor(callback) { resized = callback; }
+      observe(element) { observed.push(element); }
+    }
+  };
+  vm.runInNewContext(code.slice(start, end), sandbox);
+  assert.deepEqual(observed, [dock, timer]);
+  assert.equal(properties.get("--dock-height"), "62px");
+  assert.equal(properties.has("--timer-height"), false, "Hidden timer keeps its CSS fallback");
+  dock.height = 94.25;
+  timer.height = 88.5;
+  resized();
+  assert.equal(properties.get("--dock-height"), "95px");
+  assert.equal(properties.get("--timer-height"), "89px");
+  const previousWrites = writes;
+  resized();
+  assert.equal(writes, previousWrites, "Stable geometry must not cause an observer loop");
+  dock.height = 62;
+  resizeEvent();
+  assert.equal(properties.get("--dock-height"), "62px");
+  delete sandbox.window.ResizeObserver;
+  dock.height = 70;
+  vm.runInNewContext(code.slice(start, end), sandbox);
+  assert.equal(properties.get("--dock-height"), "70px", "Resize fallback works without ResizeObserver");
+  assert.match(indexHtml, /--dock-bottom:calc\(10px \+ env\(safe-area-inset-bottom,0px\)\)/);
+  assert.match(indexHtml, /\.kitchen-timer\{[^}]*bottom:var\(--timer-bottom\)/);
+  assert.match(indexHtml, /body\.timer-running main,body\.timer-running \.browser-content\{padding-bottom:var\(--timer-clearance\)/);
+  return "hidden, visible, larger dock/controls, resize and safe-area clearance";
+});
+
+await check("Kitchen timer lifecycle remains independent of layout", async () => {
+  const code = inlineScripts[0];
+  const start = code.indexOf("const TIMER_KEY=");
+  const end = code.indexOf("// Keep the timer and recipe scroll clearance", start);
+  assert.ok(start > 0 && end > start);
+  const stored = new Map();
+  let now = 1000000;
+  let beeps = 0;
+  let vibrations = 0;
+  const classList = () => {
+    const names = new Set();
+    return {
+      add: (...items) => items.forEach(item => names.add(item)),
+      remove: (...items) => items.forEach(item => names.delete(item)),
+      toggle: (name, enabled) => enabled ? names.add(name) : names.delete(name),
+      contains: name => names.has(name)
+    };
+  };
+  const makeSandbox = () => {
+    const elements = Object.fromEntries(["kitchenTimer", "timerCount", "timerLabel", "timerStop"]
+      .map(id => [id, { textContent: "", classList: classList() }]));
+    const context = {
+      CR_APP_VERSION: "7.5",
+      Date: { now: () => now },
+      document: { title: "", body: { classList: classList() } },
+      $: id => elements[id],
+      localStorage: {
+        getItem: key => stored.get(key) || null,
+        setItem: (key, value) => stored.set(key, value),
+        removeItem: key => stored.delete(key)
+      },
+      navigator: { vibrate() { vibrations += 1; } },
+      window: { AudioContext: class {
+        state = "running";
+        currentTime = 0;
+        resume() { return Promise.resolve(); }
+        createOscillator() {
+          return { frequency: {}, connect: gain => gain, start() { beeps += 1; }, stop() {} };
+        }
+        createGain() {
+          return { gain: { setValueAtTime() {}, exponentialRampToValueAtTime() {} }, connect() {} };
+        }
+      } },
+      setInterval: () => 1,
+      clearInterval() {},
+      show() {}
+    };
+    vm.runInNewContext(code.slice(start, end), context);
+    return { context, elements };
+  };
+  let { context, elements } = makeSandbox();
+  context.startKitchenTimer({ id: "timer-test", n: "Recette test" }, 2, 0);
+  assert.equal(elements.timerCount.textContent, "02:00");
+  assert.equal(elements.kitchenTimer.classList.contains("show"), true);
+  now += 30000;
+  context.updateTimerUI();
+  assert.equal(elements.timerCount.textContent, "01:30");
+  ({ context, elements } = makeSandbox());
+  assert.equal(elements.timerCount.textContent, "01:30", "Reload resumes the saved deadline");
+  context.startKitchenTimer({ id: "timer-test", n: "Recette test" }, 1, 1);
+  assert.equal(elements.timerCount.textContent, "01:00", "Selecting another step resets the countdown");
+  now += 60000;
+  context.updateTimerUI();
+  await Promise.resolve();
+  assert.equal(elements.timerCount.textContent, "C’est prêt !");
+  assert.equal(elements.timerStop.textContent, "Fermer");
+  assert.equal(beeps, 2);
+  assert.equal(vibrations, 1);
+  context.updateTimerUI();
+  await Promise.resolve();
+  assert.equal(beeps, 2, "The completed timer only alerts once");
+  elements.timerStop.onclick();
+  assert.equal(elements.kitchenTimer.classList.contains("show"), false);
+  assert.equal(stored.size, 0);
+  assert.equal(context.document.body.classList.contains("timer-running"), false);
+  return "start, countdown, restore, reset, one-shot alert and stop";
 });
 
 await check("Recipe-library integrity", () => {
