@@ -7,7 +7,7 @@ import {recipeSource} from './recipe-source.mjs';
 import {recipeHash} from './validate-recipe-editorial.mjs';
 const root=resolve(dirname(fileURLToPath(import.meta.url)),'..');
 const {code,recipes,editorial}=recipeSource(readFileSync(resolve(root,'index.html'),'utf8'));
-const batchNumbers=['02','03','04','05','06','07','08','09','10','11','12','13','14','15','16','17','18','19','20','21','22','23'];
+const batchNumbers=['02','03','04','05','06','07','08','09','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24'];
 const fixture={recipes:batchNumbers.flatMap(number=>JSON.parse(readFileSync(resolve(root,`scripts/recipe-editorial-batch-${number}.fixture.json`),'utf8')).recipes)};
 const slice=(a,b)=>code.slice(code.indexOf(a),code.indexOf(b,code.indexOf(a)+a.length));
 const context={window:{},$:()=>({value:'8'}),MEAL_TYPES:['mid','eve'],recipeRole:r=>r.role||r.course||'dish',isFavorite:()=>false,recipeFeedbackHTML:()=>'',recipePersonalNoteHTML:()=>''};
@@ -110,7 +110,14 @@ const timers={
   'bistrot-ext-01':[[],[20],[],[],[]],
   'bistrot-ext-05':[[],[3],[5],[10],[],[120]],
   'bistrot-ext-06':[[],[],[],[],[30]],
-  'bistrot-ext-08':[[20],[10],[],[],[],[5],[5]]
+  'bistrot-ext-08':[[20],[10],[],[],[],[5],[5]],
+  b401:[[],[10],[],[2],[1]],b403:[[],[],[3],[3]],b404:[[],[],[8],[]],
+  b406:[[],[],[25],[]],b407:[[],[],[],[]],b408:[[],[],[],[]],b410:[[],[],[5],[]],
+  b415:[[5],[],[3],[3]],b416:[[],[],[10],[1]],b417:[[],[8],[10],[7],[]],
+  f402:[[],[],[],[90],[]],f403:[[],[2],[],[25],[]],f404:[[],[],[45],[],[]],f405:[[],[],[20],[]],
+  f406:[[],[],[3],[]],f407:[[],[],[12],[]],f408:[[],[],[],[60]],f409:[[],[],[],[60]],
+  f411:[[],[],[],[30]],f412:[[],[],[],[30]],f414:[[5],[],[],[],[]],f415:[[],[],[],[1],[]],
+  f416:[[],[],[],[]],f417:[[],[],[],[]],f420:[[],[],[],[]]
 };
 const ingredients={
   n01:['poulet','pommes de terre','paprika','huile','sel.*poivre'],
@@ -314,9 +321,31 @@ const ingredients={
   'bistrot-ext-01':['os','pain','échalote','persil','vinaigre','huile','fleur de sel','poivre'],
   'bistrot-ext-05':['champignons','vin blanc','d’eau','huile d’olive','citron','concentré de tomate','graines de coriandre','laurier','oignon','Saler.*poivrer'],
   'bistrot-ext-06':['cervelas','oignon rouge','cornichons','moutarde à l’ancienne','vinaigre','huile neutre','persil haché','Poivrer'],
-  'bistrot-ext-08':['pieds de cochon déjà cuits','œufs de la sauce','moutarde','huile','vinaigre','câpres','cornichons','persil.*ciboulette','chapelure','œuf pour panure','farine','huile','Saler.*poivrer']
+  'bistrot-ext-08':['pieds de cochon déjà cuits','œufs de la sauce','moutarde','huile','vinaigre','câpres','cornichons','persil.*ciboulette','chapelure','œuf pour panure','farine','huile','Saler.*poivrer'],
+  b401:['farine','sucre','levure chimique','œuf','lait','beurre','sel'],
+  b403:['pain','œufs','lait','sucre','beurre','vanille'],
+  b404:['flocons d’avoine','lait','pomme','miel','cannelle','noix'],
+  b406:['avoine','amandes','graines','miel','huile neutre','cannelle','sel'],
+  b407:['fromage blanc','banane','pomme','muesli','miel'],
+  b408:['yaourt grec','banane','kiwis','flocons d’avoine','noisettes'],
+  b410:['œufs','beurre','lait','ciboulette','pain','sel.*poivre'],
+  b415:['courgette','farine','œuf','lait','parmesan','levure chimique','huile','saler'],
+  b416:['pain','jambon','tomates','emmental','moutarde','Poivrer'],
+  b417:['œufs','tomates concassées','poivron','oignon','ail','paprika','huile d’olive','pain'],
+  f402:['carcasses et ailes de volaille','poireau','carottes','oignon','céleri','d’eau froide','bouquet garni'],
+  f403:['arêtes et parures de poisson blanc','échalotes','poireau','vin blanc','d’eau','bouquet garni','beurre'],
+  f404:['carottes','poireaux','céleri','oignon','ail','d’eau froide','bouquet garni','grains de poivre','saler'],
+  f405:['d’eau','vin blanc','carotte','oignon','céleri','bouquet garni','grains de poivre','vinaigre'],
+  f406:['beurre','farine'],f407:['beurre','farine'],
+  f408:['farine','beurre froid','sel','d’eau froide'],
+  f409:['farine','beurre mou','sucre glace','œuf','sel'],
+  f411:['farine','œufs','lait','beurre fondu','sel'],
+  f412:['farine','œufs','lait','beurre fondu','sucre','levure chimique'],
+  f414:['lait entier','jaunes','sucre','gousse de vanille'],
+  f415:['lait','jaunes','sucre','fécule de maïs','gousse de vanille','beurre'],
+  f416:['crème','sucre glace','vanille'],f417:['sucre'],f420:['persil','ail','huile d’olive facultative','sel']
 };
-assert.equal(fixture.recipes.length,707);
+assert.equal(fixture.recipes.length,745);
 let quantityChecks=0,timerCount=0;
 for(const record of fixture.recipes){
   const recipe=recipes.find(r=>r.id===record.id);
@@ -722,6 +751,46 @@ assert.match(editorial['v75-chef-troisgros-05'].reviewNote,/cuillère d’huile.
 const marrow23=batch23.find(r=>r.id==='bistrot-ext-01');
 assert.equal(marrow23.reviewedHash,marrow23.sourceHash,'all culinary fields of satisfactory recipe remain unchanged');
 assert.deepEqual(recipes.find(r=>r.id===marrow23.id).collections,['bistrot-brasserie','aperitifs-petites-assiettes']);
+const batch24=JSON.parse(readFileSync(resolve(root,'scripts/recipe-editorial-batch-24.fixture.json'),'utf8')).recipes;
+assert.equal(batch24.length,38);
+assert.equal(batch24.filter(r=>r.status==='corrected').length,21);
+assert.equal(batch24.filter(r=>r.status==='unchanged').length,4);
+assert.equal(batch24.filter(r=>r.status==='blocked').length,13);
+const pancakes24=recipes.find(r=>r.id==='b401'),caramel24=recipes.find(r=>r.id==='f417'),granola24=recipes.find(r=>r.id==='b406');
+for(const count of [1,2,3,4,5,8]){
+  for(const index of [0,2])assert.ok(context.recipeStepText(pancakes24.p[index],pancakes24,count).includes(context.formatQty(5*count)+' g de beurre'));
+  const caramel=context.recipeStepText(caramel24.p[0],caramel24,count);
+  assert.ok(caramel.includes(context.formatQty(12.5*count)+' g pour commencer'));
+  assert.ok(caramel.includes(context.formatQty(25*count)+' g à ajouter ensuite'));
+  assert.ok(context.recipeStepText(granola24.p[1],granola24,count).includes('45 g de miel et 35 g d’huile'));
+  assert.match(context.recipeStepText(granola24.p[2],granola24,count),/22 à 25 minutes à 160 °C/);
+  const porridge=recipes.find(r=>r.id==='b404');
+  const apple=context.recipeStepText(porridge.p[0],porridge,count);
+  assert.ok(apple.includes('('+context.formatQty(count/8)+')'));
+  assert.ok(apple.includes('correspond à '+context.formatQty(3*count/8)));
+  assert.ok(context.recipeStepText(recipes.find(r=>r.id==='f404').p[1],recipes.find(r=>r.id==='f404'),count).includes(context.formatQty(1.5*count/4)+' l d’eau'));
+}
+const granolaBefore=batch24.find(r=>r.id==='b406').beforeSteps;
+for(const index of [0,2])assert.equal(granola24.p[index],granolaBefore[index]);
+const bowl24=recipes.find(r=>r.id==='b408');
+for(const index of [1,2,3])assert.equal(bowl24.p[index],batch24.find(r=>r.id==='b408').beforeSteps[index]);
+for(const id of ['b416','f406','f407','f416']){
+  const record=batch24.find(r=>r.id===id);assert.equal(record.sourceHash,record.reviewedHash);
+}
+assert.equal(context.recipeHasFixedYield(granola24),true);
+for(const [id,index] of [['b401',0],['b415',1],['f409',1]])assert.match(recipes.find(r=>r.id===id).p[index],/dernier œuf à part.*fraction demandée aux œufs entiers nécessaires/);
+assert.match(recipes.find(r=>r.id==='f402').p[0],/sans les rincer/);
+assert.match(recipes.find(r=>r.id==='f402').p[3],/90 minutes.*sans forte ébullition/);
+assert.match(recipes.find(r=>r.id==='f403').p[4],/sans presser les arêtes/);
+assert.match(recipes.find(r=>r.id==='f414').p[3],/82 et 84 °C.*sans jamais faire bouillir/);
+assert.match(recipes.find(r=>r.id==='f415').p[3],/commence à bouillir.*1 minute/);
+assert.doesNotMatch(caramel24.p.join(' '),/un tiers du sucre|crème/);
+for(const id of ['b415','f404'])assert.deepEqual(recipes.find(r=>r.id===id).i.at(-1),{q:null,u:'',n:'sel',k:'sel'});
+assert.match(editorial.f418.reviewNote,/citron.*jamais.*aucun sirop/);
+assert.match(editorial.f419.reviewNote,/120 g.*beurre seul.*persil et citron/);
+assert.match(editorial.b411.reviewNote,/trois minutes trente.*pas devenir un minuteur de trois minutes/);
+assert.match(editorial.f401.reviewNote,/quinze dernières minutes.*incluses.*quarante-cinq/);
+assert.match(recipes.find(r=>r.id==='f420').p[3],/huile reste facultative/);
 const corrected=fixture.recipes.filter(r=>r.status==='corrected').length;
 const unchanged=fixture.recipes.filter(r=>r.status==='unchanged').length;
 console.log(`✓ Batches ${batchNumbers.join('/')}: ${fixture.recipes.length} individual review records, ${corrected} corrected, ${unchanged} unchanged, ${fixture.recipes.length-corrected-unchanged} blocked with original content preserved; ${timerCount} manually checked timers`);

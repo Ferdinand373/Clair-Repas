@@ -1,0 +1,441 @@
+{
+  "baselineCommit": "ee4d8303b8dd459f7b49706c420d697b11649028",
+  "batch": "24",
+  "recipes": [
+    {
+      "id": "b401",
+      "status": "corrected",
+      "sourceHash": "cac72ad89c89a19d14c723320fe7ac4e3810516b58a9d679753ecf5f8f8c8b65",
+      "reviewedHash": "e8957a3ea1c509d4a4b4c1ec256057978d3a43bcff53de07f8837ab3596fab7a",
+      "protectedRecipeSha256": "d34d9afe8742a02b98bedf8f376107bad3063ecc6ee5add4cc54ca8c95c2fb56",
+      "beforeSteps": [
+        "Mélanger farine, sucre, levure et sel dans un saladier. Fouetter l’œuf avec le lait et 10 g de beurre fondu.",
+        "Verser le liquide sur les poudres et mélanger juste assez pour ne plus voir de farine ; laisser reposer 10 minutes.",
+        "Chauffer une poêle à feu moyen, la graisser avec le reste de beurre et verser de petites louches de pâte.",
+        "Cuire environ 2 minutes, jusqu’à la formation de bulles, retourner puis cuire 1 minute ; les pancakes doivent être souples et dorés."
+      ],
+      "note": "Partage de beurre source 10 g dans la pâte et 10 g pour la poêle lié aux ingrédients. Deux faces séparées, repos conservé, petits pancakes sans rendement figé pour tous les convives. Le mélange reste bref pour préserver le moelleux."
+    },
+    {
+      "id": "b402",
+      "status": "blocked",
+      "sourceHash": "b3a285c254f4834ede56f941b29de237d1d91ddbade47b59cb1f6a54cec4b6fe",
+      "reviewedHash": "b3a285c254f4834ede56f941b29de237d1d91ddbade47b59cb1f6a54cec4b6fe",
+      "protectedRecipeSha256": "7c51cf9d0fba30f6634f0d6f674a0fceb3320f835ccd82d97021387a9e6865c6",
+      "note": "tout le beurre est incorporé à la pâte puis une poêle graissée est demandée sans produit ni réserve. La poêle de 24 cm et les deux durées sont définies, mais ne résolvent pas ce double usage. Garder une minute puis trente secondes, sans minuteur arbitraire pour la seconde face."
+    },
+    {
+      "id": "b403",
+      "status": "corrected",
+      "sourceHash": "3f907c64885a9bf417b32050a4425f1c448bd57620e2bf4a4fc3228605b4d5a2",
+      "reviewedHash": "e22729f51801572eb8d45e8a14a958723eb3068767c7d16426c5f14ca3675608",
+      "protectedRecipeSha256": "385f8dc4b35de2afce015819cfdf6900ebe37b8dc62aea8c69e8b5bebb7ac543",
+      "beforeSteps": [
+        "Fouetter les œufs avec le lait, le sucre et la vanille dans un plat creux.",
+        "Tremper le pain 30 à 45 secondes de chaque côté : il doit être imbibé sans se défaire.",
+        "Faire mousser le beurre dans une poêle à feu moyen et cuire les tranches 3 minutes par face.",
+        "Servir lorsque le cœur est chaud et moelleux et que les deux faces sont bien caramélisées."
+      ],
+      "note": "Imbibage de 30–45 secondes par face conservé, poêlage au beurre séparé en deux actions de trois minutes. Contrôle à cœur de la préparation aux œufs ajouté sans changer le pain perdu en pain sec ; ni sirop ni sucre supplémentaire."
+    },
+    {
+      "id": "b404",
+      "status": "corrected",
+      "sourceHash": "a4729a2c542bad8a16794859bc9c0d271b8edf91e9d3349603bd73dc1488725a",
+      "reviewedHash": "c17a258e385d3cd0870ecec6b2c7ac873f0e1638021e1f8d2ab4ba3aca124389",
+      "protectedRecipeSha256": "23e87ccc970f85d6e9d0491fea21cc1443296b3d9f294aaecbd09c890088fb5c",
+      "beforeSteps": [
+        "Couper la pomme en petits dés et en réserver un quart pour la finition.",
+        "Mettre avoine, lait, reste de pomme et cannelle dans une casserole ; porter doucement au frémissement.",
+        "Cuire 6 à 8 minutes à feu doux en remuant, jusqu’à une texture crémeuse mais encore souple.",
+        "Répartir dans deux bols, ajouter miel, pomme réservée et noix concassées."
+      ],
+      "note": "Pomme partagée selon le quart cru et les trois quarts cuits de la source, avec références dynamiques. Bols adaptés au nombre de personnes, aucune eau ou lait supplémentaire inventé. Plage de cuisson conservée."
+    },
+    {
+      "id": "b405",
+      "status": "blocked",
+      "sourceHash": "c186d305fb74959020b7a449e5f66e39d00f9a79a22d08de610319c25ff29ce6",
+      "reviewedHash": "c186d305fb74959020b7a449e5f66e39d00f9a79a22d08de610319c25ff29ce6",
+      "protectedRecipeSha256": "8428c6d2e92665c0347b7691b50cbaaae4b47bceef773fc26b7ff98043bb3238",
+      "note": "le lait est entièrement mélangé le soir, puis une cuillerée supplémentaire est demandée le matin sans quantité listée ni taille de cuillère. Deux pots sont imposés pour tous les convives et les fruits ne sont pas identifiés frais ou surgelés. Ne pas retirer du lait d’hydratation pour constituer une réserve non prévue."
+    },
+    {
+      "id": "b406",
+      "status": "corrected",
+      "sourceHash": "6a685fa4482e23addbb850809a0f4b2db1eaebfd10e10f97056b771e00673c89",
+      "reviewedHash": "af4056b7508a184742fe8371d500c58a56fb31fc80d124976051faee895e3c48",
+      "protectedRecipeSha256": "d6fc615208f979a0cbe4a209900b976e6df60a4ae7671ddf87125e7b91ed90cd",
+      "beforeSteps": [
+        "Préchauffer le four à 160 °C. Mélanger avoine, amandes grossièrement hachées, graines, cannelle et sel.",
+        "Tiédir miel et huile puis les verser sur le mélange ; remuer pour enrober uniformément.",
+        "Étaler en couche régulière sur une plaque et cuire 22 à 25 minutes à 160 °C en remuant à mi-cuisson.",
+        "Laisser refroidir complètement sans couvrir : le granola devient croustillant en refroidissant, puis le conserver dans un bocal sec."
+      ],
+      "note": "Bocal à rendement fixe conservé, y compris quand le nombre de personnes varie. Seulement le tiédissement miel-huile et la fin de refroidissement sont explicités ; première et troisième étapes conservées. Temps de refroidissement ajouté à la durée affichée, sans chronométrage inventé."
+    },
+    {
+      "id": "b407",
+      "status": "corrected",
+      "sourceHash": "12e3b69bff6774b9cebc7791d993796bfc67d17d2d9bef52b53fe3fedb66baa2",
+      "reviewedHash": "61c09d8c57eb1dc61dc2ae149312f2f8025c837d70970458fdb4241b715640b8",
+      "protectedRecipeSha256": "9b77c82bbfdda5e2af811b5627fe4a3ecdbb3ebfa81ac21e944931fbe74dc131",
+      "beforeSteps": [
+        "Répartir le fromage blanc dans deux bols.",
+        "Couper la banane et la pomme en petits morceaux réguliers.",
+        "Déposer les fruits sur le fromage blanc puis ajouter le muesli.",
+        "Verser un fin filet de miel juste avant de servir afin que les céréales restent croquantes."
+      ],
+      "note": "Bol simple conservé en quatre étapes. Lavage et découpes clarifiés, service adapté aux personnes et miel lié à la quantité listée ; aucune garniture nouvelle."
+    },
+    {
+      "id": "b408",
+      "status": "corrected",
+      "sourceHash": "72b64d1ec6ccebcfe509db2def4013b6d920bcdb9167695543d32b100a4227ad",
+      "reviewedHash": "95f49f75cb5c844b465c649b900aca7d005fe214b5de4e16f8e8e3f86341ad3f",
+      "protectedRecipeSha256": "39857fc9f4007242855f219364d5f4dc4f875dde1d5811bc26cc123fa23e8993",
+      "beforeSteps": [
+        "Répartir le yaourt grec dans deux bols froids.",
+        "Peler et trancher banane et kiwis sans les écraser.",
+        "Disposer les fruits, les flocons d’avoine et les noisettes concassées en zones distinctes.",
+        "Servir immédiatement pour conserver le contraste entre yaourt crémeux et garniture croquante."
+      ],
+      "note": "Seule la première étape retire le rendement figé à deux bols. Les trois autres étapes sont déjà simples et précises et restent mot pour mot ; quantités de référence inchangées."
+    },
+    {
+      "id": "b409",
+      "status": "blocked",
+      "sourceHash": "7d968e96f0a4c156073e631e5e049f480ae57a58d63ba4623f6df7e4ecd389c6",
+      "reviewedHash": "7d968e96f0a4c156073e631e5e049f480ae57a58d63ba4623f6df7e4ecd389c6",
+      "protectedRecipeSha256": "e3c08c9b11c0d35877e155b0bd5f6bf6d9087948762b0e13a74593ae92c1acb5",
+      "note": "les six minutes sont présentées comme exactes sans calibre ni température initiale des œufs. Le jaune coulant n’est pas une garantie sanitaire. Conserver la technique mollet et l’avocat citronné, sans remplacer automatiquement ces œufs par des œufs durs ni prétendre sécuriser le cru par la fraîcheur seule."
+    },
+    {
+      "id": "b410",
+      "status": "corrected",
+      "sourceHash": "c03f9ac2241f588814e51e7fa335947f321fc9f964743d576e86032dd678d31a",
+      "reviewedHash": "099022f53a86d9c0f17c425280474b23b2f12bab94afa925ec9e264b6ee1245c",
+      "protectedRecipeSha256": "de4568cb4d431c061317be87cc0587e5d18a5e2a488fa93d89a5c2be82fa6ffd",
+      "beforeSteps": [
+        "Battre les œufs avec le lait, une pincée de sel et du poivre sans faire mousser.",
+        "Faire fondre le beurre dans une poêle à feu doux et verser les œufs.",
+        "Remuer constamment avec une spatule pendant 4 à 5 minutes en ramenant les bords vers le centre.",
+        "Retirer du feu lorsque les œufs sont encore brillants et crémeux, ajouter la ciboulette et servir avec le pain grillé."
+      ],
+      "note": "Cuisson douce au beurre et brassage continu conservés, lait mesuré et pain grillé en parallèle. Repère à 71 °C de la préparation aux œufs ajouté tout en gardant des œufs moelleux, pas des œufs liquides ou desséchés."
+    },
+    {
+      "id": "b411",
+      "status": "blocked",
+      "sourceHash": "002c5eab2b531d921e1a8e54aa36a422c47015d122a957c46500df1dc1fe94c3",
+      "reviewedHash": "002c5eab2b531d921e1a8e54aa36a422c47015d122a957c46500df1dc1fe94c3",
+      "protectedRecipeSha256": "03b9efabbb42b89095de697251c50836ff0c6e7b87455674e7ae4aa5ae90d1d0",
+      "note": "la cuisson de trois minutes trente ne doit pas devenir un minuteur de trois minutes. Le temps total annoncé de douze minutes inclut mal les dix minutes de sortie du froid ; sel et poivre ne sont jamais employés. Blanc à peine pris et jaune liquide exigent des conditions vérifiées, sans durcir l’œuf à la place."
+    },
+    {
+      "id": "b412",
+      "status": "blocked",
+      "sourceHash": "22977b6c221748408d8b907abcae0a40c6f7f6b10eaff0818108701e2009e838",
+      "reviewedHash": "22977b6c221748408d8b907abcae0a40c6f7f6b10eaff0818108701e2009e838",
+      "protectedRecipeSha256": "0f5edcd71d36c3fa1fa4486b760ebac6ca4b6843b242d0a7dae7d83a20156b4d",
+      "note": "le beurre est correctement partagé par moitié, mais le rendement d’une grande omelette n’a pas de diamètre de poêle ni de conditions de cuisson du centre volontairement baveux. Ne pas sécher l’omelette pour corriger cette incertitude ; le sauté des champignons avant les œufs doit rester distinct."
+    },
+    {
+      "id": "b413",
+      "status": "blocked",
+      "sourceHash": "9aa7ca53bcf632815f8e5447bd518141fb7fe49ce89f15cfb3b08aa9fd066ec0",
+      "reviewedHash": "9aa7ca53bcf632815f8e5447bd518141fb7fe49ce89f15cfb3b08aa9fd066ec0",
+      "protectedRecipeSha256": "c05b8f938b737fcbece05ce810891e17b03d5d5e228d98e71ccf12afeede38dc",
+      "note": "la cuillerée d’eau de la hollandaise n’est ni listée ni mesurée. Bain-marie sans température, maintien tiède sans conditions et œufs pochés trois minutes restent à vérifier ; sel et poivre listés ne sont pas employés. Ne pas fondre ensemble la sauce et les œufs de pochage ni remplacer la hollandaise par une autre sauce."
+    },
+    {
+      "id": "b414",
+      "status": "blocked",
+      "sourceHash": "9551d42d898ccba944cd17e6cec091f3172ac19aa309cf0d1a19b3507ad099a2",
+      "reviewedHash": "9551d42d898ccba944cd17e6cec091f3172ac19aa309cf0d1a19b3507ad099a2",
+      "protectedRecipeSha256": "3c3c6d7963a00bf4cd79a93ca18f32e88ac497ab8cee0666114cfb5f1bac2c88",
+      "note": "le poivre du service manque dans la liste. Deux assiettes sont imposées et le contrôle des œufs au plat n’est pas défini au-delà des blancs pris et jaunes souples. Conserver le saumon fumé froid demandé par la source, sans le transformer en saumon cru à cuire."
+    },
+    {
+      "id": "b415",
+      "status": "corrected",
+      "sourceHash": "df9652a73f01afc1389246fa62d20204f3c403cb64b427390688587fc3d65f2f",
+      "reviewedHash": "bdc325cfc60390ae70e303baff520a13416497cdb4b0db58e9723dd7d7aa1e4d",
+      "protectedRecipeSha256": "79b0e11d70414dd423eb71fc31921b3f86c7069c38dbac3acb434c0ea8223370",
+      "beforeSteps": [
+        "Râper la courgette, la saler légèrement, attendre 5 minutes puis la presser soigneusement dans un torchon.",
+        "Mélanger farine et levure, puis incorporer œuf, lait, parmesan et courgette pour obtenir une pâte épaisse.",
+        "Chauffer l’huile dans une poêle à feu moyen et déposer huit petites portions.",
+        "Cuire 3 minutes par face ; les pancakes doivent être dorés dehors et cuits, sans humidité, au centre."
+      ],
+      "note": "Sel déjà demandé pour dégorger la courgette rétabli sans dose inventée. Quantités liées aux ingrédients, deux faces séparées, rendement décrit par personne plutôt que huit pancakes quel que soit le nombre de convives. Courgette pressée, pas incorporée humide."
+    },
+    {
+      "id": "b416",
+      "status": "unchanged",
+      "sourceHash": "62902442991428c01a4a93db7c490a580c754d19bb41097c5b559f73b6035d63",
+      "reviewedHash": "62902442991428c01a4a93db7c490a580c754d19bb41097c5b559f73b6035d63",
+      "protectedRecipeSha256": "3a24dd0c47e4e436a13eff9178d4d6602b2467eab64096bf15a82effbae6afb5",
+      "note": "Quatre étapes déjà suffisantes : préchauffage, plaque, ordre moutarde-jambon-tomate-fromage, plage à 200 °C, repères croustillants et repos. Tous les ingrédients utilisés sans quantité figée dans les étapes. Préparation conservée intégralement."
+    },
+    {
+      "id": "b417",
+      "status": "corrected",
+      "sourceHash": "e6c33e892ec384914b8a2f00feeb025fe7f08637604882cc57adcf8199a60187",
+      "reviewedHash": "5c240f05d5bcb6f07ce01b16d67e52f830ba1202ea5625e90a2bf77ddfb017fb",
+      "protectedRecipeSha256": "c820e1971b83542e7271972293374a330b7b5cf6c8b0c7af064aeaae98c17621",
+      "beforeSteps": [
+        "Émincer oignon et poivron, puis les faire fondre 8 minutes à feu moyen dans l’huile.",
+        "Ajouter ail et paprika 30 secondes, verser les tomates et laisser réduire 10 minutes à feu doux ; la sauce doit être épaisse.",
+        "Creuser quatre puits, casser les œufs, couvrir et cuire 5 à 7 minutes, jusqu’à ce que les blancs soient pris.",
+        "Servir très chaud avec le pain grillé, en gardant les jaunes encore moelleux."
+      ],
+      "note": "Puits adaptés au nombre d’œufs, sauté de légumes conservé avant la tomate, trente secondes d’ail et paprika maintenues sans minuteur trompeur. Pain en parallèle et contrôle de la préparation aux œufs à 71 °C, sans promettre des jaunes crus sûrs."
+    },
+    {
+      "id": "b418",
+      "status": "blocked",
+      "sourceHash": "af373f6b49a8decbf84df48ffd177bbbb6c4e234fea9f006b839f03b25e92e1a",
+      "reviewedHash": "af373f6b49a8decbf84df48ffd177bbbb6c4e234fea9f006b839f03b25e92e1a",
+      "protectedRecipeSha256": "40b12d1c3a71cdb42c1dcf608c6a57ca354140a3e0a08b8247da3d1d1af71598",
+      "note": "la moitié de l’huile est affectée aux tomates, mais la seconde poêle est seulement légèrement huilée sans expliciter l’emploi du reste. La poitrine fumée n’est pas identifiée crue ou déjà cuite et l’épaisseur ainsi que les contrôles à cœur manquent ; deux assiettes sont figées. Ne pas se limiter au croustillant comme garantie de cuisson."
+    },
+    {
+      "id": "f401",
+      "status": "blocked",
+      "sourceHash": "64850cede86980eaeb55eee72bba5aaa9aa3397005561bbb21f89d25570e52d4",
+      "reviewedHash": "64850cede86980eaeb55eee72bba5aaa9aa3397005561bbb21f89d25570e52d4",
+      "protectedRecipeSha256": "f4636152b203fcf9a33c679732d954154e0f419d0ccdfa59e212e8f8bfb66221",
+      "note": "le céleri est listé mais jamais utilisé : ni rôtissage avec les autres légumes ni ajout au bouillon n’est précisé. Les quinze dernières minutes des légumes sont incluses dans les quarante-cinq minutes des os ; elles ne doivent pas devenir une seconde cuisson après rôtissage. Confirmer l’emploi du céleri sans supprimer cet ingrédient."
+    },
+    {
+      "id": "f402",
+      "status": "corrected",
+      "sourceHash": "536584012de23cf21ce16d864dd71d54f69e4bed73771cd63f4c08320dbc73d2",
+      "reviewedHash": "db92a6275bc352670b23fa12f280cfd5a109596083662efb4a9a56a55712b65f",
+      "protectedRecipeSha256": "150a7f09db35b8385f3385f035efac8905583fbf04b6e349871e777c8e17a1d8",
+      "beforeSteps": [
+        "Rincer rapidement les carcasses puis les mettre dans une grande casserole avec l’eau froide.",
+        "Porter doucement au frémissement et écumer soigneusement.",
+        "Ajouter légumes et bouquet garni.",
+        "Laisser frémir 1 h 30 sans bouillir fortement.",
+        "Filtrer finement et refroidir rapidement."
+      ],
+      "note": "Fond blanc sans coloration conservé. Rinçage de volaille crue retiré pour limiter les projections, conformément aux conseils USDA ; pas de blanchiment ni de sauté ajouté. Découpes, écumage et refroidissement rapide explicités, eau liée à la liste."
+    },
+    {
+      "id": "f403",
+      "status": "corrected",
+      "sourceHash": "536441def55aa8fb0def8094a666337cd91132accf220bef2a533ba7186c8a87",
+      "reviewedHash": "fd9c16e6bff4c683b988dcb57cf31a541dcb1d7fce351ff755c4f78249d7efae",
+      "protectedRecipeSha256": "f3a09d4bad2467ea1e4d249862c4308cf85a0cec34871635684bc274c261c55b",
+      "beforeSteps": [
+        "Faire suer échalotes et poireau au beurre sans coloration.",
+        "Ajouter les arêtes rincées et cuire 2 minutes.",
+        "Verser vin blanc et eau, ajouter le bouquet garni.",
+        "Porter au frémissement, écumer puis cuire seulement 25 minutes.",
+        "Filtrer sans presser les arêtes pour conserver un fumet clair."
+      ],
+      "note": "Fumet court avec légumes sués au beurre, arêtes deux minutes puis frémissement vingt-cinq minutes. Aucun ajout de sel, de carotte ou d’autre proportion depuis une recette extérieure. Filtration sans presser conservée, contrairement à certaines références externes."
+    },
+    {
+      "id": "f404",
+      "status": "corrected",
+      "sourceHash": "655ee3943fc93237d0b3b0fa379c55980c65ae2c956f9736e2761d0f31014726",
+      "reviewedHash": "c2b9646ef56994c966b5cacc48b056163ac2dcf4a729ea0bb29805c53b37bd3e",
+      "protectedRecipeSha256": "c8524aef3bf3fb1b8f9ec29a104fcc6ff927b0995c26b8b51ed359dcb41903ac",
+      "beforeSteps": [
+        "Laver et couper grossièrement les légumes.",
+        "Les mettre dans une casserole avec eau froide, ail, bouquet garni et poivre.",
+        "Porter à frémissement puis cuire 45 minutes à découvert.",
+        "Filtrer soigneusement sans écraser les légumes.",
+        "Saler seulement selon l’usage prévu."
+      ],
+      "note": "Sel demandé à la dernière étape source rétabli sans dose et seulement selon l’usage final. Légumes lavés et coupés, ail pelé, volume d’eau dynamique et filtration sans écrasement conservés ; aucun sauté ajouté."
+    },
+    {
+      "id": "f405",
+      "status": "corrected",
+      "sourceHash": "a272fe365317fefed5614ff9bd75c67c1f2c58718e834bf59044f955b6340ed5",
+      "reviewedHash": "1a02edc30296b5a2a0e1c4e7e356ea8156d9b53e8ccd5f65a8b30458f106a997",
+      "protectedRecipeSha256": "946eedae7963f71e33a969710c539549b43789a977051c3c25762391fee47705",
+      "beforeSteps": [
+        "Émincer carotte, oignon et céleri.",
+        "Réunir tous les ingrédients dans une casserole.",
+        "Porter au frémissement et cuire 20 minutes.",
+        "Filtrer pour pocher un poisson délicat ou conserver les aromates pour des crustacés."
+      ],
+      "note": "Court-bouillon conservé sans graisse ni sel ajoutés. Aromates préparés, volumes d’eau, vin et vinaigre liés à la liste, frémissement et les deux usages de filtration expliqués. Pas de barème de cuisson du poisson inventé dans cette base."
+    },
+    {
+      "id": "f406",
+      "status": "unchanged",
+      "sourceHash": "8eeb035c00a3d327c2c5cffb083ac8284d4ff9537a1d2f2348fe99f6a0e4d107",
+      "reviewedHash": "8eeb035c00a3d327c2c5cffb083ac8284d4ff9537a1d2f2348fe99f6a0e4d107",
+      "protectedRecipeSha256": "adad1edb1dc2c282df15032dc37c74011c195c3738abc37e7ada640c21eb7226",
+      "note": "Base déjà claire : beurre fondu sans coloration, farine ajoutée en entier, cuisson douce deux à trois minutes sans colorer et usage chaud/froid explicite. Pas de volume de liquide à inventer dans une fiche de roux. Quatre étapes conservées."
+    },
+    {
+      "id": "f407",
+      "status": "unchanged",
+      "sourceHash": "c99e33a5bd8406122571e594202206f08b7d89a333413e55c838e564f6acf434",
+      "reviewedHash": "c99e33a5bd8406122571e594202206f08b7d89a333413e55c838e564f6acf434",
+      "protectedRecipeSha256": "480a76d5d61faf3af5a13ff4b0b578df4c25cd6d6045c6ba6d1fa95f4e44fc27",
+      "note": "Base déjà claire et courte : beurre et farine, feu moyen-doux, brassage constant, plage de dix à douze minutes et repère noisette sans brûler. Quatre étapes conservées ; aucun bouillon ajouté à cette base."
+    },
+    {
+      "id": "f408",
+      "status": "corrected",
+      "sourceHash": "d75821cc21681c0d8af96703cc2ad78226e86a813ec944b56312a1a53cc4662d",
+      "reviewedHash": "065e48f48a9a715249d6e3e6a88bb92695f9d72d146931c03a7a2bbfce123cf3",
+      "protectedRecipeSha256": "45ba5a7fffde3e4649e382ac0e85cf0668c361a692279d859b53fede9598ce95",
+      "beforeSteps": [
+        "Mélanger farine et sel puis sabler avec le beurre froid en petits dés.",
+        "Ajouter l’eau progressivement juste assez pour former une pâte.",
+        "Fraiser une ou deux fois avec la paume sans pétrir.",
+        "Former un disque, filmer et reposer 1 heure au réfrigérateur."
+      ],
+      "note": "Sablage au beurre froid et fraisage expliqués sans pétrissage prolongé. Eau mesurée selon la liste puis ajoutée progressivement juste pour réunir la pâte, sans liquide supplémentaire. Fiche de pâte crue, pas une cuisson de tarte inventée."
+    },
+    {
+      "id": "f409",
+      "status": "corrected",
+      "sourceHash": "2a473fe3cadacd69430f3decd29d1279f1b323f1f5a08dce0dd698a00ee7c32f",
+      "reviewedHash": "f3e2eeb1163a5114c34b64854b4c8f7cb8ea5c04b85bb26b2c19abc7e4fc84b6",
+      "protectedRecipeSha256": "c671d27c8c8f47f7df7b00049ef727d7465f0b3eb7ec5ecfb73eb1700ff9f577",
+      "beforeSteps": [
+        "Crémer beurre et sucre glace sans trop incorporer d’air.",
+        "Ajouter l’œuf puis le sel.",
+        "Incorporer la farine rapidement sans pétrir.",
+        "Former un disque, filmer et reposer au moins 1 heure au froid."
+      ],
+      "note": "Crémage beurre-sucre et mélange bref expliqués, sans changer en sablage au beurre froid. Repos d’une heure conservé ; pas de température de cuisson inventée pour cette pâte de base crue."
+    },
+    {
+      "id": "f410",
+      "status": "blocked",
+      "sourceHash": "5883aed25fe12df6961838679f08b3e7bea81579eb8ed9864da2370116434b45",
+      "reviewedHash": "5883aed25fe12df6961838679f08b3e7bea81579eb8ed9864da2370116434b45",
+      "protectedRecipeSha256": "a8d84af5e79ac0d53f8f4c5e8541345ef444572a602eac3360bedec9f2d3ccce",
+      "note": "la fiche indique Casserole + Four mais renvoie la cuisson à une autre recette sans température, durée ni taille des choux. Les quatre œufs listés sont ajoutés jusqu’à texture, sans préciser une éventuelle réserve ni le refroidissement de la panade. Garder cette base à vérifier, sans emprunter automatiquement la cuisson des gougères."
+    },
+    {
+      "id": "f411",
+      "status": "corrected",
+      "sourceHash": "a14aa2d0a01d05b12441ecb8ee4a0aa8c43f3ac45ccd5103a033c0a90f8dec86",
+      "reviewedHash": "4bb64a05daff26c2d5cb272c6301d77d08066982068f54ba553b6e4f4086bc9c",
+      "protectedRecipeSha256": "0f9cc444ea61a1e9f201f6f6c2e644e7924457a357bccc39c3479fa3d145faa7",
+      "beforeSteps": [
+        "Mettre farine et sel dans un saladier et creuser un puits.",
+        "Ajouter les œufs puis incorporer progressivement le lait en fouettant.",
+        "Ajouter le beurre fondu et mélanger jusqu’à texture lisse.",
+        "Laisser reposer 30 minutes avant cuisson."
+      ],
+      "note": "Pâte de base sans cuisson conservée. Ordre farine-œufs-lait-beurre et repos trente minutes explicités, sans ajout d’huile pour une poêle qui ne fait pas partie de cette fiche."
+    },
+    {
+      "id": "f412",
+      "status": "corrected",
+      "sourceHash": "5c3c140c1d4d25452ec67646bfe9560ad56a53d45792e084bbb07148d3eabcfe",
+      "reviewedHash": "186251a36b140af8f058fc70ceaaed2a97beff8cb23882c205b28f814fb5924f",
+      "protectedRecipeSha256": "4b06dbc13180b400d3beef791450d69039354db3060a11eb0cae7c1de52edae4",
+      "beforeSteps": [
+        "Mélanger farine, sucre et levure.",
+        "Ajouter œufs puis lait progressivement.",
+        "Incorporer le beurre fondu tiédi.",
+        "Laisser reposer 30 minutes avant cuisson au gaufrier."
+      ],
+      "note": "Mélange progressif et beurre tiédi détaillés. La recette reste une pâte à gaufres non cuite, sans température ou durée arbitraire du gaufrier. Repos trente minutes au frais et usage ultérieur explicités."
+    },
+    {
+      "id": "f413",
+      "status": "blocked",
+      "sourceHash": "450bed1d49d7da0b307cf423a6f0f38ec68bff952c43f447b887eb1fca30d31b",
+      "reviewedHash": "450bed1d49d7da0b307cf423a6f0f38ec68bff952c43f447b887eb1fca30d31b",
+      "protectedRecipeSha256": "21054562cac2fc178dbc20a97914c6ff149a8c4428de832fc4958aabc190d33a",
+      "note": "la levure boulangère sèche n’est pas précisée instantanée ou à réhydrater, alors qu’elle est directement mélangée à la farine. Température de l’eau tiède et conditions de levée ne sont pas définies. Suivre la notice du produit est nécessaire avant de valider ce procédé ; ne pas inventer une température ni ajouter du liquide pour sa réhydratation."
+    },
+    {
+      "id": "f414",
+      "status": "corrected",
+      "sourceHash": "974d509cd7b10a5b01c4177d7b60ae963f3293d51b8855d6f3a93be2556cf6a6",
+      "reviewedHash": "ac6ae3504bce538821db057df07a33d2ff5d98f69b39a035ec40c6effff86586",
+      "protectedRecipeSha256": "c6d58b86809f977d534578b9be8b36708b7c3e71b37264973f47a444754730e7",
+      "beforeSteps": [
+        "Chauffer le lait avec la vanille puis laisser infuser 5 minutes.",
+        "Fouetter jaunes et sucre sans les faire mousser excessivement.",
+        "Verser le lait chaud progressivement puis remettre dans la casserole.",
+        "Cuire à feu doux en remuant jusqu’à 82–84 °C, sans jamais faire bouillir.",
+        "Filtrer et refroidir rapidement."
+      ],
+      "note": "Température source de 82–84 °C conservée, sans ébullition ni fécule. Gousse de vanille fendue, infusion et versement progressif explicités. Refroidissement rapide intégré à l’affichage de durée ; aucun minuteur de cuisson inventé pour atteindre une température."
+    },
+    {
+      "id": "f415",
+      "status": "corrected",
+      "sourceHash": "5f04fc60d32e314349823e4f402f83707f9f81e073721e3ece8739142031b61b",
+      "reviewedHash": "bee0f1ca3cda3ff589327f78f91dae7ee5528162302402bd960b2c1952130d70",
+      "protectedRecipeSha256": "2350aa414d280a4ead8f86551272ac728a4eda18dcce16ac072097dd36c54996",
+      "beforeSteps": [
+        "Chauffer le lait avec la vanille.",
+        "Fouetter jaunes, sucre et fécule.",
+        "Verser le lait chaud progressivement puis remettre dans la casserole.",
+        "Porter à ébullition en fouettant et cuire 1 minute.",
+        "Hors du feu ajouter le beurre, filmer au contact et refroidir rapidement."
+      ],
+      "note": "Ébullition d’une minute et beurre hors du feu conservés. Vanille, délayage progressif et refroidissement en couche peu épaisse explicités ; pas de liaison hors du feu à la place de la cuisson de la fécule."
+    },
+    {
+      "id": "f416",
+      "status": "unchanged",
+      "sourceHash": "75bd4e3c9b15664886c62b4541a1ed7e45b9f32dd603f5ef2b87755224e26acd",
+      "reviewedHash": "75bd4e3c9b15664886c62b4541a1ed7e45b9f32dd603f5ef2b87755224e26acd",
+      "protectedRecipeSha256": "9758684667885856b7e2bafdf2c97d14d7df02520fc3dcef8c8bcc5bcf7b81e7",
+      "note": "Les quatre étapes sont déjà claires : matériel froid conseillé, vitesse moyenne, sucre et vanille après épaississement, arrêt à tenue souple avant granulation. Tous les ingrédients sont utilisés ; pas de durée de fouettage fixe inventée."
+    },
+    {
+      "id": "f417",
+      "status": "corrected",
+      "sourceHash": "a69270061d2a98db4b3bd0823dafcfcbfff65b9e7d9a75f216f7883a6a58d3ce",
+      "reviewedHash": "379b735ebd6a80ef02129f2e6c104d56f47cb5135fb7b312fdc5a79864e53471",
+      "protectedRecipeSha256": "84e751feb40ca998ff44e3c1108285e6b12ff1a7a8396aba5bee4010f48e52db",
+      "beforeSteps": [
+        "Verser un tiers du sucre dans une casserole propre sur feu moyen.",
+        "Lorsqu’il commence à fondre, ajouter progressivement le reste sans remuer avec une cuillère.",
+        "Faire tourner légèrement la casserole jusqu’à une couleur ambrée homogène.",
+        "Retirer du feu immédiatement : le caramel continue de cuire quelques secondes."
+      ],
+      "note": "Le tiers initial puis les deux tiers restants de sucre sont rendus en grammes par le mécanisme existant. Caramel à sec conservé, sans eau ni crème ajoutées, sans mélange à la cuillère. Repère ambré surveillé et précaution contre le sucre brûlant."
+    },
+    {
+      "id": "f418",
+      "status": "blocked",
+      "sourceHash": "9211a7f730635ce0a19ccef2faad48da4ecf801ecea10a36f09e4fd4358b0a3a",
+      "reviewedHash": "9211a7f730635ce0a19ccef2faad48da4ecf801ecea10a36f09e4fd4358b0a3a",
+      "protectedRecipeSha256": "06f782a6fb49c111fb1ac5072299742fcee2db0a8a3553f72623e540019ac5cd",
+      "note": "le jus de citron listé n’est jamais incorporé. La mention presque froide semble héritée d’une autre meringue alors qu’aucun sirop ni bain-marie n’est prévu. Dimensions des petites pièces et contrôle du séchage manquent : conserver la meringue française, sans ajouter un sirop chaud pour justifier cette phrase."
+    },
+    {
+      "id": "f419",
+      "status": "blocked",
+      "sourceHash": "ab19ee7d06af285b73b4ebc039dc6b460e043eb10dee7da937783f4465bdcab6",
+      "reviewedHash": "ab19ee7d06af285b73b4ebc039dc6b460e043eb10dee7da937783f4465bdcab6",
+      "protectedRecipeSha256": "5f78e006b8c0877a3566cf0d6beb8b561d99c192f8df83190baa8e90c1ac9864",
+      "note": "le rendement annoncé de 120 g correspond au beurre seul alors que persil et citron sont ajoutés : rendement final à confirmer sans changer les portions ni retirer ces ingrédients. Les variantes de façonnage sont présentes, mais les quenelles ne sont pas expliquées. Le repos de trente minutes reste distinct de la préparation."
+    },
+    {
+      "id": "f420",
+      "status": "corrected",
+      "sourceHash": "5316d3efb3b6cce89875d2d69afb4405ada1804493aa20b1bfe475d324ac3257",
+      "reviewedHash": "ea55701cc267d89d68c9957d0c111d1253b851014a861a93bbbe6a3ce963149d",
+      "protectedRecipeSha256": "67c7db39b39590be6a8d4c0e7815d59555b8ed4c5f5797ca6741d93775cf1fa0",
+      "beforeSteps": [
+        "Laver puis sécher parfaitement le persil.",
+        "Hacher le persil au couteau sans le réduire en purée.",
+        "Hacher l’ail séparément puis réunir les deux.",
+        "Utiliser immédiatement, ou ajouter un filet d’huile pour une persillade plus souple."
+      ],
+      "note": "Hachage séparé au couteau conservé ; ail pelé, sel listé enfin utilisé, huile facultative liée à la quantité existante au lieu d’un filet imprécis. Pas de mixage en purée ni d’huile imposée."
+    }
+  ]
+}

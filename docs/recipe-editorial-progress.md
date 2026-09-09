@@ -278,6 +278,16 @@ P02 publié : `c87dc373c29cae1d6edb9c2ac6191004c69ba52a`, tests `34390827874` et
 
 **Cumul : 722 identifiants examinés, 246 corrigés, 475 bloqués, 1 conforme sans réécriture, 831 à examiner.** Prochaine fiche globale `v31n-papillote-fenouil-tofu`. Zéro erreur éditoriale, 7 159 avertissements, 292 minuteurs et 8 112 calculs d’ingrédients des lots 02–23. Les 24 commandes du workflow passent ; affichage et mode cuisine contrôlés aux trois formats simulés. Publication à consigner après contrôle HTTPS.
 
+## Publication du lot 23
+
+`ee4d8303b8dd459f7b49706c420d697b11649028` publié sur `main`. Tests `34412430679`, Pages `34412426109` et déploiement `6360571084` réussis. Après une première réponse HTTPS encore sur le lot précédent pendant le déploiement, les fichiers sont confirmés identiques au commit : index `20bc99fac49f6f80350ca2a3db5ae45d9e0f5589c89f1f195424c4c1091acb19`, service worker `ae6c75985cb002723e43f25ac82d44224e40cad859f0cca1fb9ec8ee33b3e933`. HTTPS 200, révision chargée après actualisation normale `sha256:248372e80b6e37a27e53161cf679a1ec444c06b9e1fd647835f6df1fd29c0667`. Pied de cochon contrôlé en production à deux personnes : 6 cl d’huile de sauce, une cuillère à soupe de cuisson, œufs séparés et quatre minuteurs correctement attachés. Pas d’effacement de données.
+
+## Lot 24 — petits-déjeuners et préparations de base
+
+[Journal, sources et décisions](recipe-editorial-batch-24.md). 38 examinées : 21 corrigées, 4 conformes sans réécriture, 13 réservées. Quantités de beurre et sucre liées aux ingrédients ; rendement fixe du granola conservé. Deux sels déjà demandés dans la source rétablis sans dose inventée. Fond blanc sans rinçage de volaille crue et sans rôtissage ajouté ; sablage et crémage restent distincts.
+
+**Cumul : 760 identifiants examinés, 267 corrigés, 488 bloqués, 5 conformes sans réécriture, 793 à examiner.** Tous les petits-déjeuners et fondamentaux sont examinés, sans prétendre résoudre leurs réserves. Zéro erreur éditoriale, 7 022 avertissements, 321 minuteurs et 8 934 calculs d’ingrédients des lots 02–24. Les 24 commandes du workflow réussissent ; affichage et dernière étape du mode cuisine contrôlés aux trois formats simulés. Publication à consigner après contrôle HTTPS. Les sauces et accompagnements restent à traiter.
+
 ## Limites des vérifications
 
 Les tests de structure, quantité, minuteurs, stockage simulé et rendu ne sont pas des essais culinaires. Les formats iPhone/PWA sont simulés, sauf mention explicite d’un appareil physique. Le total de fiches à examiner ne doit jamais être remplacé par le nombre de fiches auxquelles le style commun a été appliqué.
