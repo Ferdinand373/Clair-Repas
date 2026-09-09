@@ -148,6 +148,16 @@ P02 publié : `c87dc373c29cae1d6edb9c2ac6191004c69ba52a`, tests `34390827874` et
 
 **Cumul : 290 identifiants examinés, 140 corrigés, 150 bloqués, 1 263 à examiner.** Prochaine entrée `a063`, prochain dessert `d064`, prochaine fiche globale `gn-cotes-porc-champignons-polenta`. Zéro erreur éditoriale, 8 893 avertissements. 106 minuteurs et 3 738 contrôles d’ingrédients dans les lots 02–10. Contrôles du projet réussis ; publication à consigner après vérification HTTPS.
 
+## Publication du lot 10
+
+`06a98d80d2f492317b93b8ccdff83ddb6a85172e` publié. Tests `34397152947`, Pages `34397151975` et déploiement `6357997331` réussis. HTTPS 200 et fichiers identiques au commit : index `cf76840e21895e323b29847cc17f801722ec2df456cfcc1602cb3fcf1f160747`, service worker `096290d3823804fc32e1ac06800774cf8ea2695d55ad1d793a19f4f70308d4da`. Révision chargée `sha256:8816c497e5b9af6a74fa9ee2608bf77633786c6dba09ead1901595170b6a6f2d`. Crème d’endives vérifiée en ligne : pincée retrouvée dans la liste et la préparation, bon bouton de vingt minutes.
+
+## Lot 11 — trente variantes de plats
+
+[Journal des trente réserves](recipe-editorial-batch-11.md). 0 corrigée, 0 conforme, 30 bloquées. Tous les objets culinaires du catalogue restent identiques à la base du lot ; seulement trente métadonnées de lecture et leurs avertissements sont ajoutés. Aucune matière grasse, température ou répartition manquante n’est inventée.
+
+**Cumul : 320 identifiants examinés, 140 corrigés, 180 bloqués, 1 233 à examiner.** Prochaine fiche globale `gn-pois-chiches-ratatouille`, prochaine entrée `a063`, prochain dessert `d064`. Zéro erreur éditoriale et 8 773 avertissements. Les 106 minuteurs et 3 738 contrôles de quantité des lots précédents restent vérifiés. Publication à consigner après contrôle en ligne.
+
 ## Limites des vérifications
 
 Les tests de structure, quantité, minuteurs, stockage simulé et rendu ne sont pas des essais culinaires. Les formats iPhone/PWA sont simulés, sauf mention explicite d’un appareil physique. Le total de fiches à examiner ne doit jamais être remplacé par le nombre de fiches auxquelles le style commun a été appliqué.

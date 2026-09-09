@@ -1,0 +1,246 @@
+{
+  "baselineCommit": "06a98d80d2f492317b93b8ccdff83ddb6a85172e",
+  "batch": "11",
+  "recipes": [
+    {
+      "id": "gn-cotes-porc-champignons-polenta",
+      "status": "blocked",
+      "sourceHash": "317f0a7bfd4481bc24b739d3a2139ae432e50e567343a0b2840ffaa7a71e8095",
+      "reviewedHash": "317f0a7bfd4481bc24b739d3a2139ae432e50e567343a0b2840ffaa7a71e8095",
+      "protectedRecipeSha256": "fb71de4b0afd91a098e58211f8b8c928d9fe9d880faf9777c51e8d758a4d61bf",
+      "note": "le liquide de la polenta et la matière grasse du sauté échalote/champignons ne sont pas définis. L’ail est listé cru mais demandé rôti sans cuisson décrite ; seule une partie non mesurée de la crème est utilisée."
+    },
+    {
+      "id": "gn-boeuf-champignons-polenta",
+      "status": "blocked",
+      "sourceHash": "dce42198e97c02bbd24f43d2aa6b8e53949cdad2c9a7481b3aed17ecfb13d833",
+      "reviewedHash": "dce42198e97c02bbd24f43d2aa6b8e53949cdad2c9a7481b3aed17ecfb13d833",
+      "protectedRecipeSha256": "ddb29dc2d7715412f18ce7526eaacf8271861a6199c104d220c4a29924c404a6",
+      "note": "l’échalote et le balsamique sont cuits puis demandés de nouveau sans répartition des quantités. Liquide de polenta, matière grasse du sauté et quantité de crème réellement utilisée ne sont pas définis."
+    },
+    {
+      "id": "gn-boulettes-champignons-polenta",
+      "status": "blocked",
+      "sourceHash": "af98fa737236548d197f959cf315e02473d613e003d5df18773a9f12994eda17",
+      "reviewedHash": "af98fa737236548d197f959cf315e02473d613e003d5df18773a9f12994eda17",
+      "protectedRecipeSha256": "ae20208ff619f43340efc7e590f8e46b06a328afbdfe741bb2341c43abe31f7f",
+      "note": "le poivron doit griller sans feu ni durée définis ; les deux minutes sous couvercle ne sont pas une durée de grillade. Liquide de polenta, matière grasse des champignons et part de crème manquent."
+    },
+    {
+      "id": "gn-pois-chiches-champignons-polenta",
+      "status": "blocked",
+      "sourceHash": "62956a434cf93cf099ed929ada958c0ff2da577091828893c4968841d8c6d842",
+      "reviewedHash": "62956a434cf93cf099ed929ada958c0ff2da577091828893c4968841d8c6d842",
+      "protectedRecipeSha256": "9af2888635558c9b098538781bcf54f32c74462dff8eedbc6dbbb89186fa350d",
+      "note": "le pesto est incorporé hors du feu avant puis après la cuisson des pois chiches. Les noix sont demandées à deux moments sans partage ; liquide de polenta, matière grasse des champignons et part de crème manquent."
+    },
+    {
+      "id": "gn-poulet-grillade-mais",
+      "status": "blocked",
+      "sourceHash": "d79e822428e3e4d63ac0cd73cadb258738b64fb9c9a1532b7bc68cdf6bd7a0ac",
+      "reviewedHash": "d79e822428e3e4d63ac0cd73cadb258738b64fb9c9a1532b7bc68cdf6bd7a0ac",
+      "protectedRecipeSha256": "cf16d6530563ef16a34cf1c18559e8b7eaa0ae9ab5e77e66e6a83849b85d375f",
+      "note": "l’estragon doit infuser hors du feu avant la grillade du poulet. Le maïs et les grenailles n’ont ni durée ni zone de barbecue définie ; citron et huile/herbes sont employés sans répartition précise."
+    },
+    {
+      "id": "gn-dinde-grillade-mais",
+      "status": "blocked",
+      "sourceHash": "a5f362565659d23e4e695871967122d6a45e93bfd21f2768f243afbc88322a71",
+      "reviewedHash": "a5f362565659d23e4e695871967122d6a45e93bfd21f2768f243afbc88322a71",
+      "protectedRecipeSha256": "e65e99e1cf2e26de8169e9f03bf6561c149eab7427c8996684fc3a76e007665a",
+      "note": "la sauce à la moutarde utilise des sucs avant la grillade et réclame ensuite une cuillerée de jus sans collecte ni récipient définis au barbecue. La cuisson du maïs et des grenailles reste non minutée."
+    },
+    {
+      "id": "gn-filet-mignon-grillade-mais",
+      "status": "blocked",
+      "sourceHash": "04b46eebef5494187890863abc1bed0a22ef7992785e60c44ac7c525480a7a09",
+      "reviewedHash": "04b46eebef5494187890863abc1bed0a22ef7992785e60c44ac7c525480a7a09",
+      "protectedRecipeSha256": "f3685af7cb5791609beda75a7f757fd076f13f2c6b230265cae247766e07a3fe",
+      "note": "la crème est réduite avant la grillade puis ajoutée à nouveau sans partage des 10 cl. La collecte des sucs et le récipient au barbecue ne sont pas définis ; maïs et grenailles n’ont pas de durée de grillade."
+    },
+    {
+      "id": "gn-cotes-porc-grillade-mais",
+      "status": "blocked",
+      "sourceHash": "16295c88bb853ee1d5a8f4b9f9c6d76dd750e33d3459e218f8b5dad72828b080",
+      "reviewedHash": "16295c88bb853ee1d5a8f4b9f9c6d76dd750e33d3459e218f8b5dad72828b080",
+      "protectedRecipeSha256": "99aeee63ced6e961f93f11919ee455b271e54158c5f2e8818ebf6f6ab73f2696",
+      "note": "l’ail rôti n’a pas de cuisson décrite et le jus pour arroser n’a pas de mode de collecte au barbecue. La cuisson du maïs et des grenailles, ainsi que l’emploi de l’huile et des herbes, restent à définir."
+    },
+    {
+      "id": "gn-saumon-grillade-mais",
+      "status": "blocked",
+      "sourceHash": "ef18814487ed88463ffecd60a18a09cf043c8ad128b86d00c87f9eb81bd44758",
+      "reviewedHash": "ef18814487ed88463ffecd60a18a09cf043c8ad128b86d00c87f9eb81bd44758",
+      "protectedRecipeSha256": "6b5cc141c9c50e89d29bb9beb7884739f90beee834c0c4da99d1afe72866e7eb",
+      "note": "le citron est ajouté à la cuisson, en finition, aux légumes puis au dressage sans répartition. La feuille de cuisson n’est pas définie compatible avec le barbecue ; la grillade du maïs et des grenailles manque de réglage et de durée."
+    },
+    {
+      "id": "gn-saucisses-grillade-mais",
+      "status": "blocked",
+      "sourceHash": "91b64a69d2f61e7c841fc74602d601fa731399b874d033fedf1134c19accedda",
+      "reviewedHash": "91b64a69d2f61e7c841fc74602d601fa731399b874d033fedf1134c19accedda",
+      "protectedRecipeSha256": "3a5f22321157ab74f1ec412e04975924b4f2ec9080e9676fbe60646abb2ee67d",
+      "note": "le poivron est grillé sans durée ni intensité, puis couvert deux minutes : cette attente ne remplace pas son temps de grillade. La cuisson du maïs et des grenailles et la répartition huile/herbes restent imprécises."
+    },
+    {
+      "id": "gn-poulet-haricots-riz",
+      "status": "blocked",
+      "sourceHash": "a2e18ed5ff8cc78e24cbc47cc8e7013e888f48a4d866c35c5ba924e9c7e5149d",
+      "reviewedHash": "a2e18ed5ff8cc78e24cbc47cc8e7013e888f48a4d866c35c5ba924e9c7e5149d",
+      "protectedRecipeSha256": "a1e9e092f625529f32cf805794b19633d0183d229283a4324ddce80400fd0676",
+      "note": "l’échalote doit revenir sans matière grasse listée. L’infusion hors du feu précède la cuisson du poulet et le citron est réemployé sans partage ; la cuisson des haricots n’est pas définie."
+    },
+    {
+      "id": "gn-dinde-haricots-riz",
+      "status": "blocked",
+      "sourceHash": "328f0b511e66989e161883daae07542db286eb1655703af6ad2e8f000259f9a5",
+      "reviewedHash": "328f0b511e66989e161883daae07542db286eb1655703af6ad2e8f000259f9a5",
+      "protectedRecipeSha256": "9324ae7afd3a707ac18a231af863d7bbec4d31c71e54b1cd61dc881e7d15c23c",
+      "note": "le sauté de l’échalote n’a pas de matière grasse listée. La moutarde est montée dans les sucs avant la cuisson puis redemandée avec une cuillerée de jus ; ordre et partage restent à confirmer, ainsi que les haricots."
+    },
+    {
+      "id": "gn-filet-mignon-haricots-riz",
+      "status": "blocked",
+      "sourceHash": "005ce823cd85469b6d6350a5191cf78e14d589f66c3ab38fb02f4675b584c9d1",
+      "reviewedHash": "005ce823cd85469b6d6350a5191cf78e14d589f66c3ab38fb02f4675b584c9d1",
+      "protectedRecipeSha256": "105f70bfd7d239f705ed5234f26258763d8a14abeb3def30455230ac6c251b9f",
+      "note": "échalote et balsamique sont employés à plusieurs cuissons sans répartition. La matière grasse du sauté initial manque et la cuisson des haricots n’est pas définie ; ne pas attribuer une portion arbitraire au déglaçage."
+    },
+    {
+      "id": "gn-cotes-porc-haricots-riz",
+      "status": "blocked",
+      "sourceHash": "ceacb49d1cc79e06b01c5b1880f42742baaffcba614a57113f85a321378e2557",
+      "reviewedHash": "ceacb49d1cc79e06b01c5b1880f42742baaffcba614a57113f85a321378e2557",
+      "protectedRecipeSha256": "896ee77bc625eef00fbb57c37626ab2412cc2678cbb8e9c4e26a4f3d328c20e8",
+      "note": "les 8 cl de cidre servent à deux déglaçages sans partage. L’ordre braisage puis cuisson par face est ambigu ; matière grasse pour l’échalote et conduite des haricots ne sont pas définies."
+    },
+    {
+      "id": "gn-boeuf-haricots-riz",
+      "status": "blocked",
+      "sourceHash": "3442131a8af2a5c9d873f77ba5c219efbe2916f88ccf3db360d7b71ff210ca7f",
+      "reviewedHash": "3442131a8af2a5c9d873f77ba5c219efbe2916f88ccf3db360d7b71ff210ca7f",
+      "protectedRecipeSha256": "a8cab6b152cffdb245b7081c4037ac148a5dbd0c6b367feae24ff02f2a13249c",
+      "note": "la crème et le poivre sont réduits avant la saisie du bœuf puis ajoutés une seconde fois, sans partage. Matière grasse de l’échalote et conduite des haricots manquent ; ne pas doubler les 10 cl de crème."
+    },
+    {
+      "id": "gn-saumon-haricots-riz",
+      "status": "blocked",
+      "sourceHash": "1ebff769aca50c58652f983b4dc49341c54aca5f0f8f835bb740af605f062ec8",
+      "reviewedHash": "1ebff769aca50c58652f983b4dc49341c54aca5f0f8f835bb740af605f062ec8",
+      "protectedRecipeSha256": "0fdcc7aefe810c03c17ebb6e6061701184290ccece2b7a83215b0e5c003efefe",
+      "note": "le pesto citronné est ajouté hors du feu avant la cuisson détaillée puis de nouveau après. Citron demandé aussi aux légumes et en quartier, sans partage ; matière grasse du sauté et cuisson des haricots manquent."
+    },
+    {
+      "id": "gn-poisson-blanc-haricots-riz",
+      "status": "blocked",
+      "sourceHash": "b88fc098d69c39f31d47d98b3e88a83cded694fb7eb73d7bc768b92644558718",
+      "reviewedHash": "b88fc098d69c39f31d47d98b3e88a83cded694fb7eb73d7bc768b92644558718",
+      "protectedRecipeSha256": "8f8c28ecde228ead49cff29e354f0db6fac3520cd14fdb7efdd9563106c152a9",
+      "note": "le citron est demandé à plusieurs moments sans partage entre jus, légumes et dressage. Matière grasse pour faire revenir l’échalote et conduite de cuisson des haricots ne sont pas définies."
+    },
+    {
+      "id": "gn-crevettes-haricots-riz",
+      "status": "blocked",
+      "sourceHash": "d718b88830ae7822dcb4fc5fd70abc8e540d4b5130ac57f5d0a818e5ebbaf77f",
+      "reviewedHash": "d718b88830ae7822dcb4fc5fd70abc8e540d4b5130ac57f5d0a818e5ebbaf77f",
+      "protectedRecipeSha256": "92c3c3e55b3055e9b5ab0478897367cc7e95bacf54347be13d76a632d3de7a18",
+      "note": "l’échalote doit revenir sans matière grasse listée. Le citron et le persil sont employés à plusieurs reprises sans répartition ; l’état cru ou cuit des crevettes et la cuisson des haricots restent à confirmer."
+    },
+    {
+      "id": "gn-boulettes-haricots-riz",
+      "status": "blocked",
+      "sourceHash": "f0f6801691f7a4daf6f9faa5fd06d6ddd7dcd45d4f6c780681922a694f13354a",
+      "reviewedHash": "f0f6801691f7a4daf6f9faa5fd06d6ddd7dcd45d4f6c780681922a694f13354a",
+      "protectedRecipeSha256": "bf535f36c81caf90f5577db90e9f49a99e87c46bcee52e5a0baca68b1598f2d1",
+      "note": "l’ail est listé cru mais ajouté rôti sans cuisson prévue. La matière grasse du sauté de l’échalote et la cuisson des haricots ne sont pas définies ; le poids total des boulettes ne précise pas leur taille."
+    },
+    {
+      "id": "gn-pois-chiches-haricots-riz",
+      "status": "blocked",
+      "sourceHash": "0b41fb3effc7ce8f85b9adbc5d2ead42c57c3c9985cfb438959ff91fa58fce77",
+      "reviewedHash": "0b41fb3effc7ce8f85b9adbc5d2ead42c57c3c9985cfb438959ff91fa58fce77",
+      "protectedRecipeSha256": "5238eceb59b9b4d0742e8e9964c94af08c76f7971a5b202ed0a69f7c22a6cb2b",
+      "note": "l’origan demandé est absent des ingrédients. Les pois chiches doivent être dorés après le début du mijotage de la sauce ; ordre de cuisson, matière grasse de l’échalote et haricots restent à préciser."
+    },
+    {
+      "id": "gn-poulet-ratatouille",
+      "status": "blocked",
+      "sourceHash": "f050b1b54fbd373396217c015b83b82d3f8a9c44295183179b4789d6916ea0e1",
+      "reviewedHash": "f050b1b54fbd373396217c015b83b82d3f8a9c44295183179b4789d6916ea0e1",
+      "protectedRecipeSha256": "2e1a7c9cf6430410accf1859db7b932227dfe8cedf187d5000783eee918f95de",
+      "note": "olives et tomates doivent compoter puis être ajoutées de nouveau sans répartition. L’état des tomates séchées et la matière grasse de saisie du poulet ne sont pas définis ; l’assaisonnement final n’est pas listé."
+    },
+    {
+      "id": "gn-dinde-ratatouille",
+      "status": "blocked",
+      "sourceHash": "51cc3f9bd670c6bb303806aee80c023cf2fdb659e8bc7df3fc1b5f98a97b2a1b",
+      "reviewedHash": "51cc3f9bd670c6bb303806aee80c023cf2fdb659e8bc7df3fc1b5f98a97b2a1b",
+      "protectedRecipeSha256": "1c4b8541a6fb771d43b0484857bbdb4bfa969f5dc43a567aef7d9c8a64858519",
+      "note": "le jus d’orange est réduit avant la dinde puis utilisé pour un second déglaçage sans partage. La matière grasse de cuisson et l’assaisonnement final ne figurent pas dans la liste ; ne pas ajouter une autre orange."
+    },
+    {
+      "id": "gn-filet-mignon-ratatouille",
+      "status": "blocked",
+      "sourceHash": "01d08375319022ff8bf54448bc1cdead338318ce8b7b4354ef5f3b859be6ab43",
+      "reviewedHash": "01d08375319022ff8bf54448bc1cdead338318ce8b7b4354ef5f3b859be6ab43",
+      "protectedRecipeSha256": "ee18bcfbc15beea6d77b4864e07f64d49d8c3ac8e906ef0727eebddc2564e00c",
+      "note": "l’ail rôti est demandé sans cuisson décrite alors que les gousses sont listées crues. Matière grasse de saisie et assaisonnement final ne sont pas définis ; ne pas remplacer l’ail rôti par de l’ail cru."
+    },
+    {
+      "id": "gn-cotes-porc-ratatouille",
+      "status": "blocked",
+      "sourceHash": "999cde64c84323f4f49a58163a91035edc5461824d6e563c878905096f2e2e74",
+      "reviewedHash": "999cde64c84323f4f49a58163a91035edc5461824d6e563c878905096f2e2e74",
+      "protectedRecipeSha256": "ea747051d85153e9c0b660815745078624355bf0d1b8abd267baa7d61df81b86",
+      "note": "le poivron doit griller sans intensité ni durée définies, puis étuver deux minutes. Matière grasse des côtes et assaisonnement de la ratatouille ne sont pas listés ; les deux minutes ne valent pas pour la grillade."
+    },
+    {
+      "id": "gn-boeuf-ratatouille",
+      "status": "blocked",
+      "sourceHash": "24fedd49c43673d4dd7d10c55ca07f790aa1d41725463dac343b6458915a83c1",
+      "reviewedHash": "24fedd49c43673d4dd7d10c55ca07f790aa1d41725463dac343b6458915a83c1",
+      "protectedRecipeSha256": "0dd7729841041e433992f839262e60f9175eeb26687117ebad64a6ea4a4236b1",
+      "note": "huile et vinaigre du chimichurri sont absents de la liste et non dosés. La sauce est utilisée pour mariner avant sa préparation, puis au service sans part propre réservée. Ne pas servir crue une sauce ayant touché la viande crue."
+    },
+    {
+      "id": "gn-saumon-ratatouille",
+      "status": "blocked",
+      "sourceHash": "66ab3e83f663c14c3b29f8f1003b481c1ab9b35a72d27631e56c7660c63dcba6",
+      "reviewedHash": "66ab3e83f663c14c3b29f8f1003b481c1ab9b35a72d27631e56c7660c63dcba6",
+      "protectedRecipeSha256": "3d5ec62409f0a5527ebe85a365f57d942aafe308c0b2881dff9674cc18432543",
+      "note": "le citron utilisé pour détendre les sucs est absent de la liste et sans dose. La matière grasse de cuisson et l’assaisonnement final ne sont pas définis ; ne pas supprimer le citron pour masquer l’omission."
+    },
+    {
+      "id": "gn-poisson-blanc-ratatouille",
+      "status": "blocked",
+      "sourceHash": "181807b1a66d0fb5774fb39df1ae572f30518b63cd2dcb6b11bc7f189aa91ee9",
+      "reviewedHash": "181807b1a66d0fb5774fb39df1ae572f30518b63cd2dcb6b11bc7f189aa91ee9",
+      "protectedRecipeSha256": "81417f0abb064c990c1d2d232fa4554ad521b27532d9b0b35a5619f8aef240c4",
+      "note": "le citron est ajouté à plusieurs moments sans partage entre cuisson, finition et dressage. La matière grasse de cuisson et l’assaisonnement de la ratatouille ne sont pas définis."
+    },
+    {
+      "id": "gn-crevettes-ratatouille",
+      "status": "blocked",
+      "sourceHash": "20deb48ddc539b678d259fdc3c8e1a86ac3982fa013343c5fe7d989f9bb5493d",
+      "reviewedHash": "20deb48ddc539b678d259fdc3c8e1a86ac3982fa013343c5fe7d989f9bb5493d",
+      "protectedRecipeSha256": "d1b9d66c07cbab8cbf0f5c70d82ebf7d5f30ce225dc23ec0f34350672015d253",
+      "note": "le basilic annoncé au titre et au service manque aux ingrédients. Tomates et olives sont demandées à plusieurs cuissons sans partage ; l’état des crevettes, la matière grasse et l’assaisonnement restent à préciser."
+    },
+    {
+      "id": "gn-saucisses-ratatouille",
+      "status": "blocked",
+      "sourceHash": "b3e3816de4467384694f1ef55030794146663f8eb977848dfa335bfcbb1ca0d8",
+      "reviewedHash": "b3e3816de4467384694f1ef55030794146663f8eb977848dfa335bfcbb1ca0d8",
+      "protectedRecipeSha256": "e0f3133bf4fc77bc9a998835c5b2c829f5da3903447524acf40f54cb07efcdda",
+      "note": "échalote et balsamique sont cuits puis redemandés après les saucisses sans partage de la quantité listée. La conduite de la ratatouille et son assaisonnement restent imprécis ; ne pas doubler la sauce."
+    },
+    {
+      "id": "gn-boulettes-ratatouille",
+      "status": "blocked",
+      "sourceHash": "a89feae3130392ac714ba4a3035ec57351d14b485d998c0600731df5df256915",
+      "reviewedHash": "a89feae3130392ac714ba4a3035ec57351d14b485d998c0600731df5df256915",
+      "protectedRecipeSha256": "5aa7fcaf4d47e553214313f896e8957e817f31e2e6289e0e27f208e61485f18c",
+      "note": "l’origan demandé manque aux ingrédients. La sauce tomate et les olives mijotent avant les boulettes puis sont ajoutées de nouveau sans partage ; matière grasse de coloration et assaisonnement restent à préciser."
+    }
+  ]
+}

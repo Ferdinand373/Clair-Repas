@@ -7,7 +7,7 @@ import {recipeSource} from './recipe-source.mjs';
 import {recipeHash} from './validate-recipe-editorial.mjs';
 const root=resolve(dirname(fileURLToPath(import.meta.url)),'..');
 const {code,recipes,editorial}=recipeSource(readFileSync(resolve(root,'index.html'),'utf8'));
-const batchNumbers=['02','03','04','05','06','07','08','09','10'];
+const batchNumbers=['02','03','04','05','06','07','08','09','10','11'];
 const fixture={recipes:batchNumbers.flatMap(number=>JSON.parse(readFileSync(resolve(root,`scripts/recipe-editorial-batch-${number}.fixture.json`),'utf8')).recipes)};
 const slice=(a,b)=>code.slice(code.indexOf(a),code.indexOf(b,code.indexOf(a)+a.length));
 const context={window:{},$:()=>({value:'8'}),MEAL_TYPES:['mid','eve'],recipeRole:r=>r.role||r.course||'dish',isFavorite:()=>false,recipeFeedbackHTML:()=>'',recipePersonalNoteHTML:()=>''};
@@ -153,7 +153,7 @@ const ingredients={
   a058:['fenouil','tomates','oignon','bouillon','basilic'],
   a062:['poireaux','moutarde','vinaigre','huile','ciboulette']
 };
-assert.equal(fixture.recipes.length,275);
+assert.equal(fixture.recipes.length,305);
 let quantityChecks=0,timerCount=0;
 for(const record of fixture.recipes){
   const recipe=recipes.find(r=>r.id===record.id);
@@ -257,6 +257,10 @@ assert.match(recipes.find(r=>r.id==='a047').p[2],/temps indiqué sur leur paquet
 assert.match(recipes.find(r=>r.id==='a058').p[1],/sans les faire revenir/);
 assert.match(recipes.find(r=>r.id==='a058').p[2],/garder des morceaux/);
 assert.match(recipes.find(r=>r.id==='a062').p[0],/panier vapeur.*ou les plonger.*15 à 18 minutes/);
+assert.match(editorial['gn-saumon-grillade-mais'].reviewNote,/feuille de cuisson.*compatible.*barbecue/);
+assert.match(editorial['gn-boeuf-ratatouille'].reviewNote,/Ne pas servir crue une sauce ayant touché la viande crue/);
+assert.match(editorial['gn-crevettes-ratatouille'].reviewNote,/basilic.*manque/);
+assert.match(editorial['gn-cotes-porc-champignons-polenta'].reviewNote,/liquide.*polenta.*ail.*rôti/);
 const corrected=fixture.recipes.filter(r=>r.status==='corrected').length;
 console.log(`✓ Batches ${batchNumbers.join('/')}: ${fixture.recipes.length} individual review records, ${corrected} corrected, ${fixture.recipes.length-corrected} blocked with original content preserved; ${timerCount} manually checked timers`);
 console.log(`✓ ${quantityChecks} ingredient checks at 1/2/3/4/5/8 people; split parmesan quantities, per-face timing and original cooking techniques`);
