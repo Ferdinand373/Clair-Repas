@@ -60,6 +60,16 @@ Contrôles du lot 03 : 15 groupes statiques/PWA/minuteur, 105 tests de courses, 
 
 ## Reprise exacte à partir du dernier lot
 
+Publication du lot 03 confirmée : `caf1d7fa5c7f1a68893277cf1ec6964897f968b6`. Contrôle statique `34390242468` et GitHub Pages `34390241713` réussis ; déploiement `6356805367` en succès. HTTPS 200 le 9 septembre 2026, `index.html` et `sw.js` identiques au commit. Révision de cache : `sha256:20843507090e9e2038d7b0ac231280227ecf53542721c3155841a4340584b9e1`.
+
+## Renforcement P02 — futures contributions
+
+Référence historique des 1 553 identifiants et de leurs `sourceHash` figée, distincte des empreintes de revue. Une nouvelle fiche laissée `pending`, une nouvelle fiche sans introduction/titres/temps et une réécriture dissimulée par changement de la référence sont rejetées. Une nouvelle fiche correctement documentée reste compatible. Les quatre scénarios sont simulés en mémoire ; aucune nouvelle recette n'est ajoutée. Aucun fichier chargé par l'application ni mécanisme de données personnelles n'est changé par P02.
+
+Le mode de lecture du programme reste accessible. Le maintien physique de l'écran allumé dépend de l'autorisation Wake Lock et de la visibilité du navigateur ; son code est inchangé, et sa durée réelle sur iPhone physique n'a pas été testée.
+
+## Procédure de reprise
+
 1. Lire `CONTRIBUTING.md` et le standard.
 2. Vérifier `main`, la branche et les travaux locaux sans les écraser.
 3. Exécuter `node scripts/validate-recipe-editorial.mjs` pour les nombres exacts.

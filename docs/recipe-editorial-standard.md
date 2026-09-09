@@ -55,6 +55,10 @@ Une incertitude essentielle donne un statut `blocked` et un motif précis à l�
 
 Le registre couvre tous les identifiants : `pending` (à examiner), `unchanged` (conforme sans changement du texte), `corrected`, `blocked`. Les lots comptent 30 à 50 fiches maximum. La présentation commune est indépendante de la validation individuelle.
 
+La tolérance historique est limitée aux 1 553 identifiants de `baselineIds`, figés à la base `bd5a54b`. Leurs `sourceHash` ne doivent jamais être recalculés pour faire passer une modification : le contrôle de référence les protège ensemble. Après une relecture, renseigner `reviewedHash`, le lot et les réserves, sans altérer la référence initiale.
+
+Une nouvelle recette doit avoir une revue et des métadonnées complètes ; le statut `pending` ne permet pas de contourner cette obligation. Les contrôles simulent un ajout non relu, un ajout sans métadonnées et un ajout correctement documenté. Ces exemples de test restent en mémoire et n'ajoutent aucune recette au catalogue publié. Les imports de données personnelles restent hors de ce parcours.
+
 Erreurs bloquantes : identifiant dupliqué/invalide, quantité non numérique ou négative, étape vide, référence d’ingrédient invalide, groupes incomplets/dupliqués, titres incompatibles avec les étapes, référence dynamique vers une quantité inconnue, modification non consignée, statut validé avec incertitude essentielle déclarée.
 
 Avertissements à relire : quantité non chiffrée, durée/feu non détaillés, terme technique non expliqué, ingrédient possiblement oublié, source absente ou durée de paquet ambiguë. Les heuristiques ne prouvent ni présence/absence culinaire ni qualité du goût. Ne pas remplir des champs génériques pour faire disparaître un avertissement.

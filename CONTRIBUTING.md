@@ -7,3 +7,5 @@ Toute création ou modification de recette doit suivre le [standard éditorial](
 Conserver les identifiants, le nombre de portions de référence et les données personnelles. Ne pas recopier un ancien catalogue sur le catalogue actif. Ne pas transformer une cuisson ou inventer une quantité pour satisfaire un test.
 
 Avant publication : validations du workflow `.github/workflows/static-pwa.yml`, revue individuelle du contenu, contrôles Browser de lecture et de quantités. Séparer commits de présentation et lots éditoriaux (50 fiches au maximum), puis vérifier le déploiement GitHub Pages et la version HTTPS. Les tests ne prouvent pas la justesse culinaire.
+
+Les nouveaux identifiants ne bénéficient pas de la tolérance historique : une revue et les métadonnées du standard sont obligatoires. Ne pas modifier `baselineIds` ni les `sourceHash` historiques pour contourner une erreur de validation.

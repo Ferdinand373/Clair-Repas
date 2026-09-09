@@ -34,3 +34,5 @@ Ce modèle n’ajoute aucune recette automatiquement. Les valeurs entre chevrons
 `p` reste un tableau de textes, `i` conserve ses clés et unités. L’ordre des titres doit correspondre à celui des étapes. Les métadonnées sont facultatives pour les anciennes fiches, obligatoires pour valider les nouvelles. Ne pas réutiliser le champ historique `editorial`, déjà employé comme étiquette de collection.
 
 Ajouter la revue individuelle au registre et au journal du lot ; lancer `node scripts/validate-recipe-editorial.mjs` et les autres contrôles de contribution. Ne pas marquer `corrected` tant qu’une information essentielle manque.
+
+Pour une nouvelle fiche, ajouter une entrée du registre avec `id`, `name`, `status` (`corrected`, `unchanged` ou `blocked` selon la revue), `reviewedHash` calculé avec `recipeHash` sur l'objet final, `batch` et `issues`. `blocked` exige un motif visible dans `reviewNote`. Ne pas ajouter le nouvel identifiant dans `baselineIds` : cette liste et les `sourceHash` des fiches historiques sont immuables. Un nouvel identifiant laissé `pending` est une erreur bloquante.

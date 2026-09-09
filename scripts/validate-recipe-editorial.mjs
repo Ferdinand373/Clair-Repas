@@ -6,6 +6,9 @@ import {fileURLToPath,pathToFileURL} from 'node:url';
 import {recipeSource} from './recipe-source.mjs';
 
 const root=resolve(dirname(fileURLToPath(import.meta.url)),'..');
+// The bd5a54b catalogue's ids + original source hashes. Review updates change
+// reviewedHash, never this baseline, so legacy tolerance cannot hide new work.
+const LEGACY_FINGERPRINT='49a96adb7e88646ae8f46baf918eb4e2c67f9f0bcfb32e5c7300be0e81b69c25';
 export const recipeHash=recipe=>createHash('sha256').update(JSON.stringify(recipe)).digest('hex');
 export function inspectRecipe(recipe,reading,{reviewed=false}={}){
   const findings=[];
@@ -31,7 +34,7 @@ export function inspectRecipe(recipe,reading,{reviewed=false}={}){
     if(/\b(?:pâtes|riz|semoule|quinoa|nouilles)\b/i.test(step)&&/\d+\s*minutes?/.test(step)&&!/paquet|emballage/.test(step))add('package-time',`Durée du produit à vérifier, étape ${index+1}`);
     if(/cuire|griller|poêler|enfourner/i.test(step)&&!/feu|°|paquet|emballage|frém|ébullition|plancha|barbecue|air fryer/i.test(step))add('heat',`Conditions de cuisson à relire, étape ${index+1}`);
   });
-  if(!reading?.intro)add('introduction','Introduction individuelle absente',true);
+  if(typeof reading?.intro!=='string'||!reading.intro.trim())add('introduction','Introduction individuelle absente ou invalide',true);
   if(!Array.isArray(reading?.titles)||reading.titles.length!==recipe.p.length||reading.titles.some(t=>typeof t!=='string'||!t.trim()))add('titles','Titres absents ou non alignés avec les étapes',true);
   if(!reading?.times||!['prep','cook','rest','total'].every(key=>Object.hasOwn(reading.times,key)))add('times','Informations de temps incomplètes',true);
   else for(const key of ['prep','cook','rest','total'])if(reading.times[key]!=null&&typeof reading.times[key]!=='string')add('times',`Temps ${key} doit être un libellé explicite`,true);
@@ -50,6 +53,9 @@ export function validateEditorial({html,inventory}){
   const {recipes,editorial}=recipeSource(html);
   const errors=[],warnings=[],counts={pending:0,unchanged:0,corrected:0,blocked:0};
   const records=new Map(inventory.recipes.map(r=>[r.id,r]));
+  const legacyIds=Array.isArray(inventory.baselineIds)?inventory.baselineIds:[];
+  const legacy=new Set(legacyIds);
+  if(legacyIds.length!==1553||inventory.baselineCount!==1553||recipeHash(legacyIds.map(id=>[id,records.get(id)?.sourceHash]))!==LEGACY_FINGERPRINT)errors.push('Référence historique modifiée : conserver les identifiants et sourceHash de la base bd5a54b');
   if(records.size!==inventory.recipes.length)errors.push('Identifiant dupliqué dans le registre');
   if(new Set(recipes.map(r=>r.id)).size!==recipes.length)errors.push('Identifiant dupliqué dans le catalogue');
   if(recipes.length!==records.size)errors.push('Inventaire et catalogue ne couvrent pas les mêmes fiches');
@@ -59,6 +65,7 @@ export function validateEditorial({html,inventory}){
     if(!Object.hasOwn(counts,record.status)){errors.push(`${recipe.id}: statut invalide`);continue;}
     counts[record.status]++;
     const reviewed=record.status!=='pending';
+    if(!legacy.has(recipe.id)&&!reviewed)errors.push(`${recipe.id}: nouvelle fiche sans revue ; la tolérance historique ne s’applique pas`);
     if(recipeHash(recipe)!==(reviewed?record.reviewedHash:record.sourceHash))errors.push(`${recipe.id}: contenu modifié sans mise à jour de sa revue individuelle`);
     if(record.name!==recipe.n)errors.push(`${recipe.id}: nom différent du registre`);
     if(reviewed&&(!record.batch||!Array.isArray(record.issues)))errors.push(`${recipe.id}: revue non documentée`);
@@ -84,16 +91,41 @@ function tests(){
   detects({...recipe,p:['Ajouter {{qty:0/2}} de riz.']},reading,'reference');
   detects({...recipe,p:['Ajouter 100 g de riz.']},reading,'fixed-quantity');
   detects(recipe,{...reading,titles:[]},'titles');
+  detects(recipe,{...reading,intro:{text:'not a string'}},'introduction');
   detects(recipe,{...reading,groups:[{title:'Riz',ingredients:[0,0]}]},'groups');
   detects(recipe,{...reading,optionalIngredients:[2]},'optional');
   assert.ok(inspectRecipe(recipe,{},{}).every(i=>i.level==='warning'),'Legacy lacunae remain warnings');
 }
+function catalogueGuardTests(html,inventory){
+  const altered=structuredClone(inventory);
+  altered.recipes[0].sourceHash='0'.repeat(64);
+  assert.ok(validateEditorial({html,inventory:altered}).errors.some(e=>e.startsWith('Référence historique modifiée')),'Original hashes cannot be refreshed to hide unreviewed changes');
+  // Synthetic additions only in memory: no extra recipe is shipped.
+  const recipe={id:'qa-future-editorial',n:'Salade de tomate de test',m:'Sans cuisson',t:'Selon préparation',servings:2,s:['été'],i:[{q:1,u:'',n:'tomate',k:'tomates'}],p:['Laver la tomate, la couper et servir.']};
+  const futureHTML=html.replace('const recipeLibrary=[',`const recipeLibrary=[${JSON.stringify(recipe)},`);
+  const finalRecipe=recipeSource(futureHTML).recipes.find(r=>r.id===recipe.id);
+  assert.ok(finalRecipe,'Synthetic source addition');
+  const hash=recipeHash(finalRecipe);
+  const next=structuredClone(inventory);
+  next.recipes.push({id:recipe.id,name:recipe.n,status:'pending',sourceHash:hash});
+  assert.ok(validateEditorial({html:futureHTML,inventory:next}).errors.some(e=>e.includes('nouvelle fiche sans revue')),'New recipe cannot use historical tolerance');
+  Object.assign(next.recipes.at(-1),{status:'corrected',reviewedHash:hash,batch:'qa',issues:[]});
+  assert.ok(validateEditorial({html:futureHTML,inventory:next}).errors.some(e=>e.includes('[introduction]')),'New reviewed recipe needs editorial metadata');
+  const reading={intro:'La tomate est servie crue.',titles:['Préparer et servir'],times:{prep:null,cook:'Sans cuisson',rest:null,total:'Selon préparation'}};
+  const completeHTML=futureHTML.replace('const recipeLibrary=',`RECIPE_EDITORIAL[${JSON.stringify(recipe.id)}]=${JSON.stringify(reading)};\nconst recipeLibrary=`);
+  assert.deepEqual(validateEditorial({html:completeHTML,inventory:next}).errors,[],'A properly reviewed new recipe remains supported');
+}
 const invoked=process.argv[1]?pathToFileURL(resolve(process.argv[1])).href:'';
 if(invoked===import.meta.url){
   tests();
-  const result=validateEditorial({html:readFileSync(resolve(root,'index.html'),'utf8'),inventory:JSON.parse(readFileSync(resolve(root,'docs/recipe-editorial-inventory.json'),'utf8'))});
+  const html=readFileSync(resolve(root,'index.html'),'utf8');
+  const inventory=JSON.parse(readFileSync(resolve(root,'docs/recipe-editorial-inventory.json'),'utf8'));
+  const result=validateEditorial({html,inventory});
   console.log(JSON.stringify({total:result.total,counts:result.counts,errors:result.errors.length,editorialWarnings:result.warnings.length},null,2));
   if(process.argv.includes('--warnings'))console.log(result.warnings.join('\n'));
   if(result.errors.length){console.error(result.errors.join('\n'));process.exitCode=1;}
-  else console.log('✓ Structure, immutable pending content, reviewed hashes, ingredient references and editorial regression tests');
+  else {
+    catalogueGuardTests(html,inventory);
+    console.log('✓ Structure, immutable historical baseline, reviewed hashes, ingredient references and mandatory review for future additions');
+  }
 }
