@@ -7,7 +7,7 @@ import {recipeSource} from './recipe-source.mjs';
 import {recipeHash} from './validate-recipe-editorial.mjs';
 const root=resolve(dirname(fileURLToPath(import.meta.url)),'..');
 const {code,recipes,editorial}=recipeSource(readFileSync(resolve(root,'index.html'),'utf8'));
-const batchNumbers=['02','03','04','05','06','07','08','09','10','11'];
+const batchNumbers=['02','03','04','05','06','07','08','09','10','11','12'];
 const fixture={recipes:batchNumbers.flatMap(number=>JSON.parse(readFileSync(resolve(root,`scripts/recipe-editorial-batch-${number}.fixture.json`),'utf8')).recipes)};
 const slice=(a,b)=>code.slice(code.indexOf(a),code.indexOf(b,code.indexOf(a)+a.length));
 const context={window:{},$:()=>({value:'8'}),MEAL_TYPES:['mid','eve'],recipeRole:r=>r.role||r.course||'dish',isFavorite:()=>false,recipeFeedbackHTML:()=>'',recipePersonalNoteHTML:()=>''};
@@ -50,7 +50,12 @@ const timers={
   d051:[[],[],[]],d052:[[],[],[]],d053:[[],[],[]],d054:[[],[],[]],
   d055:[[],[],[]],d056:[[],[],[]],d057:[[],[],[],[20]],d060:[[],[],[]],d063:[[],[],[30],[]],
   a036:[[],[],[]],a037:[[],[],[30]],a039:[[],[],[]],a043:[[],[25],[]],
-  a046:[[],[20],[]],a047:[[],[15],[]],a053:[[],[20],[]],a058:[[],[20],[]],a062:[[18],[],[]]
+  a046:[[],[20],[]],a047:[[],[15],[]],a053:[[],[20],[]],a058:[[],[20],[]],a062:[[18],[],[]],
+  d065:[[],[4],[],[],[],[]],d066:[[],[],[]],d067:[[],[],[]],d068:[[],[],[]],
+  d069:[[],[],[30],[]],d070:[[],[],[30]],d071:[[],[],[30]],d072:[[],[],[30],[]],
+  d073:[[2],[35],[]],d074:[[],[8],[]],d075:[[],[],[]],d077:[[],[],[],[2],[2],[]],
+  d082:[[],[],[32]],d083:[[],[],[32]],d085:[[],[],[],[],[40],[20]],d086:[[],[],[35]],
+  d087:[[],[],[30]],d088:[[],[],[30]],d089:[[],[],[20]],d091:[[],[],[30]],d092:[[],[20],[12]],d093:[[],[],[14]]
 };
 const ingredients={
   n01:['poulet','pommes de terre','paprika','huile','sel.*poivre'],
@@ -151,9 +156,27 @@ const ingredients={
   a047:['carotte','poireau','courgette','bouillon','vermicelles'],
   a053:['endives','pomme de terre','bouillon','crème légère','muscade'],
   a058:['fenouil','tomates','oignon','bouillon','basilic'],
-  a062:['poireaux','moutarde','vinaigre','huile','ciboulette']
+  a062:['poireaux','moutarde','vinaigre','huile','ciboulette'],
+  d065:['chocolat noir','œufs','beurre','sucre','sel'],
+  d066:['fromage blanc','citron','blancs d’œufs','sucre'],
+  d067:['framboises','fromage blanc','blancs d’œufs','sucre'],
+  d068:['mangue','crème entière','citron vert','sucre'],
+  d069:['lait','œufs','sucre','vanille'],d070:['lait de coco','de lait','œufs','sucre','noix de coco râpée'],
+  d071:['pommes','œufs','lait','sucre','farine'],d072:['lait','œufs','sucre','vanille'],
+  d073:['riz rond','lait','sucre','vanille'],d074:['semoule fine','lait','sucre','fleur d’oranger'],
+  d075:['tapioca','lait','sucre','vanille'],d077:['œufs','lait','sucre','vanille','caramel'],
+  d082:['pâte brisée','poires','poudre d’amande','sucre','œuf','beurre'],
+  d083:['pâte brisée','abricots','sucre','poudre d’amande'],
+  d085:['cerises','œufs','sucre','farine','lait','crème liquide','beurre','vanille'],
+  d086:['poires','œufs','lait','farine','sucre','vanille'],
+  d087:['yaourt nature','œufs','farine','sucre','huile','citron','levure chimique'],
+  d088:['pommes','œufs','farine','sucre','beurre','levure chimique'],
+  d089:['chocolat noir','beurre','œufs','sucre','farine'],
+  d091:['œufs','farine','sucre','beurre','chocolat noir','vanille','levure chimique'],
+  d092:['œufs','farine','sucre','beurre','citron','levure chimique'],
+  d093:['blancs d’œufs','poudre d’amande','sucre glace','farine','beurre']
 };
-assert.equal(fixture.recipes.length,305);
+assert.equal(fixture.recipes.length,335);
 let quantityChecks=0,timerCount=0;
 for(const record of fixture.recipes){
   const recipe=recipes.find(r=>r.id===record.id);
@@ -261,6 +284,23 @@ assert.match(editorial['gn-saumon-grillade-mais'].reviewNote,/feuille de cuisson
 assert.match(editorial['gn-boeuf-ratatouille'].reviewNote,/Ne pas servir crue une sauce ayant touché la viande crue/);
 assert.match(editorial['gn-crevettes-ratatouille'].reviewNote,/basilic.*manque/);
 assert.match(editorial['gn-cotes-porc-champignons-polenta'].reviewNote,/liquide.*polenta.*ail.*rôti/);
+const islands=recipes.find(r=>r.id==='d077');
+for(const [count,share] of [[1,'15'],[2,'30'],[3,'45'],[4,'60'],[5,'75'],[8,'120']]){
+  for(const step of [0,2])assert.ok(context.recipeStepText(islands.p[step],islands,count).includes(share+' g de sucre'));
+}
+assert.match(islands.p[1],/82–84 °C/);
+assert.match(islands.p[3],/de l’eau.*80–85 °C/);
+assert.doesNotMatch(islands.p.join(' '),/micro-ondes|enfourner/i);
+assert.equal(recipes.find(r=>r.id==='d085').servings,6);
+assert.equal(recipes.find(r=>r.id==='d065').i[0].q,150);
+assert.match(recipes.find(r=>r.id==='d065').p[1],/œufs pasteurisés/);
+assert.match(recipes.find(r=>r.id==='d065').t,/4 h au frais/);
+assert.match(recipes.find(r=>r.id==='d072').p[2],/160 °C/);
+assert.match(recipes.find(r=>r.id==='d073').p[1],/pas le temps de cuisson du riz dans l’eau/);
+assert.match(recipes.find(r=>r.id==='d075').p[1],/temps et le feu indiqués sur le paquet/);
+assert.match(recipes.find(r=>r.id==='d092').t,/20 min de repos.*10–12 min de cuisson.*préparation/);
+assert.match(recipes.find(r=>r.id==='d093').p[1],/sans les monter en neige/);
+assert.doesNotMatch(recipes.find(r=>r.id==='d093').p.join(' '),/2 heures|deux heures/);
 const corrected=fixture.recipes.filter(r=>r.status==='corrected').length;
 console.log(`✓ Batches ${batchNumbers.join('/')}: ${fixture.recipes.length} individual review records, ${corrected} corrected, ${fixture.recipes.length-corrected} blocked with original content preserved; ${timerCount} manually checked timers`);
 console.log(`✓ ${quantityChecks} ingredient checks at 1/2/3/4/5/8 people; split parmesan quantities, per-face timing and original cooking techniques`);

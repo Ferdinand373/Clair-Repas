@@ -158,6 +158,16 @@ P02 publié : `c87dc373c29cae1d6edb9c2ac6191004c69ba52a`, tests `34390827874` et
 
 **Cumul : 320 identifiants examinés, 140 corrigés, 180 bloqués, 1 233 à examiner.** Prochaine fiche globale `gn-pois-chiches-ratatouille`, prochaine entrée `a063`, prochain dessert `d064`. Zéro erreur éditoriale et 8 773 avertissements. Les 106 minuteurs et 3 738 contrôles de quantité des lots précédents restent vérifiés. Publication à consigner après contrôle en ligne.
 
+## Publication du lot 11
+
+`3f926eb23d08318a0f9527c5c68687ad992fdc13` publié. Tests `34397827417`, Pages `34397826384` et déploiement `6358110613` réussis. HTTPS 200 et fichiers identiques au commit : index `8c7e13c56386b57f10dae71371e67705fe0ae8a5ff59eeecb0748745b911d38e`, service worker `da835c22bea93bd2361112187080f35aa5e7b84b385fe2bf571b843db1c6805a`. Révision chargée dans le navigateur après mise à jour normale : `sha256:55257ed060c37e9034224941425258178d0d3faf4fe83b24c5e85bfd8fad0154`. L’ancienne version est restée disponible pendant la préparation ; aucun effacement de données n’a été nécessaire.
+
+## Lot 12 — trente desserts et pâtisseries
+
+[Journal, références et décisions](recipe-editorial-batch-12.md). 22 corrigés, 8 bloqués, aucun conforme sans modification. Tous les ingrédients et portions conservés, notamment les six portions du clafoutis final. Partage du sucre concret, cuisson à l’eau des îles flottantes documentée, appareils de cuisson et techniques préservés ; les choix techniques ajoutés sont distingués des informations retrouvées dans l’archive.
+
+**Cumul : 350 identifiants examinés, 162 corrigés, 188 bloqués, 1 203 à examiner.** Prochain dessert `d094`, prochaine entrée `a063`, prochaine fiche globale `gn-pois-chiches-ratatouille`. Zéro erreur éditoriale et 8 653 avertissements. 128 minuteurs et 4 410 calculs d’ingrédients dans les lots 02–12 ; les 24 commandes du workflow réussissent. Publication à consigner après contrôle en ligne.
+
 ## Limites des vérifications
 
 Les tests de structure, quantité, minuteurs, stockage simulé et rendu ne sont pas des essais culinaires. Les formats iPhone/PWA sont simulés, sauf mention explicite d’un appareil physique. Le total de fiches à examiner ne doit jamais être remplacé par le nombre de fiches auxquelles le style commun a été appliqué.

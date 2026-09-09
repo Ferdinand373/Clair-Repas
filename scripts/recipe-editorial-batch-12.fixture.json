@@ -1,0 +1,362 @@
+{
+  "baselineCommit": "3f926eb23d08318a0f9527c5c68687ad992fdc13",
+  "batch": "12",
+  "recipes": [
+    {
+      "id": "d064",
+      "status": "blocked",
+      "sourceHash": "3028f32c4a417a98bf0c1ee7bf4e39568142f4e7a971f76aed4510c4c73fa743",
+      "reviewedHash": "3028f32c4a417a98bf0c1ee7bf4e39568142f4e7a971f76aed4510c4c73fa743",
+      "protectedRecipeSha256": "e69763ec1f04528e6e9b5703e0d3bcd8217c798bc8bf1fc9813d577386bac042",
+      "note": "la part de lait froid pour délayer la fécule et la quantité de jus de citron finale ne sont pas définies. Ne pas inventer un partage ni employer tout le citron au risque de modifier cette crème."
+    },
+    {
+      "id": "d065",
+      "status": "corrected",
+      "sourceHash": "0dee65a450c919f03766d895825bd2a51fea943f8f09c5482d7ab5bf60419fea",
+      "reviewedHash": "ebb7cd3062cf9956bf64b84f5b73cc6527f7886cb962156257ab7d1dbf080bcb",
+      "protectedRecipeSha256": "4de11b326b489616932a1af29ec884589389cbd7a09fe702fa0d9070f3311a2f",
+      "beforeSteps": [
+        "Cassez le chocolat en petits morceaux et mettez-le avec le beurre dans un bol supportant la chaleur. Faites fondre doucement au bain-marie ou par séquences de 20 secondes au micro-ondes, en mélangeant à chaque fois.",
+        "Séparez les blancs des jaunes dans deux bols propres. Laissez le chocolat fondu tiédir 3 à 4 minutes : il doit rester liquide mais ne plus être brûlant.",
+        "Incorporez les jaunes un par un dans le chocolat en mélangeant immédiatement après chaque ajout.",
+        "Ajoutez la pincée de sel aux blancs. Fouettez-les jusqu’à ce qu’ils deviennent mousseux, ajoutez le sucre puis continuez jusqu’à obtenir des blancs fermes qui forment un bec au bout du fouet.",
+        "Incorporez d’abord un tiers des blancs au chocolat en mélangeant franchement pour l’assouplir. Ajoutez le reste en deux fois avec une spatule, en soulevant la préparation du bas vers le haut pour ne pas chasser l’air.",
+        "Répartissez dans des verres et placez au réfrigérateur au moins 4 heures. Conservez au froid et consommez dans les 24 heures car les œufs restent crus."
+      ],
+      "note": "Version finale bistrot de 150 g de chocolat conservée, pas l’ancienne de 100 g. Œufs pasteurisés précisés, pincée de sel dynamique, bain-marie et alternative micro-ondes historiques conservés ; repos quatre heures séparé."
+    },
+    {
+      "id": "d066",
+      "status": "corrected",
+      "sourceHash": "cfde3d1b854bd610455be36b3abc486ad0af606a8a2332d9ce0bdf4e742c01bb",
+      "reviewedHash": "03f9b34019c0428e4c453a9d834b3844ab0e2f6bc6fc28617d22ba99fd794802",
+      "protectedRecipeSha256": "048f7286918caca58b1403f4116ed0144acff9842711cc0547a77190e8baf1e5",
+      "beforeSteps": [
+        "Mélanger fromage blanc, sucre, zeste et jus de citron.",
+        "Monter les blancs en neige.",
+        "Incorporer délicatement et réfrigérer 2 heures."
+      ],
+      "note": "Citron entier en zeste/jus, sucre dans fromage blanc et blancs incorporés sans cuisson conservés. Blancs pasteurisés explicités, repos deux heures affiché."
+    },
+    {
+      "id": "d067",
+      "status": "corrected",
+      "sourceHash": "09e57a778369081efcdfba2daf859671675a4608d1417ecb91cbd164a7518831",
+      "reviewedHash": "de9a8f19254265df9a3b2efbc250ce10e672e9b352af7caa7046a2cdc9b89a90",
+      "protectedRecipeSha256": "a0cfc938cd0ef41bf3682c5d1de20f21354a24d865b0dca6156391d6df9110f4",
+      "beforeSteps": [
+        "Mixer les framboises et les mélanger au fromage blanc.",
+        "Monter les blancs en neige avec le sucre.",
+        "Incorporer et réserver 2 heures au frais."
+      ],
+      "note": "Framboises mixées sans filtrage ajouté ; sucre dans blancs et repos deux heures conservés. Blancs pasteurisés et incorporation expliqués."
+    },
+    {
+      "id": "d068",
+      "status": "corrected",
+      "sourceHash": "eb7af175bf6a504f63e2f654f1f7e38b017c4893acda77284452e02fdc7b2d39",
+      "reviewedHash": "b9c85637e960e36ef53dac7032a20cab2c7fc080d17a3529f19ccbdbe63dc2e6",
+      "protectedRecipeSha256": "64f3cb03c5ad185735106300d01ccc3496cdb130a67ce7e60d153399606bea99",
+      "beforeSteps": [
+        "Mixer la mangue avec citron vert et sucre.",
+        "Fouetter la crème en chantilly souple.",
+        "Incorporer la purée et réfrigérer 2 heures."
+      ],
+      "note": "Mangue pelée et dénoyautée, jus du citron vert et crème froide expliqués ; chantilly souple et repos deux heures conservés."
+    },
+    {
+      "id": "d069",
+      "status": "corrected",
+      "sourceHash": "e415d9580df83b3c516b3fb2e42fb5afeda4bd9094a6770b11b0ad9ed4f6e3d3",
+      "reviewedHash": "8e2f1b9250d2450839273de8bf000de11219e52f7a87921fd61fb4123174ceb2",
+      "protectedRecipeSha256": "4e020660df74b820a1de89012070542e210601b70fd869db22fccb3bbeff52ef",
+      "beforeSteps": [
+        "Chauffer le lait avec la vanille.",
+        "Fouetter œufs et sucre puis verser le lait chaud.",
+        "Cuire 30 minutes au bain-marie à 170 °C."
+      ],
+      "note": "Lait chauffé et versé sur œufs, bain-marie 170 °C trente minutes conservés ; récipient, nappe d’eau et prise de la crème expliqués, refroidissement affiché."
+    },
+    {
+      "id": "d070",
+      "status": "corrected",
+      "sourceHash": "e34604349307bd397ea5933e31876b60ffc47e180e1f1d324d14b49a1dd4f64f",
+      "reviewedHash": "faf367ce253bf32ff39297bf2fa08871bff4855f70ba106a5537d71f33f63c09",
+      "protectedRecipeSha256": "87d02ce2518d827f72dd1bb6093d92669ae4df0170ec6ef1110512cbdc080ca1",
+      "beforeSteps": [
+        "Mélanger tous les ingrédients sans trop fouetter.",
+        "Verser dans un petit moule.",
+        "Cuire 30 minutes au bain-marie à 170 °C puis refroidir."
+      ],
+      "note": "Mélange à froid de tous les ingrédients conservé, sans préchauffage du lait ajouté ; petit moule et bain-marie expliqués."
+    },
+    {
+      "id": "d071",
+      "status": "corrected",
+      "sourceHash": "9decfb2c36d7692373f0a22b2d1565cfcbf775a3989ce832aee622e8830d0b68",
+      "reviewedHash": "8f8e90cb825507e1b17902ce9c5d36f2aa674177365099e6e2b97a1d4e9066b8",
+      "protectedRecipeSha256": "932ce09c856ce78fbd643cb6b510e3e7b3fa514e7aa12e24b9323ba55bea4b4e",
+      "beforeSteps": [
+        "Couper les pommes en lamelles et les disposer dans un plat.",
+        "Fouetter œufs, lait, sucre et farine.",
+        "Verser sur les pommes et cuire 30 minutes à 180 °C."
+      ],
+      "note": "Pommes crues en lamelles et cuisson directe au four conservées, sans beurre ni précuisson ajoutés."
+    },
+    {
+      "id": "d072",
+      "status": "corrected",
+      "sourceHash": "3e50de37bc09bf7968af076ff2c7d2135cab23d3a8b37a8ea8c4eb5eafa0571a",
+      "reviewedHash": "8fe3f03b8acde4c9f1e48810d34c28aadc4c893bce1b17bffd89516f294a2ee1",
+      "protectedRecipeSha256": "5bbe86fbd7bcb5f00f523df74c8287f4e11417cf9a2bd53f1a16b719fa0adba2",
+      "beforeSteps": [
+        "Chauffer le lait avec la vanille.",
+        "Battre œufs et sucre puis verser le lait chaud doucement.",
+        "Cuire 30 minutes au bain-marie à 160 °C."
+      ],
+      "note": "Lait vanillé chaud, versement progressif et bain-marie à 160 °C conservés ; pas de cuisson à 170 °C copiée d’un autre flan."
+    },
+    {
+      "id": "d073",
+      "status": "corrected",
+      "sourceHash": "95609b141af6da0e1a4fc4a3440c155e0aea291f16ba488f8f2dcfec46cd3c9d",
+      "reviewedHash": "7fe6a79c2e91d999f83603df84cfc3dbe919b2663e82ddbc7249dfce896e87ea",
+      "protectedRecipeSha256": "5ebe28027cc42ac3c02221bdb62dec8ff090aba013d27eb4763745a31990b203",
+      "beforeSteps": [
+        "Rincer le riz et le blanchir 2 minutes dans l’eau.",
+        "Le cuire 30 à 35 minutes à feu doux dans le lait vanillé.",
+        "Ajouter le sucre en fin de cuisson et laisser tiédir."
+      ],
+      "note": "Rinçage et blanchiment deux minutes conservés ; cuisson au lait 30–35 minutes explicitement indicative et à adapter si le paquet donne un mode riz au lait, pas son temps de cuisson à l’eau."
+    },
+    {
+      "id": "d074",
+      "status": "corrected",
+      "sourceHash": "a99b755b6c1cdde34f865686b1daac099782b25eafc2c28650704e6a694041ed",
+      "reviewedHash": "7bb4889c148345b3b13b2a7c5b21815ab2c685396fa148aa836a187a4f120185",
+      "protectedRecipeSha256": "ff518c330cf8410a5637014486c93249d6cee30310e51fffd2ec38900ce23313",
+      "beforeSteps": [
+        "Chauffer le lait avec le sucre.",
+        "Verser la semoule en pluie et cuire 6 à 8 minutes en remuant.",
+        "Ajouter la fleur d’oranger et répartir dans des coupelles."
+      ],
+      "note": "Semoule fine versée en pluie, fouet, feu doux et épaississement expliqués ; durée 6–8 indicative selon paquet, fleur d’oranger hors du feu."
+    },
+    {
+      "id": "d075",
+      "status": "corrected",
+      "sourceHash": "56f72999b2fdaabaa2261dc3cf218c7cf77aacff9061b42ee684c0f84f555de3",
+      "reviewedHash": "4909f325b514c9db6ae6e2d7ac35d9b6b896384b68ea4ecc0cf9f703262e1df5",
+      "protectedRecipeSha256": "0d82085b8c5608de93fbe4ee8507d8ca53100368fd19a28ee15c581b618c5a60",
+      "beforeSteps": [
+        "Chauffer le lait avec sucre et vanille.",
+        "Ajouter le tapioca et cuire selon le paquet en remuant souvent.",
+        "Répartir et laisser refroidir."
+      ],
+      "note": "Cuisson selon paquet maintenue, sans créer un minuteur de trente minutes depuis le temps total ; refroidissement distingué."
+    },
+    {
+      "id": "d076",
+      "status": "blocked",
+      "sourceHash": "303ce3853578690a1d37021c1deb34ce0f961c649e960d79b2dba349bd576dc1",
+      "reviewedHash": "303ce3853578690a1d37021c1deb34ce0f961c649e960d79b2dba349bd576dc1",
+      "protectedRecipeSha256": "ad3ae0cf528edf626def8b2ccb824cdec7009ed5965bf53b8ef455ca1729d7f8",
+      "note": "le poids et la force des feuilles de gélatine ne sont pas définis. Une feuille et demie n’est pas une masse universelle ; ne pas inventer un grammage ou confirmer la tenue sans identifier le produit."
+    },
+    {
+      "id": "d077",
+      "status": "corrected",
+      "sourceHash": "f7e62bfc4b8762a846af6468a1cdefe80e5ae79b15caa39bb0722ef2367fc76a",
+      "reviewedHash": "147d0be1d11f11fcb643cf6820b4d25d33525bb914b1670b929552eab62fe1fd",
+      "protectedRecipeSha256": "996bfb16bece75595ccbda1ce5cd9f874284ecab6b37d42f017a30fd4e370575",
+      "beforeSteps": [
+        "Préparer une crème anglaise avec lait, jaunes, la moitié du sucre et vanille.",
+        "Monter les blancs avec le reste du sucre et les pocher par cuillerées dans l’eau frémissante.",
+        "Déposer sur la crème refroidie et ajouter le caramel."
+      ],
+      "note": "Partage historique du sucre par moitié rendu concret ; crème anglaise 82–84 °C et pochage à l’eau 2 min par face documentés comme précision technique sourcée, sans four ni lait de pochage ajoutés."
+    },
+    {
+      "id": "d078",
+      "status": "blocked",
+      "sourceHash": "eba18937ec66f1090a6346b6bbbd34f6fdc7c72987ecabd11d567e1e0784358d",
+      "reviewedHash": "eba18937ec66f1090a6346b6bbbd34f6fdc7c72987ecabd11d567e1e0784358d",
+      "protectedRecipeSha256": "a5bd4b201e711b56184d1fd999cf3a62298de8ce5c7d0878d370660a6465829a",
+      "note": "la méthode de caramélisation de la cassonade et son réglage ne sont pas définis. Four-gril et chalumeau ne sont pas interchangeables sans préciser le récipient et la conduite ; ne pas ajouter un appareil par défaut."
+    },
+    {
+      "id": "d079",
+      "status": "blocked",
+      "sourceHash": "138deee48c1d69377997f6c12363b6a3312654b252ef4878859ccffaff3c7c44",
+      "reviewedHash": "138deee48c1d69377997f6c12363b6a3312654b252ef4878859ccffaff3c7c44",
+      "protectedRecipeSha256": "185d4b0cbceebbf27fc702386e20210ff0f2cd41853e646ecb432f4b83987d22",
+      "note": "la part de lait réservée à la fécule et le poids de la feuille de gélatine ne sont pas définis. Ne pas compléter l’un par une fraction arbitraire ni l’autre par un grammage standard supposé."
+    },
+    {
+      "id": "d080",
+      "status": "blocked",
+      "sourceHash": "e5d6f3dc286b1080dc12997db6fa42895ad37c62cc47308ca3831c62962c5165",
+      "reviewedHash": "e5d6f3dc286b1080dc12997db6fa42895ad37c62cc47308ca3831c62962c5165",
+      "protectedRecipeSha256": "4a0a14ff4d959fac6824e3a4a64991dfccf814e2f15fe8b0db8c9ea3a6b0a086",
+      "note": "la quantité de jus de citron pour les biscuits « légèrement citronnés » n’est pas précisée. Le zeste a un usage défini, mais employer tout le jus ou ajouter de l’eau modifierait le trempage sans source."
+    },
+    {
+      "id": "d081",
+      "status": "blocked",
+      "sourceHash": "86526282a6782d590232514fbda4180f81b1ca4c018a263bbbcc7e3b36ccde62",
+      "reviewedHash": "86526282a6782d590232514fbda4180f81b1ca4c018a263bbbcc7e3b36ccde62",
+      "protectedRecipeSha256": "94ed5f5d37d581908dace5ef94ac28736cc9b6b6d98e0022451d5961ae233536",
+      "note": "la liste annonce une pâte feuilletée entière alors que les étapes demandent un « petit rectangle » sans poids ni dimensions. La part utilisée doit être confirmée pour ne pas fausser les quantités par repas."
+    },
+    {
+      "id": "d082",
+      "status": "corrected",
+      "sourceHash": "27c0b033f920a799fd3e4ed8838cbbe941fc09a5181b7ac44b4dddfe4543d247",
+      "reviewedHash": "266d8778eec43db2c1bf2084e7f49f93290c9e42304531308b67aee10a360dcd",
+      "protectedRecipeSha256": "af5c920adb8b49a64a7418e6c0a0431b1f413873533815905ba3a42e6fb917e1",
+      "beforeSteps": [
+        "Foncer un petit moule avec la pâte.",
+        "Mélanger beurre, sucre, œuf et poudre d’amande puis étaler.",
+        "Ajouter les poires et cuire 32 minutes à 180 °C."
+      ],
+      "note": "Foncer expliqué, beurre assoupli sans le fondre, poires en lamelles et toute la crème d’amande conservés ; pas de précuisson de pâte ni beurre de moule ajouté."
+    },
+    {
+      "id": "d083",
+      "status": "corrected",
+      "sourceHash": "cc02587658ff23d16772e6b32472723458a35a18f3af7d5c6bb4aeab062cc32e",
+      "reviewedHash": "6f2e43ee2320a93b08a96558a2f56fa4564b9ccf7083b620f02b49af0942900b",
+      "protectedRecipeSha256": "b7a543751840bf2d03e6bc116cb9b572e998f485e7ceb1741ae8747d73230451",
+      "beforeSteps": [
+        "Étaler la pâte sur une plaque et parsemer le centre de poudre d’amande.",
+        "Ajouter les abricots et le sucre en laissant un bord.",
+        "Replier le bord et cuire 32 minutes à 190 °C."
+      ],
+      "note": "Tarte libre sur plaque conservée ; bord utile pour repli, abricots dénoyautés, amande dessous et tout sucre dessus. Aucun moule ou précuisson ajoutés."
+    },
+    {
+      "id": "d084",
+      "status": "blocked",
+      "sourceHash": "4a3e1d65ed7e2c188d8db3feddbd73d8fb7d0e75618c6a9883061bcfb409fbdd",
+      "reviewedHash": "4a3e1d65ed7e2c188d8db3feddbd73d8fb7d0e75618c6a9883061bcfb409fbdd",
+      "protectedRecipeSha256": "9a60adf1bcb206533d8938b63634d2d4c8117f3d9a4187319e248a634ecf30e1",
+      "note": "la pâte entière listée est découpée en deux fonds sans taille ni poids définis ; la quantité réellement utilisée et les chutes ne sont pas identifiées. Ne pas figer deux tartelettes pour tous les convives ni inventer des diamètres."
+    },
+    {
+      "id": "d085",
+      "status": "corrected",
+      "sourceHash": "57deeee262041a384b5984b6e5ae5d162ba8d81a7743cb31784d3ba47331e7c9",
+      "reviewedHash": "5af98c45d04fd9b0ae4d45b6fab742d84510309999fe9b53408e986279586c7f",
+      "protectedRecipeSha256": "5326ba48689d2a502bded71f7deaa7b4d437338b7cde85c9f16b9cdfa8642f6f",
+      "beforeSteps": [
+        "Préchauffez le four à 180 °C. Beurrez un plat de 24 cm environ. Lavez et séchez les cerises. Vous pouvez conserver les noyaux pour la tradition, mais pour des enfants ou un service plus facile, dénoyautez-les.",
+        "Répartissez les cerises dans le plat en une seule couche.",
+        "Dans un saladier, fouettez les œufs et le sucre. Ajoutez la farine et mélangez jusqu’à obtenir une pâte lisse.",
+        "Versez progressivement lait puis crème tout en fouettant, puis ajoutez la vanille. La pâte ressemble à une pâte à crêpes épaisse.",
+        "Versez sur les cerises et enfournez 35 à 40 minutes. Le clafoutis doit être gonflé et doré ; le centre peut encore trembler très légèrement.",
+        "Laissez tiédir au moins 20 minutes. Il retombera un peu, c’est normal. Servez tiède ou à température ambiante."
+      ],
+      "note": "Version finale familiale à six portions conservée, avec crème et beurre. Texte déjà détaillé peu remanié ; beurre/vanille dynamiques, dimensions présentées comme référence et repos vingt minutes explicite."
+    },
+    {
+      "id": "d086",
+      "status": "corrected",
+      "sourceHash": "1459b156f96db8d59ab2d83c9a2de7b7d5f1715eb7abf8c21f6709bf91f376e7",
+      "reviewedHash": "e95bd8bb1b4ea8f9c849075b6e305ea4fe40da950dc9b55a44d40f8e45e3c7c0",
+      "protectedRecipeSha256": "69eca86ba5425503ec77c9194866607dbcb79043bfce8f70e92a15e9b03fcd19",
+      "beforeSteps": [
+        "Couper les poires et les répartir dans un plat.",
+        "Mélanger œufs, lait, farine, sucre et vanille.",
+        "Verser et cuire 35 minutes à 180 °C."
+      ],
+      "note": "Poires non précuites, pâte simple sans beurre ajouté ; lissage progressif et prise au centre expliqués."
+    },
+    {
+      "id": "d087",
+      "status": "corrected",
+      "sourceHash": "fb49a8bd622b5b60ef6a1c5b7aa06c3aa19431be0aed79ebfc95d18edddbab19",
+      "reviewedHash": "b64416b2d69e33513340a48a9db83e153a30969fff90b940fdc6fb89c75fa6c5",
+      "protectedRecipeSha256": "916340d687a2d346b330d17d46a964cbe3188d0c33163dd97fa2f5856146ce3f",
+      "beforeSteps": [
+        "Mélanger yaourt, œufs, sucre, huile, zeste et jus de citron.",
+        "Incorporer farine et levure.",
+        "Verser dans un petit moule et cuire 30 minutes à 180 °C."
+      ],
+      "note": "Yaourt et demi-sachet restent les unités historiques, sans poids de pot ou de sachet inventé. Zeste/jus du citron, huile entière dans pâte, levure chimique et moule chemisé explicités."
+    },
+    {
+      "id": "d088",
+      "status": "corrected",
+      "sourceHash": "2a99979622e1128665d3ebc6189053e25663e684edf3ed595ce4b567e414288a",
+      "reviewedHash": "1ebaecc2af9415df660ea6da4c1833a3a6189525e892f4e960fca08ed3496ddf",
+      "protectedRecipeSha256": "4ebcba56ac454d0ea1d7d063a8723bc53991acf7f1848a5a77b76edd10a7e0f2",
+      "beforeSteps": [
+        "Fouetter œufs et sucre puis ajouter beurre fondu, farine et levure.",
+        "Incorporer les pommes en dés.",
+        "Cuire 30 minutes à 180 °C."
+      ],
+      "note": "Beurre simplement fondu, pommes crues en dés et levure en sachet conservés. Moule chemisé évite de prélever arbitrairement du beurre de la pâte."
+    },
+    {
+      "id": "d089",
+      "status": "corrected",
+      "sourceHash": "610b17ab7b872da0689def253b35f96a534db560b33b05959993fb59365e9148",
+      "reviewedHash": "1b9cf5654b77b87063a2c9f480521db219cfdca16791688117642d8a2a86f6dc",
+      "protectedRecipeSha256": "9ff5287eaccf34c75cd04ccc4e258623a6fa9040928a08cb3902424868c1c1e6",
+      "beforeSteps": [
+        "Faire fondre chocolat et beurre.",
+        "Ajouter sucre, œufs puis farine.",
+        "Verser dans un petit moule et cuire 18 à 20 minutes à 180 °C."
+      ],
+      "note": "Chocolat/beurre fondus puis sucre/œufs/farine conservés ; fonte douce préparatoire décrite, moelleux non transformé en coulant cru."
+    },
+    {
+      "id": "d090",
+      "status": "blocked",
+      "sourceHash": "e2449e7ac2cbaf466453903235235960296d8d41f6f83abf522f7122e19fd0d6",
+      "reviewedHash": "e2449e7ac2cbaf466453903235235960296d8d41f6f83abf522f7122e19fd0d6",
+      "protectedRecipeSha256": "1bd041d5d54abb8a10e52d00fc52632664234a3bb4dd7c2c950fa971207bc101",
+      "note": "la préparation emploie tout le jus d’une orange mais seulement « un peu » de la seconde, sans quantité mesurée. L’état du beurre et le poids du sachet de levure ne sont pas définis ; ne pas verser tout le jus pour compléter artificiellement la liste."
+    },
+    {
+      "id": "d091",
+      "status": "corrected",
+      "sourceHash": "6be3ca37bf1d6ffaa045cf0641a481f1407074d0faf0f443b6d863cb3c413b95",
+      "reviewedHash": "fc2307870c12f2462df694da8ac02ea7dd5b2513b25db14b01a8c57c2f33f8e0",
+      "protectedRecipeSha256": "c148ca28b56c858e77149ebcdcd9c80c0d21480bd6ea3b0a2e1002fec670aa7c",
+      "beforeSteps": [
+        "Préparer une pâte avec œufs, sucre, beurre, farine et levure.",
+        "Diviser en deux, ajouter chocolat fondu d’un côté et vanille de l’autre.",
+        "Alterner dans un petit moule et cuire 30 minutes à 180 °C."
+      ],
+      "note": "Beurre assoupli pour pâte mélangée, chocolat fondu séparé, division égale de pâte et vanille entière d’un côté conservés. Pas de marbrage ou repos ajoutés."
+    },
+    {
+      "id": "d092",
+      "status": "corrected",
+      "sourceHash": "e2e4003a638d4de24dd61fb41f56229725c71beed1f680692249759fc4868a69",
+      "reviewedHash": "2f90201afc1f1bf83b003ee2104e93193f518f884540e0f806769e16cca8d003",
+      "protectedRecipeSha256": "1686ac1957cba88ba56e6371cc0a18512371e2719f9055d2d1c1129e80d442e1",
+      "beforeSteps": [
+        "Mélanger œufs, sucre, farine et levure.",
+        "Ajouter beurre fondu, zeste et jus de citron puis reposer 20 minutes.",
+        "Cuire 10 à 12 minutes à 200 °C dans des moules à madeleines."
+      ],
+      "note": "Repos vingt minutes conservé sans lui attribuer un froid non prévu ; beurre fondu non noisette, citron en zeste/jus et four 200 °C maintenus. Temps incomplet rendu explicite."
+    },
+    {
+      "id": "d093",
+      "status": "corrected",
+      "sourceHash": "7cb893c3d9f2c770f82b6e80dd82fbb45e6c389d84de0ee07f6f0434222018bf",
+      "reviewedHash": "18467c5a0b56e6f4da0f64d725c53e82ca0974d6ae9377b1b077298022f0855f",
+      "protectedRecipeSha256": "98442a2a8f9779178507c994f608b1459cb404da28c2cc931c1490ebefeb584d",
+      "beforeSteps": [
+        "Faire fondre le beurre jusqu’à une légère couleur noisette.",
+        "Mélanger poudre d’amande, sucre, farine et blancs non montés, puis ajouter le beurre.",
+        "Cuire 14 minutes à 190 °C."
+      ],
+      "note": "Beurre noisette expliqué depuis source technique ; blancs non montés, poudre d’amande et sucre glace conservés. Aucun repos deux heures d’une autre recette transposé."
+    }
+  ]
+}
