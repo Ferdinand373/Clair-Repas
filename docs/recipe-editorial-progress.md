@@ -218,6 +218,16 @@ P02 publié : `c87dc373c29cae1d6edb9c2ac6191004c69ba52a`, tests `34390827874` et
 
 **Cumul : 540 identifiants examinés, 212 corrigés, 328 bloqués, 1 013 à examiner.** Prochaine fiche globale `gn2-saumon-estragon-petits-pois`, prochaine entrée `theme-bistrot-brasserie-03`, prochain dessert `v74-reg-27`. Zéro erreur éditoriale et 7 889 avertissements. 2 532 rendus d’ingrédients supplémentaires pour les fiches réservées, à 1/2/3/4/5/8 personnes ; 210 minuteurs et 6 378 calculs d’ingrédients des corrections précédentes conservés. Les 24 commandes du workflow réussissent et les trois formats sont contrôlés visuellement. Publication à consigner après contrôle en ligne.
 
+## Publication du lot 17
+
+`4011681afc451abb9c46226b3b7276c7afa3b3f2` publié. Tests `34404996621`, Pages `34404995977` et déploiement `6359320497` réussis. HTTPS 200 et fichiers identiques au commit : index `5e6ad69d0651176334ebba07050d9d0ebd591bb5c8bd5fa329c24606f6afc6f4`, service worker `dda83833bbffceaf167b192cb4d73e63aa5cc8739156742985fac484bba727da`. Révision chargée après mise à jour normale `sha256:6abc80626f75d336bbc198e851643e572f46bc894229a7a02923a24d7dbce37c`. Filet mignon tomate/origan à l’Airfryer contrôlé en production : réserves visibles, 350 g de viande et 140 g de boulgour pour deux personnes, cuisson au panier inchangée. Pas d’effacement de données.
+
+## Lot 18 — trente entrées régionales et de bistrot
+
+[Journal, sources et décisions](recipe-editorial-batch-18.md). 14 corrigées, 16 bloquées, aucune conforme sans modification. La salade landaise ne change que d’une phrase pour rétablir son bouton de minuteur ; les quatre autres étapes sont conservées. Quantités de fromages liées aux ingrédients, eaux conditionnelles des veloutés et accompagnements source rétablis sans doses inventées. Les seize fiches réservées ne sont pas réécrites.
+
+**Cumul : 570 identifiants examinés, 226 corrigés, 344 bloqués, 983 à examiner.** Prochaine entrée `v75-chef-ducasse-03`, prochaine fiche globale `gn2-saumon-estragon-petits-pois`, prochain dessert `v74-reg-27`. Zéro erreur éditoriale et 7 778 avertissements. 244 minuteurs et 7 074 contrôles d’ingrédients dans les corrections des lots 02–18, plus les 2 532 rendus réservés du lot 17. Les 24 commandes du workflow réussissent et les trois formats sont contrôlés visuellement. Publication à consigner après contrôle en ligne.
+
 ## Limites des vérifications
 
 Les tests de structure, quantité, minuteurs, stockage simulé et rendu ne sont pas des essais culinaires. Les formats iPhone/PWA sont simulés, sauf mention explicite d’un appareil physique. Le total de fiches à examiner ne doit jamais être remplacé par le nombre de fiches auxquelles le style commun a été appliqué.

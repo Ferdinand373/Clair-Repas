@@ -1,0 +1,351 @@
+{
+  "baselineCommit": "4011681afc451abb9c46226b3b7276c7afa3b3f2",
+  "batch": "18",
+  "recipes": [
+    {
+      "id": "theme-bistrot-brasserie-03",
+      "status": "blocked",
+      "sourceHash": "6bd04b06aa326e8c47e6c32f5fa505ebf0c2d9135f3f56d2863561844e402cb7",
+      "reviewedHash": "6bd04b06aa326e8c47e6c32f5fa505ebf0c2d9135f3f56d2863561844e402cb7",
+      "protectedRecipeSha256": "87325d973ba65625ae91414296afbc41f556416b581b3c0f440996858b25f615",
+      "note": "tout le vinaigre est employé dans la vinaigrette, puis un ajout de correction est demandé sans quantité ni réserve. La mention de salage cinq minutes avant la fin doit aussi être distinguée d’une cuisson supplémentaire. Les archives ne fixent pas ce partage de vinaigre."
+    },
+    {
+      "id": "theme-bistrot-brasserie-04",
+      "status": "blocked",
+      "sourceHash": "0a273e032189d50eb53d5b6be5835eef17eb631a262aaafd466dd4f780cac9d5",
+      "reviewedHash": "0a273e032189d50eb53d5b6be5835eef17eb631a262aaafd466dd4f780cac9d5",
+      "protectedRecipeSha256": "480d16e02e9294821389bba780dded8cbbfdd153e6fabbaa35c3cf16e4fa8ae8",
+      "note": "la cuillère à soupe de vinaigre de l’eau de pochage n’est pas distinguée du vinaigre de la vinaigrette : les 1,5 cuillères listées couvrent-elles les deux usages ? Les archives ne permettent pas de choisir. Pour les œufs coulants, préciser aussi les précautions liées aux œufs non pasteurisés."
+    },
+    {
+      "id": "theme-bistrot-brasserie-05",
+      "status": "corrected",
+      "sourceHash": "0e6fa471d1bdf019457ae7e55f956c0c9f3b364f0f122a70dbd4f00dd3defe3e",
+      "reviewedHash": "802414254643f4238972d2fa34cd1385de96212c7bf53a80acc980ee90873870",
+      "protectedRecipeSha256": "70f3494cd9df3c3553760b179ad79c328dbd89c00d62dd60137d58bb9cf34c36",
+      "beforeSteps": [
+        "Épluchez les oignons puis émincez-les finement et régulièrement. Faites fondre le beurre dans une casserole à fond épais sur feu moyen.",
+        "Ajoutez les oignons avec une petite pincée de sel. Cuisez 20 à 25 minutes en remuant souvent. Ils doivent devenir très tendres et brun doré, sans brûler ; baissez le feu si le fond accroche trop vite.",
+        "Saupoudrez de farine, mélangez 1 minute puis versez le vin blanc. Grattez le fond avec une cuillère en bois pour récupérer les sucs.",
+        "Ajoutez le bouillon, poivrez et laissez frémir 20 minutes sans couvrir. Goûtez avant de saler car le bouillon et le fromage le sont déjà.",
+        "Faites griller légèrement les tranches de baguette. Répartissez la soupe dans deux bols supportant le four, posez 2 tranches de pain sur chaque bol et couvrez de comté.",
+        "Passez 4 à 6 minutes sous le gril du four en surveillant constamment. Le fromage doit bouillonner et être bien doré. Servez avec précaution : les bols sont brûlants."
+      ],
+      "note": "Oignons longuement dorés, farine mélangée une minute, déglaçage puis bouillon sans couvercle conservés. Pain et fromage répartis entre les convives sans imposer deux bols quelle que soit la quantité."
+    },
+    {
+      "id": "theme-cuisine-regionale-01",
+      "status": "corrected",
+      "sourceHash": "dc5ac88f3570db39bb480244510fb86e782bff0bb67d7344441bbf476d8c192c",
+      "reviewedHash": "e28bfa122cba60834f755e09cc6144d7bd40977bf517e10fbfea0fa7342040a6",
+      "protectedRecipeSha256": "4f4c67388b262eb5fd58ec38190d0ad52497463a9beb47d67832c3a4eb99f78b",
+      "beforeSteps": [
+        "Préchauffez le four à 200 °C. Versez l’eau, le beurre et le sel dans une petite casserole et portez à ébullition.",
+        "Retirez la casserole du feu, versez toute la farine d’un coup et mélangez vivement avec une cuillère en bois. Remettez 1 minute sur feu moyen en remuant : la pâte doit former une boule et laisser une fine pellicule au fond.",
+        "Transvasez dans un saladier et laissez tiédir 3 minutes. Incorporez le premier œuf en mélangeant jusqu’à ce que la pâte redevienne homogène, puis faites de même avec le second.",
+        "Ajoutez 50 g de comté et du poivre. Déposez des noix de pâte bien espacées sur une plaque couverte de papier cuisson, à l’aide de deux petites cuillères.",
+        "Parsemez du comté restant. Enfournez 20 à 25 minutes sans ouvrir la porte pendant les 20 premières minutes. Les gougères doivent être gonflées, dorées et sèches à l’extérieur.",
+        "Éteignez le four, entrouvrez la porte 3 minutes puis servez tiède."
+      ],
+      "note": "Pâte à choux à l’eau conservée : ni lait, ni crème, ni dorure ajoutés. Les 70 g de comté sont répartis en 50 g dans la pâte puis 20 g dessus par références dynamiques. Les vingt premières minutes sans ouverture ne créent pas un second minuteur."
+    },
+    {
+      "id": "theme-cuisine-regionale-02",
+      "status": "corrected",
+      "sourceHash": "b38bfa33a60b5db8a97249a203b7d53e2071bfebf6fcc87dcdf1a4778d810c16",
+      "reviewedHash": "973a1af27ffbcb1c08f900ca412ab0e82ac41094e2b5ba313f2f1540722b65d8",
+      "protectedRecipeSha256": "1b1221736bb429a974cb6c92243e0adf504162388840fadd75d1025e7c1b4e94",
+      "beforeSteps": [
+        "Lavez et essorez la salade. Coupez la tomate en quartiers et préparez les noix.",
+        "Retirez l’excès de graisse autour des gésiers puis coupez-les en morceaux. Chauffez-les 6 à 8 minutes à feu moyen dans une poêle, sans ajouter de matière grasse, jusqu’à ce qu’ils soient bien chauds et légèrement dorés.",
+        "Préparez la vinaigrette dans un grand saladier : mélangez moutarde, vinaigre, poivre puis huile de noix. Salez très peu car les viandes de canard sont déjà assaisonnées.",
+        "Ajoutez la salade et la tomate et mélangez au dernier moment pour garder les feuilles croquantes.",
+        "Répartissez dans les assiettes, ajoutez les gésiers chauds, les fines tranches de magret fumé et les noix. Servez immédiatement pour conserver le contraste chaud-froid."
+      ],
+      "note": "Quatre étapes inchangées sur cinq. Seule la phrase de réchauffage est rendue compatible avec le minuteur existant ; la forme impérative « Chauffez-les » n’était pas reconnue. Aucun changement de technique, quantité, durée ou cuisson du magret fumé."
+    },
+    {
+      "id": "theme-cuisine-regionale-03",
+      "status": "corrected",
+      "sourceHash": "b18c461ec10d708cece95298477abe62e0b36bf007decd51b34a31bda96a3d98",
+      "reviewedHash": "95613b4c64b23f02bc5cae8f965b01f99c6a386263504569652eb5e646dff997",
+      "protectedRecipeSha256": "801b8126ceb2dd269f59a6e405f28a9df4291169ccc4ba792f9289df95997eaf",
+      "beforeSteps": [
+        "Préchauffez le four à 190 °C. Sortez le beurre suffisamment tôt pour qu’il soit souple mais pas fondu.",
+        "Hachez très finement l’ail et le persil. Mélangez-les au beurre avec quelques tours de poivre.",
+        "Fendez la baguette dans la longueur sans séparer complètement les deux moitiés. Étalez le beurre à l’ail sur toute la mie, jusqu’aux extrémités.",
+        "Refermez le pain et enveloppez-le dans du papier cuisson puis dans une feuille d’aluminium. Enfournez 10 minutes.",
+        "Ouvrez l’aluminium et poursuivez 5 minutes pour rendre l’extérieur légèrement croustillant. Coupez en tranches épaisses et servez chaud à l’apéritif ou en entrée."
+      ],
+      "note": "Beurre souple non fondu, baguette précuite et enveloppe papier/aluminium conservés. L’attente d’assouplissement du beurre est distinguée des vingt-cinq minutes ; aucun nouvel ingrédient ou mode de cuisson."
+    },
+    {
+      "id": "theme-cuisine-regionale-04",
+      "status": "blocked",
+      "sourceHash": "210fdcb31df3c064d549c9d386e37a80818bd523064e70a027a436e6a27dccc6",
+      "reviewedHash": "210fdcb31df3c064d549c9d386e37a80818bd523064e70a027a436e6a27dccc6",
+      "protectedRecipeSha256": "7d0f1a6d7ec0dc82518fc76df89610e17affcebb35c3be5ab6350fb54f883500",
+      "note": "deux cuillères d’huile servent aux oignons et la dernière à l’arrosage, mais la plaque doit aussi être huilée. Aucune part n’est réservée pour la plaque. Les archives ne précisent pas davantage si les premières cuillères sont bien des cuillères à soupe."
+    },
+    {
+      "id": "theme-cuisine-regionale-05",
+      "status": "blocked",
+      "sourceHash": "2ca8ac1978a4c5e5361260d4910229e1fa39231d9ca99ecac9a8998c7563f8c5",
+      "reviewedHash": "2ca8ac1978a4c5e5361260d4910229e1fa39231d9ca99ecac9a8998c7563f8c5",
+      "protectedRecipeSha256": "4be693549f80d2329333c70c70d380ba39f2404706a0dbeac11620567587abec",
+      "note": "le vinaigre de pochage est absent et non dosé. La sauce peut être filtrée mais sa garniture est ensuite redemandée au dressage, sans consigne de récupération. Ne pas supprimer arbitrairement la filtration ou les légumes ; préciser les précautions des œufs coulants."
+    },
+    {
+      "id": "theme-famille-dimanche-01",
+      "status": "blocked",
+      "sourceHash": "7a8444060556c96c6e56713b29575df32340b1944c00935a136753bb1ed7d164",
+      "reviewedHash": "7a8444060556c96c6e56713b29575df32340b1944c00935a136753bb1ed7d164",
+      "protectedRecipeSha256": "ab13755e46122682f32022b600a4b4f9b8b28c825210aead579f2f4c913de46e",
+      "note": "la cuillère à soupe de jaune cuit réservée pour la finition est définie à quatre personnes, mais n’est pas reliée au calcul des œufs. Les archives ne donnent ni masse ni équivalence permettant de recalculer ce volume sans supposer le calibre des œufs."
+    },
+    {
+      "id": "theme-famille-dimanche-02",
+      "status": "corrected",
+      "sourceHash": "5a8a79f786fcd9391716c87eeca5b64123c4f3c5a688988a1e7afa2b4c53005c",
+      "reviewedHash": "314008d2a89f9af7763a037497fffe5828b218be188050e496f491d6f5dcc480",
+      "protectedRecipeSha256": "ab8efdf23d4eee006a2e86ee3444a1f0cb9ba879c8b8da14da9bcbf8fdd318ef",
+      "beforeSteps": [
+        "Retirez les racines et le vert très foncé des poireaux. Fendez-les puis rincez entre les feuilles. Émincez-les. Épluchez les pommes de terre et coupez-les en cubes de 2 cm.",
+        "Faites fondre le beurre dans une casserole sur feu moyen. Ajoutez oignon et poireaux avec une petite pincée de sel et cuisez 7 minutes sans coloration.",
+        "Ajoutez les pommes de terre et le bouillon. Portez à ébullition puis baissez le feu et laissez frémir 20 minutes, jusqu’à ce que les pommes de terre s’écrasent facilement à la fourchette.",
+        "Mixez avec un mixeur plongeant en gardant l’appareil au fond au démarrage pour éviter les éclaboussures chaudes. Mixez jusqu’à obtenir une texture lisse.",
+        "Ajoutez la crème, réchauffez 2 minutes sans faire bouillir fortement, puis goûtez et assaisonnez. Si le velouté est trop épais, ajoutez un peu d’eau chaude."
+      ],
+      "note": "Beurre et fondue sans coloration conservés avant l’ajout de bouillon ; aucune cuisson au bouillon substituée au sauté. Eau chaude d’ajustement retrouvée dans la source, listée comme facultative sans volume inventé."
+    },
+    {
+      "id": "theme-famille-dimanche-03",
+      "status": "corrected",
+      "sourceHash": "42540ab3373ab2489dc80f73b5e8e38cd76cba7b1632e6fecc7e8a38b80d9375",
+      "reviewedHash": "2e396b2ffb024afb6f11d5004070def5b3bc6024f4508636fbec0acb9d72e11d",
+      "protectedRecipeSha256": "47b62329eff9c8888a4895cbba07c82f4b5512a0ef187abf7b05ddc0017d6465",
+      "beforeSteps": [
+        "Épluchez carottes et pommes de terre. Coupez-les en petits dés d’environ 1 cm. Coupez les haricots verts en tronçons de même taille.",
+        "Portez une grande casserole d’eau salée à ébullition. Cuisez d’abord carottes et pommes de terre 8 minutes.",
+        "Ajoutez haricots verts et petits pois puis poursuivez 5 à 7 minutes. Les légumes doivent être tendres mais garder leur forme.",
+        "Égouttez très bien et étalez les légumes sur un grand plat pour les laisser refroidir. Ne mélangez pas la mayonnaise à des légumes chauds.",
+        "Mélangez mayonnaise et moutarde puis incorporez délicatement aux légumes froids. Ajoutez persil et poivre, goûtez et rectifiez le sel. Réfrigérez jusqu’au service."
+      ],
+      "note": "Ordre de cuisson et tailles source conservés : carotte/pomme de terre d’abord, haricots/petits pois ensuite. Mayonnaise seulement sur légumes froids ; pas de remplacement par des légumes en boîte."
+    },
+    {
+      "id": "theme-famille-dimanche-04",
+      "status": "corrected",
+      "sourceHash": "50b98f1c602a404b3aa5729a61101793e5882f1a42de6e1b6b0fbd580a36fc6e",
+      "reviewedHash": "03891befdbd3226825e836e8960103db8164502e0efb4c773bde4e1b73453a76",
+      "protectedRecipeSha256": "eff8c539f7abc5c7d20effe40391579cb9851da6b6707d1db27d395c840dc909",
+      "beforeSteps": [
+        "Préchauffez le four à 190 °C. Nettoyez soigneusement les poireaux puis émincez-les en fines rondelles.",
+        "Faites fondre le beurre dans une poêle sur feu moyen. Ajoutez les poireaux, salez légèrement et cuisez 12 à 15 minutes en remuant. Ils doivent être très tendres et ne plus rendre d’eau.",
+        "Déroulez la pâte dans un moule, piquez le fond puis répartissez les poireaux tiédis.",
+        "Dans un bol, battez les œufs avec la crème, la muscade, du poivre et la moitié du fromage. Versez sur les poireaux.",
+        "Parsemez du reste de fromage et enfournez 30 à 35 minutes. La tarte doit être bien dorée et le centre pris quand on bouge légèrement le moule.",
+        "Laissez reposer 8 à 10 minutes avant de couper. Servez tiède avec une salade."
+      ],
+      "note": "Fondue des poireaux, cuisson à 190 °C et repos conservés. Emmental partagé en quantités dynamiques égales. Salade d’accompagnement déjà demandée rétablie sans quantité inventée ; elle n’est pas transformée en ingrédient facultatif."
+    },
+    {
+      "id": "theme-petits-gourmands-01",
+      "status": "corrected",
+      "sourceHash": "2e1b373f92040f72cb52d64003e3cd0d2e4a75f46cc8924cacbb2983a256be07",
+      "reviewedHash": "36d4a87eef51fafbcfad63dd3bffef068be209b90d43e6c17f9a6389fb05d1e6",
+      "protectedRecipeSha256": "b428b2c1a2000a8c0600177b98987c9da8df588b71df1751e61a50f36aa0dd23",
+      "beforeSteps": [
+        "Épluchez les carottes et la patate douce puis coupez-les en petits cubes réguliers. Émincez l’oignon.",
+        "Faites chauffer l’huile dans une casserole sur feu moyen. Ajoutez l’oignon et faites-le cuire 3 minutes sans coloration.",
+        "Ajoutez carottes et patate douce, versez le bouillon et portez à frémissement. Couvrez à moitié et laissez cuire 22 à 25 minutes, jusqu’à ce que les légumes s’écrasent facilement à la fourchette.",
+        "Mixez très finement au mixeur plongeant en gardant d’abord la tête du mixeur au fond pour éviter les éclaboussures chaudes.",
+        "Ajoutez la crème, mélangez et réchauffez 2 minutes. Goûtez avant de saler. Pour de jeunes enfants, servez tiède et adaptez l’épaisseur avec un peu d’eau si nécessaire."
+      ],
+      "note": "Oignon revenu dans l’huile avant le bouillon et cuisson à demi-couvert conservés. Eau d’ajustement déjà prévue rendue visible et facultative, ajout progressif selon la texture sans dose inventée."
+    },
+    {
+      "id": "theme-petits-gourmands-02",
+      "status": "corrected",
+      "sourceHash": "c8ecf51b409dcce275619283c76892fb1b2d589224b0fa1ef6bce87daf4085ba",
+      "reviewedHash": "08974390df7c36f1dd1a876bb8c48710297b4009116e17abc19170a76e9b7f80",
+      "protectedRecipeSha256": "40d848356ebe72362c1697bb8c6dfcbf23b89bcb328b4fb171df35e1fd781f45",
+      "beforeSteps": [
+        "Épluchez la carotte et l’oignon. Coupez-les très finement pour qu’ils fondent dans la soupe.",
+        "Faites chauffer l’huile dans une casserole et faites revenir l’oignon et la carotte 5 minutes à feu doux, sans les faire brunir.",
+        "Ajoutez les tomates et le bouillon. Portez à frémissement puis laissez cuire 15 minutes.",
+        "Mixez la soupe jusqu’à obtenir une texture lisse. Remettez sur feu doux, ajoutez les petites pâtes et cuisez selon le temps indiqué sur le paquet, généralement 5 à 8 minutes.",
+        "Vérifiez que les pâtes sont bien tendres, ajoutez un peu de basilic très finement ciselé et servez tiède. Goûtez avant de saler car le bouillon peut suffire."
+      ],
+      "note": "Soupe mixée avant l’ajout des pâtes conservée. La plage générique de cinq à huit minutes est retirée : seul le paquet du produit utilisé détermine sa cuisson, sans bouton fixe trompeur."
+    },
+    {
+      "id": "theme-petits-gourmands-03",
+      "status": "blocked",
+      "sourceHash": "49c139d8b093768ef1f8d33d021c209296c31a012c9c79cdce39de9bbdf049c0",
+      "reviewedHash": "49c139d8b093768ef1f8d33d021c209296c31a012c9c79cdce39de9bbdf049c0",
+      "protectedRecipeSha256": "7610bd4d34969b90486f7cfc65a18a6ead979b1456b33e0269d075b8b841de22",
+      "note": "l’emmental est partagé entre le fond et le dessus sans quantité réservée ; la taille de la cuillère de crème reste implicite. Le sel listé n’est pas utilisé. Les archives ne fixent pas le partage du fromage ; la cuisson complète des œufs pour enfants doit être conservée."
+    },
+    {
+      "id": "theme-petits-gourmands-04",
+      "status": "blocked",
+      "sourceHash": "b0095cc56559433c52469bd8948238428576f05a40e6378708d1b9a32dfd8ca7",
+      "reviewedHash": "b0095cc56559433c52469bd8948238428576f05a40e6378708d1b9a32dfd8ca7",
+      "protectedRecipeSha256": "4ebe24f7feafacdb9249a1c923146df549c68018b4b38f9a278dfc1a3a94ef8d",
+      "note": "la cuillère de farine supplémentaire n’a pas d’unité et n’est pas incluse dans les 45 g listés. Les archives ne permettent pas de quantifier cet ajustement. Dégorgement et pressage doivent rester en place, sans remplacer l’excès d’eau par une dose inventée de farine."
+    },
+    {
+      "id": "theme-bistrot-plus-01",
+      "status": "blocked",
+      "sourceHash": "813eb54ab30da8d29f8485b77ec350915f3d6d10f0d69972c071297b1b74aa50",
+      "reviewedHash": "813eb54ab30da8d29f8485b77ec350915f3d6d10f0d69972c071297b1b74aa50",
+      "protectedRecipeSha256": "bad20240d9e95e9e85dd0453e4758cb0962fb80992d91266c128220ed253d6a0",
+      "note": "l’eau de dilution, la moutarde et le vinaigre de correction ne sont pas intégrés à la liste et aucune réserve des condiments n’est définie. La mayonnaise au jaune cru appelle des précautions spécifiques ; le repos d’une heure manque au total de vingt-cinq minutes."
+    },
+    {
+      "id": "theme-bistrot-plus-02",
+      "status": "corrected",
+      "sourceHash": "0f47e79a0ab34a6ad1ddea8ff6f07b1829772b7ef7718a23940afb7983cc53c0",
+      "reviewedHash": "c4052a299bf6beaec3cf6c1278d8e5c7e53c8ed57e114a7f611d7a9a843a3ab6",
+      "protectedRecipeSha256": "9343f7a878c6c2631222078c51c4e98ddbd53974adb71a12198c5773e2c5efb3",
+      "beforeSteps": [
+        "Rincez rapidement les filets de hareng s’ils sont très salés puis épongez-les. Coupez-les en morceaux de 3 à 4 cm.",
+        "Mettez les pommes de terre non épluchées dans une casserole d’eau froide salée. Portez à frémissement et cuisez 20 à 25 minutes selon leur taille : la pointe d’un couteau doit entrer sans résistance mais les pommes de terre doivent rester entières.",
+        "Pendant ce temps, émincez très finement l’oignon rouge et coupez la carotte en fines rondelles. Mélangez huile, vinaigre, moutarde et poivre dans un saladier. Ne salez pas avant d’avoir goûté le hareng.",
+        "Égouttez les pommes de terre, laissez-les tiédir juste assez pour pouvoir les manipuler, pelez-les puis coupez-les en rondelles épaisses.",
+        "Ajoutez les pommes de terre encore tièdes à la vinaigrette avec l’oignon, la carotte et le persil. Mélangez délicatement puis ajoutez les morceaux de hareng.",
+        "Laissez reposer au moins 30 minutes à température fraîche avant de servir. La salade doit être parfumée et les pommes de terre bien imbibées sans se défaire."
+      ],
+      "note": "Sel de l’eau de cuisson retrouvé dans la source et rétabli sans quantité inventée. Hareng doux prêt à consommer, pommes de terre cuites en peau et carotte crue conservés. Les trente minutes de repos sont explicitées au réfrigérateur et dans le total."
+    },
+    {
+      "id": "theme-bistrot-plus-03",
+      "status": "blocked",
+      "sourceHash": "fe4f35f05f0e14a5dd704526b1050886ae53eea84e987061d985d21eba57a3c0",
+      "reviewedHash": "fe4f35f05f0e14a5dd704526b1050886ae53eea84e987061d985d21eba57a3c0",
+      "protectedRecipeSha256": "e1fb813009c42baa7b34e64e4f37c34e5720f06c071582e9b6c9f12f585a0c64",
+      "note": "le beurre persillé est placé au fond des alvéoles puis dessus sans part définie ; les 120 g ne sont pas répartis dans la source. L’assouplissement de trente minutes doit être intégré au planning. Ne pas inventer une moitié ou un grammage par alvéole."
+    },
+    {
+      "id": "theme-bistrot-plus-04",
+      "status": "corrected",
+      "sourceHash": "f9fa65742d1aa04383ca98d632f63706e8d90bb096d2f44dfd5a588c5a712f09",
+      "reviewedHash": "d6f40afbdfaf61eef491d0de6d53aef7623a9a3249438260ef925f217e26f502",
+      "protectedRecipeSha256": "fed057b302da557e25b8c2e22a92d5d9f9a6d7313ec115b7d9a006354cbcd6e5",
+      "beforeSteps": [
+        "Cassez la tige de chaque artichaut d’un mouvement sec plutôt que de la couper : cela retire une partie des fibres du fond. Rincez les artichauts sous l’eau froide.",
+        "Portez une grande casserole d’eau salée à ébullition. Plongez les artichauts, posez une petite assiette dessus s’ils flottent et laissez cuire 30 à 40 minutes selon leur taille.",
+        "Pour vérifier la cuisson, tirez sur une feuille extérieure : elle doit se détacher facilement. Égouttez les artichauts tête en bas pendant au moins 10 minutes.",
+        "Hachez très finement l’échalote et la ciboulette. Mélangez moutarde, vinaigre, sel et poivre puis versez l’huile progressivement en fouettant à la fourchette.",
+        "Servez les artichauts tièdes ou froids avec la vinaigrette à part. Retirez les feuilles une à une et trempez leur base charnue dans la sauce.",
+        "Quand toutes les feuilles sont retirées, enlevez le foin avec une petite cuillère sans entamer le fond. Le cœur tendre se mange avec le reste de vinaigrette."
+      ],
+      "note": "Artichauts entiers cuits à l’eau, égouttés tête en bas et servis feuille par feuille conservés. Échalote et ciboulette hachées explicitement incorporées à la vinaigrette ; aucun changement en cuisson vapeur ou artichaut cru."
+    },
+    {
+      "id": "theme-bistrot-plus-05",
+      "status": "corrected",
+      "sourceHash": "0e96392bf2d0d7192596c8773ff3010c131edab3021082e15315cc42627ce368",
+      "reviewedHash": "89308b7b758bb0d03bf5500c7b0b308d8b9d17f9c3d91352517522c2961a5a6c",
+      "protectedRecipeSha256": "28eb10e8b262184832133ec12bd99c96431f6acb8b67d74f06f9b1536d8f23b2",
+      "beforeSteps": [
+        "Préchauffez le four à 210 °C. Lavez et essorez parfaitement la salade afin que la vinaigrette adhère bien aux feuilles.",
+        "Coupez la bûche de chèvre en 8 rondelles et posez-en une sur chaque tranche de baguette. Ajoutez une goutte de miel sur chaque toast.",
+        "Faites revenir les lardons 5 à 6 minutes dans une petite poêle sans matière grasse, jusqu’à ce qu’ils soient dorés. Égouttez-les sur du papier absorbant.",
+        "Enfournez les toasts 7 à 9 minutes. Le fromage doit être chaud et légèrement doré, mais ne doit pas complètement couler du pain.",
+        "Dans un grand saladier, mélangez moutarde, vinaigre et poivre puis ajoutez l’huile. Ajoutez la salade et mélangez seulement au dernier moment.",
+        "Répartissez la salade, les lardons et les noix dans les assiettes, puis posez deux toasts de chèvre chaud par personne. Servez immédiatement."
+      ],
+      "note": "Tous les toasts, le chèvre et le miel sont répartis selon les ingrédients recalculés : suppression des huit rondelles figées. Lardons sans graisse ajoutée, four à 210 °C et vinaigrette au dernier moment conservés."
+    },
+    {
+      "id": "theme-bistrot-plus-06",
+      "status": "blocked",
+      "sourceHash": "748cb00e7f5e71767e09ddd224bea8e4b931f6bfc4b67c026f46634b34366173",
+      "reviewedHash": "748cb00e7f5e71767e09ddd224bea8e4b931f6bfc4b67c026f46634b34366173",
+      "protectedRecipeSha256": "bc991049530d66d77c4bb4a2fa6af018a1008f2952952e77e55629101fd23163",
+      "note": "le foie de porc impose de vérifier un couple durée-température ; atteindre simplement 70 °C n’est pas une garantie suffisante. Marinade de deux heures et repos de douze heures au moins manquent au total. Cornichons, moutarde et pain de service sont absents de la liste."
+    },
+    {
+      "id": "theme-bistrot-plus-07",
+      "status": "corrected",
+      "sourceHash": "6316b082a3239e9c82a4330899c5d5b7ebb9b6fd7d892f82e4fd8f98ed9e8f9c",
+      "reviewedHash": "7e0e32634c6728f2e0dfb3565f3d3da0e369aa8f8dbfe7cde7a8452c631961df",
+      "protectedRecipeSha256": "760a7fcf0fc4697f9187516a008cfb11e641c20b260a65f4bd2f629b46dd659c",
+      "beforeSteps": [
+        "Coupez les tranches de museau en lanières de 1 cm si elles sont larges. Égouttez les cornichons puis coupez-les en petites rondelles.",
+        "Épluchez et hachez très finement les échalotes. Dans un saladier, mélangez moutarde, vinaigre, une petite pincée de sel et du poivre.",
+        "Versez l’huile progressivement en fouettant à la fourchette pour obtenir une vinaigrette légèrement liée.",
+        "Ajoutez le museau, les échalotes, les cornichons et le persil. Mélangez soigneusement afin que toutes les lanières soient enrobées.",
+        "Couvrez et laissez reposer 30 minutes au réfrigérateur pour que les saveurs se mêlent.",
+        "Sortez la salade 10 minutes avant de servir, goûtez et rectifiez l’assaisonnement. Accompagnez de pain de campagne."
+      ],
+      "note": "Museau déjà cuit, vinaigrette montée et repos froid conservés. Pain de campagne déjà prévu au service rétabli sans dose inventée ; trente minutes au frais et dix minutes avant service rendues visibles dans le total."
+    },
+    {
+      "id": "v74-reg-02",
+      "status": "blocked",
+      "sourceHash": "799ffab4633e4e2b1cae31b4465a7995e9666f117586af06c667c1971ca4d3fe",
+      "reviewedHash": "799ffab4633e4e2b1cae31b4465a7995e9666f117586af06c667c1971ca4d3fe",
+      "protectedRecipeSha256": "47636bbae826c2853624c4ee5807ced23968449af36aa277b6f000cc9a47bc5c",
+      "note": "l’œuf battu sert à coller les pâtes puis à dorer sans part réservée ; les archives ne donnent pas cette répartition. La cuisson de la viande sous feuilletage n’a pas de contrôle à cœur et la salade de service manque à la liste. Ne pas modifier la marinade ou remplacer les viandes."
+    },
+    {
+      "id": "v74-reg-03",
+      "status": "blocked",
+      "sourceHash": "06429933366069c312a963cc47752f1aab9e33d1216765bb93b57084e59a5c24",
+      "reviewedHash": "06429933366069c312a963cc47752f1aab9e33d1216765bb93b57084e59a5c24",
+      "protectedRecipeSha256": "3b57d3ce264899e0998446a406a0849d129813aadabe2b03281d9bedb83cca5f",
+      "note": "les cinq feuilles de gélatine n’ont ni poids ni force et les 50 cl de bouillon sont ensuite réduits sans volume final défini. Le bouillon prélevé n’est pas lié aux portions. L’eau, les cornichons et le pain de service ne sont pas listés ; ne pas déduire une gélification de ce nombre de feuilles."
+    },
+    {
+      "id": "v74-reg-05",
+      "status": "corrected",
+      "sourceHash": "25f0e35452841171805e5300ab3ebd4622fc33d29b93580cd77b66ac36842e4f",
+      "reviewedHash": "67a73a5d173a8c89d8eb1a2d28c934a954068fe5f5b53d8f7b523f37f97bd6ea",
+      "protectedRecipeSha256": "3211ab79054912a65717534c51572ef2b81ae83df5808ba78a2715ee8d1e7675",
+      "beforeSteps": [
+        "Égouttez le fromage blanc au moins 30 minutes pour éviter une préparation trop liquide.",
+        "Ciselez très finement échalotes, ail, ciboulette et persil.",
+        "Détendez le fromage blanc à la fourchette puis incorporez vinaigre et huile. La texture doit rester épaisse et crémeuse.",
+        "Ajoutez les herbes et les aromates, salez et poivrez généreusement puis goûtez : l’équilibre doit être frais, herbacé et légèrement acidulé.",
+        "Couvrez et laissez reposer 1 heure au réfrigérateur. Sortez 10 minutes avant de servir avec pain de campagne grillé et quelques radis."
+      ],
+      "note": "Fromage égoutté, mélange à la fourchette et repos au frais conservés. Pain grillé et radis déjà demandés rétablis dans la liste sans quantité inventée ; pas de crème ni de mixage ajoutés."
+    },
+    {
+      "id": "v74-reg-15",
+      "status": "blocked",
+      "sourceHash": "9c107f39416b14af493374f35eccb95bac37192e655e0c30edc8fb4c1f02bf59",
+      "reviewedHash": "9c107f39416b14af493374f35eccb95bac37192e655e0c30edc8fb4c1f02bf59",
+      "protectedRecipeSha256": "5f84bb2414180554313cd292e61b6856cda87f698652f2e15e8c4e78f0eda458",
+      "note": "tout le beurre est utilisé pour les champignons puis le plat doit aussi être beurré sans part réservée. La salade de service manque aux ingrédients. La crème peut être partagée par moitié, mais cela ne résout pas le beurre de graissage."
+    },
+    {
+      "id": "v74-reg-23",
+      "status": "blocked",
+      "sourceHash": "9a9d6a9eceb37ca4176304b4cfcb2469f03272757e4713fe5533f6483b8d8dfb",
+      "reviewedHash": "9a9d6a9eceb37ca4176304b4cfcb2469f03272757e4713fe5533f6483b8d8dfb",
+      "protectedRecipeSha256": "709ecf934c1e11d7f39cd332cef777eaf11c33296986095916ea24ed314b584f",
+      "note": "l’huile est utilisée pour faire revenir l’oignon puis pour badigeonner la pâte sans partage des deux cuillères. Le sel listé n’a pas d’emploi décrit. Les archives ne donnent pas de part à réserver ; conserver le poulpe déjà cuit et les deux types de pâte proposés."
+    },
+    {
+      "id": "v74-bis-01",
+      "status": "blocked",
+      "sourceHash": "494ac4d73f6f05f2899736eb228dae00bc99415e843980054a9ecf8464a5880d",
+      "reviewedHash": "494ac4d73f6f05f2899736eb228dae00bc99415e843980054a9ecf8464a5880d",
+      "protectedRecipeSha256": "9a6f39082beadca61d286fe9eced3dab84f54dde63ead89ae6a80875fa08e0a3",
+      "note": "la cuillère de crème au fond de chaque ramequin n’a pas d’unité ; sa part dans les 12 cl puis le reste à verser ne sont pas définis. Les huit minutes indiquent un début de surveillance, pas une cuisson supplémentaire. Précautions des œufs coulants à préciser."
+    },
+    {
+      "id": "v75-chef-bocuse-01",
+      "status": "blocked",
+      "sourceHash": "57e9dca29c292a123c90bb4cd28122808ace7bb00c5bc5223a1e62829e21664d",
+      "reviewedHash": "57e9dca29c292a123c90bb4cd28122808ace7bb00c5bc5223a1e62829e21664d",
+      "protectedRecipeSha256": "4e59641aba5dd7ed1c8b8818dea5f3a6abd6b6201e68703923d83be13811cd21",
+      "note": "la version de Clair Repas contient du foie gras cru, alors que la recette attribuée à Paul Bocuse consultée emploie du foie gras cuit et une composition différente. La dorure du feuilletage ne garantit pas la cuisson sûre du foie cru sous la croûte. Faire confirmer cette adaptation et son contrôle à cœur ; ne pas remplacer les ingrédients par ceux d’une autre version."
+    }
+  ]
+}
