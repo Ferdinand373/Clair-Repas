@@ -308,6 +308,16 @@ P02 publié : `c87dc373c29cae1d6edb9c2ac6191004c69ba52a`, tests `34390827874` et
 
 **Cumul : 850 identifiants examinés, 314 corrigés, 526 bloqués, 10 conformes sans réécriture, 703 à examiner.** Zéro erreur éditoriale, 6 676 avertissements, 399 minuteurs et 10 890 calculs d’ingrédients des lots 02–26. Les 24 commandes du workflow réussissent ; affichage, défilement et mode cuisine contrôlés aux trois formats simulés. Publication à consigner après contrôle HTTPS. Prochaine fiche globale `v31n-papillote-fenouil-tofu` ; l’accompagnement chef `v75-chef-robuchon-01` reste à examiner.
 
+## Publication du lot 26
+
+`567dc0a5c4c26396c75fd54c2aae4c13e4227f3e` publié sur `main`. Tests `34415980598`, Pages `34415979391` et déploiement `6361157976` réussis. Une première réponse HTTPS pendant la propagation servait encore le lot 25 ; le contrôle final confirme HTTPS 200 et des fichiers identiques au commit : index `5b3b716c010b5f626a471610789699056d1ddb233a7e44e9442396372c6ffef3`, service worker `357cb78af717d7e522738d2d6fe23c96aa2ef2e9fda3d0b1d73d7b1f4677e9a4`. Révision chargée après mise à jour normale `sha256:dbfa6c4969184ca3fd668b7a41e8f78fc1851b9b37de537f09f328621255105a`. Haricots blancs contrôlés en production à deux personnes : 8 cl d’eau dans la liste et dans l’étape, boutons 5/10/10 correctement attachés, aucun effacement de données.
+
+## Lot 27 — trente plats et interprétations classiques
+
+[Journal, sources et décisions](recipe-editorial-batch-27.md). 1 corrigée, 29 réservées, aucune conforme sans réécriture. Brochettes à la plancha clarifiées : marinade mesurée, boulgour selon paquet, cuisson simultanée et contrôle du bœuf à cœur. Les matières grasses, volumes de marinade, formats et répartitions non retrouvés restent réservés, sans remplacer les méthodes ni les ingrédients.
+
+**Cumul : 880 identifiants examinés, 315 corrigés, 555 bloqués, 10 conformes sans réécriture, 673 à examiner.** Les 51 accompagnements sont examinés. Zéro erreur éditoriale, 6 555 avertissements, 403 minuteurs et 10 938 calculs d’ingrédients des lots 02–27. Les 24 commandes du workflow passent ; affichage, défilement et mode cuisine contrôlés aux trois formats simulés. Publication à consigner après contrôle HTTPS. Les plats restants suivent.
+
 ## Limites des vérifications
 
 Les tests de structure, quantité, minuteurs, stockage simulé et rendu ne sont pas des essais culinaires. Les formats iPhone/PWA sont simulés, sauf mention explicite d’un appareil physique. Le total de fiches à examiner ne doit jamais être remplacé par le nombre de fiches auxquelles le style commun a été appliqué.

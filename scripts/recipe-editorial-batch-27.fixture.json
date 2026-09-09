@@ -1,0 +1,252 @@
+{
+  "baselineCommit": "567dc0a5c4c26396c75fd54c2aae4c13e4227f3e",
+  "batch": "27",
+  "recipes": [
+    {
+      "id": "v31n-papillote-fenouil-tofu",
+      "status": "blocked",
+      "sourceHash": "51b3b6c03e148e573d27379fc724be35d230fff93932b3598145847a1cb9f67e",
+      "reviewedHash": "51b3b6c03e148e573d27379fc724be35d230fff93932b3598145847a1cb9f67e",
+      "protectedRecipeSha256": "68a03d7602ce52b3ddeb23f3ea40c6377d2037578e101a05dd9410b39fe8475c",
+      "note": "la matière grasse pour faire revenir oignon et courge manque. Le calibre du boulgour et le poids égoutté de la boîte ne sont pas définis pour les 45 cl de bouillon. Les cinq dernières minutes des pois chiches sont incluses dans les douze, pas une cuisson supplémentaire. Ne pas remplacer le suage par du bouillon."
+    },
+    {
+      "id": "v31n-gratin-chou-fleur-poulet",
+      "status": "blocked",
+      "sourceHash": "e875cbaff23990370ad0b2e8e71592d4d9fdd1aab507ef893b34ca538dbaf117",
+      "reviewedHash": "e875cbaff23990370ad0b2e8e71592d4d9fdd1aab507ef893b34ca538dbaf117",
+      "protectedRecipeSha256": "34d485025a2bc8cd57b47a3ca7cbeb0e79056dc193e6945fea2df8a43ba7f5b0",
+      "note": "la graisse du suage, le sel et les herbes fraîches de finition ne sont pas listés. Le riz demande les indications du paquet ; découpe du poulet, feu de dorure et contrôle à cœur manquent. Les tomates et le lait de coco doivent arriver après la dorure, sans remplacer celle-ci."
+    },
+    {
+      "id": "v31n-gratin-chou-fleur-dinde",
+      "status": "blocked",
+      "sourceHash": "04bbbf1b945bd54dce810518c6f4dc7a58203c606fcdcc3470592d53ddcfd640",
+      "reviewedHash": "04bbbf1b945bd54dce810518c6f4dc7a58203c606fcdcc3470592d53ddcfd640",
+      "protectedRecipeSha256": "b6375607f4403e900ae91e150afc8f3d009a4887b9e5995420bb229a4ab850aa",
+      "note": "les 45 cl d’eau et le complément final sont absents de la liste, mais bien retrouvés dans la préparation. La matière grasse du suage reste inconnue ; réchauffage des naans non détaillé. Ne pas utiliser le lait de coco prévu seulement en finition pour faire revenir l’oignon."
+    },
+    {
+      "id": "v31n-gratin-chou-fleur-filet-mignon",
+      "status": "blocked",
+      "sourceHash": "241ba30f279baf45061b7b5259fd66feac6d4db90fb10c3be6ba5667f1eca33e",
+      "reviewedHash": "241ba30f279baf45061b7b5259fd66feac6d4db90fb10c3be6ba5667f1eca33e",
+      "protectedRecipeSha256": "43f69f079212ec9321c0882663199d66be0cdf696cabd9f657f3b6d33a5230d4",
+      "note": "le poulet n’a pas de découpe ni d’épaisseur définies pour vingt minutes au four puis deux au gril. La pincée de sel manque dans la liste. Les deux yaourts sont répartis entre marinade et sauce : garder ce partage dynamique, sans servir la marinade ayant touché le poulet cru."
+    },
+    {
+      "id": "v31n-gratin-chou-fleur-saumon",
+      "status": "blocked",
+      "sourceHash": "bc46e289fbfc3595ab33cb5c75acdc2bb008bcec7b3628b82ec0a978ec8610c2",
+      "reviewedHash": "bc46e289fbfc3595ab33cb5c75acdc2bb008bcec7b3628b82ec0a978ec8610c2",
+      "protectedRecipeSha256": "da36166c88f5a53fc11b6fc2f360953f06edb5009994d298d56e1678db88c8b0",
+      "note": "la matière grasse pour faire revenir oignon, poivron et curry n’est pas indiquée. Le poisson blanc n’est pas identifié ni calibré et les sept minutes de pochage manquent de contrôle à cœur. Garder le pochage dans la sauce, sans saisir le poisson pour compenser le manque."
+    },
+    {
+      "id": "v31n-gratin-chou-fleur-poisson-blanc",
+      "status": "blocked",
+      "sourceHash": "6f4b21d3bdac317caccc95584d171a3a3f6ea26b280d88de13dd258b94100540",
+      "reviewedHash": "6f4b21d3bdac317caccc95584d171a3a3f6ea26b280d88de13dd258b94100540",
+      "protectedRecipeSha256": "c1e66da97bbd653c621a7bbcb1e89e8102e7d564f355d5fab18d078cb3de001e",
+      "note": "la matière grasse du suage manque et les deux boîtes de pois chiches n’ont pas de poids égoutté. Le riz doit suivre son paquet ; l’assaisonnement final n’est pas identifié. Ne pas ajouter automatiquement sel, huile ou eau au lait de coco pour rendre la fiche complète."
+    },
+    {
+      "id": "v31n-gratin-chou-fleur-saucisses",
+      "status": "blocked",
+      "sourceHash": "5aeeba5272ed4f3f820f75119da0e2682c807ede5a9e50dff2cfa6c23ab970a4",
+      "reviewedHash": "5aeeba5272ed4f3f820f75119da0e2682c807ede5a9e50dff2cfa6c23ab970a4",
+      "protectedRecipeSha256": "0568763a70f34f458c85b595d00e8a942c2e479534cc23313dd829171b5f5a25",
+      "note": "la cuisson du boulgour avec les carottes n’indique ni liquide ni calibre ; les douze minutes ne valent pas pour tous les produits. Taille des boulettes, matière grasse éventuelle et contrôle du bœuf haché à cœur manquent. Le partage de l’oignon par moitié est connu et doit rester mesuré."
+    },
+    {
+      "id": "v31n-gratin-chou-fleur-boulettes",
+      "status": "blocked",
+      "sourceHash": "d6dff9c412325629c4e9d51817d258c46c5bf4174b067e38a5c80e82ef6d7eec",
+      "reviewedHash": "d6dff9c412325629c4e9d51817d258c46c5bf4174b067e38a5c80e82ef6d7eec",
+      "protectedRecipeSha256": "07a6deaffdc17ccf82a38e6e1e03be70525558b724b59d10a097427d98ef93ee",
+      "note": "l’huile explicitement utilisée avec le poulet manque dans la liste ; la quantité et l’assaisonnement du yaourt ne sont pas définis. Type et hydratation de la semoule manquent également. La coloration seule ne vérifie pas la cuisson du poulet ; ne pas transformer la saisie en pochage."
+    },
+    {
+      "id": "v31n-gratin-chou-fleur-falafels",
+      "status": "blocked",
+      "sourceHash": "8ee5212f9a40d78cffc8e614416a09faec52765a98d1857b1ee11c9fab5d7484",
+      "reviewedHash": "8ee5212f9a40d78cffc8e614416a09faec52765a98d1857b1ee11c9fab5d7484",
+      "protectedRecipeSha256": "ad43bf1778704ebc6caa6823cbfe73d397b3cd0b08664138b23d5e628db76043",
+      "note": "le fond d’eau du plat est absent de la liste et non mesuré ; matière grasse du suage et dimensions des poivrons restent inconnues. Le boulgour est déjà cuit : ne pas le remplacer par le même poids sec. Vérifier le cœur de la farce, pas seulement la feta dorée."
+    },
+    {
+      "id": "v31n-gratin-chou-fleur-pois-chiches",
+      "status": "blocked",
+      "sourceHash": "55f9dc1e5e31ab86c2b4593c3789d8c7bb8d3a9dd69cc84fc5a3f66a5f5123f1",
+      "reviewedHash": "55f9dc1e5e31ab86c2b4593c3789d8c7bb8d3a9dd69cc84fc5a3f66a5f5123f1",
+      "protectedRecipeSha256": "dda192fbe750ee10f80ec31a4f28e1baf16abd56c8a3985fec92deb65304bd21",
+      "note": "la quantité de chair à retirer des aubergines n’est pas définie ; la matière grasse éventuelle du suage et le feu manquent. La dernière cuisson ne précise pas si le gratin reste à 200 °C ou passe sous le gril. Ne pas inventer de mode ni d’épaisseur des coques."
+    },
+    {
+      "id": "v31n-gratin-chou-fleur-tofu",
+      "status": "blocked",
+      "sourceHash": "a59f3df696f02e4b2c23f2f6ae63816c467b629c782b17a4cb5652b54ddf5b60",
+      "reviewedHash": "a59f3df696f02e4b2c23f2f6ae63816c467b629c782b17a4cb5652b54ddf5b60",
+      "protectedRecipeSha256": "067d0cdd7206d1526af5367267833c319b2572dfc82eef629ae2da18b3ed33cd",
+      "note": "cumin et persil apparaissent seulement dans les étapes. Poids égoutté des pois chiches, assaisonnement des légumes, taille des six galettes et contrôle du centre à l’œuf manquent. Le rendement de six galettes ne doit pas rester figé quand les convives changent."
+    },
+    {
+      "id": "v31n-bowl-quinoa-courge-poulet",
+      "status": "blocked",
+      "sourceHash": "e54871d241f778eae72e48826cd9e8644a188a5a2d1e64a0676f94714e8672a2",
+      "reviewedHash": "e54871d241f778eae72e48826cd9e8644a188a5a2d1e64a0676f94714e8672a2",
+      "protectedRecipeSha256": "0c653a84dcffa901ceef8baeee34a809a84a2b1935c5a5dad281544d2903a49a",
+      "note": "les blancs et les grenailles n’ont pas de calibre, et la capacité du panier pour leur cuisson commune n’est pas définie. Assaisonnement des pommes de terre, durée vapeur des haricots et quantité de jus de citron manquent. Conserver le zeste dans la panure et le jus au service sans imposer tout le citron."
+    },
+    {
+      "id": "v31n-bowl-quinoa-courge-dinde",
+      "status": "blocked",
+      "sourceHash": "7be62d95be68878df32de236a85b301f4804761ffdd7a0c9a13e9e859c34df41",
+      "reviewedHash": "7be62d95be68878df32de236a85b301f4804761ffdd7a0c9a13e9e859c34df41",
+      "protectedRecipeSha256": "a4a1640530d1a35d671f0aa433f5ddb4735dea8ba0528ccb5e4d6e33c2a17538",
+      "note": "l’huile listée n’est jamais affectée et l’assaisonnement des légumes n’est pas défini. Épaisseur du filet, découpe des légumes et capacité du panier manquent pour la cuisson commune de vingt minutes. Ne pas fractionner automatiquement le filet en médaillons pour adapter l’appareil."
+    },
+    {
+      "id": "v31n-bowl-quinoa-courge-filet-mignon",
+      "status": "blocked",
+      "sourceHash": "4313d4922c82fded6b9bd73ca7bebd449b0e10c938dd5db325d6729ea7c131e5",
+      "reviewedHash": "4313d4922c82fded6b9bd73ca7bebd449b0e10c938dd5db325d6729ea7c131e5",
+      "protectedRecipeSha256": "8c15c5f20cef19d6aad25f82122497f77abe401f89f7b3750d9193d9de70a0d4",
+      "note": "l’huile vaporisée manque dans la liste ; assaisonnement et calibre des grenailles restent indéfinis. Épaisseur du cabillaud et place dans le panier doivent être vérifiées avant de garantir onze à treize minutes. Garder le passage de 190 à 185 °C indiqué par la source."
+    },
+    {
+      "id": "v31n-bowl-quinoa-courge-saumon",
+      "status": "blocked",
+      "sourceHash": "e322df87f749d5554e649402f6bab4f169dec6a3be5e440c99c0915814a1a6f7",
+      "reviewedHash": "e322df87f749d5554e649402f6bab4f169dec6a3be5e440c99c0915814a1a6f7",
+      "protectedRecipeSha256": "ff4db39fd12daf74a3528dd19c67154565443216c89225f14bad5757a90591fd",
+      "note": "l’huile listée n’est jamais utilisée ; la forme du citron dans la sauce n’est pas définie. Calibre des pavés, bouquets de brocoli et cubes de patate douce manquent, ainsi que capacité du panier. Le repère saumon nacré ne constitue pas seul un contrôle de cuisson sûre."
+    },
+    {
+      "id": "v31n-bowl-quinoa-courge-poisson-blanc",
+      "status": "blocked",
+      "sourceHash": "36f851093cf8acaa3a64a0dc09bba7e5b168d9ffe52914b18904c8f8050a2282",
+      "reviewedHash": "36f851093cf8acaa3a64a0dc09bba7e5b168d9ffe52914b18904c8f8050a2282",
+      "protectedRecipeSha256": "a18a0cd255ba28536da21f27fee2d243508f862aa70876784bf379fd01b56a94",
+      "note": "l’huile du panier n’est pas listée et les huit boulettes n’ont pas de taille ni de rendement adaptable. Le poids de lentilles est déjà cuit ; son égouttage doit être précisé pour une pâte qui se tient. Un contrôle du centre à l’œuf et le format du panier sont nécessaires."
+    },
+    {
+      "id": "v31n-bowl-quinoa-courge-saucisses",
+      "status": "corrected",
+      "sourceHash": "0c04f206d7b9e487995bb7efcf0a5df6d07f0a3d4ad148ee8bf5a477d79a1e1e",
+      "reviewedHash": "234a03752e70db11cd53fe8d3ee790ed8911f1ea417aa65074c4516c8f45fe2a",
+      "protectedRecipeSha256": "88c1e9081846c56598cfd66549858a7f32a5db228228d8bd11903f5fd879a460",
+      "beforeSteps": [
+        "Mélanger soja et balsamique, y faire mariner le bœuf 10 minutes.",
+        "Cuire le boulgour, couper les légumes et monter les brochettes en alternant viande et oignon.",
+        "Griller les brochettes 8 à 10 minutes sur la plancha très chaude et les légumes 10 minutes à côté.",
+        "Laisser reposer la viande 3 minutes et servir avec le boulgour et le persil."
+      ],
+      "note": "Marinade soja-balsamique mesurée, légumes préparés pendant les dix minutes au froid, boulgour selon son paquet. Plancha et cuissons simultanées conservées, contrôle du bœuf à 63 °C et repos source de trois minutes explicités ; marinade crue non servie, aucun ingrédient ajouté."
+    },
+    {
+      "id": "v31n-bowl-quinoa-courge-boulettes",
+      "status": "blocked",
+      "sourceHash": "d67d9bed9a67cfbb7063b13ca4ca2d22a71ccd7d3d96ae37f2533b3fd1ea65e3",
+      "reviewedHash": "d67d9bed9a67cfbb7063b13ca4ca2d22a71ccd7d3d96ae37f2533b3fd1ea65e3",
+      "protectedRecipeSha256": "7f9d93f128c6a7a6688e24481e9c255a0080cec501a9ae8d97f333aee6714070",
+      "note": "la précuisson des grenailles n’indique ni appareil ni découpe pour les douze minutes. Huile et citron sont partagés entre viande et courgettes sans mesures ; leur marinade et ustensiles doivent rester séparés après contact avec le porc cru. Épaisseur des côtes et contrôle à cœur manquent."
+    },
+    {
+      "id": "v31n-bowl-quinoa-courge-falafels",
+      "status": "blocked",
+      "sourceHash": "81bc1c607a583bc2de4c1fd3f554a830a0580bc3edc2d7946a599103c30e5061",
+      "reviewedHash": "81bc1c607a583bc2de4c1fd3f554a830a0580bc3edc2d7946a599103c30e5061",
+      "protectedRecipeSha256": "bb44b0465b4bd149997ae7500c02f1d8e339ce57c2cfda621c5db7a22394d2b1",
+      "note": "l’huile d’olive listée n’a aucun emploi défini ; type de semoule et hydratation manquent. Les trois minutes des tomates sont-elles ajoutées aux huit à dix minutes des autres légumes ? L’épaisseur des filets et la chaleur de la plancha ne sont pas précisées. Garder la cuisson peau puis chair."
+    },
+    {
+      "id": "v31n-bowl-quinoa-courge-pois-chiches",
+      "status": "blocked",
+      "sourceHash": "d6a85398c07917566cd9c0af1070c7b55be6ad271531d01d28e1f87bb3c0ff05",
+      "reviewedHash": "d6a85398c07917566cd9c0af1070c7b55be6ad271531d01d28e1f87bb3c0ff05",
+      "protectedRecipeSha256": "0f7c02b71f99301df5ddbfc3a2214c3a0630b8f39636b0dd9433c429771d3316",
+      "note": "la précuisson des grenailles n’a pas de méthode définie ; maïs cru ou déjà cuit non indiqué. Les hauts de cuisse ne sont pas identifiés avec ou sans os et le barbecue n’a pas de zone directe/indirecte précisée. Les huit minutes de sauce sont incluses dans les 25–30 minutes, pas ajoutées."
+    },
+    {
+      "id": "v31n-bowl-quinoa-courge-tofu",
+      "status": "blocked",
+      "sourceHash": "b457baf97901e60dd79f9c9eab4523130a13cfeda188cd9e9d30fdfe3c5ce676",
+      "reviewedHash": "b457baf97901e60dd79f9c9eab4523130a13cfeda188cd9e9d30fdfe3c5ce676",
+      "protectedRecipeSha256": "3635f222a7d9d9292d44ee647ba55e6065aed1f8c30ae97aa8d1c5e692e3fa7b",
+      "note": "les dix minutes du boulgour ne renvoient pas au calibre ni au paquet et son refroidissement n’est pas organisé. L’huile sert à la marinade tandis que l’assaisonnement du taboulé n’est pas défini ; ne pas y verser la marinade ayant touché les crevettes crues. Taille des crevettes et chaleur du barbecue manquent."
+    },
+    {
+      "id": "v39-boeuf-bourguignon",
+      "status": "blocked",
+      "sourceHash": "241e550a5310e2ba7da1be8b6798f612277f5646eed269fc8022bcb1c00a1950",
+      "reviewedHash": "241e550a5310e2ba7da1be8b6798f612277f5646eed269fc8022bcb1c00a1950",
+      "protectedRecipeSha256": "ce5021b6b3c772d7498dd306a553c47ea6659a166b017a550acaf5cc98478ec7",
+      "note": "la matière grasse de la poêle à champignons n’est pas définie, alors que l’huile listée sert déjà à la viande. L’eau conditionnelle manque dans la liste. Le rappel de remuer toutes les trente minutes ne doit pas être confondu avec la cuisson de deux heures. Ne pas transformer les champignons dorés en champignons simplement pochés."
+    },
+    {
+      "id": "v39-pot-au-feu",
+      "status": "blocked",
+      "sourceHash": "22cc761fb3be533f004fde46b2aab73061151145568a73838f1e0e585476093c",
+      "reviewedHash": "22cc761fb3be533f004fde46b2aab73061151145568a73838f1e0e585476093c",
+      "protectedRecipeSha256": "17a5dd5afc7b600a1ee837d5467d9b203f77c24fc7afc48f781fd38b0f1fb272",
+      "note": "la petite poignée de gros sel et le bouillon prélevé pour les pommes de terre ne sont pas mesurés. Moutarde, cornichons et pain de service manquent dans la liste. Les vingt dernières minutes de l’os doivent être situées dans les quarante-cinq minutes des légumes. Ne pas copier une autre recette qui cuit les pommes de terre directement dans la marmite."
+    },
+    {
+      "id": "v39-blanquette-veau",
+      "status": "blocked",
+      "sourceHash": "0bde124329277f585c9be6dcd549aaadc94248ab3b27290abba50583e36f206b",
+      "reviewedHash": "0bde124329277f585c9be6dcd549aaadc94248ab3b27290abba50583e36f206b",
+      "protectedRecipeSha256": "c8ec606a0d08599f52a51df8e33f5379bed1f9fb7feee6d7bb9a6fa0bab80516",
+      "note": "les 10 g puis 20 g de beurre sont bien répartis, mais restent figés ; les 50 cl de bouillon prélevé aussi. Eau de pochage absente de la liste ; la cuillère de jus ne se déduit pas d’une moitié de citron sans rendement. Le poireau et l’oignon retirés ne sont pas affectés au service ; liaison au jaune hors du feu à sécuriser sans la faire bouillir."
+    },
+    {
+      "id": "v39-coq-au-vin",
+      "status": "blocked",
+      "sourceHash": "aac943c2e94c67f3aa08cfff5084c1ea5110957715f097c389586f37564c0970",
+      "reviewedHash": "aac943c2e94c67f3aa08cfff5084c1ea5110957715f097c389586f37564c0970",
+      "protectedRecipeSha256": "cc73e46872cb5c5178f305a56caf99083b8c41a26c2e48d9be539d0719803864",
+      "note": "la graisse pour poêler les champignons est indéfinie, l’huile étant affectée à la dorure du poulet. Les assaisonnements de la liste ne sont pas employés et le bouquet garni n’est pas retiré. Préciser les découpes et le contrôle à cœur sans remplacer les cuisses de poulet listées par un coq entier."
+    },
+    {
+      "id": "v39-quiche-lorraine",
+      "status": "blocked",
+      "sourceHash": "4243d971977ec0a2b585602a58b0d1406e8ffcf40688f058eb05979ee7d0b366",
+      "reviewedHash": "4243d971977ec0a2b585602a58b0d1406e8ffcf40688f058eb05979ee7d0b366",
+      "protectedRecipeSha256": "4e3189732cbb1d248c350dee6fbbd18c2aa611ec4b92763a945a93fe664e6e28",
+      "note": "la pâte de 24 cm est un ingrédient unitaire alors que la recette est donnée pour deux personnes et que les quantités sont adaptables. Taille et nombre de moules lorsque le nombre de personnes change doivent être confirmés pour conserver l’épaisseur et la cuisson de 32–35 minutes. Le centre pris doit être contrôlé, pas seulement la dorure."
+    },
+    {
+      "id": "v39-hachis-parmentier",
+      "status": "blocked",
+      "sourceHash": "1087297ed52e77778c734f0dcd07eef682b52046d9896182a655cc191322919b",
+      "reviewedHash": "1087297ed52e77778c734f0dcd07eef682b52046d9896182a655cc191322919b",
+      "protectedRecipeSha256": "18188996c9fd04becc11f86dfced0d392a01b24b536e690c04fc66d2fc2a8567",
+      "note": "la matière grasse pour faire fondre l’oignon avant le bœuf n’est pas définie. Les 40 g de beurre listés sont déjà entièrement répartis entre 30 g de purée et le reste en surface. Ne pas détourner une partie du beurre sans source ; les quantités écrites et la taille des pommes de terre doivent ensuite être adaptées."
+    },
+    {
+      "id": "v39-cassoulet",
+      "status": "blocked",
+      "sourceHash": "a85ecfad893628937c10e3df7dbe97602a37caea580dc149de5b08bd70b7e25e",
+      "reviewedHash": "a85ecfad893628937c10e3df7dbe97602a37caea580dc149de5b08bd70b7e25e",
+      "protectedRecipeSha256": "7043769e798763a7e3fca47ca70c21f3d5ebbe190ecece08d0e6c954fbbccb00",
+      "note": "les 35 cl de bouillon doivent arriver sous le niveau des haricots sans dimensions de récipient définies. Calibre et état des saucisses, préchauffage et contrôle du cœur manquent ; poivre listé inutilisé. Garder les haricots déjà cuits et le canard confit, sans introduire un trempage ou du canard cru."
+    },
+    {
+      "id": "v39-choucroute-garnie",
+      "status": "blocked",
+      "sourceHash": "642f791c3738f5c94b16d9dcc1d45fc629d1816c1408f27958656cfba6334564",
+      "reviewedHash": "642f791c3738f5c94b16d9dcc1d45fc629d1816c1408f27958656cfba6334564",
+      "protectedRecipeSha256": "cda439b70f214372abbd352374bde09e6dc1186725b8864a740ad2ebe082c065",
+      "note": "la graisse pour faire fondre l’oignon manque, ainsi que le sel demandé pour les pommes de terre. Les saucisses fumées ne sont pas indiquées crues ou cuites ; vingt minutes ne valent pas pour tous les produits. Le poivre est inutilisé et les huit dernières minutes des knacks sont incluses dans les vingt."
+    },
+    {
+      "id": "v75-chef-robuchon-01",
+      "status": "blocked",
+      "sourceHash": "08a5c8dd7fd417295f5892f34408f684134a585002116d9f7ecbe819119b07a5",
+      "reviewedHash": "08a5c8dd7fd417295f5892f34408f684134a585002116d9f7ecbe819119b07a5",
+      "protectedRecipeSha256": "35f4745e61409e1e39bdc0397784b22e4e3a1251f461b4d095133ce0837d38aa",
+      "note": "l’unique cuillère à café de sel fin n’est pas répartie entre l’eau salée de cuisson et la rectification finale. La source externe consultée utilise beurre mou, lait différent et pommes de terre pelées, contrairement à CR : elle ne justifie pas de modifier ici beurre très froid, cuisson en peau, séchage et tamis. Confirmer la mesure de sel de chaque usage."
+    }
+  ]
+}

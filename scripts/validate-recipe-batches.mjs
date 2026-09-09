@@ -7,7 +7,7 @@ import {recipeSource} from './recipe-source.mjs';
 import {recipeHash} from './validate-recipe-editorial.mjs';
 const root=resolve(dirname(fileURLToPath(import.meta.url)),'..');
 const {code,recipes,editorial}=recipeSource(readFileSync(resolve(root,'index.html'),'utf8'));
-const batchNumbers=['02','03','04','05','06','07','08','09','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26'];
+const batchNumbers=['02','03','04','05','06','07','08','09','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27'];
 const fixture={recipes:batchNumbers.flatMap(number=>JSON.parse(readFileSync(resolve(root,`scripts/recipe-editorial-batch-${number}.fixture.json`),'utf8')).recipes)};
 const slice=(a,b)=>code.slice(code.indexOf(a),code.indexOf(b,code.indexOf(a)+a.length));
 const context={window:{},$:()=>({value:'8'}),MEAL_TYPES:['mid','eve'],recipeRole:r=>r.role||r.course||'dish',isFavorite:()=>false,recipeFeedbackHTML:()=>'',recipePersonalNoteHTML:()=>''};
@@ -132,7 +132,8 @@ const timers={
   c425:[[],[20],[],[]],c428:[[],[],[5],[3]],c429:[[],[5],[20],[]],c430:[[],[5],[18],[]],
   c431:[[],[],[20],[3]],c433:[[7],[],[2],[]],c434:[[],[],[25],[7]],c435:[[],[22],[],[5]],
   c437:[[],[7],[1],[]],c438:[[10],[],[],[25]],c439:[[],[],[],[32]],c440:[[],[25],[],[5]],
-  c441:[[],[5],[2],[25],[]],c442:[[],[],[],[1]],c448:[[],[],[10],[]],c449:[[],[],[],[30]],c450:[[5],[10],[],[10]]
+  c441:[[],[5],[2],[25],[]],c442:[[],[],[],[1]],c448:[[],[],[10],[]],c449:[[],[],[],[30]],c450:[[5],[10],[],[10]],
+  'v31n-bowl-quinoa-courge-saucisses':[[10],[],[],[10],[10],[3]]
 };
 const ingredients={
   n01:['poulet','pommes de terre','paprika','huile','sel.*poivre'],
@@ -410,9 +411,10 @@ const ingredients={
   c442:['riz','eau','sel','beurre si vous le souhaitez'],
   c448:['flageolets déjà cuits et égouttés','ail','beurre','bouillon','persil','saler.*poivrer'],
   c449:['pois chiches déjà cuits','huile d’olive','paprika fumé','cumin','sel'],
-  c450:['haricots blancs','tomates concassées','oignon','ail','thym','huile d’olive','Saler.*poivrer','eau']
+  c450:['haricots blancs','tomates concassées','oignon','ail','thym','huile d’olive','Saler.*poivrer','eau'],
+  'v31n-bowl-quinoa-courge-saucisses':['bœuf','courgette','poivrons','oignon','sauce soja','vinaigre balsamique','boulgour','persil']
 };
-assert.equal(fixture.recipes.length,835);
+assert.equal(fixture.recipes.length,865);
 let quantityChecks=0,timerCount=0;
 for(const record of fixture.recipes){
   const recipe=recipes.find(r=>r.id===record.id);
@@ -933,6 +935,35 @@ assert.match(editorial.c432.reviewNote,/morilles.*Tox Info Suisse.*vingt minutes
 assert.match(editorial.c411.reviewNote,/cuillerées.*taille.*cuissons séparées/);
 assert.match(editorial.c422.reviewNote,/farine.*pas.*fécule/);
 assert.match(editorial.c443.reviewNote,/notice.*huit minutes/);
+const batch27=JSON.parse(readFileSync(resolve(root,'scripts/recipe-editorial-batch-27.fixture.json'),'utf8')).recipes;
+assert.equal(batch27.length,30);assert.equal(batch27.filter(r=>r.status==='corrected').length,1);
+assert.equal(batch27.filter(r=>r.status==='blocked').length,29);
+const skewers27=recipes.find(r=>r.id==='v31n-bowl-quinoa-courge-saucisses');
+assert.equal(skewers27.n,'Brochettes de bœuf marinées, légumes à la plancha');
+assert.equal(skewers27.m,'Plancha');
+for(const count of [1,2,3,4,5,8]){
+  const marinade=context.recipeStepText(skewers27.p[0],skewers27,count);
+  assert.ok(marinade.includes(context.formatQty(count/2)+' c. à soupe de sauce soja'));
+  assert.ok(marinade.includes(context.formatQty(count/2)+' c. à soupe de vinaigre balsamique'));
+  assert.match(context.recipeStepText(skewers27.p[4],skewers27,count),/8 à 10 minutes.*63 °C/);
+  assert.match(context.recipeStepText(skewers27.p[5],skewers27,count),/reposer 3 minutes.*selon le nombre de personnes/);
+  for(const record of batch27.filter(r=>r.status==='blocked')){
+    const output=context.recipeHTML(recipes.find(r=>r.id===record.id),{people:count,dayIndex:1,mealType:'eve'});
+    assert.ok(output.includes(context.escapeHTML(editorial[record.id].reviewNote)),record.id+' precise visible reservation');
+    assert.doesNotMatch(output,/\{\{|undefined|NaN/);
+  }
+}
+assert.match(skewers27.p[0],/au réfrigérateur/);
+assert.match(skewers27.p[1],/quantité d’eau et la durée indiquées sur son paquet/);
+assert.match(skewers27.p[2],/Jeter le liquide de marinade restant.*viande crue/);
+assert.match(skewers27.p[3],/en même temps.*autre partie/);
+assert.match(skewers27.p[4],/thermomètre.*63 °C.*seule coloration ne suffit pas/);
+assert.doesNotMatch(skewers27.p.join(' '),/huile|beurre|barbecue/);
+assert.match(editorial['v75-chef-robuchon-01'].reviewNote,/sel.*répartie.*beurre très froid.*cuisson en peau/);
+assert.match(editorial['v39-hachis-parmentier'].reviewNote,/40 g.*30 g.*reste en surface/);
+assert.match(editorial['v31n-bowl-quinoa-courge-tofu'].reviewNote,/ne pas y verser la marinade.*crevettes crues/);
+assert.match(editorial['v31n-gratin-chou-fleur-tofu'].reviewNote,/cumin et persil.*seulement.*six galettes/);
+assert.match(editorial['v39-quiche-lorraine'].reviewNote,/24 cm.*nombre de moules/);
 const corrected=fixture.recipes.filter(r=>r.status==='corrected').length;
 const unchanged=fixture.recipes.filter(r=>r.status==='unchanged').length;
 console.log(`✓ Batches ${batchNumbers.join('/')}: ${fixture.recipes.length} individual review records, ${corrected} corrected, ${unchanged} unchanged, ${fixture.recipes.length-corrected-unchanged} blocked with original content preserved; ${timerCount} manually checked timers`);
