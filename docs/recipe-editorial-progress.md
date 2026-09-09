@@ -128,6 +128,16 @@ P02 publié : `c87dc373c29cae1d6edb9c2ac6191004c69ba52a`, tests `34390827874` et
 
 **Cumul : 230 identifiants examinés, 106 corrigés, 124 bloqués, 1 323 à examiner.** Prochaine fiche globale : `gn-cotes-porc-champignons-polenta`, prochaine entrée : `a031`, prochain dessert : `d032`. Zéro erreur éditoriale, 9 136 avertissements. Les 85 minuteurs et 2 862 calculs des lots précédents restent validés ; contrôles du projet et présentation réexécutés. Ce lot ne compte aucune correction culinaire supplémentaire. Publication à consigner après vérification.
 
+## Publication du lot 08
+
+`a7bf702d90ccfc46aad5582d5ae80b02fab8af82` publié. Tests `34395127963`, Pages `34395127351` et déploiement `6357650144` réussis. HTTPS 200 avec et sans paramètre de contrôle ; fichiers identiques au commit : index `c4ec8a58ae41504dedc7bf06a71655a45a2599e4c5a50b56538de59ebc80412f`, service worker `bba5348480cf13f407e1c86569d7407523708fa640389a37394d80dea539297e`. Le navigateur a terminé son installation puis s’est rechargé automatiquement vers `sha256:026147506b43002fe6931072d0f6f08cee73cf0114e58f74ad66f21749d27927`. Réserve gingembre/soja du bœuf émincé vérifiée en production. Le diagnostic de l’ancienne version était sain pendant cette attente ; aucun effacement de cache ou modification du service worker n’a été nécessaire.
+
+## Lot 09 — trente desserts
+
+[Journal des relectures et références](recipe-editorial-batch-09.md). 25 corrigés et 5 bloqués (`d047`, `d058`, `d059`, `d061`, `d062`), aucun conforme sans modification. Tous les ingrédients et portions restent identiques. Deux libellés de temps distinguent le repos ou refroidissement (`d057`, `d063`). La crème citron sans cuisson demande du blanc pasteurisé ; les fruits partagés de la faisselle et de la mangue utilisent les quantités dynamiques existantes.
+
+**Cumul : 260 identifiants examinés, 131 corrigés, 129 bloqués, 1 293 à examiner.** Prochain dessert `d064`, prochaine entrée `a031`, prochaine fiche globale `gn-cotes-porc-champignons-polenta`. Zéro erreur éditoriale, 9 014 avertissements. 99 minuteurs et 3 456 contrôles d’ingrédients dans les lots 02–09, plus les contrôles du premier lot. Tests du projet réussis ; Browser téléphone/tablette/ordinateur simulés vérifié, fin de recette accessible et quantités réparties cohérentes. Publication à consigner après vérification HTTPS.
+
 ## Limites des vérifications
 
 Les tests de structure, quantité, minuteurs, stockage simulé et rendu ne sont pas des essais culinaires. Les formats iPhone/PWA sont simulés, sauf mention explicite d’un appareil physique. Le total de fiches à examiner ne doit jamais être remplacé par le nombre de fiches auxquelles le style commun a été appliqué.

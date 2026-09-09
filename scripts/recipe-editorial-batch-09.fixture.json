@@ -1,0 +1,371 @@
+{
+  "baselineCommit": "a7bf702d90ccfc46aad5582d5ae80b02fab8af82",
+  "batch": "09",
+  "recipes": [
+    {
+      "id": "d032",
+      "status": "corrected",
+      "sourceHash": "9133fd371f2d1b6837f369aaa89c8b760b2b37ef6d83250cc9dfbe760b1fb519",
+      "reviewedHash": "7c26b0d0e16553983857770029f2340f9d0ce591a90f93ab4ee5e1a76ce055f2",
+      "protectedRecipeSha256": "bad39103d91742e4aa63adecafc89ac934c46a8c809af74261d1b300bc2ebebc",
+      "beforeSteps": [
+        "Couper les prunes en deux et les disposer dans un plat.",
+        "Ajouter miel, cannelle et eau.",
+        "Cuire 18 minutes à 190 °C."
+      ],
+      "note": "Prunes dénoyautées, face coupée en haut, miel/eau/cannelle dynamiques ; 18 min à 190 °C conservées avec repère tendre."
+    },
+    {
+      "id": "d033",
+      "status": "corrected",
+      "sourceHash": "2c91f9d55670a6df608d7929a531d829dc8eac76dc9f58d2090cda41de15024f",
+      "reviewedHash": "da4674bbf08244cbabb2ac709e73170a8bfc07924c6467e77a3155092b8e3547",
+      "protectedRecipeSha256": "1f07dbff8fd5de693b18082130bfb09067f28869df6d0d8452c86da8a980b580",
+      "beforeSteps": [
+        "Inciser les figues en croix sans les séparer.",
+        "Ajouter miel, cannelle et noix concassées.",
+        "Cuire 12 minutes à 190 °C."
+      ],
+      "note": "Incision en croix sans traverser la base ; noix concassées et miel entièrement répartis, cuisson et pincée de cannelle adaptées sans dose fixe."
+    },
+    {
+      "id": "d034",
+      "status": "corrected",
+      "sourceHash": "fa81e53c109f04b729a2637c40419f5f8081e09a8d52bd96bf2a8a547f5d12e6",
+      "reviewedHash": "c7bcfab6db24c312cd4d64812bb251d7b0d15f15817b3eae04f586cb9aa5f051",
+      "protectedRecipeSha256": "7bde80ec6f1b719769d31f22d071976ba95df70a910979bffc7e1fab057eaf36",
+      "beforeSteps": [
+        "Peler, épépiner et couper les pommes.",
+        "Cuire à couvert 18 minutes avec l’eau.",
+        "Écraser ou mixer et ajouter la cannelle."
+      ],
+      "note": "Couvercle et eau d’origine conservés ; morceaux homogènes, feu doux, cannelle seulement après cuisson et texture au choix."
+    },
+    {
+      "id": "d035",
+      "status": "corrected",
+      "sourceHash": "bebee50ad670098e0296365bb8ee616f15a0c60f2389f4a7b8a47d333540646f",
+      "reviewedHash": "b3147890fc3c17d604553fc3f66bd6db34558a0701f902da88b774846bc4fefd",
+      "protectedRecipeSha256": "5d5f699a63c883e6c14ff20b6e62efc7d717d93a68dbf3dc87b11fe5bcf0193a",
+      "beforeSteps": [
+        "Peler et couper les fruits.",
+        "Cuire 18 minutes à couvert avec l’eau et la vanille.",
+        "Écraser selon la texture souhaitée."
+      ],
+      "note": "Pommes et poires épépinées, cuisson couverte et totalité de l’eau/vanille conservées ; aucun sucre ajouté."
+    },
+    {
+      "id": "d037",
+      "status": "corrected",
+      "sourceHash": "52e276f8193633f63a4f2031e10817344f0c18f8b68bc23fa9fb7d68ebcc5474",
+      "reviewedHash": "cbb1b4f583768357485c912e6ef1fad75b1a3127e114fdf68598160c889b26ec",
+      "protectedRecipeSha256": "e90ca0282efec07b016c0d38c5ffe610afbbc36c36dbee789fad0c2f5a35e0d3",
+      "beforeSteps": [
+        "Dénoyauter et couper les abricots.",
+        "Cuire 12 à 15 minutes avec eau, sucre et vanille.",
+        "Écraser grossièrement."
+      ],
+      "note": "Abricots lavés/dénoyautés et dés réguliers ; plage 12–15 conservée, sucre/vanille/eau dynamiques et morceaux écrasés."
+    },
+    {
+      "id": "d038",
+      "status": "corrected",
+      "sourceHash": "3936b065f4dca4f980a47dd446ede3c8973058c9436771054d3278d824c5534a",
+      "reviewedHash": "9ddc9872e88e3a2dd33a3c4eadb8bd84520a34d24223162645af1d68dff51592",
+      "protectedRecipeSha256": "650042f120d2309a3088b55366e778cf6f37517b2418077ba20d50a47eb9b2ec",
+      "beforeSteps": [
+        "Dénoyauter les prunes.",
+        "Cuire 15 minutes à feu doux avec le sucre.",
+        "Ajouter la cannelle et laisser tiédir."
+      ],
+      "note": "Compote sans eau ajoutée conservée ; fruits coupés, jus libéré à feu doux, cannelle après cuisson."
+    },
+    {
+      "id": "d039",
+      "status": "corrected",
+      "sourceHash": "ba484804d493af2b0d6beffcc649fb3df3507d336f46edbd1da75c66ec52966e",
+      "reviewedHash": "3b10394a7fc9d02bbbc261e0f0c2a8cdcd318553a22bac6ea47b8bed0cbaadd7",
+      "protectedRecipeSha256": "fdbb65549fdd6ab180c4d770d9a4a53abce226875138eb7d9c4d4ac83c2f5dd7",
+      "beforeSteps": [
+        "Peler et couper les pêches.",
+        "Cuire 12 minutes avec eau, sucre et verveine.",
+        "Retirer la verveine et écraser légèrement."
+      ],
+      "note": "Pêches épluchées/dénoyautées ; sachet de verveine utilisé puis retiré avant écrasement, eau et sucre liés à la liste."
+    },
+    {
+      "id": "d040",
+      "status": "corrected",
+      "sourceHash": "f9afe575992abde0d9f444db48b9c26a8dc764587bf3fbedd735df0f87f9fe49",
+      "reviewedHash": "63ef752e05c761fa37e60c5163df2d5c8634591d356044b2d325f7f15c0b34bb",
+      "protectedRecipeSha256": "b2cb02023d325499fe8e04614aaecab0a1fcdeed61f111057f97e868d90e8437",
+      "beforeSteps": [
+        "Peler les poires en gardant la queue.",
+        "Porter eau, sucre, citron et vanille à frémissement.",
+        "Pocher les poires 20 minutes puis laisser tiédir dans le sirop."
+      ],
+      "note": "Poires entières conservées ; sirop dosé, casserole ajustée et retournement pour pocher régulièrement sans ajouter d’eau arbitraire."
+    },
+    {
+      "id": "d041",
+      "status": "corrected",
+      "sourceHash": "e72f7210eaadec81cada840f001045391aef9040b4b1c7d1578a6ec7bea88258",
+      "reviewedHash": "0d98f5c41a8aaf853021379689e88ae95a68d3a2ae147227fba549d38b85f602",
+      "protectedRecipeSha256": "4ea228fb5a4deb951e3641b1ba6722968f421e56a0726f83ab0b2421c4915d3f",
+      "beforeSteps": [
+        "Peler les agrumes à vif et les disposer dans un plat.",
+        "Ajouter miel et cannelle.",
+        "Rôtir 10 minutes à 200 °C."
+      ],
+      "note": "Pelage à vif expliqué ; rondelles pour une cuisson régulière, miel/cannelle entièrement répartis, four 200 °C conservé."
+    },
+    {
+      "id": "d042",
+      "status": "corrected",
+      "sourceHash": "fefd8d096665eaecbc55dcf6d50f356e6725e7d54d34f7528f1c56bfccd34f58",
+      "reviewedHash": "4ba50226268aec7a21d767abce4eaffab19bd20a0cb5f03d259f6028de3caf24",
+      "protectedRecipeSha256": "a17cc69c38f128d68b51a9e0d0a95c2b101d4ad30f3035fc6772cb29ac7c90bc",
+      "beforeSteps": [
+        "Couper les pommes et les répartir dans un petit plat.",
+        "Sabler farine, avoine, beurre, sucre et cannelle.",
+        "Couvrir les fruits et cuire 25 minutes à 190 °C."
+      ],
+      "note": "Sabler expliqué avec beurre froid ; aucun sucre réservé aux fruits ni beurre de moule inventés. Pommes en petits dés, couverture de miettes non tassée."
+    },
+    {
+      "id": "d043",
+      "status": "corrected",
+      "sourceHash": "b359b74774a150149055f1d2df8358c243508cc7aaae499e3dae11d83ca4d959",
+      "reviewedHash": "62db5b619c9ea6ba410f8ffd5741430b96a28b3bb853b404e4c2420bc5e05ba3",
+      "protectedRecipeSha256": "c20c3e0bf021e8c702c39f0f10e1840f8877ece3dd979d1916ad455ed1825348",
+      "beforeSteps": [
+        "Répartir les fruits rouges dans un petit plat.",
+        "Sabler farine, beurre, sucre et poudre d’amande.",
+        "Couvrir et cuire 25 minutes à 190 °C."
+      ],
+      "note": "Fruits préparés, sablage amandé expliqué et couverture sans couvercle ; aucune précuisson ou sucre supplémentaire."
+    },
+    {
+      "id": "d045",
+      "status": "corrected",
+      "sourceHash": "9e8cecabf31625b157bb3c6bc53154b7b390ea2510d7fc9afd5754eb4ef7663c",
+      "reviewedHash": "6914e960a3db83838fa703c2f40f984e6496591483bebbc2017b2efcd2df202a",
+      "protectedRecipeSha256": "e021e345a229712bc7cfdcf9ab2d3c301e9f25730c58255e48064740abf59aac",
+      "beforeSteps": [
+        "Déposer chaque banane en rondelles sur un papier cuisson.",
+        "Ajouter jus d’orange, raisins et cannelle.",
+        "Fermer les papillotes et cuire 12 minutes à 190 °C."
+      ],
+      "note": "Bananes pelées et rondelles détaillées, jus et garniture répartis entre les papillotes ; fermeture et vapeur à l’ouverture précisées."
+    },
+    {
+      "id": "d046",
+      "status": "corrected",
+      "sourceHash": "91812fe8e00fdd636ca87b99ee963b3689cc0897896d1b533fc1ef7963f49272",
+      "reviewedHash": "f51661c6549826eed6e6119c6b1735fb757572f24d7b1ff95d31304d9b069cbf",
+      "protectedRecipeSha256": "83d644e1533e7bf05728194b6bdd4f4fc51f80ef9eafd9bd81f381e01eddde96",
+      "beforeSteps": [
+        "Répartir les yaourts dans deux coupelles.",
+        "Ajouter le miel.",
+        "Concasser les noix et les parsemer au dernier moment."
+      ],
+      "note": "Deux coupelles figées supprimées ; miel dynamique, noix concassées uniquement au service."
+    },
+    {
+      "id": "d047",
+      "status": "blocked",
+      "sourceHash": "1bd32d715a9196a7af447a808899fdbc419b2d8ca476b48622100104fd6e9196",
+      "reviewedHash": "1bd32d715a9196a7af447a808899fdbc419b2d8ca476b48622100104fd6e9196",
+      "protectedRecipeSha256": "9c843c315e498385728878b97dd8e9834b1b9cbd226333c9155cdabd9f0eae8c",
+      "note": "la quantité de jus utilisée reste « un peu » alors qu’un citron entier est listé. Les archives ne précisent pas la part destinée au yaourt ; ne pas ajouter tout le jus ou choisir une fraction arbitraire."
+    },
+    {
+      "id": "d048",
+      "status": "corrected",
+      "sourceHash": "1594d277efa48595c1b7e846a7b0306d8df269c9051618e73bfd1e53292708bb",
+      "reviewedHash": "b22413045087bd080998247f014b96fbdd48963902a089ddbb85bcd883ca0bc6",
+      "protectedRecipeSha256": "202aa4e1ca42afd14607e35ddda16416d4fbd98378eb59d548c2ea2bb8a65d81",
+      "beforeSteps": [
+        "Couper les fraises.",
+        "Répartir le fromage blanc et ajouter les fruits.",
+        "Saupoudrer très légèrement de sucre et ajouter la menthe."
+      ],
+      "note": "Fraises rincées avant équeutage, fromage blanc réparti puis fruit ; sucre dynamique et menthe au service."
+    },
+    {
+      "id": "d049",
+      "status": "corrected",
+      "sourceHash": "5116bf07eacaa8066d525eadbd901046ffcd985c968fb3574330bf1065dab2a0",
+      "reviewedHash": "fcd85f93f5c413d117926dc5304c006df1f2d47db23aba6d463f974d84d594c6",
+      "protectedRecipeSha256": "8d3ce3b78dde0d87790dcc3bed6709376a959fcad150a371b29e8f3b809cd3c8",
+      "beforeSteps": [
+        "Couper les poires en petits dés.",
+        "Mélanger le fromage blanc avec la vanille.",
+        "Ajouter poires et miel."
+      ],
+      "note": "Poire épépinée en dés, vanille et miel mesurables ; fruit cru conservé et aucune cuisson ajoutée."
+    },
+    {
+      "id": "d050",
+      "status": "corrected",
+      "sourceHash": "5a4e54f303b6b66ae0d4c9b2d049218072ce5c56ea583b58752046efa2b4fc6f",
+      "reviewedHash": "da009625562de136c4514fb67af3ecae40ec2dca0ded579d7dc0f646bc3c6f86",
+      "protectedRecipeSha256": "dee998d320167366df104e478a9efcbcbbb9b06c46ca605e5a425568ced13475",
+      "beforeSteps": [
+        "Couper les pêches.",
+        "Répartir le yaourt et ajouter les fruits.",
+        "Terminer avec miel et amandes."
+      ],
+      "note": "Pêches dénoyautées, yaourt lissé, amandes non torréfiées comme dans la source ; miel entièrement réparti."
+    },
+    {
+      "id": "d051",
+      "status": "corrected",
+      "sourceHash": "e0ed96bd4218d3178d831dc53c314fb5c2c8caba0935aca6a26f505f8d67f67b",
+      "reviewedHash": "7f1374329ed3cf4356a3f22da8a1948a400de13ba0c7ce56158a59be102bd87d",
+      "protectedRecipeSha256": "56244078415719b47d229335b7997e5a605732f0efd85f9de053f8e9edc3e69e",
+      "beforeSteps": [
+        "Mixer la moitié des fruits avec le miel.",
+        "Égoutter la faisselle et la répartir.",
+        "Ajouter le coulis et les fruits restants."
+      ],
+      "note": "Moitié des fruits transformée en deux quantités dynamiques égales, coulis cru conservé et faisselle égouttée ; aucun sucre supplémentaire."
+    },
+    {
+      "id": "d052",
+      "status": "corrected",
+      "sourceHash": "5bb07dc2b018676c833923738b721342d518656a45b0b72e19dcfbef5c0c1e50",
+      "reviewedHash": "f5858cd9c27754a3ca4f267825c2c012c8a0d5452a9f2e54e0f5dd2935349f66",
+      "protectedRecipeSha256": "4db529645db74224845f95b7eb5d28d99951568e79d9b2a0446692e37bcd8c49",
+      "beforeSteps": [
+        "Couper la pomme en petits dés.",
+        "Répartir le skyr.",
+        "Ajouter pomme, cannelle et un filet de miel."
+      ],
+      "note": "Pomme épépinée en petits dés, skyr lissé ; toute la cannelle et le miel liés à la liste, pas de pomme cuite."
+    },
+    {
+      "id": "d053",
+      "status": "corrected",
+      "sourceHash": "e85df6b532410b68390281ae4c8ed9e86ec743a2f298b1616f88da0b05114a1a",
+      "reviewedHash": "fcf32ebaab2fc806ddd773a9c5b1bec6376e70e73cfc0568402f8753c2b6df0c",
+      "protectedRecipeSha256": "194ba9b0d53e0a76719795eaf418e52d6a6dec5b9948f63adb0c8ec420ec82d3",
+      "beforeSteps": [
+        "Couper les abricots en petits morceaux.",
+        "Démouler les petits-suisses.",
+        "Ajouter les fruits et le miel."
+      ],
+      "note": "Dénoyautage des abricots et démoulage avec retrait du papier explicités ; quantités et service inchangés."
+    },
+    {
+      "id": "d054",
+      "status": "corrected",
+      "sourceHash": "46985e28ab746fe6ca576a4bc09f981ba06dd30486bf749de215ef63fdfde07a",
+      "reviewedHash": "18241dd1115c0c857135aa987ca2f4e7aacfdbc2939dc5694a5fc470b4882c31",
+      "protectedRecipeSha256": "4055dbdfbed2f1b068005f0a265cfacbd26612d052c9207fc694cd38b2d9fd34",
+      "beforeSteps": [
+        "Mixer la moitié de la mangue avec le citron vert.",
+        "Alterner yaourt, coulis et dés de mangue.",
+        "Réserver au frais."
+      ],
+      "note": "Mangue pelée/dénoyautée, deux parts liées à la quantité existante : une mixée, une en dés. Repos au frais non transformé en temps arbitraire."
+    },
+    {
+      "id": "d055",
+      "status": "corrected",
+      "sourceHash": "f3cb35671c009275dab61701b7c3d60579e7b85c7836876868a1467c697d5dfc",
+      "reviewedHash": "8b5f74e11ed9d58db2db4d3d9d529792b4f7554df955d2eb5ac0266aea2107fc",
+      "protectedRecipeSha256": "623d8e1e8d4b2d2724754cafbdda60301ce6944630401e6dcf46022edaf0831a",
+      "beforeSteps": [
+        "Répartir les yaourts et les framboises.",
+        "Ajouter le miel.",
+        "Parsemer de granola juste avant de servir."
+      ],
+      "note": "Framboises rincées doucement, yaourt et miel répartis ; granola seulement au service pour rester croquant."
+    },
+    {
+      "id": "d056",
+      "status": "corrected",
+      "sourceHash": "309cba034c9f40e2ffef51f1d074b872dd8eb7e1c02ae39863e2ea23e6c615cb",
+      "reviewedHash": "d8dd638c1afe82b136b5ec51aff9edb3eab34fddd16ea906fb4e25d9dd8b53d6",
+      "protectedRecipeSha256": "45f46b45cfaaeb6aa9695f7b57f5de63123214ac564ddf5885effa91d72b1307",
+      "beforeSteps": [
+        "Peler et couper les kiwis.",
+        "Mélanger le fromage blanc avec le zeste de citron vert.",
+        "Ajouter fruits et miel."
+      ],
+      "note": "Zeste seul du citron vert conservé conformément à la source ; pas de jus ajouté au fromage blanc, miel dynamique."
+    },
+    {
+      "id": "d057",
+      "status": "corrected",
+      "sourceHash": "fd4c01c1087c210b41ae6bf1975d575dee08438e157ca6c9886b37f792e7011a",
+      "reviewedHash": "836c064eb0eed0849f1998f4bc2f031362deeb0713054c09141c83e508f8be77",
+      "protectedRecipeSha256": "8a599fe7cb8d2a60d337357bd3ff414e09a3cb79f92d528e0bdaf6acc81f0ddf",
+      "beforeSteps": [
+        "Mélanger le yaourt avec citron et miel.",
+        "Monter le blanc en neige et l’incorporer délicatement.",
+        "Réserver au frais 20 minutes."
+      ],
+      "note": "Mousse sans cuisson conservée avec consigne sanitaire FDA : blanc pasteurisé adapté au foisonnement, quantité inchangée. Repos de vingt minutes distingué de la préparation."
+    },
+    {
+      "id": "d058",
+      "status": "blocked",
+      "sourceHash": "3cbd4ba2d75029cff853549a39dc84aab482a4386403755b0b591b2785f07ae3",
+      "reviewedHash": "3cbd4ba2d75029cff853549a39dc84aab482a4386403755b0b591b2785f07ae3",
+      "protectedRecipeSha256": "1e1dca027e9768ca8c266bbcae0a5956e9bd5595c7c1ffb02706ed3e7fe1bad1",
+      "note": "le poids et le pouvoir gélifiant de la feuille ne sont pas précisés. Confirmer le produit pour les quantités de crème et de yaourt ; ne pas inventer un grammage. Le trempage et le chauffage demandent aussi des précisions."
+    },
+    {
+      "id": "d059",
+      "status": "blocked",
+      "sourceHash": "4260c7e84c0797b47c3f0b4b1a13d088c5247a167e661961ba200f3c49515112",
+      "reviewedHash": "4260c7e84c0797b47c3f0b4b1a13d088c5247a167e661961ba200f3c49515112",
+      "protectedRecipeSha256": "322588b407907a4dbb4c616a07f828bf4837781e8d07aeb904a76b516778b095",
+      "note": "la fonte du chocolat nécessite un appareil non défini malgré le classement « Sans cuisson ». Le blanc servi cru devrait être pasteurisé ; sa compatibilité avec la mousse doit être précisée. Deux heures de repos s’ajoutent à la préparation."
+    },
+    {
+      "id": "d060",
+      "status": "corrected",
+      "sourceHash": "d499128fbce04689c35ffdbd55839bb66cd7857d6eca37c096661a099d4c92aa",
+      "reviewedHash": "c635539f84c7f3149941477d25477dfb060010c24241cb3be8f17374dbdc8207",
+      "protectedRecipeSha256": "972881f5c6c732c9a8c1de90e5a6b447aef1c9ac28cba3ef0fef2b1a55037b94",
+      "beforeSteps": [
+        "Couper les poires en dés et émietter les spéculoos.",
+        "Mélanger le fromage blanc avec la vanille.",
+        "Alterner les trois éléments dans des verrines."
+      ],
+      "note": "Poire épépinée et spéculoos émiettés, fromage blanc vanillé ; montage des trois préparations sans nombre de verrines figé."
+    },
+    {
+      "id": "d061",
+      "status": "blocked",
+      "sourceHash": "54c7009dca0c50884cc4ab7321b752c19dbcbeac369ba16de72393b9c7934e30",
+      "reviewedHash": "54c7009dca0c50884cc4ab7321b752c19dbcbeac369ba16de72393b9c7934e30",
+      "protectedRecipeSha256": "99653ac7a3cf3c300bdd478058d37efdd7e585780424abb2b4e7fdd8350e96ac",
+      "note": "la part de lait froid pour délayer la fécule n’est pas mesurée. La source ne donne ni durée ni conduite d’épaississement ; ne pas choisir un dixième ou un quart du lait sans référence adaptée."
+    },
+    {
+      "id": "d062",
+      "status": "blocked",
+      "sourceHash": "e8cdb3630691f3923d1d851260121a6ef27b936fb43a8c5c16072cd275b73ee6",
+      "reviewedHash": "e8cdb3630691f3923d1d851260121a6ef27b936fb43a8c5c16072cd275b73ee6",
+      "protectedRecipeSha256": "ed68ef22974a60a2bad44c13335818c09a7bf6fcc98570d73535645642178051",
+      "note": "la part de lait réservée à la fécule n’est pas mesurée. Le chauffage du chocolat et la cuisson de l’amidon manquent de conduite et de durée ; aucune proportion de lait n’est inventée."
+    },
+    {
+      "id": "d063",
+      "status": "corrected",
+      "sourceHash": "3aaafa4fb28ddba95e407db04d8112b60ff68de61fc927c29d4b205bda73b524",
+      "reviewedHash": "8144bf0fa0849be5e02f646c2e74479173c394e3df4646d376e25a9156194ead",
+      "protectedRecipeSha256": "9a6f61a9fd4cb12bbe766839f4b4437adb2c90e00054a620028d88c03b870760",
+      "beforeSteps": [
+        "Répartir le caramel dans deux ramequins.",
+        "Fouetter œufs et sucre puis ajouter lait chaud et vanille.",
+        "Cuire 30 minutes au bain-marie à 160 °C et refroidir."
+      ],
+      "note": "Caramel déjà prévu réparti, mélange lait chaud/œufs expliqué, bain-marie et prise du centre ; nombre de ramequins non figé et refroidissement séparé."
+    }
+  ]
+}

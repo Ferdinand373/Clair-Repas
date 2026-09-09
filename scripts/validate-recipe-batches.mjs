@@ -7,7 +7,7 @@ import {recipeSource} from './recipe-source.mjs';
 import {recipeHash} from './validate-recipe-editorial.mjs';
 const root=resolve(dirname(fileURLToPath(import.meta.url)),'..');
 const {code,recipes,editorial}=recipeSource(readFileSync(resolve(root,'index.html'),'utf8'));
-const batchNumbers=['02','03','04','05','06','07','08'];
+const batchNumbers=['02','03','04','05','06','07','08','09'];
 const fixture={recipes:batchNumbers.flatMap(number=>JSON.parse(readFileSync(resolve(root,`scripts/recipe-editorial-batch-${number}.fixture.json`),'utf8')).recipes)};
 const slice=(a,b)=>code.slice(code.indexOf(a),code.indexOf(b,code.indexOf(a)+a.length));
 const context={window:{},$:()=>({value:'8'}),MEAL_TYPES:['mid','eve'],recipeRole:r=>r.role||r.course||'dish',isFavorite:()=>false,recipeFeedbackHTML:()=>'',recipePersonalNoteHTML:()=>''};
@@ -42,7 +42,13 @@ const timers={
   a006:[[],[],[]],a007:[[],[],[10]],a009:[[],[],[]],a010:[[],[],[]],
   a011:[[20],[],[]],a012:[[22],[],[10]],a013:[[],[],[]],a014:[[],[],[]],
   a015:[[],[],[]],a016:[[],[],[]],a017:[[],[9],[12],[],[]],
-  a020:[[],[],[]],a021:[[],[],[]],a025:[[],[],[]],a026:[[9],[],[]],a029:[[],[],[],[25]]
+  a020:[[],[],[]],a021:[[],[],[]],a025:[[],[],[]],a026:[[9],[],[]],a029:[[],[],[],[25]],
+  d032:[[],[],[18]],d033:[[],[],[12]],d034:[[],[18],[]],d035:[[],[18],[]],
+  d037:[[],[15],[]],d038:[[],[15],[]],d039:[[],[12],[]],d040:[[],[],[20]],
+  d041:[[],[],[10]],d042:[[],[],[25]],d043:[[],[],[25]],d045:[[],[],[12]],
+  d046:[[],[],[]],d048:[[],[],[]],d049:[[],[],[]],d050:[[],[],[]],
+  d051:[[],[],[]],d052:[[],[],[]],d053:[[],[],[]],d054:[[],[],[]],
+  d055:[[],[],[]],d056:[[],[],[]],d057:[[],[],[],[20]],d060:[[],[],[]],d063:[[],[],[30],[]]
 };
 const ingredients={
   n01:['poulet','pommes de terre','paprika','huile','sel.*poivre'],
@@ -121,9 +127,22 @@ const ingredients={
   a020:['avocat','crevettes déjà cuites','citron','fromage blanc','ciboulette','poivrer'],
   a021:['pamplemousse','avocat','crevettes déjà cuites','huile d’olive','poivrer'],
   a025:['maquereau fumé','pomme','citron','fromage blanc','aneth'],
-  a026:['œufs','moutarde','fromage blanc','ciboulette'],a029:['courgette','œufs','lait','parmesan','basilic']
+  a026:['œufs','moutarde','fromage blanc','ciboulette'],a029:['courgette','œufs','lait','parmesan','basilic'],
+  d032:['prunes','miel','cannelle','eau'],d033:['figues','miel','noix','cannelle'],
+  d034:['pommes','eau','cannelle'],d035:['pommes','poires','eau','vanille'],
+  d037:['abricots','sucre','vanille','eau'],d038:['prunes','sucre','cannelle'],
+  d039:['pêches','sucre','verveine','eau'],d040:['poires','sucre','eau','vanille','citron'],
+  d041:['oranges','pamplemousse','miel','cannelle'],d042:['pommes','farine','flocons d’avoine','beurre','sucre','cannelle'],
+  d043:['fruits rouges','farine','beurre','sucre','poudre d’amande'],d045:['bananes','orange','raisins secs','cannelle'],
+  d046:['yaourts nature','miel','noix'],d048:['fromage blanc','fraises','sucre','menthe'],
+  d049:['fromage blanc','poires','vanille','miel'],d050:['yaourt grec','pêches','miel','amandes effilées'],
+  d051:['faisselle','fruits rouges','miel'],d052:['skyr','pomme','cannelle','miel'],
+  d053:['petits-suisses','abricots','miel'],d054:['yaourts nature','mangue','citron vert'],
+  d055:['yaourts nature','framboises','granola','miel'],d056:['fromage blanc','kiwis','citron vert','miel'],
+  d057:['yaourt grec','citron','miel','blanc d’œuf'],d060:['poires','fromage blanc','spéculoos','vanille'],
+  d063:['lait','œufs','sucre','vanille','caramel']
 };
-assert.equal(fixture.recipes.length,215);
+assert.equal(fixture.recipes.length,245);
 let quantityChecks=0,timerCount=0;
 for(const record of fixture.recipes){
   const recipe=recipes.find(r=>r.id===record.id);
@@ -196,6 +215,19 @@ for(const id of ['a023','a030'])assert.equal(recipes.find(r=>r.id===id).role,'te
 assert.match(editorial['gn-poulet-curry-doux'].reviewNote,/Ne pas servir froide une marinade ayant touché du poulet cru/);
 assert.match(editorial['gn-saumon-poireaux-creme'].reviewNote,/température/);
 assert.match(editorial['gn-boeuf-soja-miel'].reviewNote,/gingembre.*absent/);
+for(const [count,grams] of [[1,'50'],[2,'100'],[3,'150'],[4,'200'],[5,'250'],[8,'400']]){
+  const faisselle=recipes.find(r=>r.id==='d051');
+  const rendered=context.recipeStepText(faisselle.p[0],faisselle,count);
+  assert.equal(rendered.split(grams+' g de fruits rouges').length-1,2,'equal coulis and garnish shares at '+count+' people');
+}
+assert.match(recipes.find(r=>r.id==='d054').p[0],/\{\{qty:1:0\.5\}\}/);
+assert.doesNotMatch(recipes.find(r=>r.id==='d046').p.join(' '),/deux coupelles/);
+assert.match(recipes.find(r=>r.id==='d039').p[1],/\{\{qty:2\}\} de verveine/);
+assert.match(recipes.find(r=>r.id==='d056').p[1],/le zeste, pas le jus/);
+assert.match(recipes.find(r=>r.id==='d057').p[0],/blanc d’œuf pasteurisé/);
+assert.match(recipes.find(r=>r.id==='d057').t,/20 min au frais/);
+assert.doesNotMatch(recipes.find(r=>r.id==='d063').p.join(' '),/deux ramequins/);
+assert.match(recipes.find(r=>r.id==='d063').p[2],/71 °C/);
 const corrected=fixture.recipes.filter(r=>r.status==='corrected').length;
 console.log(`✓ Batches ${batchNumbers.join('/')}: ${fixture.recipes.length} individual review records, ${corrected} corrected, ${fixture.recipes.length-corrected} blocked with original content preserved; ${timerCount} manually checked timers`);
 console.log(`✓ ${quantityChecks} ingredient checks at 1/2/3/4/5/8 people; split parmesan quantities, per-face timing and original cooking techniques`);
