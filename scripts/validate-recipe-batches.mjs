@@ -7,7 +7,7 @@ import {recipeSource} from './recipe-source.mjs';
 import {recipeHash} from './validate-recipe-editorial.mjs';
 const root=resolve(dirname(fileURLToPath(import.meta.url)),'..');
 const {code,recipes,editorial}=recipeSource(readFileSync(resolve(root,'index.html'),'utf8'));
-const batchNumbers=['02','03','04','05','06','07','08','09','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31','32','33','34','35','36','37','38','39'];
+const batchNumbers=['02','03','04','05','06','07','08','09','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31','32','33','34','35','36','37','38','39','40'];
 const fixture={recipes:batchNumbers.flatMap(number=>JSON.parse(readFileSync(resolve(root,`scripts/recipe-editorial-batch-${number}.fixture.json`),'utf8')).recipes)};
 const slice=(a,b)=>code.slice(code.indexOf(a),code.indexOf(b,code.indexOf(a)+a.length));
 const context={window:{},$:()=>({value:'8'}),MEAL_TYPES:['mid','eve'],recipeRole:r=>r.role||r.course||'dish',isFavorite:()=>false,recipeFeedbackHTML:()=>'',recipePersonalNoteHTML:()=>''};
@@ -541,7 +541,23 @@ Object.assign(ingredients,{
   e76:['quinoa déjà cuit','poulet déjà cuit','tomates','concombre','avocat','vinaigrette'],
   e79:['tomates','chair à saucisse','bœuf haché','pain rassis','lait','oignon','ail','persil','huile','riz','sel et poivre']
 });
-assert.equal(fixture.recipes.length,1339);
+Object.assign(timers,{
+  'ge-soupe-poireaux-poulet':[[],[22],[],[],[]],
+  'ge-soupe-tomate-lentilles-poulet':[[],[20],[],[],[]],
+  'ge-soupe-courge-carotte-poulet':[[],[25],[],[],[]],
+  'ge-soupe-legumes-haricots-poulet':[[],[24],[],[],[]],
+  'v31e-bouillon-nouilles-saumon':[[],[6],[],[8],[]],
+  'v31e-bouillon-nouilles-poisson-blanc':[[],[8],[7],[],[15]]
+});
+Object.assign(ingredients,{
+  'ge-soupe-poireaux-poulet':['poireaux','pommes de terre','oignon','bouillon','poulet déjà cuit','riz','persil'],
+  'ge-soupe-tomate-lentilles-poulet':['coulis de tomate','lentilles corail','carottes','bouillon','poulet déjà cuit','riz','persil'],
+  'ge-soupe-courge-carotte-poulet':['courge','carottes','oignon','bouillon','poulet déjà cuit','riz','persil'],
+  'ge-soupe-legumes-haricots-poulet':['carottes','poireau','haricots blancs en boîte','bouillon','poulet déjà cuit','riz','persil'],
+  'v31e-bouillon-nouilles-saumon':['œufs','courgette','parmesan','tomates','échalote','tranches de pain','basilic','huile d’olive'],
+  'v31e-bouillon-nouilles-poisson-blanc':['œufs','pommes de terre','poivrons','feta','oignon rouge','salade verte','origan','huile']
+});
+assert.equal(fixture.recipes.length,1389);
 let quantityChecks=0,timerCount=0;
 for(const record of fixture.recipes){
   const recipe=recipes.find(r=>r.id===record.id);
@@ -1508,6 +1524,35 @@ assert.match(editorial['ge-jambon-salade-riz-concombre'].reviewNote,/huile et vi
 assert.match(editorial['ge-poulet-salade-lentilles-carottes'].reviewNote,/lentilles et le poulet déjà cuits/);
 assert.match(editorial['ge-thon-salade-quinoa-legumes'].reviewNote,/poivron déjà rôti.*deux minutes couvertes sont un repos/);
 console.log(`✓ Batch 39: ${reservedQuantityChecks39} original ingredient renders; 50 unchanged culinary objects, 300 visible reservations and original timer attachments preserved`);
+const batch40=JSON.parse(readFileSync(resolve(root,'scripts/recipe-editorial-batch-40.fixture.json'),'utf8')).recipes;
+assert.equal(batch40.length,50);assert.equal(batch40.filter(r=>r.status==='corrected').length,6);
+let reservedQuantityChecks40=0;
+for(const count of [1,2,3,4,5,8])for(const record of batch40.filter(r=>r.status==='blocked')){
+  const r=recipes.find(r=>r.id===record.id),output=context.recipeHTML(r,{people:count,dayIndex:1,mealType:'eve'});
+  assert.ok(output.includes(context.escapeHTML(editorial[record.id].reviewNote)));
+  assert.doesNotMatch(output,/\{\{|undefined|NaN/);
+  for(const ingredient of r.i){
+    const q=ingredient.q==null?null:ingredient.q*count/(r.servings||2);
+    assert.ok(output.includes('>'+context.ingredientText(ingredient,q,count)+'</li>'));reservedQuantityChecks40++;
+  }
+  const attached=[...output.matchAll(/data-step-index="(\d+)" data-timer-minutes="(\d+)"/g)].map(([,step,min])=>[+step,+min]);
+  assert.deepEqual(attached,r.p.flatMap((step,index)=>Array.from(context.stepTimerDurations(step)).map(min=>[index,min])));
+}
+for(const id of ['ge-soupe-poireaux-poulet','ge-soupe-tomate-lentilles-poulet','ge-soupe-courge-carotte-poulet','ge-soupe-legumes-haricots-poulet']){
+  const r=recipes.find(r=>r.id===id);assert.equal(r.servings||2,2);assert.equal(r.i[4].n,'poulet cuit');
+  assert.match(r.p[1],/\{\{qty:3\}\} de bouillon/);assert.match(r.p[2],/\{\{qty:5\}\} de riz/);
+  assert.match(r.p[2],/paquet/);assert.deepEqual(Array.from(context.stepTimerDurations(r.p[2])),[]);
+  assert.match(r.p[3],/\{\{qty:4\}\} de poulet déjà cuit/);assert.match(r.p[3],/après.*mixage facultatif/);assert.match(r.p[3],/74 °C/);
+  assert.doesNotMatch(r.p.join(' '),/faire revenir|rôtir|180 °C/i);
+}
+const omelette40=recipes.find(r=>r.id==='v31e-bouillon-nouilles-saumon');
+const frittata40=recipes.find(r=>r.id==='v31e-bouillon-nouilles-poisson-blanc');
+assert.match(omelette40.p[3],/replier.*71 °C/);assert.match(omelette40.p[4],/\{\{qty:5\}\} tranches de pain/);
+assert.doesNotMatch(omelette40.p.join(' '),/griller|d’œufs/);assert.match(frittata40.p[1],/eau frémissante.*8 minutes.*égoutter/);
+assert.match(frittata40.p[2],/Pendant cette précuisson.*7 minutes/);assert.match(frittata40.p[4],/15 minutes.*185 °C.*71 °C/);
+assert.match(editorial['ge-omelette-champignons-pommes'].reviewNote,/graisse/);
+assert.match(editorial['v31e-bouillon-nouilles-cotes-porc'].reviewNote,/graisse manquante/);
+console.log(`✓ Batch 40: six manual rewrites; ${reservedQuantityChecks40} original ingredient renders and 264 visible reservations; packet rice, cooked chicken and separate egg cooking preserved`);
 const corrected=fixture.recipes.filter(r=>r.status==='corrected').length;
 const unchanged=fixture.recipes.filter(r=>r.status==='unchanged').length;
 console.log(`✓ Batches ${batchNumbers.join('/')}: ${fixture.recipes.length} individual review records, ${corrected} corrected, ${unchanged} unchanged, ${fixture.recipes.length-corrected-unchanged} blocked with original content preserved; ${timerCount} manually checked timers`);

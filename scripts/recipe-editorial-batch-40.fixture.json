@@ -1,0 +1,438 @@
+{
+  "baselineCommit": "c1c1ed8979fbe1cbbfc73dc3a56ff1ce6603a19a",
+  "batch": "40",
+  "recipes": [
+    {
+      "id": "ge-pois-chiches-salade-quinoa-legumes",
+      "status": "blocked",
+      "sourceHash": "e1373710e11fefb8573edfc636b5c71389fff7a9aeb6e94a8707847876cdcca5",
+      "reviewedHash": "e1373710e11fefb8573edfc636b5c71389fff7a9aeb6e94a8707847876cdcca5",
+      "protectedRecipeSha256": "97921a96e7abbfeaf5a59a06d042cac2a9b96a968a9c37a9dbe2118282ed75c9",
+      "note": "quinoa à cuire et légumes à rôtir malgré la catégorie sans cuisson ; graisse et découpe absentes. Origan de la sauce non listé précisément parmi les herbes, coulis/olives mijotés puis répétés sans partage. Ne pas supprimer le rôtissage ou attribuer arbitrairement toutes les herbes à l’origan."
+    },
+    {
+      "id": "ge-poulet-salade-boulgour-betterave",
+      "status": "blocked",
+      "sourceHash": "6c4953738d81c1e796e5c2eccef593af3c7f87019905410ea011ed386366bd57",
+      "reviewedHash": "6c4953738d81c1e796e5c2eccef593af3c7f87019905410ea011ed386366bd57",
+      "protectedRecipeSha256": "0175f02b49d34a55deddfc70394af02b6e3e40ef5d0f0698cf2a421cb25d4311",
+      "note": "citron de sauce absent ; yaourt/curry partagés entre marinade chauffée et deux finitions froides sans doses. Poulet déjà cuit à recuire malgré la catégorie sans cuisson ; boulgour sans notice. Préserver betterave et poulet cuits sans choisir une cuisson ou un partage inventé."
+    },
+    {
+      "id": "ge-dinde-salade-boulgour-betterave",
+      "status": "blocked",
+      "sourceHash": "4d3cfbbc4661a928a6fdb510b34431b5d363af8b030113ae583d8a07231b3531",
+      "reviewedHash": "4d3cfbbc4661a928a6fdb510b34431b5d363af8b030113ae583d8a07231b3531",
+      "protectedRecipeSha256": "aeb059f1bf20b5b096f7157437edcc9da349536f65b9e5f28241641e6eddf1e7",
+      "note": "compotée et jus de tomate sans tomate fraîche ou coulis listé. Trois dernières minutes sans cuisson principale définie dans une fiche sans cuisson ; olives répétées et dinde sans état précis. Boulgour sans notice ; ne pas transformer les tomates séchées en sauce par un liquide inventé."
+    },
+    {
+      "id": "ge-jambon-salade-boulgour-betterave",
+      "status": "blocked",
+      "sourceHash": "dab9233403b675e9573b9a1cde9f43653e0d57e38d1ce218a8a713de487bdb2d",
+      "reviewedHash": "dab9233403b675e9573b9a1cde9f43653e0d57e38d1ce218a8a713de487bdb2d",
+      "protectedRecipeSha256": "5e463d581bb288aeae1a6c219a62817a2ee6aec84687ef0fe74d4d122ac27edf",
+      "note": "origan absent ; sauce tomate/olives mijotée malgré la catégorie sans cuisson et ajoutée deux fois sans partage. Boulgour sans notice, sauce non raccordée à la vinaigrette moutardée. Préserver la betterave cuite en salade, sans la faire mijoter pour suivre la variante."
+    },
+    {
+      "id": "ge-thon-salade-boulgour-betterave",
+      "status": "blocked",
+      "sourceHash": "f88f799933ac5a06e305dbab2a27d047a02df96e2bd4b7278356ca14555fbf56",
+      "reviewedHash": "f88f799933ac5a06e305dbab2a27d047a02df96e2bd4b7278356ca14555fbf56",
+      "protectedRecipeSha256": "7d48f635bd9b848916ab227839951b0c1f90a57db7b3cecc0ac41a0cb80e6bd9",
+      "note": "épices à faire revenir sans graisse listée ; coco/curry ajoutés avant puis après égouttage du thon sans partage. Mijotage dans une fiche sans cuisson et sauce chaude non raccordée à la vinaigrette, boulgour sans notice. Ne pas ajouter une huile ou réchauffer toute la salade par défaut."
+    },
+    {
+      "id": "ge-saumon-fume-salade-boulgour-betterave",
+      "status": "blocked",
+      "sourceHash": "d37cca25d67cfe115a57a82476c59885209b3ab0cbd7190adcd2570d0fd25741",
+      "reviewedHash": "d37cca25d67cfe115a57a82476c59885209b3ab0cbd7190adcd2570d0fd25741",
+      "protectedRecipeSha256": "a4dddc7482e85df701b08bdd0f3c9f16fda81df9c2d0a51fb75a6940449bd656",
+      "note": "poivron à griller sans mode ni durée dans une fiche sans cuisson ; les deux minutes couvertes ne sont pas un temps de grillage. Finition de trois minutes non raccordée au saumon fumé en rubans, boulgour sans notice. Ne pas cuire le saumon ou choisir un four arbitrairement."
+    },
+    {
+      "id": "ge-crevettes-salade-boulgour-betterave",
+      "status": "blocked",
+      "sourceHash": "d457de85b18ed439d03cdb8db4bb5d01bec09bc33b3ecb89ddd664330c00a84c",
+      "reviewedHash": "d457de85b18ed439d03cdb8db4bb5d01bec09bc33b3ecb89ddd664330c00a84c",
+      "protectedRecipeSha256": "d4235ff92f4de15443fc65e940e9ad649e5e71d91d4baf41a95554a8e4acd70e",
+      "note": "cuisson douce avant décorticage de crevettes déjà cuites dans une fiche sans cuisson, sans durée ni récipient. Citron répété pendant cuisson, en zeste/jus puis au service sans partage ; boulgour sans notice. Préserver les poids cuits de crevettes et betterave."
+    },
+    {
+      "id": "ge-oeufs-salade-boulgour-betterave",
+      "status": "blocked",
+      "sourceHash": "cfab635ee46ad1de7ea40b2008e09a9ec2b695435f28b6edbccb3a4891c15f1d",
+      "reviewedHash": "cfab635ee46ad1de7ea40b2008e09a9ec2b695435f28b6edbccb3a4891c15f1d",
+      "protectedRecipeSha256": "eda2d0075be40cf4d274e6eb8612c93b4c8be31b523ea2962867ad01ce9f5ebe",
+      "note": "repos de deux minutes avant cuisson des œufs puis feta/menthe répétées sans partage. Départ de cuisson et calibre des œufs non définis pour neuf minutes et résultat moelleux ; boulgour sans notice. Conserver les betteraves déjà cuites et le service en salade."
+    },
+    {
+      "id": "ge-pois-chiches-salade-boulgour-betterave",
+      "status": "blocked",
+      "sourceHash": "6542e6649d0ecf28c82302ecd12fb648cf37365397bfd4956d6776ff4f5b4453",
+      "reviewedHash": "6542e6649d0ecf28c82302ecd12fb648cf37365397bfd4956d6776ff4f5b4453",
+      "protectedRecipeSha256": "2b30a5c992407c9725cfef89214651b508b7761531dd30e2d6201416ff11e42b",
+      "note": "eau pour délayer le tahini absente de la liste, quantité non définie ; sauce délayée deux fois sans partage. Coloration des pois chiches avant rinçage dans une fiche sans cuisson, sans graisse ou durée ; boulgour sans notice. Ne pas inventer une dose d’eau ni faire chauffer le tahini prévu froid."
+    },
+    {
+      "id": "ge-omelette-champignons-pommes",
+      "status": "blocked",
+      "sourceHash": "acc9dc12c230b01a9c1b737da3b5ec5d0c8cf8ea4ecdfad0bd6fd6e0f1862dc9",
+      "reviewedHash": "acc9dc12c230b01a9c1b737da3b5ec5d0c8cf8ea4ecdfad0bd6fd6e0f1862dc9",
+      "protectedRecipeSha256": "1d10ee3625ff6f05c9491fefc5ad6acebe74893ce5d697b7761fd27f9b76af3e",
+      "note": "graisse absente ; aucune découpe ni précuisson des pommes de terre, champignons non identifiés. La consigne de faire revenir les éléments à servir chauds ne définit pas leur état avant les œufs. Les huit à dix minutes de l’omelette ne remplacent pas une cuisson des pommes de terre."
+    },
+    {
+      "id": "ge-omelette-courgette-feta",
+      "status": "blocked",
+      "sourceHash": "8c8075099e4c0e5fbe529073d8fbf85fe4f292485582fc817639d2e60738e723",
+      "reviewedHash": "8c8075099e4c0e5fbe529073d8fbf85fe4f292485582fc817639d2e60738e723",
+      "protectedRecipeSha256": "b375255f0defbca659b920d7d6c63dc86baa694494da4d0bddfd8cc85e797242",
+      "note": "pain grillé inclus dans la garniture sous les œufs puis présenté avec l’omelette sans partage ; grillage et cuisson de courgette non définis, graisse absente. Retrouver la place du pain et l’emploi de feta, sans transformer en tartines ou en pain perdu."
+    },
+    {
+      "id": "ge-omelette-jambon-petits-pois",
+      "status": "blocked",
+      "sourceHash": "b8711da83159d8ebfb0bdfa55f1de5b40fa0ac3a1a2044ccdf581f840a8ade8f",
+      "reviewedHash": "b8711da83159d8ebfb0bdfa55f1de5b40fa0ac3a1a2044ccdf581f840a8ade8f",
+      "protectedRecipeSha256": "f2888d0be68840624cbff727092a0699bbaea6e0ef73a037b3402599a5517406",
+      "note": "pommes de terre sans état, découpe ou précuisson ; petits pois sans indication frais/surgelés/cuits et graisse absente. Garniture seulement dite préparée séparément. Ne pas faire commencer les huit à dix minutes des œufs avec des pommes de terre crues non préparées."
+    },
+    {
+      "id": "ge-omelette-saumon-epinards",
+      "status": "blocked",
+      "sourceHash": "da57de0cfa9af023fe9c7bbc6536590457a1796378824c8098f310a075943c61",
+      "reviewedHash": "da57de0cfa9af023fe9c7bbc6536590457a1796378824c8098f310a075943c61",
+      "protectedRecipeSha256": "0b003ec4d0ddd1dfdd43624215256b4dad0b60b62db3496d8c0e305dbc3f2d24",
+      "note": "pain inclus dans la garniture sous les œufs puis servi avec l’omelette sans partage. Épinards sans préparation ni durée, graisse absente ; saumon fumé non affecté entre garniture cuite et service. Ne pas remplacer ce produit fumé par un pavé cru ou retirer le pain de la cuisson sans source."
+    },
+    {
+      "id": "ge-omelette-poireaux-fromage",
+      "status": "blocked",
+      "sourceHash": "96a1969582f859db5f96eb4e556f4a95d7bfcc1ac62d3b3454f6b4b948c16d6e",
+      "reviewedHash": "96a1969582f859db5f96eb4e556f4a95d7bfcc1ac62d3b3454f6b4b948c16d6e",
+      "protectedRecipeSha256": "1c737cedca686bd4b302ba0f007ba657877200d10cde5181c132240b09e0648e",
+      "note": "graisse absente ; pommes de terre sans découpe/précuisson et poireau sans lavage ni durée de fondue. Fromage à inclure dans une garniture vaguement préparée : ordre à retrouver. Ne pas utiliser les huit à dix minutes des œufs comme cuisson complète de tous les légumes."
+    },
+    {
+      "id": "ge-omelette-tomate-mozzarella",
+      "status": "blocked",
+      "sourceHash": "81d1a68dcee9bab5a72be41d2b945a30766deaf8e52752c11e04f89f6ff0941e",
+      "reviewedHash": "81d1a68dcee9bab5a72be41d2b945a30766deaf8e52752c11e04f89f6ff0941e",
+      "protectedRecipeSha256": "5be090f977e270bff08b29069903e5a8ba683451bef4b6b66eda471f8a283486",
+      "note": "basilic listé mais oublié dans la préparation ; pain grillé demandé sous les œufs puis à côté sans partage. Graisse, cuisson de tomate et égouttage de mozzarella non définis. Ne pas transformer l’omelette en bruschetta ni attribuer tout le pain à un usage arbitraire."
+    },
+    {
+      "id": "ge-omelette-poivron-chorizo",
+      "status": "blocked",
+      "sourceHash": "fa4a319f5e34ad23f9e126006fa0ea3a467a1b6652f73c82fa0622374c8bb9d9",
+      "reviewedHash": "fa4a319f5e34ad23f9e126006fa0ea3a467a1b6652f73c82fa0622374c8bb9d9",
+      "protectedRecipeSha256": "c7f4700202ca69ed0ce17141387c07dc0014bca3489882fde73564844c527454",
+      "note": "état du chorizo non précisé ; matière grasse non listée, sans indication de récupérer celle du chorizo. Pommes de terre et poivron sans découpe/précuisson. Ne pas supposer un chorizo sec ou déduire un protocole de fonte pour cuire toute la garniture."
+    },
+    {
+      "id": "ge-omelette-thon-courgette",
+      "status": "blocked",
+      "sourceHash": "f74f15676b2b8bf6df6edda136e2d8ec4df8f8274df1464b8d4b3c1b2bc0421e",
+      "reviewedHash": "f74f15676b2b8bf6df6edda136e2d8ec4df8f8274df1464b8d4b3c1b2bc0421e",
+      "protectedRecipeSha256": "54106b55f548bed60994e1c84ebd0e0b59faf13f094c568246666c1600e7b4fb",
+      "note": "pain grillé inclus dans la garniture puis au service sans répartition ; graisse de cuisson et protocole de courgette absents. Thon en boîte sans égouttage indiqué. Ne pas inventer une dorure à l’huile du thon, dont le conditionnement n’est pas précisé."
+    },
+    {
+      "id": "ge-omelette-asperges-petits-pois",
+      "status": "blocked",
+      "sourceHash": "6a066cc7177b9f8260b9fa59a5d4711f9708e0f30497fff6fa921abaf1ef4729",
+      "reviewedHash": "6a066cc7177b9f8260b9fa59a5d4711f9708e0f30497fff6fa921abaf1ef4729",
+      "protectedRecipeSha256": "2f77a28e90fca1279e82aeccd17183e641a3f652dc9beeae6d8876ea947fda46",
+      "note": "asperges sans parage ni précuisson, petits pois sans état et graisse absente. Pain inclus sous les œufs puis servi à côté sans partage ; parmesan non affecté clairement à la garniture. Ne pas faire cuire ensemble tous les ingrédients crus pendant les seules minutes des œufs."
+    },
+    {
+      "id": "ge-omelette-brocoli-cheddar",
+      "status": "blocked",
+      "sourceHash": "384afa392c5540622f487a50c3ece453dee79ba3425e8091e80769a1b9c9b19b",
+      "reviewedHash": "384afa392c5540622f487a50c3ece453dee79ba3425e8091e80769a1b9c9b19b",
+      "protectedRecipeSha256": "fadb6e509b497524b17bff6aa09a8804ab1b8ae74e2ff3543aaf3d4eb4a455ff",
+      "note": "graisse absente, brocoli et pommes de terre sans découpe ni précuisson. La préparation séparée ne dit pas quand ajouter le cheddar. Retrouver une garniture tendre avant les œufs sans convertir l’omelette en gratin au fromage."
+    },
+    {
+      "id": "ge-omelette-epinards-ricotta",
+      "status": "blocked",
+      "sourceHash": "f84604a91bfd17c73a7d76d82d0578b1333c6bea4f08b59938d16fd9e99e2e18",
+      "reviewedHash": "f84604a91bfd17c73a7d76d82d0578b1333c6bea4f08b59938d16fd9e99e2e18",
+      "protectedRecipeSha256": "6840f0d2fc5ea7e78c21d112330100a1ab8f4b3b88113ad326a29bd8f0deeadf",
+      "note": "pain grillé inclus sous les œufs puis servi à côté sans partage ; cuisson des épinards et emploi de la ricotta indéfinis. Graisse absente. Ne pas supprimer le pain de la garniture ou réinventer une farce froide sans retrouver la préparation voulue."
+    },
+    {
+      "id": "ge-omelette-ratatouille-mozzarella",
+      "status": "blocked",
+      "sourceHash": "dc2f68a027aa9b4f875475901d4837435b635f9c51a86e7c58cdb51cf07d28d8",
+      "reviewedHash": "dc2f68a027aa9b4f875475901d4837435b635f9c51a86e7c58cdb51cf07d28d8",
+      "protectedRecipeSha256": "3383ef9fa0f39799a72a8c02160a1a4cf800459ac53d9dc20371f6bdfc5d55a5",
+      "note": "ratatouille demandée préparée sans protocole à partir de courgette, aubergine et tomates crues ; graisse absente. Pain inclus sous les œufs puis au service, mozzarella sans égouttage. Ne pas traiter les légumes comme une ratatouille déjà cuite ni inventer leur mijotage."
+    },
+    {
+      "id": "ge-omelette-courge-comte",
+      "status": "blocked",
+      "sourceHash": "917d0293b8ef3a516e20a35012c128c2498e930dc7e70d60f7ad5db9b56187f4",
+      "reviewedHash": "917d0293b8ef3a516e20a35012c128c2498e930dc7e70d60f7ad5db9b56187f4",
+      "protectedRecipeSha256": "afb948cfcc3d2f4d6d389621b3b3849e73c467a5a4839dda2c1d6a59824ec89e",
+      "note": "graisse absente ; courge et pommes de terre sans découpe ni précuisson, comté sans moment d’ajout. Les seules huit à dix minutes concernent les œufs. Ne pas remplacer les légumes par des restes cuits ou choisir une cuisson vapeur non sourcée."
+    },
+    {
+      "id": "ge-omelette-pommes-oignons-salade",
+      "status": "blocked",
+      "sourceHash": "438d0d2475c2ae0b07482a255d5c2d459f757897e85ec421d99578095f09cdbf",
+      "reviewedHash": "438d0d2475c2ae0b07482a255d5c2d459f757897e85ec421d99578095f09cdbf",
+      "protectedRecipeSha256": "a6f64ac9f27369906167b6c8720e97870599c9a2a32495234c03b6459f4cd937",
+      "note": "salade verte incluse sous les œufs puis servie avec l’omelette sans partage. Pommes de terre/oignons sans découpe ni cuisson, graisse absente et assaisonnement de salade non défini. Ne pas cuire la salade ou inventer une vinaigrette pour résoudre la phrase générique."
+    },
+    {
+      "id": "ge-soupe-poireaux-jambon",
+      "status": "blocked",
+      "sourceHash": "7562170fcd6d72d84481ecdfc2ddb757ef7a02b5ab730362beb773ad74a41c5b",
+      "reviewedHash": "7562170fcd6d72d84481ecdfc2ddb757ef7a02b5ab730362beb773ad74a41c5b",
+      "protectedRecipeSha256": "03377180f264f68c3238dd4f71f01904575527903d26aba93b0f7bee7573173b",
+      "note": "tartines déjà garnies de jambon/fromage à griller sans appareil, durée ni intensité : ne pas les placer dans un grille-pain à fentes. Découpe des légumes et usage explicite de l’oignon à préciser ; préserver les légumes directement frémis dans le bouillon, sans ajouter de suage."
+    },
+    {
+      "id": "ge-soupe-poireaux-oeufs",
+      "status": "blocked",
+      "sourceHash": "c6603d1b635f31e606776223b40327fd64b5d68b4d98b70db2820d78c30f4020",
+      "reviewedHash": "c6603d1b635f31e606776223b40327fd64b5d68b4d98b70db2820d78c30f4020",
+      "protectedRecipeSha256": "8abc7b64c4dffc4686d9a5e79ef8bbd614af5f0e4145f6dfe05b6af5af6252a4",
+      "note": "départ de cuisson et calibre des œufs mollets non définis pour six minutes ; refroidissement avant écalage et grillage du pain non expliqués. Découpe des légumes et usage de l’oignon à préciser. Garder la cuisson au bouillon sans ajout de graisse."
+    },
+    {
+      "id": "ge-soupe-poireaux-poulet",
+      "status": "corrected",
+      "sourceHash": "f2e1d8bfcbb6c6783bcd04e496c1a5d44a4298adb1c05fde53eb551eca3828a7",
+      "reviewedHash": "a3afbfed4c2217f454e33cdcace6700ef5bfcd36c8924bedb8930c275e88f601",
+      "protectedRecipeSha256": "9328cf3ca41beb810875e784b32ec7106965f3cd3255d8bd09ca9e2fd972c29a",
+      "beforeSteps": [
+        "Couper les ingrédients de la soupe poireaux et pommes de terre, ajouter le bouillon et cuire 22 minutes à petits frémissements. Mixer selon la texture souhaitée.",
+        "Cuire le riz 10 minutes, réchauffer le poulet effiloché dans la soupe puis servir avec le riz et le persil.",
+        "Servir la soupe poireaux et pommes de terre bien chaude avec poulet effiloché et riz aux herbes."
+      ],
+      "note": "Préparation des trois légumes explicitée, sans suage ajouté. Bouillon lié à la liste ; riz au paquet à la place des dix minutes arbitraires. Poulet déjà cuit réchauffé après le mixage facultatif, persil au service. Découpes indicatives et organisation proposées sans changer la recette."
+    },
+    {
+      "id": "ge-soupe-tomate-lentilles-jambon",
+      "status": "blocked",
+      "sourceHash": "70bfeb6fbd9a8abb912588993018272991a4e759bd20cd80df43241f748f1c4d",
+      "reviewedHash": "70bfeb6fbd9a8abb912588993018272991a4e759bd20cd80df43241f748f1c4d",
+      "protectedRecipeSha256": "8cbff3a1bed0ff08f53f022a89f2eef1b3408b9413159b3444d436b1b9b397f8",
+      "note": "tartines jambon/fromage à griller sans appareil ni protocole ; carottes non découpées explicitement et lentilles à rincer non précisées. La consigne de couper les ingrédients ne convient pas au coulis. Ne pas inventer une cuisson du pain garni au grille-pain à fentes."
+    },
+    {
+      "id": "ge-soupe-tomate-lentilles-oeufs",
+      "status": "blocked",
+      "sourceHash": "caff7dff158e0090d82e331816940a4f6adbde7ad060e518dda2c62969e4790b",
+      "reviewedHash": "caff7dff158e0090d82e331816940a4f6adbde7ad060e518dda2c62969e4790b",
+      "protectedRecipeSha256": "1d52a078c0bf709707e2cf88bd29fc721be45719d644becfe8f9b2a2b1960bb1",
+      "note": "œufs mollets sans départ de cuisson ou calibre pour six minutes, pain à griller sans protocole. Carottes, rinçage des lentilles et ajout du coulis non explicités. Préserver la soupe directement au bouillon sans ajouter le suage d’une autre recette."
+    },
+    {
+      "id": "ge-soupe-tomate-lentilles-poulet",
+      "status": "corrected",
+      "sourceHash": "20be61ab835e6b8e755d8580c35cc3c62bfbb22869d1febf7ecaceeeed3e9265",
+      "reviewedHash": "18caead979c798789a1fbbb86cecdf3bde8591bb14ae5907aeb84e98badac436",
+      "protectedRecipeSha256": "25dc4ec252f93048676f9927ed1b3cd942e50ee4ac5655cda10d7e67b643432e",
+      "beforeSteps": [
+        "Couper les ingrédients de la soupe tomate et lentilles corail, ajouter le bouillon et cuire 20 minutes à petits frémissements. Mixer selon la texture souhaitée.",
+        "Cuire le riz 10 minutes, réchauffer le poulet effiloché dans la soupe puis servir avec le riz et le persil.",
+        "Servir la soupe tomate et lentilles corail bien chaude avec poulet effiloché et riz aux herbes."
+      ],
+      "note": "Carottes, rinçage des lentilles et coulis explicités individuellement. Bouillon et tomate mesurés dynamiquement ; frémissement de vingt minutes conservé sans suage ou coco importés d’une autre recette. Riz au paquet, poulet cuit réchauffé après mixage facultatif et persil avec l’accompagnement."
+    },
+    {
+      "id": "ge-soupe-courge-carotte-jambon",
+      "status": "blocked",
+      "sourceHash": "be48806f76bf499226941c731f648b555ba140686f3910b9a9c88efc5a6b5974",
+      "reviewedHash": "be48806f76bf499226941c731f648b555ba140686f3910b9a9c88efc5a6b5974",
+      "protectedRecipeSha256": "bfd7028822281ca7f2492f000641ea1cebe489302f8b06b2b1057e662de14160",
+      "note": "tartines garnies à griller sans mode ni durée ; courge sans préparation ou découpe, oignon non nommé dans l’étape générique. Ne pas introduire un rôtissage de courge ni un suage absent de cette soupe au bouillon. Appareil de grillage du pain garni à retrouver."
+    },
+    {
+      "id": "ge-soupe-courge-carotte-oeufs",
+      "status": "blocked",
+      "sourceHash": "5d59c043df53d00fa0abcda1c74b0e09c04003e81fbde6f9604280cf264d82fa",
+      "reviewedHash": "5d59c043df53d00fa0abcda1c74b0e09c04003e81fbde6f9604280cf264d82fa",
+      "protectedRecipeSha256": "249c4218f5863be6ab9285970f8e373e9ef03d1e11e08147a8a956f92e8dff8d",
+      "note": "œufs mollets sans calibre ou départ de cuisson, refroidissement non expliqué et pain sans protocole de grillage. Découpe de courge/carottes et usage de l’oignon absents des gestes explicites. Conserver les vingt-cinq minutes de soupe au bouillon sans rôtissage ajouté."
+    },
+    {
+      "id": "ge-soupe-courge-carotte-poulet",
+      "status": "corrected",
+      "sourceHash": "763bc1afaf02f8c81aadc8094a3c0a5b94bee59c55c56ffaf5977cf1aced74f1",
+      "reviewedHash": "62ae4c617902bf430aad009d72fee6865b8011990a46572de1bc02ddec187929",
+      "protectedRecipeSha256": "f2f275f49044bd704bfb0459c0858a16f2cb753bfcd2ddae892a41e8c0ad929b",
+      "beforeSteps": [
+        "Couper les ingrédients de la soupe courge et carottes, ajouter le bouillon et cuire 25 minutes à petits frémissements. Mixer selon la texture souhaitée.",
+        "Cuire le riz 10 minutes, réchauffer le poulet effiloché dans la soupe puis servir avec le riz et le persil.",
+        "Servir la soupe courge et carottes bien chaude avec poulet effiloché et riz aux herbes."
+      ],
+      "note": "Courge, carottes et oignon préparés pour le frémissement source sans suage ni rôtissage. Quantité de bouillon liée à la liste ; riz selon produit et réchauffage du poulet cuit après mixage facultatif. Pas de crème ou de liquide supplémentaire inventé."
+    },
+    {
+      "id": "ge-soupe-legumes-haricots-jambon",
+      "status": "blocked",
+      "sourceHash": "adc795c5ffa7724db41eff621921ab4e2981800c2cbd2c1d18f7ab5bc286959f",
+      "reviewedHash": "adc795c5ffa7724db41eff621921ab4e2981800c2cbd2c1d18f7ab5bc286959f",
+      "protectedRecipeSha256": "68af5b88d21e6464b0679cd92830e7dbf5d2d5def1da873d6dc0fdfdc3538438",
+      "note": "pain déjà garni de jambon/fromage à griller sans appareil ni durée ; rinçage/égouttage des haricots en boîte et découpe des légumes non expliqués. Ne pas remplacer les haricots cuits par des secs ni utiliser un grille-pain à fentes pour ces tartines garnies."
+    },
+    {
+      "id": "ge-soupe-legumes-haricots-oeufs",
+      "status": "blocked",
+      "sourceHash": "edfef5b5cd77794a750419ff00d8192531e61487244a2946e4e2347fc67da8a7",
+      "reviewedHash": "edfef5b5cd77794a750419ff00d8192531e61487244a2946e4e2347fc67da8a7",
+      "protectedRecipeSha256": "bb02478609f48e2ec18c4ce9b4454e2246c72dc3c0246020ccb011b20c24cc70",
+      "note": "six minutes des œufs mollets sans calibre/départ, refroidissement et grillage du pain non définis. Haricots en boîte à égoutter, carottes/poireau sans découpe précise. Préserver la cuisson source au bouillon sans transformer en soupe de haricots secs."
+    },
+    {
+      "id": "ge-soupe-legumes-haricots-poulet",
+      "status": "corrected",
+      "sourceHash": "5c2f87155228ee7bba93dbe043b624797546d97ee1edee54df97401abf531842",
+      "reviewedHash": "dd592a6bcfd3a420f3f1bc0bab6b21483c3d97d79296f4f335b6abe1576920ab",
+      "protectedRecipeSha256": "e41a3bcdeab802eabc29d87068299ddec4541f05e401cbb2e013574a43ae2fcd",
+      "beforeSteps": [
+        "Couper les ingrédients de la soupe légumes et haricots blancs, ajouter le bouillon et cuire 24 minutes à petits frémissements. Mixer selon la texture souhaitée.",
+        "Cuire le riz 10 minutes, réchauffer le poulet effiloché dans la soupe puis servir avec le riz et le persil.",
+        "Servir la soupe légumes et haricots blancs bien chaude avec poulet effiloché et riz aux herbes."
+      ],
+      "note": "Haricots explicitement en boîte rincés/égouttés, légumes préparés et frémissement source conservé. Pas de trempage de haricots secs ajouté. Bouillon dynamique, riz au paquet, poulet déjà cuit réchauffé après mixage facultatif ; persil affecté au riz."
+    },
+    {
+      "id": "ge-soupe-courgette-petits-pois-jambon",
+      "status": "blocked",
+      "sourceHash": "6c5f7fdcfddfafb9dad4de023b0feb54bb34548b496352508f7e8cbe069746d7",
+      "reviewedHash": "6c5f7fdcfddfafb9dad4de023b0feb54bb34548b496352508f7e8cbe069746d7",
+      "protectedRecipeSha256": "b03e90c9f1d5b4b79dbff8f59f8de5873bf8b837d55f7dacf6e5e939210ff5eb",
+      "note": "petits pois sans état frais/surgelés/cuits ; pommes de terre et oignon non préparés explicitement. Tartines déjà garnies à griller sans appareil ou durée. Ne pas employer un grille-pain à fentes avec fromage/jambon ni ajouter une matière grasse à la soupe."
+    },
+    {
+      "id": "ge-soupe-courgette-petits-pois-oeufs",
+      "status": "blocked",
+      "sourceHash": "33762d0f8f7fd3e6cc2fdb724cfa3b1d7d233e0d55303256efe9e934db22fcfb",
+      "reviewedHash": "33762d0f8f7fd3e6cc2fdb724cfa3b1d7d233e0d55303256efe9e934db22fcfb",
+      "protectedRecipeSha256": "4bb56858cfc32e6d75f92184f3782da88d5f536bca0d4162501879f93c32a005",
+      "note": "état des petits pois absent, pommes de terre/oignon sans préparation explicite. Six minutes des œufs sans calibre ou départ de cuisson, refroidissement et grillage non expliqués. Retrouver les produits et l’accompagnement sans remplacer le frémissement source."
+    },
+    {
+      "id": "ge-soupe-courgette-petits-pois-poulet",
+      "status": "blocked",
+      "sourceHash": "94c2683b45c3d864fb8adf4e64370228fc3899f0473ad694d446848c1dde158a",
+      "reviewedHash": "94c2683b45c3d864fb8adf4e64370228fc3899f0473ad694d446848c1dde158a",
+      "protectedRecipeSha256": "35d2f1f12b9ed61b6e9b2148f8d41ea6a4e87c834b3e73cc778a45283c343ff9",
+      "note": "état frais/surgelé/cuit des petits pois absent et préparation des pommes de terre/oignon non explicitée. Riz fixé à dix minutes sans produit ; réchauffage du poulet cuit sans contrôle. Identifier les petits pois avant de valider les vingt minutes de soupe ; ne pas remplacer le poulet cuit par du cru."
+    },
+    {
+      "id": "ge-soupe-chou-fleur-poireau-jambon",
+      "status": "blocked",
+      "sourceHash": "3c4e32d8ed2c35b5589ef899cab1d2e7c2e379aad3477501e6b9c4bcde84a7a2",
+      "reviewedHash": "3c4e32d8ed2c35b5589ef899cab1d2e7c2e379aad3477501e6b9c4bcde84a7a2",
+      "protectedRecipeSha256": "afd05f3ec7bdd076321204fd8cdc68a19ff54b3e70d913ea100302b2689366f7",
+      "note": "muscade listée mais sans usage explicite ; chou-fleur entier sans calibre, découpe et volume du récipient à préciser pour le bouillon indiqué. Tartines garnies à griller sans appareil ni durée. Ne pas ajouter du bouillon arbitrairement ou utiliser un grille-pain à fentes pour le pain garni."
+    },
+    {
+      "id": "ge-soupe-chou-fleur-poireau-oeufs",
+      "status": "blocked",
+      "sourceHash": "ba59f689b947c8f0377fda8d8a2ae1a6ea919c51af8293cad8b621137a592669",
+      "reviewedHash": "ba59f689b947c8f0377fda8d8a2ae1a6ea919c51af8293cad8b621137a592669",
+      "protectedRecipeSha256": "d028f34dc4200a77f3b0e311b22b73b6c9d6e781c1f356feaa352fde0b073166",
+      "note": "muscade non affectée dans la préparation, chou-fleur entier sans calibre ni découpe. Six minutes des œufs mollets sans départ/calibre, refroidissement et grillage du pain non expliqués. Ne pas augmenter le bouillon ou réécrire l’accompagnement en œufs durs par défaut."
+    },
+    {
+      "id": "ge-soupe-chou-fleur-poireau-poulet",
+      "status": "blocked",
+      "sourceHash": "a2d2e5153e8fc3efebd747b8324c341b13a5f5808a135c7293dd4cc4754dd0d8",
+      "reviewedHash": "a2d2e5153e8fc3efebd747b8324c341b13a5f5808a135c7293dd4cc4754dd0d8",
+      "protectedRecipeSha256": "b12eb55ad350bec610f0453e5485b766548776d97bd02cc6e4fb93b790846128",
+      "note": "muscade listée mais sans emploi explicite ; chou-fleur entier sans calibre ni découpe pour le bouillon indiqué. Riz à dix minutes sans notice et poulet cuit réchauffé sans contrôle. Retrouver le protocole avant de choisir un supplément de liquide ou une texture supposée."
+    },
+    {
+      "id": "v31e-bouillon-nouilles-poulet",
+      "status": "blocked",
+      "sourceHash": "bd5195477d01ae6d674ca5825a18b9908d83de1b7fd2b0185e4317e3b9703b89",
+      "reviewedHash": "bd5195477d01ae6d674ca5825a18b9908d83de1b7fd2b0185e4317e3b9703b89",
+      "protectedRecipeSha256": "1e7cb1736a125c9ff18deffe35e99d8b46dbebe3b10b8b8b21cba369c5d21575",
+      "note": "graisse pour fondre poireaux/échalote absente ; deux ramequins et deux œufs par récipient figés malgré les convives adaptables. Taille des ramequins et grillage du pain non définis ; cuisson des jaunes souples à vérifier. Préserver l’identifiant historique, désormais affecté à ces œufs cocotte."
+    },
+    {
+      "id": "v31e-bouillon-nouilles-dinde",
+      "status": "blocked",
+      "sourceHash": "4ce1e364f20b96a4751e1495059658e5ecf9e430248b43e91dd216a3a46ce04b",
+      "reviewedHash": "4ce1e364f20b96a4751e1495059658e5ecf9e430248b43e91dd216a3a46ce04b",
+      "protectedRecipeSha256": "0f131cd3498044fd8fd34c3a2e039639d1bc47cd3d1171c5d14fafd610796cc5",
+      "note": "graisse de suage des tomates absente ; deux ramequins/deux œufs par ramequin figés et volume inconnu. Salade de concombre listée comme préparation sans composition, pain à griller sans protocole. Ne pas remplacer les tomates revenues par un simple montage cru."
+    },
+    {
+      "id": "v31e-bouillon-nouilles-filet-mignon",
+      "status": "blocked",
+      "sourceHash": "affe73929b1453c6f662fe969074f6cafcad1e6733f177f1fe2c5314f62d8d49",
+      "reviewedHash": "affe73929b1453c6f662fe969074f6cafcad1e6733f177f1fe2c5314f62d8d49",
+      "protectedRecipeSha256": "f56bdae9628b1b6b1e4d0cba0044b11906d988ce0fcd36c38b83937ac8fcf429",
+      "note": "matière grasse pour faire revenir oignon, poivron et épices absente ; découpes non précisées et quatre puits figés. Pain grillé sans protocole, cuisson des jaunes non indiquée. Conserver la réduction de tomate et les œufs couverts, sans utiliser la tomate à la place d’une graisse de suage."
+    },
+    {
+      "id": "v31e-bouillon-nouilles-cotes-porc",
+      "status": "blocked",
+      "sourceHash": "1f67ed6524b5b42a91266b1dcd7d88ee56ba543da8af78f1647b50d308861d9e",
+      "reviewedHash": "1f67ed6524b5b42a91266b1dcd7d88ee56ba543da8af78f1647b50d308861d9e",
+      "protectedRecipeSha256": "684504493159b302856d430ed8e5ef050bb7e3d43ee41ec9b1e8c1fae2285366",
+      "note": "matière grasse de suage et poivre de finition absents de la liste. Petits pois sans état, quatre puits figés et cuisson des œufs seulement dite couvrir cinq minutes. Ne pas verser le bouillon avant le suage pour compenser une graisse manquante."
+    },
+    {
+      "id": "v31e-bouillon-nouilles-boeuf",
+      "status": "blocked",
+      "sourceHash": "ecd012153f1412595c7bff4de7531e882f0e765fa027ef467d36f0753a1c8108",
+      "reviewedHash": "ecd012153f1412595c7bff4de7531e882f0e765fa027ef467d36f0753a1c8108",
+      "protectedRecipeSha256": "66d191e0fc348c120604d7843e74f138426131eb4a2c894a40bf964725ce8f85",
+      "note": "graisse pour faire tomber les épinards et cuire l’omelette absente, ciboulette listée mais oubliée. Grande poêle sans dimension pour cinq œufs, roulage en six minutes et grillage du pain à préciser. Préserver le rouleau farci, sans transformer en œufs brouillés ou ajouter une huile arbitraire."
+    },
+    {
+      "id": "v31e-bouillon-nouilles-saumon",
+      "status": "corrected",
+      "sourceHash": "b7575f6f5a7bd85e310f97e8364f786be8a8590ced754af5c5eeb476da6fed08",
+      "reviewedHash": "640b992b142334d0a906239c9f9649b2c8c6d0518c2f7b307c82fc98c81bf303",
+      "protectedRecipeSha256": "b2e9061a1ee044fccfb1a73e79cd28b30b47a410d1dd24908978e5fa2a8758e9",
+      "beforeSteps": [
+        "Râper la courgette et la faire revenir 6 minutes avec l’échalote.",
+        "Battre les œufs avec le parmesan et le basilic, puis verser sur la courgette.",
+        "Cuire doucement 6 à 8 minutes en repliant l’omelette lorsqu’elle est presque prise.",
+        "Servir avec les tomates assaisonnées et le pain."
+      ],
+      "note": "Huile d’olive déjà listée affectée au film de cuisson et aux tomates, sans dose numérique inventée. Courgette râpée, échalote, parmesan et basilic explicités ; repliage de l’omelette conservé et cuisson contrôlée à cœur. Pain non grillé dans la source conservé tel quel."
+    },
+    {
+      "id": "v31e-bouillon-nouilles-poisson-blanc",
+      "status": "corrected",
+      "sourceHash": "6d8d99cd18e2046ddca808ee595e964f217f4fc6a8e8f9cb2c1fb7dad900f3c3",
+      "reviewedHash": "74c5d630afc10df9cb18bec2c002af291578e6805d5f7b62aaff5b8f10c95bde",
+      "protectedRecipeSha256": "5915922d74d9e71460cdde292b84b1b5a6916e20c7f88f15eaed92af436aeae7",
+      "beforeSteps": [
+        "Couper les pommes de terre en petits dés et les précuire 8 minutes dans l’eau.",
+        "Poêler oignon et poivrons 7 minutes, puis ajouter les pommes de terre.",
+        "Verser dans un plat, couvrir des œufs battus avec origan et feta.",
+        "Cuire 15 minutes à 185 °C et servir tiède avec la salade."
+      ],
+      "note": "Précuisson à l’eau et poêlage séparés conservés avant le four à 185 °C. Huile déjà listée affectée au poêlage ; pommes de terre découpées et égouttées, œufs/feta dynamiques, origan utilisé, salade lavée sans vinaigrette inventée. Aucun changement d’identifiant ou de portions."
+    },
+    {
+      "id": "v31e-bouillon-nouilles-crevettes",
+      "status": "blocked",
+      "sourceHash": "30ebcf1cd61675f0d2f0c7f23a38c9a26215ab8f223ef81f077fd827af419242",
+      "reviewedHash": "30ebcf1cd61675f0d2f0c7f23a38c9a26215ab8f223ef81f077fd827af419242",
+      "protectedRecipeSha256": "cd15a7333b108f2251b45c6b7a94501681481484b3d293a61a5e1ac0a6e24478",
+      "note": "huile demandée pour le plat mais absente, graisse de fondue échalote/épinards également non indiquée. Ricotta en cuillerées non partagées et épaisseur du plat non définie pour quinze minutes. Préserver les trois minutes de repos sans inventer une dose d’huile."
+    },
+    {
+      "id": "v31e-bouillon-nouilles-boulettes",
+      "status": "blocked",
+      "sourceHash": "d2d6bc3e44754e34a4d558c7a4632be1504ceac4b70595de85bfe48e66d3af96",
+      "reviewedHash": "d2d6bc3e44754e34a4d558c7a4632be1504ceac4b70595de85bfe48e66d3af96",
+      "protectedRecipeSha256": "0ed44565c38bba3dfd06e43dc50c6d34d168bbc4c17479a6979202034f85ad1a",
+      "note": "matière grasse pour poêler la courgette absente ; récipient et épaisseur de l’appareil non précisés pour vingt-cinq minutes au four. Préserver la précuisson de courgette et le clafoutis œufs/lait/farine, sans cuire les légumes directement dans le lait pour contourner la graisse manquante."
+    }
+  ]
+}

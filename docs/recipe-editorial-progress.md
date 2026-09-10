@@ -442,6 +442,18 @@ Révision activée automatiquement en navigateur `sha256:a86e8ae70a86f27f776d301
 
 **Cumul : 1 354 identifiants examinés, 378 corrigés, 966 bloqués, 10 conformes sans réécriture, 199 à examiner.** Zéro erreur éditoriale, 4 707 avertissements ; 2 388 rendus d’ingrédients réservés et 300 réserves visibles ajoutés. Les 24 commandes passent ; Livre et mode cuisine long inspectés après défilement aux trois formats simulés effectivement mesurés. Publication à consigner ; les autres recettes suivent.
 
+## Publication du lot 39
+
+`c1c1ed8979fbe1cbbfc73dc3a56ff1ce6603a19a` publié sur `main`. Tests `34427046492`, Pages `34427045257` et déploiement `6362900453` réussis. HTTPS 200 avec HSTS ; fichiers identiques au commit : index `7a55b916fa61276bf385f491188353b0d363fbd445823885dcf762b5df3fe5e7`, service worker `b165075a94070bdbd56fc2249f429b39e844550628566f4da7a085aea3ec1f4b`.
+
+Le navigateur conservait d’abord la révision 38 malgré le rechargement normal. Après la commande existante « Vérifier la mise à jour », révision effectivement chargée `sha256:308ed7746c0dff6d537c98a8bb6f64c8875461a92444541e92d25a3122edf3f3`. Salade pommes de terre/haricots aux œufs contrôlée à deux personnes : quatre œufs, 350 g de pommes de terre, 300 g de haricots, 70 g de comté ; réserve de la coquille/fromage visible et minuteur neuf minutes à son étape. Aucun cache ni donnée personnelle effacé ; mécanisme de mise à jour inchangé.
+
+## Lot 40 — cinquante salades, omelettes et soupes
+
+[Journal et décisions individuelles](recipe-editorial-batch-40.md). Six corrigées, quarante-quatre réservées, aucune conforme sans réécriture. Quatre soupes au poulet avec bouillon dynamique et riz au paquet ; omelette repliée et frittata avec précuissons séparées. Aucun ingrédient ajouté et aucun objet culinaire réservé modifié.
+
+**Cumul : 1 404 identifiants examinés, 384 corrigés, 1 010 bloqués, 10 conformes sans réécriture, 149 à examiner.** Zéro erreur éditoriale, 4 504 avertissements ; 590 minuteurs manuels et 14 166 rendus d’ingrédients corrigés/conformes. Ce lot ajoute 1 776 rendus réservés et 264 réserves visibles. Les 24 commandes passent et neuf vues Livre/Programme sont inspectées aux trois formats simulés. Publication à consigner ; les autres recettes suivent.
+
 ## Limites des vérifications
 
 Les tests de structure, quantité, minuteurs, stockage simulé et rendu ne sont pas des essais culinaires. Les formats iPhone/PWA sont simulés, sauf mention explicite d’un appareil physique. Le total de fiches à examiner ne doit jamais être remplacé par le nombre de fiches auxquelles le style commun a été appliqué.
