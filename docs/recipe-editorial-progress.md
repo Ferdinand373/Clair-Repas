@@ -466,6 +466,22 @@ Après « Vérifier la mise à jour », noyau effectivement chargé `sha256:8bc1
 
 **Cumul : 1 454 identifiants examinés, 393 corrigés, 1 051 bloqués, 10 conformes sans réécriture, 99 à examiner.** Zéro erreur éditoriale, 4 311 avertissements ; 604 minuteurs manuels et 14 598 rendus d’ingrédients corrigés/conformes. Ce lot ajoute 1 968 rendus réservés et 246 réserves visibles. Les 24 commandes passent ; neuf vues Livre/Programme aux trois formats simulés. Publication à consigner ; les autres recettes suivent.
 
+## Publication du lot 41
+
+`7b67d75db699b34e544322e0b80d956e3a4cf969` publié sur `main`. Tests `34428785899`, Pages `34428785331` et déploiement `6363176145` réussis. HTTPS 200 avec HSTS ; fichiers identiques au commit : index `255608e5c61f301f84fd3be56ba27fc40e0de895e4838b62337e6de541b4106a`, service worker `673b73f37f0707a52dfa386f91782666648cf18959ebb5a5c1183fbf73c03706`.
+
+Noyau effectivement chargé `sha256:2b6ed9a5cb3d4a4ad28861dc0fb9e64f0b6ab732375c1fb7938734b2f5c37ba6`. Soupe miso vérifiée en production à deux personnes : tofu 250 g, nouilles 120 g, champignons 200 g, bouillon 90 cl, miso et soja une cuillère à soupe chacun. Minuteur huit minutes sur les légumes, nouilles au paquet sans bouton fixe, dilution du miso dans le bouillon prélevé puis reversé hors feu. Aucun cache ni donnée personnelle effacé.
+
+## Lot 42 — dernier lot avant arrêt demandé
+
+[Journal, sources et décisions individuelles](recipe-editorial-batch-42.md). Cinquante recettes examinées : seize corrigées, trente-quatre réservées, aucune conforme sans réécriture. Wraps froids, tartines à l’Air Fryer, légumes garnis au four et pâtes aux techniques conservées. Eau de cuisson explicitement retrouvée dans les archives de six recettes, réintégrée pour calcul dynamique sans changer les courses. Les 1 503 objets culinaires hors lot et les trente-quatre réservés sont inchangés.
+
+**Cumul exact : 1 504 identifiants examinés sur 1 553 ; 409 corrigés, 10 conformes sans réécriture, 1 085 bloqués et 49 restant à examiner.** Les 24 commandes passent, zéro erreur éditoriale, 4 103 avertissements. Quantités à 1/2/3/4/5/8 personnes, convives indépendants, 629 minuteurs manuels cumulés, courses et données simulées vérifiés.
+
+**Arrêt explicite de l’utilisateur : ne commencer aucune autre recette ni aucun nouveau lot.** Le lot 43 n’est pas commencé. La reprise devra partir du `main` publié après ce lot et des 49 entrées `pending` de [l’inventaire par identifiant](recipe-editorial-inventory.json), dans son ordre actuel ; première entrée `v39-lasagnes-bolognaise`. Les 1 085 entrées `blocked` contiennent les raisons exactes à conserver. Les quatre réserves prioritaires du premier lot restent `a048`, `e92`, `e78`, `n88` ; `a038` a été corrigée au lot 02.
+
+La branche parallèle `shopping-v2-engine-test` reste propre et en avance d’un commit, `f21bad0c63b9dae514d0a85da34efd8453f0ce30`, non publié par ce chantier. Publication du lot 42 et contrôle final à consigner ci-dessous, puis aucune poursuite automatique.
+
 ## Limites des vérifications
 
 Les tests de structure, quantité, minuteurs, stockage simulé et rendu ne sont pas des essais culinaires. Les formats iPhone/PWA sont simulés, sauf mention explicite d’un appareil physique. Le total de fiches à examiner ne doit jamais être remplacé par le nombre de fiches auxquelles le style commun a été appliqué.

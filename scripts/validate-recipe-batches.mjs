@@ -3,11 +3,12 @@ import {readFileSync} from 'node:fs';
 import {dirname,resolve} from 'node:path';
 import {fileURLToPath} from 'node:url';
 import vm from 'node:vm';
+import {createRequire} from 'node:module';
 import {recipeSource} from './recipe-source.mjs';
 import {recipeHash} from './validate-recipe-editorial.mjs';
 const root=resolve(dirname(fileURLToPath(import.meta.url)),'..');
 const {code,recipes,editorial}=recipeSource(readFileSync(resolve(root,'index.html'),'utf8'));
-const batchNumbers=['02','03','04','05','06','07','08','09','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31','32','33','34','35','36','37','38','39','40','41'];
+const batchNumbers=['02','03','04','05','06','07','08','09','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31','32','33','34','35','36','37','38','39','40','41','42'];
 const fixture={recipes:batchNumbers.flatMap(number=>JSON.parse(readFileSync(resolve(root,`scripts/recipe-editorial-batch-${number}.fixture.json`),'utf8')).recipes)};
 const slice=(a,b)=>code.slice(code.indexOf(a),code.indexOf(b,code.indexOf(a)+a.length));
 const context={window:{},$:()=>({value:'8'}),MEAL_TYPES:['mid','eve'],recipeRole:r=>r.role||r.course||'dish',isFavorite:()=>false,recipeFeedbackHTML:()=>'',recipePersonalNoteHTML:()=>''};
@@ -579,7 +580,43 @@ Object.assign(ingredients,{
   'v31e-ragout-leger-tofu':['tofu ferme','nouilles','champignons','poireau','bouillon','miso doux','sauce soja','ciboule'],
   'v31e-pita-chaude-crevettes':['petites pâtes','œufs','carottes','poireau','courgette','bouillon','parmesan','persil']
 });
-assert.equal(fixture.recipes.length,1439);
+Object.assign(timers,{
+  'v31e-galette-sarrasin-filet-mignon':[[],[],[]],
+  'v31e-galette-sarrasin-cotes-porc':[[],[],[]],
+  'v31e-galette-sarrasin-boeuf':[[],[],[]],
+  'v31e-galette-sarrasin-tofu':[[],[],[7],[]],
+  'v31e-bowl-boulgour-poisson-blanc':[[],[],[]],
+  'v31e-bowl-boulgour-crevettes':[[],[],[8],[]],
+  'v31e-tartines-gratinees-falafels':[[],[],[],[25]],
+  'v31e-riz-croustillant-filet-mignon':[[10],[],[20],[3]],
+  'v31e-riz-croustillant-cotes-porc':[[],[],[14],[]],
+  'v31e-riz-croustillant-tofu':[[20],[],[10],[]],
+  'v39-spaghetti-bolognaise':[[],[7],[5],[30],[],[]],
+  'v39-spaghetti-aglio-olio':[[],[],[3],[2]],
+  'v39-spaghetti-tomate-basilic':[[],[1],[15],[],[1]],
+  'v39-cacio-e-pepe':[[],[],[1],[1],[]],
+  'v39-amatriciana':[[6],[15],[],[1]],
+  'v39-penne-arrabbiata':[[],[1],[15],[],[1]]
+});
+Object.assign(ingredients,{
+  'v31e-galette-sarrasin-filet-mignon':['wraps','saumon fumé','avocat','concombre','fromage frais','citron','salade','aneth'],
+  'v31e-galette-sarrasin-cotes-porc':['wraps','poulet déjà cuit','carottes','salade','yaourt nature','curry doux','pomme','citron'],
+  'v31e-galette-sarrasin-boeuf':['wraps','œufs déjà durs','jambon','tomates','fromage frais','salade','moutarde','ciboulette'],
+  'v31e-galette-sarrasin-tofu':['tranches de pain','poire','jambon cru','fromage bleu','noix','mâche','miel','poivrée'],
+  'v31e-bowl-boulgour-poisson-blanc':['bagels','poulet déjà cuit','avocat','concombre','tomates','fromage frais','citron','salade'],
+  'v31e-bowl-boulgour-crevettes':['pitas','coulis de tomate','mozzarella','champignons','poivron','salade verte','origan','basilic'],
+  'v31e-tartines-gratinees-falafels':['courgettes','jambon','mozzarella','tomates','œufs','lait','parmesan','basilic'],
+  'v31e-riz-croustillant-filet-mignon':['poivrons','quinoa déjà cuit','feta','tomates','oignon rouge','olives','salade verte','origan'],
+  'v31e-riz-croustillant-cotes-porc':['champignons','jambon','fromage frais','fromage râpé','échalote','salade','tomates','persil'],
+  'v31e-riz-croustillant-tofu':['aubergines','tomates','mozzarella','parmesan','roquette','ail','basilic','huile d’olive'],
+  'v39-spaghetti-bolognaise':['spaghetti','bœuf haché','tomates concassées','carotte','oignon','céleri','ail','huile d’olive','origan','parmesan','saler.*poivrer','eau'],
+  'v39-spaghetti-aglio-olio':['spaghetti','ail','huile d’olive','piment','persil','salée','eau'],
+  'v39-spaghetti-tomate-basilic':['spaghetti','tomates concassées','ail','huile d’olive','basilic','parmesan','saler.*poivrer','eau'],
+  'v39-cacio-e-pepe':['pâtes','pecorino','poivre noir concassé','salée','eau'],
+  'v39-amatriciana':['pâtes','guanciale ou la pancetta','tomates pelées','pecorino','piment','salée','eau'],
+  'v39-penne-arrabbiata':['penne','tomates concassées','ail','huile d’olive','piment','persil','saler','eau']
+});
+assert.equal(fixture.recipes.length,1489);
 let quantityChecks=0,timerCount=0;
 for(const record of fixture.recipes){
   const recipe=recipes.find(r=>r.id===record.id);
@@ -1604,6 +1641,46 @@ assert.match(recipes.find(r=>r.id==='v31e-pita-chaude-crevettes').p[3],/œufs en
 assert.match(editorial['v31e-quesadillas-cotes-porc'].reviewNote,/six minutes trente.*non prise en charge précisément/);
 assert.match(editorial['v31e-ragout-leger-poulet'].reviewNote,/sans température.*ni faire revenir les légumes dans le bouillon/);
 console.log(`✓ Batch 41: nine manual rewrites; ${reservedQuantityChecks41} original ingredient renders and 246 visible reservations; cooked weights, distinct faces, packet noodles and miso off heat preserved`);
+const batch42=JSON.parse(readFileSync(resolve(root,'scripts/recipe-editorial-batch-42.fixture.json'),'utf8')).recipes;
+assert.equal(batch42.length,50);assert.equal(batch42.filter(r=>r.status==='corrected').length,16);
+let reservedQuantityChecks42=0;
+for(const count of [1,2,3,4,5,8])for(const record of batch42.filter(r=>r.status==='blocked')){
+  const r=recipes.find(r=>r.id===record.id),output=context.recipeHTML(r,{people:count,dayIndex:1,mealType:'eve'});
+  assert.ok(output.includes(context.escapeHTML(editorial[record.id].reviewNote)));assert.doesNotMatch(output,/\{\{|undefined|NaN/);
+  for(const ingredient of r.i){
+    const q=ingredient.q==null?null:ingredient.q*count/(r.servings||2);
+    assert.ok(output.includes('>'+context.ingredientText(ingredient,q,count)+'</li>'));reservedQuantityChecks42++;
+  }
+  const attached=[...output.matchAll(/data-step-index="(\d+)" data-timer-minutes="(\d+)"/g)].map(([,step,min])=>[+step,+min]);
+  assert.deepEqual(attached,r.p.flatMap((step,index)=>Array.from(context.stepTimerDurations(step)).map(min=>[index,min])));
+}
+const cookingWater42={'v39-spaghetti-bolognaise':5,'v39-spaghetti-aglio-olio':10,'v39-spaghetti-tomate-basilic':5,'v39-cacio-e-pepe':19,'v39-amatriciana':5,'v39-penne-arrabbiata':5};
+const shopping42=createRequire(import.meta.url)(resolve(root,'shopping-v2-engine.js'));
+for(const [id,q] of Object.entries(cookingWater42)){
+  const r=recipes.find(r=>r.id===id),original=batch42.find(r=>r.id===id).beforeSteps.join(' ');
+  assert.deepEqual(r.i.at(-1),{q,u:'cl',n:'eau',k:'eau'});
+  assert.match(original,id==='v39-cacio-e-pepe'?/4 cl d’eau froide.*15 cl d’eau de cuisson.*8 cl d’eau de cuisson/:new RegExp(q+' cl d’eau de cuisson'));
+  for(const count of [1,2,3,4,5,8]){
+    const water=shopping42.buildDraft([r],{peopleCount:count}).filter(entry=>entry.canonicalName==='eau');
+    assert.equal(water.length,1);assert.equal(water[0].pantry,true);assert.equal(water[0].selected,false,'tap/cooking water is not automatically selected for purchase');
+  }
+}
+const cacio42=recipes.find(r=>r.id==='v39-cacio-e-pepe');
+const aglio42=recipes.find(r=>r.id==='v39-spaghetti-aglio-olio');
+const basil42=recipes.find(r=>r.id==='v39-spaghetti-tomate-basilic');
+for(const count of [1,2,3,4,5,8]){
+  for(const [step,q] of [[0,4],[1,15],[2,8]])assert.ok(context.recipeStepText(cacio42.p[step],cacio42,count).includes(context.formatQty(q*count/2)+' cl'));
+  assert.ok(context.recipeStepText(aglio42.p[3],aglio42,count).includes(context.formatQty(5*count/2)+' cl de l’eau réservée'));
+  assert.ok(context.recipeStepText(basil42.p[0],basil42,count).includes(context.formatQty(6*count/2)+' feuilles'));
+}
+assert.match(cacio42.p[3],/Retirer complètement la poêle du feu/);assert.match(cacio42.p[4],/Ne pas remettre sur le feu/);
+assert.match(recipes.find(r=>r.id==='v39-amatriciana').p[0],/Avant cuisson.*\{\{qty:1:0.5\}\}.*Réserver une des deux portions/);
+assert.match(recipes.find(r=>r.id==='v31e-bowl-boulgour-crevettes').p[2],/Air Fryer à 180 °C.*7 à 8 minutes/);
+assert.match(recipes.find(r=>r.id==='v31e-tartines-gratinees-falafels').p[3],/25 minutes à 190 °C.*74 °C/);
+assert.match(editorial['v39-spaghetti-carbonara'].reviewNote,/hors feu.*sécurité des œufs/);
+assert.match(editorial['v31e-bowl-boulgour-tofu'].reviewNote,/six minutes trente/);
+assert.deepEqual(Array.from(context.stepTimerDurations(recipes.find(r=>r.id==='v39-linguine-vongole').p[1])),[]);
+console.log(`✓ Batch 42: sixteen manual rewrites, source-restored scaled water not auto-selected for shopping; ${reservedQuantityChecks42} reserved ingredient renders and 204 visible reservations; 1/2/3/4/5/8 people and original methods preserved`);
 const corrected=fixture.recipes.filter(r=>r.status==='corrected').length;
 const unchanged=fixture.recipes.filter(r=>r.status==='unchanged').length;
 console.log(`✓ Batches ${batchNumbers.join('/')}: ${fixture.recipes.length} individual review records, ${corrected} corrected, ${unchanged} unchanged, ${fixture.recipes.length-corrected-unchanged} blocked with original content preserved; ${timerCount} manually checked timers`);

@@ -1,0 +1,506 @@
+{
+  "baselineCommit": "7b67d75db699b34e544322e0b80d956e3a4cf969",
+  "batch": "42",
+  "recipes": [
+    {
+      "id": "v31e-pita-chaude-tofu",
+      "status": "blocked",
+      "sourceHash": "e6e490cccbee1267c93345e2f09fe8c4f79f3d7a04b3180cc1a67cb6c9ee9970",
+      "reviewedHash": "e6e490cccbee1267c93345e2f09fe8c4f79f3d7a04b3180cc1a67cb6c9ee9970",
+      "protectedRecipeSha256": "4488ac66d154ce4788f96823f237ff628a7c4f0abea199e2a9cc4820779f8aac",
+      "note": "graisse éventuelle de rôtissage non précisée et grill des tartines sans appareil, température ni distance. Ne pas remplacer les tomates rôties par une cuisson dans le bouillon ; retrouver aussi l’organisation des tartines pendant le réchauffage."
+    },
+    {
+      "id": "v31e-galette-sarrasin-poulet",
+      "status": "blocked",
+      "sourceHash": "14ebf7d3bd21faf87b944d39d6b7bfe95f579145c4c349a99111f729f54ef58e",
+      "reviewedHash": "14ebf7d3bd21faf87b944d39d6b7bfe95f579145c4c349a99111f729f54ef58e",
+      "protectedRecipeSha256": "4b9f8dca232974d7fb7b3d85e7adf3b85cd498067d7683b35fd07e9705b12036",
+      "note": "assaisonnement du poulet et graisse de plancha non listés ; concombre partagé sans quantités calculées. Épaisseur de volaille et contrôle à cœur à préciser, sans transformer le poulet grillé en viande pochée."
+    },
+    {
+      "id": "v31e-galette-sarrasin-dinde",
+      "status": "blocked",
+      "sourceHash": "2e2cbf8aa55cff2950be96ee9020f1212f9087b754a5e9a8e6b82dda9d61b02e",
+      "reviewedHash": "2e2cbf8aa55cff2950be96ee9020f1212f9087b754a5e9a8e6b82dda9d61b02e",
+      "protectedRecipeSha256": "08a784878d88c5ee0b891d7790efd6911434851bc1c77730de2c1d7f1b0f5709",
+      "note": "état des falafels non précisé, deux cuillerées d’eau pour le tahini sans unité et absentes de la liste ; réchauffage des pitas sans appareil. Ne pas inventer une dose d’eau ni une cuisson universelle pour un produit non identifié."
+    },
+    {
+      "id": "v31e-galette-sarrasin-saumon",
+      "status": "blocked",
+      "sourceHash": "2f62b51cd2915bff2026f043940502314291d772a879a364f636895beef52b8d",
+      "reviewedHash": "2f62b51cd2915bff2026f043940502314291d772a879a364f636895beef52b8d",
+      "protectedRecipeSha256": "baad30845e713869210a7eb2f410877fb48ce65f4bdfb8af7acde6a3fe497838",
+      "note": "graisse du poêlage absente et paprika jamais utilisé ; assemblage figé sur deux tortillas de base. Préserver la précuisson séparée des champignons et des épinards, puis la quesadilla dorée sur deux faces."
+    },
+    {
+      "id": "v31e-galette-sarrasin-poisson-blanc",
+      "status": "blocked",
+      "sourceHash": "a190ae446c3eee5233fc92b30855fd84d64ec9c680e61fe62d1975e2b051ddfd",
+      "reviewedHash": "a190ae446c3eee5233fc92b30855fd84d64ec9c680e61fe62d1975e2b051ddfd",
+      "protectedRecipeSha256": "6551aceda679493814bde3babde40758af00fb6f81b68a8c877fd36b691acb2b",
+      "note": "graisse de poêlage des légumes absente, paprika listé mais non affecté. Poulet déjà cuit à réchauffer, montage figé sur deux tortillas ; ne pas faire cuire le poulet comme s’il était cru."
+    },
+    {
+      "id": "v31e-galette-sarrasin-crevettes",
+      "status": "blocked",
+      "sourceHash": "b60624581e55b58fe9006d1cd10a2ecaaa8d43eab9915f3d33457a341aa6d757",
+      "reviewedHash": "b60624581e55b58fe9006d1cd10a2ecaaa8d43eab9915f3d33457a341aa6d757",
+      "protectedRecipeSha256": "961928ea69f5636a8e1b68ddab19ed2979e12890a1cb1517d1ebb59fc7f35fab",
+      "note": "graisse de plancha et épaisseur du poisson non définies ; citron partagé entre chou et service sans quantités calculées. Quatre minutes par face ne garantissent pas seules la cuisson ; conserver poisson grillé et chou cru."
+    },
+    {
+      "id": "v31e-galette-sarrasin-boulettes",
+      "status": "blocked",
+      "sourceHash": "cd8b1d29a2880e5088d35ab28e259d4aa9275c777bf5864667fe040eebcd3a7e",
+      "reviewedHash": "cd8b1d29a2880e5088d35ab28e259d4aa9275c777bf5864667fe040eebcd3a7e",
+      "protectedRecipeSha256": "b2349c9d0a2987b796b7b87d19870bd1c0eef2aa1c06263dbb9af5ba25148373",
+      "note": "deux cuillerées d’eau demandées mais absentes de la liste et sans unité ; conserve et égouttage à préciser avant calcul. Conserver les haricots réchauffés au cumin et la garniture crue, sans dose d’huile inventée."
+    },
+    {
+      "id": "v31e-bowl-boulgour-poulet",
+      "status": "blocked",
+      "sourceHash": "d4971a74d2924d5dd30facf03167fff77756090985b30d63b5d2c0b8e8667728",
+      "reviewedHash": "d4971a74d2924d5dd30facf03167fff77756090985b30d63b5d2c0b8e8667728",
+      "protectedRecipeSha256": "d4d011db5fd5933934651602744a7e145796459c499b4f69ee414b45518c6489",
+      "note": "graisse de poêlage des champignons absente. Ne pas remplacer les champignons poêlés avec ail et échalote par des champignons crus directement gratinés ; retrouver la matière grasse prévue."
+    },
+    {
+      "id": "v31e-bowl-boulgour-dinde",
+      "status": "blocked",
+      "sourceHash": "59c5ac1384d36b564072ba85ed75c16d04a997747060b043727cafd7c32a0979",
+      "reviewedHash": "59c5ac1384d36b564072ba85ed75c16d04a997747060b043727cafd7c32a0979",
+      "protectedRecipeSha256": "8ea296b0b99d11690701d4f60fe381bf4be76587ffa258d5d996d7ba216bd527",
+      "note": "matière grasse ou liquide de la fondue des poireaux absent ; la crème intervient seulement après dix minutes. Ne pas avancer la crème pour remplacer cette fondue ni passer directement au four."
+    },
+    {
+      "id": "v31e-bowl-boulgour-filet-mignon",
+      "status": "blocked",
+      "sourceHash": "82ae94ea298c548482b3220fef4b878d66e4ccfad5d485c4881b87c48a5b35b7",
+      "reviewedHash": "82ae94ea298c548482b3220fef4b878d66e4ccfad5d485c4881b87c48a5b35b7",
+      "protectedRecipeSha256": "e8a799c5380579e73888ddcdde0449e7340ca12498dda628fdb607dffad69fd2",
+      "note": "poivre demandé mais absent de la liste ; citron partagé en zeste puis trait de jus sans quantité d’utilisation. Retrouver le dosage sans imposer tout le jus sur les tartines, préserver le thon en boîte égoutté."
+    },
+    {
+      "id": "v31e-bowl-boulgour-cotes-porc",
+      "status": "blocked",
+      "sourceHash": "6087b6f96f8a951fa116fdee3f780dd85c2883198c7af80f306dd2284749fcd0",
+      "reviewedHash": "6087b6f96f8a951fa116fdee3f780dd85c2883198c7af80f306dd2284749fcd0",
+      "protectedRecipeSha256": "f0262cd461e993f927aaec218aed78289bcca3f5abf0135e04dba0f9c6a2c276",
+      "note": "vinaigrette légère demandée mais absente de la liste ; graisse éventuelle pour dorer le sandwich non précisée. Préserver le poulet déjà cuit et la cuisson douce sous un poids sans inventer beurre, huile ou vinaigre."
+    },
+    {
+      "id": "v31e-bowl-boulgour-boeuf",
+      "status": "blocked",
+      "sourceHash": "1182df6d12034fdf59a99c047be40c397f969bcc1bf2ab2ec904bd950373aae9",
+      "reviewedHash": "1182df6d12034fdf59a99c047be40c397f969bcc1bf2ab2ec904bd950373aae9",
+      "protectedRecipeSha256": "9035399ebe11ddfd1d1add7951e91e3fada4c8aac1f9810d77bdb71cdab8aa1a",
+      "note": "graisse éventuelle de cuisson du sandwich non précisée. Le pesto est à l’intérieur et ne doit pas être déplacé sur la face extérieure pour remplacer une graisse manquante ; les légumes sont déjà grillés."
+    },
+    {
+      "id": "v31e-bowl-boulgour-saumon",
+      "status": "blocked",
+      "sourceHash": "0548b1c6efca6996ffe1a0b75c6e8402f02ac1e9e4e20b2e52f492a3c0aaf7d2",
+      "reviewedHash": "0548b1c6efca6996ffe1a0b75c6e8402f02ac1e9e4e20b2e52f492a3c0aaf7d2",
+      "protectedRecipeSha256": "44b86db8384e7731e44697f41b9971a776114e599f2058ef66786e7514fa973a",
+      "note": "fondue de chou, pomme et oignon dix minutes avec seulement le vinaigre listé : matière grasse ou apport de liquide non précisé. État des knacks et chaleur du barbecue à vérifier, sans remplacer la fondue par une salade crue."
+    },
+    {
+      "id": "v31e-bowl-boulgour-boulettes",
+      "status": "blocked",
+      "sourceHash": "026d94ea5f8e4469f7ba05de21e7e953a04b71cd29bb1992efba3a9f74c8a406",
+      "reviewedHash": "026d94ea5f8e4469f7ba05de21e7e953a04b71cd29bb1992efba3a9f74c8a406",
+      "protectedRecipeSha256": "0a6d82937cf6d74d26a891d481be2f0ff2f90ecd5336ed5f81827f299d3dfe68",
+      "note": "graisse pour faire revenir les rubans de courgette absente ; seul le zeste du citron est utilisé et le jus reste non affecté. Conserver cette précuisson avant les cinq minutes d’airfryer, sans déplacer la ricotta dans la poêle."
+    },
+    {
+      "id": "v31e-bowl-boulgour-tofu",
+      "status": "blocked",
+      "sourceHash": "2a3cc9e8007e36bf6b2bcdb52321bd1f0907858e06036b84dbc413cc8c603144",
+      "reviewedHash": "2a3cc9e8007e36bf6b2bcdb52321bd1f0907858e06036b84dbc413cc8c603144",
+      "protectedRecipeSha256": "1ae9c0806ccc30013227290108a5e2da947098ce58738ee5339b650ac6686515",
+      "note": "six minutes trente pour l’œuf ne sont pas prises en charge précisément par le bouton en minutes ; calibre et départ de cuisson non définis. Grillage du pain sans appareil ni durée. Ne pas présenter six minutes comme six minutes trente."
+    },
+    {
+      "id": "v31e-tartines-gratinees-poulet",
+      "status": "blocked",
+      "sourceHash": "953b9fd3bb09bce37d5a61b17c31413139515cf69d3adcc8b87f3bfc84004f6e",
+      "reviewedHash": "953b9fd3bb09bce37d5a61b17c31413139515cf69d3adcc8b87f3bfc84004f6e",
+      "protectedRecipeSha256": "f99a7bf10c56a5adb9ace1b858f96494c8b7d714194349b846574c108afb96df",
+      "note": "type de gnocchi non précisé : à poêler directement ou à précuire à l’eau selon produit. Sept minutes ne conviennent pas indistinctement ; ne pas ajouter une précuisson ou supprimer le poêlage sans retrouver le produit prévu."
+    },
+    {
+      "id": "v31e-tartines-gratinees-dinde",
+      "status": "blocked",
+      "sourceHash": "206c5f317b1ad46ae66326c45e190805cb51a6008b237a98f65f4e8eb26da5f1",
+      "reviewedHash": "206c5f317b1ad46ae66326c45e190805cb51a6008b237a98f65f4e8eb26da5f1",
+      "protectedRecipeSha256": "72a7931f5a3ac635ce7110b753910ada92ed89d03d26cd9cae539c00d4b13fac",
+      "note": "graisse pour faire tomber ail et épinards absente ; cinq cl d’eau demandés mais non listés. Cuisson des ravioles à confronter au paquet. La crème arrive après la fondue : ne pas la déplacer pour contourner la graisse manquante."
+    },
+    {
+      "id": "v31e-tartines-gratinees-filet-mignon",
+      "status": "blocked",
+      "sourceHash": "482416aa5a36515ff15fe9a25acb4ec7a9508a50b50c917d3c9bca3fd4eb1e55",
+      "reviewedHash": "482416aa5a36515ff15fe9a25acb4ec7a9508a50b50c917d3c9bca3fd4eb1e55",
+      "protectedRecipeSha256": "29ef8be31d3f857f01bf33e3030af9bd47e94c3813e4fc9a6780a2c48704054f",
+      "note": "graisse du suage de l’oignon et vinaigre de pochage absents ; alternative four/poêle des poivrons non détaillée. Calibre et protocole des œufs pochés, grillage du pain non établis. Ne pas transformer le suage en cuisson directe au bouillon."
+    },
+    {
+      "id": "v31e-tartines-gratinees-cotes-porc",
+      "status": "blocked",
+      "sourceHash": "6efcae6161909d8ab45f9333fbea512df0ae972146fe2a9604c11be1c299055d",
+      "reviewedHash": "6efcae6161909d8ab45f9333fbea512df0ae972146fe2a9604c11be1c299055d",
+      "protectedRecipeSha256": "37efef2afcc8ab1bcdd92f08a7b71e078cb4966b1c4c985fe55c0dcef8c394fc",
+      "note": "graisse du rôtissage et de la fondue des épinards absente. Quinoa imposé à douze minutes sans notice ; citron non réparti. Ne pas cuire le potimarron au bouillon ni déplacer le citron pour remplacer une graisse."
+    },
+    {
+      "id": "v31e-tartines-gratinees-saumon",
+      "status": "blocked",
+      "sourceHash": "139a79dec6858a292ad9999ab73fd7366a38ad9851d1f84c794380eb9eb2f305",
+      "reviewedHash": "139a79dec6858a292ad9999ab73fd7366a38ad9851d1f84c794380eb9eb2f305",
+      "protectedRecipeSha256": "b2a1e8547952f33daacabc9c41d15df38d273854d00a77307e536442fb907752",
+      "note": "matière grasse des boulettes et légumes absente ; boulettes crues ou déjà cuites non définies. Rapport boulgour/bouillon et dix minutes couvertes à vérifier selon produit ; garder l’ordre saisie, absorption, retour des boulettes."
+    },
+    {
+      "id": "v31e-tartines-gratinees-poisson-blanc",
+      "status": "blocked",
+      "sourceHash": "9ac74005926f0266f7cb41d0027995f62112e2b80e62e3d392c29cf020af0d8e",
+      "reviewedHash": "9ac74005926f0266f7cb41d0027995f62112e2b80e62e3d392c29cf020af0d8e",
+      "protectedRecipeSha256": "1b303081b4cef33d84fd8455f2c51a6fbb9bb0046d79eba1190add954192b743",
+      "note": "graisse et durées des légumes sautés séparément absentes ; œufs au plat sans protocole de cuisson et riz déjà cuit servi sans réchauffage explicite. Deux bols figés ; ne pas inventer une sauce ou cuisson unique pour tous les légumes."
+    },
+    {
+      "id": "v31e-tartines-gratinees-crevettes",
+      "status": "blocked",
+      "sourceHash": "c9c3387afe7c746c296119263b6669223a8ad42e3fb141438388b8188f2d754d",
+      "reviewedHash": "c9c3387afe7c746c296119263b6669223a8ad42e3fb141438388b8188f2d754d",
+      "protectedRecipeSha256": "50d5f44b88f4188426d568658872c9d4c996d57c4ec70145f03c7dd2e10c9b9d",
+      "note": "graisse de l’échalote absente, petits pois frais ou surgelés non définis. Sept minutes désignent un ajout pendant l’absorption, pas une cuisson supplémentaire ; durée de pâtes au bouillon à confronter au produit sans changer la technique risotto."
+    },
+    {
+      "id": "v31e-tartines-gratinees-boulettes",
+      "status": "blocked",
+      "sourceHash": "46f1ddcf2cae8bd8f1892ffb2a4c1d2df0ae62fb94ce726f5285a820d234a86d",
+      "reviewedHash": "46f1ddcf2cae8bd8f1892ffb2a4c1d2df0ae62fb94ce726f5285a820d234a86d",
+      "protectedRecipeSha256": "3354dad4bc3103ebf1478cdf891f0f1f619b3dadfd21c004bf78e762d1cd081c",
+      "note": "graisse du suage absente ; durée et volume d’absorption de l’orzo à confronter au paquet. Les trois dernières minutes des épinards font partie des douze annoncées, pas trois minutes supplémentaires. Conserver feta hors feu et repos."
+    },
+    {
+      "id": "v31e-tartines-gratinees-tofu",
+      "status": "blocked",
+      "sourceHash": "629bc1e1eeb09419ca191edf163842c886dc406efe86531459d4b5e8ec663608",
+      "reviewedHash": "629bc1e1eeb09419ca191edf163842c886dc406efe86531459d4b5e8ec663608",
+      "protectedRecipeSha256": "6e33118d69f7d0eb43c8c08ad55e1ef0e9503c77bdc5f6f3654d9938fd902d93",
+      "note": "graisse pour faire tomber les épinards et fondre l’échalote absente ; calibre des pommes de terre et deux cassolettes figées. Garder vapeur, fondue puis four, sans remplacer la fondue par de la crème versée en avance."
+    },
+    {
+      "id": "v31e-riz-croustillant-poulet",
+      "status": "blocked",
+      "sourceHash": "6e1635cd17c405690ace3a9d1fffee865a999e11b44803bcfcf44dc2c610634c",
+      "reviewedHash": "6e1635cd17c405690ace3a9d1fffee865a999e11b44803bcfcf44dc2c610634c",
+      "protectedRecipeSha256": "b2eb37b275a5dfe65437bc6f6116df7037336cf5b5ffe133bd52849ba0ce747d",
+      "note": "sel demandé mais absent de la liste, origan non utilisé ; chair des tomates évidées sans destination. Chapelure partagée sans quantité dynamique. Retrouver le sort de la chair et des herbes sans les ajouter arbitrairement à la farce."
+    },
+    {
+      "id": "v31e-riz-croustillant-dinde",
+      "status": "blocked",
+      "sourceHash": "efa35a9c98bd766cbccfeb723189beb1f9be8b255dce3753000bb64aa653237e",
+      "reviewedHash": "efa35a9c98bd766cbccfeb723189beb1f9be8b255dce3753000bb64aa653237e",
+      "protectedRecipeSha256": "677d03d93d92d74a36a5106f036834423bba13e60915574e0cacf3a6d8ffa2b4",
+      "note": "graisse de suage et de cuisson du poulet haché absente ; contrôle à cœur et épaisseur de farce non précisés. Riz déjà cuit à conserver, ne pas transformer le poulet en farce crue directement enfournée."
+    },
+    {
+      "id": "v31e-riz-croustillant-boeuf",
+      "status": "blocked",
+      "sourceHash": "9b105ec92de12ee1b03e7e0ba6596621b8360d5c819197364ddf5105771f5864",
+      "reviewedHash": "9b105ec92de12ee1b03e7e0ba6596621b8360d5c819197364ddf5105771f5864",
+      "protectedRecipeSha256": "49118f5a9bab1c786e8c1a000acf1a8937e7fd18c00a65a9af902636334dd232",
+      "note": "graisse de cuisson des galettes absente, six pièces figées sans épaisseur ni diamètre ; quatre minutes par face à contrôler pour les œufs. Conserver courgettes essorées et saumon fumé au service, sans cuire le saumon avec les galettes."
+    },
+    {
+      "id": "v31e-riz-croustillant-saumon",
+      "status": "blocked",
+      "sourceHash": "689fc725482eeba060714b831f92899ed249e46d146c90c18c5333c419f9042f",
+      "reviewedHash": "689fc725482eeba060714b831f92899ed249e46d146c90c18c5333c419f9042f",
+      "protectedRecipeSha256": "56187088479c9ba988b10d8dc3bc9ef57187326f81e9a048ff3e62457467b754",
+      "note": "graisse de poêle et assaisonnement des tomates absents ; maïs partagé à moitié sans quantités et six galettes figées. Égouttage et épaisseur à établir sans ajouter d’ingrédients ou changer la texture moitié mixée, moitié entière."
+    },
+    {
+      "id": "v31e-riz-croustillant-poisson-blanc",
+      "status": "blocked",
+      "sourceHash": "f43e7503693cdcf2158eee67ebb671efb58cef150f16eb7ca125241fc40d022f",
+      "reviewedHash": "f43e7503693cdcf2158eee67ebb671efb58cef150f16eb7ca125241fc40d022f",
+      "protectedRecipeSha256": "6cddcbe21a43523b72800c22e23d499b237c0dd84df9e790c1ab91763eca4ed3",
+      "note": "paprika demandé mais absent de la liste, huit croquettes figées sans calibre. Quantité égouttée des haricots et contrôle de l’œuf à préciser ; semoule sans notice. Préserver le poivron déjà grillé et l’Air Fryer."
+    },
+    {
+      "id": "v31e-riz-croustillant-crevettes",
+      "status": "blocked",
+      "sourceHash": "8c0864f3c7ecf7a066e5ef0afc6a6515239273b4390cc575611f8a754b862d04",
+      "reviewedHash": "8c0864f3c7ecf7a066e5ef0afc6a6515239273b4390cc575611f8a754b862d04",
+      "protectedRecipeSha256": "0e8f2334d7c306894266acabcc7759679e89b672c7cbcf9759127f44a5d6a421",
+      "note": "graisse de cuisson des rösti absente et quatre pièces figées sans épaisseur. Cinq à six minutes par face ne suffisent pas seules à valider l’œuf et la patate douce ; conserver la truite fumée au service."
+    },
+    {
+      "id": "v31e-riz-croustillant-boulettes",
+      "status": "blocked",
+      "sourceHash": "bc09a1fbef39ec118f675e4a7c96f85c36b12fe75651d9c70a31d1d20a5b866d",
+      "reviewedHash": "bc09a1fbef39ec118f675e4a7c96f85c36b12fe75651d9c70a31d1d20a5b866d",
+      "protectedRecipeSha256": "55553b97a9d597f32ffd6eeca63d1500da0f26884de9910b3d33f7366fa27bfd",
+      "note": "échalote coupée mais jamais utilisée ; part de chair prélevée pour la garniture non définie. Calibre des grosses patates douces non établi pour vingt-cinq minutes entières ; retrouver ces précisions sans leur imposer une précuisson nouvelle."
+    },
+    {
+      "id": "v39-spaghetti-carbonara",
+      "status": "blocked",
+      "sourceHash": "d4a7c4f7c1372fdc04a009323708204010e56f310df7df0e04f2823890053684",
+      "reviewedHash": "d4a7c4f7c1372fdc04a009323708204010e56f310df7df0e04f2823890053684",
+      "protectedRecipeSha256": "975333de8deac4fff66acbd281ea4c099aaca673a4b9315be4b9fd19c1b11a95",
+      "note": "émulsion aux œufs hors feu conservée mais traitement et sécurité des œufs non établis ; ne pas imposer une recuisson qui les brouillerait ni une pasteurisation absente de la source. Eau réservée dix cl à relier aux ingrédients, pâtes à confronter au paquet."
+    },
+    {
+      "id": "v39-pates-pesto-genois",
+      "status": "blocked",
+      "sourceHash": "e507e68b4868e478548ea46535a87c4e934c234eae5202436df77b3464e71ec0",
+      "reviewedHash": "e507e68b4868e478548ea46535a87c4e934c234eae5202436df77b3464e71ec0",
+      "protectedRecipeSha256": "b8fc931755a581003764e639b147987d6c32eb6d5c448fa432b1e4bf48fddc50",
+      "note": "trois à quatre cuillerées d’eau pour détendre le pesto sans unité, réserve de huit cl absente de la liste. Retrouver le volume effectivement employé sans convertir arbitrairement ces cuillerées en cuillères à soupe ; conserver le pesto non chauffé."
+    },
+    {
+      "id": "v39-linguine-vongole",
+      "status": "blocked",
+      "sourceHash": "b8f3cedd4d824da78c1d79150b3393cfcb2b417c8dd272ba528943a9109fb3be",
+      "reviewedHash": "b8f3cedd4d824da78c1d79150b3393cfcb2b417c8dd272ba528943a9109fb3be",
+      "protectedRecipeSha256": "ae99716beb5aa6de256f1ad519d1bead0e61676dd6afc90a65b969d670bb7702",
+      "note": "sel de l’eau de dégorgement absent, concentration non définie ; protocole des palourdes vivantes à vérifier. Eau réservée non listée. Les deux minutes de moins que le paquet ne sont pas un minuteur de deux minutes ; seule la finition est minutée deux minutes."
+    },
+    {
+      "id": "v31e-galette-sarrasin-filet-mignon",
+      "status": "corrected",
+      "sourceHash": "4d977166999c49028bf8c4dce555a6b14b97e62a3887012205cdf6fdd5190bc5",
+      "reviewedHash": "1a9b90996b4a225e615e6154e2599d9259b1bff7424f984313ee1ca547806750",
+      "protectedRecipeSha256": "03585e8c898060fd169889df240d23448742d6965155f685e0beb94a53bad15e",
+      "beforeSteps": [
+        "Mélanger fromage frais, citron et aneth et en tartiner les wraps.",
+        "Couper avocat et concombre en fines lamelles.",
+        "Répartir salade, saumon et légumes, puis rouler fermement.",
+        "Couper les wraps en biais et servir aussitôt."
+      ],
+      "note": "Wrap froid préservé : fromage frais citronné, aneth, saumon fumé non recuit, avocat et concombre en lamelles. Gestes de lavage, égouttage et roulage explicités sans ajout d’ingrédient."
+    },
+    {
+      "id": "v31e-galette-sarrasin-cotes-porc",
+      "status": "corrected",
+      "sourceHash": "d37bcb1f4a9de1f7fa1dd949ee1fe0ce8b7840706513652d8f521c2a2850ccda",
+      "reviewedHash": "1e09a6898a01c98d55d0004b69917d2d1aa4b4de3b5a9fb952930ba48b9ab7a3",
+      "protectedRecipeSha256": "aca922fcb56494f298018001f091707706fe03f7924cb7c454ae0febd2c70662",
+      "beforeSteps": [
+        "Mélanger yaourt, curry et citron, puis enrober le poulet émincé.",
+        "Râper carottes et pomme et couper la salade.",
+        "Répartir la garniture au centre des wraps et rabattre les côtés.",
+        "Rouler serré, couper en deux et servir."
+      ],
+      "note": "Poulet déjà cuit, pomme et carottes râpées conservés. Sauce au yaourt, curry dosé et jus du citron ; aucune cuisson ou mayonnaise ajoutée."
+    },
+    {
+      "id": "v31e-galette-sarrasin-boeuf",
+      "status": "corrected",
+      "sourceHash": "8466b01307bf4dce8c3da85296ff89f5aafa86814f1a1554c21c5affe258dd58",
+      "reviewedHash": "faa9010ac738deaba033214043f5ead647d6d3715dbeecb9fd20ceafbf44dcf9",
+      "protectedRecipeSha256": "40493e9e5958dc4f781a244ad81841e465cbf137e030c0f8f2d506de41c897bd",
+      "beforeSteps": [
+        "Écraser grossièrement les œufs avec fromage frais, moutarde et ciboulette.",
+        "Couper jambon, tomates et salade en lanières.",
+        "Répartir la crème d’œuf et les garnitures sur les wraps.",
+        "Rouler fermement, couper en deux et servir frais."
+      ],
+      "note": "Œufs explicitement déjà durs, écrasés au fromage frais et à la moutarde. Tomates égouttées et salade essorée ; roulage décrit sans nouvelle cuisson ni quantité d’œuf figée."
+    },
+    {
+      "id": "v31e-galette-sarrasin-tofu",
+      "status": "corrected",
+      "sourceHash": "29c2a54962086bc04ed8ec50e3fb322137210955f84a0e483af402c5ad13ea74",
+      "reviewedHash": "1e0ccfda89df2eb56f3275ac59dc56f0046c023ab2ce0701d466cbafa019f9b8",
+      "protectedRecipeSha256": "461ae76daca9b370c8a0ae6ac33f9c92ecb32b8086f8e815102ee8989e1d6515",
+      "beforeSteps": [
+        "Couper la poire en fines lamelles et émietter le fromage bleu.",
+        "Répartir poire, jambon et bleu sur le pain et ajouter une fine touche de miel.",
+        "Cuire 6 à 7 minutes à 180 °C dans l’Air Fryer.",
+        "Ajouter les noix et servir avec la mâche poivrée."
+      ],
+      "note": "Poire et bleu avant cuisson, noix après cuisson et mâche poivrée conservés. Tout le miel listé réparti concrètement ; plage Air Fryer source conservée, pas de four substitué."
+    },
+    {
+      "id": "v31e-bowl-boulgour-poisson-blanc",
+      "status": "corrected",
+      "sourceHash": "3dabdee9ec60b3d04142de3e112481170a47ce2a3e9e0100b011b27cbd4ac738",
+      "reviewedHash": "cecb4100b86793c35ae8e9485e0a3ae1c15955d513486422fbb9397b61b631dc",
+      "protectedRecipeSha256": "4d0a923f69db3462c6a060c1f266d523312dbace216f8cb9b9f371a5183e9d7e",
+      "beforeSteps": [
+        "Couper les bagels en deux et mélanger fromage frais et jus de citron.",
+        "Émincer poulet, avocat, concombre et tomates.",
+        "Tartiner les bagels, puis superposer salade, poulet et crudités.",
+        "Refermer, couper en deux et servir frais."
+      ],
+      "note": "Bagel froid au poulet déjà cuit conservé sans grillage ajouté. Jus de citron entièrement mélangé au fromage frais, crudités préparées avant assemblage."
+    },
+    {
+      "id": "v31e-bowl-boulgour-crevettes",
+      "status": "corrected",
+      "sourceHash": "6e464fc1973bba40b6c4a7676d9ff6a1481731c1b29abc09711f06cc08d1a752",
+      "reviewedHash": "424968dd34ff99049b7993c48d2d31f76b4c512ab613c433db79ff61b7bf3edb",
+      "protectedRecipeSha256": "12388a0074ade69e92d510c1c6aea989958ccb6feab588c82aa6f335e941ab3b",
+      "beforeSteps": [
+        "Étaler le coulis sur les pitas et ajouter champignons et poivron finement émincés.",
+        "Répartir la mozzarella et l’origan.",
+        "Cuire 7 à 8 minutes à 180 °C dans l’Air Fryer.",
+        "Ajouter le basilic, couper en quartiers et servir avec la salade."
+      ],
+      "note": "Pitas entières garnies de légumes finement émincés crus, sans poêlage ajouté. Coulis mesuré et mozzarella égouttée, Air Fryer 7–8 minutes à 180 °C conservé."
+    },
+    {
+      "id": "v31e-tartines-gratinees-falafels",
+      "status": "corrected",
+      "sourceHash": "06476750c6a7889800b0f3b929dca218e5e2466c80c133bf5d817737f5aad753",
+      "reviewedHash": "617ffaeefeed9e4b9738873e77f8807752ca038c370f2f085a6d49e08f06727f",
+      "protectedRecipeSha256": "b336d8096c33e98e26cf7acdaee4f942e2fb20cca645d21b4e1991c62ac54b07",
+      "beforeSteps": [
+        "Couper les courgettes et tomates en fines rondelles et le jambon en lanières.",
+        "Alterner légumes et jambon dans un plat.",
+        "Battre œufs et lait, verser dans le plat et répartir mozzarella et parmesan.",
+        "Cuire 25 minutes à 190 °C et ajouter le basilic au service."
+      ],
+      "note": "Légumes crus en fines rondelles directement au gratin conservés, sans suage ou graisse ajouté. Œufs/lait et fromages distingués, contrôle à cœur du gratin au jambon ajouté ; temps source non garanti selon épaisseur."
+    },
+    {
+      "id": "v31e-riz-croustillant-filet-mignon",
+      "status": "corrected",
+      "sourceHash": "5c73d7fb2cb4f7bdc558c59966420ea623fab566b0b2af3d229a320eff323640",
+      "reviewedHash": "b09b940bdd6cd3bb7bef05a82a69d697439a134af16350c2847100f1a628e57b",
+      "protectedRecipeSha256": "893a041ff2aa37a1a96d0c0b25c936bb1d99a63bf2693727e16ce0cf148eacfd",
+      "beforeSteps": [
+        "Couper les poivrons en deux et les précuire 10 minutes à 190 °C.",
+        "Mélanger quinoa, tomates, oignon, olives, feta et origan.",
+        "Garnir les demi-poivrons et poursuivre la cuisson 20 minutes.",
+        "Laisser tiédir 3 minutes et servir avec la salade."
+      ],
+      "note": "Quinoa déjà cuit, poivrons précuits dix minutes puis farcis vingt minutes conservés. Garniture découpée pendant la précuisson, feta/olives égouttées et repos source conservé."
+    },
+    {
+      "id": "v31e-riz-croustillant-cotes-porc",
+      "status": "corrected",
+      "sourceHash": "bebea51e0dac813a6dea1cec8ac25352e5f3f6681a9386b443cfdd5fef075832",
+      "reviewedHash": "58247e0693d7b3556670f827335067b63144e83f41a7f86fe187f17b553396c6",
+      "protectedRecipeSha256": "c985239cbb4275ec4d588b15b57aa4c8c29b2867a77bfab3fba1546787517bb6",
+      "beforeSteps": [
+        "Retirer les pieds des champignons et les hacher avec jambon et échalote.",
+        "Mélanger avec fromage frais et persil, puis garnir les chapeaux et ajouter le fromage râpé.",
+        "Cuire 12 à 14 minutes à 185 °C dans l’Air Fryer.",
+        "Servir quatre champignons par personne avec salade et tomates."
+      ],
+      "note": "Pieds de champignons hachés crus avec échalote et jambon, farce au fromage frais puis fromage râpé conservés. Pas de précuisson ajoutée. Plage Air Fryer et service proportionnel sans quatre pièces figées."
+    },
+    {
+      "id": "v31e-riz-croustillant-tofu",
+      "status": "corrected",
+      "sourceHash": "75e4688ca1c7dea6a17adc6b28fe74126ff5ca651e03e93da4fcfea06eff32c9",
+      "reviewedHash": "fe285c158c901c89699570a390e425cad1cdfc2f7c12fac8aa8eafd3c74db1e7",
+      "protectedRecipeSha256": "a99b230fc10b0cb04ec26ff525ad342f754f3fbedef94ace37e7e268312a2c81",
+      "beforeSteps": [
+        "Couper les aubergines en deux, quadriller la chair, ajouter ail et huile et cuire 20 minutes à 200 °C.",
+        "Déposer tomates en dés et mozzarella sur chaque moitié.",
+        "Ajouter le parmesan et remettre au four 10 minutes pour gratiner.",
+        "Terminer avec le basilic et servir avec la roquette."
+      ],
+      "note": "Aubergine quadrillée rôtie vingt minutes puis dix minutes garnie conservée. Ail et huile déjà listés utilisés avant le four ; fromage, basilic et roquette au bon moment. Aucun bouillon ni poêlage ajouté."
+    },
+    {
+      "id": "v39-spaghetti-bolognaise",
+      "status": "corrected",
+      "sourceHash": "a6f82661112e5ca927502593a59450e6ffd5f83bbdab661621bde3caec07315b",
+      "reviewedHash": "9852c081cecb2f8947000f408c7d7fb00c2bcdd3a88ab2e2878b7015294129c9",
+      "protectedRecipeSha256": "25ac3cf7cedc7e0725366815231f7ede728f6148bef5e50617f46359e928b55b",
+      "beforeSteps": [
+        "Émincer finement l’oignon, la carotte et le céleri, puis les faire fondre 7 minutes à feu moyen dans l’huile, jusqu’à ce que l’oignon soit translucide.",
+        "Ajouter l’ail puis le bœuf et cuire 5 minutes à feu assez vif en l’émiettant, jusqu’à ce qu’il soit bien doré.",
+        "Verser les tomates, ajouter l’origan, saler légèrement et laisser frémir 30 minutes à feu doux ; la sauce doit devenir épaisse et nappante.",
+        "Cuire les spaghetti al dente dans une grande casserole d’eau salée selon le temps du paquet, en réservant 5 cl d’eau de cuisson.",
+        "Mélanger les pâtes avec la sauce et un peu d’eau de cuisson si nécessaire, puis servir avec le parmesan."
+      ],
+      "note": "Fondue aromatique, bœuf émietté et sauce mijotée conservés. Cinq cl d’eau réservée retrouvés dans les trois archives, ajoutés à la liste pour calcul dynamique ; eau prélevée, non ajoutée froide. Pâtes au paquet en parallèle."
+    },
+    {
+      "id": "v39-spaghetti-aglio-olio",
+      "status": "corrected",
+      "sourceHash": "f36f788408e3fe56acec22e313534d22d080983b243311960e40eea1232d9c09",
+      "reviewedHash": "bfdbe2bb806d08907cb5a5b806f9ca161fdb8a0f3c1f227846d3be9c8d64a073",
+      "protectedRecipeSha256": "1d11cdac87c5fe2b7d7f5c12a33217618aa7cc5f4660279ee703c97555cefad8",
+      "beforeSteps": [
+        "Cuire les spaghetti al dente dans une grande casserole d’eau salée et réserver 10 cl d’eau de cuisson.",
+        "Émincer très finement l’ail et le chauffer 3 minutes à feu doux dans l’huile avec le piment ; l’ail doit blondir sans brunir.",
+        "Ajouter les pâtes égouttées et 5 cl d’eau de cuisson, puis remuer 2 minutes à feu moyen jusqu’à ce que l’huile forme une sauce légère.",
+        "Hors du feu, ajouter le persil haché et servir immédiatement."
+      ],
+      "note": "Ail blondi doucement dans l’huile puis émulsion deux minutes conservés. Dix cl réservés dont cinq employés retrouvés dans les archives, calculés par référence à l’eau listée ; surplus non imposé à la sauce."
+    },
+    {
+      "id": "v39-spaghetti-tomate-basilic",
+      "status": "corrected",
+      "sourceHash": "e7538850776351d8a5863b1f6898c006ad5e8a30a3b86be1ba797914f037d9aa",
+      "reviewedHash": "4ee5a090688315d96ad1597335866ed7447e63e0b0eaa38e33fbb1de30ce38d8",
+      "protectedRecipeSha256": "f180e51d91a6fe344d0e9dfc9e5e156b26df5aabb9b9fe11a4ac1c03213ca673",
+      "beforeSteps": [
+        "Faire revenir l’ail émincé 1 minute à feu doux dans l’huile, sans le colorer.",
+        "Ajouter les tomates, saler, poivrer et laisser frémir 15 minutes à feu moyen-doux, jusqu’à ce que la sauce épaississe légèrement.",
+        "Cuire les spaghetti al dente selon le temps du paquet et réserver 5 cl d’eau de cuisson.",
+        "Mélanger les pâtes avec la sauce et la moitié du basilic pendant 1 minute ; détendre avec un peu d’eau de cuisson si nécessaire.",
+        "Servir avec le reste du basilic et le parmesan."
+      ],
+      "note": "Basilic partagé avant/après finition avec nombres de feuilles dynamiques ; cinq cl de réserve d’eau source restaurés. Ail non coloré, sauce quinze minutes et liaison une minute préservés."
+    },
+    {
+      "id": "v39-cacio-e-pepe",
+      "status": "corrected",
+      "sourceHash": "5de3651fe5489e772b8816f45c1690d41cd28e56951e040cbf1d0ab478d793b3",
+      "reviewedHash": "fb6e94a5becbc2d8bc2df5ca96ed54806fab6b2cade37073422ea4a94c0b01b0",
+      "protectedRecipeSha256": "efc50b47fbff1f6ea63f151d6843632a63d0b9ad6e1f276de96e6937e6d3dd2d",
+      "beforeSteps": [
+        "Râper finement le pecorino et le mélanger dans un saladier avec 4 cl d’eau froide pour former une pâte lisse.",
+        "Cuire les pâtes al dente dans une eau modérément salée et réserver 15 cl d’eau de cuisson.",
+        "Torréfier le poivre 1 minute à sec dans une grande poêle, puis ajouter 8 cl d’eau de cuisson.",
+        "Ajouter les pâtes et remuer 1 minute à feu moyen, puis retirer la poêle du feu.",
+        "Incorporer progressivement la pâte de pecorino en mélangeant vivement ; la sauce doit être crémeuse et sans grumeaux."
+      ],
+      "note": "Eau source restaurée sans dose inventée : 4 cl froide + 15 cl prélevés, dont 8 cl utilisés, soit 19 cl listés pour deux. Ces parts sont affichées en cl calculés. Pâte de pecorino froide, poivre à sec et émulsion hors feu conservés."
+    },
+    {
+      "id": "v39-amatriciana",
+      "status": "corrected",
+      "sourceHash": "372fc15096bc9960a63372cba3bf25a567c1e63a89bfc5a268c1f3c32b969fdf",
+      "reviewedHash": "11d469efc33414ebb43b1cb572401e0936025f1a55d7d4c7d0ee03eebf2517b7",
+      "protectedRecipeSha256": "f0b12f200541ef3dd7b3787a32b274a2a51b4046929ca1abcbd667a4936dfe3e",
+      "beforeSteps": [
+        "Couper le guanciale en bâtonnets et le faire dorer 6 minutes à feu moyen dans une grande poêle, jusqu’à ce qu’il soit croustillant.",
+        "Retirer la moitié du guanciale, ajouter le piment et les tomates écrasées, puis laisser frémir 15 minutes à feu doux.",
+        "Cuire les bucatini al dente dans l’eau salée et réserver 5 cl d’eau de cuisson.",
+        "Mélanger les pâtes avec la sauce pendant 1 minute, en ajoutant un peu d’eau de cuisson si nécessaire.",
+        "Servir avec le guanciale réservé et le pecorino."
+      ],
+      "note": "Guanciale partagé par portions mesurées avant cuisson pour ne pas demander cinquante grammes cuits à partir d’un poids cru. Gras rendu conservé, tomate mijotée quinze minutes et liaison une minute ; cinq cl d’eau source restaurés."
+    },
+    {
+      "id": "v39-penne-arrabbiata",
+      "status": "corrected",
+      "sourceHash": "7a29a8d34e17f21ad05bf2db3eff225446b2e7d37070643c93c0577205af3cb5",
+      "reviewedHash": "88f85f38ddf57ac45046e080af9042214604d5a538906495c656e9ddc4cdafdf",
+      "protectedRecipeSha256": "b7bf258a6e8e9ba02d31c336ecf18b0e51923d91f9b1608a57251e728637a673",
+      "beforeSteps": [
+        "Faire revenir l’ail émincé et le piment 1 minute à feu doux dans l’huile, sans laisser brunir l’ail.",
+        "Ajouter les tomates, saler et laisser frémir 15 minutes à feu moyen, jusqu’à obtenir une sauce vive et légèrement réduite.",
+        "Cuire les penne al dente selon le temps du paquet et réserver 5 cl d’eau de cuisson.",
+        "Enrober les pâtes de sauce pendant 1 minute, ajouter un peu d’eau de cuisson si besoin, puis terminer avec le persil haché."
+      ],
+      "note": "Ail et piment une minute sans brunir, tomate quinze minutes et enrobage une minute préservés. Pâtes au paquet, persil hors finition ; réserve de cinq cl retrouvée dans les archives et calculée."
+    }
+  ]
+}
