@@ -7,7 +7,7 @@ import {recipeSource} from './recipe-source.mjs';
 import {recipeHash} from './validate-recipe-editorial.mjs';
 const root=resolve(dirname(fileURLToPath(import.meta.url)),'..');
 const {code,recipes,editorial}=recipeSource(readFileSync(resolve(root,'index.html'),'utf8'));
-const batchNumbers=['02','03','04','05','06','07','08','09','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29'];
+const batchNumbers=['02','03','04','05','06','07','08','09','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30'];
 const fixture={recipes:batchNumbers.flatMap(number=>JSON.parse(readFileSync(resolve(root,`scripts/recipe-editorial-batch-${number}.fixture.json`),'utf8')).recipes)};
 const slice=(a,b)=>code.slice(code.indexOf(a),code.indexOf(b,code.indexOf(a)+a.length));
 const context={window:{},$:()=>({value:'8'}),MEAL_TYPES:['mid','eve'],recipeRole:r=>r.role||r.course||'dish',isFavorite:()=>false,recipeFeedbackHTML:()=>'',recipePersonalNoteHTML:()=>''};
@@ -459,7 +459,7 @@ const ingredients={
   'theme-bistrot-plus-12':['canard confites','pommes de terre','graisse de canard','ail','persil','poivrer.*saler'],
   'theme-bistrot-plus-13':['foie','pommes de terre','beurre','huile','ail','persil','vinaigre de vin','saler.*poivrer']
 };
-assert.equal(fixture.recipes.length,945);
+assert.equal(fixture.recipes.length,979);
 let quantityChecks=0,timerCount=0;
 for(const record of fixture.recipes){
   const recipe=recipes.find(r=>r.id===record.id);
@@ -1113,6 +1113,41 @@ assert.match(editorial['theme-famille-dimanche-07'].reviewNote,/55–58 °C.*63 
 assert.match(editorial['theme-bistrot-plus-08'].reviewNote,/litre d’huile.*récipient/);
 assert.match(editorial['v74-reg-16'].reviewNote,/gélatine.*poids.*force gélifiante/);
 assert.match(editorial['v74-reg-18'].reviewNote,/cru ou cuit des crevettes/);
+const batch30=JSON.parse(readFileSync(resolve(root,'scripts/recipe-editorial-batch-30.fixture.json'),'utf8')).recipes;
+assert.equal(batch30.length,34);
+let reservedQuantityChecks30=0;
+for(const record of batch30){
+  assert.equal(record.status,'blocked');
+  assert.equal(record.reviewedHash,record.sourceHash,'batch 30 changes no culinary object');
+  const recipe=recipes.find(r=>r.id===record.id),reading=editorial[record.id];
+  assert.equal(reading.titles.length,recipe.p.length);
+  assert.match(reading.times.total,/annoncées, non vérifiées/);
+  for(const count of [1,2,3,4,5,8]){
+    const output=context.recipeHTML(recipe,{people:count,dayIndex:1,mealType:'eve'});
+    assert.ok(output.includes(context.escapeHTML(reading.reviewNote)),record.id+' precise visible reservation');
+    for(const ingredient of recipe.i){
+      const q=ingredient.q==null?null:ingredient.q*count/(recipe.servings||2);
+      assert.ok(output.includes('>'+context.ingredientText(ingredient,q,count)+'</li>'),record.id+' original quantities at '+count);
+      reservedQuantityChecks30++;
+    }
+    const attached=[...output.matchAll(/data-step-index="(\d+)" data-timer-minutes="(\d+)"/g)].map(([,step,min])=>[+step,+min]);
+    assert.deepEqual(attached,recipe.p.flatMap((step,index)=>Array.from(context.stepTimerDurations(step),min=>[index,min])),record.id+' existing attachments preserved, not a culinary validation');
+    assert.doesNotMatch(output,/\{\{|undefined|NaN/);
+  }
+}
+assert.match(editorial['v74-reg-20'].reviewNote,/louche.*cru ou cuit des crevettes/);
+assert.match(editorial['v74-reg-24'].reviewNote,/cuillère d’huile.*unité.*louches.*jaune/);
+assert.match(editorial['v74-bis-03'].reviewNote,/rosé.*contrôle sanitaire.*abats/);
+assert.match(editorial['v75-chef-bocuse-05'].reviewNote,/morilles.*quinze minutes.*Anses/);
+assert.match(editorial['v75-chef-constant-03'].times.cook,/25 min.*dont 3 min/);
+assert.match(editorial['v75-chef-piege-03'].reviewNote,/four.*pas dans l’appareil/);
+assert.match(editorial['v75-chef-guerard-02'].reviewNote,/vessie.*ne valide pas.*cocotte/);
+assert.match(editorial['v75-chef-guerard-04'].reviewNote,/sans graisse.*rester ainsi/);
+assert.match(editorial['v75-chef-robuchon-05'].reviewNote,/une minute trente.*pas devenir un minuteur d’une minute/);
+assert.match(editorial['v75-chef-pic-04'].reviewNote,/vanille fumée.*ni.*fumage/);
+assert.match(editorial['v75-chef-troisgros-01'].reviewNote,/vermouth facultatif.*obligatoire.*ne pas.*pochage long/);
+assert.match(editorial['v75-chef-troisgros-04'].reviewNote,/échalotes.*graisse.*sans cuire les échalotes dans du bouillon/);
+console.log(`✓ Batch 30: ${reservedQuantityChecks30} ingredient renders; 34 unchanged culinary objects and 204 visible individual reservations, original timer attachments preserved`);
 const corrected=fixture.recipes.filter(r=>r.status==='corrected').length;
 const unchanged=fixture.recipes.filter(r=>r.status==='unchanged').length;
 console.log(`✓ Batches ${batchNumbers.join('/')}: ${fixture.recipes.length} individual review records, ${corrected} corrected, ${unchanged} unchanged, ${fixture.recipes.length-corrected-unchanged} blocked with original content preserved; ${timerCount} manually checked timers`);

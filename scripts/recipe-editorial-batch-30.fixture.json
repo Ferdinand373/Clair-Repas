@@ -1,0 +1,278 @@
+{
+  "baselineCommit": "943897e1f1326a0b639182ccf3e842c245fe0277",
+  "batch": "30",
+  "recipes": [
+    {
+      "id": "v74-reg-20",
+      "status": "blocked",
+      "sourceHash": "b7b0ce71984424a8763d8a02ef126a9040b1c2ec29d18f9429a208c4dd7630b6",
+      "reviewedHash": "b7b0ce71984424a8763d8a02ef126a9040b1c2ec29d18f9429a208c4dd7630b6",
+      "protectedRecipeSha256": "40ebc147b3b13598e8484d8688b50adcc1c50ed21ceec7763911e25f561e0763",
+      "note": "la louche de bouillon réservée aux moules ne définit pas de volume adaptable. L’état cru ou cuit des crevettes est inconnu alors qu’elles réchauffent seulement deux minutes. Sel et poivre listés sont oubliés, tri des moules et calibre des poissons manquent. Conserver le pochage séparé et les deux parts de beurre, sans transformer la finition des crevettes en cuisson supposée."
+    },
+    {
+      "id": "v74-reg-21",
+      "status": "blocked",
+      "sourceHash": "e46da011ff85741aeae61f5f3ff4b9bdff06919bd63d9e111f8fe2319535e15d",
+      "reviewedHash": "e46da011ff85741aeae61f5f3ff4b9bdff06919bd63d9e111f8fe2319535e15d",
+      "protectedRecipeSha256": "e79869a6761f76505876834e85638a2430ff0a964f9087653e7069429c3184aa",
+      "note": "le sac à far n’a ni capacité ni niveau de remplissage précis, et le calibre des morceaux de viande est inconnu. La saucisse peut être Morteau ou fumée sans notice : les trente-cinq dernières minutes ne conviennent pas nécessairement à chaque calibre. Les 20 g de beurre puis le reste doivent être calculés, sans changer le far poché en far cuit au four."
+    },
+    {
+      "id": "v74-reg-24",
+      "status": "blocked",
+      "sourceHash": "f6fd092c09cd705837fc6882997beac2a80ae763d7a2e22761ed9ffc8552cec8",
+      "reviewedHash": "f6fd092c09cd705837fc6882997beac2a80ae763d7a2e22761ed9ffc8552cec8",
+      "protectedRecipeSha256": "72d960391b708afe42634c86e13eaafb09c9917614796342718f578cc04da5fb",
+      "note": "la cuillère d’huile des légumes n’a pas d’unité, puis toute l’huile semble aller dans l’aïoli. Les deux louches de bouillon et quelques gouttes de citron ne définissent pas de quantités adaptables. La liaison au jaune peu cuit et la taille des médaillons restent à contrôler ; ne pas faire bouillir l’aïoli ni inventer une nouvelle répartition d’huile."
+    },
+    {
+      "id": "v74-reg-25",
+      "status": "blocked",
+      "sourceHash": "aacf469f7edea39e64386910ae823140944569ee2e097ca1d768b1f7e643bc8f",
+      "reviewedHash": "aacf469f7edea39e64386910ae823140944569ee2e097ca1d768b1f7e643bc8f",
+      "protectedRecipeSha256": "01ee3543e2838bbfea67a5dcd9ae49b997c22bfdc44f893ad9d4cd9a68b39f8a",
+      "note": "l’eau éventuelle de complément et le riz de Camargue du service sont absents de la liste. La part d’oignon et de carotte marinée est figée, la taille des cubes n’est pas donnée et le retour du bouquet et du zeste filtrés n’est pas explicite. Préserver la marinade au froid et les vingt dernières minutes des olives incluses dans le braisage, sans ajouter une durée supplémentaire."
+    },
+    {
+      "id": "v74-bis-03",
+      "status": "blocked",
+      "sourceHash": "a1b31ead1db9031abdd2cd715d8d7d4d12e5ac9d6d4f928ee7b3e1df442cd833",
+      "reviewedHash": "a1b31ead1db9031abdd2cd715d8d7d4d12e5ac9d6d4f928ee7b3e1df442cd833",
+      "protectedRecipeSha256": "7ad784c3b4fc2bb7af9cf296cb86d886c45b22a57ef26c80ec01f78e417544ea",
+      "note": "le résultat rosé demandé ne constitue pas un contrôle sanitaire des rognons ; la référence des abats est distincte de celle d’un steak. La dorure en deux fois pendant deux à trois minutes est ambiguë par fournée ou au total. Pommes sautées ou tagliatelles ne sont pas listées. Ne pas allonger silencieusement la cuisson pour changer la texture ni flamber le cognac, geste absent de CR."
+    },
+    {
+      "id": "v74-bis-04",
+      "status": "blocked",
+      "sourceHash": "e9997fc1550c30fc1a2acd6016f31b3681dd7de65e9753e9d00bfcf6f0e2883e",
+      "reviewedHash": "e9997fc1550c30fc1a2acd6016f31b3681dd7de65e9753e9d00bfcf6f0e2883e",
+      "protectedRecipeSha256": "5c219c2439310bcd6b652f753816beeafd2f697caf5ffb98d1543fef01db0f71",
+      "note": "les 40 cl de bouillon prélevés pourraient être adaptés à la ligne existante, mais le vinaigre supplémentaire en finition n’a pas de part prévue. Poivre oublié, légumes du bouillon non affectés au service et accompagnements absents. Conserver blanchiment, pochage long et pelage à chaud, sans rajouter arbitrairement du vinaigre aux deux cuillères déjà utilisées."
+    },
+    {
+      "id": "v74-bis-05",
+      "status": "blocked",
+      "sourceHash": "150fc071963639db9101f4f39ff2f94797256b7454034df98913a760bfc90fc1",
+      "reviewedHash": "150fc071963639db9101f4f39ff2f94797256b7454034df98913a760bfc90fc1",
+      "protectedRecipeSha256": "edefc3f695e88b49c5d3e1752618f05f8d888ecbcabeb4c6ea87a2c7434d6947",
+      "note": "le volume final de réduction de deux cuillères à soupe reste figé ; beurre clarifié et simple beurre fondu sont deux options à expliquer. Température du sabayon et maintien tiède non précisés, calibre des tournedos absent pour le saignant demandé. Frites ou pommes pont-neuf ne sont pas listées. Ne pas présenter les jaunes peu cuits et le saignant comme validés par leur seul aspect."
+    },
+    {
+      "id": "v74-bis-06",
+      "status": "blocked",
+      "sourceHash": "58cef45f4f133e22cae773849b37c4ce42412fecbc08b8c22a4e259184fce6d6",
+      "reviewedHash": "58cef45f4f133e22cae773849b37c4ce42412fecbc08b8c22a4e259184fce6d6",
+      "protectedRecipeSha256": "f969c986f31fdb57414807b401fad03ce565fd5ba185e5b33e6f297c831315c0",
+      "note": "le bouillon listé à 45 cl sert au pochage puis seulement 40 cl sont affectés à la sauce, sans préciser le reste ou la perte réelle. La notice et l’état des quenelles sont inconnus pour huit minutes en sauce. Sel et poivre oubliés ; liaison au jaune hors du feu sans maîtrise sanitaire. Conserver le pochage de volaille, le roux et le réchauffage des bouchées, sans transformer le feuilletage en pâte crue."
+    },
+    {
+      "id": "v75-chef-bocuse-02",
+      "status": "blocked",
+      "sourceHash": "8a0f3be56046aaaedb29144de631d2cbb9f8793b4b9b773aec320c6adba6f4e2",
+      "reviewedHash": "8a0f3be56046aaaedb29144de631d2cbb9f8793b4b9b773aec320c6adba6f4e2",
+      "protectedRecipeSha256": "15d6e107c76ed555d18800eeefadaf30861a800dd0b22285d96a954b6a2263d7",
+      "note": "le sel demandé manque dans la liste ; le citron sert seulement à quelques gouttes et le reste n’est pas affecté. Calibre des filets, précuisson éventuelle des disques et montage côté chair de l’interprétation restent à confirmer. La source du restaurant atteste le plat, pas ce protocole maison. Garder poêle puis four, sans emprunter automatiquement le montage d’une autre version."
+    },
+    {
+      "id": "v75-chef-bocuse-03",
+      "status": "blocked",
+      "sourceHash": "ed413f5f0dad26fafa98ef703d5b4f951537391643df0e17792efa911de57261",
+      "reviewedHash": "ed413f5f0dad26fafa98ef703d5b4f951537391643df0e17792efa911de57261",
+      "protectedRecipeSha256": "7c5834fd5c2c15d489a7bdd1de9e534ac1da565c838b19093682b0328cbd5fa3",
+      "note": "sel et poivre sont absents ; beurre seulement tiède dans une émulsion qui nécessite de préciser sa préparation. Le volume final de réduction est figé, l’épaisseur de pâte et du poisson n’est pas définie. Préparation des épinards sans graisse et sécurité des jaunes restent à vérifier. Ne pas ajouter de farce ni remplacer les filets par le poisson entier d’une autre interprétation."
+    },
+    {
+      "id": "v75-chef-bocuse-04",
+      "status": "blocked",
+      "sourceHash": "3f012c86c2fd969e617045eb5d95a1d70307717266d2b0f2e54c3f5931521150",
+      "reviewedHash": "3f012c86c2fd969e617045eb5d95a1d70307717266d2b0f2e54c3f5931521150",
+      "protectedRecipeSha256": "17d0c14b9789295df3c8dfde4815e98cbf149fd23e2f6c8e59a18d5dc7498310",
+      "note": "le lait restant après essorage de la mie n’a pas d’affectation ; huit quenelles sont figées sans calibre. Les 20 g de beurre sont seulement évoqués par le plat beurré, le sel manque, les légumes de service sont absents. Conserver la farce froide mixée, le pochage puis le gratin ; la version du restaurant aux quenelles de homard ne justifie pas une substitution du sandre."
+    },
+    {
+      "id": "v75-chef-bocuse-05",
+      "status": "blocked",
+      "sourceHash": "5f6d121732eaf928cdbcb59ad61eef2ed9a28f88deb12fee4cd71a80a5f6e27b",
+      "reviewedHash": "5f6d121732eaf928cdbcb59ad61eef2ed9a28f88deb12fee4cd71a80a5f6e27b",
+      "protectedRecipeSha256": "233897ef944d3b9a71fb98ef4a236cd63409ecac03b3fc0bece5fba112e02e0a",
+      "note": "les morilles n’ont que quinze minutes dans une sauce crémée à feu doux : ce n’est pas le protocole de cuisson suffisante décrit par l’Anses. Les 10 cl d’eau de trempage manquent dans la liste et sont figés ; sel, poivre et accompagnements absents. Vérifier le traitement des morilles et le poulet à cœur, sans ajouter arbitrairement une cuisson au bouillon ni réimporter une autre volaille de Bresse."
+    },
+    {
+      "id": "v75-chef-ducasse-04",
+      "status": "blocked",
+      "sourceHash": "8ec43c510374959212d8dcb70e54acedf1f492071486cd929c4c1fc7417ee636",
+      "reviewedHash": "8ec43c510374959212d8dcb70e54acedf1f492071486cd929c4c1fc7417ee636",
+      "protectedRecipeSha256": "2ed703e62548b20dec8a9c2b2a44864ad3b0039962c4bf92f92fa9c89964aaa7",
+      "note": "les cuillères d’huile n’ont pas d’unité dans les étapes et le filet final n’affecte pas clairement les quatre cuillères à soupe listées. Seul le jus de la moitié de chaque agrume est utilisé, le reste non affecté ; sel absent. Garder le fenouil revenu puis mouillé au vin et le rôtissage peau en haut, sans calculer une répartition supposée."
+    },
+    {
+      "id": "v75-chef-constant-02",
+      "status": "blocked",
+      "sourceHash": "b25426966ace4aa0d53016374d5eb7310f48cad0d909997299698bf564c9a953",
+      "reviewedHash": "b25426966ace4aa0d53016374d5eb7310f48cad0d909997299698bf564c9a953",
+      "protectedRecipeSha256": "86be7450e65db95d3ef3e2ea7fc025e77ecf46bfc83fe87fa8d707332d2bf9a4",
+      "note": "calibre des magrets et contrôle sanitaire ne sont pas établis pour la cuisson rosée recherchée. La fleur de sel manque ; presque toute la graisse jetée ne définit pas ce qui demeure pour le jus. Organiser les pommes de terre parallèlement au canard, sans convertir la graisse rendue en quantité achetée ni imposer silencieusement une cuisson différente."
+    },
+    {
+      "id": "v75-chef-constant-03",
+      "status": "blocked",
+      "sourceHash": "3ccbaa6460487ccea32f56d548b5c0447c0e23820631c06358bba13e984d8905",
+      "reviewedHash": "3ccbaa6460487ccea32f56d548b5c0447c0e23820631c06358bba13e984d8905",
+      "protectedRecipeSha256": "b50e70e69eaf523aa5ff6776c19103eee02101801c87178b548b75e9d2d3c1dd",
+      "note": "la cuillère de graisse de canard n’est ni listée ni définie par son unité. Sel, poivre et salade vinaigrée sont absents ; cuisson des pommes de terre et léger réchauffage des cuisses non minutés. Les trois minutes de gril sont incluses dans les vingt-cinq minutes de four : ne pas les ajouter ni réaffecter le beurre de purée aux échalotes."
+    },
+    {
+      "id": "v75-chef-constant-04",
+      "status": "blocked",
+      "sourceHash": "966da3f33c0d0bce3ba37eaaa08ddbaf5c2c876eea602281a0180f1bf2b3fb2f",
+      "reviewedHash": "966da3f33c0d0bce3ba37eaaa08ddbaf5c2c876eea602281a0180f1bf2b3fb2f",
+      "protectedRecipeSha256": "b19789d40831406449df81e75545ed219a847f9a98cadc8c4e3bfdcfcf723779",
+      "note": "l’huile de l’écrasé est prélevée par trois cuillères sans unité ; le badigeonnage du poisson et la sauce se partagent le reste sans mesures. Durée des pommes en peau absente, sel absent, calibre du cabillaud et contrôle à cœur manquants. Conserver les pommes cuites en peau et écrasées à la fourchette, sans remplacer par une purée lisse."
+    },
+    {
+      "id": "v75-chef-piege-03",
+      "status": "blocked",
+      "sourceHash": "f7b97a2c8f730c7e25e5beceee4b35d767679ec627f89ed9e9b3d2fc07e48c6a",
+      "reviewedHash": "f7b97a2c8f730c7e25e5beceee4b35d767679ec627f89ed9e9b3d2fc07e48c6a",
+      "protectedRecipeSha256": "8bb33424a2c611b47fddb93e2351c0bca5a3fbff7039d2d9a124a05155ed0b0b",
+      "note": "les parures et l’eau des navets ne sont pas listées. Les légumes reviennent sans graisse définie ; le beurre se partage ensuite entre marrons, navets et sauce sans mesure complète. Le four figure dans les étapes mais pas dans l’appareil, et le rosé du gibier n’a pas de contrôle thermique. Ne pas inventer une matière grasse ni remplacer le chevreuil par du bœuf."
+    },
+    {
+      "id": "v75-chef-piege-04",
+      "status": "blocked",
+      "sourceHash": "a59e177f8d21163dbb8ee38158fc830b926a01736f80d00854a0ce757cc25c69",
+      "reviewedHash": "a59e177f8d21163dbb8ee38158fc830b926a01736f80d00854a0ce757cc25c69",
+      "protectedRecipeSha256": "047e4ccb4c83421b7134c050ee91529093dabf423b42f2677922ffe5d283f3cf",
+      "note": "les quatre-vingt-quinze minutes annoncées ne couvrent pas clairement dégorgeage d’une heure, blanchiment, pressage puis cuisson. Le pressage manque de conditions au froid ; sel absent, taille des ris et des salsifis non donnée. Le transfert après le four et le maintien des ris pendant la réduction sont ambigus. Conserver blanchiment et pressage, sans les supprimer pour raccourcir le temps."
+    },
+    {
+      "id": "v75-chef-lignac-01",
+      "status": "blocked",
+      "sourceHash": "feacc3da1779ae5bfa0d2b6b8e16affcb17b4833559ee3124573f2b058b22871",
+      "reviewedHash": "feacc3da1779ae5bfa0d2b6b8e16affcb17b4833559ee3124573f2b058b22871",
+      "protectedRecipeSha256": "8336469c3df657457341a5845d22710385f9304e4b21de89eb3999dbdfa0659f",
+      "note": "l’huile listée est entièrement utilisée pour le brocoli puis le plat doit encore être huilé, sans part réservée. Le jus vient d’un demi-citron alors qu’un citron entier est listé ; le reste n’est pas affecté, sel absent. La chair brillante seule n’est pas un contrôle sanitaire. Préserver le beurre noisette et les deux cuissons successives du brocoli, sans ajouter une graisse."
+    },
+    {
+      "id": "v75-chef-lignac-02",
+      "status": "blocked",
+      "sourceHash": "38035af6be039d46457ae0e1104b190963e80c396b38110f5da3d598e1462781",
+      "reviewedHash": "38035af6be039d46457ae0e1104b190963e80c396b38110f5da3d598e1462781",
+      "protectedRecipeSha256": "c8ea7fc735edf5cba267c590ea20d6dc3df8a661d344ed9591e1e5440a7b9796",
+      "note": "toute l’huile de sésame est incorporée à la sauce mais les saisies précédentes du bœuf et des légumes n’ont pas de graisse définie. Le jus ne consomme que la moitié du citron vert ; riz facultatif non listé. Durée par fournée et contrôle du bœuf restent à préciser. Ne pas ajouter d’huile neutre ni transformer la saisie vive en cuisson dans la sauce."
+    },
+    {
+      "id": "v75-chef-guerard-01",
+      "status": "blocked",
+      "sourceHash": "7738a3b00b29967b24cef5e01e36e0af10a3f36f265e8694e49d08112b386247",
+      "reviewedHash": "7738a3b00b29967b24cef5e01e36e0af10a3f36f265e8694e49d08112b386247",
+      "protectedRecipeSha256": "c7d5462a6149da8d89b59f7e7d83a209bdd6465415b448884869671c471c30cb",
+      "note": "l’algue alimentaire n’est pas identifiée alors que réhydratation, rinçage et conditions d’emploi dépendent du produit. Le citron listé se limite à quelques gouttes, calibre des filets et contrôle du pochage manquants. La variante bouillon filtré ne précise pas le sort des légumes. Conserver les deux variantes sans changer l’algue ni remplacer le pochage par une poêlée."
+    },
+    {
+      "id": "v75-chef-guerard-02",
+      "status": "blocked",
+      "sourceHash": "9999ccd5affacfc934b31481e455e12c976d933a43c0670818b80c111b3dc954",
+      "reviewedHash": "9999ccd5affacfc934b31481e455e12c976d933a43c0670818b80c111b3dc954",
+      "protectedRecipeSha256": "1aa10af8c43e21ed48147191d4c9746fd039b3f50348c8d927205516d5047d88",
+      "note": "l’état frais, surgelé ou cuit des petits pois n’est pas indiqué pour les six dernières minutes ; calibre des suprêmes et contrôle à cœur absents. L’assaisonnement final n’est pas identifié dans la liste. La recette de Guérard retrouvée cuit un poulet en vessie : elle ne valide pas les temps de cette cocotte. Conserver l’infusion et la légère coloration existantes, sans importer ce procédé différent."
+    },
+    {
+      "id": "v75-chef-guerard-04",
+      "status": "blocked",
+      "sourceHash": "77de50c6a4cdc146a4cdd3eaebd1123d001503b45bf162138d3f824008fb5133",
+      "reviewedHash": "77de50c6a4cdc146a4cdd3eaebd1123d001503b45bf162138d3f824008fb5133",
+      "protectedRecipeSha256": "ea3a403d1d92a74d7c7d57795cb77717b15d11e3856103962e45f7ed9fcec874",
+      "note": "les deux cuillères de bouillon n’ont pas d’unité ; la petite louche de haricots écrasés n’est pas mesurée. Le persil et le poivre manquent dans la liste, les saucisses ne sont pas identifiées par état et calibre. La saisie du poulet sans graisse est explicite et doit rester ainsi : ne pas la remplacer par de l’huile ou inventer un autre produit de charcuterie."
+    },
+    {
+      "id": "v75-chef-robuchon-04",
+      "status": "blocked",
+      "sourceHash": "3762746e3c3c889a597797f60eeb4c00f56cb2cbd651c1aa588885b799ae7e6a",
+      "reviewedHash": "3762746e3c3c889a597797f60eeb4c00f56cb2cbd651c1aa588885b799ae7e6a",
+      "protectedRecipeSha256": "6231415351c0bd1cd5f61aa4517624ed07a780ac30c61d6a7b33d41e0e650d0c",
+      "note": "les cailles désossées puis farcies ne sont pas définies par leur calibre et le contrôle thermique de la farce au foie gras manque. Sel et poivre absents ; la purée du même chapitre n’est ni listée ni reliée à une préparation dans cette fiche. Les quatre bâtonnets sont figés malgré les convives variables. Conserver farcissage, ficelage et glaçage, sans transformer les cailles en morceaux non farcis."
+    },
+    {
+      "id": "v75-chef-robuchon-05",
+      "status": "blocked",
+      "sourceHash": "725e3bb517b1b363fa77754b0073b198ff917ec170711db19713907f261adc80",
+      "reviewedHash": "725e3bb517b1b363fa77754b0073b198ff917ec170711db19713907f261adc80",
+      "protectedRecipeSha256": "d4ea5c143427eb03dd7d6ec457691ff277f2fdbf618e6e2a4d969ffb9a011ce4",
+      "note": "le citron est réduit à quelques gouttes et le sel manque dans la liste ; le sort de la sauce restante après un service en très petite quantité n’est pas précisé. Calibre des noix et contrôle à cœur manquent. La durée composée une minute trente ne doit pas devenir un minuteur d’une minute : conserver cette réserve explicite, sans arrondir ni modifier la saisie."
+    },
+    {
+      "id": "v75-chef-pic-02",
+      "status": "blocked",
+      "sourceHash": "c3083d210daa26ba2e75b7594f41287449e12b8181b160e7681b99e237958629",
+      "reviewedHash": "c3083d210daa26ba2e75b7594f41287449e12b8181b160e7681b99e237958629",
+      "protectedRecipeSha256": "3cb9aa4c78763a580663c69d7a6908b711a92bf9d4afa375dda513f0c0dadb83",
+      "note": "les algues sont filtrées après infusion mais leur origine pour les lanières finales n’est pas expliquée : réemploi ou part réservée inconnue. La réduction à 6–8 cl et les fruits de finition ne sont pas entièrement affectés aux quantités. Réhydratation et réchauffage du homard déjà cuit demandent leurs conditions. Ne pas inventer une seconde portion d’algues ni recuire un homard supposé cru."
+    },
+    {
+      "id": "v75-chef-pic-03",
+      "status": "blocked",
+      "sourceHash": "c1814f42bf3259e836a04815c70953c479ddc9d72d011e9efd081b8b3bfdbc25",
+      "reviewedHash": "c1814f42bf3259e836a04815c70953c479ddc9d72d011e9efd081b8b3bfdbc25",
+      "protectedRecipeSha256": "72d8ce4a2ec966155dbfec4ebe4a0443266e4bb516ba44b8b67241ec0ecb2540",
+      "note": "les 8 cl de réduction ne sont pas liés au rendement adaptable ; un citron entier sert seulement à quelques gouttes. La petite cuillerée de caviar ne répartit pas les 20 g listés, sel absent. Calibre des filets et contrôle thermique manquent ; conserver la sauce autour de la peau et le caviar ajouté au dernier moment, sans le cuire dans le beurre."
+    },
+    {
+      "id": "v75-chef-pic-04",
+      "status": "blocked",
+      "sourceHash": "be41e7c372c50320ad3a95e253089a4f974d10ad2a0d711d2dcc4249f4807f17",
+      "reviewedHash": "be41e7c372c50320ad3a95e253089a4f974d10ad2a0d711d2dcc4249f4807f17",
+      "protectedRecipeSha256": "63fb9caa86e5c3c00bad232c30a14380d4a24bbd584e14466c44aab93aea47a5",
+      "note": "le fond d’eau salée des carottes est absent et ne définit ni volume ni durée. La vanille fumée du titre n’apparaît ni comme produit fumé ni comme geste de fumage, et seul un petit morceau est prélevé. Calibre et contrôle du bœuf manquent. Ne pas ajouter de fumage ou changer le titre et l’identité pour masquer cette incohérence."
+    },
+    {
+      "id": "v75-chef-loiseau-01",
+      "status": "blocked",
+      "sourceHash": "2f5d525d352c71a3c0867a0e9d6b2328eb3b75f72d10ffc8e5fb9590953776a1",
+      "reviewedHash": "2f5d525d352c71a3c0867a0e9d6b2328eb3b75f72d10ffc8e5fb9590953776a1",
+      "protectedRecipeSha256": "cfca64f83998b6c1acb0c299a3a6e5d1b906cd39c544d6da85e9d733ca842f96",
+      "note": "les 50 g de beurre de sauce puis les 10 g de cuisson sont connus mais encore figés. La pointe de sucre facultative ne correspond pas à la cuillère à café listée, et le sel demandé manque. Épaisseur des filets et contrôle à cœur à préciser. Conserver la peau croustillante et les deux réductions, sans verser tout le sucre pour forcer la cohérence."
+    },
+    {
+      "id": "v75-chef-loiseau-04",
+      "status": "blocked",
+      "sourceHash": "ec53de484983510a6a9a41b6b00cd874c470d260a28e70852b6e130b9e36cf0b",
+      "reviewedHash": "ec53de484983510a6a9a41b6b00cd874c470d260a28e70852b6e130b9e36cf0b",
+      "protectedRecipeSha256": "f00513c071d8e16573f84b5bc24b7c9f6a9905ed6b66b57bc1a1183c8227d6fb",
+      "note": "le sel, le poivre et les accompagnements ne sont pas listés ; dorure du poulet et suage des échalotes non minutés. Le calibre des morceaux et le contrôle à cœur manquent avant le gratin au comté. Conserver les phases couvert puis découvert et les deux minutes de gril supplémentaires, sans confondre avec un temps inclus ni transposer à l’airfryer."
+    },
+    {
+      "id": "v75-chef-troisgros-01",
+      "status": "blocked",
+      "sourceHash": "bb8c4c72e2845407bfbde13675e36032ebd99800ea9858e4a7780ac097c19f52",
+      "reviewedHash": "bb8c4c72e2845407bfbde13675e36032ebd99800ea9858e4a7780ac097c19f52",
+      "protectedRecipeSha256": "44c37136c7c3666d0bee80ae4258425774e53b0f8804ada27dfa0b94a75732d8",
+      "note": "la réduction de quatre cuillères à soupe est figée et le vermouth facultatif devient obligatoire dans les étapes ; quelques gouttes ne définissent pas l’emploi du citron. L’épaisseur des escalopes et la maîtrise sanitaire d’une cuisson éclair restent à vérifier. La version de la Maison retrouvée diffère des ingrédients CR : ne pas la recopier ni transformer cette saisie en pochage long."
+    },
+    {
+      "id": "v75-chef-troisgros-02",
+      "status": "blocked",
+      "sourceHash": "4f475c15b0fe26e5e14d598b2004ba8b6d2d6e5454901d7d521ed9209fafb6d2",
+      "reviewedHash": "4f475c15b0fe26e5e14d598b2004ba8b6d2d6e5454901d7d521ed9209fafb6d2",
+      "protectedRecipeSha256": "a63cb8b82683a9d5d5c9e4d46e74e49db87d7b3bbc3e36ce5ba70d2279260e44",
+      "note": "le blanchiment séparé des trois légumes n’a aucune durée ni dimension précise. Le repos du veau n’est pas minuté et son contrôle à cœur manque ; la source ne précise pas l’assaisonnement. Les deux parts de beurre sont connues mais ne résolvent pas ces lacunes. Conserver les cuissons séparées et le déglaçage au xérès, sans cuire les légumes crus seulement deux minutes dans le jus."
+    },
+    {
+      "id": "v75-chef-troisgros-03",
+      "status": "blocked",
+      "sourceHash": "d0f088153ed719eddf77c2d536c7e6b4e87225560308e23b8d9b10497ce665de",
+      "reviewedHash": "d0f088153ed719eddf77c2d536c7e6b4e87225560308e23b8d9b10497ce665de",
+      "protectedRecipeSha256": "420c6a2e03cb5d7acf982950f73a3c62802220f27280720ae7f9d5aabffe8eb5",
+      "note": "le poivron doit griller sans appareil, température ou durée, tandis que les tomates doivent être pelées sans geste expliqué. Les cuillères d’huile n’ont pas d’unité et la pincée de piment puis le supplément n’affectent pas la cuillère à café listée ; sel absent. Préserver le condiment cru aux tomates et le poivron grillé, sans transformer les deux en sauce cuite."
+    },
+    {
+      "id": "v75-chef-troisgros-04",
+      "status": "blocked",
+      "sourceHash": "df9e7fc121060a3d3583de045b84b9e6553e7f0c0dc2c0c4ff14c2dd6fc3f177",
+      "reviewedHash": "df9e7fc121060a3d3583de045b84b9e6553e7f0c0dc2c0c4ff14c2dd6fc3f177",
+      "protectedRecipeSha256": "182e9f78d7452641e5fc8620251e9bc673ec6ab4a00dfcb24e3196d782342b6c",
+      "note": "les échalotes doivent fondre sans graisse définie, toute l’huile étant sur le poulet et tout le beurre dans la sauce finale. Le sel manque. Cinquante à cinquante-cinq minutes pour un poulet entier de 1,5 kg ne valent pas contrôle à cœur ni règle pour un autre poids. Préserver le rôtissage et la réduction vinaigrée, sans cuire les échalotes dans du bouillon pour contourner la graisse absente."
+    }
+  ]
+}

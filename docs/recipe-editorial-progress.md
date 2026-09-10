@@ -338,6 +338,16 @@ P02 publié : `c87dc373c29cae1d6edb9c2ac6191004c69ba52a`, tests `34390827874` et
 
 **Cumul : 960 identifiants examinés, 338 corrigés, 612 bloqués, 10 conformes sans réécriture, 593 à examiner.** Zéro erreur éditoriale, 6 224 avertissements, 492 minuteurs et 12 078 calculs d’ingrédients des lots 02–29. Les 24 commandes du workflow passent ; six contrôles visuels du Livre et du mode cuisine aux trois formats simulés, avec dernières étapes accessibles et minuteur dégagé. Publication à consigner après contrôle HTTPS. Les plats restants suivent.
 
+## Publication du lot 29
+
+`943897e1f1326a0b639182ccf3e842c245fe0277` publié sur `main`. Tests `34419142900`, Pages `34419142364` et déploiement `6361652552` réussis. HTTPS 200 et fichiers identiques au commit : index `1e1514f82f5429c4c6aaf9dfcaa4fcaf321f431268fc191969ffbe2b07ca07b7`, service worker `716e2a00afadd70bb3eefa6e61deda505362b19815bd5774ada1eb549846eb79`. Révision chargée après actualisation normale `sha256:c2c08a268bb8223e7e3a9806751aa4a98895af913180833fc760325b2a5c0f5c`. Morteau contrôlée en production à deux personnes : 200 g de cancoillotte, 35–45 minutes dès le frémissement selon calibre et notice, vingt minutes de pommes de terre en parallèle et trois minutes de repos. Aucun effacement de données.
+
+## Lot 30 — trente-quatre plats régionaux et interprétations de chefs
+
+[Journal, sources et décisions](recipe-editorial-batch-30.md). 34 réservées, aucune corrigée ou conforme sans réécriture. Chaque objet culinaire est inchangé ; seuls présentation, titres et réserve précise évoluent. Les sources retrouvées ne justifient pas de transposer le poulet au tilleul en vessie à une cocotte, de prolonger arbitrairement une cuisson éclair ou d’inventer le partage de matières grasses.
+
+**Cumul : 994 identifiants examinés, 338 corrigés, 646 bloqués, 10 conformes sans réécriture, 559 à examiner.** Zéro erreur éditoriale, 6 088 avertissements. Ce lot ajoute 1 848 contrôles d’ingrédients et 204 rendus de réserves, sans compter ces recettes comme culinaires validées. Les 24 commandes du workflow passent ; Livre et mode cuisine vérifiés aux trois formats simulés. Publication à consigner après contrôle HTTPS. Les autres plats suivent.
+
 ## Limites des vérifications
 
 Les tests de structure, quantité, minuteurs, stockage simulé et rendu ne sont pas des essais culinaires. Les formats iPhone/PWA sont simulés, sauf mention explicite d’un appareil physique. Le total de fiches à examiner ne doit jamais être remplacé par le nombre de fiches auxquelles le style commun a été appliqué.
