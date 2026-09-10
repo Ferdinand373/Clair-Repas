@@ -388,6 +388,16 @@ P02 publié : `c87dc373c29cae1d6edb9c2ac6191004c69ba52a`, tests `34390827874` et
 
 **Cumul : 1 114 identifiants examinés, 362 corrigés, 742 bloqués, 10 conformes sans réécriture, 439 à examiner.** Zéro erreur éditoriale, 5 609 avertissements ; 568 minuteurs et 13 290 rendus d’ingrédients des lots 02–34. Ce lot ajoute 942 rendus d’ingrédients réservés et 138 réserves visibles. Les 24 commandes passent ; Livre sur une recette longue et une courte, puis mode cuisine contrôlés aux trois formats simulés. Publication à consigner après contrôle HTTPS. Les autres recettes suivent.
 
+## Publication du lot 34
+
+`b13862a3348e9afe905e1a666268f402398b1122` publié sur `main`. Tests `34423019509`, Pages `34423019223` et déploiement `6362245603` réussis. HTTPS 200 et fichiers identiques au commit : index `d8b8dd1bb26d822c560dfc9d3c201c58b228668e1185cb1e5d88a805a8763e86`, service worker `7dcd0b5e9c83777cb5e0d5a6425ecc285f1c1fe6db6eee499348ed983891565f`. Après activation automatique normale, révision chargée `sha256:ef9275fece058298d86895151f6be4ac7d67f8e61823952d69568c3b534f690c`. Lotte vérifiée à deux personnes : 350 g de poisson, 10 g de beurre, 6 cl de vin, 10 cl de fumet et 6 cl de crème ; minuteurs 8/5/8–10/3 attachés aux étapes, julienne fondue puis pochage conservés. Aucun effacement de données.
+
+## Lot 35 — quarante repas rapides
+
+[Journal, sources et décisions](recipe-editorial-batch-35.md). 10 corrigées, 30 réservées, aucune conforme sans réécriture. Wraps et pitas sans cuisson clarifiés ; riz, pâtes et poulet restent des poids déjà cuits. Quesadillas par paires et minuteurs par face, croques au thon avec zeste/jus distincts, miel et fromage calculés. Sel et poivre source rétablis pour e20 et couverts par le test de courses, sans changement de son moteur.
+
+**Cumul : 1 154 identifiants examinés, 372 corrigés, 772 bloqués, 10 conformes sans réécriture, 399 à examiner.** Zéro erreur éditoriale, 5 467 avertissements ; 574 minuteurs et 13 656 rendus d’ingrédients des lots 02–35. Ce lot ajoute 1 128 rendus d’ingrédients réservés et 180 réserves visibles. Les 24 commandes passent ; Livre sur fiches longue et courte et mode cuisine contrôlés aux trois formats simulés. Publication à consigner après contrôle HTTPS ; les autres recettes suivent.
+
 ## Limites des vérifications
 
 Les tests de structure, quantité, minuteurs, stockage simulé et rendu ne sont pas des essais culinaires. Les formats iPhone/PWA sont simulés, sauf mention explicite d’un appareil physique. Le total de fiches à examiner ne doit jamais être remplacé par le nombre de fiches auxquelles le style commun a été appliqué.

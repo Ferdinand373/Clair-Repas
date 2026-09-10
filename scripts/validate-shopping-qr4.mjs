@@ -471,7 +471,11 @@ await check("11. Sel et poivre is never split", () => {
   const restoredGesiers = recipeLibrary.find(recipe => recipe.id === "v75-chef-constant-05");
   assert.deepEqual(JSON.parse(JSON.stringify(restoredGesiers.i.at(-1))), {q:null,u:"",n:"sel et poivre",k:"sel et poivre"});
   assert.equal(draftFor(syntheticSource("qr4-restored-gesiers-seasoning", [structuredClone(restoredGesiers.i.at(-1))])).length, 1);
-  assert.equal(compoundCount, 482, "Unexpected compoundSource corpus count");
+  // Batch 35 restores the sel/poivre explicitly requested by the e20 sauce.
+  const restoredWraps = recipeLibrary.find(recipe => recipe.id === "e20");
+  assert.deepEqual(JSON.parse(JSON.stringify(restoredWraps.i.at(-1))), {q:null,u:"",n:"sel et poivre",k:"sel et poivre"});
+  assert.equal(draftFor(syntheticSource("qr4-restored-wraps-seasoning", [structuredClone(restoredWraps.i.at(-1))])).length, 1);
+  assert.equal(compoundCount, 483, "Unexpected compoundSource corpus count");
   assert.equal(splitCount, 19, "Only the audited vinaigrette compounds may split");
   return `${compoundCount} compound occurrences; ${splitCount} safe splits; 0 unexpected`;
 });

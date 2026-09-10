@@ -7,7 +7,7 @@ import {recipeSource} from './recipe-source.mjs';
 import {recipeHash} from './validate-recipe-editorial.mjs';
 const root=resolve(dirname(fileURLToPath(import.meta.url)),'..');
 const {code,recipes,editorial}=recipeSource(readFileSync(resolve(root,'index.html'),'utf8'));
-const batchNumbers=['02','03','04','05','06','07','08','09','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31','32','33','34'];
+const batchNumbers=['02','03','04','05','06','07','08','09','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31','32','33','34','35'];
 const fixture={recipes:batchNumbers.flatMap(number=>JSON.parse(readFileSync(resolve(root,`scripts/recipe-editorial-batch-${number}.fixture.json`),'utf8')).recipes)};
 const slice=(a,b)=>code.slice(code.indexOf(a),code.indexOf(b,code.indexOf(a)+a.length));
 const context={window:{},$:()=>({value:'8'}),MEAL_TYPES:['mid','eve'],recipeRole:r=>r.role||r.course||'dish',isFavorite:()=>false,recipeFeedbackHTML:()=>'',recipePersonalNoteHTML:()=>''};
@@ -519,7 +519,20 @@ Object.assign(ingredients,{
   e07:['grandes tranches de pain','jambon','tomates','fromage râpé','salade'],
   e09:['poulet déjà cuit','avocat','maïs','salade verte','tomate','vinaigrette']
 });
-assert.equal(fixture.recipes.length,1099);
+Object.assign(timers,{e18:[[],[],[4],[4],[]],e20:[[],[],[],[]],e22:[[],[],[]],e24:[[],[],[8],[]],e26:[[],[],[]],e27:[[],[],[10]],e32:[[],[],[]],e35:[[],[],[]],e38:[[],[],[3],[3]],e40:[[],[],[]]});
+Object.assign(ingredients,{
+  e18:['tortillas','jambon','fromage râpé','tomates','concombre'],
+  e20:['wraps','poulet cuit','concombre','carottes','yaourt nature','citron','sel.*poivre'],
+  e22:['pain pita','poulet déjà cuit','tomates','concombre','yaourt nature','citron.*herbes'],
+  e24:['pain de mie','thon','fromage frais','citron','câpres','tomate','salade'],
+  e26:['riz déjà cuit','crevettes cuites','avocat','concombre','sauce soja','citron'],
+  e27:['grandes tranches de pain','fromage de chèvre','jambon','miel','salade','herbes'],
+  e32:['wraps','saumon fumé','fromage frais','concombre','aneth','citron'],
+  e35:['lentilles déjà cuites','poulet déjà cuit','carottes','échalote','persil','vinaigrette'],
+  e38:['tortillas','thon','tomate','fromage râpé','salade','paprika'],
+  e40:['pâtes déjà cuites','saumon fumé','concombre','yaourt nature','citron','aneth']
+});
+assert.equal(fixture.recipes.length,1139);
 let quantityChecks=0,timerCount=0;
 for(const record of fixture.recipes){
   const recipe=recipes.find(r=>r.id===record.id);
@@ -1349,6 +1362,41 @@ assert.match(editorial.e01.reviewNote,/pommes de terre et œufs.*Sans cuisson/);
 assert.match(editorial.e05.reviewNote,/Moulinex.*ne valide pas ce temps CR/);
 assert.match(editorial.e10.reviewNote,/cuisson au bouillon.*ne pas lui ajouter un suage/);
 console.log(`✓ Batch 34: ${reservedQuantityChecks34} original ingredient renders and 138 visible reservations; original roasting/poaching/braising preserved, dynamic quantities, cooked chicken retained`);
+const batch35=JSON.parse(readFileSync(resolve(root,'scripts/recipe-editorial-batch-35.fixture.json'),'utf8')).recipes;
+assert.equal(batch35.length,40);assert.equal(batch35.filter(r=>r.status==='corrected').length,10);
+assert.equal(batch35.filter(r=>r.status==='blocked').length,30);
+const wraps35=recipes.find(r=>r.id==='e20');
+assert.deepEqual(wraps35.i.at(-1),{q:null,u:'',n:'sel et poivre',k:'sel et poivre'});
+assert.match(batch35.find(r=>r.id==='e20').beforeSteps.join(' '),/le sel et le poivre/);
+let reservedQuantityChecks35=0;
+for(const count of [1,2,3,4,5,8]){
+  const croque=recipes.find(r=>r.id==='e24'),bowl=recipes.find(r=>r.id==='e26'),chevre=recipes.find(r=>r.id==='e27');
+  assert.ok(context.recipeStepText(croque.p[0],croque,count).includes(context.formatQty(80*count/2)+' g de fromage frais'));
+  assert.ok(context.recipeStepText(bowl.p[0],bowl,count).includes(context.formatQty(160*count/2)+' g de riz déjà cuit'));
+  assert.ok(context.recipeStepText(bowl.p[2],bowl,count).includes(context.formatQty(count/2)+' c. à soupe de sauce soja'));
+  assert.ok(context.recipeStepText(chevre.p[1],chevre,count).includes(context.formatQty(count/2)+' c. à soupe de miel'));
+  for(const record of batch35.filter(r=>r.status==='blocked')){
+    const r=recipes.find(r=>r.id===record.id),output=context.recipeHTML(r,{people:count,dayIndex:1,mealType:'eve'});
+    assert.ok(output.includes(context.escapeHTML(editorial[record.id].reviewNote)));
+    for(const ingredient of r.i){
+      const q=ingredient.q==null?null:ingredient.q*count/(r.servings||2);
+      assert.ok(output.includes('>'+context.ingredientText(ingredient,q,count)+'</li>'));
+      reservedQuantityChecks35++;
+    }
+    assert.doesNotMatch(output,/\{\{|undefined|NaN/);
+  }
+}
+assert.match(recipes.find(r=>r.id==='e18').p[1],/Ne pas plier.*deux disques superposés/);
+assert.match(recipes.find(r=>r.id==='e38').p[0],/thon avec du paprika/);
+assert.match(recipes.find(r=>r.id==='e24').p[0],/zeste.*câpres/);
+assert.match(recipes.find(r=>r.id==='e24').p[3],/jus de citron réservé/);
+assert.match(recipes.find(r=>r.id==='e24').p[2],/7 à 8 minutes à 180 °C par fournée/);
+assert.doesNotMatch(recipes.find(r=>r.id==='e26').p.join(' '),/deux bols/);
+assert.match(recipes.find(r=>r.id==='e40').p[0],/poids des pâtes cuites, pas celui des pâtes sèches/);
+assert.match(editorial.e33.reviewNote,/plusieurs fois.*sans répartition/);
+assert.match(editorial.e51.reviewNote,/trois usages.*ne pas tripler/);
+assert.match(editorial.e46.reviewNote,/charcuterie cuite ou viande crue/);
+console.log(`✓ Batch 35: ${reservedQuantityChecks35} original ingredient renders and 180 visible reservations; source-restored seasoning, paired tortillas, cooked weights, complete lemon usage and distinct side timers`);
 const corrected=fixture.recipes.filter(r=>r.status==='corrected').length;
 const unchanged=fixture.recipes.filter(r=>r.status==='unchanged').length;
 console.log(`✓ Batches ${batchNumbers.join('/')}: ${fixture.recipes.length} individual review records, ${corrected} corrected, ${unchanged} unchanged, ${fixture.recipes.length-corrected-unchanged} blocked with original content preserved; ${timerCount} manually checked timers`);
