@@ -101,4 +101,6 @@ Mode cuisine long : chou farci déjà présent dans le programme, à deux person
 
 ## Arrêt demandé
 
-1 504 identifiants examinés sur 1 553 : **409 corrigés, 10 conformes sans réécriture, 1 085 bloqués ; 49 à examiner**. Finir et publier uniquement ce lot 42, puis arrêter. Le futur lot 43 n’est pas commencé. Reprise exclusivement sur nouvelle instruction, à partir des entrées `pending` de l’inventaire ; première entrée `v39-lasagnes-bolognaise`.
+1 504 identifiants examinés sur 1 553 : **409 corrigés, 10 conformes sans réécriture, 1 085 bloqués ; 49 à examiner**. Le lot 42 est publié au commit `573f7adb9f9783b7f90ed5ddc464c17848946f1f`. Tests distants, déploiement Pages, fichiers HTTPS identiques et recette en production vérifiés : voir le [point d’arrêt et les preuves de publication](recipe-editorial-progress.md#publication-du-lot-42-et-point-darrêt).
+
+**Chantier arrêté.** Le futur lot 43 n’est pas commencé. Reprise exclusivement sur nouvelle instruction, à partir des entrées `pending` de l’inventaire ; première entrée `v39-lasagnes-bolognaise`. La documentation de clôture ne change pas les fichiers applicatifs validés de ce lot.

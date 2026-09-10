@@ -480,7 +480,19 @@ Noyau effectivement chargé `sha256:2b6ed9a5cb3d4a4ad28861dc0fb9e64f0b6ab732375c
 
 **Arrêt explicite de l’utilisateur : ne commencer aucune autre recette ni aucun nouveau lot.** Le lot 43 n’est pas commencé. La reprise devra partir du `main` publié après ce lot et des 49 entrées `pending` de [l’inventaire par identifiant](recipe-editorial-inventory.json), dans son ordre actuel ; première entrée `v39-lasagnes-bolognaise`. Les 1 085 entrées `blocked` contiennent les raisons exactes à conserver. Les quatre réserves prioritaires du premier lot restent `a048`, `e92`, `e78`, `n88` ; `a038` a été corrigée au lot 02.
 
-La branche parallèle `shopping-v2-engine-test` reste propre et en avance d’un commit, `f21bad0c63b9dae514d0a85da34efd8453f0ce30`, non publié par ce chantier. Publication du lot 42 et contrôle final à consigner ci-dessous, puis aucune poursuite automatique.
+La branche parallèle `shopping-v2-engine-test` reste propre et en avance d’un commit, `f21bad0c63b9dae514d0a85da34efd8453f0ce30`, non publié par ce chantier.
+
+## Publication du lot 42 et point d’arrêt
+
+Commit éditorial `573f7adb9f9783b7f90ed5ddc464c17848946f1f`, poussé sans force sur `origin/main` de `Ferdinand373/Clair-Repas`. Tests distants `34440195682`, Pages `34440194469` et déploiement `6365059726` réussis, vérifiés le 10 septembre 2026 à 05:14 UTC. Neuf fichiers limités à ce lot, ses fixtures, son suivi et les empreintes de livraison ; aucun changement de moteur ou autre application.
+
+HTTPS 200 avec HSTS sur [Clair Repas](https://ferdinand373.github.io/Clair-Repas/), index et service worker identiques au commit. Index `b685ddb78e3434dc8e2f25a2f8879571865648ddda187dd5c650c404c23f2fb5`, service worker `6a7dcc7f1fe3c08500565cf3007134fa930f483e3ffacb49714f07dfb8a21aa6`. Après la commande existante « Vérifier la mise à jour », noyau réellement chargé `sha256:ead6e1668aed850fb546e0a816fc8aa6734a68e2638e05f9d320727f39fc637f`.
+
+Cacio e pepe contrôlé en production à deux personnes : pâtes 180 g, pecorino 85 g, eau listée 19 cl ; 4 cl froids, 15 cl prélevés, 8 cl utilisés avec le poivre. Deux minuteurs d’une minute attachés aux actions correspondantes, pâtes au paquet sans durée fixe, liaison au pecorino hors feu. Aucun minuteur lancé en production, aucun cache ou stockage effacé. Les tests locaux et neuf vues simulées sont détaillés dans le journal du lot.
+
+**CHANTIER ARRÊTÉ à la demande de l’utilisateur.** Le commit documentaire contenant ce point d’arrêt ne modifie aucun fichier d’application ni aucune recette. Les 49 fiches `pending` sont identiques à leur état avant le lot ; aucune fiche du lot 43 n’a été ouverte pour relecture. La reprise nécessitera une nouvelle instruction et repartira des comptes exacts ci-dessus et du `main` contenant ce point d’arrêt.
+
+Actualisation ordinateur/iPhone : ouvrir « Clair Repas · Réglages & confiance », choisir « Vérifier la mise à jour », puis rouvrir normalement l’application si nécessaire. Ne pas désinstaller la PWA ni effacer les données du site pour forcer l’actualisation.
 
 ## Limites des vérifications
 
