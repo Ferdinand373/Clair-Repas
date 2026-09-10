@@ -398,6 +398,16 @@ P02 publié : `c87dc373c29cae1d6edb9c2ac6191004c69ba52a`, tests `34390827874` et
 
 **Cumul : 1 154 identifiants examinés, 372 corrigés, 772 bloqués, 10 conformes sans réécriture, 399 à examiner.** Zéro erreur éditoriale, 5 467 avertissements ; 574 minuteurs et 13 656 rendus d’ingrédients des lots 02–35. Ce lot ajoute 1 128 rendus d’ingrédients réservés et 180 réserves visibles. Les 24 commandes passent ; Livre sur fiches longue et courte et mode cuisine contrôlés aux trois formats simulés. Publication à consigner après contrôle HTTPS ; les autres recettes suivent.
 
+## Publication du lot 35
+
+`702befb9fd1bf86c4d94fa6df98f98bc23b13982` publié sur `main`. Tests `34423684426` réussis. Pages `34423683550` vérifié dans l’interface officielle GitHub Actions : Success, commit 702befb sur main, les trois jobs réussis, dont le déploiement `102704388872`. L’API publique ayant atteint sa limite horaire pendant l’attente, la confirmation finale vient de cette interface et non d’une réponse API supposée. HTTPS 200 avec HSTS ; fichiers identiques au commit : index `95dced99ae1d383cc43dbad35e9a81f5d8798b42bc5d21b19495681f41b80781`, service worker `d7fbc9c96286e13a88c7d5fb1edd4ef46c3a0da0d44533955dfd2f1fa5a3ff14`. Révision activée normalement `sha256:bd95929b2da5ec34537aec0c100dde562e2964fd324093fb9902b06b6942926c`. Quesadillas jambon vérifiées en production à deux personnes : quatre tortillas par paires, deux tranches de jambon, 100 g de fromage, deux tomates et un demi-concombre ; deux minuteurs 3–4 min distincts. Aucune donnée effacée.
+
+## Lot 36 — cinquante repas simples et poêlées
+
+[Journal, sources et décisions](recipe-editorial-batch-36.md). 6 corrigées, 44 réservées, aucune conforme sans réécriture. Tomates farcies avec pain/lait mesurés, farce crue et riz séparé ; wraps froids, galettes repliées et quesadillas appariées préservés. Les contradictions de sauces et d’appareils sont signalées individuellement, sans toucher aux objets culinaires réservés. Aucun ingrédient ajouté.
+
+**Cumul : 1 204 identifiants examinés, 378 corrigés, 816 bloqués, 10 conformes sans réécriture, 349 à examiner.** Zéro erreur éditoriale, 5 273 avertissements ; 581 minuteurs et 13 902 rendus d’ingrédients des lots 02–36. Ce lot ajoute 1 668 rendus d’ingrédients réservés et 264 réserves visibles. Les 24 commandes passent ; Livre long/court et mode cuisine contrôlés aux trois formats simulés. Publication à consigner après contrôle HTTPS ; les autres recettes suivent.
+
 ## Limites des vérifications
 
 Les tests de structure, quantité, minuteurs, stockage simulé et rendu ne sont pas des essais culinaires. Les formats iPhone/PWA sont simulés, sauf mention explicite d’un appareil physique. Le total de fiches à examiner ne doit jamais être remplacé par le nombre de fiches auxquelles le style commun a été appliqué.

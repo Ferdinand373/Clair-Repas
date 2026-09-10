@@ -1,0 +1,438 @@
+{
+  "baselineCommit": "702befb9fd1bf86c4d94fa6df98f98bc23b13982",
+  "batch": "36",
+  "recipes": [
+    {
+      "id": "e55",
+      "status": "blocked",
+      "sourceHash": "e1082a6574bf86df09e0ef4a819335e1424b9463e43aa050fbc12855772bd6a6",
+      "reviewedHash": "e1082a6574bf86df09e0ef4a819335e1424b9463e43aa050fbc12855772bd6a6",
+      "protectedRecipeSha256": "be9cfbfb53682855397810afe11aaca0bed8e5149516d50909d40edf0a57c9c8",
+      "note": "matière grasse du suage absente ; cuisson des œufs sans durée, intensité ni contrôle du jaune. Quatre creux figés et pain grillé du titre sans protocole. Ne pas cuire directement l’oignon dans la tomate pour contourner le suage."
+    },
+    {
+      "id": "e56",
+      "status": "blocked",
+      "sourceHash": "b0bdf7d4bbaac2f055ff267f73dbde232fc3618ef744a0b6ace8841102b3529a",
+      "reviewedHash": "b0bdf7d4bbaac2f055ff267f73dbde232fc3618ef744a0b6ace8841102b3529a",
+      "protectedRecipeSha256": "7db56f9a0a5b358df20bcf09ca00edddf560666c843885c9a464490b61cfdce7",
+      "note": "type de gnocchis et notice à retrouver avant de décider d’un pochage préalable ; matière grasse et durée de dorure absentes. Tomates et mozzarella ajoutées hors du feu : ne pas les transformer en sauce cuite."
+    },
+    {
+      "id": "e57",
+      "status": "corrected",
+      "sourceHash": "fad9663693f4d2babbca1a14ec0e4102f20bc2b6856e40eff031ab1fe344b5d7",
+      "reviewedHash": "784d22490e7e57bb6ee177c92cc47870062e9d2aab64ca7a597063858067760e",
+      "protectedRecipeSha256": "23e939d84221342fdfdcf3b5cd9fcb05d75fa9c101d6f050ea979f76d518c7d6",
+      "beforeSteps": [
+        "Répartir poulet, maïs, tomate et fromage sur deux tortillas.",
+        "Recouvrir avec les autres tortillas.",
+        "Dorer 3 minutes par face et couper en parts."
+      ],
+      "note": "Paprika déjà listé incorporé à la garniture, maïs égoutté et poids de poulet cuit conservé. Montage par paires, deux durées distinctes de trois minutes, contrôle du réchauffage au centre. Aucune huile ajoutée."
+    },
+    {
+      "id": "e59",
+      "status": "blocked",
+      "sourceHash": "64c47e274acd282eea6ccc1da0d9920e8aac30988fc079c0b743af7cbccae4b1",
+      "reviewedHash": "64c47e274acd282eea6ccc1da0d9920e8aac30988fc079c0b743af7cbccae4b1",
+      "protectedRecipeSha256": "19d7d1e2cacd857ed2033ef9f29066b4e5434e0e9059e6f46935a59c0724104b",
+      "note": "pommes de terre grosses et entières sans température ni durée d’airfryer ; charge et perçage à établir. Ne pas supposer une précuisson au micro-ondes. Sel et poivre de la liste sans usage explicite."
+    },
+    {
+      "id": "e60",
+      "status": "blocked",
+      "sourceHash": "289a18aa1913b1ca2e8cb45de590272f6516f5d93e851b16ca5f4c8d30c627f2",
+      "reviewedHash": "289a18aa1913b1ca2e8cb45de590272f6516f5d93e851b16ca5f4c8d30c627f2",
+      "protectedRecipeSha256": "e044a8d4ba3a50df9161bbf35741948dd16cd701674b2af7e35f7b44917a76bc",
+      "note": "œufs à cuire sans durée, méthode ou refroidissement sous Sans cuisson ; sauce légère non identifiée. Conserver le riz déjà cuit et ne pas inventer une mayonnaise ni une cuisson universelle des œufs."
+    },
+    {
+      "id": "e61",
+      "status": "blocked",
+      "sourceHash": "0d62b20cfb67e4c21765d24b90385feeb011b0212d40b04416cc695ac577f912",
+      "reviewedHash": "0d62b20cfb67e4c21765d24b90385feeb011b0212d40b04416cc695ac577f912",
+      "protectedRecipeSha256": "f4c630882e26e1ca3f8e89be100e253bb09f5927e0550b8a78e8f30ffde6f429",
+      "note": "eau d’hydratation absente et type de semoule non indiqué ; ratio, temps et température doivent venir de sa notice. Tiédissement non minuté. Ne pas substituer une quantité de semoule cuite au poids de départ."
+    },
+    {
+      "id": "e62",
+      "status": "blocked",
+      "sourceHash": "d8bd774b2150e6e7ff66dfe2c2221b083d6b8ad0acc8c1daf415ce4a2d9f3a85",
+      "reviewedHash": "d8bd774b2150e6e7ff66dfe2c2221b083d6b8ad0acc8c1daf415ce4a2d9f3a85",
+      "protectedRecipeSha256": "a74e0eec8a3180ea8dbd01592fab8f1c83f2e95eb54cb936f7648d5551e2a23a",
+      "note": "compotage de tomate et olives inséré dans une salade Sans cuisson, puis olives et tomates séchées répétées pendant trois dernières minutes d’une cuisson non définie. Archives identiques : ne pas choisir arbitrairement une préparation froide ou une sauce cuite ni doubler les olives."
+    },
+    {
+      "id": "e64",
+      "status": "blocked",
+      "sourceHash": "a20983ac54d107f5bfb309b29fa1704ed26c72cbad0aa2357bff35e1d0b2cf65",
+      "reviewedHash": "a20983ac54d107f5bfb309b29fa1704ed26c72cbad0aa2357bff35e1d0b2cf65",
+      "protectedRecipeSha256": "3395b68a7f9fbc48c2cf7d178d8e796a380b859abcca728cdf4270a71160a380",
+      "note": "basilic mentionné mais absent de la liste, œufs sans protocole, tomate et olives ajoutées deux fois. Mijotage et réduction contredisent Sans cuisson. Garder la fiche réservée sans convertir une salade en cocotte ni compléter sa sauce au hasard."
+    },
+    {
+      "id": "e65",
+      "status": "corrected",
+      "sourceHash": "e087d609d85bb29b5c193b9fc201cccee6f9e4f876773338571164e630cc5f45",
+      "reviewedHash": "a107f61a524536864f2518b14de313e36df70e4f37ed62a4974f502e0bb58ca0",
+      "protectedRecipeSha256": "ab197fa60752ae6dbcae173d8c42653d70e49e338f45b311762eebf3bd8f48b5",
+      "beforeSteps": [
+        "Répartir salade, poulet, tomates et parmesan sur les wraps.",
+        "Ajouter un peu de sauce.",
+        "Rouler fermement et couper en deux."
+      ],
+      "note": "Poulet explicitement cuit conservé, sauce César déjà nommée dans la liste utilisée sans recette inventée. Crudités séchées, parmesan réparti et montage expliqué. Aucun réchauffage ajouté."
+    },
+    {
+      "id": "e66",
+      "status": "blocked",
+      "sourceHash": "3ecce801e505aba904c7a4df918df8f250dc6493d48a87785d4e99b6dd61673e",
+      "reviewedHash": "3ecce801e505aba904c7a4df918df8f250dc6493d48a87785d4e99b6dd61673e",
+      "protectedRecipeSha256": "2fa0c8e3a43b5280eba3a17bb71533ca87b6026d295db28d571f50268c3cfd85",
+      "note": "volume des ramequins, état et éventuelle préparation des épinards non définis. Deux ramequins et deux œufs chacun restent figés ; 10–12 minutes ne suffisent pas à garantir le centre sans calibre ni contrôle. Ne pas ajouter un bain-marie ou une précuisson arbitraire."
+    },
+    {
+      "id": "e67",
+      "status": "blocked",
+      "sourceHash": "6ae3cebf3271be5385d875c1915c494648a7972a5814e5d899c59943d5635e82",
+      "reviewedHash": "6ae3cebf3271be5385d875c1915c494648a7972a5814e5d899c59943d5635e82",
+      "protectedRecipeSha256": "31b85cd36fe467bb915b7d280f88cb1c6f6b3740287da3ea0852ca876eac98f6",
+      "note": "matière grasse absente, courgette râpée sans égouttage et petites galettes sans épaisseur ni diamètre. Les quatre minutes par face ne valident pas le centre aux œufs. Conserver saumon et yaourt froids au service, sans les cuire dans les galettes."
+    },
+    {
+      "id": "e68",
+      "status": "corrected",
+      "sourceHash": "0d4004c5c9dc23cc7c58b53a895dfd9b7fecb188a6bd7747b480bffba62c45b8",
+      "reviewedHash": "f0fa36d002690e224a824e88a463a8555002a9df3529089ef14cef7df070eaaa",
+      "protectedRecipeSha256": "9a3560d4b373cf9e228852b8b9ecad2c277beb32a6965fe4510fa2c8eda364e5",
+      "beforeSteps": [
+        "Réchauffer les galettes.",
+        "Garnir de moutarde, poulet, tomate et fromage.",
+        "Replier, chauffer 3 minutes et servir avec la salade."
+      ],
+      "note": "Galettes de sarrasin déjà préparées réchauffées selon leur notice, puis garnies et repliées comme dans la source. Poulet cuit et fromage mesurés, trois minutes de finition avec contrôle du centre, salade nature sans sauce ajoutée."
+    },
+    {
+      "id": "e70",
+      "status": "blocked",
+      "sourceHash": "f9b6f04d3b1d1634a455cb1b100104493ed6e62a4854c94206ac28451177b881",
+      "reviewedHash": "f9b6f04d3b1d1634a455cb1b100104493ed6e62a4854c94206ac28451177b881",
+      "protectedRecipeSha256": "9ddabb8faa15ccdb41432cf9a1858e8df4e3cc9fd3655fd36d30254a7326afd4",
+      "note": "carotte sans découpe ni temps avant les ravioles ; trois minutes non rattachées à un type de ravioles. Récipient adapté aux 75 cl et poivre final à préciser. Ne pas attribuer aux carottes le seul temps du produit farci ni faire bouillir vivement les ravioles."
+    },
+    {
+      "id": "e71",
+      "status": "blocked",
+      "sourceHash": "f93229d7efab07ff90022c1cd69e94df2b919e924964b7e49b2cbacdaead8016",
+      "reviewedHash": "f93229d7efab07ff90022c1cd69e94df2b919e924964b7e49b2cbacdaead8016",
+      "protectedRecipeSha256": "aef985c3a376f87e9eaccd52f77c6e6a245f9feb78e67f7da6a3cf7e2fa05d7d",
+      "note": "carottes crues réchauffées avec lentilles cuites sans découpe, liquide ni durée. Deux techniques d’œufs alternatives, pochés ou mollets, sans protocole. Vinaigrette oubliée dans les étapes. Ne pas choisir une méthode ni remplacer les carottes par une garniture cuite sans source."
+    },
+    {
+      "id": "e72",
+      "status": "blocked",
+      "sourceHash": "71bd56dfc6ff73904525c13ff938ae449172e1b93072cec702120c982e22d709",
+      "reviewedHash": "71bd56dfc6ff73904525c13ff938ae449172e1b93072cec702120c982e22d709",
+      "protectedRecipeSha256": "860e9c6a2f0f5b5e6be096d3614ace4c48a1cd04637d8da877abc98be5b9e6fb",
+      "note": "sel des étapes absent de la liste ; réchauffage du poulet sans durée, intensité ou matière grasse. Paprika et herbes employés à chaud, yaourt froid : ne pas fusionner les deux en marinade inventée ni ajouter du beurre aux pitas."
+    },
+    {
+      "id": "e73",
+      "status": "corrected",
+      "sourceHash": "65dc6968acf30a30bec190a2b00052e201f9223104d7ff3a7c0912dfd7565c40",
+      "reviewedHash": "3cbed544652f4f07ea06e00e4f223771d0be9e9ffc38abb6b75549d03486b895",
+      "protectedRecipeSha256": "05e1ace5294e5f928a98290e2e4d5856f99d76903b0fb2b01b15d74eb473d386",
+      "beforeSteps": [
+        "Garnir le pain de tomate, jambon et mozzarella.",
+        "Cuire 7 minutes à 180 °C.",
+        "Servir avec le gaspacho et le basilic."
+      ],
+      "note": "Airfryer conservé à 180 °C, pain garni en une couche avec fournées selon capacité. Mozzarella égouttée et liée aux portions, basilic au service. Gaspacho en bouteille conservé froid, aucune soupe maison substituée."
+    },
+    {
+      "id": "e74",
+      "status": "blocked",
+      "sourceHash": "de56f6e5ae5a5856fe73213d57cdac3876115c2171d6cdc9c9d07968e67c4da1",
+      "reviewedHash": "de56f6e5ae5a5856fe73213d57cdac3876115c2171d6cdc9c9d07968e67c4da1",
+      "protectedRecipeSha256": "121537b92f8741b763aae054374f5a6bce9976b48b4e995dd0a74a5962d13a86",
+      "note": "polenta sans liquide d’hydratation : les seuls 10 cl de crème ne définissent pas un protocole pour 140 g de semoule. Produit et notice à retrouver ; matière grasse et durée des champignons absentes. Ne pas ajouter lait ou eau en quantité inventée."
+    },
+    {
+      "id": "e75",
+      "status": "blocked",
+      "sourceHash": "4414752670021d7cd32a05b624e79acb23ac0bfac6be23500317ee72da9b99a8",
+      "reviewedHash": "4414752670021d7cd32a05b624e79acb23ac0bfac6be23500317ee72da9b99a8",
+      "protectedRecipeSha256": "7449483e0a322d3553a4169c9f231ff8e923b2029193b3baedb24360ebe439aa",
+      "note": "pommes de terre râpées sans essorage, épaisseur des galettes et matière grasse non précisées. Quatre minutes par face ne valident ni pomme de terre crue ni cœur à l’œuf sans calibre. Garder la pomme de terre râpée, sans la transformer en purée précuite."
+    },
+    {
+      "id": "e76",
+      "status": "corrected",
+      "sourceHash": "209cc1645a07b699e8b646db66dc277267a1053d927697d4b0a0b1f71c60833c",
+      "reviewedHash": "532046132151d577b6dba2c31af4fce34c7cd5a12e28f33b48ccc7fe11c3bd8d",
+      "protectedRecipeSha256": "be05714f529916500fdf1cdb5d9af92c5b21d2d839f06d0f6ccfc51e2ad5a2bf",
+      "beforeSteps": [
+        "Répartir le quinoa dans deux bols.",
+        "Ajouter poulet et légumes.",
+        "Assaisonner avec la vinaigrette."
+      ],
+      "note": "Quinoa et poulet explicitement cuits conservés ; suppression des deux bols figés, crudités et avocat préparés, vinaigrette libre inchangée. Aucun poids sec ni cuisson supplémentaire."
+    },
+    {
+      "id": "e77",
+      "status": "blocked",
+      "sourceHash": "d01d029a4e47d76d6d5d217f1a70b190aa7f232c58691ce9ea0688bf9979c7f0",
+      "reviewedHash": "d01d029a4e47d76d6d5d217f1a70b190aa7f232c58691ce9ea0688bf9979c7f0",
+      "protectedRecipeSha256": "1e178eaabfd6846ebec1cc7bf663ea259121d066ff02261977132ce95fd45840",
+      "note": "matière grasse de suage absente, état des petits pois inconnu, découpe et cuisson de la carotte indéfinies. Omelette couverte sans diamètre, durée ni contrôle à cœur. Le riz est déjà cuit ; ne pas changer son poids en riz sec."
+    },
+    {
+      "id": "e79",
+      "status": "corrected",
+      "sourceHash": "0f35bb279e8b9f226b9f3b8e8a7c57ea51de83ad2d2d53504dd74aebf493314d",
+      "reviewedHash": "1bb399d1adef363432132c4d07f0359a9793c7ebd3a4bcd762876ae343c7aa17",
+      "protectedRecipeSha256": "444f28caf3470d23e005a92ec67ccd5dc10415ddda5ddddb3c0d201e2a0a5f03",
+      "beforeSteps": [
+        "Couper le chapeau des tomates, les évider, saler légèrement l’intérieur et les laisser égoutter tête en bas pendant 15 minutes.",
+        "Faire tremper le pain dans le lait, puis le presser. Faire fondre l’oignon et l’ail 4 minutes dans l’huile.",
+        "Mélanger chair à saucisse, bœuf, pain, oignon, ail, persil, sel et poivre sans trop tasser.",
+        "Remplir les tomates, replacer les chapeaux et les déposer dans un plat avec la chair des tomates au fond.",
+        "Cuire 40 minutes à 180 °C, jusqu’à ce que la farce soit cuite et le dessus doré ; préparer le riz pendant la cuisson et le servir avec le jus du plat."
+      ],
+      "note": "Égouttage des tomates et préparation de la farce organisés en parallèle. Pain trempé puis pressé conservé, viande crue dans la farce, oignon seul fondu dans l’huile. Chair de tomate au fond, cuisson au four et riz séparé selon paquet. Quantités du lait, pain, viandes, huile et riz liées aux ingrédients ; contrôle de viande hachée à cœur."
+    },
+    {
+      "id": "e80",
+      "status": "blocked",
+      "sourceHash": "3b8ecb6cc292a034219c66c3d1973f241677973f7fad2b8462936b0db2ce745a",
+      "reviewedHash": "3b8ecb6cc292a034219c66c3d1973f241677973f7fad2b8462936b0db2ce745a",
+      "protectedRecipeSha256": "bd42185fa34c2f17f68756d62bb502addff78079ac36f33aa2fb83c473a5e222",
+      "note": "matière grasse, durée et intensité de dorure absentes ; épaisseur du sandwich et cuisson complète du bain œufs-lait à vérifier. Devenir du mélange non absorbé à préciser sans le servir cru. Conserver trempage puis montage, pas un croque ordinaire."
+    },
+    {
+      "id": "e81",
+      "status": "blocked",
+      "sourceHash": "62a6973962f9d69e201505a06065eda5820489f754aba7805159c791e7c7250c",
+      "reviewedHash": "62a6973962f9d69e201505a06065eda5820489f754aba7805159c791e7c7250c",
+      "protectedRecipeSha256": "7a9719394d874dd2f93c11ca2d13cf69f2e5a3f32758910bab04957f614dfa35",
+      "note": "suage de l’oignon et des lardons sans durée ni protocole ; état des petits pois et pain grillé à préciser. Le mixage source inclut les lardons : ne pas les réserver en garniture croustillante par supposition, ni remplacer le suage initial par une cuisson au bouillon."
+    },
+    {
+      "id": "e82",
+      "status": "blocked",
+      "sourceHash": "d09a33712a1ab831f1492ecd38d32aa86a930aba3a47d758d86b9b987e7a0c54",
+      "reviewedHash": "d09a33712a1ab831f1492ecd38d32aa86a930aba3a47d758d86b9b987e7a0c54",
+      "protectedRecipeSha256": "33bb8e68ee2d189c543657e8335b5445b025c18e6fd62fba48c8997960c254a1",
+      "note": "poulet et patate douce sans découpe, calibre, répartition dans le panier ni matière grasse. Les vingt minutes communes à 190 °C ne garantissent pas la volaille au centre. Ne pas précuire un élément séparément ou changer l’appareil sans source."
+    },
+    {
+      "id": "e83",
+      "status": "blocked",
+      "sourceHash": "ae3790260305ee9811bff6deff35aa8406d62b15ee3aee9aed2f57c8d730525d",
+      "reviewedHash": "ae3790260305ee9811bff6deff35aa8406d62b15ee3aee9aed2f57c8d730525d",
+      "protectedRecipeSha256": "19249d5350dce22336bb51c58cb539cafe174b78a5952a44294e95663e43e174",
+      "note": "semoule sans eau ni notice ; boulettes sans calibre ou état cru/cuit, matière grasse de dorure absente. Les huit minutes de sauce viennent après une dorure non minutée. Ne pas convertir ce seul mijotage en durée totale ni inventer une dose d’huile."
+    },
+    {
+      "id": "e84",
+      "status": "blocked",
+      "sourceHash": "ced323c17a7551773b24dc1f6ca4185d128d8bc23c2c1190b81b9edc693e63b4",
+      "reviewedHash": "ced323c17a7551773b24dc1f6ca4185d128d8bc23c2c1190b81b9edc693e63b4",
+      "protectedRecipeSha256": "8f4949625e146917d30e7f3d408beb401bf65c7bfd2f1eb9319fc9c627096445",
+      "note": "œufs durs du titre sans méthode, calibre, départ du minuteur ni refroidissement ; tomates dans les lentilles sans durée de cuisson. Conserver lentilles cuites et lait de coco, sans ajouter de suage ou remplacer les œufs par une cuisson dans la sauce."
+    },
+    {
+      "id": "e85",
+      "status": "blocked",
+      "sourceHash": "46c5fab06bc0514e0b0eccab1b17df7f72be82ffd6389ba279acbf3e7ebd587d",
+      "reviewedHash": "46c5fab06bc0514e0b0eccab1b17df7f72be82ffd6389ba279acbf3e7ebd587d",
+      "protectedRecipeSha256": "a979d2f2b8939d5d1e3de136bc83bc53fc13cedb31574421ee364600c57c7fd4",
+      "note": "volume et profondeur du plat, calibre des œufs et contrôle du centre non précisés ; basilic listé oublié. Dix à douze minutes à 190 °C ne constituent pas un protocole complet. Ne pas remplacer par des ramequins ou un bain-marie sans source."
+    },
+    {
+      "id": "e86",
+      "status": "blocked",
+      "sourceHash": "6814228d70a40bba84d8423091d5ed573fb1b6d156b88193451be85333389da8",
+      "reviewedHash": "6814228d70a40bba84d8423091d5ed573fb1b6d156b88193451be85333389da8",
+      "protectedRecipeSha256": "12ea4ddae4425a975a35bb9e3bb5c2c0f84a825c37c08add007c7c2927efa034",
+      "note": "pommes de terre à cuire sous Sans cuisson, sans taille, méthode ni durée. Refroidissement non minuté ; ne pas ajouter un temps arbitraire ou substituer un poids précuit. Saumon fumé, yaourt et aneth restent une garniture froide."
+    },
+    {
+      "id": "e87",
+      "status": "blocked",
+      "sourceHash": "c045a4d1be8ade392acbdbcb8d068f5a7ddabde4c17c55df9b095becab000183",
+      "reviewedHash": "c045a4d1be8ade392acbdbcb8d068f5a7ddabde4c17c55df9b095becab000183",
+      "protectedRecipeSha256": "7982cc21a39a29e2784ba42bc16834ef09d5cebb392d8e6480dcb9138abeb045",
+      "note": "pois chiches et thon en boîte sans égouttage explicite, galettes sans calibre ni matière grasse de dorure. Quatre minutes par face ne suffisent pas à contrôler le cœur à l’œuf. Conserver chapelure et écrasement, sans farine ou mixage lisse ajoutés."
+    },
+    {
+      "id": "e88",
+      "status": "blocked",
+      "sourceHash": "0a990097b8944663e2208a1f1c88948407712f593ae8a42fb202ad31e27d4ea8",
+      "reviewedHash": "0a990097b8944663e2208a1f1c88948407712f593ae8a42fb202ad31e27d4ea8",
+      "protectedRecipeSha256": "f6e3482aec617bfd0390b8eacce65abfdc3e27ead731327a557a4e27f7fde4c9",
+      "note": "type de nouilles non indiqué : six minutes ne conviennent pas à tous les produits. Carottes et poireau sans taille ou temps de précuisson ; poulet explicitement cuit à conserver. Retrouver notice et découpe avant de valider la cuisson simultanée."
+    },
+    {
+      "id": "e89",
+      "status": "blocked",
+      "sourceHash": "00fe2ca176e4989a7b93acc9f68f9729f5023aeef2818070fb397b81a7d11582",
+      "reviewedHash": "00fe2ca176e4989a7b93acc9f68f9729f5023aeef2818070fb397b81a7d11582",
+      "protectedRecipeSha256": "e2e5cd60100f58011eb96c43d685d8a7329742cfb744acc9662c6e2d84ea8a8d",
+      "note": "matière grasse du suage absente et riz non identifié ; les dix-huit minutes ne sont pas universelles. Champignons sans découpe ni durée initiale. Conserver les ajouts progressifs de bouillon, sans tout verser au départ ni inventer beurre ou huile."
+    },
+    {
+      "id": "e90",
+      "status": "blocked",
+      "sourceHash": "9cb5ac5465555ca32a2dde60144e61cb9df9b6e48dedade6dea7972595b7475b",
+      "reviewedHash": "9cb5ac5465555ca32a2dde60144e61cb9df9b6e48dedade6dea7972595b7475b",
+      "protectedRecipeSha256": "c868868d06167f7ee1fca32f98354515ac85baadba55c2139bdaf8d87a2bdd68",
+      "note": "épinards à faire tomber sans durée, matière grasse ou état initial ; aneth listé oublié. Deux minutes par face concernent des tortillas pliées garnies : conserver cette forme et le saumon réchauffé, sans en faire une garniture froide après cuisson."
+    },
+    {
+      "id": "e91",
+      "status": "blocked",
+      "sourceHash": "1d750c73283d905c3e958e8007d61284edb0e32fa4f70df110b2c57f47f6d85d",
+      "reviewedHash": "1d750c73283d905c3e958e8007d61284edb0e32fa4f70df110b2c57f47f6d85d",
+      "protectedRecipeSha256": "6b65d7d14a618e0c8b5240ea9ffee4297a259305600166708f3bc907defc19af",
+      "note": "salade de pommes de terre sans cuisson, découpe ni refroidissement ; knacks d’état inconnu et pain à réchauffer sans méthode. Ne pas inventer une cuisson universelle des saucisses ni ajouter mayonnaise ou cornichons à la vinaigrette source."
+    },
+    {
+      "id": "e93",
+      "status": "blocked",
+      "sourceHash": "337d78aa541884a0906eab2e2a159182c3c05ad72b6fa1220c1762e4ebb6449b",
+      "reviewedHash": "337d78aa541884a0906eab2e2a159182c3c05ad72b6fa1220c1762e4ebb6449b",
+      "protectedRecipeSha256": "fa772c80bceea6dea319223e9ab8267f0cf4c6281515326a6c874f01b034a593",
+      "note": "forme d’ouverture et taille des poivrons non définies ; riz explicitement cuit, origan listé oublié. Vingt minutes à 190 °C ne valident pas des poivrons entiers ou épais sans préparation précisée. Ne pas imposer une précuisson ou des demi-poivrons sans source."
+    },
+    {
+      "id": "e94",
+      "status": "blocked",
+      "sourceHash": "b3db05b3ed5d775719f555c9e0cf4d2d9f5935edd04c52e9b17595f091751c50",
+      "reviewedHash": "b3db05b3ed5d775719f555c9e0cf4d2d9f5935edd04c52e9b17595f091751c50",
+      "protectedRecipeSha256": "4f0f641bf1e701f985d811cccde765b78cd4f65015086ce6814bb3d259bd1846",
+      "note": "deux déglaçages au cidre, braisage à feu doux et sauce dans les sucs contredisent le croque à l’airfryer. Les 8 cl de cidre n’ont pas de répartition. Archives identiques : ni suppression du cidre ni transformation du sandwich en viande braisée sans source."
+    },
+    {
+      "id": "e95",
+      "status": "blocked",
+      "sourceHash": "710f8521bfed087e0a00e3b380b60dd212e5d6bcf47f67c3db2732a976efcc57",
+      "reviewedHash": "710f8521bfed087e0a00e3b380b60dd212e5d6bcf47f67c3db2732a976efcc57",
+      "protectedRecipeSha256": "02aece8f05c657c15a531318ad4e28ef8e5f421479c74dab2b9d65dd5440ce07",
+      "note": "matière grasse de poêlage absente, courgette sans découpe, réchauffage du poulet sans durée ni contrôle du centre. Les six minutes concernent seulement courgette et pois chiches. Conserver tomate et échalote au service, sans les cuire avec la vinaigrette."
+    },
+    {
+      "id": "e96",
+      "status": "blocked",
+      "sourceHash": "422544db9ff61ab894aa6ff0c57c23d1eb1b7a7b262b4fd86815c9dace85a3d5",
+      "reviewedHash": "422544db9ff61ab894aa6ff0c57c23d1eb1b7a7b262b4fd86815c9dace85a3d5",
+      "protectedRecipeSha256": "4a041e8d3bf3374c0425aca42f007dc210ba2cdaadc5a32a5adf7ff20bbc693d",
+      "note": "matière grasse du suage absente, herbes listées sans usage. Cuisson couverte des œufs sans durée, diamètre ni contrôle du centre. Conserver les pâtes déjà cuites et la tomate crue au service, sans transformer la recette en gratin."
+    },
+    {
+      "id": "e97",
+      "status": "blocked",
+      "sourceHash": "179d5e40100adadb5b9f3394499f8a5eb8cc1c1f72f9d9e59c2d69c8b02ac7cf",
+      "reviewedHash": "179d5e40100adadb5b9f3394499f8a5eb8cc1c1f72f9d9e59c2d69c8b02ac7cf",
+      "protectedRecipeSha256": "20447cb1c0e2626eca0275008c8997c5d577a167952d590c2f1eb435274c81bb",
+      "note": "poivron cru sans découpe et réchauffage du poulet sans contrôle ; charge et disposition des grandes tranches dans l’airfryer à préciser. Sept à huit minutes ne valident pas un poivron épais. Ne pas ajouter une étape de poivron grillé sans source."
+    },
+    {
+      "id": "e98",
+      "status": "blocked",
+      "sourceHash": "598b1985b728384e9603fde3196913323c5da90800a4685678428ff2dd1e4149",
+      "reviewedHash": "598b1985b728384e9603fde3196913323c5da90800a4685678428ff2dd1e4149",
+      "protectedRecipeSha256": "6e170ec93f40c6f85201b456d19eba29564c3b29729c8306c92bce72628e194b",
+      "note": "huile listée mais non affectée, pommes de terre râpées sans essorage ni épaisseur des röstis. Cinq minutes par face sans calibre ; œufs au plat sans protocole. Ne pas précuire les pommes de terre ni transformer les œufs en omelette."
+    },
+    {
+      "id": "e99",
+      "status": "blocked",
+      "sourceHash": "02b5c52b9aa343df9def03231b43df2d5ee83c9d5e0f347a4b5da7dd1fc03512",
+      "reviewedHash": "02b5c52b9aa343df9def03231b43df2d5ee83c9d5e0f347a4b5da7dd1fc03512",
+      "protectedRecipeSha256": "31b240eb584b329d4802a73ce2cdb22a297700f87d744af4fb1e7a870a1a157c",
+      "note": "matière grasse et dimensions des galettes absentes ; quatre minutes par face sans contrôle du centre aux œufs. Riz explicitement cuit à conserver, saumon fumé et yaourt à l’aneth restent au service sans être cuits dans la pâte."
+    },
+    {
+      "id": "e100",
+      "status": "blocked",
+      "sourceHash": "82b7348e0697711640f01d89e8e2c53784294c780456be8d72b1c872a887d8a5",
+      "reviewedHash": "82b7348e0697711640f01d89e8e2c53784294c780456be8d72b1c872a887d8a5",
+      "protectedRecipeSha256": "47b674ec863a7cfb02734237e37f76fe9339fec4d5b4e85f920afddee2620d30",
+      "note": "yaourt au curry utilisé en marinade chauffée, sauce froide puis cuillerée finale sans partage ; citron des étapes absent de la liste. Suage sans graisse, semoule sans eau ni notice et eau du mijotage non dosée. Conserver les réserves sans tripler le yaourt ni inventer une technique unique."
+    },
+    {
+      "id": "ge-poulet-poelee-riz-courgette",
+      "status": "blocked",
+      "sourceHash": "5fefbb46c3be78806d928db20da894273482bc429212b138c49a9d3558d5926a",
+      "reviewedHash": "5fefbb46c3be78806d928db20da894273482bc429212b138c49a9d3558d5926a",
+      "protectedRecipeSha256": "a9f694ae9afed618119ae41cc25be46aa57c64f20f745df82ad25a294341cae5",
+      "note": "suage des légumes sans graisse ni découpe ; poulet sans calibre ni contrôle à cœur. Couverture et infusion hors feu de l’estragon annoncées avant les 10–12 minutes de dorure, citron confit puis citron frais sans partage. Retrouver l’ordre réel, sans transformer l’infusion en cuisson au jus."
+    },
+    {
+      "id": "ge-dinde-poelee-riz-courgette",
+      "status": "blocked",
+      "sourceHash": "78acd2d5df5ae842aedb173063de3b375242dac0b9943bd2c55868cb51825a1f",
+      "reviewedHash": "78acd2d5df5ae842aedb173063de3b375242dac0b9943bd2c55868cb51825a1f",
+      "protectedRecipeSha256": "7f40e5fc0b8ab9534f6f07a6b9e385a3ee35c5925e775bd652ccccd1414ccf92",
+      "note": "matière grasse et découpe des légumes absentes ; dinde sans calibre ou contrôle. Sauce montée dans les sucs avant la cuisson de 9–11 minutes, cuillerée de jus sans origine définie, citron et ciboulette répétés. Ne pas inventer un fond ou une dose de crème."
+    },
+    {
+      "id": "ge-saumon-poelee-riz-courgette",
+      "status": "blocked",
+      "sourceHash": "48beab8f7d524de33f3aedc10ea3b6a14f323649bb5bd447e3714b1820748f8a",
+      "reviewedHash": "48beab8f7d524de33f3aedc10ea3b6a14f323649bb5bd447e3714b1820748f8a",
+      "protectedRecipeSha256": "e1b3a9a27dd063867a071c94d45a08ba87291295c8f52af425640c1fea218797",
+      "note": "graisse et découpe des légumes absentes ; petits pavés sans poids ou épaisseur. Citron ajouté pendant la cuisson, en zeste/jus, puis deux fois au service sans partage. Préserver la cuisson douce, sans imposer une saisie croustillante ou consommer le citron plusieurs fois."
+    },
+    {
+      "id": "ge-poisson-blanc-poelee-riz-courgette",
+      "status": "blocked",
+      "sourceHash": "8030d13d1cb733c06bfc4eab41200b5246a7f845d601aadf15a9a07b560afdcf",
+      "reviewedHash": "8030d13d1cb733c06bfc4eab41200b5246a7f845d601aadf15a9a07b560afdcf",
+      "protectedRecipeSha256": "06b97a46a0e2f73d5e5812c73e9fca6129c1193ce243fc580f7a42482a782e4d",
+      "note": "espèce et épaisseur des filets, matière grasse et découpe des légumes non définies. Saisie rapide suivie de 4–5 minutes par face sans contrôle du poisson, citron au déglaçage puis au service sans partage. Câpres réchauffées dans les sucs à préserver."
+    },
+    {
+      "id": "ge-crevettes-poelee-riz-courgette",
+      "status": "blocked",
+      "sourceHash": "93332197394f0bf204da74a2d9afcacf8696d167a6129f202f5175550cf8a28a",
+      "reviewedHash": "93332197394f0bf204da74a2d9afcacf8696d167a6129f202f5175550cf8a28a",
+      "protectedRecipeSha256": "ba194911405bcc783a3a62e7fbd7c1be1ac73c4151e5c332f2b8e7c2d6d1a185",
+      "note": "crevettes décortiquées d’état cru/cuit inconnu, graisse de cuisson absente. Pesto hors feu cité plusieurs fois et désigné sur du poisson dans une recette de crevettes ; citron en mélange puis supplément et quartier sans partage. Garder le pesto non chauffé sans inventer sa répartition."
+    },
+    {
+      "id": "ge-saucisses-poelee-riz-courgette",
+      "status": "blocked",
+      "sourceHash": "509febcafec674b2ec2d682dfab8eed271fc1542479f220573dea7030858192e",
+      "reviewedHash": "509febcafec674b2ec2d682dfab8eed271fc1542479f220573dea7030858192e",
+      "protectedRecipeSha256": "e4959dfb61c6654ddf00e6e50804d22fb5e7825e3a830c523c4e2dc6c9193f31",
+      "note": "saucisses sans type, état ou calibre ; graisse et découpe des légumes absentes. Réduction de crème annoncée avant les 11–13 minutes des saucisses puis répétée trois minutes sans partage. Retrouver la séquence, sans doubler la crème ni inventer une précuisson."
+    },
+    {
+      "id": "ge-pois-chiches-poelee-riz-courgette",
+      "status": "blocked",
+      "sourceHash": "60d6cc533a2c44a2311285a8789a550c9ef7c03b8b8b481a6ca03c1855194e81",
+      "reviewedHash": "60d6cc533a2c44a2311285a8789a550c9ef7c03b8b8b481a6ca03c1855194e81",
+      "protectedRecipeSha256": "b3981e9d755bcebab765b55c1536b0d0048bec6c74cc5ff1d8e7a5e0b580a9ff",
+      "note": "graisse des poêlages absente, légumes sans découpe ; rinçage des pois chiches placé après une consigne de coloration. Pesto hors feu et noix répétés, citron non réparti. Préserver le pesto non recuit, sans accroître les quantités pour suivre les répétitions."
+    },
+    {
+      "id": "ge-poulet-grenailles-legumes",
+      "status": "blocked",
+      "sourceHash": "d7af9607a71b8c003410e7a383dd10f664f4b682a7b9020054abf4d034ba618d",
+      "reviewedHash": "d7af9607a71b8c003410e7a383dd10f664f4b682a7b9020054abf4d034ba618d",
+      "protectedRecipeSha256": "bf93df68457ecec187ea157fee1e131cad23efb749da5dd79ab3fe0b9a634d71",
+      "note": "saisie, couverture et infusion hors feu introduites dans une cuisson au panier d’airfryer ; appareil et ordre contradictoires. Calibre du poulet et des grenailles, partage de l’huile et charge absents. Ne pas ajouter une poêle ni transformer la sauce à l’estragon en jus de cuisson supposé."
+    },
+    {
+      "id": "ge-dinde-grenailles-legumes",
+      "status": "blocked",
+      "sourceHash": "1c91e6d048c95d16dedae112234faa0472047b5d40bb1425e2199bf8368ff66b",
+      "reviewedHash": "1c91e6d048c95d16dedae112234faa0472047b5d40bb1425e2199bf8368ff66b",
+      "protectedRecipeSha256": "6cc61e0986f36c4eff5bd94c1d25811e6ecd61fae48999a50626b329361dd354",
+      "note": "saisie et sauce montée dans les sucs insérées avant une cuisson au panier d’airfryer ; cuillerée de jus sans origine. Découpe, partage de l’huile, charge et contrôle de dinde non définis. Conserver l’appareil source sans inventer une cuisson séparée à la poêle."
+    }
+  ]
+}
