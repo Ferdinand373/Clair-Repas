@@ -348,6 +348,16 @@ P02 publié : `c87dc373c29cae1d6edb9c2ac6191004c69ba52a`, tests `34390827874` et
 
 **Cumul : 994 identifiants examinés, 338 corrigés, 646 bloqués, 10 conformes sans réécriture, 559 à examiner.** Zéro erreur éditoriale, 6 088 avertissements. Ce lot ajoute 1 848 contrôles d’ingrédients et 204 rendus de réserves, sans compter ces recettes comme culinaires validées. Les 24 commandes du workflow passent ; Livre et mode cuisine vérifiés aux trois formats simulés. Publication à consigner après contrôle HTTPS. Les autres plats suivent.
 
+## Publication du lot 30
+
+`ed25fdb7d3bb945d42b32e6c21669e4fc8766bb6` publié sur `main`. Tests `34419963946`, Pages `34419962959` et déploiement `6361775950` réussis. HTTPS 200 et fichiers identiques au commit : index `616610064eb6874658050c2bdeb0e341d0bfdc0090c7ef9a3926f0f04d16310f`, service worker `b37a261b00b52d46eb82986124d27807f4d9bc61378ec4a95fbb8366cdb73ea9`. Nouvel onglet normal de production chargé sur `sha256:f6a7fd2a83caaa57702959180c2bc0ecadf4e83b4db50b724582d81ef19b3dc4`, sans effacement du stockage. Marmite dieppoise vérifiée à deux personnes : liste adaptée (150 g de chaque poisson, 75 g de crevettes), réserve de la louche et des crevettes visible, préparation d’origine conservée avec partage de beurre explicitement réservé. Aucune validation culinaire de cette fiche n’est revendiquée.
+
+## Lot 31 — trente plats de bistrot, poissons et premiers végétariens
+
+[Journal, sources et décisions](recipe-editorial-batch-31.md). 9 corrigées, 21 réservées, aucune conforme sans réécriture. Beurre réparti en quantités calculées, vin réduit indiqué en volume concret, joues de porc avec minuteur exact de 105 minutes. Saisie, mijotage, panure, beurre noisette et Thermidor au four préservés ; aucun ingrédient ou appareil ajouté.
+
+**Cumul : 1 024 identifiants examinés, 347 corrigés, 667 bloqués, 10 conformes sans réécriture, 529 à examiner.** Zéro erreur éditoriale, 5 969 avertissements ; 524 minuteurs et 12 576 calculs d’ingrédients des lots 02–31. Ce lot ajoute 1 176 rendus des ingrédients réservés et 126 réserves visibles. Les 24 commandes passent ; Livre et mode cuisine contrôlés aux trois formats simulés avec défilement. Publication à consigner après contrôle HTTPS. Les autres plats suivent.
+
 ## Limites des vérifications
 
 Les tests de structure, quantité, minuteurs, stockage simulé et rendu ne sont pas des essais culinaires. Les formats iPhone/PWA sont simulés, sauf mention explicite d’un appareil physique. Le total de fiches à examiner ne doit jamais être remplacé par le nombre de fiches auxquelles le style commun a été appliqué.

@@ -7,7 +7,7 @@ import {recipeSource} from './recipe-source.mjs';
 import {recipeHash} from './validate-recipe-editorial.mjs';
 const root=resolve(dirname(fileURLToPath(import.meta.url)),'..');
 const {code,recipes,editorial}=recipeSource(readFileSync(resolve(root,'index.html'),'utf8'));
-const batchNumbers=['02','03','04','05','06','07','08','09','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30'];
+const batchNumbers=['02','03','04','05','06','07','08','09','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31'];
 const fixture={recipes:batchNumbers.flatMap(number=>JSON.parse(readFileSync(resolve(root,`scripts/recipe-editorial-batch-${number}.fixture.json`),'utf8')).recipes)};
 const slice=(a,b)=>code.slice(code.indexOf(a),code.indexOf(b,code.indexOf(a)+a.length));
 const context={window:{},$:()=>({value:'8'}),MEAL_TYPES:['mid','eve'],recipeRole:r=>r.role||r.course||'dish',isFavorite:()=>false,recipeFeedbackHTML:()=>'',recipePersonalNoteHTML:()=>''};
@@ -459,7 +459,29 @@ const ingredients={
   'theme-bistrot-plus-12':['canard confites','pommes de terre','graisse de canard','ail','persil','poivrer.*saler'],
   'theme-bistrot-plus-13':['foie','pommes de terre','beurre','huile','ail','persil','vinaigre de vin','saler.*poivrer']
 };
-assert.equal(fixture.recipes.length,979);
+Object.assign(timers,{
+  'bistrot-ext-12':[[20],[5],[3],[2,5],[],[2]],
+  'bistrot-ext-16':[[],[],[6,40],[],[5],[3]],
+  'bistrot-ext-20':[[30],[],[],[6],[6],[]],
+  'bistrot-ext-21':[[],[15],[10],[],[1]],
+  'bistrot-ext-22':[[],[],[3],[5],[],[]],
+  'bistrot-ext-24':[[],[7],[2],[],[30],[3]],
+  'bistrot-ext-26':[[],[6],[3],[105],[],[5]],
+  'bistrot-ext-29':[[],[6],[6],[],[],[]],
+  'bistrot-ext-31':[[],[2],[4],[],[10],[1]]
+});
+Object.assign(ingredients,{
+  'bistrot-ext-12':['côtes de porc','échalotes','vin blanc','fond de veau','moutarde','cornichons','beurre','huile','sel.*poivre'],
+  'bistrot-ext-16':['cuisses de poulet','pommes','échalotes','cidre','crème','calvados','champignons','beurre','huile','sel.*poivre'],
+  'bistrot-ext-20':['gras-double','vin blanc','vinaigre','moutarde','farine','œufs','chapelure','huile','mayonnaise','câpres','cornichons','herbes','sel.*poivre'],
+  'bistrot-ext-21':['gras-double','oignons','beurre','huile','vinaigre','persil','saler.*poivrer'],
+  'bistrot-ext-22':['onglets','échalotes','vin rouge','fond de veau','beurre','huile','thym','sel.*poivre'],
+  'bistrot-ext-24':['souris d’agneau','oignons','carottes','ail','vin blanc','bouillon','thym','huile','sel.*poivre'],
+  'bistrot-ext-26':['joues de porc','oignons','carottes','cidre','fond de veau','moutarde','huile','beurre','bouquet garni','sel.*poivre'],
+  'bistrot-ext-29':['truites','farine','beurre','amandes','citron','persil','saler.*poivrer'],
+  'bistrot-ext-31':['homards','échalotes','vin blanc','fumet de crustacés','crème','moutarde','jaunes d’œufs','parmesan ou de gruyère','beurre','sel.*poivre']
+});
+assert.equal(fixture.recipes.length,1009);
 let quantityChecks=0,timerCount=0;
 for(const record of fixture.recipes){
   const recipe=recipes.find(r=>r.id===record.id);
@@ -1148,6 +1170,46 @@ assert.match(editorial['v75-chef-pic-04'].reviewNote,/vanille fumée.*ni.*fumage
 assert.match(editorial['v75-chef-troisgros-01'].reviewNote,/vermouth facultatif.*obligatoire.*ne pas.*pochage long/);
 assert.match(editorial['v75-chef-troisgros-04'].reviewNote,/échalotes.*graisse.*sans cuire les échalotes dans du bouillon/);
 console.log(`✓ Batch 30: ${reservedQuantityChecks30} ingredient renders; 34 unchanged culinary objects and 204 visible individual reservations, original timer attachments preserved`);
+const batch31=JSON.parse(readFileSync(resolve(root,'scripts/recipe-editorial-batch-31.fixture.json'),'utf8')).recipes;
+assert.equal(batch31.length,30);assert.equal(batch31.filter(r=>r.status==='corrected').length,9);
+assert.equal(batch31.filter(r=>r.status==='blocked').length,21);
+let reservedQuantityChecks31=0;
+for(const count of [1,2,3,4,5,8]){
+  for(const [id,steps,q] of [['bistrot-ext-16',[1,3],12.5],['bistrot-ext-29',[1,3],40]]){
+    const r=recipes.find(r=>r.id===id);
+    for(const step of steps)assert.ok(context.recipeStepText(r.p[step],r,count).includes(context.formatQty(q*count/4)+' g de beurre'),id+' sourced equal shares');
+  }
+  const onglet=recipes.find(r=>r.id==='bistrot-ext-22');
+  assert.ok(context.recipeStepText(onglet.p[0],onglet,count).includes(context.formatQty(25*count/4/3)+' cl'), 'concrete reduced wine target');
+  const joue=recipes.find(r=>r.id==='bistrot-ext-26');
+  assert.ok(context.recipeStepText(joue.p[2],joue,count).includes(context.formatQty(50*count/4)+' cl de cidre'));
+  for(const record of batch31.filter(r=>r.status==='blocked')){
+    const recipe=recipes.find(r=>r.id===record.id),output=context.recipeHTML(recipe,{people:count,dayIndex:1,mealType:'eve'});
+    assert.ok(output.includes(context.escapeHTML(editorial[record.id].reviewNote)),record.id+' visible reservation');
+    for(const ingredient of recipe.i){
+      const q=ingredient.q==null?null:ingredient.q*count/(recipe.servings||2);
+      assert.ok(output.includes('>'+context.ingredientText(ingredient,q,count)+'</li>'));
+      reservedQuantityChecks31++;
+    }
+    assert.doesNotMatch(output,/\{\{|undefined|NaN/);
+  }
+}
+assert.match(recipes.find(r=>r.id==='bistrot-ext-12').p[1],/63 °C/);
+assert.match(recipes.find(r=>r.id==='bistrot-ext-12').p[2],/reposer au moins 3 minutes/);
+assert.match(recipes.find(r=>r.id==='bistrot-ext-16').p[2],/74 °C/);
+assert.match(recipes.find(r=>r.id==='bistrot-ext-20').p[0],/déjà cuit/);
+assert.match(recipes.find(r=>r.id==='bistrot-ext-21').p[2],/74 °C/);
+assert.match(recipes.find(r=>r.id==='bistrot-ext-24').p[3],/2 heures 30 à 150 °C.*horloge du four/);
+assert.match(recipes.find(r=>r.id==='bistrot-ext-24').p[4],/20 à 30 minutes.*63 °C/);
+assert.match(recipes.find(r=>r.id==='bistrot-ext-24').p[5],/reposer au moins 3 minutes/);
+assert.match(recipes.find(r=>r.id==='bistrot-ext-26').p[3],/105 minutes, soit 1 heure 45/);
+assert.match(recipes.find(r=>r.id==='bistrot-ext-29').p[2],/63 °C/);
+const thermidor31=recipes.find(r=>r.id==='bistrot-ext-31');
+assert.match(thermidor31.p[2],/Goûter.*retirer du feu.*jaunes d’œufs.*ne pas goûter ni servir/);
+assert.match(thermidor31.p[4],/8 à 10 minutes à 220 °C.*74 °C/);
+assert.match(editorial['bistrot-ext-30'].reviewNote,/une minute trente.*minuteur d’une minute/);
+assert.match(editorial['veg-l1-03'].reviewNote,/huile.*sans partage.*sans remplacer.*ratatouille/);
+console.log(`✓ Batch 31: ${reservedQuantityChecks31} original ingredient renders and 126 visible reservations; concrete wine and butter shares, cooking methods and sensitive-food controls`);
 const corrected=fixture.recipes.filter(r=>r.status==='corrected').length;
 const unchanged=fixture.recipes.filter(r=>r.status==='unchanged').length;
 console.log(`✓ Batches ${batchNumbers.join('/')}: ${fixture.recipes.length} individual review records, ${corrected} corrected, ${unchanged} unchanged, ${fixture.recipes.length-corrected-unchanged} blocked with original content preserved; ${timerCount} manually checked timers`);

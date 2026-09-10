@@ -1,0 +1,317 @@
+{
+  "baselineCommit": "ed25fdb7d3bb945d42b32e6c21669e4fc8766bb6",
+  "batch": "31",
+  "recipes": [
+    {
+      "id": "bistrot-ext-09",
+      "status": "blocked",
+      "sourceHash": "616f6ee97f63f63e3590bb6206a4922b036b45176f0f790a6cdeab8d0e060f27",
+      "reviewedHash": "616f6ee97f63f63e3590bb6206a4922b036b45176f0f790a6cdeab8d0e060f27",
+      "protectedRecipeSha256": "45995c68d1f4b1f4456a0a4e5ee7c69be5478fc60e15bfe7c4c36ecfd1e28557",
+      "note": "le poids des jarrets n’est pas indiqué malgré le choix frais ou demi-sel. La laque doit être passée deux fois sans répartition mesurée ; le poivre listé est oublié. Purée ou pommes rôties ne sont pas listées, et les légumes filtrés n’ont pas d’affectation. Conserver le dessalage selon le charcutier puis braisage et laquage séparés, sans inventer le calibre ni une garniture."
+    },
+    {
+      "id": "bistrot-ext-10",
+      "status": "blocked",
+      "sourceHash": "69f5342b7346f41990ea873556ad3a207b2215f27da862a619a4983c324f7adc",
+      "reviewedHash": "69f5342b7346f41990ea873556ad3a207b2215f27da862a619a4983c324f7adc",
+      "protectedRecipeSha256": "a33133327aeff4055d873130c5094697f9a91c7177013e8e252a30fb47ade443",
+      "note": "les 7 h 30 annoncées ne distinguent pas les 45 minutes de sortie préalable, les sept heures au four et la réduction finale. Le protocole vise un gigot de 1,8 kg sans préciser comment conserver son calibre quand les convives changent. Les légumes sont filtrés puis servis, sans retrait explicite du bouquet. Conserver le braisage très long à 120 °C, sans le raccourcir pour correspondre au temps de carte."
+    },
+    {
+      "id": "bistrot-ext-11",
+      "status": "blocked",
+      "sourceHash": "8cebc9022c44bb01fff30b653dbb702c281601e436eaba885b0af8381dd024ff",
+      "reviewedHash": "8cebc9022c44bb01fff30b653dbb702c281601e436eaba885b0af8381dd024ff",
+      "protectedRecipeSha256": "3c598d9dadfe4aa6a0c71ea3b154f8581d10015451ceb53c82fb82d8126ca51c",
+      "note": "la fraîcheur du bœuf et le froid ne suppriment pas les risques de viande et jaunes crus ; le protocole de maîtrise sanitaire n’est pas établi. L’appareil Sans cuisson contredit la friture. Le bain d’un litre dépend du récipient ; taille, séchage et repos des frites manquent. Les quelques gouttes de Tabasco n’affectent pas la cuillère à café facultative : aucune dose ni cuisson du tartare improvisée."
+    },
+    {
+      "id": "bistrot-ext-12",
+      "status": "corrected",
+      "sourceHash": "34290ae5ed77555ac9a4b3eb7a6d176eeb222c11aab8940dc92a81eb090f8fc2",
+      "reviewedHash": "e4de23dc1825665252a70cf77251ce683619479b3fac9a0fe27f1a697e23502b",
+      "protectedRecipeSha256": "96b5001fdf578bd52cbb7a9dd9c82a46187e05cca3778ba7e9ceecaf069498b1",
+      "beforeSteps": [
+        "Sortez les côtes 20 minutes à l’avance. Salez-les légèrement et faites-les dorer dans une poêle avec l’huile, 4 à 5 minutes par face selon l’épaisseur.",
+        "Réservez sous une feuille d’aluminium.",
+        "Ajoutez les échalotes ciselées dans la poêle et faites-les revenir 2 minutes.",
+        "Déglacez avec le vin, réduisez de moitié puis ajoutez le fond de veau. Laissez réduire 5 minutes.",
+        "Ajoutez moutarde et cornichons en julienne. Hors du feu, incorporez le beurre.",
+        "Remettez les côtes 2 minutes dans la sauce et servez."
+      ],
+      "note": "Saisie à la poêle et sauce charcutière conservées ; vin et fond mesurés, cornichons taillés en fins bâtonnets. Le contrôle à 63 °C et le repos minimal de trois minutes explicitent la cuisson du porc selon FoodSafety.gov, au lieu de se fier à sa dorure. Poivre déjà listé affecté à la sauce ; aucun ajout de graisse."
+    },
+    {
+      "id": "bistrot-ext-13",
+      "status": "blocked",
+      "sourceHash": "7779c02ca396ed4553945bf1b3680e4d6967ca6fbff6634df8df7435dd29daed",
+      "reviewedHash": "7779c02ca396ed4553945bf1b3680e4d6967ca6fbff6634df8df7435dd29daed",
+      "protectedRecipeSha256": "8d940354e8dae5818185318a42711c4c0b541f4da773fdd3f2bec450c8df980c",
+      "note": "deux oranges fournissent les zestes et trois le jus, répartition encore figée malgré les convives variables. La durée vise un canard entier de 1,8 kg sans contrôle à cœur et sans règle de calibre. La gestion de la graisse chaude sous la grille et le déglaçage du caramel doivent être précisés. Conserver la gastrique sucre-vinaigre et le rôtissage sur grille, sans transformer en magret poêlé."
+    },
+    {
+      "id": "bistrot-ext-14",
+      "status": "blocked",
+      "sourceHash": "74b0bd13c9cbbc7e32f809dc2cfa8260980e2d80356b881dc3e1000e31577957",
+      "reviewedHash": "74b0bd13c9cbbc7e32f809dc2cfa8260980e2d80356b881dc3e1000e31577957",
+      "protectedRecipeSha256": "ec4e29fbe56916022c1de1527811c8c14a789aaf575a91f3c429e5e6f9dc585b",
+      "note": "un peu de beurre pour le pain ne précise pas la quantité consommée sur les 20 g listés. Calibre du tournedos et du foie gras absent, cuisson souhaitée sans contrôle à cœur et assaisonnements oubliés. La durée mêlant secondes et minute du foie gras ne doit pas devenir un bouton arbitraire. Préserver le foie gras cru poêlé à sec et le croûton, sans ajouter de graisse."
+    },
+    {
+      "id": "bistrot-ext-15",
+      "status": "blocked",
+      "sourceHash": "28c3a2d1c99e0b2164804c6a73e790aff7845eda9366b75d70a0d986fc4f889e",
+      "reviewedHash": "28c3a2d1c99e0b2164804c6a73e790aff7845eda9366b75d70a0d986fc4f889e",
+      "protectedRecipeSha256": "4a9a2fb64e4c2175787a2dc90ef2376d510c7de870f79ce326b76acd569cdbbc",
+      "note": "les champignons doivent dorer séparément sans graisse affectée, toute l’huile servant à la viande et aux oignons. La taille des cubes et la durée de cette dorure manquent ; retour des champignons dans les vingt dernières minutes à organiser. Le bouquet n’est pas retiré. Conserver la saisie des champignons, sans les cuire directement dans la tomate pour contourner la graisse manquante."
+    },
+    {
+      "id": "bistrot-ext-16",
+      "status": "corrected",
+      "sourceHash": "c419a50020968fa89885737716d11bb5981900244e642f0e9bcc66fde55583dd",
+      "reviewedHash": "e4dd4fb740086db0aed54343548fec181848e3a85c8520373c2246756c094460",
+      "protectedRecipeSha256": "9666293de734f8a8452d7d5712774e972c366601d66cfe00f8db7f6ed05e72b5",
+      "beforeSteps": [
+        "Faites dorer le poulet dans la cocotte avec huile et moitié du beurre. Réservez.",
+        "Faites revenir échalotes et champignons 6 minutes.",
+        "Remettez le poulet, ajoutez le cidre et laissez mijoter 35 à 40 minutes à couvert.",
+        "Épluchez les pommes, coupez-les en quartiers et faites-les dorer dans le reste du beurre.",
+        "Retirez le poulet, ajoutez crème et calvados dans la cocotte puis faites réduire 5 minutes.",
+        "Remettez poulet et pommes 3 minutes dans la sauce avant de servir."
+      ],
+      "note": "Les deux parts de beurre connues sont calculées ; le calvados retrouve explicitement son caractère facultatif. Cuisses dorées puis mijotées au cidre, pommes dorées séparément et crème de finition conservées. Dorures décrites par leur résultat, sans temps inventé. Contrôle du poulet à 74 °C ajouté ; sel et poivre déjà listés utilisés dans la sauce."
+    },
+    {
+      "id": "bistrot-ext-17",
+      "status": "blocked",
+      "sourceHash": "533e91adbbfccd8162770f7d6ad34b183cd462175b8d1773323c9b9330996607",
+      "reviewedHash": "533e91adbbfccd8162770f7d6ad34b183cd462175b8d1773323c9b9330996607",
+      "protectedRecipeSha256": "7556736caa60916a2932047a45eac6aff950c48cc0b4350e985d1a6b6620b642",
+      "note": "la composition de la farce et le calibre des paupiettes sont inconnus pour trente-cinq minutes de mijotage. La dorure des champignons est non minutée et leur ajout doit se placer dans les dix dernières minutes, pas après la cuisson complète. Conserver les paupiettes du commerce ou du boucher sans inventer une farce, et ne pas déduire sa sécurité du seul nom veau."
+    },
+    {
+      "id": "bistrot-ext-18",
+      "status": "blocked",
+      "sourceHash": "57433a96c7c232f3c2e9c13ad8435052524df1950fe1901d49611b86a849f0c6",
+      "reviewedHash": "57433a96c7c232f3c2e9c13ad8435052524df1950fe1901d49611b86a849f0c6",
+      "protectedRecipeSha256": "b0ca3511ffd0af657aec1b6a6dec455a1290fb12722dac4a331d160ac2d355f6",
+      "note": "les morilles ne reçoivent pas une durée de cuisson suffisante établie : suage et réduction non minutés puis seulement cinq et trois minutes de finition. Les 10 cl d’eau de trempage sont absents et figés, conditions du pressage des ris non précisées, sel et poivre oubliés. Préserver blanchiment et pressage, sans certifier les morilles ni remplacer leur traitement par une cuisson inventée."
+    },
+    {
+      "id": "bistrot-ext-19",
+      "status": "blocked",
+      "sourceHash": "0221c994fda45fadd4350ec452045866257e76200d744801e4d6c4c222783e36",
+      "reviewedHash": "0221c994fda45fadd4350ec452045866257e76200d744801e4d6c4c222783e36",
+      "protectedRecipeSha256": "b814070b719d4d9f20d7f6390f6505fe0e64b65954642d0bf9b74f581fbc1823",
+      "note": "la ficelle conservée au pochage n’est jamais retirée dans la suite de la recette. La moutarde est utilisée pour la panure puis resservie sans part réservée ; salade absente, poivre oublié et légumes du bouillon non affectés. Le calibre des pieds n’est pas indiqué. Préserver le pochage long avant la panure et le retournement inclus, sans rajouter une seconde cuisson de durée arbitraire."
+    },
+    {
+      "id": "bistrot-ext-20",
+      "status": "corrected",
+      "sourceHash": "d9eb38a1192b20ad6113068efe58ceccd528f8105e4f5f749e52dcfcfbea9ac4",
+      "reviewedHash": "c7943b0ba350abcc86988c2eb13a13143628a662019d3b15a7d6bde5132c4087",
+      "protectedRecipeSha256": "663812653a901f95bcfcc39e24945a22b4ddcaa6cc049af45b54c6a9ec55d3e0",
+      "beforeSteps": [
+        "Coupez le gras-double en quatre rectangles. Faites-le mariner 30 minutes avec vin blanc, vinaigre, moutarde et poivre.",
+        "Égouttez et séchez parfaitement les morceaux.",
+        "Passez-les dans farine, œufs battus puis chapelure.",
+        "Faites-les dorer 5 à 6 minutes par face dans une grande poêle avec l’huile.",
+        "Mélangez mayonnaise, câpres, cornichons et herbes pour la sauce tartare.",
+        "Servez les tabliers très croustillants avec la sauce à part."
+      ],
+      "note": "Gras-double explicitement déjà cuit conservé ; marinade mesurée au froid, un rectangle par personne et panure farine-œufs-chapelure. Les restes de marinade et de panure ne sont pas des ajouts de sauce. Mayonnaise préparée, câpres, cornichons et herbes liés à leur quantité ; sel déjà listé affecté à la finition. Réchauffage à cœur ajouté, sans précuisson de gras-double cru."
+    },
+    {
+      "id": "bistrot-ext-21",
+      "status": "corrected",
+      "sourceHash": "a404045aeac008e17fbc2ad79e1172ada1f6981acc198d941e566ba963aeec91",
+      "reviewedHash": "6768a7040608b7afdcac2522d1bc0a925dc1cfa76e644470377164c14253207d",
+      "protectedRecipeSha256": "b14cce7ca3c195469bd55f0b2e87d69575ed5f72ffdaf8124858e2b18ce7e160",
+      "beforeSteps": [
+        "Coupez le gras-double en lanières épaisses. Émincez les oignons.",
+        "Faites fondre les oignons 15 minutes dans beurre et huile à feu moyen-doux.",
+        "Montez le feu, ajoutez le gras-double et faites-le dorer 8 à 10 minutes en remuant régulièrement.",
+        "Salez peu, poivrez puis déglacez avec le vinaigre.",
+        "Laissez évaporer 1 minute, ajoutez le persil et servez immédiatement."
+      ],
+      "note": "Recette courte conservée comme telle : produit déjà cuit, oignons fondus puis gras-double doré, vinaigre évaporé et persil final. Toutes les quantités sont employées, sans nouveau blanchiment ni saindoux ou sauce moutarde importés d’une variante de chef. Contrôle du réchauffage à cœur ajouté."
+    },
+    {
+      "id": "bistrot-ext-22",
+      "status": "corrected",
+      "sourceHash": "a1dea783dae39c1ceb3775f0ef9bda778c1864de0957c5c9189f8d6982336084",
+      "reviewedHash": "57032cc57f653b4d0f206791d0e4de372d4e86bff28db191954284f6b6d4f4d8",
+      "protectedRecipeSha256": "c2787eff23dfd196a089a606ef034ec268a0e1c753e7111841aa02250a4b3202",
+      "beforeSteps": [
+        "Faites réduire échalotes, vin et thym des deux tiers dans une petite casserole.",
+        "Ajoutez le fond de veau et poursuivez la réduction jusqu’à obtenir une sauce nappante.",
+        "Saisissez les onglets dans une poêle très chaude avec l’huile, environ 2 à 3 minutes par face.",
+        "Laissez reposer 5 minutes.",
+        "Hors du feu, incorporez le beurre froid dans la sauce et rectifiez l’assaisonnement.",
+        "Tranchez la viande contre les fibres et servez avec la sauce."
+      ],
+      "note": "Réduction du vin des deux tiers convertie en volume final dynamique, sans fraction relative à deviner. Beurre uniquement dans la sauce, thym retiré et coupe contre les fibres expliquée. Saisie et repos de cinq minutes conservés, avec contrôle sanitaire du bœuf à 63 °C avant repos selon FoodSafety.gov ; aucun saignant garanti sur la seule durée."
+    },
+    {
+      "id": "bistrot-ext-23",
+      "status": "blocked",
+      "sourceHash": "f5a7a58ddfd09afd72462bd55745b1fdea30fab6bac92abde3cc063b26f5911e",
+      "reviewedHash": "f5a7a58ddfd09afd72462bd55745b1fdea30fab6bac92abde3cc063b26f5911e",
+      "protectedRecipeSha256": "dc0c51b78e972bdd6dd42d03b62eef4e37375cadf1ddf0f1e2f6e48d3fc78c7f",
+      "note": "seule la moitié du beurre listé est utilisée : l’autre part n’a pas d’affectation. Les champignons mélangés ne sont pas identifiés et leur cuisson dépend des espèces ; sel et poivre oubliés. Calibre des côtes et repos non définis. Ne pas ajouter arbitrairement le beurre restant à la crème ou supposer que tous les champignons se cuisent comme des champignons de Paris."
+    },
+    {
+      "id": "bistrot-ext-24",
+      "status": "corrected",
+      "sourceHash": "1ac44729c273ca1ff3fc1f5ce925be9153c90bbcfd95353e8641fb387f3704c0",
+      "reviewedHash": "e2b9404e4935060d532e1d726168434176f8e51a08e00355b30c72dfe42bf74c",
+      "protectedRecipeSha256": "0881be529c33b536b9f70401872fa77b688cb171854cdecb4c401ef5843e9afa",
+      "beforeSteps": [
+        "Faites dorer les souris dans une cocotte avec l’huile. Salez, poivrez et réservez.",
+        "Faites revenir oignons, carottes et ail 7 minutes.",
+        "Déglacez avec le vin blanc, laissez réduire 2 minutes puis ajoutez le bouillon et le thym.",
+        "Remettez les souris, couvrez et enfournez 2 h 30 à 150 °C.",
+        "Retirez le couvercle et poursuivez 20 à 30 minutes en arrosant souvent pour faire confire la surface.",
+        "Servez avec le jus dégraissé et réduit si nécessaire."
+      ],
+      "note": "Braisage à 150 °C, deux heures trente couvert puis vingt à trente minutes découvert, conservé sans transposition. Liquides et huile calculés, ail préparé, thym retiré et jus dégraissé expliqué. Le long temps couvert n’est pas converti en faux minuteur de trente minutes. Dorure et réduction décrites par leur résultat, pas une durée inventée."
+    },
+    {
+      "id": "bistrot-ext-25",
+      "status": "blocked",
+      "sourceHash": "62005ee5b3fef61f724a86c7a6c5ee114ea6df9fb50aed411ef036baef624879",
+      "reviewedHash": "62005ee5b3fef61f724a86c7a6c5ee114ea6df9fb50aed411ef036baef624879",
+      "protectedRecipeSha256": "e04a8e5cbe8fb2800eb22b5706714f42660a3d32c029b205659ad089335628af",
+      "note": "le trempage des pruneaux dans un peu d’eau tiède n’indique ni volume ni égouttage ni sort de cette eau. Le vin ou la bière de la liste devient uniquement du vin dans les étapes. Taille des morceaux de lapin et contrôle à cœur manquent, ajout des pruneaux à placer dans les vingt dernières minutes. Conserver le braisage et ses deux options de liquide sans en supprimer une."
+    },
+    {
+      "id": "bistrot-ext-26",
+      "status": "corrected",
+      "sourceHash": "fe10197e41a958fa7c6c818c811bc92d2948f07e42bf4df7bf70b2d00ab5db40",
+      "reviewedHash": "c9ee3c72635642325c2a163a4b788e06a70a95aa0d08708309dd1e87fd4150ed",
+      "protectedRecipeSha256": "03ebd1ae5f8e7bc768f85daacbdff614f87f904526ecd48e469a2f5e52aec753",
+      "beforeSteps": [
+        "Épongez les joues et faites-les dorer dans la cocotte avec l’huile. Réservez.",
+        "Faites revenir oignons et carottes 6 minutes dans le beurre.",
+        "Remettez la viande, versez le cidre et laissez réduire 3 minutes.",
+        "Ajoutez le fond et le bouquet garni, couvrez et laissez mijoter 1 h 45 à feu très doux.",
+        "Retirez la viande, ajoutez la moutarde et faites réduire la sauce jusqu’à texture nappante.",
+        "Remettez les joues 5 minutes dans la sauce et servez."
+      ],
+      "note": "Huile pour les joues et beurre pour les légumes conservés, sans partage ajouté. Les 105 minutes sont la conversion exacte de 1 h 45, avec minuteur attaché au mijotage. Bouquet retiré, moutarde mesurée et sel/poivre déjà listés affectés à la finition. Pas de crème ajoutée ni de changement d’appareil."
+    },
+    {
+      "id": "bistrot-ext-27",
+      "status": "blocked",
+      "sourceHash": "e00b86d8adad0b70fe21d17d5578d564ca0140b467a68da6df22800292a324d1",
+      "reviewedHash": "e00b86d8adad0b70fe21d17d5578d564ca0140b467a68da6df22800292a324d1",
+      "protectedRecipeSha256": "96daa3292baa6e23f0e72a5fb8155129bec212c9c267e28c3baf22709ac9d1e2",
+      "note": "le riz ou les pommes vapeur du service sont absents de la liste et de la préparation. Les médaillons n’ont pas de calibre et le repère juste cuit ne définit pas le contrôle à cœur. La petite pincée de Cayenne reste une quantité d’assaisonnement à conserver sans l’augmenter. Ne pas flamber le cognac, geste absent de la source, ni transformer la lotte saisie en poisson uniquement poché."
+    },
+    {
+      "id": "bistrot-ext-28",
+      "status": "blocked",
+      "sourceHash": "c62d0b154888484055939df8652068982488164508841084f2bfe9f40c32e295",
+      "reviewedHash": "c62d0b154888484055939df8652068982488164508841084f2bfe9f40c32e295",
+      "protectedRecipeSha256": "2005a878c6897daeb70160ea226bfe88d7b83e2bc438b44ac50ec6bb11658163",
+      "note": "le citron entier ne sert qu’à quelques gouttes sans quantité ni affectation du reste. Le cabillaud peut pocher ou cuire à la vapeur mais les récipients et conditions de ces deux modes ne sont pas décrits. Le maintien tiède du beurre blanc et le contrôle à cœur manquent. Conserver les dos de 180 g et les deux possibilités de cuisson, sans en supprimer une pour simplifier."
+    },
+    {
+      "id": "bistrot-ext-29",
+      "status": "corrected",
+      "sourceHash": "94028cb785c615a9f324236b9c62b263f30ea81993e6ad54c2245b59948529a0",
+      "reviewedHash": "6236eaf4716731830ecddee55184d5bfe9a18516fff5ce933ae089a628c03b31",
+      "protectedRecipeSha256": "e289282715e38343a484f8575d9165d94bc0b8607da06900b252b2e5d643f06e",
+      "beforeSteps": [
+        "Séchez soigneusement les truites, salez-les, poivrez-les puis farinez-les légèrement.",
+        "Faites-les cuire 5 à 6 minutes par face dans 40 g de beurre sur feu moyen.",
+        "Réservez au chaud.",
+        "Dans une petite poêle, faites fondre le reste du beurre jusqu’à couleur noisette puis ajoutez les amandes.",
+        "Dès qu’elles sont dorées, ajoutez le jus du citron et le persil.",
+        "Versez immédiatement sur les truites et servez."
+      ],
+      "note": "Deux parts égales de beurre calculées, citron entièrement pressé et persil mesuré. Truites entières farinées, cuisson au beurre puis beurre noisette aux amandes conservés. Le thermomètre à 63 °C distingue la cuisson à cœur de la dorure, sans changer le poisson en filets ni ajouter de l’huile."
+    },
+    {
+      "id": "bistrot-ext-30",
+      "status": "blocked",
+      "sourceHash": "ca90b79a62ed23740fc82eaaadbcf6438765d9d20bf43f5149bf89f01d7caede",
+      "reviewedHash": "ca90b79a62ed23740fc82eaaadbcf6438765d9d20bf43f5149bf89f01d7caede",
+      "protectedRecipeSha256": "e9f69578564be91563a0f760c7ed2aeb3e50f9de48ccfea687ee380d8bca3bbe",
+      "note": "la durée composée une minute trente par face ne doit pas se transformer en minuteur d’une minute ; le calibre et la cuisson à cœur des noix ne sont pas définis. Sel et poivre listés sont oubliés, dorure des champignons non minutée. Conserver le cidre réduit puis la crème et le retour très bref des Saint-Jacques, sans multiplier arbitrairement la cuisson."
+    },
+    {
+      "id": "bistrot-ext-31",
+      "status": "corrected",
+      "sourceHash": "c57ea8eb23f64b7771dcafb97a7b3767677ee11463d0ecbb077fd255beb0da7b",
+      "reviewedHash": "ce81279901b8b97114ba9279ddfeb3eed2b913fb2953dfe4a6570ad7cfa47a42",
+      "protectedRecipeSha256": "d83da9446b9e9f4029afcf9909c7ae55842d0d21c93a788054db4551a34f7b8a",
+      "beforeSteps": [
+        "Coupez les homards cuits en deux dans la longueur. Retirez la chair des queues et des pinces puis coupez-la en morceaux.",
+        "Faites revenir les échalotes au beurre 2 minutes. Ajoutez vin et fumet, puis réduisez de moitié.",
+        "Ajoutez la crème et laissez épaissir 4 minutes. Hors du feu, incorporez moutarde puis jaunes d’œufs.",
+        "Ajoutez la chair de homard et mélangez délicatement.",
+        "Remplissez les demi-carapaces, parsemez de fromage et enfournez 8 à 10 minutes à 220 °C.",
+        "Passez éventuellement 1 minute sous le gril et servez aussitôt."
+      ],
+      "note": "Homards déjà cuits de 600–700 g conservés : aucun nouveau pochage imposé. Décorticage et nettoyage des demi-carapaces expliqués, beurre/vin/fumet/crème/moutarde/fromage tous affectés. Liaison aux jaunes hors du feu suivie du gratin source avec contrôle à 74 °C du centre ; assaisonnements listés utilisés. Gril facultatif d’une minute distinct, sans œuf cru servi."
+    },
+    {
+      "id": "bistrot-ext-32",
+      "status": "blocked",
+      "sourceHash": "b1f00288ba43e135f1f81490ec78cd8d5827ddbcad18cb82a44db52ca50ee34e",
+      "reviewedHash": "b1f00288ba43e135f1f81490ec78cd8d5827ddbcad18cb82a44db52ca50ee34e",
+      "protectedRecipeSha256": "94eb4db82e65f8f054d97ee378fed4e282aa2ea44390506d56ed36adae68d849",
+      "note": "les deux cuillères à soupe d’eau du sabayon sont absentes de la liste et restent figées. Le liquide de pochage n’a pas d’affectation finale ; calibre des pavés, température du sabayon et contrôle du poisson manquent. Conserver la hollandaise et le pochage au vin, sans verser le bouillon dans la sauce pour supprimer artificiellement ce reste."
+    },
+    {
+      "id": "bistrot-ext-33",
+      "status": "blocked",
+      "sourceHash": "202019d9b8fccc6f975cadf8c65f7d1f5ef51e8fd4fa2f9e72428b130eeef838",
+      "reviewedHash": "202019d9b8fccc6f975cadf8c65f7d1f5ef51e8fd4fa2f9e72428b130eeef838",
+      "protectedRecipeSha256": "2273b32b7ecd87f4cbde12408b27ed4f1c0f62988e7afd3c76509728f2f0d2ba",
+      "note": "les croûtons du service sont absents de la liste et de la préparation, sel et poivre oubliés. Espèce des champignons, calibre des tronçons et durée de leur dorure non précisés ; la sécurité de l’anguille ne peut pas se déduire de la sauce nappante. Conserver les garnitures revenues puis retirées et l’ajout en deux temps, sans cuire tous les ingrédients dès le départ."
+    },
+    {
+      "id": "bistrot-ext-34",
+      "status": "blocked",
+      "sourceHash": "a3050c12736c51b3862680ac89ce696779383d60e040e24d4c84a48914dc3bbc",
+      "reviewedHash": "a3050c12736c51b3862680ac89ce696779383d60e040e24d4c84a48914dc3bbc",
+      "protectedRecipeSha256": "ce5b90081bf420f0b20ad7d51ce873ee4738cc628aee94281cc483c94e2f88b4",
+      "note": "le citron entier n’est utilisé que pour quelques gouttes sans quantité ni reste affecté, et le poivre est oublié. La sauce n’est lancée qu’après le poisson sans organisation du maintien chaud ; calibre et contrôle à cœur manquent. Conserver la saisie sur peau puis le four et la sauce autour, sans remplacer par un pochage ou mouiller la peau croustillante."
+    },
+    {
+      "id": "veg-l1-01",
+      "status": "blocked",
+      "sourceHash": "531b8c1387371cf5cb22488115b8d47b3b9f09135eb53b5262f6c306657e411e",
+      "reviewedHash": "531b8c1387371cf5cb22488115b8d47b3b9f09135eb53b5262f6c306657e411e",
+      "protectedRecipeSha256": "5b55f1f81b716a676be51e054c300141bbccef0382002758604f92d432087ca4",
+      "note": "le montage impose deux disques de 22 cm alors que leur nombre et la farce varient avec les convives : taille et nombre de tourtes à définir. Le mélange forestier n’identifie pas les espèces et leurs cuissons, sel et poivre oubliés, eau de soudure absente. Le total annoncé couvre mal refroidissement, réfrigération et four ; ne pas agrandir automatiquement une seule tourte ni supprimer son refroidissement."
+    },
+    {
+      "id": "veg-l1-02",
+      "status": "blocked",
+      "sourceHash": "3c9769d2499ca7a9cf6105543435787526cea0ad44f22a7af1cdfb709dffbf2c",
+      "reviewedHash": "3c9769d2499ca7a9cf6105543435787526cea0ad44f22a7af1cdfb709dffbf2c",
+      "protectedRecipeSha256": "aac3ab6c08316c2bc0afe8ff1840bf9cfafd39a33c5a7c9e56c3c58fe29b1b26",
+      "note": "les deux cuillères à soupe d’huile sont réparties entre plat, couches du dessous et dessus sans mesures. Les trois feuilles puis deux restantes sont figées et le petit plat n’a pas de format. L’œuf de farce doit être cuit à cœur ; l’absence d’eau rendue ne le garantit pas. Conserver les oignons nouveaux crus dans la farce et la superposition de filo, sans suage ajouté."
+    },
+    {
+      "id": "veg-l1-03",
+      "status": "blocked",
+      "sourceHash": "bb84bebbfd91ec766b39e65b824a251eb5f7999110755150e6ecb14a17f0bc1d",
+      "reviewedHash": "bb84bebbfd91ec766b39e65b824a251eb5f7999110755150e6ecb14a17f0bc1d",
+      "protectedRecipeSha256": "f9c590674ad9147dd9d1e89800ef11462c8d4aab36aa7b468068e416984fb558",
+      "note": "l’huile sert à badigeonner les aubergines, à faire fondre les oignons puis à arroser, sans partage complet des trois cuillères à soupe. La cuillerée des oignons n’a pas d’unité. Le grillage du pain n’a ni appareil ni durée. Conserver aubergines rôties puis farcies et oignons fondus séparément, sans remplacer ce montage par une ratatouille."
+    },
+    {
+      "id": "veg-l1-04",
+      "status": "blocked",
+      "sourceHash": "409af24db4219b6a56065bf9bc7ef28c3f42a39fa906a17c8fd8549d9b7367bd",
+      "reviewedHash": "409af24db4219b6a56065bf9bc7ef28c3f42a39fa906a17c8fd8549d9b7367bd",
+      "protectedRecipeSha256": "e85bd6ff8666cbaf03647cab9c35a1a5fdd9edb71761b2834f6971f060cc881d",
+      "note": "les 8 cl d’eau de départ et la cuillerée d’appoint ne sont pas listés ; l’unité de la cuillerée est inconnue. Le sel de la liste est oublié et le citron n’est pas explicitement pressé ou découpé. Les trois dernières minutes à découvert sont comprises dans les quinze à dix-huit minutes finales. Conserver l’étouffée presque sèche, sans augmenter l’eau ni ajouter trois minutes de cuisson."
+    }
+  ]
+}
