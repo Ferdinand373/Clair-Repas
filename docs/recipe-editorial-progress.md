@@ -454,6 +454,18 @@ Le navigateur conservait d’abord la révision 38 malgré le rechargement norma
 
 **Cumul : 1 404 identifiants examinés, 384 corrigés, 1 010 bloqués, 10 conformes sans réécriture, 149 à examiner.** Zéro erreur éditoriale, 4 504 avertissements ; 590 minuteurs manuels et 14 166 rendus d’ingrédients corrigés/conformes. Ce lot ajoute 1 776 rendus réservés et 264 réserves visibles. Les 24 commandes passent et neuf vues Livre/Programme sont inspectées aux trois formats simulés. Publication à consigner ; les autres recettes suivent.
 
+## Publication du lot 40
+
+`222c6603002c97291e463a95899108e1dacc060d` publié sur `main`. Tests `34428094397`, Pages `34428093891` et déploiement `6363062166` réussis. HTTPS 200 avec HSTS ; fichiers identiques au commit : index `2cc3267ce4b69cb87d845d7e2c457e3599410630b7440438b59346e8943a04a0`, service worker `761729ab866d9f4a3864e9b0fc7263f4e5da2b187b0e66cf3196430422d9a419`.
+
+Après « Vérifier la mise à jour », noyau effectivement chargé `sha256:8bc1943543573d4e98bf2c2c977e344b91b86cf105653fbf228d181a1eb1f6c0`. Soupe tomate/lentilles/poulet vérifiée à deux personnes : coulis 40 cl, lentilles 140 g, bouillon 60 cl, poulet cuit 200 g, riz 120 g ; vingt minutes attachées au frémissement, aucun bouton fixe pour le riz, réchauffage après le mixage facultatif. Aucun effacement de cache ou de données. Branche parallèle toujours propre au commit `f21bad0c63b9dae514d0a85da34efd8453f0ce30`, commit en avance conservé.
+
+## Lot 41 — cinquante galettes, salades et soupes
+
+[Journal et décisions individuelles](recipe-editorial-batch-41.md). Neuf corrigées, quarante et une réservées, aucune conforme sans réécriture. Waldorf et hareng sans cuisson nouvelle, gésiers dans leur graisse résiduelle, faces de plancha séparées, nouilles selon le paquet et miso hors feu. Aucun ingrédient ajouté, identifiants historiques conservés.
+
+**Cumul : 1 454 identifiants examinés, 393 corrigés, 1 051 bloqués, 10 conformes sans réécriture, 99 à examiner.** Zéro erreur éditoriale, 4 311 avertissements ; 604 minuteurs manuels et 14 598 rendus d’ingrédients corrigés/conformes. Ce lot ajoute 1 968 rendus réservés et 246 réserves visibles. Les 24 commandes passent ; neuf vues Livre/Programme aux trois formats simulés. Publication à consigner ; les autres recettes suivent.
+
 ## Limites des vérifications
 
 Les tests de structure, quantité, minuteurs, stockage simulé et rendu ne sont pas des essais culinaires. Les formats iPhone/PWA sont simulés, sauf mention explicite d’un appareil physique. Le total de fiches à examiner ne doit jamais être remplacé par le nombre de fiches auxquelles le style commun a été appliqué.

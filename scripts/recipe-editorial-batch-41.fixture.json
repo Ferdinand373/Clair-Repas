@@ -1,0 +1,460 @@
+{
+  "baselineCommit": "222c6603002c97291e463a95899108e1dacc060d",
+  "batch": "41",
+  "recipes": [
+    {
+      "id": "v31e-bouillon-nouilles-tofu",
+      "status": "blocked",
+      "sourceHash": "18dcd5e85efdae303e67fa6bb51a477ccebbb322c69c72c94c2f55f7f17db074",
+      "reviewedHash": "18dcd5e85efdae303e67fa6bb51a477ccebbb322c69c72c94c2f55f7f17db074",
+      "protectedRecipeSha256": "e678baa3a13afee6a5e674c53fd015d5a642c452e89d68cf17b5da5c67b401b0",
+      "note": "beurre explicitement demandé mais absent de la liste ; calibre et cuisson du jaune non définis pour quatre à cinq minutes couvertes, deux galettes figées. Retrouver ces éléments sans remplacer l’œuf entier par un œuf brouillé ou ajouter une dose arbitraire de beurre."
+    },
+    {
+      "id": "v31e-pomme-terre-garnie-poulet",
+      "status": "blocked",
+      "sourceHash": "f97432bb16b457b8d17ca20968bdc8101cca0ac1f0b9ee39451a0d714794095e",
+      "reviewedHash": "f97432bb16b457b8d17ca20968bdc8101cca0ac1f0b9ee39451a0d714794095e",
+      "protectedRecipeSha256": "1e206f5c531fd84f927ec03f90228d0ba7aebb48395a074333248d6ede532483",
+      "note": "matière grasse pour faire tomber les épinards et chauffer les galettes absente ; citron partagé entre épinards et quartiers sans quantités. Ne pas remplacer la fondue des épinards par une cuisson au jus de citron ni cuire le saumon fumé comme un poisson cru."
+    },
+    {
+      "id": "v31e-pomme-terre-garnie-dinde",
+      "status": "blocked",
+      "sourceHash": "2856e2ced6b7aafc59e590169e88ee0e3f6521f42959b6c94c59611f0ec1f3ad",
+      "reviewedHash": "2856e2ced6b7aafc59e590169e88ee0e3f6521f42959b6c94c59611f0ec1f3ad",
+      "protectedRecipeSha256": "ee5ff50a5270ef9f82d01f6cf3c5700c5e261369672b2bb1502f3f7a7ffcfe65",
+      "note": "graisse de poêlage et de l’œuf au plat absente ; œuf unique à partager sans durée ni intensité. Garniture divisée en moitiés et deux galettes figées, champignons non précisés. Ne pas multiplier l’œuf ni remplacer la cuisson au plat par des œufs mélangés."
+    },
+    {
+      "id": "v31e-pomme-terre-garnie-filet-mignon",
+      "status": "blocked",
+      "sourceHash": "b367dd653cdc1858ff07e7bc98185df5451ee2b99caeaca534d82625ea94ca21",
+      "reviewedHash": "b367dd653cdc1858ff07e7bc98185df5451ee2b99caeaca534d82625ea94ca21",
+      "protectedRecipeSha256": "ce035a5438a953f1ee3e7f5aac5e79a271d1526cbbd9cf870b45d8ae031202c2",
+      "note": "graisse ou liquide de fondue des poireaux absent ; moule sans dimension ni épaisseur. Dix minutes de fondue puis vingt-cinq de four et cinq de repos dépassent déjà les trente-cinq annoncées. Conserver la fondue couverte, sans la remplacer par une cuisson dans le lait de l’appareil."
+    },
+    {
+      "id": "v31e-pomme-terre-garnie-saumon",
+      "status": "blocked",
+      "sourceHash": "abb58d18e463b93f25a00066ab15e279ce24ce0076a53e557545bc18e2da47b1",
+      "reviewedHash": "abb58d18e463b93f25a00066ab15e279ce24ce0076a53e557545bc18e2da47b1",
+      "protectedRecipeSha256": "c482115447b88a7f53cb0912c74295578ea40a0e1ff243c6b5ffbf6d5b6ecd33",
+      "note": "graisse pour poêler la courgette absente, assaisonnement des tomates non listé. Moule et épaisseur non définis. Ne pas supprimer le poêlage de courgette essorée ou utiliser le lait pour contourner la graisse manquante."
+    },
+    {
+      "id": "v31e-pomme-terre-garnie-saucisses",
+      "status": "blocked",
+      "sourceHash": "95ab349d3faf01bf937daa872332ef57285c3050655a30f3d92c4efb7d6a5b92",
+      "reviewedHash": "95ab349d3faf01bf937daa872332ef57285c3050655a30f3d92c4efb7d6a5b92",
+      "protectedRecipeSha256": "48754b29ff71d46a9afdc56fc1744c54d2daada678888706a1c449b6256eb385",
+      "note": "huile explicitement demandée sur le bord mais absente de la liste ; citron zesté puis quelques gouttes sans emploi du reste ni dose. Ne pas ajouter tout le jus dans la ricotta, ce qui changerait l’humidité de la tarte."
+    },
+    {
+      "id": "v31e-pomme-terre-garnie-boulettes",
+      "status": "blocked",
+      "sourceHash": "ab7ca1b249c1aa8bc4807c55ad087fad1815060630cfc1642616de9ce5f7b1e7",
+      "reviewedHash": "ab7ca1b249c1aa8bc4807c55ad087fad1815060630cfc1642616de9ce5f7b1e7",
+      "protectedRecipeSha256": "cae8b980dd8cd049e04b264581481cae181cc1f2e4dd1832bce355e8675b48e9",
+      "note": "graisse de poêlage des champignons absente ; quatre tranches de dessous figées pour les convives. Découpe et humidité des champignons, capacité du panier à préciser. Ne pas supprimer la précuisson pour faire tous les ingrédients directement à l’Air Fryer."
+    },
+    {
+      "id": "v31e-pomme-terre-garnie-pois-chiches",
+      "status": "blocked",
+      "sourceHash": "39c83283f58b160e8ebd097cf325fe02e7aba152478deb4167374acdd6c87870",
+      "reviewedHash": "39c83283f58b160e8ebd097cf325fe02e7aba152478deb4167374acdd6c87870",
+      "protectedRecipeSha256": "1cda6bf71c03a0c358055eba920667e5e0071ce514beb58e8716ba71d7972261",
+      "note": "graisse pour dorer le pain imbibé absente ; épaisseur du pain et cuisson centrale des œufs non précisées. Quatre bases figées ; première face puis deux faces du sandwich à distinguer. Préserver le trempage œufs/lait, sans transformer en croque sec."
+    },
+    {
+      "id": "v31e-pomme-terre-garnie-tofu",
+      "status": "blocked",
+      "sourceHash": "c94108f6b7a5a2c2bbe48ef7f74d14cbdc31692ba0d84eedac114b45d679cb31",
+      "reviewedHash": "c94108f6b7a5a2c2bbe48ef7f74d14cbdc31692ba0d84eedac114b45d679cb31",
+      "protectedRecipeSha256": "f0c08a1c99bc4835f116f1c33da0ba7cfc5add9dfa6363c018cb6a138c342f16",
+      "note": "six moules en silicone figés et sans contenance ; remplissage et épaisseur non définis pour treize à quinze minutes. Vérifier la cuisson des œufs à cœur et la capacité réelle du panier avant de fixer des fournées. Ne pas augmenter automatiquement durée et température avec les convives."
+    },
+    {
+      "id": "v31e-quesadillas-filet-mignon",
+      "status": "blocked",
+      "sourceHash": "6d644905b878b8e4414b6378dd855762f0d9710bfb16907bab104301e4ae1fbb",
+      "reviewedHash": "6d644905b878b8e4414b6378dd855762f0d9710bfb16907bab104301e4ae1fbb",
+      "protectedRecipeSha256": "c09fe3da3f6a9f9798b3ff03c7ca46e19e30ed17e45976460daea169e65ab312",
+      "note": "huile d’olive demandée dans la sauce mais absente et sans dose. Pommes de terre listées cuites, encore tièdes au départ : ne pas ajouter une nouvelle cuisson malgré le temps affiché. Retrouver la sauce sans la remplacer par du citron seul."
+    },
+    {
+      "id": "v31e-quesadillas-cotes-porc",
+      "status": "blocked",
+      "sourceHash": "7e679dbc839e77e333fca8015fe8a9d616f69735fd3a4667e704e42292db8bcd",
+      "reviewedHash": "7e679dbc839e77e333fca8015fe8a9d616f69735fd3a4667e704e42292db8bcd",
+      "protectedRecipeSha256": "1e63c2fdc3a0f682c81328dcdf32b64f4e3043b6576b14e26f2b32e4e28433a3",
+      "note": "œufs mollets six minutes trente, durée composée non prise en charge précisément par le minuteur actuel. Calibre non indiqué ; réchauffage des lentilles/carotte sans liquide ni graisse. La vinaigrette source moutarde/vinaigre reste sans huile : ne pas en ajouter automatiquement."
+    },
+    {
+      "id": "v31e-quesadillas-boeuf",
+      "status": "blocked",
+      "sourceHash": "da1999cb1361855ae057914afc1f7462849da5675457a06440ee8f936d705d34",
+      "reviewedHash": "da1999cb1361855ae057914afc1f7462849da5675457a06440ee8f936d705d34",
+      "protectedRecipeSha256": "264054b578853505585341d616a38d958d135b55effdde6c4d78edd9d7373b97",
+      "note": "huile explicitement demandée pour la sauce mais absente de la liste et sans dose. Lentilles et betteraves déjà cuites à préserver. Ne pas transformer le balsamique en vinaigrette complète sans retrouver la matière grasse et sa quantité."
+    },
+    {
+      "id": "v31e-quesadillas-saumon",
+      "status": "blocked",
+      "sourceHash": "28765bb4c37c02ccd4093bcefb5fcca4fee192dcd6ea12dd6198ac86a9a847a7",
+      "reviewedHash": "28765bb4c37c02ccd4093bcefb5fcca4fee192dcd6ea12dd6198ac86a9a847a7",
+      "protectedRecipeSha256": "b8144745eaa92856dc48d893b8f5c20a0b9db0c2128b3a98c711f2e89f471e1e",
+      "note": "départ, mode de cuisson et calibre des œufs absents pour neuf minutes ; poivrons sans largeur de lanières ni préchauffage. Ne pas interpréter la catégorie Air Fryer comme une consigne de cuire les œufs dans cet appareil. Pois chiches en boîte à égoutter avant assemblage."
+    },
+    {
+      "id": "v31e-quesadillas-poisson-blanc",
+      "status": "blocked",
+      "sourceHash": "5d575806993608665ca17d4c312e394ad3e1bc8fee99834f2c2a4aa541d8f958",
+      "reviewedHash": "5d575806993608665ca17d4c312e394ad3e1bc8fee99834f2c2a4aa541d8f958",
+      "protectedRecipeSha256": "d3cf53f7221a93058cda3df4e02efa0f47fec5727ea8e230f332eee4ab53f457",
+      "note": "huile demandée en vinaigrette mais non listée et sans dose ; ne pas supprimer la matière grasse du mélange moutarde/vinaigre. Flageolets en boîte et jambon cru restent un assemblage froid."
+    },
+    {
+      "id": "v31e-quesadillas-boulettes",
+      "status": "blocked",
+      "sourceHash": "c764af0aa7cd7f6008a4c4cfb36e80dc7acc8432476685684f12e168bdfe1c99",
+      "reviewedHash": "c764af0aa7cd7f6008a4c4cfb36e80dc7acc8432476685684f12e168bdfe1c99",
+      "protectedRecipeSha256": "e5dc83a2bd914a43e1cf47b6347180cd6402ec79e3d363d6737bfdae2e39b687",
+      "note": "huile de la vinaigrette explicitement demandée mais absente ; plancha sans graissage ou intensité. Épaisseur du poulet non indiquée et couleur seule insuffisante. Pommes de terre et haricots déjà cuits conservés sans nouvelle précuisson inventée."
+    },
+    {
+      "id": "v31e-quesadillas-tofu",
+      "status": "blocked",
+      "sourceHash": "680c2aaeed30a5e2132ef31ec36fc11ebeaee23fc6caaf70b2919ceb1f6f8ddc",
+      "reviewedHash": "680c2aaeed30a5e2132ef31ec36fc11ebeaee23fc6caaf70b2919ceb1f6f8ddc",
+      "protectedRecipeSha256": "b1ae437d565c1a7cffbd19c5045c337aa9859224377ae98f8ba5201f4c9c7297",
+      "note": "cuillerée d’eau pour détendre le pesto absente de la liste et unité de cuillère non définie. Pâtes et légumes explicitement déjà cuits/grillés : ne pas ajouter de cuisson ou choisir quinze millilitres sans source. Garder le citron et l’eau distincts."
+    },
+    {
+      "id": "v31e-crumble-sale-poulet",
+      "status": "blocked",
+      "sourceHash": "b98f99effff667be2bb1acf44628093a3f8a73f1c01e1906fa84f450b1b2f438",
+      "reviewedHash": "b98f99effff667be2bb1acf44628093a3f8a73f1c01e1906fa84f450b1b2f438",
+      "protectedRecipeSha256": "bd1723635dc11e35fc8af73a02f0dc838ede26500859f7903edccd514db3c830",
+      "note": "huile d’olive demandée pour l’orzo mais absente et sans dose. Orzo déjà cuit et froid conservé ; ne pas ajouter une cuisson de pâtes ni supprimer l’huile pour simplifier la liste."
+    },
+    {
+      "id": "v31e-crumble-sale-dinde",
+      "status": "blocked",
+      "sourceHash": "38d7bf1250b2307ca4534692be6a0027b27f0d3da5d66ee1b191e62cbdc1036c",
+      "reviewedHash": "38d7bf1250b2307ca4534692be6a0027b27f0d3da5d66ee1b191e62cbdc1036c",
+      "protectedRecipeSha256": "1757b08bf43dc1de5f1e9630df37e48ef5f6c8a206b69bf508fdd15d3c800424",
+      "note": "cuillerée d’eau dans la sauce soja/citron vert absente de la liste, sans unité de cuillère. Riz froid et saumon déjà cuit doivent rester cuits ; ne pas choisir une dose d’eau ou une cuisson de poisson arbitraire."
+    },
+    {
+      "id": "v31e-crumble-sale-filet-mignon",
+      "status": "blocked",
+      "sourceHash": "dd4e6f44cddc6f1167ae490cc6a231289c521a065623ca7954f1c1ba36c1621c",
+      "reviewedHash": "dd4e6f44cddc6f1167ae490cc6a231289c521a065623ca7954f1c1ba36c1621c",
+      "protectedRecipeSha256": "b21cd99ea13e49a0ec8c1c1f5e7eba7abdb4959854e8415141fe741dcc8969d9",
+      "note": "huile demandée dans la sauce mais absente et sans dose. Quinoa et crevettes déjà cuits, sauce citron/ciboulette à préserver sans la remplacer par du citron seul. Découpes et décorticage éventuel restent à préciser."
+    },
+    {
+      "id": "v31e-crumble-sale-poisson-blanc",
+      "status": "blocked",
+      "sourceHash": "83252cb44d9919fe370581b4a5d6ee32dc1eb9f913669fcf9c4017ee9dcec448",
+      "reviewedHash": "83252cb44d9919fe370581b4a5d6ee32dc1eb9f913669fcf9c4017ee9dcec448",
+      "protectedRecipeSha256": "93f8ab7d9994ad408c69e3b86e864756c3f3a15c2b8e16ebc4e37eef5b38e484",
+      "note": "huile d’olive demandée avec le citron mais absente, sans dose. Oignon nouveau listé mais pas nommé dans la découpe ; boulgour déjà cuit, repos de cinq minutes conservé. Ne pas augmenter le citron pour remplacer l’huile."
+    },
+    {
+      "id": "v31e-crumble-sale-saucisses",
+      "status": "blocked",
+      "sourceHash": "2606dc65dec0f2a72015d923fe519606a8ccb9fe05fc5fad36f8479593b31cd6",
+      "reviewedHash": "2606dc65dec0f2a72015d923fe519606a8ccb9fe05fc5fad36f8479593b31cd6",
+      "protectedRecipeSha256": "43ae9795e84f8be2d49940825f76444b761466fc50ff45de76ea6852633f8fed",
+      "note": "gnocchi non identifiés alors que la recette exclut explicitement la cuisson à l’eau ; vérifier un produit réellement adapté au poêlage direct avant de valider huit puis six minutes. Huile listée mais emploi non expliqué. Ne pas pocher d’office les gnocchi pour contourner la source."
+    },
+    {
+      "id": "v31e-crumble-sale-falafels",
+      "status": "blocked",
+      "sourceHash": "fc52f73666050a1831e0c8ae9bb72c7eda38f4b86635fc02244787b913822265",
+      "reviewedHash": "fc52f73666050a1831e0c8ae9bb72c7eda38f4b86635fc02244787b913822265",
+      "protectedRecipeSha256": "447e5f07191c36b19c75293bf4cce3216eb2f53eb76c2efb45dd4d51b71d5577",
+      "note": "huile de sauce explicitement demandée mais absente ; graissage et puissance de plancha non définis. Poulet sans découpe/épaisseur, soja et miel à badigeonner uniquement en dernière minute. Ne pas déplacer le glaçage avant le grillage ou déduire la cuisson de la couleur."
+    },
+    {
+      "id": "v31e-crumble-sale-tofu",
+      "status": "blocked",
+      "sourceHash": "d1065b17edfe8e331d1733060f5474c5cec448262bfa391b8d3dc18265007602",
+      "reviewedHash": "d1065b17edfe8e331d1733060f5474c5cec448262bfa391b8d3dc18265007602",
+      "protectedRecipeSha256": "7c488b3c534e42c75761ead8e820862615eb2bc67df23984d737dc302151340b",
+      "note": "vinaigre de sauce demandé mais absent ; légumes vapeur sans découpes ni durées. Œufs six minutes trente sans départ/calibre et minuteur composé non exact. Ne pas ajouter huile/vinaigre ni transformer les œufs mollets en durs par défaut."
+    },
+    {
+      "id": "v31e-ragout-leger-poulet",
+      "status": "blocked",
+      "sourceHash": "4356bc348b992c882da6a0a1f662a8f5bf400bd41e96dba23f8a3c6f6b4e3c85",
+      "reviewedHash": "4356bc348b992c882da6a0a1f662a8f5bf400bd41e96dba23f8a3c6f6b4e3c85",
+      "protectedRecipeSha256": "768f3b11ff07034746e7946def059874bef570d31642fdae75d6533da20620b8",
+      "note": "matière grasse de suage absente ; tartine cinq minutes à l’Air Fryer ou au four sans température ou mode de gril. Ne pas choisir un appareil à la place de l’auteur ni faire revenir les légumes dans le bouillon."
+    },
+    {
+      "id": "v31e-ragout-leger-dinde",
+      "status": "blocked",
+      "sourceHash": "e87501176c5432b65f11465d6705d871c6d52e1832fbd05cfa3cc6b28a721924",
+      "reviewedHash": "e87501176c5432b65f11465d6705d871c6d52e1832fbd05cfa3cc6b28a721924",
+      "protectedRecipeSha256": "9e9872085c0d5eec22bfd848c657652d68f2b59e926e4d64cdd4c536a72c4ba2",
+      "note": "graisse de suage et de dorure des croûtons absente ; parmesan entièrement mixé puis ajouté en copeaux sans partage. Ne pas réduire la dose de bouillon ou utiliser le fromage comme graisse de cuisson."
+    },
+    {
+      "id": "v31e-ragout-leger-filet-mignon",
+      "status": "blocked",
+      "sourceHash": "e2a3a28597e758cd37f78f13750c1cb7b726c4f6e43a04ae74312538a46ea913",
+      "reviewedHash": "e2a3a28597e758cd37f78f13750c1cb7b726c4f6e43a04ae74312538a46ea913",
+      "protectedRecipeSha256": "2d0b63096d869d0c0bb3f29159d31964e136788caa6d9fccfe75efc7c66bbad1",
+      "note": "matière grasse pour revenir oignon/courge absente ; pain grillé sans protocole. Grillage à sec du jambon explicitement distinct et postérieur : ne pas récupérer une graisse de jambon inexistante au début pour inventer le suage."
+    },
+    {
+      "id": "v31e-ragout-leger-cotes-porc",
+      "status": "blocked",
+      "sourceHash": "f90339aaf9488a996e64084e5fb0840475682ace74377f5c1eb476ddeccf3fd8",
+      "reviewedHash": "f90339aaf9488a996e64084e5fb0840475682ace74377f5c1eb476ddeccf3fd8",
+      "protectedRecipeSha256": "8b82f52e5417275c88a4682968e8eaf9745a8c6086ae3f3da925d23be70b5595",
+      "note": "matière grasse pour revenir oignon/carotte/ail absente ; gratinage cinq minutes sans appareil ni température. Préserver le suage avant bouillon et la mozzarella sur le pain, sans la poêler directement pour suivre le titre."
+    },
+    {
+      "id": "v31e-ragout-leger-boeuf",
+      "status": "blocked",
+      "sourceHash": "2c5ef8b80f5083c0786ff9c4225b0349963810e804a36d1d7a7e211aeaaf059a",
+      "reviewedHash": "2c5ef8b80f5083c0786ff9c4225b0349963810e804a36d1d7a7e211aeaaf059a",
+      "protectedRecipeSha256": "b5eba50d12c4d6b569dc9e9a0625d5dd23656d355411e4a09fe426c99ad52b15",
+      "note": "matière grasse du suage oignon/carotte/cumin absente. Rinçage des lentilles et découpe des carottes non explicités ; citron sans préparation indiquée. Ne pas verser le lait de coco ou le bouillon avant le suage pour éviter la graisse manquante."
+    },
+    {
+      "id": "v31e-ragout-leger-saumon",
+      "status": "blocked",
+      "sourceHash": "5c64d72ddc9617a33cc6a7e547c5698fc846f1c2dffcf7341baca75336df35f0",
+      "reviewedHash": "5c64d72ddc9617a33cc6a7e547c5698fc846f1c2dffcf7341baca75336df35f0",
+      "protectedRecipeSha256": "2fbfda5269dc8423a5832984676645fa50008ada2641aa9d1b6bb3e8b4ef4eef",
+      "note": "grillage du pain puis gratinage cinq minutes sans appareil ou intensité ; comté sans protocole de fondant/dorure. Le suage au beurre est documenté mais ne suffit pas à valider l’accompagnement. Ne pas transposer automatiquement au four ou à l’Air Fryer."
+    },
+    {
+      "id": "v31e-ragout-leger-poisson-blanc",
+      "status": "blocked",
+      "sourceHash": "514ed415e1c61b1dbefbcfa51f9f6226cda0beb8f2bc51533b5ccac0cfb00e29",
+      "reviewedHash": "514ed415e1c61b1dbefbcfa51f9f6226cda0beb8f2bc51533b5ccac0cfb00e29",
+      "protectedRecipeSha256": "c28c2a11675cf5031c004f291569a99f5e51568353df355df4a8ce9f08ff063c",
+      "note": "huile d’olive de finition demandée mais absente ; graisse de suage également non précisée. Haricots en boîte à égoutter et pâtes au paquet : préserver les deux ajouts tardifs, sans remplacer le suage par une cuisson au bouillon."
+    },
+    {
+      "id": "v31e-ragout-leger-crevettes",
+      "status": "blocked",
+      "sourceHash": "18dd3fb3fed4df1f8e9982beb7c83b9319353d15ed9c91d8496985cf0f5ba13e",
+      "reviewedHash": "18dd3fb3fed4df1f8e9982beb7c83b9319353d15ed9c91d8496985cf0f5ba13e",
+      "protectedRecipeSha256": "8ec13c1d73cf41e60301f7cfa1d9ac05f1393b22884f16e60e24dc685515b127",
+      "note": "nouilles fixées à cinq minutes sans produit identifié ; champignons et carottes sans découpe, gingembre frais/en poudre non précisé pour la cuillère. Poulet cru poché sans contrôle à cœur. Retrouver ces données sans remplacer le pochage par une saisie ou le poulet par du précuit."
+    },
+    {
+      "id": "v31e-ragout-leger-boulettes",
+      "status": "blocked",
+      "sourceHash": "62a3281922939f8c9d90da99bb6bf496e10c566a9f07ba8d5954dab085919b0b",
+      "reviewedHash": "62a3281922939f8c9d90da99bb6bf496e10c566a9f07ba8d5954dab085919b0b",
+      "protectedRecipeSha256": "3396ec6035a5b3133d7de40eac5460215b8e304cc360f3e620f11bc7f790026c",
+      "note": "crevettes décortiquées sans état cru/cuit, cuisson jugée seulement à leur couleur rose ; nouilles de riz fixées à quatre minutes puis recuites quatre minutes. Gingembre sans forme précisée. Ne pas doubler silencieusement le temps des nouilles ou cuire de nouveau des crevettes déjà cuites."
+    },
+    {
+      "id": "v31e-pita-chaude-poulet",
+      "status": "blocked",
+      "sourceHash": "bd028a97618035234ab2c1b77ee3ed976040e9921cc930ae44fb05d5afcc5581",
+      "reviewedHash": "bd028a97618035234ab2c1b77ee3ed976040e9921cc930ae44fb05d5afcc5581",
+      "protectedRecipeSha256": "c8915dada41b7f1128dd69aa6b3f747d290e15a6914183e467493ca4f52437ca",
+      "note": "graisse de suage absente et herbes fraîches de service non listées. Trois quarts des pois chiches puis reste à relier aux quantités une fois ces lacunes résolues. Préserver le mixage partiel suivi de pois chiches entiers, sans tout mixer pour simplifier."
+    },
+    {
+      "id": "v31e-pita-chaude-dinde",
+      "status": "blocked",
+      "sourceHash": "fead3e175d8bc0045272b5fd894ccb0adf0032253f063cc726e1581bb4441d83",
+      "reviewedHash": "fead3e175d8bc0045272b5fd894ccb0adf0032253f063cc726e1581bb4441d83",
+      "protectedRecipeSha256": "6abb4b8c32d253b69a1b7003114d4a1f0d0cf2874004db0ef363145b2401a487",
+      "note": "matière grasse du suage oignon/curry absente ; chou-fleur et pomme de terre sans calibre/découpe. Œufs six minutes trente sans départ/calibre et bouton composé non exact. Ne pas remplacer le suage par une cuisson dans les soixante-quinze centilitres de bouillon."
+    },
+    {
+      "id": "v31e-pita-chaude-filet-mignon",
+      "status": "blocked",
+      "sourceHash": "23462d1d48aa933051b383ee058582bd957dab59c22de87c4e7da6d1a1ed2f74",
+      "reviewedHash": "23462d1d48aa933051b383ee058582bd957dab59c22de87c4e7da6d1a1ed2f74",
+      "protectedRecipeSha256": "6cd6370e1b1b8611fd2231c1e1bb6763a121842257096d01c6cd06ede9acb997",
+      "note": "graisse de suage et de poêlage de garniture absente ; champignons partagés sans poids. Gratinage du comté cinq minutes sans appareil ni température. Ne pas affecter toute la crème à une cuisson des champignons pour remplacer les graisses manquantes."
+    },
+    {
+      "id": "v31e-pita-chaude-cotes-porc",
+      "status": "blocked",
+      "sourceHash": "b34d54f448bacac39c62bc12e533979a4a5bb954eb9a204f87287cb0734df480",
+      "reviewedHash": "b34d54f448bacac39c62bc12e533979a4a5bb954eb9a204f87287cb0734df480",
+      "protectedRecipeSha256": "cae4c552ad72353ac5cc365743603c1f8dc57711791ae31db5512bcd6fdf4f7f",
+      "note": "graisse du suage absente, petits pois sans état et poivre listé sans emploi. Deux cuillerées réservées non définies, pain à griller sans protocole. Le jambon réchauffé à sec est une opération séparée ; ne pas lui inventer une graisse pour l’oignon."
+    },
+    {
+      "id": "v31e-pita-chaude-boeuf",
+      "status": "blocked",
+      "sourceHash": "b9f04a80511f57dc82d29b7fc05671a7d80c80624e7f93a433a903e1914112c3",
+      "reviewedHash": "b9f04a80511f57dc82d29b7fc05671a7d80c80624e7f93a433a903e1914112c3",
+      "protectedRecipeSha256": "140cba56b9c6195809cc32d4b7697bd06c920895a152d8ae4235bc0ea98a7495",
+      "note": "matière grasse du suage oignon/curry absente ; tartines au poulet cuit grillées cinq minutes sans appareil ni température. Ne pas utiliser le lait de coco pour remplacer le suage ou choisir un gril arbitraire."
+    },
+    {
+      "id": "v31e-pita-chaude-saumon",
+      "status": "blocked",
+      "sourceHash": "cb4ad38ea60658f8c60a072e9b706cd9a47b9cbc3a0be0560676eaac0c44456b",
+      "reviewedHash": "cb4ad38ea60658f8c60a072e9b706cd9a47b9cbc3a0be0560676eaac0c44456b",
+      "protectedRecipeSha256": "5675f241f2f4ff2422ab5aad61ebddde8c9ae16384e87f14204a0d13eca55289",
+      "note": "matière grasse de fondue des poireaux absente et poivre demandé mais non listé. Citron uniquement zesté sans emploi du jus, pain sans protocole de grillage. Ne pas pocher le saumon fumé ni utiliser la crème pour changer la fondue initiale."
+    },
+    {
+      "id": "v31e-pita-chaude-poisson-blanc",
+      "status": "blocked",
+      "sourceHash": "ef89a7fb2d9fdf64e1f025a53b71be5f5577e3eeb48db9f5705aaa7a60c74f4c",
+      "reviewedHash": "ef89a7fb2d9fdf64e1f025a53b71be5f5577e3eeb48db9f5705aaa7a60c74f4c",
+      "protectedRecipeSha256": "9fd99051c2253b5fe8e793a183c11e0e643777b8918bde4d24e4fc1bc53ac525",
+      "note": "graisse de suage absente ; partage une boîte puis seconde boîte figé pour les convives. Première boîte sans égouttage explicite, pain à griller sans protocole. Préserver le mixage partiel puis haricots entiers, sans remplacer les boîtes par des haricots secs."
+    },
+    {
+      "id": "v31e-pita-chaude-boulettes",
+      "status": "blocked",
+      "sourceHash": "74d31084774510d0b78a21f939a6172caafac4c46874b493d2a80a7fe54288d6",
+      "reviewedHash": "74d31084774510d0b78a21f939a6172caafac4c46874b493d2a80a7fe54288d6",
+      "protectedRecipeSha256": "56f73f2729c79dfb080a41145b9eb7dc09ed1fd96275dcc436489f80d5ff5e1c",
+      "note": "croques à dorer à la poêle sans graisse ou à l’Air Fryer sans température ; quatre bases figées. Ne pas déplacer le pesto de la soupe sur le pain pour graisser les croques. Les seize minutes de soupe ne valident pas l’accompagnement."
+    },
+    {
+      "id": "v31e-crumble-sale-boulettes",
+      "status": "blocked",
+      "sourceHash": "3f0c85281f51a03b44a002031c6e6875e40499210c7f268ef04cd42e0fa04919",
+      "reviewedHash": "3f0c85281f51a03b44a002031c6e6875e40499210c7f268ef04cd42e0fa04919",
+      "protectedRecipeSha256": "03fb44a7c29bb69dea08ec2a30ec7119371508f6edfc19f8dced4d368678edba",
+      "note": "huile explicitement demandée dans la vinaigrette mais absente et sans dose. Betteraves déjà cuites, chèvre frais et noix ajoutés à la fin conservés ; ne pas utiliser le fromage pour remplacer l’huile de la sauce."
+    },
+    {
+      "id": "v31e-pomme-terre-garnie-poisson-blanc",
+      "status": "corrected",
+      "sourceHash": "904ac1f9533ad37d8f58b0221beb2de2dad98bb372ae6e768220bc238a4d2111",
+      "reviewedHash": "9f31a42890dc001131c6f426f0b87a4c2437e7b40fdc0da67d96dcea2241d889",
+      "protectedRecipeSha256": "d060084121d5b37c11e2b03b13849144cb174b1688d9e1acff09d3600ce91902",
+      "beforeSteps": [
+        "Dérouler la pâte sur une plaque, piquer le centre et étaler la moutarde en laissant un bord.",
+        "Saupoudrer de chapelure, disposer les tomates égouttées et la mozzarella.",
+        "Replier légèrement le bord et cuire 22 minutes à 200 °C.",
+        "Ajouter basilic et origan et servir la tarte fine avec la salade."
+      ],
+      "note": "Tarte fine, moutarde sous chapelure et garniture, bord replié et cuisson source conservés. Tomates et mozzarella égouttées, préchauffage explicité, herbes ajoutées après le four. Quantités liées aux ingrédients, sans huile ou sel ajouté."
+    },
+    {
+      "id": "v31e-pomme-terre-garnie-falafels",
+      "status": "corrected",
+      "sourceHash": "53eb4fcf3b9806ce7c07c6abdcd30c6e7a16799abe9892b1fc27e866d794cc3e",
+      "reviewedHash": "3e18ebba57ef3cbc001d4ee92b69e20134046e18c09e0106c4a4eb1fe2205053",
+      "protectedRecipeSha256": "5ba61389cdbb4dba661acff677fdf55712fe4e86b9b65db967138a3ab51c683d",
+      "beforeSteps": [
+        "Mélanger fromage frais, aneth, zeste de citron et poivre.",
+        "Tartiner le pain, ajouter le saumon puis refermer les croques.",
+        "Cuire 6 à 7 minutes à 175 °C dans l’Air Fryer pour dorer le pain sans dessécher le saumon.",
+        "Servir avec concombre citronné et salade."
+      ],
+      "note": "Croques par paires, tartinade au zeste/aneth et concombre au jus de citron distingués. Température douce source à 175 °C conservée avec plage explicite ; aucune huile ou beurre ajouté, saumon fumé non remplacé par du cru."
+    },
+    {
+      "id": "v31e-quesadillas-poulet",
+      "status": "corrected",
+      "sourceHash": "493c86e6233d95b8d86666ee71b79799306a8625da28e08ee98dd96fc6269d43",
+      "reviewedHash": "bc5fd7dfd63d570e60bcf2b9e72d250763a158bf71362135202571e84b2ef008",
+      "protectedRecipeSha256": "b389dd248ce2d671c19be81f3b4708c36d1fca7c67b4547dc9b843c34ce05ba2",
+      "beforeSteps": [
+        "Couper le poulet, les pommes et le céleri en morceaux réguliers.",
+        "Mélanger yaourt, moutarde et jus de citron pour préparer la sauce.",
+        "Réunir poulet, fruits, céleri et noix, puis enrober légèrement de sauce.",
+        "Disposer sur la romaine et servir aussitôt."
+      ],
+      "note": "Assemblage Waldorf sans cuisson conservé, poulet explicitement déjà cuit. Lavage, découpes, céleri, noix et romaine précisés ; tout le citron dans la sauce, yaourt et moutarde liés à la liste. Aucun ajout de mayonnaise."
+    },
+    {
+      "id": "v31e-quesadillas-dinde",
+      "status": "corrected",
+      "sourceHash": "1fe8b843afbcc0feb3e2fec946595f899050b76b3cd0b1647367e93d0fc8a0ec",
+      "reviewedHash": "5b7c4e5809d294335223a40062487931d9852f385d2081d712bfb260315e517b",
+      "protectedRecipeSha256": "b5e551ef82d4ec4445e096f6dff1f1b2b7df9cac73fbc7cc86d97973b07ee92f",
+      "beforeSteps": [
+        "Dégraisser les gésiers et les réchauffer 7 minutes à la poêle jusqu’à légère coloration.",
+        "Couper les pommes de terre et la pomme en fines lamelles, puis émincer l’échalote.",
+        "Déglacer la poêle avec le vinaigre de cidre et récupérer ce jus pour la vinaigrette.",
+        "Dresser salade, tomates, pommes, pommes de terre, gésiers et noix, puis assaisonner."
+      ],
+      "note": "Gésiers confits dégraissés puis réchauffés dans leur gras résiduel sans huile inventée, conformément à la référence fabricant. Sept minutes source restent un repère avec contrôle de réchauffage. Jus déglacé au vinaigre conservé comme assaisonnement ; échalote utilisée, pommes de terre déjà cuites."
+    },
+    {
+      "id": "v31e-quesadillas-crevettes",
+      "status": "corrected",
+      "sourceHash": "0fca86636dd1e77480b208f6b94e5976f251774fff12c3fe8cb62deb81970d4b",
+      "reviewedHash": "c9ae5f23d84e3a650656766a56a847a56c39f630f15e525fe0443cc11ec5f730",
+      "protectedRecipeSha256": "fa69fd4eabb3c23cb93a23afcabf4a40581402e787cdc9a3be468afe4e6e8cd6",
+      "beforeSteps": [
+        "Couper les pommes de terre encore tièdes, le hareng et la pomme en morceaux.",
+        "Émincer finement concombre et oignon rouge.",
+        "Mélanger yaourt, moutarde et aneth pour obtenir une sauce légère.",
+        "Réunir délicatement tous les éléments et laisser reposer 5 minutes avant de servir."
+      ],
+      "note": "Hareng doux prêt à consommer et pommes de terre déjà cuites conservés, sans cuisson nouvelle. Pomme, concombre et oignon préparés séparément ; sauce yaourt/moutarde/aneth puis repos de cinq minutes source. Référence fabricant limitée à l’état prêt à déguster du hareng."
+    },
+    {
+      "id": "v31e-crumble-sale-saumon",
+      "status": "corrected",
+      "sourceHash": "0e65beafb81ea936ece57b04df44c525bdac0faf01617ff628d4e86dad510bc5",
+      "reviewedHash": "b19fda5e97695b1a9b4ee4a5cd0ab5c7228eb647d2d8966bddbddbc4c1543d92",
+      "protectedRecipeSha256": "b91da095dea982b8f8e9616e706c51cc4be384fbff91a82172bdf5f229988386",
+      "beforeSteps": [
+        "Mélanger boulgour froid, tomates, concombre, oignon, citron et herbes.",
+        "Aplatir légèrement le poulet, l’assaisonner et le griller 5 à 6 minutes par face à la plancha.",
+        "Laisser reposer le poulet 3 minutes puis le couper en lanières.",
+        "Répartir le taboulé et déposer le poulet chaud dessus avec un peu de menthe."
+      ],
+      "note": "Taboulé de boulgour déjà cuit conservé, poulet aplati grillé puis reposé. Huile déjà listée affectée en pellicule à la plancha et selon goût au taboulé ; pas de sel absent ajouté. Deux faces minutées séparément et contrôle 74 °C, herbes réparties sans quantité figée."
+    },
+    {
+      "id": "v31e-crumble-sale-pois-chiches",
+      "status": "corrected",
+      "sourceHash": "4d098e93144702bfe0429d687025be8e58bab5f2cdfc8b012e82bcdc40422bac",
+      "reviewedHash": "f4d2c577bb9c4c9663368a2fcef63f9c7fbceea8abc0ed3055afa72ad5d765a3",
+      "protectedRecipeSha256": "ce8e5da77a943ca67f62b80da07686915c25fa708897fa8fb5fc6ff17d5b7f00",
+      "beforeSteps": [
+        "Cuire les pommes de terre à la vapeur et les couper en quartiers.",
+        "Griller les courgettes en longues tranches 3 minutes par face sur la plancha.",
+        "Cuire le saumon 4 minutes côté peau puis 3 minutes côté chair et l’émietter en gros morceaux.",
+        "Mélanger citron, moutarde et aneth, puis dresser pommes, courgettes, tomates et saumon avec la sauce."
+      ],
+      "note": "Pommes de terre vapeur, courgettes grillées et saumon côté peau puis chair préservés. Huile déjà listée affectée à la plancha en fine pellicule, sauce citron/moutarde/aneth sans huile dosée inventée. Cuissons source distinctes, vapeur jugée à tendreté et saumon contrôlé à 63 °C."
+    },
+    {
+      "id": "v31e-ragout-leger-tofu",
+      "status": "corrected",
+      "sourceHash": "43256046ea7bdf43100edfd6ebcf35e2a4ca9dea4ff6fb4bc9e8f984f3640919",
+      "reviewedHash": "2b504033ebe2f912f0c40d3a7704c9efcc086eee9b3edcb1aeedabc62c8b00ec",
+      "protectedRecipeSha256": "b5b992c2d984dba99d07579c0e3891102a48a2665397898e610a00ba84e23a99",
+      "beforeSteps": [
+        "Faire frémir le bouillon avec poireau et champignons 8 minutes.",
+        "Ajouter le tofu en cubes et les nouilles, puis cuire 5 minutes.",
+        "Délayer le miso dans une louche de bouillon et le reverser hors du feu avec la sauce soja.",
+        "Servir sans refaire bouillir et ajouter la ciboule."
+      ],
+      "note": "Miso dilué avec du bouillon prélevé puis entièrement reversé hors feu, sans eau supplémentaire ou fraction arbitraire. Nouilles selon paquet à la place de cinq minutes fixes. Tofu ferme, champignons, poireau et ciboule explicités sans graisse ajoutée ; interdiction source de refaire bouillir conservée."
+    },
+    {
+      "id": "v31e-pita-chaude-crevettes",
+      "status": "corrected",
+      "sourceHash": "0a30c36c899e24e7059b40cb860f5b855e2a9ee653aec731e5600bfff9bbb84b",
+      "reviewedHash": "c7db854609d94d2224b2e132b5ab551d27aaabc4b2bfaed955c179bbfbffd6e0",
+      "protectedRecipeSha256": "f8850b55d59190d48d9fdc92e01e917434e8cbb3e76f59b05d549b10d0637fc4",
+      "beforeSteps": [
+        "Porter le bouillon à frémissement avec carottes et poireau en petits dés pendant 8 minutes.",
+        "Ajouter courgette et petites pâtes et cuire selon le temps du paquet.",
+        "Battre légèrement les œufs, les verser en filet dans le bouillon en remuant et cuire 2 minutes.",
+        "Servir avec parmesan et persil."
+      ],
+      "note": "Bouillon direct sans suage ajouté ; pâtes au paquet, courgette cuite avec elles, œufs en filet remués deux minutes comme dans la source. Lavage, découpes, parmesan et persil explicités, contrôle 71 °C du plat aux œufs. Aucun œuf poché ou mollet substitué aux filaments."
+    }
+  ]
+}

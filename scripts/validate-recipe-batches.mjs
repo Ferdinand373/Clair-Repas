@@ -7,7 +7,7 @@ import {recipeSource} from './recipe-source.mjs';
 import {recipeHash} from './validate-recipe-editorial.mjs';
 const root=resolve(dirname(fileURLToPath(import.meta.url)),'..');
 const {code,recipes,editorial}=recipeSource(readFileSync(resolve(root,'index.html'),'utf8'));
-const batchNumbers=['02','03','04','05','06','07','08','09','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31','32','33','34','35','36','37','38','39','40'];
+const batchNumbers=['02','03','04','05','06','07','08','09','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31','32','33','34','35','36','37','38','39','40','41'];
 const fixture={recipes:batchNumbers.flatMap(number=>JSON.parse(readFileSync(resolve(root,`scripts/recipe-editorial-batch-${number}.fixture.json`),'utf8')).recipes)};
 const slice=(a,b)=>code.slice(code.indexOf(a),code.indexOf(b,code.indexOf(a)+a.length));
 const context={window:{},$:()=>({value:'8'}),MEAL_TYPES:['mid','eve'],recipeRole:r=>r.role||r.course||'dish',isFavorite:()=>false,recipeFeedbackHTML:()=>'',recipePersonalNoteHTML:()=>''};
@@ -557,7 +557,29 @@ Object.assign(ingredients,{
   'v31e-bouillon-nouilles-saumon':['œufs','courgette','parmesan','tomates','échalote','tranches de pain','basilic','huile d’olive'],
   'v31e-bouillon-nouilles-poisson-blanc':['œufs','pommes de terre','poivrons','feta','oignon rouge','salade verte','origan','huile']
 });
-assert.equal(fixture.recipes.length,1389);
+Object.assign(timers,{
+  'v31e-pomme-terre-garnie-poisson-blanc':[[],[],[22],[]],
+  'v31e-pomme-terre-garnie-falafels':[[],[],[7],[]],
+  'v31e-quesadillas-poulet':[[],[],[]],
+  'v31e-quesadillas-dinde':[[],[7],[],[]],
+  'v31e-quesadillas-crevettes':[[],[],[5]],
+  'v31e-crumble-sale-saumon':[[],[],[6],[6],[3]],
+  'v31e-crumble-sale-pois-chiches':[[],[],[3],[3],[4],[3]],
+  'v31e-ragout-leger-tofu':[[],[8],[],[],[]],
+  'v31e-pita-chaude-crevettes':[[],[8],[],[2],[]]
+});
+Object.assign(ingredients,{
+  'v31e-pomme-terre-garnie-poisson-blanc':['pâte feuilletée','tomates','moutarde','mozzarella','chapelure','salade verte','origan','basilic'],
+  'v31e-pomme-terre-garnie-falafels':['tranches de pain','saumon fumé','fromage frais','concombre','citron','salade verte','aneth','poivre'],
+  'v31e-quesadillas-poulet':['poulet déjà cuit','pommes','céleri','noix','romaine','yaourt nature','moutarde','citron'],
+  'v31e-quesadillas-dinde':['gésiers confits','pomme','salade verte','pommes de terre déjà cuites','tomates','échalote','vinaigre de cidre','noix'],
+  'v31e-quesadillas-crevettes':['pommes de terre déjà cuites','hareng doux prêts à consommer','pomme','concombre','oignon rouge','yaourt nature','moutarde','aneth'],
+  'v31e-crumble-sale-saumon':['boulgour déjà cuit','poulet','tomates','concombre','citron','oignon nouveau','menthe.*persil','huile d’olive'],
+  'v31e-crumble-sale-pois-chiches':['saumon','courgettes','pommes de terre','tomates','citron','moutarde','aneth','huile d’olive'],
+  'v31e-ragout-leger-tofu':['tofu ferme','nouilles','champignons','poireau','bouillon','miso doux','sauce soja','ciboule'],
+  'v31e-pita-chaude-crevettes':['petites pâtes','œufs','carottes','poireau','courgette','bouillon','parmesan','persil']
+});
+assert.equal(fixture.recipes.length,1439);
 let quantityChecks=0,timerCount=0;
 for(const record of fixture.recipes){
   const recipe=recipes.find(r=>r.id===record.id);
@@ -1553,6 +1575,35 @@ assert.match(frittata40.p[2],/Pendant cette précuisson.*7 minutes/);assert.matc
 assert.match(editorial['ge-omelette-champignons-pommes'].reviewNote,/graisse/);
 assert.match(editorial['v31e-bouillon-nouilles-cotes-porc'].reviewNote,/graisse manquante/);
 console.log(`✓ Batch 40: six manual rewrites; ${reservedQuantityChecks40} original ingredient renders and 264 visible reservations; packet rice, cooked chicken and separate egg cooking preserved`);
+const batch41=JSON.parse(readFileSync(resolve(root,'scripts/recipe-editorial-batch-41.fixture.json'),'utf8')).recipes;
+assert.equal(batch41.length,50);assert.equal(batch41.filter(r=>r.status==='corrected').length,9);
+let reservedQuantityChecks41=0;
+for(const count of [1,2,3,4,5,8])for(const record of batch41.filter(r=>r.status==='blocked')){
+  const r=recipes.find(r=>r.id===record.id),output=context.recipeHTML(r,{people:count,dayIndex:1,mealType:'eve'});
+  assert.ok(output.includes(context.escapeHTML(editorial[record.id].reviewNote)));assert.doesNotMatch(output,/\{\{|undefined|NaN/);
+  for(const ingredient of r.i){
+    const q=ingredient.q==null?null:ingredient.q*count/(r.servings||2);
+    assert.ok(output.includes('>'+context.ingredientText(ingredient,q,count)+'</li>'));reservedQuantityChecks41++;
+  }
+  const attached=[...output.matchAll(/data-step-index="(\d+)" data-timer-minutes="(\d+)"/g)].map(([,step,min])=>[+step,+min]);
+  assert.deepEqual(attached,r.p.flatMap((step,index)=>Array.from(context.stepTimerDurations(step)).map(min=>[index,min])));
+}
+const miso41=recipes.find(r=>r.id==='v31e-ragout-leger-tofu');
+assert.match(miso41.p[2],/durée du paquet/);assert.deepEqual(Array.from(context.stepTimerDurations(miso41.p[2])),[]);
+assert.match(miso41.p[3],/Retirer.*du feu.*\{\{qty:5\}\}.*bouillon prélevé.*Reverser entièrement.*Ne pas remettre à bouillir/);
+const croque41=recipes.find(r=>r.id==='v31e-pomme-terre-garnie-falafels');
+assert.match(croque41.p[1],/par paires/);assert.match(croque41.p[3],/concombre avec le jus de citron/);assert.match(croque41.p[2],/175 °C.*6 à 7 minutes/);
+const gesiers41=recipes.find(r=>r.id==='v31e-quesadillas-dinde');
+assert.match(gesiers41.p[1],/sans ajouter de matière grasse.*74 °C/);assert.match(gesiers41.p[2],/\{\{qty:6\}\}.*vinaigre.*sucs/);
+assert.match(recipes.find(r=>r.id==='v31e-quesadillas-poulet').p[0],/poulet déjà cuit/);
+assert.match(recipes.find(r=>r.id==='v31e-quesadillas-crevettes').p[0],/prêts à consommer.*déjà cuites/);
+const salmon41=recipes.find(r=>r.id==='v31e-crumble-sale-pois-chiches');
+assert.match(salmon41.p[0],/panier vapeur.*sans contact avec l’eau.*couvrir/);
+assert.match(salmon41.p[4],/côté peau.*4 minutes/);assert.match(salmon41.p[5],/3 minutes côté chair.*63 °C/);
+assert.match(recipes.find(r=>r.id==='v31e-pita-chaude-crevettes').p[3],/œufs en filet.*remuant.*2 minutes.*71 °C/);
+assert.match(editorial['v31e-quesadillas-cotes-porc'].reviewNote,/six minutes trente.*non prise en charge précisément/);
+assert.match(editorial['v31e-ragout-leger-poulet'].reviewNote,/sans température.*ni faire revenir les légumes dans le bouillon/);
+console.log(`✓ Batch 41: nine manual rewrites; ${reservedQuantityChecks41} original ingredient renders and 246 visible reservations; cooked weights, distinct faces, packet noodles and miso off heat preserved`);
 const corrected=fixture.recipes.filter(r=>r.status==='corrected').length;
 const unchanged=fixture.recipes.filter(r=>r.status==='unchanged').length;
 console.log(`✓ Batches ${batchNumbers.join('/')}: ${fixture.recipes.length} individual review records, ${corrected} corrected, ${unchanged} unchanged, ${fixture.recipes.length-corrected-unchanged} blocked with original content preserved; ${timerCount} manually checked timers`);
