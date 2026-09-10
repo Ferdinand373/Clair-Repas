@@ -1,0 +1,296 @@
+{
+  "baselineCommit": "b40a04f3ed2f8ba711214645121bb366223d8fdc",
+  "batch": "34",
+  "recipes": [
+    {
+      "id": "bourgeois-13",
+      "status": "corrected",
+      "sourceHash": "b123cd505549c694cfc1847cc38f52141a1b6bcdfc77ab7934236c657d1a56e5",
+      "reviewedHash": "e4460d3d230935e44abf2a7580b98f5a8e6f553a4791337f9a98e5a5b61e2a22",
+      "protectedRecipeSha256": "5baac225874cf7566c6bd8c555259fa294c9aefe954551d22caf08971e0d5103",
+      "beforeSteps": [
+        "Colorer les cailles au beurre sur toutes leurs faces.",
+        "Les enfourner 15 minutes à 190 °C puis les laisser reposer sous une feuille d’aluminium.",
+        "Dans la poêle, faire sauter les raisins 2 minutes.",
+        "Déglacer avec le cognac hors de la flamme puis ajouter le fond de volaille.",
+        "Réduire de moitié, ajouter la crème et remettre les cailles 3 minutes.",
+        "Servir une caille par personne avec raisins et sauce."
+      ],
+      "note": "Cailles colorées puis rôties conservées, sans braisage ajouté. Cognac versé hors flamme sans flambage ; réduction de la base avant crème et retour des cailles trois minutes. Contrôle à cœur de la volaille ajouté ; repos organisé pendant la sauce, sans lui inventer une durée fixe."
+    },
+    {
+      "id": "bourgeois-14",
+      "status": "blocked",
+      "sourceHash": "1a6f378dc1429fa557ce74529823bd898f9e41aeb6d0f5199d59e218c8ee65d2",
+      "reviewedHash": "1a6f378dc1429fa557ce74529823bd898f9e41aeb6d0f5199d59e218c8ee65d2",
+      "protectedRecipeSha256": "863de93d64990b7a57ab5a7ba5c75c8b1da539734595aad61ed1a65e22d7742a",
+      "note": "les 8 cl d’eau de la garniture ne sont pas listés et aucun beurre n’est réservé aux oignons fondus. Calibre des pigeonneaux, durée du repos et contrôle à cœur manquent ; cuisson souhaitée ne constitue pas un contrôle. Conserver rôtissage et petits pois séparés, sans attribuer arbitrairement du fond à la place de l’eau."
+    },
+    {
+      "id": "bourgeois-15",
+      "status": "corrected",
+      "sourceHash": "3cca18d9e9b9fd9e76dd3a21ce3d45fdd03ddd16209f20f4de3cb92670b3eebc",
+      "reviewedHash": "8ff68d85cf1a8d90f1f88a7f38ae28b3e3d5e1ef7d7f22e2a22aa7ce0c6fefa7",
+      "protectedRecipeSha256": "6c3196d492c3454d7b369c5e3b3a6a4f066b687111c16a4aa9c0f7cb4b999bc7",
+      "beforeSteps": [
+        "Blanchir le chou 5 minutes, l’égoutter puis le couper en larges lanières.",
+        "Colorer la pintade au beurre dans une cocotte puis la réserver.",
+        "Faire revenir lard, carottes et oignon 5 minutes, ajouter le chou.",
+        "Poser la pintade dessus, verser le fond et couvrir.",
+        "Braiser 50 à 55 minutes à 175 °C en arrosant deux fois.",
+        "Découper la pintade et servir avec le chou bien fondant et le jus dégraissé."
+      ],
+      "note": "Blanchiment puis fonte au beurre et braisage couvert au four préservés. Beurre affecté à la coloration et sucs conservés pour le lard et les légumes. Arrosages pendant le braisage, contrôle à cœur ajouté ; aucune cuisson directe dans le fond à la place du suage."
+    },
+    {
+      "id": "bourgeois-16",
+      "status": "blocked",
+      "sourceHash": "07095ca81b51d6f6ea09dd7ae3a3e1ca5d8d6f37f3cdb3e55df73a6bb021ea68",
+      "reviewedHash": "07095ca81b51d6f6ea09dd7ae3a3e1ca5d8d6f37f3cdb3e55df73a6bb021ea68",
+      "protectedRecipeSha256": "ed374008fa06356c0fccec6675aaf44f2be1ea36475083d55b1afcc4ad224e15",
+      "note": "l’eau du glaçage des navets est absente et non dosée ; la matière grasse de coloration du canard n’est pas distinguée du beurre destiné aux navets. Contrôle à cœur manquant. Les quinze minutes avec navets sont comprises dans les cinquante minutes de braisage. Ne pas ajouter une seconde cuisson de quinze minutes ni changer le glaçage en simple cuisson au fond."
+    },
+    {
+      "id": "bourgeois-17",
+      "status": "blocked",
+      "sourceHash": "0db42a44ea07fce5785f9705257f77c0fa1e12f3f5e3f0a8f19697c4a4a8e844",
+      "reviewedHash": "0db42a44ea07fce5785f9705257f77c0fa1e12f3f5e3f0a8f19697c4a4a8e844",
+      "protectedRecipeSha256": "c1cab5932aab14569603eb619b48fc05452fb6746203caa25636dc0af3546262",
+      "note": "filets de caneton et magrets sont proposés sans poids ni épaisseur, alors que la séquence peau, chair puis four reste fixe. Durée du repos et contrôle à cœur non définis. Garder ces deux produits possibles et la sauce montée au beurre, sans certifier une cuisson rosée par une simple couleur ni ajouter un pochage."
+    },
+    {
+      "id": "bourgeois-18",
+      "status": "blocked",
+      "sourceHash": "77ecc3ca1598fef31b8242e1be673761345c3170058ca23d28b92aea7c6ace04",
+      "reviewedHash": "77ecc3ca1598fef31b8242e1be673761345c3170058ca23d28b92aea7c6ace04",
+      "protectedRecipeSha256": "f1a62c45e015aa35599d5bfe955488d533f686e70e04e8e54937950e047b8e6c",
+      "note": "jus d’agneau et légumes du service absents de la liste et non dosés. Poids du carré et contrôle à cœur manquent ; huit côtes ne renseignent pas son épaisseur. Conserver la saisie au beurre, la moutarde et la croûte d’herbes, sans inventer une sauce avec les seuls sucs ni retirer l’accompagnement."
+    },
+    {
+      "id": "bourgeois-19",
+      "status": "corrected",
+      "sourceHash": "a6b1789ab2dd5d343551eb9a88c7bbc09126c1cb0d7fa82ab8766a149c949ad2",
+      "reviewedHash": "927f9351a960080165328bc90b51014c4f51fb51026a7e62e8a25bd9466f0d6d",
+      "protectedRecipeSha256": "27b6fbc904d04943fb7dccef456d38fa6a0f5a4560cc2a00febd00140ecd80f3",
+      "beforeSteps": [
+        "Sortir la selle 30 minutes à l’avance et l’assaisonner.",
+        "La colorer vivement dans huile et beurre sur toutes ses faces.",
+        "Ajouter ail et thym puis cuire 25 à 35 minutes à 190 °C selon l’épaisseur.",
+        "Laisser reposer 12 minutes sous une feuille d’aluminium.",
+        "Dégraisser le plat, ajouter le fond et gratter les sucs puis réduire.",
+        "Trancher la selle et servir avec le jus au thym."
+      ],
+      "note": "Selle désossée et ficelée conservée, sans l’ouvrir pour la farcir. Saisie huile-beurre puis rôtissage, repos de douze minutes et réduction des sucs inchangés. Contrôle de l’agneau entier à 63 °C avec repos source plus long que les trois minutes minimales ; total annoncé n’absorbe pas silencieusement la sortie préalable."
+    },
+    {
+      "id": "bourgeois-20",
+      "status": "blocked",
+      "sourceHash": "bffdf0d15c722dc92bc512b65e53475de7bb19786f13f5759897f9578e55b6bb",
+      "reviewedHash": "bffdf0d15c722dc92bc512b65e53475de7bb19786f13f5759897f9578e55b6bb",
+      "protectedRecipeSha256": "8ff7d01e5174b96b9f4a5b8c92032e1b0f1fa839af30d4e83650f2bd13808a56",
+      "note": "pommes fondantes ou purée de céleri proposées au service absentes de la liste et sans préparation. Poids et épaisseur des noisettes, contrôle à cœur et maintien pendant la sauce manquent. Conserver saisie courte et retour d’une minute, sans choisir arbitrairement l’un des accompagnements."
+    },
+    {
+      "id": "bourgeois-21",
+      "status": "blocked",
+      "sourceHash": "924e190ce78df280910af6a56e5fe4de903113515cf0e1687e54668915f06758",
+      "reviewedHash": "924e190ce78df280910af6a56e5fe4de903113515cf0e1687e54668915f06758",
+      "protectedRecipeSha256": "50025f3d4a2006d35d3f6ee705eb183aa386770ddef66cc0aa612d598e4355c2",
+      "note": "aucune graisse n’est affectée à la saisie du filet, tout le beurre servant à la duxelles. Espèce des champignons, format de pâte, refroidissement avant montage et contrôle du cœur sous la croûte manquent. Conserver viande saisie et duxelles froide, sans envelopper une garniture chaude ni inventer un partage du beurre."
+    },
+    {
+      "id": "bourgeois-22",
+      "status": "blocked",
+      "sourceHash": "c2fec65bc2089ee50113e735b45e48f122226b91ef0bf18bdccbe9003e1c7eb5",
+      "reviewedHash": "c2fec65bc2089ee50113e735b45e48f122226b91ef0bf18bdccbe9003e1c7eb5",
+      "protectedRecipeSha256": "e4d2e0a499cee022c0ea8d9c377dee5b3859ffddd63a4f858028b41bd4ceb2ac",
+      "note": "le beurre est demandé dans la farce puis à la coloration, sans parts, et le poêlage du reste des champignons n’a pas de graisse affectée. Prélèvement de 15 cl de fond figé, reste sans destination. Espèces forestières, calibre des rouleaux, film compatible avec les conditions de pochage et contrôle à cœur manquent. Garder les alternatives chair fine ou fromage, sans les confondre."
+    },
+    {
+      "id": "bourgeois-23",
+      "status": "blocked",
+      "sourceHash": "a54b07734b072940010128a523be23f19e6d633f9267fa30ab851e0159fc2f75",
+      "reviewedHash": "a54b07734b072940010128a523be23f19e6d633f9267fa30ab851e0159fc2f75",
+      "protectedRecipeSha256": "65ff85a51af942b2b57e2ef18bfecf48591084e3e2386b0dc3466f4f10f27f81",
+      "note": "l’alternative queues d’écrevisses ne précise pas si elles sont cuites. Les trois dernières minutes ne se rattachent à aucune durée de sauce définie. Calibre du poulet, contrôle à cœur et réduction avant crème manquent. Conserver fricassée et ajout tardif de crustacés, sans traiter des queues crues comme déjà cuites ni flamber par automatisme."
+    },
+    {
+      "id": "bourgeois-24",
+      "status": "blocked",
+      "sourceHash": "4769cfee3af3a94553052800d38a66e35208f6f22d2aa5d46c3d9ce4ce567666",
+      "reviewedHash": "4769cfee3af3a94553052800d38a66e35208f6f22d2aa5d46c3d9ce4ce567666",
+      "protectedRecipeSha256": "f41587f97e74401710e1217b2f87b16dee612cbbae3df20a397aeea330411894",
+      "note": "riz pilaf ou pommes duchesse du service absents. La liste propose beurre de poivron ou purée, mais les étapes n’utilisent que la purée ; ne pas supprimer silencieusement l’alternative. Calibre et contrôle des suprêmes manquent. Conserver cuisson à couvert après coloration et sauce crémée, sans substituer un pochage."
+    },
+    {
+      "id": "bourgeois-25",
+      "status": "corrected",
+      "sourceHash": "5db8546c17d8c144a9db2a23f2f8e89584b9ca2a2620ce85db29fb673a15d12c",
+      "reviewedHash": "d33de96989c2be6fd4063d97fc29ccc9ffafe17360a53d823bd898f8d21df6eb",
+      "protectedRecipeSha256": "b3de222ecc35dec5ed2cf28cf76f84a5c908f19aecb63d7f9ad5e9c694b49224",
+      "beforeSteps": [
+        "Beurrer une sauteuse, y déposer les filets de sole roulés ou pliés et assaisonner.",
+        "Ajouter vin blanc et fumet, couvrir et pocher 8 à 10 minutes à petit frémissement.",
+        "Retirer les filets et réduire le liquide de cuisson de moitié.",
+        "Ajouter crème puis réduire jusqu’à texture nappante.",
+        "Ajouter les grains de raisin pelés si souhaité et les réchauffer 2 minutes.",
+        "Napper les soles de sauce et servir immédiatement."
+      ],
+      "note": "Filets roulés ou pliés et pochage couvert conservés. Les 30 g de beurre source n’ont qu’un usage : le récipient, sans ajouter un montage final au beurre. Vin, fumet, crème et raisins entièrement affectés ; réduction de la base de moitié, sans faux volume précis malgré le jus rendu par le poisson. Contrôle à cœur ajouté."
+    },
+    {
+      "id": "bourgeois-26",
+      "status": "blocked",
+      "sourceHash": "f9dacc6009a5aa57e726bb21f58cd3ca06b87e173ee5633aa326bafb1d5e5cd2",
+      "reviewedHash": "f9dacc6009a5aa57e726bb21f58cd3ca06b87e173ee5633aa326bafb1d5e5cd2",
+      "protectedRecipeSha256": "c39d3b29cbaa374de7655bc5f6e06e82869c380ab619d4b0f70d18fb88842f74",
+      "note": "beurre demandé pour la sauteuse puis pour monter la sauce sans répartition. Toutes les tomates vont au pochage mais des dés sont encore demandés au service, sans réserve. Calibre des filets, pochage et mondage à détailler. Conserver pochage sur tomates et sauce montée, sans attribuer arbitrairement des parts ni remplacer le mondage par des tomates en boîte."
+    },
+    {
+      "id": "bourgeois-27",
+      "status": "blocked",
+      "sourceHash": "81237d67c6e50b99aa65ef90d18b1427c07149c98f4d7a991fd8eb36ae18fd81",
+      "reviewedHash": "81237d67c6e50b99aa65ef90d18b1427c07149c98f4d7a991fd8eb36ae18fd81",
+      "protectedRecipeSha256": "3436c442b518a471040aaa2274753ac4293d621138cd287816b30f062edc6e02",
+      "note": "la noisette de beurre du turbot n’est pas mesurée, donc le reste de beurre de sauce n’est pas calculable. Poids et épaisseur des pavés, contrôle à cœur et destination de la sauce servie en petite quantité manquent. Conserver réduction en deux temps et rôtissage au four, sans changer en pochage dans le champagne."
+    },
+    {
+      "id": "bourgeois-28",
+      "status": "blocked",
+      "sourceHash": "cf4b83ad5acba27c4ce667e0b098052de9d932b8b73acc39e9979cb1fd189a32",
+      "reviewedHash": "cf4b83ad5acba27c4ce667e0b098052de9d932b8b73acc39e9979cb1fd189a32",
+      "protectedRecipeSha256": "787ecac657dafe7d59b4b165543f54ebdb3b93c5b2b4487dd745f4588ad850d3",
+      "note": "asperges ou légumes vapeur absents de la liste. Le beurre tiède à verser n’a pas d’étape de fonte ; protocole et température du bain-marie, maintien de la sauce aux jaunes et contrôle du poisson manquent. Une cuillerée ne répartit pas toute la hollandaise. Ne pas inventer un bain plus chaud ni certifier la sauce par sa seule texture."
+    },
+    {
+      "id": "bourgeois-29",
+      "status": "blocked",
+      "sourceHash": "ffc1dea3f0b4997fb8b8e136b51a59fba170179347523e842691ffbd3813b54b",
+      "reviewedHash": "ffc1dea3f0b4997fb8b8e136b51a59fba170179347523e842691ffbd3813b54b",
+      "protectedRecipeSha256": "82cbe5434afae60c4efd7fa5dd58b545f7fcc3ba05d35ebd7a800a4aab0bdc91",
+      "note": "les deux cuillerées de réduction ne précisent ni le type de cuillère ni un volume, et ne s’adaptent pas aux portions. Calibre des filets et contrôle à cœur manquent. Conserver le beurre froid incorporé sans bouillir et la cuisson sur peau, sans fixer arbitrairement deux cuillères à soupe."
+    },
+    {
+      "id": "bourgeois-30",
+      "status": "blocked",
+      "sourceHash": "b383df9e1ee4ce58d448689735e3413023da6741c051f984029502b0e44218bf",
+      "reviewedHash": "b383df9e1ee4ce58d448689735e3413023da6741c051f984029502b0e44218bf",
+      "protectedRecipeSha256": "732a492543aa1637ee8a0ad28688e1b825d16b9581bfbcc53e314dedd893c70d",
+      "note": "riz pilaf du service absent de la liste et sans préparation. La préparation des homards doit être précisée avec le poissonnier ; la seule carapace rouge de la saisie n’est pas un contrôle de chair cuite. Intensité du mijotage, contrôle du crustacé et sécurité du déglaçage alcoolisé manquent. Conserver saisie puis sauce américaine, sans ajouter de flambage ni de découpe improvisée."
+    },
+    {
+      "id": "bourgeois-31",
+      "status": "corrected",
+      "sourceHash": "817d0d954884799150568f701b34b9adb1ca065133edde8b76e03941b540f664",
+      "reviewedHash": "e797e3e075d5bd9c14a207a63a0f5b8464960b6ed36753e956b037577ab601e7",
+      "protectedRecipeSha256": "93c3db340ca6b75f92d77d83145e5d3067cb0b37a14571c582ec4cd74931ab13",
+      "beforeSteps": [
+        "Tailler carotte, poireau et fenouil en fine julienne et les faire fondre au beurre 8 minutes.",
+        "Ajouter vin blanc, fumet et safran puis réduire 5 minutes.",
+        "Couper la lotte en médaillons et les déposer dans la sauce.",
+        "Couvrir et cuire 8 à 10 minutes à feu doux.",
+        "Retirer la lotte, ajouter la crème et réduire 3 minutes.",
+        "Remettre le poisson, rectifier l’assaisonnement et servir aussitôt."
+      ],
+      "note": "Julienne fondue au beurre puis pochage doux de la lotte conservés. Tous les liquides et le safran liés à la liste ; crème ajoutée après retrait du poisson pour réduire sans le surcuire. Contrôle à cœur ajouté, sans imposer une épaisseur non retrouvée comme garantie de huit minutes."
+    },
+    {
+      "id": "e01",
+      "status": "blocked",
+      "sourceHash": "f1eae1327c91bd550faebf6f4af761ca112783ca0b47bd250fa351df0a17e094",
+      "reviewedHash": "f1eae1327c91bd550faebf6f4af761ca112783ca0b47bd250fa351df0a17e094",
+      "protectedRecipeSha256": "3c98ab0569b0da15992e6dc93b9da0a823c2d3fd04caa1ae7084c28ec6fb6d7a",
+      "note": "pommes de terre et œufs sont listés sans mention déjà cuits, mais aucune cuisson n’est décrite et l’appareil indique Sans cuisson. Retrouver leur état et le protocole avant d’en faire une salade ; ne pas transformer les quantités en poids cuits ni inventer une cuisson de vingt minutes."
+    },
+    {
+      "id": "e02",
+      "status": "blocked",
+      "sourceHash": "2a1e225285e4c1e880dee83602b02fb131041c4808273aa3e51143fd88e65f52",
+      "reviewedHash": "2a1e225285e4c1e880dee83602b02fb131041c4808273aa3e51143fd88e65f52",
+      "protectedRecipeSha256": "f34b97e13883d7a3f1c439d84cd72be7a23120bed0045c32308f881f5ccaad63",
+      "note": "le pain est listé en tranches mais servi grillé, sans appareil, température ni durée, alors que la fiche indique Sans cuisson. Ne pas le remplacer par un pain déjà grillé ni ajouter automatiquement un four. Taille de la mozzarella non indiquée, comme dans les archives."
+    },
+    {
+      "id": "e04",
+      "status": "blocked",
+      "sourceHash": "fdefa023c8ff9fb20dc3ac0dccc70555999f9b0de50ad8741129544f69fafc8d",
+      "reviewedHash": "fdefa023c8ff9fb20dc3ac0dccc70555999f9b0de50ad8741129544f69fafc8d",
+      "protectedRecipeSha256": "8aa3248b88a9ef9ce4b4f40538575f398eafa8a298801aed562278aa54f2ae44",
+      "note": "tartines grillées demandées sans préparation ni appareil sous une fiche Sans cuisson. Pain listé non grillé ; ne pas imposer grille-pain, poêle ou four sans source. Les olives et assaisonnements restent libres, comme dans la liste."
+    },
+    {
+      "id": "e05",
+      "status": "blocked",
+      "sourceHash": "93af1f7bdb0996253d55e2c89f4882899f6826dbc53c09a5d624ceb9e357bcc3",
+      "reviewedHash": "93af1f7bdb0996253d55e2c89f4882899f6826dbc53c09a5d624ceb9e357bcc3",
+      "protectedRecipeSha256": "980fa811e7d6ce1a4ea008b9bc011853fa412a806b720b8e1b16ffd84a0951ce",
+      "note": "taille et forme des courgettes, charge du panier et conduite du rôtissage manquent pour étayer douze à quinze minutes à 190 °C. Moulinex donne un protocole de rondelles à 200 °C pendant vingt-cinq minutes, qui ne valide pas ce temps CR. Ne pas remplacer la recette par cette variante ni cuire le jambon et le fromage ajoutés au service."
+    },
+    {
+      "id": "e06",
+      "status": "blocked",
+      "sourceHash": "f37d7d093e61f0a00f8a42271d56fb72615cf14a14b1e377406fc5c93dcedf4a",
+      "reviewedHash": "f37d7d093e61f0a00f8a42271d56fb72615cf14a14b1e377406fc5c93dcedf4a",
+      "protectedRecipeSha256": "d8f3a1615e7894f1593f2818a862378aa0a7070776761944725b679bff01f3cb",
+      "note": "pommes de terre listées sans mention déjà cuites sous une fiche Sans cuisson. Ni cuisson ni refroidissement ne sont décrits. Ne pas convertir leur poids cru en poids cuit ni ajouter une cuisson au saumon fumé ; conserver la sauce yaourt, aneth et citron."
+    },
+    {
+      "id": "e07",
+      "status": "corrected",
+      "sourceHash": "e0a605e00866a3e5a497b5c2803b2d11444e47fa151828fa639d23b5a627b8f9",
+      "reviewedHash": "51e7050c07fe95290a94b6126be7533ecd7b600566865526a2f3b250b6d24ee3",
+      "protectedRecipeSha256": "f78abd0755b1d954edebf021ad3cce6480730faa126761101d8d41ff1bc1e7b0",
+      "beforeSteps": [
+        "Garnir le pain avec le jambon, les tomates et le fromage.",
+        "Gratiner 8 à 10 minutes à 200 °C.",
+        "Servir avec la salade."
+      ],
+      "note": "Tartines au four à 200 °C conservées, sans transposition au gril ni à l’airfryer. Tout le jambon, les tomates et le fromage distribués entre les tranches prévues dans la liste ; salade nature conservée, sans vinaigrette ajoutée."
+    },
+    {
+      "id": "e08",
+      "status": "blocked",
+      "sourceHash": "9ede70d500abcd43cad0ad2a62bc8679b515409bfd704a420fe7cdb883f8017c",
+      "reviewedHash": "9ede70d500abcd43cad0ad2a62bc8679b515409bfd704a420fe7cdb883f8017c",
+      "protectedRecipeSha256": "f9fb2324b7852909cf9199e24de8a687704b04d8997d3c12686cce41c7509d74",
+      "note": "cuisson des œufs au plat non détaillée : intensité, durée et repère de fin manquent, ainsi que l’organisation dans une ou deux poêles. L’huile est listée librement sans affectation aux deux préparations. Conserver œufs au plat et légumes revenus séparés, sans transformer en omelette ni ajouter un couvercle pour inventer une durée."
+    },
+    {
+      "id": "e09",
+      "status": "corrected",
+      "sourceHash": "3f4f0a360826438933a4ebe5eccbc2284e29902aa07882176326717863d880f1",
+      "reviewedHash": "48d211dbe5f02c770ca09b17c7d7a13c48c287e723b1fe8256d14f30b6fe706b",
+      "protectedRecipeSha256": "6421e3e9aa475a751f7f5b2724dfcdb703a41c6ced5b9c50372ce7a029ac9946",
+      "beforeSteps": [
+        "Couper le poulet, l’avocat et la tomate.",
+        "Ajouter le maïs et la salade.",
+        "Assaisonner juste avant de servir."
+      ],
+      "note": "Poulet explicitement déjà cuit conservé, sans nouvelle cuisson ni substitution de poids cru. Maïs en boîte égoutté, légumes lavés et salade séchée ; vinaigrette juste avant service. Aucune durée de conservation inventée."
+    },
+    {
+      "id": "e10",
+      "status": "blocked",
+      "sourceHash": "8e36785849c73719108e0c9486bea6c408de9e1beab75e76772b7af3f15bf7cd",
+      "reviewedHash": "8e36785849c73719108e0c9486bea6c408de9e1beab75e76772b7af3f15bf7cd",
+      "protectedRecipeSha256": "8b88274ec94c38ae012a29f1aad954663aa875ba96bf11b855303df2b10dbb4f",
+      "note": "appareil indiqué Poêle alors que le bouillon doit contenir les légumes puis que les tartines doivent griller avec le fromage, sans récipient ni mode précisé. Calibre des pommes de terre et découpe manquent pour les vingt-deux minutes. Ce velouté prévoit bien une cuisson au bouillon : ne pas lui ajouter un suage, ni choisir un four pour les tartines."
+    },
+    {
+      "id": "e12",
+      "status": "blocked",
+      "sourceHash": "5acbecd09556ad69fd98c521fc307188dd1c237db5d70a34745f59aedaaee00b",
+      "reviewedHash": "5acbecd09556ad69fd98c521fc307188dd1c237db5d70a34745f59aedaaee00b",
+      "protectedRecipeSha256": "818d46c72a9943794412b1b6816d6fd0881142412181f3c10877213f4a146020",
+      "note": "les lentilles sont explicitement cuites, mais les œufs ne le sont pas dans la liste et leur cuisson est absente sous Sans cuisson. Leur état et leur préparation doivent être retrouvés avant assemblage ; ne pas ajouter automatiquement des œufs durs ni transformer les lentilles en poids sec."
+    },
+    {
+      "id": "e13",
+      "status": "blocked",
+      "sourceHash": "f6776b06795fdfaffe6de3cbfe4e3295148795154474703c1a2c69529d3f819d",
+      "reviewedHash": "f6776b06795fdfaffe6de3cbfe4e3295148795154474703c1a2c69529d3f819d",
+      "protectedRecipeSha256": "93e9e2b7b1cabec02ea214c7f183fcc8d65919c0dda37f68819026d9a702c5b8",
+      "note": "cuisson des pommes de terre sans récipient, liquide, découpe ou durée ; réchauffage des knacks sans méthode ni produit identifié, sous appareil Poêle. Une notice de saucisses ne reconstitue pas la purée manquante. Conserver purée au lait et beurre avec salade, sans imposer pochage ou micro-ondes."
+    }
+  ]
+}

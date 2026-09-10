@@ -7,7 +7,7 @@ import {recipeSource} from './recipe-source.mjs';
 import {recipeHash} from './validate-recipe-editorial.mjs';
 const root=resolve(dirname(fileURLToPath(import.meta.url)),'..');
 const {code,recipes,editorial}=recipeSource(readFileSync(resolve(root,'index.html'),'utf8'));
-const batchNumbers=['02','03','04','05','06','07','08','09','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31','32','33'];
+const batchNumbers=['02','03','04','05','06','07','08','09','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31','32','33','34'];
 const fixture={recipes:batchNumbers.flatMap(number=>JSON.parse(readFileSync(resolve(root,`scripts/recipe-editorial-batch-${number}.fixture.json`),'utf8')).recipes)};
 const slice=(a,b)=>code.slice(code.indexOf(a),code.indexOf(b,code.indexOf(a)+a.length));
 const context={window:{},$:()=>({value:'8'}),MEAL_TYPES:['mid','eve'],recipeRole:r=>r.role||r.course||'dish',isFavorite:()=>false,recipeFeedbackHTML:()=>'',recipePersonalNoteHTML:()=>''};
@@ -502,7 +502,24 @@ Object.assign(ingredients,{
   'veg-final-40':['spätzle','emmental ou de gruyère','oignons','beurre','huile','ciboulette','poivre'],
   'veg-final-52':['aubergines','ricotta','parmesan','coulis de tomate','œuf','basilic','huile d’olive']
 });
-assert.equal(fixture.recipes.length,1069);
+Object.assign(timers,{
+  'bourgeois-13':[[],[15],[2],[],[3],[]],
+  'bourgeois-15':[[5],[],[5],[],[55],[]],
+  'bourgeois-19':[[30],[],[35],[12],[],[]],
+  'bourgeois-25':[[],[10],[],[],[2],[]],
+  'bourgeois-31':[[8],[5],[],[10],[3],[]],
+  e07:[[],[10],[]],e09:[[],[],[]]
+});
+Object.assign(ingredients,{
+  'bourgeois-13':['cailles','raisins blancs','beurre','cognac','fond de volaille','crème','sel.*poivre'],
+  'bourgeois-15':['pintade','chou vert','lard fumé','carottes','oignon','fond de volaille','beurre','sel.*poivre'],
+  'bourgeois-19':['selle d’agneau désossée et ficelée','beurre','huile','ail','thym','fond d’agneau ou de veau','sel.*poivre'],
+  'bourgeois-25':['filets de sole','raisins blancs sans pépins','vin blanc sec','fumet de poisson','crème','beurre','sel.*poivre blanc'],
+  'bourgeois-31':['queue de lotte parée','carottes','poireau','fenouil','vin blanc','fumet de poisson','crème','safran','beurre','sel.*poivre'],
+  e07:['grandes tranches de pain','jambon','tomates','fromage râpé','salade'],
+  e09:['poulet déjà cuit','avocat','maïs','salade verte','tomate','vinaigrette']
+});
+assert.equal(fixture.recipes.length,1099);
 let quantityChecks=0,timerCount=0;
 for(const record of fixture.recipes){
   const recipe=recipes.find(r=>r.id===record.id);
@@ -1300,6 +1317,38 @@ assert.match(editorial['veg-final-39'].reviewNote,/30 cl.*mi-hauteur.*sans verse
 assert.match(editorial['veg-final-46'].reviewNote,/cinq minutes.*comprises.*trente-cinq à quarante/);
 assert.match(editorial['bourgeois-12'].reviewNote,/dix minutes.*cinq minutes.*vingt minutes minimales.*Tox Info/);
 console.log(`✓ Batch 33: ${reservedQuantityChecks33} original ingredient renders and 168 visible reservations; source-restored pepper, concrete butter/parmesan, product-dependent reheating and egg filling control`);
+const batch34=JSON.parse(readFileSync(resolve(root,'scripts/recipe-editorial-batch-34.fixture.json'),'utf8')).recipes;
+assert.equal(batch34.length,30);assert.equal(batch34.filter(r=>r.status==='corrected').length,7);
+assert.equal(batch34.filter(r=>r.status==='blocked').length,23);
+let reservedQuantityChecks34=0;
+for(const count of [1,2,3,4,5,8]){
+  const sole=recipes.find(r=>r.id==='bourgeois-25'),tartine=recipes.find(r=>r.id==='e07');
+  assert.ok(context.recipeStepText(sole.p[0],sole,count).includes(context.formatQty(30*count/4)+' g de beurre'));
+  assert.ok(context.recipeStepText(sole.p[1],sole,count).includes(context.formatQty(20*count/4)+' cl de fumet de poisson'));
+  assert.ok(context.recipeStepText(tartine.p[0],tartine,count).includes(context.formatQty(80*count/2)+' g de fromage râpé'));
+  for(const record of batch34.filter(r=>r.status==='blocked')){
+    const r=recipes.find(r=>r.id===record.id),output=context.recipeHTML(r,{people:count,dayIndex:1,mealType:'eve'});
+    assert.ok(output.includes(context.escapeHTML(editorial[record.id].reviewNote)));
+    for(const ingredient of r.i){
+      const q=ingredient.q==null?null:ingredient.q*count/(r.servings||2);
+      assert.ok(output.includes('>'+context.ingredientText(ingredient,q,count)+'</li>'));
+      reservedQuantityChecks34++;
+    }
+    assert.doesNotMatch(output,/\{\{|undefined|NaN/);
+  }
+}
+assert.match(recipes.find(r=>r.id==='bourgeois-13').p[3],/Éteindre le feu.*éloigner.*flamme.*Ne pas flamber/);
+assert.match(recipes.find(r=>r.id==='bourgeois-15').p[4],/50 à 55 minutes.*175 °C.*deux fois.*74 °C/);
+assert.match(recipes.find(r=>r.id==='bourgeois-19').p[3],/reposer 12 minutes.*jus pendant ce repos/);
+assert.match(recipes.find(r=>r.id==='bourgeois-19').p[5],/Retirer toute la ficelle/);
+assert.match(recipes.find(r=>r.id==='bourgeois-25').p[0],/rouler souplement ou les plier/);
+assert.match(recipes.find(r=>r.id==='bourgeois-31').p[2],/Ne pas saisir.*pochage/);
+assert.match(recipes.find(r=>r.id==='e07').p[1],/ne pas passer automatiquement en mode gril/);
+assert.match(recipes.find(r=>r.id==='e09').p[0],/poulet cuit, pas du poulet cru/);
+assert.match(editorial.e01.reviewNote,/pommes de terre et œufs.*Sans cuisson/);
+assert.match(editorial.e05.reviewNote,/Moulinex.*ne valide pas ce temps CR/);
+assert.match(editorial.e10.reviewNote,/cuisson au bouillon.*ne pas lui ajouter un suage/);
+console.log(`✓ Batch 34: ${reservedQuantityChecks34} original ingredient renders and 138 visible reservations; original roasting/poaching/braising preserved, dynamic quantities, cooked chicken retained`);
 const corrected=fixture.recipes.filter(r=>r.status==='corrected').length;
 const unchanged=fixture.recipes.filter(r=>r.status==='unchanged').length;
 console.log(`✓ Batches ${batchNumbers.join('/')}: ${fixture.recipes.length} individual review records, ${corrected} corrected, ${unchanged} unchanged, ${fixture.recipes.length-corrected-unchanged} blocked with original content preserved; ${timerCount} manually checked timers`);

@@ -378,6 +378,16 @@ P02 publié : `c87dc373c29cae1d6edb9c2ac6191004c69ba52a`, tests `34390827874` et
 
 **Cumul : 1 084 identifiants examinés, 355 corrigés, 719 bloqués, 10 conformes sans réécriture, 469 à examiner.** Zéro erreur éditoriale, 5 723 avertissements ; 552 minuteurs et 12 990 calculs d’ingrédients des lots 02–33. Ce lot ajoute 1 386 rendus d’ingrédients réservés et 168 réserves visibles. Les 24 commandes passent ; Livre et mode cuisine vérifiés aux trois formats simulés après défilement. Publication à consigner après contrôle HTTPS. Les autres plats suivent.
 
+## Publication du lot 33
+
+`b40a04f3ed2f8ba711214645121bb366223d8fdc` publié sur `main`. Tests `34422189104`, Pages `34422188333` et déploiement `6362117083` réussis. HTTPS 200 et fichiers identiques au commit : index `a8a661fb5257081ce5b8f08efc5bff5dcb5ff2320304cd35df8097f2f56f62cb`, service worker `059b655d7ff2c4b0cbcfd3e721ecbc98d81c797b7246d25af8e70399a216bd26`. Révision chargée normalement `sha256:bb5b5f9a2cdf808418a18c796737266bf46b38dfde64a1d6bbd4c2b20f773d51`. Involtini vérifiés à deux personnes : parmesan 40 g réparti 20/20 g, 350 g de coulis au fond, huile sur les aubergines, œufs liés aux portions, deux cuissons à 210/190 °C et minuteurs 15/20–25 correctement attachés. Aucun stockage effacé.
+
+## Lot 34 — trente plats de réception et repas simples
+
+[Journal, sources et décisions](recipe-editorial-batch-34.md). 7 corrigées, 23 réservées, aucune conforme sans réécriture. Braisage de la pintade, rôtissage de l’agneau et pochages des poissons conservés ; beurre et liquides liés aux ingrédients, frémissements correctement minutés. Salade de poulet déjà cuit clarifiée sans poids cru ni nouvelle cuisson. Les états manquants des œufs et pommes de terre des autres salades restent explicites.
+
+**Cumul : 1 114 identifiants examinés, 362 corrigés, 742 bloqués, 10 conformes sans réécriture, 439 à examiner.** Zéro erreur éditoriale, 5 609 avertissements ; 568 minuteurs et 13 290 rendus d’ingrédients des lots 02–34. Ce lot ajoute 942 rendus d’ingrédients réservés et 138 réserves visibles. Les 24 commandes passent ; Livre sur une recette longue et une courte, puis mode cuisine contrôlés aux trois formats simulés. Publication à consigner après contrôle HTTPS. Les autres recettes suivent.
+
 ## Limites des vérifications
 
 Les tests de structure, quantité, minuteurs, stockage simulé et rendu ne sont pas des essais culinaires. Les formats iPhone/PWA sont simulés, sauf mention explicite d’un appareil physique. Le total de fiches à examiner ne doit jamais être remplacé par le nombre de fiches auxquelles le style commun a été appliqué.
