@@ -418,6 +418,18 @@ P02 publié : `c87dc373c29cae1d6edb9c2ac6191004c69ba52a`, tests `34390827874` et
 
 **Cumul : 1 254 identifiants examinés, 378 corrigés, 866 bloqués, 10 conformes sans réécriture, 299 à examiner.** Zéro erreur éditoriale, 5 073 avertissements ; ce lot ajoute 2 208 rendus d’ingrédients réservés et 300 réserves visibles. Les 24 commandes passent ; fiche courte et mode cuisine long contrôlés aux trois formats simulés, sans modifier les données. Publication à consigner après contrôle HTTPS ; les autres recettes suivent.
 
+## Publication du lot 37
+
+`ecf79321d89b19d90464f9964cb2f8e86eae9104` publié sur `main`. Tests `34425372343`, Pages `34425371492` et déploiement `6362622472` réussis. HTTPS 200 avec HSTS et fichiers identiques au commit : index `a94270ff5f0d994bd21eeb04bf2493cdd8d8941af98e7af3778c47129e1736a0`, service worker `7751a1e733a70fd2a7ff69ab635248f34b73fe7a0e5457c3ba79fbd599e0f524`.
+
+Limite de contrôle en navigateur : malgré rechargement et bouton « Vérifier la mise à jour », l’onglet conserve le noyau du lot 36 (`1a1acbb1439e…`). La page de diagnostic publique indique le worker du lot 37 (`f84abc750eb4…`) mais l’ancien cache actif, résultat PENDING, sans échec de démarrage signalé. La livraison serveur est donc vérifiée, pas l’activation du lot 37 dans cet onglet. Aucun cache, stockage ou programme effacé, aucun changement du mécanisme de mise à jour ; recontrôle prévu lors de la publication suivante. Les fichiers HTTPS ne doivent pas être confondus avec la version effectivement affichée depuis le cache.
+
+## Lot 38 — cinquante variantes aux légumes et céréales
+
+[Journal et décisions individuelles](recipe-editorial-batch-38.md). 50 réservées, aucune correction culinaire ou fiche conforme sans réécriture. Ordre des sauces et finitions, quantités non réparties, matière grasse ou liquide manquants signalés sans modifier les objets culinaires. Les potées restent au bouillon, les courges au four et le pesto prévu cru n’est pas recuit par défaut.
+
+**Cumul : 1 304 identifiants examinés, 378 corrigés, 916 bloqués, 10 conformes sans réécriture, 249 à examiner.** Zéro erreur éditoriale, 4 873 avertissements ; 2 448 rendus d’ingrédients réservés et 300 réserves visibles ajoutés. Les 24 commandes passent ; Livre et mode cuisine long inspectés après défilement aux trois formats simulés. Publication à consigner ; les autres recettes suivent.
+
 ## Limites des vérifications
 
 Les tests de structure, quantité, minuteurs, stockage simulé et rendu ne sont pas des essais culinaires. Les formats iPhone/PWA sont simulés, sauf mention explicite d’un appareil physique. Le total de fiches à examiner ne doit jamais être remplacé par le nombre de fiches auxquelles le style commun a été appliqué.
