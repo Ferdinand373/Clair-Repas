@@ -1,0 +1,406 @@
+{
+  "baselineCommit": "ecd947284e177453323754a6e1b878f75db07418",
+  "batch": "39",
+  "recipes": [
+    {
+      "id": "ge-jambon-spaetzle-poireaux",
+      "status": "blocked",
+      "sourceHash": "f502de4951326973ab224cd37f7806586af7362078b11b3f8135d3161ef792c7",
+      "reviewedHash": "f502de4951326973ab224cd37f7806586af7362078b11b3f8135d3161ef792c7",
+      "protectedRecipeSha256": "ef613330ec88c6ddb4e99bbf77b606a27d3d9e94350476ea5f354958ba2689bb",
+      "note": "crème réduite avec le poivre, ajoutée au jus puis versée encore avec le persil, sans partage. Spätzle sans état/notice, graisse des légumes absente et saisie précédant le réchauffage du jambon non définie. Ne pas tripler la crème ou réaffecter une part arbitraire à chaque sauce."
+    },
+    {
+      "id": "ge-boulettes-spaetzle-poireaux",
+      "status": "blocked",
+      "sourceHash": "e8be8e54728e42b42c23640a59e9768e0e7502cd050d6c9f71b1ecaf34389233",
+      "reviewedHash": "e8be8e54728e42b42c23640a59e9768e0e7502cd050d6c9f71b1ecaf34389233",
+      "protectedRecipeSha256": "a86746effc086700b6bfe91453b293c11c3e1a044d06f561c40103e2b81c515f",
+      "note": "échalote caramélisée puis fondue à nouveau, deux déglaçages au même balsamique sans partage. Graisse des légumes/boulettes absente, spätzle sans notice et boulettes sans calibre. Retrouver l’organisation avant de doubler l’échalote ou de remplacer le caramélisage par un simple mélange."
+    },
+    {
+      "id": "ge-tofu-spaetzle-poireaux",
+      "status": "blocked",
+      "sourceHash": "d6d988fef05a2e5775a9b262ff7078cae6f769b240350aa6bb24a7c9d1657ff9",
+      "reviewedHash": "d6d988fef05a2e5775a9b262ff7078cae6f769b240350aa6bb24a7c9d1657ff9",
+      "protectedRecipeSha256": "e098e5cb455bf2abc772d35656af435fab609b44bd5f64ff9d8a991d2f0e5342",
+      "note": "cumin torréfié deux fois sans partage ; coriandre ajoutée au service avant la réunion crème/persil puis répétée. Graisse des légumes et du tofu absente, spätzle sans notice et tofu sans découpe. Conserver la torréfaction à sec et la coriandre crue, sans choisir une seconde dose de cumin."
+    },
+    {
+      "id": "ge-poulet-curry-chou-fleur",
+      "status": "blocked",
+      "sourceHash": "7c5f938c6f2fd539e1bd341989f25674c25227cf3d27ffc9b2b43184c86890b2",
+      "reviewedHash": "7c5f938c6f2fd539e1bd341989f25674c25227cf3d27ffc9b2b43184c86890b2",
+      "protectedRecipeSha256": "1dd7bccf6ccfa257eba45ad95ece1696fc0e034080186b778e759cd2acfafda5",
+      "note": "citron de la sauce non listé ; yaourt partagé entre marinade chauffée, sauce froide et cuillerée finale sans doses. Curry déjà utilisé pour les légumes puis marinade/sauce ; graisse absente, poulet sans calibre et riz sans notice. Ne jamais réutiliser une marinade de poulet cru comme sauce froide."
+    },
+    {
+      "id": "ge-dinde-curry-chou-fleur",
+      "status": "blocked",
+      "sourceHash": "eed778a9b6ef6666104b65fdd30fcfd4a0a2804861ebc88b7a92d3e82fc03f9e",
+      "reviewedHash": "eed778a9b6ef6666104b65fdd30fcfd4a0a2804861ebc88b7a92d3e82fc03f9e",
+      "protectedRecipeSha256": "64069a20833acdd47332d376b1bada29d03390729b1896a663f904c51e6ef09f",
+      "note": "matière grasse explicitement demandée pour torréfier le paprika mais absente. Amandes grillées sans protocole, ajoutées avant cinq minutes de sauce puis annoncées seulement au dressage. Calibre de dinde, état des petits pois et notice du riz à préciser ; ne pas cuire les amandes censées rester croquantes."
+    },
+    {
+      "id": "ge-saumon-curry-chou-fleur",
+      "status": "blocked",
+      "sourceHash": "1514d1ee7a9a0cd2b21350a0b05bd8e4680e683bfe64d453f0923ab786163047",
+      "reviewedHash": "1514d1ee7a9a0cd2b21350a0b05bd8e4680e683bfe64d453f0923ab786163047",
+      "protectedRecipeSha256": "160a6fae725b19cdbb652af4d137bc49f94bca417db58d4f044b747b86b9ab2a",
+      "note": "curry utilisé pour les légumes, revenu puis frémis dans le lait de coco sans partage ; coco ajouté à trois moments avec quatre puis cinq minutes distinctes. Graisse absente, saumon sans calibre et riz sans notice. Retrouver les séquences sans doubler le lait ou convertir le mijotage en rôtissage."
+    },
+    {
+      "id": "ge-poisson-blanc-curry-chou-fleur",
+      "status": "blocked",
+      "sourceHash": "a23a70af807028175eade2bf6a1c27247b3c7ef9bf53617107bc81606f69d634",
+      "reviewedHash": "a23a70af807028175eade2bf6a1c27247b3c7ef9bf53617107bc81606f69d634",
+      "protectedRecipeSha256": "fc6cefbbb8eaa35cb464878264eed861ca1e6e8c75bc2e97e460cfa06fabe347",
+      "note": "basilic demandé mais absent des ingrédients ; tomate et olives concentrées puis ajoutées de nouveau sans partage. Graisse, espèce/épaisseur du poisson et notice du riz absentes ; cinq minutes de coco après les dernières minutes de sauce à raccorder sans recuire arbitrairement le poisson."
+    },
+    {
+      "id": "ge-crevettes-curry-chou-fleur",
+      "status": "blocked",
+      "sourceHash": "89e043ef45df0a199c294f9c459364bfe51097ef0038163c982e3cdcd13c5f92",
+      "reviewedHash": "89e043ef45df0a199c294f9c459364bfe51097ef0038163c982e3cdcd13c5f92",
+      "protectedRecipeSha256": "335e66c390be19454c9fd20129034b06aed6945ae79583e950b735318b857ea8",
+      "note": "fenouil coloré puis demandé en finition fraîche ; orange en jus et quartiers sans partage. Crevettes d’état cru/cuit inconnu, graisse absente et riz sans notice ; coco frémis cinq minutes après la saisie à raccorder. Ne pas cuire toute la finition supposée fraîche par défaut."
+    },
+    {
+      "id": "ge-boulettes-curry-chou-fleur",
+      "status": "blocked",
+      "sourceHash": "8bbfd6b875a8c49b6b823c76fa18842836d370ed32fa93c22cb9aaf4d920fd2c",
+      "reviewedHash": "8bbfd6b875a8c49b6b823c76fa18842836d370ed32fa93c22cb9aaf4d920fd2c",
+      "protectedRecipeSha256": "91c92d103034f365e51685c16ec8bdfa39a3030f290400ab157cf30cd2d95e9c",
+      "note": "gingembre de la réduction non listé ; soja caramélisé puis réduit sans partage. Graisse absente, calibre des boulettes et notice du riz manquants ; sésame ajouté avant coco puis au dressage. Ne pas inventer une dose de gingembre ou additionner les finitions sans organisation."
+    },
+    {
+      "id": "ge-pois-chiches-curry-chou-fleur",
+      "status": "blocked",
+      "sourceHash": "67e421232923e63302a51c9ddea849efd4f8557efa8bc17e19106d45c6b8c50a",
+      "reviewedHash": "67e421232923e63302a51c9ddea849efd4f8557efa8bc17e19106d45c6b8c50a",
+      "protectedRecipeSha256": "25ff4aa60c313501194030f082fc5db8acaf85261bf7467f72a5f172b4ed59d8",
+      "note": "matière grasse du poêlage et de la dorure absente ; chou-fleur sans taille, petits pois sans état et riz sans notice. Sauce froide yaourt/harissa servie avant le frémissement du coco, puis déposée à nouveau sans partage. Préserver le contraste froid, sans verser le yaourt dans la sauce chaude."
+    },
+    {
+      "id": "ge-tofu-curry-chou-fleur",
+      "status": "blocked",
+      "sourceHash": "7e6275fe4231923d2f31a2337a3afaf620c685c9bbbac31289790c88a3e82f1c",
+      "reviewedHash": "7e6275fe4231923d2f31a2337a3afaf620c685c9bbbac31289790c88a3e82f1c",
+      "protectedRecipeSha256": "2d4013700b3eb6091a8632e3a93bf1573d0758f4f7ed12300abf68cbe786b96b",
+      "note": "cumin torréfié deux fois sans partage ; coriandre de service placée avant cinq minutes de coco puis répétée. Graisse absente, tofu sans découpe, légumes et riz sans protocole produit. Garder la torréfaction à sec et les herbes fraîches sans les recuire pour résoudre l’ordre."
+    },
+    {
+      "id": "ge-poulet-salade-pommes-haricots",
+      "status": "blocked",
+      "sourceHash": "47906e79055938bcf21c3ee73de95f110b6752afbe671901041c622d605f381a",
+      "reviewedHash": "47906e79055938bcf21c3ee73de95f110b6752afbe671901041c622d605f381a",
+      "protectedRecipeSha256": "82acc954227e6e5ea37f2be0bfaf82c5d932cc833ed939037ed9929190ee6306",
+      "note": "fiche sans cuisson demandant pourtant cuisson des pommes de terre/haricots et saisie du poulet déjà cuit. Sauce moutardée dans des sucs sans graisse ni jus défini ; vinaigrette séparée non raccordée. Retrouver les états et protocole, sans convertir les 240 g de poulet cuit en poids cru."
+    },
+    {
+      "id": "ge-dinde-salade-pommes-haricots",
+      "status": "blocked",
+      "sourceHash": "62b8b9ab4e54735360475793b455b8223c89814e07cfeababd164f76e0850fbb",
+      "reviewedHash": "62b8b9ab4e54735360475793b455b8223c89814e07cfeababd164f76e0850fbb",
+      "protectedRecipeSha256": "09511ac1604119f729614976e831e1ee7b884b38a073a52e764ff27146afd1df",
+      "note": "cuisson des légumes puis saisie/infusion à couvert incompatibles avec la catégorie sans cuisson, sans durée ni graisse. Tranches de dinde non identifiées et sauce citron/estragon non raccordée à la vinaigrette. Ne pas considérer les pommes de terre comme déjà cuites sans preuve."
+    },
+    {
+      "id": "ge-jambon-salade-pommes-haricots",
+      "status": "blocked",
+      "sourceHash": "0c48ad301ccd5f1ab1266c08cf9ddffb65d980101721eb375c7345ac00ec15ba",
+      "reviewedHash": "0c48ad301ccd5f1ab1266c08cf9ddffb65d980101721eb375c7345ac00ec15ba",
+      "protectedRecipeSha256": "7a3296a1e11df3297dd37d0f941ac5047cd2bf483d18874ea10edddac2967c55",
+      "note": "échalote prévue caramélisée, puis fondue, puis dans la salade sans partage ; deux déglaçages au balsamique sans graisse. Cuisson des légumes non détaillée et catégorie sans cuisson contradictoire. Ne pas remplacer l’échalote cuite par une échalote crue ni doubler les doses."
+    },
+    {
+      "id": "ge-thon-salade-pommes-haricots",
+      "status": "blocked",
+      "sourceHash": "0326177695c77015e11d7bd10e2c9a39b2c6f12dd1dc0001d91eda5dee828559",
+      "reviewedHash": "0326177695c77015e11d7bd10e2c9a39b2c6f12dd1dc0001d91eda5dee828559",
+      "protectedRecipeSha256": "50dc7158df0e675ddc7ec65a32c3e658dc7729f61bfb5612f007d7c8ac9f3a5b",
+      "note": "cuisson vive annoncée avant égouttage du thon en boîte, sans cible ni graisse ; légumes à cuire sans durée malgré la catégorie sans cuisson. Pesto/citron répétés en sauce et quartier sans partage avec la vinaigrette. Ne pas chauffer le thon en conserve par défaut pour justifier les sucs."
+    },
+    {
+      "id": "ge-saumon-fume-salade-pommes-haricots",
+      "status": "blocked",
+      "sourceHash": "f502743249bea6a4643876f8d046b831565668cd8dfd5e66a15804019fff5aca",
+      "reviewedHash": "f502743249bea6a4643876f8d046b831565668cd8dfd5e66a15804019fff5aca",
+      "protectedRecipeSha256": "846197b3a5ad3fd613b4c449d4c45e1a6a957ccca3bb4c12a2cd4a8d92c82c3c",
+      "note": "cuisson douce non définie avant découpe du saumon fumé, dans une fiche sans cuisson qui demande aussi de cuire les légumes. Citron répété pendant cuisson, en zeste/jus puis au service sans partage. Préserver le produit fumé et retrouver le protocole, sans remplacer par saumon cru."
+    },
+    {
+      "id": "ge-crevettes-salade-pommes-haricots",
+      "status": "blocked",
+      "sourceHash": "16263984efe9031b01cd0b08b27342115bcd62775b83d33940d645c023135148",
+      "reviewedHash": "16263984efe9031b01cd0b08b27342115bcd62775b83d33940d645c023135148",
+      "protectedRecipeSha256": "98eeaa4ca3adcd0f598d3812a77501bff5e22ce78a142d7f5b5406f4878128eb",
+      "note": "citron du déglaçage absent ; crevettes déjà cuites demandées snackées avant décorticage, sans graisse ni durée. Jus des câpres inconnu, légumes à cuire dans une fiche sans cuisson. Ne pas remplacer les crevettes cuites par du produit cru ou omettre le déglaçage sans source."
+    },
+    {
+      "id": "ge-oeufs-salade-pommes-haricots",
+      "status": "blocked",
+      "sourceHash": "80e22284c053c87ed3d2405c7f9fc3a0f106a5f0f905698c357227271eb72302",
+      "reviewedHash": "80e22284c053c87ed3d2405c7f9fc3a0f106a5f0f905698c357227271eb72302",
+      "protectedRecipeSha256": "b0a05ae3e66a84a8386b2b70931a99f53db51a9a0fa1acf8bb92c1fb22c28355",
+      "note": "comté demandé filant pendant la cuisson d’œufs ensuite refroidis et écalés ; portion dorée sans méthode. Cuisson des pommes de terre/haricots sans découpe, durée ni récipient. Préserver les œufs cuits en coquille et retrouver l’emploi du fromage, sans transformer en omelette ou gratin."
+    },
+    {
+      "id": "ge-pois-chiches-salade-pommes-haricots",
+      "status": "blocked",
+      "sourceHash": "5eee6fc39a9f1410fa69e092826416e328ef279f4ad7813e737868b61ea447d6",
+      "reviewedHash": "5eee6fc39a9f1410fa69e092826416e328ef279f4ad7813e737868b61ea447d6",
+      "protectedRecipeSha256": "eae6bfd1aa76e6c49476ddcc6efc05c5337a3ada358105697cde67a843afed5d",
+      "note": "cuisson des légumes non minutée dans une fiche sans cuisson ; repos de deux minutes avant rinçage des pois chiches sans cible claire. Feta/menthe dressées deux fois sans partage. Retrouver états et organisation sans réinventer la préparation à partir de légumes présumés cuits."
+    },
+    {
+      "id": "ge-poulet-salade-riz-concombre",
+      "status": "blocked",
+      "sourceHash": "bf5105f84b53dd548c338365f815fbcc0c0b01e166ca344652d785a050def5f8",
+      "reviewedHash": "bf5105f84b53dd548c338365f815fbcc0c0b01e166ca344652d785a050def5f8",
+      "protectedRecipeSha256": "b7e150db84f15de14817043e2c3424c8195032733ed0981042e2c82eea84b3fc",
+      "note": "vinaigrette légère absente de la liste ; jus d’orange réduit puis déglacé de nouveau sans partage ni sucs identifiés. Poulet déjà cuit et catégorie sans cuisson contredits par le glaçage ; riz à cuire sans notice. Ne pas remplacer le poulet cuit par du cru ou choisir une recette de vinaigrette."
+    },
+    {
+      "id": "ge-dinde-salade-riz-concombre",
+      "status": "blocked",
+      "sourceHash": "a309906604239876e96cfe630615c5a1c4c5b48beaa92396eed2c75bb7a9bea9",
+      "reviewedHash": "a309906604239876e96cfe630615c5a1c4c5b48beaa92396eed2c75bb7a9bea9",
+      "protectedRecipeSha256": "df5ebaf4890063c95beca2bdb427b2496d53df6fe33c80bb68498644f3a5df5b",
+      "note": "vinaigrette absente ; saisie de la dinde et cuisson du riz demandées dans une fiche sans cuisson. Tranches de dinde sans état précis, graisse absente et pesto répété hors feu puis au dressage sans partage. Ne pas ajouter une poêle ni supposer une dinde crue."
+    },
+    {
+      "id": "ge-jambon-salade-riz-concombre",
+      "status": "blocked",
+      "sourceHash": "f536a6481a97fc49ac829d6d945a6ec9cbbbd076fa446b3388d3413124bc2a55",
+      "reviewedHash": "f536a6481a97fc49ac829d6d945a6ec9cbbbd076fa446b3388d3413124bc2a55",
+      "protectedRecipeSha256": "baf5e378c4a59cfc04df13f0020b707ec3af473d1e7e26d3430685dcf6700a90",
+      "note": "huile et vinaigre du chimichurri, ainsi que vinaigrette de salade, absents. Marinade avant sauce puis grillage vif du jambon dans une fiche sans cuisson ; riz sans notice et sauce non répartie entre marinade/service. Ne pas inventer une vinaigrette universelle pour deux usages différents."
+    },
+    {
+      "id": "ge-thon-salade-riz-concombre",
+      "status": "blocked",
+      "sourceHash": "d9ae6a2142010bb0e10eb4666f6f0c100611425e4d4fca5a461956a6d9d583b3",
+      "reviewedHash": "d9ae6a2142010bb0e10eb4666f6f0c100611425e4d4fca5a461956a6d9d583b3",
+      "protectedRecipeSha256": "2fdd9e5228f96d2c53866ff2b432a282f4d0c7ff55f29b78c9bc28bb2b2a7eda",
+      "note": "vinaigrette absente, riz sans notice et poivron à griller sans protocole malgré la catégorie sans cuisson. Deux minutes couvertes correspondent au repos du poivron ; trois minutes de finition ne définissent pas le grillage. Préserver le thon en boîte sans lui ajouter une cuisson."
+    },
+    {
+      "id": "ge-saumon-fume-salade-riz-concombre",
+      "status": "blocked",
+      "sourceHash": "0f4032717a3a16264220f53dcf2d39dc58c0d53b7a18411cc0a329973dbd5fe0",
+      "reviewedHash": "0f4032717a3a16264220f53dcf2d39dc58c0d53b7a18411cc0a329973dbd5fe0",
+      "protectedRecipeSha256": "f711fa458de5c4e7cb595e605da6bd1df1abcba8204090f84d784e3373b99a56",
+      "note": "vinaigrette absente ; cuisson douce du saumon fumé avant découpe sans protocole, incompatible avec la catégorie sans cuisson. Riz sans notice et citron utilisé pendant cuisson, en zeste/jus, à l’assemblage puis au service sans partage. Ne pas ajouter un citron à chaque mention."
+    },
+    {
+      "id": "ge-crevettes-salade-riz-concombre",
+      "status": "blocked",
+      "sourceHash": "3675ca80a1a8d0c30eec5b15fed37f61b9b5cecd67e7aba6e28691de0fa3e872",
+      "reviewedHash": "3675ca80a1a8d0c30eec5b15fed37f61b9b5cecd67e7aba6e28691de0fa3e872",
+      "protectedRecipeSha256": "f4b3c0fc7d9670ce0f4d9b3b49f64233c1dfb04f50a465723d4e5b362e6fb59f",
+      "note": "vinaigrette absente ; crevettes déjà cuites à colorer avant décorticage, puis fenouil demandé frais après coloration, dans une fiche sans cuisson. Orange en jus/quartiers sans partage, riz sans notice et graisse absente. Retrouver la part crue/cuite, sans multiplier l’orange."
+    },
+    {
+      "id": "ge-oeufs-salade-riz-concombre",
+      "status": "blocked",
+      "sourceHash": "2e9870b04f0c2ae583081768c500c65aaa14efcaa44e5b2bf5fad9c50acda1a8",
+      "reviewedHash": "2e9870b04f0c2ae583081768c500c65aaa14efcaa44e5b2bf5fad9c50acda1a8",
+      "protectedRecipeSha256": "da30293623afde4a7f142fe4bba17c4a3ca2e666bd8b0ef8f3581fce37cdaeb8",
+      "note": "vinaigrette absente ; repos de deux minutes placé avant neuf minutes de cuisson des œufs, refroidissement puis écalage. Feta et menthe répétées sans partage, riz sans notice. Ne pas traiter neuf minutes comme la cuisson vérifiée d’un œuf moelleux sans mode de départ ni calibre."
+    },
+    {
+      "id": "ge-pois-chiches-salade-riz-concombre",
+      "status": "blocked",
+      "sourceHash": "e8d65f5e31d97944b4a8a1790cadd805a8d9c0805d8f5590c681c02da9af663a",
+      "reviewedHash": "e8d65f5e31d97944b4a8a1790cadd805a8d9c0805d8f5590c681c02da9af663a",
+      "protectedRecipeSha256": "c83491e8981f05dddaec1e985ad64b651a491a47f0d5faf9202447e2a60027b6",
+      "note": "origan et vinaigrette absents ; riz à cuire et sauce à mijoter dans une fiche sans cuisson. Tomates fraîches/coulis non affectés entre salade et sauce répétée ; olives sans partage. Ne pas cuire les crudités par défaut ni ajouter une dose de sauce à chaque mention."
+    },
+    {
+      "id": "ge-poulet-salade-pates-crudites",
+      "status": "blocked",
+      "sourceHash": "c2bfa956e50927e4edbdada84f7977510d859b88d88b935373fb18c882dff16a",
+      "reviewedHash": "c2bfa956e50927e4edbdada84f7977510d859b88d88b935373fb18c882dff16a",
+      "protectedRecipeSha256": "c97993021fab80ea21691f325f7f41ffb65b1e71e8d2a9e2c66778f7f92c7138",
+      "note": "compotée et jus de tomate demandés dans une salade sans cuisson de poulet déjà cuit ; les tomates cerises prévues en crudités ne sont pas réparties. Olives répétées et trois dernières minutes sans cuisson principale définie ; pâtes sans notice. Ne pas chauffer tout le poulet ou les crudités pour justifier ces trois minutes."
+    },
+    {
+      "id": "ge-dinde-salade-pates-crudites",
+      "status": "blocked",
+      "sourceHash": "63abea298caa98491538c169aae8b4e18c625e7d641d80f5cb1fad0a99293618",
+      "reviewedHash": "63abea298caa98491538c169aae8b4e18c625e7d641d80f5cb1fad0a99293618",
+      "protectedRecipeSha256": "d44dea933fb3adda3deb9e71381e869abc7809c6adfb5656c84f05148fd03d44",
+      "note": "saisie de la dinde sans graisse ni état du produit, malgré la catégorie sans cuisson ; pesto hors feu et au dressage non partagé. Pâtes à cuire sans notice et basilic déjà dans l’ingrédient composé puis listé séparément. Ne pas doubler les herbes ni convertir en pâtes chaudes."
+    },
+    {
+      "id": "ge-jambon-salade-pates-crudites",
+      "status": "blocked",
+      "sourceHash": "ccd82846812dc75507798ff28d07dedce09e5fbee889f0f266e5aa2a0bd5a296",
+      "reviewedHash": "ccd82846812dc75507798ff28d07dedce09e5fbee889f0f266e5aa2a0bd5a296",
+      "protectedRecipeSha256": "042661762c1c045dfb3b8e7a54f297e18c3bb058297169480928045ffa23edb5",
+      "note": "origan de la sauce non listé ; coulis et tomates cerises non affectés entre salade et compotée. Deux ajouts tomate/olives et mijotage dans une fiche sans cuisson, pâtes sans notice. Ne pas transformer les crudités en sauce cuite ni doubler le coulis."
+    },
+    {
+      "id": "ge-thon-salade-pates-crudites",
+      "status": "blocked",
+      "sourceHash": "c6e63c08570d47f742070335cf97a127e44c0df1efa44ca3b5c2207f30ff549f",
+      "reviewedHash": "c6e63c08570d47f742070335cf97a127e44c0df1efa44ca3b5c2207f30ff549f",
+      "protectedRecipeSha256": "aa87fd99d880d2b506480bc6e685ea93971c516dddffba9e0b1fa2eafd655c8f",
+      "note": "feu vif avant égouttage du thon en boîte, sans graisse ni protocole, dans une salade sans cuisson. Citron en pesto puis quartier et pesto répété sans partage ; pâtes sans notice. Préserver le thon en conserve et la finition crue sans inventer une saisie."
+    },
+    {
+      "id": "ge-saumon-fume-salade-pates-crudites",
+      "status": "blocked",
+      "sourceHash": "516d6c54ccb83ad6ebc6975dc70ac1834d71f1dac054bed2c2b37afdcc294e7a",
+      "reviewedHash": "516d6c54ccb83ad6ebc6975dc70ac1834d71f1dac054bed2c2b37afdcc294e7a",
+      "protectedRecipeSha256": "acd09f0c80f716c3e1aa849fe218e845adf4994f586bf05946fd7fbed9a0af97",
+      "note": "citron de déglaçage absent ; saumon fumé demandé snacké avant découpe, dans une fiche sans cuisson. Graisse et jus des câpres inconnus, pâtes sans notice. Ne pas remplacer le saumon fumé par du frais ou supprimer les sucs pour donner l’apparence d’une salade validée."
+    },
+    {
+      "id": "ge-crevettes-salade-pates-crudites",
+      "status": "blocked",
+      "sourceHash": "49a1c75b815df891ce33d2a6c9e83cbd387bf17cc160759ddfa783ff7277aa83",
+      "reviewedHash": "49a1c75b815df891ce33d2a6c9e83cbd387bf17cc160759ddfa783ff7277aa83",
+      "protectedRecipeSha256": "ded0fa2fcfb7b47c52798e08664d273ed3319ba6223da9805e5c100d9d47214f",
+      "note": "crevettes déjà cuites à cuire doucement avant décorticage, sans protocole, dans une fiche sans cuisson. Citron ajouté pendant cuisson, en zeste/jus puis au dressage sans partage ; pâtes sans notice. Retrouver l’intention sans changer le poids de produit cuit en poids cru."
+    },
+    {
+      "id": "ge-oeufs-salade-pates-crudites",
+      "status": "blocked",
+      "sourceHash": "1c630d2f6961a8bb73e02e2278583ab94e979188986e5a4697ccb31cb0fa8c8d",
+      "reviewedHash": "1c630d2f6961a8bb73e02e2278583ab94e979188986e5a4697ccb31cb0fa8c8d",
+      "protectedRecipeSha256": "6ef3f7ba541124a367fafffb8cfa9b422107087f75ae6814abcec09b153095da",
+      "note": "croûte de parmesan demandée pendant la cuisson d’œufs ensuite refroidis et écalés, sans méthode de dorure. Parmesan répété en copeaux sans partage, pâtes sans notice et basilic en double libellé. Ne pas remplacer les œufs en coquille par une omelette pour former cette croûte."
+    },
+    {
+      "id": "ge-pois-chiches-salade-pates-crudites",
+      "status": "blocked",
+      "sourceHash": "4cb2838e640780105144f8524b98a358bec383421ab2c4bfae8b03ce73047f8d",
+      "reviewedHash": "4cb2838e640780105144f8524b98a358bec383421ab2c4bfae8b03ce73047f8d",
+      "protectedRecipeSha256": "9b76693a643572ff464f6d2a9e5b45bc08708e600c92881f941184dd28a6518e",
+      "note": "cuisson non identifiée et repos de deux minutes placés avant rinçage des pois chiches, dans une fiche sans cuisson demandant de cuire les pâtes. Feta/menthe dressées deux fois sans partage ; notice des pâtes absente. Retrouver l’organisation, sans inventer une cuisson des pois chiches en boîte."
+    },
+    {
+      "id": "ge-poulet-salade-lentilles-carottes",
+      "status": "blocked",
+      "sourceHash": "2212a86ceecb2a0595f9f68a6c37c6ed9bac45ed72fd8c02c013cad90ddf7c38",
+      "reviewedHash": "2212a86ceecb2a0595f9f68a6c37c6ed9bac45ed72fd8c02c013cad90ddf7c38",
+      "protectedRecipeSha256": "e814db1e8385956b95fd93b6c674030158f244bc914f04d152587ef1dc9f2c95",
+      "note": "saisie puis infusion hors feu sans graisse, temps ou récipient dans une salade sans cuisson de poulet déjà cuit. Sauce citron confit/estragon séparée au service sans articulation avec la vinaigrette. Préserver les lentilles et le poulet déjà cuits ; ne pas transformer en plat mijoté."
+    },
+    {
+      "id": "ge-dinde-salade-lentilles-carottes",
+      "status": "blocked",
+      "sourceHash": "7b6c54a655e0367d4e37038541a94514e2c3674854832362a1014df10c90316c",
+      "reviewedHash": "7b6c54a655e0367d4e37038541a94514e2c3674854832362a1014df10c90316c",
+      "protectedRecipeSha256": "b262a410e7ec31f0e756b98b40d15964eaf8381daf4f3b667a03a8ed09b7cd37",
+      "note": "saisie et sauce montée dans les sucs dans une fiche sans cuisson ; graisse, origine de la cuillerée de jus et état des tranches de dinde absents. Sauce moutardée non raccordée à la vinaigrette. Ne pas inventer un fond ou du bouillon pour remplacer les sucs."
+    },
+    {
+      "id": "ge-jambon-salade-lentilles-carottes",
+      "status": "blocked",
+      "sourceHash": "a19c1c5ef4c390d211c58935991bfb799533ae56b4171550b728a0b12390642f",
+      "reviewedHash": "a19c1c5ef4c390d211c58935991bfb799533ae56b4171550b728a0b12390642f",
+      "protectedRecipeSha256": "2b4fde028997b9edd7fb85e19097cc5162afe0e0459898dfa1b0e2adf32dd143",
+      "note": "braisage du jambon et deux déglaçages au cidre sans partage ni graisse, dans une salade sans cuisson. Réduction de trois minutes non raccordée à la vinaigrette. Garder les lentilles explicitement cuites et le braisage comme intention à vérifier, sans doubler le cidre."
+    },
+    {
+      "id": "ge-thon-salade-lentilles-carottes",
+      "status": "blocked",
+      "sourceHash": "e29e5717ced1dc711f9bb49ab2fce4d376ea37634f9df1ea47f8b0bff31fd020",
+      "reviewedHash": "e29e5717ced1dc711f9bb49ab2fce4d376ea37634f9df1ea47f8b0bff31fd020",
+      "protectedRecipeSha256": "da1bc33b110e3d675a695ec2def9d80a292d5d6a49c187bda78b1ee0155a6dbb",
+      "note": "citron du déglaçage absent ; thon en boîte demandé snacké avant égouttage dans une fiche sans cuisson. Graisse et jus des câpres inconnus ; persil en ingrédient composé puis séparé. Ne pas modifier le thon en conserve ou remplacer les sucs par une vinaigrette supposée."
+    },
+    {
+      "id": "ge-saumon-fume-salade-lentilles-carottes",
+      "status": "blocked",
+      "sourceHash": "348cdf547916521a7f1d9448dcd4d5ad56d8d45d99ed06d2899e15df64c1a6c5",
+      "reviewedHash": "348cdf547916521a7f1d9448dcd4d5ad56d8d45d99ed06d2899e15df64c1a6c5",
+      "protectedRecipeSha256": "43752ceae6a35e927d3269c477c2614c6fa9014ca440072e1cfe43e32f8813de",
+      "note": "feu vif avant découpe du saumon fumé sans graisse ni durée, incompatible avec la catégorie sans cuisson. Citron en pesto puis quartier et pesto répété sans partage. Préserver le produit fumé et les lentilles cuites, sans leur imposer une cuisson nouvelle."
+    },
+    {
+      "id": "ge-crevettes-salade-lentilles-carottes",
+      "status": "blocked",
+      "sourceHash": "328ecfadcb72e954433592a835f792b613c2b1662cf62865e65a483c9a4f87d7",
+      "reviewedHash": "328ecfadcb72e954433592a835f792b613c2b1662cf62865e65a483c9a4f87d7",
+      "protectedRecipeSha256": "57c45d82d6fd87224c4125cf9486452ba8b3f0c112bdfded1fa6613c76d43371",
+      "note": "cuisson douce non définie avant décorticage de crevettes déjà cuites dans une fiche sans cuisson. Citron répété pendant cuisson, en zeste/jus puis au service sans partage. Retrouver le protocole sans remplacer le poids cuit des crevettes ou recuire les lentilles."
+    },
+    {
+      "id": "ge-oeufs-salade-lentilles-carottes",
+      "status": "blocked",
+      "sourceHash": "1704af8671814d402c010f90d2d64d86331a9906732d46ca483c2bb97dce3b1a",
+      "reviewedHash": "1704af8671814d402c010f90d2d64d86331a9906732d46ca483c2bb97dce3b1a",
+      "protectedRecipeSha256": "24df8362542bc37e9b3c806c23ad3558b66f4da988945b3dcbd9aa297c98608e",
+      "note": "comté demandé filant pendant la cuisson d’œufs refroidis puis écalés ; portion dorée sans protocole. Aucun aliment à cuire ne permet de rattacher ce fromage fondu aux lentilles déjà cuites et crudités. Préserver les œufs en coquille, sans inventer une omelette ou un gratin."
+    },
+    {
+      "id": "ge-pois-chiches-salade-lentilles-carottes",
+      "status": "blocked",
+      "sourceHash": "8f88b16eb23c0bad85f950fb6354ac0e5105c5e4a157ab52695633a9670514c0",
+      "reviewedHash": "8f88b16eb23c0bad85f950fb6354ac0e5105c5e4a157ab52695633a9670514c0",
+      "protectedRecipeSha256": "0bfd2c7179ed8304cf417f108df1b3dc5b1e8646f7148a21cc57c93180239591",
+      "note": "origan non listé ; sauce tomate/olives mijotée dans une salade sans cuisson. Tomates fraîches et coulis non affectés entre crudités et sauce, olives répétées sans partage. Garder les lentilles cuites et les carottes râpées sans les transformer en garniture mijotée."
+    },
+    {
+      "id": "ge-poulet-salade-quinoa-legumes",
+      "status": "blocked",
+      "sourceHash": "af1f9ba61774cecf53ed7da67f5d7bed98847eb2181145e873dce60f19c41e80",
+      "reviewedHash": "af1f9ba61774cecf53ed7da67f5d7bed98847eb2181145e873dce60f19c41e80",
+      "protectedRecipeSha256": "5fdb963b0fff2952b967500c8cf8a0bb9686ca3eb99c7f461659c7a037fb7b33",
+      "note": "compotée et jus de tomate demandés alors que seules des tomates séchées sont listées. Légumes rôtis et quinoa à cuire malgré la catégorie sans cuisson ; graisse, découpe et notice absentes. Poulet déjà cuit, olives répétées et trois dernières minutes non raccordées : ne pas inventer une sauce fraîche."
+    },
+    {
+      "id": "ge-dinde-salade-quinoa-legumes",
+      "status": "blocked",
+      "sourceHash": "99d08f497019261c52380576b7851097249e592e7c049d1537f7042424c7f7b6",
+      "reviewedHash": "99d08f497019261c52380576b7851097249e592e7c049d1537f7042424c7f7b6",
+      "protectedRecipeSha256": "b0bd13256c81c9a666f1def2bfa708109cb4da483dfec2c0e42de962da804f6f",
+      "note": "orange réduite puis déglacée à nouveau sans partage ni sucs identifiés. Quinoa à cuire et légumes rôtis dans une fiche sans cuisson ; graisse, découpe, notice et état de dinde absents. Ne pas transformer la réduction en jus cru ou choisir une dose d’orange pour chaque ajout."
+    },
+    {
+      "id": "ge-jambon-salade-quinoa-legumes",
+      "status": "blocked",
+      "sourceHash": "e07a11551a3862850a375e80a3c430672e8388091334a54a3ecb319a83cdc30a",
+      "reviewedHash": "e07a11551a3862850a375e80a3c430672e8388091334a54a3ecb319a83cdc30a",
+      "protectedRecipeSha256": "2a5c47aa0c65ff0de47b451e0c34d0f337f236273b9730deaebb6c0741d99dc1",
+      "note": "ail demandé rôti sans protocole ; saisie et arrosage du jambon sans graisse ou jus identifié dans une fiche sans cuisson. Légumes pourtant rôtis, quinoa sans notice et herbes en deux libellés. Ne pas supposer l’ail cuit avec les légumes ni ajouter une poêle par défaut."
+    },
+    {
+      "id": "ge-thon-salade-quinoa-legumes",
+      "status": "blocked",
+      "sourceHash": "8c013d105edec42c48577918dffd5460d3580cb02bb2fe5ddf13a662f6a95027",
+      "reviewedHash": "8c013d105edec42c48577918dffd5460d3580cb02bb2fe5ddf13a662f6a95027",
+      "protectedRecipeSha256": "675bfab0ad50c29898cd06768cb25a9e18d46e274cca00088b293ca84b975a95",
+      "note": "poivron déjà rôti avec la courgette puis demandé grillé et ajouté encore, sans partage ni protocole supplémentaire. Catégorie sans cuisson contradictoire, graisse et notice du quinoa absentes. Les deux minutes couvertes sont un repos : ne pas inventer une deuxième cuisson du même poivron."
+    },
+    {
+      "id": "ge-saumon-fume-salade-quinoa-legumes",
+      "status": "blocked",
+      "sourceHash": "65027bd9f37db5fe0444f28f54a04f907e7b66a1861fa4dfb889ab417109afb6",
+      "reviewedHash": "65027bd9f37db5fe0444f28f54a04f907e7b66a1861fa4dfb889ab417109afb6",
+      "protectedRecipeSha256": "76ee5fa4745ff65f1f29a5e6e75a06dc9a685f43caf1fb0957403d915f1fcb70",
+      "note": "cuisson douce du saumon fumé sans protocole, légumes rôtis et quinoa à cuire malgré la catégorie sans cuisson. Citron répété pendant cuisson, en zeste/jus, à l’assemblage puis au service sans partage ; graisse des légumes absente. Préserver le saumon fumé sans le remplacer par des pavés crus."
+    },
+    {
+      "id": "ge-crevettes-salade-quinoa-legumes",
+      "status": "blocked",
+      "sourceHash": "ebaf44ab983c895469475e953d40a442358ccfa324aa999bca70f8b355f8c03f",
+      "reviewedHash": "ebaf44ab983c895469475e953d40a442358ccfa324aa999bca70f8b355f8c03f",
+      "protectedRecipeSha256": "b1332ace7bff2bef1885f4829cc2ffbe6f3eb7d1e1a14279160ab1e623f8fc5b",
+      "note": "fenouil coloré avec des crevettes déjà cuites puis demandé en finition fraîche ; orange en jus et quartiers sans partage. Catégorie sans cuisson malgré légumes rôtis et quinoa à cuire ; graisse et découpes absentes. Retrouver la part crue/cuite sans ajouter un rôtissage du fenouil non décrit."
+    },
+    {
+      "id": "ge-oeufs-salade-quinoa-legumes",
+      "status": "blocked",
+      "sourceHash": "770e693cd74950b5584aae624355ea6e040bf9fc7cd775eaab83798911853a69",
+      "reviewedHash": "770e693cd74950b5584aae624355ea6e040bf9fc7cd775eaab83798911853a69",
+      "protectedRecipeSha256": "6724840536e2ede3aea43ad0a447508e4484b8235429e359cff4825cdd4ff898",
+      "note": "feta émiettée sur les œufs puis à l’assemblage et au dressage sans partage ; repos placé avant leur cuisson. Four à 200 °C demandé pour les légumes malgré le seul appareil casserole ; graisse, découpe et notice du quinoa absentes. Ne pas multiplier la feta ni supprimer le rôtissage pour respecter le filtre."
+    }
+  ]
+}

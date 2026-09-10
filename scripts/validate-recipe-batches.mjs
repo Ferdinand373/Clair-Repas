@@ -7,7 +7,7 @@ import {recipeSource} from './recipe-source.mjs';
 import {recipeHash} from './validate-recipe-editorial.mjs';
 const root=resolve(dirname(fileURLToPath(import.meta.url)),'..');
 const {code,recipes,editorial}=recipeSource(readFileSync(resolve(root,'index.html'),'utf8'));
-const batchNumbers=['02','03','04','05','06','07','08','09','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31','32','33','34','35','36','37','38'];
+const batchNumbers=['02','03','04','05','06','07','08','09','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31','32','33','34','35','36','37','38','39'];
 const fixture={recipes:batchNumbers.flatMap(number=>JSON.parse(readFileSync(resolve(root,`scripts/recipe-editorial-batch-${number}.fixture.json`),'utf8')).recipes)};
 const slice=(a,b)=>code.slice(code.indexOf(a),code.indexOf(b,code.indexOf(a)+a.length));
 const context={window:{},$:()=>({value:'8'}),MEAL_TYPES:['mid','eve'],recipeRole:r=>r.role||r.course||'dish',isFavorite:()=>false,recipeFeedbackHTML:()=>'',recipePersonalNoteHTML:()=>''};
@@ -541,7 +541,7 @@ Object.assign(ingredients,{
   e76:['quinoa déjà cuit','poulet déjà cuit','tomates','concombre','avocat','vinaigrette'],
   e79:['tomates','chair à saucisse','bœuf haché','pain rassis','lait','oignon','ail','persil','huile','riz','sel et poivre']
 });
-assert.equal(fixture.recipes.length,1289);
+assert.equal(fixture.recipes.length,1339);
 let quantityChecks=0,timerCount=0;
 for(const record of fixture.recipes){
   const recipe=recipes.find(r=>r.id===record.id);
@@ -1487,6 +1487,27 @@ assert.match(editorial['ge-pois-chiches-potee-legere'].reviewNote,/préserver le
 assert.match(editorial['ge-crevettes-gingembre-riz'].reviewNote,/citron vert.*sans inventer un citron jaune/);
 assert.match(editorial['ge-tofu-gingembre-riz'].reviewNote,/délayer sans nature ni quantité de liquide/);
 console.log(`✓ Batch 38: ${reservedQuantityChecks38} original ingredient renders; 50 unchanged culinary objects, 300 visible reservations and original timer attachments preserved`);
+const batch39=JSON.parse(readFileSync(resolve(root,'scripts/recipe-editorial-batch-39.fixture.json'),'utf8')).recipes;
+assert.equal(batch39.length,50);assert.ok(batch39.every(r=>r.status==='blocked'));
+let reservedQuantityChecks39=0;
+for(const count of [1,2,3,4,5,8])for(const record of batch39){
+  const r=recipes.find(r=>r.id===record.id),output=context.recipeHTML(r,{people:count,dayIndex:1,mealType:'eve'});
+  assert.ok(output.includes(context.escapeHTML(editorial[record.id].reviewNote)));
+  assert.doesNotMatch(output,/\{\{|undefined|NaN/);
+  for(const ingredient of r.i){
+    const q=ingredient.q==null?null:ingredient.q*count/(r.servings||2);
+    assert.ok(output.includes('>'+context.ingredientText(ingredient,q,count)+'</li>'));
+    reservedQuantityChecks39++;
+  }
+  const attached=[...output.matchAll(/data-step-index="(\d+)" data-timer-minutes="(\d+)"/g)].map(([,step,min])=>[+step,+min]);
+  assert.deepEqual(attached,r.p.flatMap((step,index)=>Array.from(context.stepTimerDurations(step)).map(min=>[index,min])));
+}
+assert.match(editorial['ge-poulet-curry-chou-fleur'].reviewNote,/citron.*non listé.*yaourt partagé.*sans doses/);
+assert.match(editorial['ge-oeufs-salade-pommes-haricots'].reviewNote,/comté.*filant.*écalés.*sans transformer en omelette/);
+assert.match(editorial['ge-jambon-salade-riz-concombre'].reviewNote,/huile et vinaigre.*vinaigrette.*absents/);
+assert.match(editorial['ge-poulet-salade-lentilles-carottes'].reviewNote,/lentilles et le poulet déjà cuits/);
+assert.match(editorial['ge-thon-salade-quinoa-legumes'].reviewNote,/poivron déjà rôti.*deux minutes couvertes sont un repos/);
+console.log(`✓ Batch 39: ${reservedQuantityChecks39} original ingredient renders; 50 unchanged culinary objects, 300 visible reservations and original timer attachments preserved`);
 const corrected=fixture.recipes.filter(r=>r.status==='corrected').length;
 const unchanged=fixture.recipes.filter(r=>r.status==='unchanged').length;
 console.log(`✓ Batches ${batchNumbers.join('/')}: ${fixture.recipes.length} individual review records, ${corrected} corrected, ${unchanged} unchanged, ${fixture.recipes.length-corrected-unchanged} blocked with original content preserved; ${timerCount} manually checked timers`);

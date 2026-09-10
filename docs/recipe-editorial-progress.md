@@ -430,6 +430,18 @@ Limite de contrôle en navigateur : malgré rechargement et bouton « Vérifier 
 
 **Cumul : 1 304 identifiants examinés, 378 corrigés, 916 bloqués, 10 conformes sans réécriture, 249 à examiner.** Zéro erreur éditoriale, 4 873 avertissements ; 2 448 rendus d’ingrédients réservés et 300 réserves visibles ajoutés. Les 24 commandes passent ; Livre et mode cuisine long inspectés après défilement aux trois formats simulés. Publication à consigner ; les autres recettes suivent.
 
+## Publication du lot 38
+
+`ecd947284e177453323754a6e1b878f75db07418` publié sur `main`. Tests `34426373314`, Pages `34426372808` et déploiement `6362787861` réussis. HTTPS 200 avec HSTS, fichiers identiques au commit : index `8abef1e913a3c5c53211da1fa0f82b01421c582118af056241787c5524eb7646`, service worker `b8512afce16465faed8278c0aabce641eedc251a522bf97683671af1a912a051`.
+
+Révision activée automatiquement en navigateur `sha256:a86e8ae70a86f27f776d301efed7d16c21b3102a14ef631e9f2edac27feda498`. La page de diagnostic publique indique HEALTHY, ce même cache actif et sain, sans échec ni rollback. Le retard observé sur l’onglet du lot 37 est ainsi dépassé par cette livraison cumulative, sans effacement ou modification du mécanisme de cache. Dinde/courge/polenta vérifiée en production à deux personnes : 260 g, 500 g, 110 g, pesto une cuillère ; réserve explicite, minuteurs 12/18, cuisson au four conservée. Les réserves du lot 37 sont également comprises dans cette révision. Aucun programme, favori, avis, note ou stockage effacé.
+
+## Lot 39 — cinquante variantes de curry et salades-repas
+
+[Journal et décisions individuelles](recipe-editorial-batch-39.md). 50 réservées, aucune correction culinaire ou fiche conforme sans réécriture. Cuissons incompatibles avec les salades annoncées sans cuisson, fromages fondus autour d’œufs en coquille, vinaigrettes et sauces incomplètes signalés précisément. Objets culinaires, appareils et poids déjà cuits conservés.
+
+**Cumul : 1 354 identifiants examinés, 378 corrigés, 966 bloqués, 10 conformes sans réécriture, 199 à examiner.** Zéro erreur éditoriale, 4 707 avertissements ; 2 388 rendus d’ingrédients réservés et 300 réserves visibles ajoutés. Les 24 commandes passent ; Livre et mode cuisine long inspectés après défilement aux trois formats simulés effectivement mesurés. Publication à consigner ; les autres recettes suivent.
+
 ## Limites des vérifications
 
 Les tests de structure, quantité, minuteurs, stockage simulé et rendu ne sont pas des essais culinaires. Les formats iPhone/PWA sont simulés, sauf mention explicite d’un appareil physique. Le total de fiches à examiner ne doit jamais être remplacé par le nombre de fiches auxquelles le style commun a été appliqué.
