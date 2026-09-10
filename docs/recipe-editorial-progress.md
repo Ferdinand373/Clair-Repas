@@ -368,6 +368,16 @@ P02 publié : `c87dc373c29cae1d6edb9c2ac6191004c69ba52a`, tests `34390827874` et
 
 **Cumul : 1 054 identifiants examinés, 353 corrigés, 691 bloqués, 10 conformes sans réécriture, 499 à examiner.** Zéro erreur éditoriale, 5 843 avertissements ; 548 minuteurs et 12 906 contrôles d’ingrédients des lots 02–32. Ce lot ajoute 1 278 rendus d’ingrédients réservés et 144 réserves visibles. Les 24 commandes passent ; Livre et mode cuisine inspectés aux trois formats simulés après défilement. Publication à consigner après contrôle HTTPS. Les autres plats suivent.
 
+## Publication du lot 32
+
+`8ea537709baa60c781d1011f1b1845a99adb24da` publié sur `main`. Tests `34421534242`, Pages `34421533783` et déploiement `6362017847` réussis. HTTPS 200 et fichiers identiques au commit : index `2602eda0370b5990b62309e31e0670e2d1f523967e1c2de3e1d405fff5d28563`, service worker `b5625d2d1ad258c99627d3a869b2eb6d63592b870a1248c8cdc0471048021817`. Après activation automatique normale, révision chargée `sha256:90cbeaaea514fcf5b488ffd06091e4d05280ad5f1098dca9de6f828c85a38205`. Crozets vérifiés à deux personnes : 120 g de beaufort répartis 80/40 g, crème 15 cl et lait 10 cl réunis, paquet pour les pâtes, minuteurs 12/20/5 correctement attachés et four à 195 °C conservé. Aucun effacement de données.
+
+## Lot 33 — trente plats végétariens et de réception
+
+[Journal, sources et décisions](recipe-editorial-batch-33.md). 2 corrigées, 28 réservées, aucune conforme sans réécriture. Spätzle au fromage clarifiés avec poivre source rétabli, beurre calculé et réchauffage selon produit ; involtini avec parmesan réparti et farce contrôlée. Les lacunes des autres plats sont explicites, sans modifier leurs objets culinaires.
+
+**Cumul : 1 084 identifiants examinés, 355 corrigés, 719 bloqués, 10 conformes sans réécriture, 469 à examiner.** Zéro erreur éditoriale, 5 723 avertissements ; 552 minuteurs et 12 990 calculs d’ingrédients des lots 02–33. Ce lot ajoute 1 386 rendus d’ingrédients réservés et 168 réserves visibles. Les 24 commandes passent ; Livre et mode cuisine vérifiés aux trois formats simulés après défilement. Publication à consigner après contrôle HTTPS. Les autres plats suivent.
+
 ## Limites des vérifications
 
 Les tests de structure, quantité, minuteurs, stockage simulé et rendu ne sont pas des essais culinaires. Les formats iPhone/PWA sont simulés, sauf mention explicite d’un appareil physique. Le total de fiches à examiner ne doit jamais être remplacé par le nombre de fiches auxquelles le style commun a été appliqué.

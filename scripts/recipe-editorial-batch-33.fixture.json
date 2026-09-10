@@ -1,0 +1,262 @@
+{
+  "baselineCommit": "8ea537709baa60c781d1011f1b1845a99adb24da",
+  "batch": "33",
+  "recipes": [
+    {
+      "id": "veg-final-36",
+      "status": "blocked",
+      "sourceHash": "35dc07b365bb7d2576e7eb585e5f392dae99ff5dc1873d8681837b25f719b859",
+      "reviewedHash": "35dc07b365bb7d2576e7eb585e5f392dae99ff5dc1873d8681837b25f719b859",
+      "protectedRecipeSha256": "bfa471737d4ea81e1fb6500534dcab00840bc11ea787b53d384d7a10baf6a45e",
+      "note": "huile du suage et fond d’huile de friture absents, comme salade ou sauce tomate du service. Espèce des champignons, calibre des huit boules figées et contrôle du centre pané à l’œuf non définis. Le refroidissement complet du riz n’a pas de protocole ni de durée dans le total annoncé. Conserver risotto refroidi puis panure, sans remplacer par du riz fraîchement cuit ni inventer un bain."
+    },
+    {
+      "id": "veg-final-37",
+      "status": "blocked",
+      "sourceHash": "398410a0112e3a8477d4c8dd9baaa5ef820931f998784aedf1daf92364c61354",
+      "reviewedHash": "398410a0112e3a8477d4c8dd9baaa5ef820931f998784aedf1daf92364c61354",
+      "protectedRecipeSha256": "13544efa993ffd25ba2ba4ae548daa0861bc3a38c125b6a69b7c54cf1010845d",
+      "note": "les 80 g de chapelure deviennent assez pour façonner, sans affectation du reste. Huit boulettes fixes, calibres des aubergines et cuisson du cœur à l’œuf non définis ; le total de cinquante-cinq minutes ne sépare pas les phases simultanées. La source ne prévoit aucune huile de rôtissage : ne pas en ajouter par automatisme."
+    },
+    {
+      "id": "veg-final-38",
+      "status": "blocked",
+      "sourceHash": "ad6d30959d1ae135eafa5edfbddf8b7124b4308d5bb069a66b1ea7fe2a6a39da",
+      "reviewedHash": "ad6d30959d1ae135eafa5edfbddf8b7124b4308d5bb069a66b1ea7fe2a6a39da",
+      "protectedRecipeSha256": "d438c7a0297a4549cbdc8561b5da5c4220bcfd64cd78e2fcf5324f92a51fd65b",
+      "note": "le peu de bouillon des lentilles est absent de la liste et non dosé ; aucune graisse n’est affectée aux légumes revenus, tout le beurre allant à la purée. Espèce des champignons et découpe des pommes de terre manquent. Conserver suage, farce mijotée et purée distincts, sans transformer le suage en cuisson au bouillon."
+    },
+    {
+      "id": "veg-final-39",
+      "status": "blocked",
+      "sourceHash": "a8a7a523125635024a4860406b44374d1d662ce4c5410efe4240ee2c17609fe2",
+      "reviewedHash": "a8a7a523125635024a4860406b44374d1d662ce4c5410efe4240ee2c17609fe2",
+      "protectedRecipeSha256": "06ccfc6c48352c16970eb05e2fb399bd1461bc81d8e30bf73c04108ed48be71b",
+      "note": "aucune matière grasse n’est affectée aux légumes revenus, champignons non identifiés. Les 30 cl de bouillon peuvent ne pas atteindre mi-hauteur selon le plat et le nombre de rouleaux ; sa taille manque. Cuisson du sarrasin non détaillée. Conserver blanchiment, farce revenue puis cuisson couverte et découverte, sans verser le bouillon dans le suage à la place d’une graisse."
+    },
+    {
+      "id": "veg-final-40",
+      "status": "corrected",
+      "sourceHash": "caa6c16d8d1fe9479847919d70fac0c7292e07d38628365f5065ff8d3610f477",
+      "reviewedHash": "e561371864525c7c228ac7e652350e50e4d427d8015832915e3666ad097bcab8",
+      "protectedRecipeSha256": "a6eb0dfb3534373adca1b68f43b4dab3f0b05fc325b9cf9e03299c0a2eae8e2e",
+      "beforeSteps": [
+        "Émincer les oignons et les faire dorer 15 à 18 minutes dans huile et moitié du beurre.",
+        "Cuire ou réchauffer les spätzle puis les égoutter.",
+        "Les faire revenir 3 minutes dans le reste du beurre.",
+        "Ajouter le fromage en deux fois à feu doux et mélanger jusqu’à ce qu’il fonde.",
+        "Couvrir 2 minutes pour une texture filante.",
+        "Ajouter oignons dorés, ciboulette et poivre."
+      ],
+      "note": "Poivre explicitement présent dans la source rétabli sans dose inventée. Deux parts égales de beurre calculées ; fromage incorporé en deux ajouts successifs, sans lui imposer un nouveau ratio. Notice des spätzle prioritaire : pas de pochage universel ni de graisse supplémentaire, et les trois minutes indicatives de finition ne sont pas certifiées comme réchauffage suffisant de tout produit froid."
+    },
+    {
+      "id": "veg-final-41",
+      "status": "blocked",
+      "sourceHash": "0b292a99d873bb5397d69a2b30e448d6856e0bd5af6185bb5756e82ad5c307d0",
+      "reviewedHash": "0b292a99d873bb5397d69a2b30e448d6856e0bd5af6185bb5756e82ad5c307d0",
+      "protectedRecipeSha256": "abaa6c68f0473267f70525c30db6e3fd9954d6482e079413f24d65427758fc1f",
+      "note": "le sel de la semoule est absent de la liste. L’huile apparaît seulement en filet sur la semoule, sans quantité pour faire revenir l’oignon. Le volume égal d’eau nécessite de vérifier le type de semoule et sa notice, sans imposer un poids d’eau égal aux grammes de semoule. Préserver les ajouts successifs des légumes et la semoule séparée."
+    },
+    {
+      "id": "veg-final-42",
+      "status": "blocked",
+      "sourceHash": "9a9b30bed282797948e43389823e7d9868e24246dfdbc3cb945f725a9b85f581",
+      "reviewedHash": "9a9b30bed282797948e43389823e7d9868e24246dfdbc3cb945f725a9b85f581",
+      "protectedRecipeSha256": "73299e2ecd8bd50fc269be38044da21fc8c1a613c62a20970382824cc7603f28",
+      "note": "huile de dorure, sel, poivre et salade de service absents de la liste. Huit keftas restent figées sans dimensions et leur cœur à l’œuf n’est pas contrôlé. Le citron n’est pas décrit comme jus. Conserver écrasement grossier, repos et poêle, sans les mixer en pâte ni ajouter une sauce non prévue."
+    },
+    {
+      "id": "veg-final-43",
+      "status": "blocked",
+      "sourceHash": "86363e00a6c788775435292db16229ac5263ae045b0c5cb6fcc26fd487356c5a",
+      "reviewedHash": "86363e00a6c788775435292db16229ac5263ae045b0c5cb6fcc26fd487356c5a",
+      "protectedRecipeSha256": "91a276c5c00178b641aea2b7f2fdb90cb8918afa9224d3cc4a093629460f4370",
+      "note": "diamètre et profondeur du moule, format de pâte et règle de nombre de tartes selon les portions manquent. Le poivre de la liaison est absent de la liste, la cuisson du centre aux œufs n’est pas contrôlée. Le total couvre à peine oignons puis four. Conserver fondue d’oignons et tarte sans précuisson de pâte ajoutée arbitrairement."
+    },
+    {
+      "id": "veg-final-44",
+      "status": "blocked",
+      "sourceHash": "3a30b91f5dd0574ea249a58d449f20c1836b364b27c9b978ebfe1f8d631c0dec",
+      "reviewedHash": "3a30b91f5dd0574ea249a58d449f20c1836b364b27c9b978ebfe1f8d631c0dec",
+      "protectedRecipeSha256": "efdd229522588d349e2da33e3f650aae323d8efce9b9cf09c9c81bd4c1b4efad",
+      "note": "sel du pochage et farine éventuelle de façonnage absents de la liste. Épaisseur de pâte, dimensions des ravioli et dose des petites noix de farce manquent pour valider trois à quatre minutes. La courge est déjà rôtie : ne pas compter 300 g de courge crue ni ajouter une nouvelle cuisson au four."
+    },
+    {
+      "id": "veg-final-45",
+      "status": "blocked",
+      "sourceHash": "04168598121bb2a3fa6d2dee102ddf5e0a1b774f278f03b140b65fec4c041552",
+      "reviewedHash": "04168598121bb2a3fa6d2dee102ddf5e0a1b774f278f03b140b65fec4c041552",
+      "protectedRecipeSha256": "5bcf668b3f2fc9ef513f8bd017115246bd2167ab11f9325f50b0f22f51e98c0e",
+      "note": "la graisse du suage de l’oignon n’est pas définie, tout le beurre étant destiné à la béchamel. Épaisseur des aubergines et durée de la béchamel manquent. La source ne prévoit pas d’huile de rôtissage. Conserver aubergines rôties, lentilles mijotées et béchamel distinctes, sans faire cuire l’oignon directement dans la tomate."
+    },
+    {
+      "id": "veg-final-46",
+      "status": "blocked",
+      "sourceHash": "810d6508ded0cf67e819b6e7f538b15e84b03dbf39b1984550e358206f919538",
+      "reviewedHash": "810d6508ded0cf67e819b6e7f538b15e84b03dbf39b1984550e358206f919538",
+      "protectedRecipeSha256": "a19800b88ca175eec739fe43e8d6565d5d2f04b1e7b69c388aaefac680a6afb7",
+      "note": "graisse de fonte de l’oignon et 25 cl d’eau absents de la liste ; forme du gingembre non définie et riz servi sans préparation. Les cinq minutes de crème sont comprises dans les trente-cinq à quarante minutes, pas ajoutées. Conserver lentilles et haricots déjà cuits, sans imposer le trempage et la cuisson de légumes secs crus."
+    },
+    {
+      "id": "veg-final-47",
+      "status": "blocked",
+      "sourceHash": "aef7cf451e405dd1f70660d54ad73df954cadcf35e590b3a8c4cbfd868361143",
+      "reviewedHash": "aef7cf451e405dd1f70660d54ad73df954cadcf35e590b3a8c4cbfd868361143",
+      "protectedRecipeSha256": "0cc21cd533008fa326e3e8b66150a0c054b17d0be85dd86bf198317cca3dd23a",
+      "note": "aucune matière grasse n’est listée pour dorer champignons et légumes ; les espèces du mélange ne sont pas connues. Préparation des pommes de terre vapeur et retrait du bouquet manquent. Conserver la saisie en plusieurs fois, la réserve et le retour tardif des champignons, sans tout braiser dès le départ."
+    },
+    {
+      "id": "veg-final-48",
+      "status": "blocked",
+      "sourceHash": "bf42308fac62a5fcc05025fa671816ed4a6bb6650df64c25b9d9fe6dda57d2a5",
+      "reviewedHash": "bf42308fac62a5fcc05025fa671816ed4a6bb6650df64c25b9d9fe6dda57d2a5",
+      "protectedRecipeSha256": "5979670d703242b9395bd0721146e68fa93d7394ccb16e557f9482b39bb5496e",
+      "note": "sel du rôtissage absent de la liste ; quelques gouttes de citron n’affectent pas le demi-citron listé. Le petit céleri et les quartiers épais manquent de calibre. Conserver beurre noisette et noisettes chauffées une minute, sans ajouter automatiquement tout le citron ni changer le rôtissage en braisage."
+    },
+    {
+      "id": "veg-final-49",
+      "status": "blocked",
+      "sourceHash": "3aff82b1d9649311242193756ae14d4ee1b10489765a3e315c4d51e7351d1589",
+      "reviewedHash": "3aff82b1d9649311242193756ae14d4ee1b10489765a3e315c4d51e7351d1589",
+      "protectedRecipeSha256": "491f2e5e2e3749b6395da82ac46401637695b56a6896fea451650e22d14d81db",
+      "note": "poivre de la liaison absent, diamètre et profondeur du moule non définis alors que pâte et garniture varient avec les convives. Contrôle à cœur des œufs manquant. Conserver poireaux fondus au beurre et quiche sans précuisson de pâte ajoutée pour simplifier la validation."
+    },
+    {
+      "id": "veg-final-50",
+      "status": "blocked",
+      "sourceHash": "b7fe5f8139fee2bdb74c11f86b9b166a16e78782ed1469baf64612754fc4326e",
+      "reviewedHash": "b7fe5f8139fee2bdb74c11f86b9b166a16e78782ed1469baf64612754fc4326e",
+      "protectedRecipeSha256": "87dc54a4695ceb91b24c87852bb40848ecc08dbe0d6534a973f4fc484c3deb70",
+      "note": "toute la farine est mélangée à la pâte mais les mains doivent encore être farinées sans quantité réservée. Calibre des quenelles, temps de fonte des épinards et contrôle du centre à l’œuf manquent. Conserver ricotta égouttée, épinards pressés et pochage délicat, sans augmenter arbitrairement la farine ni transformer en gnocchi fermes."
+    },
+    {
+      "id": "veg-final-51",
+      "status": "blocked",
+      "sourceHash": "7f8dd06e6c9b5a60acb88df5c5afdabf8f60696448f1b5ac87a793130863bd3b",
+      "reviewedHash": "7f8dd06e6c9b5a60acb88df5c5afdabf8f60696448f1b5ac87a793130863bd3b",
+      "protectedRecipeSha256": "10d02d52e331beb206999ef60c6590b8f1d8e434f2831d83219c4c6373572e1b",
+      "note": "sel et poivre sont absents ; température très chaude de la socca, diamètre du support et épaisseur de pâte ne sont pas précisés. Le partage des deux cuillères d’huile laisse aussi la question du rôtissage des légumes sans huile : ne pas lui en affecter une part par invention. Conserver repos, plaque chauffée et gril final."
+    },
+    {
+      "id": "veg-final-52",
+      "status": "corrected",
+      "sourceHash": "483549900666c3236737ef9745a041a6b793b42e36be63bb95354e50867be5fc",
+      "reviewedHash": "2a27693dbad42922ebcb39439c7f31622f617bf904d2c8bc9bf3f231892d694a",
+      "protectedRecipeSha256": "e389241ddff3e9f1b604f41d9ac9e936e0206a65acbc94cb067324536a54224b",
+      "beforeSteps": [
+        "Couper les aubergines en longues tranches, les huiler légèrement et les rôtir 15 minutes à 210 °C.",
+        "Mélanger ricotta, œuf, moitié du parmesan et basilic.",
+        "Déposer une cuillerée de farce au bout de chaque tranche et rouler.",
+        "Verser le coulis dans un plat et ranger les rouleaux jointure dessous.",
+        "Ajouter le parmesan restant.",
+        "Cuire 20 à 25 minutes à 190 °C."
+      ],
+      "note": "Aubergines rôties à 210 °C puis rouleaux à 190 °C conservés. Tout le parmesan est réparti en deux parts égales calculées, huile uniquement sur les tranches. Toute la farce est distribuée entre elles sans cuillerée de taille inventée ni nombre fixe de rouleaux. Contrôle de la liaison à l’œuf à 71 °C ajouté selon FDA."
+    },
+    {
+      "id": "veg-final-53",
+      "status": "blocked",
+      "sourceHash": "4ea1ca4378223c383eeb0da08a9dfff8c2411dc3977066dc6e401b9e66deb353",
+      "reviewedHash": "4ea1ca4378223c383eeb0da08a9dfff8c2411dc3977066dc6e401b9e66deb353",
+      "protectedRecipeSha256": "f846f995025f55767d738fce1ebcd6369fe3a1842038dee7d4bd32f41cafbdda",
+      "note": "les 35 cl d’eau et la salade du service ne sont pas listés. Toute l’huile est dans la liste mais absente de la préparation, et le citron entier n’est pas décrit comme jus ou quartiers. Le volume pour lentilles puis boulgour demande vérification du produit ; ne pas cuire le boulgour séparément pour contourner ce point."
+    },
+    {
+      "id": "veg-final-54",
+      "status": "blocked",
+      "sourceHash": "efe3dfbd85c238dceb91ae07555a2a0d32dcab99a0df81468311ab923657b42e",
+      "reviewedHash": "efe3dfbd85c238dceb91ae07555a2a0d32dcab99a0df81468311ab923657b42e",
+      "protectedRecipeSha256": "339b10a299fcd8e0203f8f3073c3395f1cae8a96be680a20436ec31529ddcf9a",
+      "note": "l’huile est réservée à l’arrosage sans graisse affectée au suage des cœurs d’oignons et de la farce. Le calibre des gros oignons et la durée de cette farce ne sont pas définis. Le riz est déjà cuit : ne pas utiliser 120 g de riz cru ni ajouter une cuisson d’absorption inexistante."
+    },
+    {
+      "id": "veg-final-55",
+      "status": "blocked",
+      "sourceHash": "737e058212da15620c751450dca6b1d88c364a0c3134a8706328f90cb90832a8",
+      "reviewedHash": "737e058212da15620c751450dca6b1d88c364a0c3134a8706328f90cb90832a8",
+      "protectedRecipeSha256": "e0fcb528eded42c8ef4ee2e0a920f304d3600fe38ee3f24b7f9251568f65c4c0",
+      "note": "matière grasse de fonte de l’oignon, 15 cl d’eau et pain du service absents de la liste. Le tiers de haricots écrasés est à rendre mesurable selon les portions. Conserver les haricots déjà cuits et l’écrasement partiel sans faire une purée lisse ni ajouter une cuisson de haricots secs."
+    },
+    {
+      "id": "veg-final-56",
+      "status": "blocked",
+      "sourceHash": "3f1c5d56da9dab645eb2ec46a777cac6d0e022049379195cfadc373208551ce4",
+      "reviewedHash": "3f1c5d56da9dab645eb2ec46a777cac6d0e022049379195cfadc373208551ce4",
+      "protectedRecipeSha256": "6a5ad981441869802032f4535a39c0f08c83ef724e0719c084331985b7da76d5",
+      "note": "la fonte des poireaux n’a pas de graisse affectée ; l’huile des feuilles n’est pas répartie entre les couches. Trois feuilles dessous et trois dessus restent figées, sans format de plat ni règle de nombre de böreks. Le contrôle de la farce à l’œuf manque. Conserver le refroidissement des poireaux avant mélange et l’incision du dessus seulement."
+    },
+    {
+      "id": "veg-final-57",
+      "status": "blocked",
+      "sourceHash": "10425bc22b26938e32f17c6ca1f5714aafe81d4eb0a71ad32a2a914f97dffd6a",
+      "reviewedHash": "10425bc22b26938e32f17c6ca1f5714aafe81d4eb0a71ad32a2a914f97dffd6a",
+      "protectedRecipeSha256": "f00166352fd68b368b15f40f103ce8e2b32d954eef41e3858d1da81acf073090",
+      "note": "graisse du suage et 30 cl d’eau absents de la liste. Le type de semoule et son hydratation ne sont pas précisés ; découpes des légumes et durée des amandes manquent. Conserver les amandes grillées à sec, la semoule séparée et la courgette tardive, sans verser tous les légumes ensemble."
+    },
+    {
+      "id": "veg-final-58",
+      "status": "blocked",
+      "sourceHash": "41828dbd033fb5f0ceaf8aea1ffdd56f4514564d0fc993d733a88c6344c70ee1",
+      "reviewedHash": "41828dbd033fb5f0ceaf8aea1ffdd56f4514564d0fc993d733a88c6344c70ee1",
+      "protectedRecipeSha256": "6efb8e40323cba13f2273bcb1686b0d2c118ff30743cd6c261afca8a3e29befe",
+      "note": "graisse de dorure du tofu et du suage de la pâte de curry absente, ainsi que 10 cl d’eau. Le citron entier n’est pas réparti entre jus ou quartiers et les découpes ne sont pas précisées. Vérifier aussi la composition de la pâte de curry pour l’intitulé végétarien. Conserver le tofu doré puis réservé, sans le cuire seulement dans le lait de coco."
+    },
+    {
+      "id": "veg-final-59",
+      "status": "blocked",
+      "sourceHash": "54f747493ee0f40b812e2598a67fa1ec266f49553efefa2936f4d2a432136c02",
+      "reviewedHash": "54f747493ee0f40b812e2598a67fa1ec266f49553efefa2936f4d2a432136c02",
+      "protectedRecipeSha256": "99a156c096f91a9ea7872db16447f944960e97c42f65a93fe7fd4366ff5630c3",
+      "note": "graisse de dorure des champignons absente et espèces non identifiées. La fécule délayée n’a ni liquide ni volume affectés ; forme du tofu soyeux ferme à préciser pour le découper sans le casser. Préserver les deux options de pâte pimentée et le mijotage sans remuer fortement, sans ajouter une saisie du tofu."
+    },
+    {
+      "id": "veg-final-60",
+      "status": "blocked",
+      "sourceHash": "e142989ef5a124538bed501b808051796c2e2bf6992e7436cbf16d5f02f8a69d",
+      "reviewedHash": "e142989ef5a124538bed501b808051796c2e2bf6992e7436cbf16d5f02f8a69d",
+      "protectedRecipeSha256": "b5ae5da5ca7d27da15ef0c07669d792ff3872de591a7f5d5ec0c220d39c22408",
+      "note": "les espèces des champignons variés ne sont pas définies pour valider une dorure non minutée puis quatre minutes de sauce. Tout le beurre sert à dorer les champignons en plusieurs fois, sans préciser ce qui reste pour faire fondre l’oignon. Conserver ces saisies séparées, sans réduire le mélange à une espèce choisie arbitrairement."
+    },
+    {
+      "id": "bourgeois-08",
+      "status": "blocked",
+      "sourceHash": "0ec9dd1dbe09931ddc62d92ab5730530e2522f027a7c7ff5c57038d131745370",
+      "reviewedHash": "0ec9dd1dbe09931ddc62d92ab5730530e2522f027a7c7ff5c57038d131745370",
+      "protectedRecipeSha256": "47d2a406ab58e9795858c54e2301415bdbf22f0b55c9cf6defe1007d6a88ad73",
+      "note": "ordre d’enveloppement jambon puis duxelles ambigu pour former un rouleau dans le film ; matière grasse de saisie absente. Champignons non identifiés, épaisseur du filet, format de pâte et contrôle à cœur non définis ; rosé n’est pas une garantie sanitaire. Refroidissements et repos rendent le total incertain. Préserver la cuisson en croûte sans inventer le montage."
+    },
+    {
+      "id": "bourgeois-09",
+      "status": "blocked",
+      "sourceHash": "76c55f67ee8dc27f2472265b86239f7883ba83bd2b09f502a1cecf9d35b21524",
+      "reviewedHash": "76c55f67ee8dc27f2472265b86239f7883ba83bd2b09f502a1cecf9d35b21524",
+      "protectedRecipeSha256": "8d767ab0d65ab60aced07c64d47c243f12474bbfabdb04311c5b8c2015dafe07",
+      "note": "tout le beurre est utilisé pour le rôti, sans graisse affectée aux champignons revenus. Espèces des champignons, dimensions du rôti et répartition des huit tranches de chaque garniture entre les entailles manquent ; sel et poivre oubliés. Conserver premier rôtissage, repos puis montage sans couper entièrement le rôti."
+    },
+    {
+      "id": "bourgeois-10",
+      "status": "blocked",
+      "sourceHash": "e5a8ccebd83ac73ae6c96809a8294dfea9cdcf63186d90797da8af30ac99315f",
+      "reviewedHash": "e5a8ccebd83ac73ae6c96809a8294dfea9cdcf63186d90797da8af30ac99315f",
+      "protectedRecipeSha256": "24b54d9a07746230b7bce0bb4d59bf52a4407c5c04bed801644e9f2c340195b6",
+      "note": "pommes duchesse ou légumes glacés du service absents de la liste. Calibre des grenadins et contrôle à cœur manquent ; champignons non identifiés et assaisonnements listés oubliés. Conserver déglaçage au madère puis fond réduit, sans ajouter de crème ni remplacer le service par un accompagnement dosé arbitrairement."
+    },
+    {
+      "id": "bourgeois-11",
+      "status": "blocked",
+      "sourceHash": "281accaeca9bfdabe01d5aa0e52e4e8da0cde2b624742ba2afa9a408396d52d7",
+      "reviewedHash": "281accaeca9bfdabe01d5aa0e52e4e8da0cde2b624742ba2afa9a408396d52d7",
+      "protectedRecipeSha256": "c74ad72f6958e2bc240a310d432ec27bb7cd6385c108f99d9e6f8aff19c009f7",
+      "note": "les brisures de truffe proposées dans la liste ne se glissent pas en lamelles comme l’étape le demande. Les 40 cl de bouillon prélevés sont figés, le reste et les légumes filtrés sans destination. Immersion de la poularde selon calibre et récipient, retrait de ficelle et contrôle à cœur manquent. Conserver truffage sous peau et pochage doux sans rôtissage ajouté."
+    },
+    {
+      "id": "bourgeois-12",
+      "status": "blocked",
+      "sourceHash": "6031bee8b12833e08d28acd433cace5b227862b1378a3347de04eb9eb6fda350",
+      "reviewedHash": "6031bee8b12833e08d28acd433cace5b227862b1378a3347de04eb9eb6fda350",
+      "protectedRecipeSha256": "ccecea678affdfc6b9763151af07fc342543cc2011393dbc28f7daa77aa96e3d",
+      "note": "les morilles réhydratées arrivent seulement pour dix minutes de sauce puis cinq minutes avec la poularde : ce protocole n’atteint pas les vingt minutes minimales recommandées par Tox Info Suisse. Durée, eau et conditions de réhydratation, poids de la poularde et contrôle à cœur manquent. Conserver la fricassée sans forte coloration ; ne pas prolonger arbitrairement la sauce ou ajouter une précuisson non établie."
+    }
+  ]
+}

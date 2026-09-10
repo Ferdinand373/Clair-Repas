@@ -7,7 +7,7 @@ import {recipeSource} from './recipe-source.mjs';
 import {recipeHash} from './validate-recipe-editorial.mjs';
 const root=resolve(dirname(fileURLToPath(import.meta.url)),'..');
 const {code,recipes,editorial}=recipeSource(readFileSync(resolve(root,'index.html'),'utf8'));
-const batchNumbers=['02','03','04','05','06','07','08','09','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31','32'];
+const batchNumbers=['02','03','04','05','06','07','08','09','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31','32','33'];
 const fixture={recipes:batchNumbers.flatMap(number=>JSON.parse(readFileSync(resolve(root,`scripts/recipe-editorial-batch-${number}.fixture.json`),'utf8')).recipes)};
 const slice=(a,b)=>code.slice(code.indexOf(a),code.indexOf(b,code.indexOf(a)+a.length));
 const context={window:{},$:()=>({value:'8'}),MEAL_TYPES:['mid','eve'],recipeRole:r=>r.role||r.course||'dish',isFavorite:()=>false,recipeFeedbackHTML:()=>'',recipePersonalNoteHTML:()=>''};
@@ -497,7 +497,12 @@ Object.assign(ingredients,{
   'veg-l1-20':['blettes','pommes de terre','parmesan','lait','beurre','farine','ail','salée.*muscade.*poivre'],
   'veg-final-24':['gnocchi','tomates','mozzarella','parmesan','ail','huile d’olive','basilic']
 });
-assert.equal(fixture.recipes.length,1039);
+Object.assign(timers,{'veg-final-40':[[18],[],[],[],[2],[]],'veg-final-52':[[15],[],[],[],[],[25]]});
+Object.assign(ingredients,{
+  'veg-final-40':['spätzle','emmental ou de gruyère','oignons','beurre','huile','ciboulette','poivre'],
+  'veg-final-52':['aubergines','ricotta','parmesan','coulis de tomate','œuf','basilic','huile d’olive']
+});
+assert.equal(fixture.recipes.length,1069);
 let quantityChecks=0,timerCount=0;
 for(const record of fixture.recipes){
   const recipe=recipes.find(r=>r.id===record.id);
@@ -1262,6 +1267,39 @@ assert.match(editorial['veg-l1-19'].reviewNote,/quatre minutes.*comprises.*huit 
 assert.match(editorial['veg-final-30'].reviewNote,/aucune matière grasse.*sans cuire.*directement dans la tomate/);
 assert.match(editorial['veg-final-34'].reviewNote,/oignons nouveaux.*oubliés.*hors du feu/);
 console.log(`✓ Batch 32: ${reservedQuantityChecks32} original ingredient renders and 144 visible reservations; concrete oil and cheese shares, package-dependent timing and unchanged cooking techniques`);
+const batch33=JSON.parse(readFileSync(resolve(root,'scripts/recipe-editorial-batch-33.fixture.json'),'utf8')).recipes;
+assert.equal(batch33.length,30);assert.equal(batch33.filter(r=>r.status==='corrected').length,2);
+assert.equal(batch33.filter(r=>r.status==='blocked').length,28);
+const spaetzle33=recipes.find(r=>r.id==='veg-final-40'),involtini33=recipes.find(r=>r.id==='veg-final-52');
+assert.deepEqual(spaetzle33.i.at(-1),{q:null,u:'',n:'poivre',k:'poivre'});
+assert.match(batch33.find(x=>x.id===spaetzle33.id).beforeSteps.join(' '),/ciboulette et poivre/);
+let reservedQuantityChecks33=0;
+for(const count of [1,2,3,4,5,8]){
+  for(const step of [0,2])assert.ok(context.recipeStepText(spaetzle33.p[step],spaetzle33,count).includes(context.formatQty(12.5*count/2)+' g de beurre'));
+  for(const step of [1,4])assert.ok(context.recipeStepText(involtini33.p[step],involtini33,count).includes(context.formatQty(20*count/2)+' g de parmesan'));
+  assert.ok(context.recipeStepText(involtini33.p[3],involtini33,count).includes(context.formatQty(350*count/2)+' g de coulis de tomate'));
+  assert.match(context.recipeStepText(involtini33.p[0],involtini33,count),/15 minutes à 210 °C/);
+  assert.match(context.recipeStepText(involtini33.p[5],involtini33,count),/20 à 25 minutes à 190 °C.*71 °C/);
+  for(const record of batch33.filter(r=>r.status==='blocked')){
+    const r=recipes.find(r=>r.id===record.id),output=context.recipeHTML(r,{people:count,dayIndex:1,mealType:'eve'});
+    assert.ok(output.includes(context.escapeHTML(editorial[record.id].reviewNote)));
+    for(const ingredient of r.i){
+      const q=ingredient.q==null?null:ingredient.q*count/(r.servings||2);
+      assert.ok(output.includes('>'+context.ingredientText(ingredient,q,count)+'</li>'));
+      reservedQuantityChecks33++;
+    }
+    assert.doesNotMatch(output,/\{\{|undefined|NaN/);
+  }
+}
+assert.match(spaetzle33.p[1],/déjà cuits.*sans leur imposer un nouveau pochage/);
+assert.match(spaetzle33.p[2],/environ trois minutes.*produit froid.*temps de sa notice/);
+assert.match(spaetzle33.p[3],/tout le fromage.*deux ajouts successifs/);
+assert.match(involtini33.p[2],/toute la farce.*pas d’un nombre fixe/);
+assert.match(involtini33.p[3],/jointure contre le fond/);
+assert.match(editorial['veg-final-39'].reviewNote,/30 cl.*mi-hauteur.*sans verser le bouillon dans le suage/);
+assert.match(editorial['veg-final-46'].reviewNote,/cinq minutes.*comprises.*trente-cinq à quarante/);
+assert.match(editorial['bourgeois-12'].reviewNote,/dix minutes.*cinq minutes.*vingt minutes minimales.*Tox Info/);
+console.log(`✓ Batch 33: ${reservedQuantityChecks33} original ingredient renders and 168 visible reservations; source-restored pepper, concrete butter/parmesan, product-dependent reheating and egg filling control`);
 const corrected=fixture.recipes.filter(r=>r.status==='corrected').length;
 const unchanged=fixture.recipes.filter(r=>r.status==='unchanged').length;
 console.log(`✓ Batches ${batchNumbers.join('/')}: ${fixture.recipes.length} individual review records, ${corrected} corrected, ${unchanged} unchanged, ${fixture.recipes.length-corrected-unchanged} blocked with original content preserved; ${timerCount} manually checked timers`);
