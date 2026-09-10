@@ -408,6 +408,16 @@ P02 publié : `c87dc373c29cae1d6edb9c2ac6191004c69ba52a`, tests `34390827874` et
 
 **Cumul : 1 204 identifiants examinés, 378 corrigés, 816 bloqués, 10 conformes sans réécriture, 349 à examiner.** Zéro erreur éditoriale, 5 273 avertissements ; 581 minuteurs et 13 902 rendus d’ingrédients des lots 02–36. Ce lot ajoute 1 668 rendus d’ingrédients réservés et 264 réserves visibles. Les 24 commandes passent ; Livre long/court et mode cuisine contrôlés aux trois formats simulés. Publication à consigner après contrôle HTTPS ; les autres recettes suivent.
 
+## Publication du lot 36
+
+`f436ff46926693ed171f1f12d484e5be8ce0769f` publié sur `main`. Interface officielle GitHub Actions : tests `34424530705` et Pages `34424529862` Success, tous les jobs réussis, dont deploy `102706906510`. HTTPS 200 avec HSTS, fichiers identiques au commit : index `737269341a25d8144e74c91f344710da006b6b6bcfc90cf92eb1c4b205010722`, service worker `152735b24e74789e9562813646e8505134f363e93cde9274763325afa10cdbbf`. Révision activée automatiquement `sha256:1a1acbb1439ebb5caddfc8d4c47e785387d09fad52027859555801b0e7f72572`. Un blocage du contrôle interactif a nécessité de reconnecter le navigateur de test ; aucune donnée de l’application n’a été effacée. Tomates farcies ensuite vérifiées à deux personnes en production : pain 40 g, lait 5 cl, viandes 250/100 g, huile une cuillère, riz 120 g ; minuteurs 15/4/40 et riz au paquet. Farce crue, chair au fond et cuisson au four préservées.
+
+## Lot 37 — cinquante variantes du quotidien
+
+[Journal et décisions individuelles](recipe-editorial-batch-37.md). 50 réservées, aucune correction culinaire ou fiche conforme sans réécriture. Températures des gratins manquantes, sauces répétées, sucs de poêle dans les soupes et opérations sur feu insérées dans l’airfryer : les trois archives reproduisent ces problèmes. Les cinquante objets culinaires restent inchangés ; leurs réserves sont explicites.
+
+**Cumul : 1 254 identifiants examinés, 378 corrigés, 866 bloqués, 10 conformes sans réécriture, 299 à examiner.** Zéro erreur éditoriale, 5 073 avertissements ; ce lot ajoute 2 208 rendus d’ingrédients réservés et 300 réserves visibles. Les 24 commandes passent ; fiche courte et mode cuisine long contrôlés aux trois formats simulés, sans modifier les données. Publication à consigner après contrôle HTTPS ; les autres recettes suivent.
+
 ## Limites des vérifications
 
 Les tests de structure, quantité, minuteurs, stockage simulé et rendu ne sont pas des essais culinaires. Les formats iPhone/PWA sont simulés, sauf mention explicite d’un appareil physique. Le total de fiches à examiner ne doit jamais être remplacé par le nombre de fiches auxquelles le style commun a été appliqué.

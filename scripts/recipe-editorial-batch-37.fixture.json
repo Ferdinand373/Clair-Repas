@@ -1,0 +1,406 @@
+{
+  "baselineCommit": "f436ff46926693ed171f1f12d484e5be8ce0769f",
+  "batch": "37",
+  "recipes": [
+    {
+      "id": "ge-saumon-grenailles-legumes",
+      "status": "blocked",
+      "sourceHash": "0647dc338bf99a2018ab71aaf4aecba53ce0e80b972e4d955901cf53f66a87e0",
+      "reviewedHash": "0647dc338bf99a2018ab71aaf4aecba53ce0e80b972e4d955901cf53f66a87e0",
+      "protectedRecipeSha256": "60aaa0ba445deb41e534c0624b38a6a8b650ce4f17a8ccb03e33db5279f9dc99",
+      "note": "tailles des grenailles et légumes, calibre des pavés, répartition de l’huile et charge du panier absents. Cuisson douce non définie avant dix minutes à 190 °C ; citron ajouté pendant cuisson puis en zeste/jus et au dressage sans partage. Ne pas ajouter une cuisson de poisson séparée."
+    },
+    {
+      "id": "ge-poisson-blanc-grenailles-legumes",
+      "status": "blocked",
+      "sourceHash": "55308e0540e3d93a331acb915ed7d948b064a3548900177e29ab2347d66b5824",
+      "reviewedHash": "55308e0540e3d93a331acb915ed7d948b064a3548900177e29ab2347d66b5824",
+      "protectedRecipeSha256": "512fe28f60f68404930863a22ab9a4a510dbbbc668060491ed9c5317d194be1a",
+      "note": "citron de déglaçage absent de la liste ; saisie dans des sucs non raccordée à l’airfryer. Espèce et calibre des filets, découpe et charge des légumes non définis. Câpres réchauffées dans un jus dont l’origine manque : ne pas inventer une poêle ou un fond."
+    },
+    {
+      "id": "ge-crevettes-grenailles-legumes",
+      "status": "blocked",
+      "sourceHash": "ebfc7727571f85ba147f965b219b927c1dae40f0e88d91c5c82285e965232a13",
+      "reviewedHash": "ebfc7727571f85ba147f965b219b927c1dae40f0e88d91c5c82285e965232a13",
+      "protectedRecipeSha256": "32ea3dfbff6726ac7f34069b9c934c5e78ed02135859d839739e5db16944688e",
+      "note": "feu vif et finition hors feu insérés avant sept minutes au panier ; état cru/cuit des crevettes inconnu. Pesto cité deux fois, citron mélangé puis en quartier sans partage ; le texte parle à tort de poisson. Découpe, huile et charge des légumes à définir."
+    },
+    {
+      "id": "ge-saucisses-grenailles-legumes",
+      "status": "blocked",
+      "sourceHash": "7bcea56992d3626b3e271b724fd297e8409b040fd9ee8fed61da222632cdfcde",
+      "reviewedHash": "7bcea56992d3626b3e271b724fd297e8409b040fd9ee8fed61da222632cdfcde",
+      "protectedRecipeSha256": "7a7d3edb04387dad1d52f32791cfc00dee2e4fba902cf037d1dafab3def56eea",
+      "note": "réduction de crème dans les sucs avant cuisson au panier puis épaississement de trois minutes répété, sans récipient ni partage. Type et calibre des saucisses, légumes et huile à préciser. Ne pas inventer une casserole de sauce à côté de l’airfryer."
+    },
+    {
+      "id": "ge-boulettes-grenailles-legumes",
+      "status": "blocked",
+      "sourceHash": "f4b0d70ef50a481ed4e249852a5e80b63abc91c11fe84df2dd080cc65b2798ce",
+      "reviewedHash": "f4b0d70ef50a481ed4e249852a5e80b63abc91c11fe84df2dd080cc65b2798ce",
+      "protectedRecipeSha256": "616180b318b861248da9a4ec8cc96a260a1f8f389e548b5720ecc09fdba95325",
+      "note": "deux déglaçages utilisent les mêmes 8 cl de cidre sans partage ; braisage sur feu doux non raccordé au panier d’airfryer. Boulettes sans état ou calibre, légumes sans découpe et huile non affectée. Conserver cidre/moutarde sans convertir arbitrairement le plat en cuisson à la poêle."
+    },
+    {
+      "id": "ge-falafels-grenailles-legumes",
+      "status": "blocked",
+      "sourceHash": "82c609521b591e673266e099a07557eb057c86844bc7043fcfb91df28e5b38dc",
+      "reviewedHash": "82c609521b591e673266e099a07557eb057c86844bc7043fcfb91df28e5b38dc",
+      "protectedRecipeSha256": "d60574afe6a78c1ff0aca48462e9d08285d3a0afe6e28cb924920208b2c419b5",
+      "note": "torréfaction du cumin répétée avant puis après la cuisson au panier sans partage ni récipient. Falafels sans état cru/précuit ou notice ; légumes, huile et charge non définis. Préserver coriandre fraîche au service, sans la cuire pour intégrer les répétitions."
+    },
+    {
+      "id": "ge-pois-chiches-grenailles-legumes",
+      "status": "blocked",
+      "sourceHash": "ed1617ab1d964c8b984ccd358b3fa1de3f9bfa4f5fa559c1a6aacd5530d35c4a",
+      "reviewedHash": "ed1617ab1d964c8b984ccd358b3fa1de3f9bfa4f5fa559c1a6aacd5530d35c4a",
+      "protectedRecipeSha256": "39ba5435303868299720fd36e14f3f9db2e87e933611200960b4fbb513f506b5",
+      "note": "poêlage puis pesto hors feu annoncés avant quinze minutes à l’airfryer, ce qui réchaufferait le pesto censé rester cru. Rinçage/égouttage des pois chiches, tailles et charge des légumes absents ; noix répétées sans partage. Ne pas ajouter une poêle ni cuire le pesto par défaut."
+    },
+    {
+      "id": "ge-poulet-tomate-polenta",
+      "status": "blocked",
+      "sourceHash": "78ed3bf28cbbca1c88bdb56101b8b214d827371cd5529ed219ceff0c1b627f50",
+      "reviewedHash": "78ed3bf28cbbca1c88bdb56101b8b214d827371cd5529ed219ceff0c1b627f50",
+      "protectedRecipeSha256": "35e9837d923297d0d55f231e23c9606ca6faed169bd5c427cb54c3e97886a3d4",
+      "note": "polenta sans liquide ni notice et suage sans matière grasse. Tomate et olives compotées puis ajoutées pendant trois dernières minutes avant cinq autres minutes de mijotage : ordre et partage à résoudre. Poulet sans découpe ou contrôle à cœur ; ne pas verser du coulis à la place de la graisse de suage."
+    },
+    {
+      "id": "ge-dinde-tomate-polenta",
+      "status": "blocked",
+      "sourceHash": "2856cb271f52b740e4012aa13d5bf87d5e5a156809a0fa1d9a7f0d4577a652f9",
+      "reviewedHash": "2856cb271f52b740e4012aa13d5bf87d5e5a156809a0fa1d9a7f0d4577a652f9",
+      "protectedRecipeSha256": "8469ff5967e3423aa60e2b73eb7cc8c5ef2a59820c0f844b92de293e7eb04e33",
+      "note": "polenta sans hydratation et graisse de suage absente. Pesto hors feu ajouté avant cinq minutes de mijotage puis au dressage sans partage ; dinde sans calibre ou contrôle. Préserver pesto non recuit, sans déplacer une finition au hasard ni ajouter un liquide non sourcé."
+    },
+    {
+      "id": "ge-poisson-blanc-tomate-polenta",
+      "status": "blocked",
+      "sourceHash": "6f51ab50c88ee224bc60b64204b469c24d4356482183e1fc3532fb033a5cd9ab",
+      "reviewedHash": "6f51ab50c88ee224bc60b64204b469c24d4356482183e1fc3532fb033a5cd9ab",
+      "protectedRecipeSha256": "32c550fa54a269e56ad7c8482a701b9496ad6e71cd13a5e4667b53164363e2c1",
+      "note": "citron dans les étapes absent de la liste, polenta sans eau ni notice, graisse de saisie/suage absente. Poisson sans espèce ou épaisseur ; câpres et persil de finition sont placés avant cinq minutes de mijotage supplémentaire. Ne pas effacer le déglaçage ni multiplier les cuissons."
+    },
+    {
+      "id": "ge-saucisses-tomate-polenta",
+      "status": "blocked",
+      "sourceHash": "6d962b88f620b1311cbbc0db2dbd7d84a7eabfcac7343abce1484e66493d0482",
+      "reviewedHash": "6d962b88f620b1311cbbc0db2dbd7d84a7eabfcac7343abce1484e66493d0482",
+      "protectedRecipeSha256": "2bef859fb68a0307d58a692097e238ca113ec2dd7d0b48da7619bbde84a8defa",
+      "note": "ail listé cru mais demandé rôti sans protocole ; polenta sans liquide et suage sans graisse. Saucisses non identifiées, jus aux herbes utilisé avant la cuisson annoncée. Ne pas ajouter un four pour rôtir l’ail ni substituer un ail simplement écrasé."
+    },
+    {
+      "id": "ge-boulettes-tomate-polenta",
+      "status": "blocked",
+      "sourceHash": "e08834f8747d6a1c967f68bbba29beb2608a3110dfc06311afc4789b2780e4ae",
+      "reviewedHash": "e08834f8747d6a1c967f68bbba29beb2608a3110dfc06311afc4789b2780e4ae",
+      "protectedRecipeSha256": "23d2988ea18cea7d01807f48e6b5c3c889668826a4f273c4fb52c5edb89eb223",
+      "note": "origan des étapes absent de la liste, polenta sans liquide et graisse de dorure absente. Tomate déjà versée puis répétée, deux mijotages de cinq minutes sans articulation ; calibre des boulettes inconnu. Ne pas additionner les durées ou doubler la sauce sans preuve."
+    },
+    {
+      "id": "ge-pois-chiches-tomate-polenta",
+      "status": "blocked",
+      "sourceHash": "5e0992a7d987b6bbff8e4ac79f23899da84935c7aca9ab5474a17969aa518580",
+      "reviewedHash": "5e0992a7d987b6bbff8e4ac79f23899da84935c7aca9ab5474a17969aa518580",
+      "protectedRecipeSha256": "27eca9b34fd50f0d090d662eb31d243847f7aab4f6f850e28f9357784ecefe84",
+      "note": "polenta sans liquide, suage et dorure sans graisse. Repos de deux minutes annoncé avant de rincer et dorer les pois chiches ; feta et menthe dressées avant cinq minutes de mijotage puis répétées. Préserver la finition froide, sans augmenter la feta ni choisir une séquence arbitraire."
+    },
+    {
+      "id": "ge-poulet-gratin-poireaux",
+      "status": "blocked",
+      "sourceHash": "137f6778a42282bae1090b88a0920b50f5fb8ad6d06e0b4d64a15543e7db4a0a",
+      "reviewedHash": "137f6778a42282bae1090b88a0920b50f5fb8ad6d06e0b4d64a15543e7db4a0a",
+      "protectedRecipeSha256": "3f47df6b358a9be6b9633364bf2ae64cd4a9dd9f8fe00f6a944a4e96103f8bbf",
+      "note": "température du four absente, pommes de terre sans taille ni méthode de précuisson ; poireaux sans graisse. Saisie/infusion hors feu du poulet non raccordée au gratin, sauce aux herbes non répartie ; poulet sans calibre ou contrôle. Ne pas choisir une température de gratin standard sans source."
+    },
+    {
+      "id": "ge-dinde-gratin-poireaux",
+      "status": "blocked",
+      "sourceHash": "3a3f5c915d8dfef975d21eb79aa009cb3896ad9ea79a0cf12912f29f6e748ca5",
+      "reviewedHash": "3a3f5c915d8dfef975d21eb79aa009cb3896ad9ea79a0cf12912f29f6e748ca5",
+      "protectedRecipeSha256": "051671618e3eb900eb39118f9e258bad8874ac57b2a136529f143fb2ee4069f2",
+      "note": "température du four, taille des pommes de terre et graisse des poireaux absentes. Saisie et sauce moutardée dans des sucs avant le gratin, cuillerée de jus d’origine inconnue ; dinde sans calibre. Ne pas convertir la crème du gratin en sauce séparée par supposition."
+    },
+    {
+      "id": "ge-saumon-gratin-poireaux",
+      "status": "blocked",
+      "sourceHash": "af951110600bf8ff85368222aa6b8011279436b5b06e1423f7b463aab75c4c93",
+      "reviewedHash": "af951110600bf8ff85368222aa6b8011279436b5b06e1423f7b463aab75c4c93",
+      "protectedRecipeSha256": "6768cf7507abcde574b7f95ccbc3b09780930d8f63040d7d63b57ccdf1ccf959",
+      "note": "température du four absente et cuisson douce du saumon non définie avant les quatorze minutes du gratin. Citron répété pendant cuisson, en zeste/jus puis au service ; graisse des poireaux et calibre des pavés manquent. Ne pas précuire le saumon sans clarifier cette séquence."
+    },
+    {
+      "id": "ge-poisson-blanc-gratin-poireaux",
+      "status": "blocked",
+      "sourceHash": "0884398462681afb76ec20d256d599ed9435ad8cff5e469ae59c2f9004531771",
+      "reviewedHash": "0884398462681afb76ec20d256d599ed9435ad8cff5e469ae59c2f9004531771",
+      "protectedRecipeSha256": "7193e5dd78797ba033217e3d1fcf82df9905e9964518a5f034aea7c70149f96d",
+      "note": "citron de déglaçage non listé, température du four et graisse des poireaux absentes. Saisie du poisson puis quatorze minutes au four sans épaisseur, jus des câpres indéfini. Retrouver précuisson et température avant de valider le gratin, sans transformer en pochage."
+    },
+    {
+      "id": "ge-boulettes-gratin-poireaux",
+      "status": "blocked",
+      "sourceHash": "fc404bf968835c3a2456b994eb6aa3c03d1cff64f9a6abba67c8d99a429588e5",
+      "reviewedHash": "fc404bf968835c3a2456b994eb6aa3c03d1cff64f9a6abba67c8d99a429588e5",
+      "protectedRecipeSha256": "796c46667e1376ed2fc951406627547ea7d442fe358e782b795707862bc4ea5e",
+      "note": "ail demandé rôti alors qu’aucune cuisson de l’ail n’est prévue. Four sans température, légumes sans taille ou graisse, boulettes sans calibre ; saisie et jus aux herbes non raccordés au gratin. Ne pas considérer l’ail cru comme déjà rôti."
+    },
+    {
+      "id": "ge-jambon-gratin-poireaux",
+      "status": "blocked",
+      "sourceHash": "0c26ee0668d6440bc85c8a57b1a01c6090dfad8d1bc62eddaed912b243725cec",
+      "reviewedHash": "0c26ee0668d6440bc85c8a57b1a01c6090dfad8d1bc62eddaed912b243725cec",
+      "protectedRecipeSha256": "0f2e8d357b8c66457f01559ecc4d06110e818ce9536bf099ac88577a4fd0a461",
+      "note": "four sans température, cinq minutes de gratin sans épaisseur définie ; graisse des poireaux absente. Deux déglaçages et un braisage du jambon ajoutés sans partage du cidre. Ne pas prolonger arbitrairement le gratin ou supprimer le cidre pour rendre le montage cohérent."
+    },
+    {
+      "id": "ge-pois-chiches-gratin-poireaux",
+      "status": "blocked",
+      "sourceHash": "37d273ebc779aa701b913a31aeecc910607b3c51d6e7ded3b68e697764a12621",
+      "reviewedHash": "37d273ebc779aa701b913a31aeecc910607b3c51d6e7ded3b68e697764a12621",
+      "protectedRecipeSha256": "4339fed4ecdeca8638e632b230e39998b821f83154bb14411d79ab7d4e7d3b05",
+      "note": "origan absent de la liste et four sans température. Suage des poireaux sans graisse ; réduction tomate/olives placée avant puis après le gratin sans répartition. Ne pas choisir une cuisson en cocotte à la place du gratin au fromage."
+    },
+    {
+      "id": "ge-poulet-couscous-legumes",
+      "status": "blocked",
+      "sourceHash": "2cb6eb0071b0abf94a646424711c88dada3f4fb9babf5f49cc235a5f3bda2ff1",
+      "reviewedHash": "2cb6eb0071b0abf94a646424711c88dada3f4fb9babf5f49cc235a5f3bda2ff1",
+      "protectedRecipeSha256": "67a4ebc58518993003239000fae0ac2249967d81dad38c0c1c9ba24ead42f614",
+      "note": "citron absent de la liste ; yaourt partagé entre marinade chauffée, sauce froide et cuillerée finale sans doses. Semoule sans eau ni notice, légumes sans graisse ou découpe, poulet sans calibre. Les cinq minutes de marinade ne définissent pas une cuisson et ne justifient pas un troisième yaourt."
+    },
+    {
+      "id": "ge-dinde-couscous-legumes",
+      "status": "blocked",
+      "sourceHash": "7065f7d4b24204cec4d8051155fe46bd9f46ddb2210ce0a02a8e15a0d1a882c8",
+      "reviewedHash": "7065f7d4b24204cec4d8051155fe46bd9f46ddb2210ce0a02a8e15a0d1a882c8",
+      "protectedRecipeSha256": "361c051518274c241a55003f480e463834a08a7e96b4f25dd8687cf34de22a59",
+      "note": "tomate à compoter et jus de tomate mentionnés alors que seules des tomates séchées sont listées. Olives répétées, trois dernières minutes avant huit autres minutes ; semoule sans eau et suage sans graisse. Ne pas inventer une dose de tomate fraîche ou de coulis."
+    },
+    {
+      "id": "ge-poisson-blanc-couscous-legumes",
+      "status": "blocked",
+      "sourceHash": "aac749675d27e97ec9d940328e0c2e3b06d5830c1304c75af4df370a67177014",
+      "reviewedHash": "aac749675d27e97ec9d940328e0c2e3b06d5830c1304c75af4df370a67177014",
+      "protectedRecipeSha256": "1fb865788fbd3c24fd6161f2dc936552f6df788b94562cd19859ad4405413b8e",
+      "note": "poivron à griller sans appareil ni durée, deux minutes couvertes ne sont que le repos après grillage. Semoule sans eau/notice et suage sans graisse ; poisson sans espèce/calibre puis cinq séquences mal raccordées. Ne pas transformer le poivron grillé en poivron simplement fondu."
+    },
+    {
+      "id": "ge-boulettes-couscous-legumes",
+      "status": "blocked",
+      "sourceHash": "67a211a8ba9f4958332785ba6f4f268532efd9a8ef33a616bb4cfceeed3f9067",
+      "reviewedHash": "67a211a8ba9f4958332785ba6f4f268532efd9a8ef33a616bb4cfceeed3f9067",
+      "protectedRecipeSha256": "9be1f4b7098523293fa8d8912daa9be3da4768051ad2589a90aee2548992af52",
+      "note": "origan non listé, semoule sans hydratation, graisse de dorure et calibre des boulettes absents. Réduction de tomate/olives annoncée avant ajout puis cinq et huit minutes sans articulation. Ne pas doubler le coulis ou annoncer une durée totale en additionnant ces étapes ambiguës."
+    },
+    {
+      "id": "ge-falafels-couscous-legumes",
+      "status": "blocked",
+      "sourceHash": "c9c608630258d8aa3834c0de56ecf6e44b6116261bebd5bcc9254554eab87149",
+      "reviewedHash": "c9c608630258d8aa3834c0de56ecf6e44b6116261bebd5bcc9254554eab87149",
+      "protectedRecipeSha256": "00b28b47b8e34518d5c410dead20cf982a5d1daa8b32b4bb700015029104f760",
+      "note": "lait de coco employé avant la dorure des falafels puis reversé pour cinq minutes sans partage, suivi de huit minutes supplémentaires. Semoule sans eau, suage sans graisse et falafels sans état ou notice. Ne pas doubler la coco ou transformer les falafels dorés en pâte mijotée."
+    },
+    {
+      "id": "ge-pois-chiches-couscous-legumes",
+      "status": "blocked",
+      "sourceHash": "a83c5263f50b4e217a3718fd4eeb63a5cccaa8c63e8dd3a4b353f6dbbfa4287e",
+      "reviewedHash": "a83c5263f50b4e217a3718fd4eeb63a5cccaa8c63e8dd3a4b353f6dbbfa4287e",
+      "protectedRecipeSha256": "1c965ab4c77d6c2832180e662d462f485533e396e65ccb3ffe6a8d7dfb02a42f",
+      "note": "semoule sans eau/notice et suage sans graisse. Cumin torréfié deux fois sans répartition ; coriandre de service ajoutée avant huit minutes de mijotage. Conserver la torréfaction distincte et la coriandre crue, sans les remplacer par des épices bouillies."
+    },
+    {
+      "id": "ge-poulet-nouilles-legumes",
+      "status": "blocked",
+      "sourceHash": "83f6e47f343e3ffeeba92ad8c3825b5f4ef12d22a45e87eff7d7b6a272adecb6",
+      "reviewedHash": "83f6e47f343e3ffeeba92ad8c3825b5f4ef12d22a45e87eff7d7b6a272adecb6",
+      "protectedRecipeSha256": "700ab7a5d6b87222cc33adb4d65e2447967738cde23835b4ed56ea7cd441d14a",
+      "note": "sauce soja utilisée au déglaçage, en fin de cuisson puis avec les nouilles sans partage ; citron en sauce puis quartier. Graisse absente, nouilles sans type/notice, poulet et légumes sans tailles. Ne pas tripler la cuillère de soja ni utiliser les douze minutes de poulet pour les nouilles."
+    },
+    {
+      "id": "ge-dinde-nouilles-legumes",
+      "status": "blocked",
+      "sourceHash": "e60bb6a2f4f0bc3d96413cc7e4c4f49316e6cf7bbbc4f5d305a3b84d76fdeb2c",
+      "reviewedHash": "e60bb6a2f4f0bc3d96413cc7e4c4f49316e6cf7bbbc4f5d305a3b84d76fdeb2c",
+      "protectedRecipeSha256": "0f63c55011d2186691282ef6d852aa03e02431227218ffa0dcd8c556be078db7",
+      "note": "pincée de gingembre absente de la liste ; soja pour caraméliser, réduire puis mélanger sans partage, sésame répété. Graisse de cuisson absente, tailles des légumes et de la dinde inconnues, notice des nouilles manquante. Ne pas compléter par une sauce sucrée inventée."
+    },
+    {
+      "id": "ge-crevettes-nouilles-legumes",
+      "status": "blocked",
+      "sourceHash": "2277f0cb23c24cf9dfb1fd563524f604a51c6eadbf9873ac7c3e1e8e499850d5",
+      "reviewedHash": "2277f0cb23c24cf9dfb1fd563524f604a51c6eadbf9873ac7c3e1e8e499850d5",
+      "protectedRecipeSha256": "526bb4c9ad52852b17165e762d7d0e1f328318f2080b59baddbbca1bffb5b3d6",
+      "note": "état cru/cuit des crevettes inconnu et finition désignée à tort sur du poisson. Coco utilisée en mijotage avant saisie puis quatre minutes supplémentaires sans partage ; graisse, découpe et notice des nouilles absentes. Préserver une sauce frémissante sans transformer les crevettes en poisson poché."
+    },
+    {
+      "id": "ge-boulettes-nouilles-legumes",
+      "status": "blocked",
+      "sourceHash": "9522d9b128af9e53e8ef3657a8c9e4e57526793f21a6234af6c3f80ba53be74f",
+      "reviewedHash": "9522d9b128af9e53e8ef3657a8c9e4e57526793f21a6234af6c3f80ba53be74f",
+      "protectedRecipeSha256": "0c8807491d4e400058bfe78c133c3f68f966bdf2750845775375799f302e397a",
+      "note": "mélange citron-soja hors feu puis soja seul avec nouilles et ponzu au service sans doses distinctes. Nouilles sans notice, graisse et calibre des boulettes absents. Ne pas ajouter un ponzu du commerce ou répéter la quantité de soja pour satisfaire tous les ajouts."
+    },
+    {
+      "id": "ge-pois-chiches-nouilles-legumes",
+      "status": "blocked",
+      "sourceHash": "49d6827ecad90d1565f9d7fa33ddfe5786667c5467e6f9468b03e835ae6473ea",
+      "reviewedHash": "49d6827ecad90d1565f9d7fa33ddfe5786667c5467e6f9468b03e835ae6473ea",
+      "protectedRecipeSha256": "4dcab67ebcac5dbd2a9c34b0ea9c13abc29f2360087b60eb5273151470113833",
+      "note": "cumin torréfié deux fois sans partage et coriandre répétée au service ; graisse de cuisson absente. Nouilles non identifiées, carotte et brocoli sans découpe, rinçage des pois chiches placé après une consigne de torréfaction. Ne pas donner au cumin un temps de cuisson de pois chiches."
+    },
+    {
+      "id": "ge-poulet-lentilles-carottes",
+      "status": "blocked",
+      "sourceHash": "030450cfe11951647e1a9a30ca0a1c4393bbe9212b82c48ea4dfe0592d2af45e",
+      "reviewedHash": "030450cfe11951647e1a9a30ca0a1c4393bbe9212b82c48ea4dfe0592d2af45e",
+      "protectedRecipeSha256": "055bace6976fdeac0377c9b80f925d055c88e07277f8d57af51b802faf404fa8",
+      "note": "deux moutardes listées mais ajouts désignés sans distinction ; jus de sauce avant cuisson du poulet et cuillerée non définie. Suage sans graisse, carottes et poulet sans taille, mijotage final sans durée. Garder les lentilles déjà cuites et ne pas utiliser les 20 cl deux fois."
+    },
+    {
+      "id": "ge-dinde-lentilles-carottes",
+      "status": "blocked",
+      "sourceHash": "7fe05b7371ccb554fa54d70790227df8242d93551f3eba033e66cfbb3a63dc56",
+      "reviewedHash": "7fe05b7371ccb554fa54d70790227df8242d93551f3eba033e66cfbb3a63dc56",
+      "protectedRecipeSha256": "9c5ca1a2080b73e7d46e13a74454000e2150f40918ee662ce0c74e1decdaf57e",
+      "note": "saisie/couverture/infusion hors feu avant dix minutes de dinde au bouillon sans ordre défini. Suage sans graisse, carottes et dinde sans tailles, jus citron-estragon sans partage ; dernier mijotage non minuté. Ne pas remplacer la saisie par le pochage pour simplifier."
+    },
+    {
+      "id": "ge-saucisses-lentilles-carottes",
+      "status": "blocked",
+      "sourceHash": "cf6e5b352e195703efd21891395e10c62d49c4007ce4056aefeb3c7123d3f215",
+      "reviewedHash": "cf6e5b352e195703efd21891395e10c62d49c4007ce4056aefeb3c7123d3f215",
+      "protectedRecipeSha256": "92f4d734d7df1945274e0958fe52e088003b651b4f31732f218ea0b935db1fae",
+      "note": "saucisses sans type ou état, mises en rondelles dans les lentilles après une consigne de braisage. Deux déglaçages au cidre et deux ajouts de moutarde sans partage ; suage sans graisse et carottes sans taille. Ne pas considérer les saucisses comme précuites sans notice."
+    },
+    {
+      "id": "ge-jambon-lentilles-carottes",
+      "status": "blocked",
+      "sourceHash": "e44e13f5eb0ca126d1670e718a986328a510687ece21774dbc89fc09104725f1",
+      "reviewedHash": "e44e13f5eb0ca126d1670e718a986328a510687ece21774dbc89fc09104725f1",
+      "protectedRecipeSha256": "0519d63d3f966a133947294b4dfb17dd55a9bb1b9b523abb4ea12977863211d7",
+      "note": "crème réduite avant le jambon puis ajoutée à nouveau sans partage. Trois dernières minutes de jambon sans durée totale des carottes, suage sans graisse ; sauce dans les sucs mal raccordée à la casserole de lentilles. Ne pas doubler les 10 cl de crème."
+    },
+    {
+      "id": "ge-poulet-wraps-chauds",
+      "status": "blocked",
+      "sourceHash": "9d72b9d242e20666506a464a2328de6db63f9e1ef380c1c8ba8f3dfa2153aeaf",
+      "reviewedHash": "9d72b9d242e20666506a464a2328de6db63f9e1ef380c1c8ba8f3dfa2153aeaf",
+      "protectedRecipeSha256": "371cda473baed4dbe1535ae4825e59391b07b3532753d568b2d62bb8b4d79cc8",
+      "note": "graisse de dorure, taille du poulet et contrôle du centre absents. Pesto hors feu réparti plusieurs fois sans doses, puis wraps poêlés deux minutes par face : destination de la sauce yaourt et de la salade non explicite. Ne pas cuire une garniture prévue froide sans clarifier le montage."
+    },
+    {
+      "id": "ge-dinde-wraps-chauds",
+      "status": "blocked",
+      "sourceHash": "2b348fbef086ac6f87d6e7b8036dedadd3d914caa97af55785e53d38d6754565",
+      "reviewedHash": "2b348fbef086ac6f87d6e7b8036dedadd3d914caa97af55785e53d38d6754565",
+      "protectedRecipeSha256": "6dd310d7bcbe88343a86c8d10e46c0656381d0f695f02a9fa2f9b92630af05f6",
+      "note": "tomates destinées à la découpe puis au compotage sans partage ; olives ajoutées deux fois. Graisse et calibre de dinde absents, salade et yaourt sans destination dans les wraps ensuite dorés. Ne pas transformer toutes les crudités en sauce chaude ou doubler les olives."
+    },
+    {
+      "id": "ge-poisson-blanc-wraps-chauds",
+      "status": "blocked",
+      "sourceHash": "3a9bbb5fe62a45a6089f82d72b08fa979ed06b49f8b927be8a56378ccfddd0e2",
+      "reviewedHash": "3a9bbb5fe62a45a6089f82d72b08fa979ed06b49f8b927be8a56378ccfddd0e2",
+      "protectedRecipeSha256": "8383a25d7d04ef3bbd17504ecc970012a98ba6ef23d4ff8de21f427b2e8d6576",
+      "note": "poivron à griller sans méthode ni durée ; deux minutes couvertes ne sont pas un grillage. Poisson sans épaisseur ou graisse ; salade, sauce yaourt et paprika sans montage précis avant dorure des wraps. Conserver poivron grillé et wraps roulés, sans remplacer par une garniture crue."
+    },
+    {
+      "id": "ge-crevettes-wraps-chauds",
+      "status": "blocked",
+      "sourceHash": "d5fab5ed0d64713a7e25115f270495e23fe222023ce7c3b76ecd9d0f0fa3382d",
+      "reviewedHash": "d5fab5ed0d64713a7e25115f270495e23fe222023ce7c3b76ecd9d0f0fa3382d",
+      "protectedRecipeSha256": "99f985348fceb1ebf93bb9758830de8a28fb7668cae7edd4c0d2b3d27ae213a7",
+      "note": "état des crevettes inconnu, cuisson douce puis saisie sans graisse ou intensité raccordée. Citron ajouté pendant cuisson, en zeste/jus puis au service sans partage ; salade et sauce yaourt sans destination avant les wraps dorés. Ne pas présumer des crevettes cuites."
+    },
+    {
+      "id": "ge-falafels-wraps-chauds",
+      "status": "blocked",
+      "sourceHash": "6a38d13229a5012177a8233639b0fd40f43b3d5d1c9ce30a1e643a15ffa6dea3",
+      "reviewedHash": "6a38d13229a5012177a8233639b0fd40f43b3d5d1c9ce30a1e643a15ffa6dea3",
+      "protectedRecipeSha256": "55b511a63b92dbd79e0a9a76346f86cd482fe2b5eb73722914c21f7e1126926a",
+      "note": "origan mentionné mais non listé ; falafels sans état ou notice, graisse de dorure absente. Tomate/olives mijotées avant puis après dorure, sauce yaourt et salade non affectées ; service en cocotte avec jus peu raccordé aux wraps roulés. Ne pas remplacer les falafels par une sauce écrasée."
+    },
+    {
+      "id": "ge-pois-chiches-wraps-chauds",
+      "status": "blocked",
+      "sourceHash": "f0b7f4098ca26ca62152819b8e722b4934cdeedc2d9e60157e8bb0d04fd597ac",
+      "reviewedHash": "f0b7f4098ca26ca62152819b8e722b4934cdeedc2d9e60157e8bb0d04fd597ac",
+      "protectedRecipeSha256": "8152a0a732f2e43160ba744e838d95a707cdfa5ba1d855d9f0190b1657715ef5",
+      "note": "eau du tahini absente et sans volume, sauce versée avant roulage/dorure puis au service malgré consigne hors chaleur. Graisse de dorure absente, salade et yaourt aux herbes sans affectation. Ne pas réchauffer le tahini ni fusionner les deux sauces sans source."
+    },
+    {
+      "id": "ge-poulet-soupe-complete",
+      "status": "blocked",
+      "sourceHash": "5d8a2ff4504a094fcce08943b1ae2c86328d9ce827fb44a7ff60b2044bd9f54f",
+      "reviewedHash": "5d8a2ff4504a094fcce08943b1ae2c86328d9ce827fb44a7ff60b2044bd9f54f",
+      "protectedRecipeSha256": "b5b158ba655c2d1dd9819cb4b28f1a55bf159333c90a4776c2addf4e398b7abb",
+      "note": "saisie et sauce moutardée dans les sucs insérées avant pochage du poulet au bouillon sans graisse ni séquence. Poulet/légumes sans taille, 60 cl supposés couvrir sans récipient, cuillerée de jus indéfinie ; assaisonnement final non listé. Ne pas inventer une poêle pour la soupe."
+    },
+    {
+      "id": "ge-dinde-soupe-complete",
+      "status": "blocked",
+      "sourceHash": "f858cfdedddc9170d67148956083f39b8d31e2a309307269e7a01b8cabf2e731",
+      "reviewedHash": "f858cfdedddc9170d67148956083f39b8d31e2a309307269e7a01b8cabf2e731",
+      "protectedRecipeSha256": "6c789bc740e132f4b442f2e15417f853b988eba0514681e3633b0846823b1500",
+      "note": "saisie/couverture/infusion hors feu non raccordées au pochage de dix minutes. Découpe de dinde/légumes et couverture par 60 cl non établies ; assaisonnement final non listé. Ne pas supprimer le pochage ou verser le bouillon à la place d’une graisse de saisie."
+    },
+    {
+      "id": "ge-poisson-blanc-soupe-complete",
+      "status": "blocked",
+      "sourceHash": "6712e4dee64af674fdcd80b9d56ba411844dd3c147bcfb6e823242b19f401bbf",
+      "reviewedHash": "6712e4dee64af674fdcd80b9d56ba411844dd3c147bcfb6e823242b19f401bbf",
+      "protectedRecipeSha256": "9cf2c2235e6b29cea9c161b04c7474dcf48c3b4baefd59765cf91fbde8272161",
+      "note": "citron de déglaçage absent, saisie dans des sucs avant pochage couvert sans graisse ni protocole. Filets sans espèce/épaisseur, légumes sans découpe et 60 cl de couverture dépendant du récipient. Préserver la cuisson à couvert, sans transformer toute la soupe en jus de poêle."
+    },
+    {
+      "id": "ge-jambon-soupe-complete",
+      "status": "blocked",
+      "sourceHash": "7d405c39c10a0b7192cd7645414d44b7e60d03729414679ec306556e141a5ed0",
+      "reviewedHash": "7d405c39c10a0b7192cd7645414d44b7e60d03729414679ec306556e141a5ed0",
+      "protectedRecipeSha256": "c1b0a0a1c6b8268b75b70b0358319bf0eb94fcbff909a953a87af3d93e91055f",
+      "note": "échalote caramélisée puis fondue deux fois et balsamique de déglaçage répété sans partage ni graisse. Jambon ajouté trois dernières minutes sans préciser son rapport aux dix-huit des légumes ; napper la viande ne décrit pas une soupe. Ne pas doubler l’échalote ou le vinaigre."
+    },
+    {
+      "id": "ge-pois-chiches-soupe-complete",
+      "status": "blocked",
+      "sourceHash": "19f12c5a64cb3b53fe203352f1faa7740105a9ff6e66907e5d9b13530adc6ac2",
+      "reviewedHash": "19f12c5a64cb3b53fe203352f1faa7740105a9ff6e66907e5d9b13530adc6ac2",
+      "protectedRecipeSha256": "ac88be5edf1c641cf6e35c10c28f60abc480214779ad4a9fe5eead29f27e31fb",
+      "note": "repos de deux minutes placé avant l’ajout des pois chiches des cinq dernières minutes, feta/menthe dressées deux fois sans partage. Taille des légumes et récipient pour les couvrir avec 60 cl non définis ; assaisonnement final non listé. Ne pas cuire la feta dans le bouillon pour résoudre cet ordre."
+    },
+    {
+      "id": "ge-poulet-poelee-pommes-epinards",
+      "status": "blocked",
+      "sourceHash": "a43b868b923ebe538f64d7dac1825bb95a81fc9f233a17e344dae5e10ff018ab",
+      "reviewedHash": "a43b868b923ebe538f64d7dac1825bb95a81fc9f233a17e344dae5e10ff018ab",
+      "protectedRecipeSha256": "d609b361c63fb51cf9d82c6653806b0d0a8fce73e90d3b9e52a49bd358b96270",
+      "note": "graisse de dorure absente ; petits dés de pomme de terre sans taille. Saisie/couverture/infusion hors feu avant douze minutes de poulet sans calibre ; finition citron-estragon avant les quatre dernières minutes de légumes. Garder ces quatre minutes incluses, sans les ajouter comme une cuisson séparée."
+    },
+    {
+      "id": "ge-dinde-poelee-pommes-epinards",
+      "status": "blocked",
+      "sourceHash": "5c4b79146df9847b77e8e2cc11cec156fe286a5dee1b3d31879f8a6c586b95d5",
+      "reviewedHash": "5c4b79146df9847b77e8e2cc11cec156fe286a5dee1b3d31879f8a6c586b95d5",
+      "protectedRecipeSha256": "bfee95f3cc538faba69fc748f4b4feaff821fd79481ec1fa5c99758ac95dc56c",
+      "note": "matière grasse absente, taille des pommes de terre et de la dinde non définie. Sauce montée dans des sucs avant dix minutes de cuisson, cuillerée de jus sans origine ; ciboulette avant les quatre dernières minutes des légumes. Ne pas inventer crème ou bouillon de sauce."
+    },
+    {
+      "id": "ge-saumon-poelee-pommes-epinards",
+      "status": "blocked",
+      "sourceHash": "db46988ee41edad811442817d542361bf4b112cca0b550155f9feb689b166a01",
+      "reviewedHash": "db46988ee41edad811442817d542361bf4b112cca0b550155f9feb689b166a01",
+      "protectedRecipeSha256": "7460ed62ddf5f395682e02f4fd8aa01c2b4e73ace1e29ce3c24a3dfef13b50f4",
+      "note": "matière grasse absente et calibre des pavés inconnu ; cuisson douce de neuf minutes sans contrôle au centre. Citron répété avant, après puis au dressage sans partage ; finition aneth avant les quatre dernières minutes des légumes. Préserver cuisson douce et durée incluse des épinards."
+    },
+    {
+      "id": "ge-crevettes-poelee-pommes-epinards",
+      "status": "blocked",
+      "sourceHash": "b987fbdc647563661272b8f9c7713827a825dfdd6b90e121820616299a58306b",
+      "reviewedHash": "b987fbdc647563661272b8f9c7713827a825dfdd6b90e121820616299a58306b",
+      "protectedRecipeSha256": "f07b457503cdb859e95efd09f4328324ccbb02fc439b0ce5a8a31316ffa6fe3d",
+      "note": "crevettes d’état inconnu et matière grasse absente ; pesto hors feu avant les quatre dernières minutes de légumes, répété au service. Citron mélangé puis quartier sans partage et mention de poisson erronée. Ne pas cuire le pesto pour suivre cet ordre ni ajouter quatre minutes aux six prévues."
+    }
+  ]
+}
