@@ -7,7 +7,7 @@ import {recipeSource} from './recipe-source.mjs';
 import {recipeHash} from './validate-recipe-editorial.mjs';
 const root=resolve(dirname(fileURLToPath(import.meta.url)),'..');
 const {code,recipes,editorial}=recipeSource(readFileSync(resolve(root,'index.html'),'utf8'));
-const batchNumbers=['02','03','04','05','06','07','08','09','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31'];
+const batchNumbers=['02','03','04','05','06','07','08','09','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31','32'];
 const fixture={recipes:batchNumbers.flatMap(number=>JSON.parse(readFileSync(resolve(root,`scripts/recipe-editorial-batch-${number}.fixture.json`),'utf8')).recipes)};
 const slice=(a,b)=>code.slice(code.indexOf(a),code.indexOf(b,code.indexOf(a)+a.length));
 const context={window:{},$:()=>({value:'8'}),MEAL_TYPES:['mid','eve'],recipeRole:r=>r.role||r.course||'dish',isFavorite:()=>false,recipeFeedbackHTML:()=>'',recipePersonalNoteHTML:()=>''};
@@ -481,7 +481,23 @@ Object.assign(ingredients,{
   'bistrot-ext-29':['truites','farine','beurre','amandes','citron','persil','saler.*poivrer'],
   'bistrot-ext-31':['homards','échalotes','vin blanc','fumet de crustacés','crème','moutarde','jaunes d’œufs','parmesan ou de gruyère','beurre','sel.*poivre']
 });
-assert.equal(fixture.recipes.length,1009);
+Object.assign(timers,{
+  'veg-l1-05':[[],[3],[5],[4],[5],[2]],
+  'veg-l1-08':[[],[8],[12],[30],[],[5]],
+  'veg-l1-09':[[],[12],[],[],[20],[5]],
+  'veg-l1-17':[[10],[7],[],[8],[2],[]],
+  'veg-l1-20':[[],[10,2],[8],[1],[],[25]],
+  'veg-final-24':[[15],[],[],[],[15],[3]]
+});
+Object.assign(ingredients,{
+  'veg-l1-05':['paneer','épinards','riz basmati','oignon','tomate','ail','gingembre','garam masala','cumin','crème','huile','sel'],
+  'veg-l1-08':['haricots blancs','tomates','carotte','céleri','oignon','ail','huile d’olive','origan','persil','saler.*poivrer'],
+  'veg-l1-09':['crozets','poireaux','beaufort','crème','lait','beurre','salée.*poivre.*muscade'],
+  'veg-l1-17':['tofu','riz','brocoli','carotte','sauce soja','miel ou de sirop d’érable','vinaigre de riz','gingembre','huile de sésame','graines de sésame','huile neutre'],
+  'veg-l1-20':['blettes','pommes de terre','parmesan','lait','beurre','farine','ail','salée.*muscade.*poivre'],
+  'veg-final-24':['gnocchi','tomates','mozzarella','parmesan','ail','huile d’olive','basilic']
+});
+assert.equal(fixture.recipes.length,1039);
 let quantityChecks=0,timerCount=0;
 for(const record of fixture.recipes){
   const recipe=recipes.find(r=>r.id===record.id);
@@ -1210,6 +1226,42 @@ assert.match(thermidor31.p[4],/8 à 10 minutes à 220 °C.*74 °C/);
 assert.match(editorial['bistrot-ext-30'].reviewNote,/une minute trente.*minuteur d’une minute/);
 assert.match(editorial['veg-l1-03'].reviewNote,/huile.*sans partage.*sans remplacer.*ratatouille/);
 console.log(`✓ Batch 31: ${reservedQuantityChecks31} original ingredient renders and 126 visible reservations; concrete wine and butter shares, cooking methods and sensitive-food controls`);
+const batch32=JSON.parse(readFileSync(resolve(root,'scripts/recipe-editorial-batch-32.fixture.json'),'utf8')).recipes;
+assert.equal(batch32.length,30);assert.equal(batch32.filter(r=>r.status==='corrected').length,6);
+assert.equal(batch32.filter(r=>r.status==='blocked').length,24);
+let reservedQuantityChecks32=0;
+for(const count of [1,2,3,4,5,8]){
+  for(const [id,steps,amount] of [['veg-l1-05',[2,3],0.75],['veg-l1-08',[1,3],1]]){
+    const r=recipes.find(r=>r.id===id);
+    for(const step of steps)assert.ok(context.recipeStepText(r.p[step],r,count).includes(context.formatQty(amount*count/2)+' c. à soupe'),id+' measured oil shares');
+  }
+  const crozets=recipes.find(r=>r.id==='veg-l1-09'),cheese=context.recipeStepText(crozets.p[2],crozets,count);
+  for(const q of [80,40])assert.ok(cheese.includes(context.formatQty(q*count/2)+' g'), 'concrete beaufort shares at '+count);
+  const tofu=recipes.find(r=>r.id==='veg-l1-17');
+  assert.ok(context.recipeStepText(tofu.p[2],tofu,count).includes(context.formatQty(2*count/2)+' c. à soupe de sauce soja'));
+  for(const record of batch32.filter(r=>r.status==='blocked')){
+    const r=recipes.find(r=>r.id===record.id),output=context.recipeHTML(r,{people:count,dayIndex:1,mealType:'eve'});
+    assert.ok(output.includes(context.escapeHTML(editorial[record.id].reviewNote)));
+    for(const ingredient of r.i){
+      const q=ingredient.q==null?null:ingredient.q*count/(r.servings||2);
+      assert.ok(output.includes('>'+context.ingredientText(ingredient,q,count)+'</li>'));
+      reservedQuantityChecks32++;
+    }
+    assert.doesNotMatch(output,/\{\{|undefined|NaN/);
+  }
+}
+assert.match(recipes.find(r=>r.id==='veg-l1-05').p[1],/brèves impulsions.*sans chercher une purée lisse/);
+assert.match(recipes.find(r=>r.id==='veg-l1-09').p[0],/durée du paquet/);
+assert.match(recipes.find(r=>r.id==='veg-l1-09').p[3],/tout le mélange crème-lait/);
+assert.match(recipes.find(r=>r.id==='veg-l1-17').p[2],/miel ou de sirop d’érable/);
+assert.match(recipes.find(r=>r.id==='veg-l1-17').p[1],/panier, sans contact avec l’eau/);
+assert.match(recipes.find(r=>r.id==='veg-l1-20').p[1],/10 minutes au total.*deux minutes avant la fin.*2 minutes.*moment de leur ajout/);
+assert.match(recipes.find(r=>r.id==='veg-final-24').p[1],/pochés à l’eau.*paquet.*Ne pas remplacer ce pochage/);
+assert.match(editorial['veg-l1-14'].reviewNote,/six minutes trente.*bouton de six minutes/);
+assert.match(editorial['veg-l1-19'].reviewNote,/quatre minutes.*comprises.*huit minutes/);
+assert.match(editorial['veg-final-30'].reviewNote,/aucune matière grasse.*sans cuire.*directement dans la tomate/);
+assert.match(editorial['veg-final-34'].reviewNote,/oignons nouveaux.*oubliés.*hors du feu/);
+console.log(`✓ Batch 32: ${reservedQuantityChecks32} original ingredient renders and 144 visible reservations; concrete oil and cheese shares, package-dependent timing and unchanged cooking techniques`);
 const corrected=fixture.recipes.filter(r=>r.status==='corrected').length;
 const unchanged=fixture.recipes.filter(r=>r.status==='unchanged').length;
 console.log(`✓ Batches ${batchNumbers.join('/')}: ${fixture.recipes.length} individual review records, ${corrected} corrected, ${unchanged} unchanged, ${fixture.recipes.length-corrected-unchanged} blocked with original content preserved; ${timerCount} manually checked timers`);

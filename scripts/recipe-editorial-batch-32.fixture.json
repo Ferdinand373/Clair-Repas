@@ -1,0 +1,294 @@
+{
+  "baselineCommit": "851ab09cbed99d8d95d3e38d3d6930a35c63b2ba",
+  "batch": "32",
+  "recipes": [
+    {
+      "id": "veg-l1-05",
+      "status": "corrected",
+      "sourceHash": "f4f84fa99205115726c2fa545f1098ce80768d0f3824eb714276833dbbca99bd",
+      "reviewedHash": "83a1752018de5eaf6b84f139d1c6dd0a06d31754463b69ddc69e4bf10448a323",
+      "protectedRecipeSha256": "88aac9c362c69498eb5f7151cbcc30f4752aa99de8e9dbfcc54532f2e1c7dce1",
+      "beforeSteps": [
+        "Cuire le riz basmati selon le paquet et le garder couvert.",
+        "Faire tomber les épinards dans une grande casserole 3 minutes. Les mixer grossièrement : ils doivent rester texturés.",
+        "Couper le paneer en cubes et le faire dorer 4 à 5 minutes dans la moitié de l’huile. Réserver.",
+        "Faire fondre l’oignon dans le reste d’huile. Ajouter ail, gingembre et cumin 30 secondes, puis la tomate en dés et cuire 4 minutes.",
+        "Ajouter épinards, garam masala et crème. Laisser frémir 5 minutes.",
+        "Remettre le paneer 2 minutes dans la sauce et servir avec le riz."
+      ],
+      "note": "Riz selon paquet, épinards grossièrement mixés et paneer doré séparément conservés. Deux parts égales d’huile rendues en quantités calculées ; sel déjà listé affecté à la finition. Pas de bouillon ajouté pour remplacer la dorure ni de mixage lisse imposé."
+    },
+    {
+      "id": "veg-l1-06",
+      "status": "blocked",
+      "sourceHash": "d88953b4255f3d4e0bd8c4e7b7aefd2f9d1b23e76427137ba1591f1cf22fad26",
+      "reviewedHash": "d88953b4255f3d4e0bd8c4e7b7aefd2f9d1b23e76427137ba1591f1cf22fad26",
+      "protectedRecipeSha256": "de3b8b45f4ae0a0caf99fcde0506b1650af6a4b72da001fe5948218423363c26",
+      "note": "les quartiers de citron du service ne sont pas listés en plus du jus mesuré ; le piment facultatif est oublié. Les germes ajoutés pendant la dernière minute ne sont pas déclarés sûrs par leur simple réchauffage, et le contrôle des œufs brouillés manque. Conserver le wok et l’ajout tardif sans inventer une cuisson suffisante des germes ni ajouter du citron arbitrairement."
+    },
+    {
+      "id": "veg-l1-07",
+      "status": "blocked",
+      "sourceHash": "252712f0e155ab6cb1617d6aed49877404a06db3d8b111ceaa9af922189759c4",
+      "reviewedHash": "252712f0e155ab6cb1617d6aed49877404a06db3d8b111ceaa9af922189759c4",
+      "protectedRecipeSha256": "a252e2e9e528fc498db474c1975a3c7802af794ac0b80b6d783c453dface2e0b",
+      "note": "les 28 cl d’eau sont absents de la liste et figés. Le riz long n’est pas identifié pour justifier quatorze minutes et ce volume avec les lentilles précuites. Le yaourt facultatif est seulement un peu, le poivre est oublié. La répartition des oignons et les cuissons simultanées sont à préciser sans remplacer l’absorption commune par deux cuissons séparées."
+    },
+    {
+      "id": "veg-l1-08",
+      "status": "corrected",
+      "sourceHash": "8597d8118002469faee6c0636ba15160d9fa6ba6091bc69fc6cbe8e475a44968",
+      "reviewedHash": "9a21c2f2bb55e52acaf0f8f7e0508cbd94f90757cbea9ad9f628ff3cb4eb8122",
+      "protectedRecipeSha256": "1f0b27e4ec50835269a43b68dd0dc681b4086ba5251dbfc610cd495c9d749701",
+      "beforeSteps": [
+        "Faire fondre oignon, carotte et céleri finement coupés dans une cuillerée d’huile pendant 8 minutes.",
+        "Ajouter ail, tomates, origan, sel et poivre. Laisser mijoter 12 minutes pour concentrer la sauce.",
+        "Mélanger les haricots à la sauce et verser dans un plat à gratin.",
+        "Arroser de la seconde cuillerée d’huile et cuire 25 à 30 minutes à 190 °C.",
+        "Le dessus doit légèrement caraméliser tandis que les haricots restent crémeux.",
+        "Ajouter le persil et laisser reposer 5 minutes avant de servir."
+      ],
+      "note": "Les deux cuillerées d’huile correspondent aux deux cuillères à soupe listées : parts égales calculées, sans ajout. Haricots déjà cuits et égouttés conservés ; sauce mijotée puis four à 190 °C, avec repos source. Ail, céleri et persil préparés explicitement."
+    },
+    {
+      "id": "veg-l1-09",
+      "status": "corrected",
+      "sourceHash": "816b44b9c4c9a88a95c0b5696fb8a361baa7b21d89aa1e9d4f460f8a4ff1206f",
+      "reviewedHash": "669cb2b43013ed3277e4d4ce25446044dc86ae17b15f7d97840c30c9208dd59b",
+      "protectedRecipeSha256": "b11f530bc7964e805a189fea52b92adebb4961b52f6d945c787860874c868a71",
+      "beforeSteps": [
+        "Cuire les crozets dans une grande eau salée selon le temps indiqué sur le paquet, puis les égoutter.",
+        "Émincer les poireaux et les faire fondre 12 minutes au beurre à feu doux. Ils doivent être très tendres sans colorer.",
+        "Mélanger crème, lait, poivre et muscade. Râper le beaufort.",
+        "Réunir crozets, poireaux, crème et deux tiers du fromage dans un petit plat à gratin.",
+        "Parsemer du beaufort restant.",
+        "Cuire 18 à 20 minutes à 195 °C, puis laisser reposer 5 minutes avant de servir."
+      ],
+      "note": "Crozets selon paquet et poireaux fondus au beurre conservés. Beaufort réparti en 80 g dans le mélange et 40 g dessus à la référence deux personnes, avec calcul dynamique ; lait incorporé avec la crème, sans oubli. Préchauffage à 195 °C et repos source explicites."
+    },
+    {
+      "id": "veg-l1-10",
+      "status": "blocked",
+      "sourceHash": "6e31ddc6c647ac061a891724f98791a9d2e2b4a73397302a3329914868f1a90b",
+      "reviewedHash": "6e31ddc6c647ac061a891724f98791a9d2e2b4a73397302a3329914868f1a90b",
+      "protectedRecipeSha256": "49f46e69abe811311cbec4ba1f17639a9c7b3a72f392d4fc348d27de4c815311",
+      "note": "les 5 cl d’eau de braisage sont absents de la liste. Le disque de 24 cm et le moule de 22 cm restent imposés alors que leurs quantités changent avec les convives : nombre de tartes à définir. Évaporation et refroidissement font dépasser le total minimal annoncé. Conserver le braisage puis le montage renversé sans agrandir arbitrairement la tarte."
+    },
+    {
+      "id": "veg-l1-11",
+      "status": "blocked",
+      "sourceHash": "d06eb9c20ff64eb676d0d9c78e5ff26ede29b58b38bc2cd8d10931f2bbfec5d6",
+      "reviewedHash": "d06eb9c20ff64eb676d0d9c78e5ff26ede29b58b38bc2cd8d10931f2bbfec5d6",
+      "protectedRecipeSha256": "3a91950cdda74353f5fea808880be2d9834f2c07a8b6e350878951b1131ffa1e",
+      "note": "les deux disques de 22 cm imposent une tourte sans règle de nombre ou de calibre quand les convives changent ; le moule n’a pas de taille. La salade du service n’est pas listée. Refroidissement, préparation et repos rendent le total incertain. Préserver les pommes de terre précuites en rondelles fines, les poireaux refroidis et la cheminée, sans simplifier en gratin."
+    },
+    {
+      "id": "veg-l1-12",
+      "status": "blocked",
+      "sourceHash": "087ef88780461febed0e71eb56bbdb6f62cc17e95d638c5a4e08efa1b15e9154",
+      "reviewedHash": "087ef88780461febed0e71eb56bbdb6f62cc17e95d638c5a4e08efa1b15e9154",
+      "protectedRecipeSha256": "2e1a5547abba90c93395ea3abd5d404d502451fe5d7cf4dd76d121b531c7e33c",
+      "note": "la courge est légèrement huilée mais les champignons doivent ensuite revenir sans graisse affectée. Leur espèce n’est pas identifiée ; calibre de la petite butternut et quantité de chair prélevée manquent. Ne pas ajouter du bouillon à la poêlée pour contourner cette lacune, ni écraser toute la courge à la place des demi-coques farcies."
+    },
+    {
+      "id": "veg-l1-13",
+      "status": "blocked",
+      "sourceHash": "4ef28db377356aa4919f8d83b6b39f1589a3627e308240c3c4fbb4866a371b82",
+      "reviewedHash": "4ef28db377356aa4919f8d83b6b39f1589a3627e308240c3c4fbb4866a371b82",
+      "protectedRecipeSha256": "c0e0176da3add707ad0eeca5d606600eb854c4cf5a23f8970b119abfe02e1875",
+      "note": "le prélèvement de 10 cl de bouillon laisse 35 cl pour 120 g de polenta, mais le produit n’est pas identifié pour vérifier son ratio de liquide. Le peu de zeste n’a pas de quantité, le sel listé est oublié. Conserver le fenouil braisé à l’orange et la polenta séparée ; un simple renvoi au temps du paquet ne valide pas le volume disponible."
+    },
+    {
+      "id": "veg-l1-14",
+      "status": "blocked",
+      "sourceHash": "0d0b0b19bf244bc64148f18d86fbb352667a7e41a3ab2cc84cbf89c5d56184e3",
+      "reviewedHash": "0d0b0b19bf244bc64148f18d86fbb352667a7e41a3ab2cc84cbf89c5d56184e3",
+      "protectedRecipeSha256": "11a42ce0d472985b18fbc1902a5d06f9feaa6d241ae5aeb3647e583a24c594ef",
+      "note": "l’œuf mollet ne doit pas être déclaré sûr sur la durée seule ; son calibre et sa maîtrise sanitaire manquent. La durée composée six minutes trente ne doit pas devenir un bouton de six minutes. Le parmesan est partagé, mais le temps et le repère de la béchamel restent à préciser. Conserver l’œuf mollet en signalant la réserve, sans le transformer en œuf dur."
+    },
+    {
+      "id": "veg-l1-15",
+      "status": "blocked",
+      "sourceHash": "3a1660a58d6634a7a7d1f124a786986e19b38efc50fbd15c91dfbffcce26d392",
+      "reviewedHash": "3a1660a58d6634a7a7d1f124a786986e19b38efc50fbd15c91dfbffcce26d392",
+      "protectedRecipeSha256": "27e45acdcacc0bd4364de77a7ddff12c725cdbe8143a74ecfdfe05ab5e60bc75",
+      "note": "l’état frais, surgelé ou déjà cuit des petits pois n’est pas précisé pour la cuisson finale de six à huit minutes ; sel et poivre listés sont oubliés. Taille des grenailles et découpe des carottes/navets restent insuffisantes pour ce calendrier. Conserver les ajouts successifs et les légumes verts en fin de cuisson sans cuire tout ensemble dès le départ."
+    },
+    {
+      "id": "veg-l1-16",
+      "status": "blocked",
+      "sourceHash": "a0657e41af1936f0cdf1ba4e58189b3d7039f986b67bd71d484fe0e737374d25",
+      "reviewedHash": "a0657e41af1936f0cdf1ba4e58189b3d7039f986b67bd71d484fe0e737374d25",
+      "protectedRecipeSha256": "7417df3fbf5eab10cf5bd17167f586e8f7ddd41622701fb99dc0a2496e115582",
+      "note": "les 20 cl de bouillon prélevés et leur réduction restent figés ; le reste du bouillon n’a pas d’affectation quand la sauce revient aux légumes. La liaison au jaune réchauffée très doucement deux minutes ne fournit pas de contrôle sanitaire. Sel oublié et durée de dorure des champignons absente. Préserver le pochage des légumes et la saisie séparée des champignons, sans bouillir arbitrairement la liaison."
+    },
+    {
+      "id": "veg-l1-17",
+      "status": "corrected",
+      "sourceHash": "f175a0518122403d55d9a251aee08b9453577204605ffa9c2aec1debd6b04c91",
+      "reviewedHash": "0f961f45d78d517ebf652734d71a586e812f180ed0e4c38196c9ccb98c3b5379",
+      "protectedRecipeSha256": "4e003c212885c0292dd8cbca705fff0ada506942403bcd9c4667fcad6c975a65",
+      "beforeSteps": [
+        "Presser le tofu 10 minutes entre du papier absorbant puis le couper en cubes. Cuire le riz.",
+        "Cuire brocoli et carotte 6 à 7 minutes à la vapeur pour qu’ils restent légèrement fermes.",
+        "Mélanger soja, miel, vinaigre, gingembre et huile de sésame.",
+        "Faire dorer le tofu dans l’huile neutre 6 à 8 minutes en le retournant sur plusieurs faces.",
+        "Verser la sauce et laisser réduire 1 à 2 minutes en remuant : elle doit enrober les cubes sans brûler.",
+        "Servir avec riz et légumes, puis parsemer de sésame."
+      ],
+      "note": "Pressage du tofu, légumes vapeur et laquage à la poêle conservés ; sauce entièrement mesurée et les deux options miel ou sirop d’érable préservées. Riz selon son paquet, sans durée arbitraire. Pas d’huile ajoutée aux légumes ni de saumure inventée."
+    },
+    {
+      "id": "veg-l1-18",
+      "status": "blocked",
+      "sourceHash": "fb73a11d2ec59580ac73e08ec70a7159b78c19a08104b3bc03cde18b8b8365d3",
+      "reviewedHash": "fb73a11d2ec59580ac73e08ec70a7159b78c19a08104b3bc03cde18b8b8365d3",
+      "protectedRecipeSha256": "f018eb211f4bef73b3e1371462a6031453c40ee9e100c0118395eb0152a62e9d",
+      "note": "huile de dorure, sel de cuisson et eau de sauce ne figurent pas dans la liste ; les 5 à 8 cl d’eau restent figés. Durées et découpes des légumes blanchis séparément manquent, piment facultatif oublié. Préserver concombre cru, cuissons séparées et sauce en partie à côté, sans tout mélanger ni inventer les bains."
+    },
+    {
+      "id": "veg-l1-19",
+      "status": "blocked",
+      "sourceHash": "72b8be894d67a9eca0933f1974f0406ae02ce59313c7a51cd8c17d37af548353",
+      "reviewedHash": "72b8be894d67a9eca0933f1974f0406ae02ce59313c7a51cd8c17d37af548353",
+      "protectedRecipeSha256": "caf49f31a455a1550806805a5b6eecf334c879a80a703055b558ce94d1c4e2a5",
+      "note": "les 10 cl d’eau sont absents de la liste et restent figés ; la forme du gingembre et l’état des petits pois ne sont pas précisés. Leurs quatre minutes doivent être comprises dans les huit minutes de mijotage, pas ajoutées. Conserver les cajous mixées dans la sauce coco et le riz à part, sans remplacer par une crème de cajou dosée arbitrairement."
+    },
+    {
+      "id": "veg-l1-20",
+      "status": "corrected",
+      "sourceHash": "db3e2b59accd423c53ff957e31bce075a5731785761c67fbc651213f88899daf",
+      "reviewedHash": "0934d2ceccf080c6be8d2f6e7fcf0f626b02873a9773c44461b5ed5a281d1310",
+      "protectedRecipeSha256": "72f704148d8c584c23a977ad74b932e6372e4136b8dcecc6a48b0d64b88bb440",
+      "beforeSteps": [
+        "Séparer les côtes des feuilles de blettes. Couper les côtes en tronçons et les cuire 10 minutes dans l’eau bouillante salée. Ajouter les feuilles pour les 2 dernières minutes puis bien égoutter.",
+        "Éplucher les pommes de terre, les couper en rondelles fines et les précuire 8 minutes dans l’eau frémissante salée.",
+        "Faire fondre le beurre avec l’ail, ajouter la farine 1 minute puis verser le lait progressivement. Faire épaissir et assaisonner de muscade et poivre.",
+        "Dans un petit plat, alterner pommes de terre et blettes. Napper de béchamel.",
+        "Parsemer de parmesan.",
+        "Cuire 25 minutes à 195 °C, jusqu’à ce que le dessus soit bien doré."
+      ],
+      "note": "Cuissons séparées des blettes et pommes de terre, béchamel à l’ail et gratin à 195 °C conservés. Deux dernières minutes des feuilles incluses dans les dix minutes des côtes, avec boutons correspondant aux actions. Lait, beurre, farine et parmesan calculés ; aucune crème ajoutée."
+    },
+    {
+      "id": "veg-final-21",
+      "status": "blocked",
+      "sourceHash": "ea2850d48b11a51469c41c1ace70c404e64a7fb262816a116002e2acd268f16e",
+      "reviewedHash": "ea2850d48b11a51469c41c1ace70c404e64a7fb262816a116002e2acd268f16e",
+      "protectedRecipeSha256": "fe2edb4348e32dbb3ec192a893de2cc37cc43b13ba00ebbf34086e6496a3eb03",
+      "note": "la moitié des oignons est réservée sans affectation explicite de l’autre moitié ; toute l’huile est utilisée avant le suage de l’ail. Le service impose deux bols alors que les portions varient. Durées des lentilles, riz et pâtes à renvoyer à leurs produits. La source ne précise pas si les oignons restants doivent entrer dans la sauce : ne pas décider cette répartition à sa place."
+    },
+    {
+      "id": "veg-final-22",
+      "status": "blocked",
+      "sourceHash": "72de3c8b38a52a95973a75c35b69fff6a138f60ea4a17995cc2d1340f27cc40b",
+      "reviewedHash": "72de3c8b38a52a95973a75c35b69fff6a138f60ea4a17995cc2d1340f27cc40b",
+      "protectedRecipeSha256": "f94dae4d0d63459999e598ec0a796a0af987793cf8e02c25363989ae89c3d491",
+      "note": "la matière grasse de dorure du tofu et de sautage des légumes n’est pas définie, l’huile de sésame étant affectée à la sauce. Les champignons ne sont pas identifiés et les cuissons séparées ne sont pas minutées. Conserver ces cuissons séparées, sans verser l’huile de sauce dans le wok à leur place ni cuire tout dans le bouillon."
+    },
+    {
+      "id": "veg-final-23",
+      "status": "blocked",
+      "sourceHash": "4dfd4f3c1574dabcdfa3484f3551931114119da773095b3783ea195cef6dca77",
+      "reviewedHash": "4dfd4f3c1574dabcdfa3484f3551931114119da773095b3783ea195cef6dca77",
+      "protectedRecipeSha256": "d56b9338cbce5d2fffcc76f9f0bbdeea3f4dcc5f2dc3073f13d711731c28f3cc",
+      "note": "une seule galette épaisse est imposée sans diamètre ni épaisseur ni règle de fournées selon les portions. Les champignons ne sont pas identifiés ; cuisson à cœur de la pâte aux œufs non contrôlée. Le filet de mayonnaise n’affecte pas les deux cuillères listées. Conserver le retournement à l’assiette et les deux faces, sans cuire une galette toujours plus grosse."
+    },
+    {
+      "id": "veg-final-24",
+      "status": "corrected",
+      "sourceHash": "e045adf53a4acaeb7a52f6e0eeb07646f49123046337aaf14dd24cb3f4d9e1e7",
+      "reviewedHash": "8f6b2d6b056cd877ee4af79bf5434eb08c9625aeee9c983be5f911b75750fe2c",
+      "protectedRecipeSha256": "1cbdf84d3c6223040512ff8b6650f69c7481627feb6d1a840cfe8f444a15d7a4",
+      "beforeSteps": [
+        "Faire revenir l’ail dans l’huile puis ajouter les tomates et cuire 15 minutes.",
+        "Cuire les gnocchi dans l’eau bouillante et les retirer dès qu’ils remontent.",
+        "Mélanger gnocchi, sauce tomate et basilic.",
+        "Verser dans un plat et répartir mozzarella et parmesan.",
+        "Gratiner 12 à 15 minutes à 210 °C.",
+        "Laisser reposer 3 minutes avant de servir."
+      ],
+      "note": "Précuisson à l’eau puis gratin conservés : les gnocchi doivent être prévus pour le pochage, pas des gnocchi à poêler. Durée de pochage selon leur paquet, sans inventer un nombre de minutes ni appliquer automatiquement la remontée à tous les produits. Sauce, fromages et huile liés aux quantités existantes."
+    },
+    {
+      "id": "veg-final-26",
+      "status": "blocked",
+      "sourceHash": "79117993084be2a0dca29177c4871368ffd4651d6f37d25e5cd6156218c3888b",
+      "reviewedHash": "79117993084be2a0dca29177c4871368ffd4651d6f37d25e5cd6156218c3888b",
+      "protectedRecipeSha256": "ea873a935d3609b3e10cb368c9943ece74c0567df41b49d2aa9e3d47beb15218",
+      "note": "la pincée de sel de la pâte est absente de la liste. Épaisseur de pâte, diamètre des disques, dose de farce et farine éventuelle de façonnage manquent ; le fromage frais n’est pas identifié. Le beurre des oignons doit aussi permettre la dorure finale sans partage décrit. Préserver repos, pochage puis dorure sans supprimer cette dernière ou inventer un moule."
+    },
+    {
+      "id": "veg-final-27",
+      "status": "blocked",
+      "sourceHash": "51209e3e444dbc1397fa0351ddb2140e1ff9d1bda4af2f3501c91e8259c35d88",
+      "reviewedHash": "51209e3e444dbc1397fa0351ddb2140e1ff9d1bda4af2f3501c91e8259c35d88",
+      "protectedRecipeSha256": "4e4424c0b677d553284f1cd0dcf4a947b90cdd351a7a92307912c791d28318bd",
+      "note": "le poivre demandé est absent de la liste ; température, position et puissance du gril ne sont pas définies. La forte coloration ne valide pas la cuisson du jaune incorporé hors du feu. Conserver la crème au cheddar et à la bière, sans en faire une béchamel ni ajouter un assaisonnement de salade absent."
+    },
+    {
+      "id": "veg-final-28",
+      "status": "blocked",
+      "sourceHash": "0f5c9d9d55cc9565b1b0608631a5845b530787c916497d73c513359396813c33",
+      "reviewedHash": "0f5c9d9d55cc9565b1b0608631a5845b530787c916497d73c513359396813c33",
+      "protectedRecipeSha256": "a02c8fa94170017f8aa8660f98ef0683026723dc618d839e4117dcdac6801517",
+      "note": "beurre et huile sont entièrement affectés aux rösti, sans graisse pour champignons ni œufs ; sel et poivre sont absents de la liste. Deux galettes épaisses restent figées sans calibre. Espèce des champignons et maîtrise sanitaire du jaune coulant manquent. Préserver les pommes de terre crues râpées et les cuissons séparées sans imposer une précuisson."
+    },
+    {
+      "id": "veg-final-29",
+      "status": "blocked",
+      "sourceHash": "d0524792e0036d96121f707d439169a06590a9d24fd8b13238497dd92cddf35f",
+      "reviewedHash": "d0524792e0036d96121f707d439169a06590a9d24fd8b13238497dd92cddf35f",
+      "protectedRecipeSha256": "0a29a85794cc86bc72fcec0e5c79aa06c06e7c145d7be3f9d0254aca337dc634",
+      "note": "le sel des œufs est absent de la liste. Le moule de 22 cm reste fixe avec des portions variables et l’huile d’égouttage n’a pas d’affectation claire pour cuire la tortilla. Contrôle à cœur de l’omelette épaisse absent. Préserver pommes de terre confites sans croustiller, retournement et repos, sans augmenter automatiquement son diamètre."
+    },
+    {
+      "id": "veg-final-30",
+      "status": "blocked",
+      "sourceHash": "bd873d568193c8291bf283f78e4b111f1a98e0b278f2781d8b30c3268f71dc6c",
+      "reviewedHash": "bd873d568193c8291bf283f78e4b111f1a98e0b278f2781d8b30c3268f71dc6c",
+      "protectedRecipeSha256": "a6c605bae1fc9e5743deeeb505327215a6938d43e3db9adab0442b5733c65378",
+      "note": "aucune matière grasse n’est prévue pour faire revenir oignon et poivron. L’état du maïs et le calibre des petites tortillas ne sont pas définis. Le tiers de coulis peut se calculer, mais cela ne résout pas le suage manquant. Conserver farce revenue puis tortillas roulées jointure dessous, sans cuire les légumes directement dans la tomate."
+    },
+    {
+      "id": "veg-final-31",
+      "status": "blocked",
+      "sourceHash": "c27f2e72ff812d88abdea747f60ecb88f4b67c35690781a69ea8348172ad9fd7",
+      "reviewedHash": "c27f2e72ff812d88abdea747f60ecb88f4b67c35690781a69ea8348172ad9fd7",
+      "protectedRecipeSha256": "6b25ce20ef62a4ecd2f7e029a4d1f6aa8c57085af43363d1ab6dad7d3d0a2cf3",
+      "note": "huile d’olive et poivre du service sont absents de la liste ; aucune matière grasse n’est définie pour faire fondre les légumes au départ. Le poids et l’épaisseur des tranches de pain rassis manquent pour la consistance. Conserver l’ajout tardif du pain et l’écrasement partiel, sans convertir le suage initial en pochage ni mixer toute la soupe."
+    },
+    {
+      "id": "veg-final-32",
+      "status": "blocked",
+      "sourceHash": "ad0df429b14c96a7508c7a29a206ad7438b5601b613f3bd32514311999cf75f7",
+      "reviewedHash": "ad0df429b14c96a7508c7a29a206ad7438b5601b613f3bd32514311999cf75f7",
+      "protectedRecipeSha256": "58c381fca720bdcfbc99c8dd209a376cac26d9cef76304b137b87fbdbc8382a0",
+      "note": "les deux cuillères d’huile sont seulement un filet au service, sans part affectée au suage initial. La petite louche de haricots à écraser n’a pas de quantité ; rectifier l’assaisonnement demande des ingrédients non listés. Conserver les haricots déjà cuits et l’écrasement partiel, sans affecter arbitrairement toute l’huile à la cocotte."
+    },
+    {
+      "id": "veg-final-33",
+      "status": "blocked",
+      "sourceHash": "fce5fa7e9d9e90323faec34b29aa71d2954c1e5615b9afb3a1316a2f98a3d5c6",
+      "reviewedHash": "fce5fa7e9d9e90323faec34b29aa71d2954c1e5615b9afb3a1316a2f98a3d5c6",
+      "protectedRecipeSha256": "1da1ccad016e612794543f7c04c90fcf9212f7c6c1d48e36f1f85b268c4ac835",
+      "note": "la graisse de départ est absente. Les cœurs d’artichauts ne sont pas identifiés comme crus, cuits, en conserve ou surgelés ; riz rond trop vague pour valider liquide, temps et diamètre du récipient. Conserver la cuisson du riz sans remuer et les haricots blancs en fin de cuisson, sans transformer la paella en risotto."
+    },
+    {
+      "id": "veg-final-34",
+      "status": "blocked",
+      "sourceHash": "2a9c12fd17ca77659377dd1ec3fe339beb1ce350019f7a0b0a1ceef26c6a9fd6",
+      "reviewedHash": "2a9c12fd17ca77659377dd1ec3fe339beb1ce350019f7a0b0a1ceef26c6a9fd6",
+      "protectedRecipeSha256": "7872c3f9d3af24daf04f68d5ec798b5c3d8c7587cc4d620653eb13a6a7988881",
+      "note": "les oignons nouveaux sont oubliés ; graisse de dorure du tofu absente et champignons non identifiés. La louche de bouillon du miso n’est pas mesurée et les conditions de cuisson des garnitures sont trop vagues. Conserver le miso ajouté hors du feu et les nouilles cuites séparément, sans le faire bouillir ni cuire le tofu seulement dans le bouillon."
+    },
+    {
+      "id": "veg-final-35",
+      "status": "blocked",
+      "sourceHash": "ca9245ce4effac9a92572df47f532e2d9c3ab893a53da9ec2a9dcb3114c1a8bc",
+      "reviewedHash": "ca9245ce4effac9a92572df47f532e2d9c3ab893a53da9ec2a9dcb3114c1a8bc",
+      "protectedRecipeSha256": "d6760fb82c93c8208f34093676b4085af38e9f27279c642167e685c7bfca63af",
+      "note": "la graisse de dorure du tofu est absente, l’huile de sésame étant affectée à la sauce. Les quelques cuillerées d’eau n’ont ni unité ni quantité dans la liste ; découpe des légumes non définie pour trois minutes couvert. Conserver l’étuvage bref puis sautage, sans affecter l’huile de sauce à la première saisie ou supprimer l’eau."
+    }
+  ]
+}

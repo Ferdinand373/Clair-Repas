@@ -358,6 +358,16 @@ P02 publié : `c87dc373c29cae1d6edb9c2ac6191004c69ba52a`, tests `34390827874` et
 
 **Cumul : 1 024 identifiants examinés, 347 corrigés, 667 bloqués, 10 conformes sans réécriture, 529 à examiner.** Zéro erreur éditoriale, 5 969 avertissements ; 524 minuteurs et 12 576 calculs d’ingrédients des lots 02–31. Ce lot ajoute 1 176 rendus des ingrédients réservés et 126 réserves visibles. Les 24 commandes passent ; Livre et mode cuisine contrôlés aux trois formats simulés avec défilement. Publication à consigner après contrôle HTTPS. Les autres plats suivent.
 
+## Publication du lot 31
+
+`851ab09cbed99d8d95d3e38d3d6930a35c63b2ba` publié sur `main`. Tests `34420932447`, Pages `34420931916` et déploiement `6361926334` réussis. HTTPS 200 et fichiers identiques au commit : index `4dc5a549dd3a5126fac311b461c8287f4251a1e692a68ad18f37963dcc988dfd`, service worker `4608fddece17c1c1afb500322f4c9baa58910978fd4e8a84178e568272bb1c17`. Après activation automatique normale de la mise à jour, révision chargée `sha256:d82fc7e62645b344ce74a559073cfc280003d2851cc35b0bb2698d25b12ff1f0`. Truite vérifiée à deux personnes : 40 g de beurre dans la liste et 20 g à chaque usage, 30 g d’amandes, deux minuteurs distincts de 5–6 minutes par face, cuisson entière à la poêle et contrôle à 63 °C. Aucun stockage effacé.
+
+## Lot 32 — trente plats végétariens
+
+[Journal, sources et décisions](recipe-editorial-batch-32.md). 6 corrigées, 24 réservées, aucune conforme sans réécriture. Parts de beaufort et d’huile calculées, temps de paquet préservés, ajouts des feuilles de blettes organisés. Paneer, tofu laqué, gratins et pochage des gnocchi conservent leur technique. Aucune quantité d’huile ou d’eau devinée pour les recettes réservées.
+
+**Cumul : 1 054 identifiants examinés, 353 corrigés, 691 bloqués, 10 conformes sans réécriture, 499 à examiner.** Zéro erreur éditoriale, 5 843 avertissements ; 548 minuteurs et 12 906 contrôles d’ingrédients des lots 02–32. Ce lot ajoute 1 278 rendus d’ingrédients réservés et 144 réserves visibles. Les 24 commandes passent ; Livre et mode cuisine inspectés aux trois formats simulés après défilement. Publication à consigner après contrôle HTTPS. Les autres plats suivent.
+
 ## Limites des vérifications
 
 Les tests de structure, quantité, minuteurs, stockage simulé et rendu ne sont pas des essais culinaires. Les formats iPhone/PWA sont simulés, sauf mention explicite d’un appareil physique. Le total de fiches à examiner ne doit jamais être remplacé par le nombre de fiches auxquelles le style commun a été appliqué.
