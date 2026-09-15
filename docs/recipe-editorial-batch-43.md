@@ -112,3 +112,11 @@ Par l’interface locale : pause puis reprise, nouvelle pause à 34:07, recharge
 La branche `shopping-v2-engine-test` et son commit `f21bad0c63b9dae514d0a85da34efd8453f0ce30` restent hors chantier : ni modification, ni fusion, ni publication. Les moteurs de portions, minuteurs, courses, QR, stockage et synchronisation ne sont pas modifiés. Les empreintes de livraison sont actualisées selon le mécanisme existant, sans changement du fonctionnement PWA. Aucun effacement, import ou écriture directe dans les données personnelles ; les contrôles du cloud restent simulés.
 
 Après publication et vérification : **arrêt obligatoire, aucun lot 44**. Les 1 115 réserves attendent une décision séparée ; aucune des 1 085 anciennes fiches bloquées n’a été reprise. Les vérifications informatiques et formats simulés ne sont pas des essais culinaires ni des tests sur iPhone physique/PWA installée.
+
+## Publication confirmée et arrêt
+
+Publié sur le `main` officiel : `cc3e318c83f761e8efef07a45ae95b26f3077e2b`. Tests `34921689988`, Pages `34921688805` et déploiement `6450519412` réussis. HTTPS 200 et HSTS, `index.html` et `sw.js` identiques au commit. La soupe au pistou du lot est effectivement affichée en production à deux personnes avec eau ½ l, pâtes 40 g, minuteurs 20/20/5 min et pistou hors feu ; noyau chargé `sha256:eaea75e8bb09648e88fe46a1a0a1ea469b2bf9c5226e9af34e8d352037e87d1e`.
+
+Limite du calcul conservé : les portions de référence de six personnes produisent des fractions pour deux personnes (par exemple 83⅓ g de haricots et 0,17 botte de basilic par portion de pistou). Aucun poids de botte, rendement, arrondi ou modification du moteur n’a été inventé pour les masquer. Les vérifications sont numériques et visuelles, pas des essais de cuisine.
+
+Preuves détaillées et actualisation : [suivi éditorial](recipe-editorial-progress.md#publication-du-lot-43-et-clôture-finale). **Lot 43 terminé, 0 pending, chantier arrêté.**

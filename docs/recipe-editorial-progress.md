@@ -517,3 +517,15 @@ Neuf vues du Livre et du parcours cuisine contrôlées aux trois formats simulé
 La branche parallèle `shopping-v2-engine-test` reste propre, toujours à `f21bad0c63b9dae514d0a85da34efd8453f0ce30` ; aucun de ses changements n’est intégré ni publié. Aucun moteur modifié, aucune donnée personnelle effacée ou écrite directement. Publication à consigner après vérification distante.
 
 **ARRÊT après le lot 43.** Aucun lot 44 n’est créé. Le traitement des 1 115 fiches bloquées nécessitera une décision séparée de l’utilisateur ; aucun réexamen n’est lancé automatiquement.
+
+## Publication du lot 43 et clôture finale
+
+Commit des recettes **`cc3e318c83f761e8efef07a45ae95b26f3077e2b`**, poussé sans force sur `origin/main` de `Ferdinand373/Clair-Repas`. Son unique parent est le point de reprise `7afdb2a031a26b729811b099c3d37b91f3b37a6b` : la branche parallèle n’est pas intégrée. Neuf fichiers, limités au lot, à son suivi, aux tests et aux empreintes de livraison.
+
+Vérification le 15 septembre 2026 : [tests distants 34921689988](https://github.com/Ferdinand373/Clair-Repas/actions/runs/34921689988) et [GitHub Pages 34921688805](https://github.com/Ferdinand373/Clair-Repas/actions/runs/34921688805) réussis ; déploiement `6450519412` réussi. [Clair Repas en production](https://ferdinand373.github.io/Clair-Repas/) répond en HTTPS 200 avec HSTS. À 02:35 UTC, les fichiers servis sont identiques au commit : index `32eea82000b6377c773c068bbdee974acbf5a34db713863ea83ee2c62bfa9180`, service worker `6bff1dd00fc0eb4732da3be096d1e4818396bbcea853a37a90559394ec88215f`.
+
+Noyau effectivement chargé dans le navigateur : `sha256:eaea75e8bb09648e88fe46a1a0a1ea469b2bf9c5226e9af34e8d352037e87d1e`. Soupe au pistou vérifiée en ligne pour deux personnes : eau ½ l, petites pâtes 40 g, deux portions de pistou, ajout hors feu ; trois boutons 20/20/5 min, aucun minuteur fixe pour les pâtes. Aucun minuteur lancé en production, aucune suppression de cache ou de données. Les unités historiques conservent les fractions du calcul existant à certains nombres de convives, notamment les bottes d’herbes ; aucune conversion en grammes ni aucun arrondi culinaire inventé.
+
+Le commit documentaire qui consigne cette publication ne change ni les recettes ni les fichiers de l’application. **Dernier lot : 43. Chantier terminé et arrêté : 1 553 examinées, 427 corrigées, 11 conformes, 1 115 bloquées, 0 `pending`.** Aucune nouvelle recette, aucun lot 44, aucun travail de reprise des fiches bloquées engagé.
+
+Pour actualiser sur ordinateur ou iPhone : ouvrir « Clair Repas · Réglages & confiance », utiliser « Vérifier la mise à jour », puis rouvrir l’application si nécessaire. Ne pas désinstaller la PWA ni effacer les données du site.
