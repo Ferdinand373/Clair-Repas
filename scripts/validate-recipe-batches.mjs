@@ -6,10 +6,12 @@ import vm from 'node:vm';
 import {createRequire} from 'node:module';
 import {recipeSource} from './recipe-source.mjs';
 import {recipeHash} from './validate-recipe-editorial.mjs';
+import {pilot,verifyUnblockingPilot} from './validate-recipe-unblocking-pilot.mjs';
+verifyUnblockingPilot();
 const root=resolve(dirname(fileURLToPath(import.meta.url)),'..');
 const {code,recipes,editorial}=recipeSource(readFileSync(resolve(root,'index.html'),'utf8'));
 const batchNumbers=['02','03','04','05','06','07','08','09','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31','32','33','34','35','36','37','38','39','40','41','42','43'];
-const fixture={recipes:batchNumbers.flatMap(number=>JSON.parse(readFileSync(resolve(root,`scripts/recipe-editorial-batch-${number}.fixture.json`),'utf8')).recipes)};
+const fixture={recipes:batchNumbers.flatMap(number=>JSON.parse(readFileSync(resolve(root,`scripts/recipe-editorial-batch-${number}.fixture.json`),'utf8')).recipes).map(record=>record.id==='e06'?pilot.after.record:record)};
 const slice=(a,b)=>code.slice(code.indexOf(a),code.indexOf(b,code.indexOf(a)+a.length));
 const context={window:{},$:()=>({value:'8'}),MEAL_TYPES:['mid','eve'],recipeRole:r=>r.role||r.course||'dish',isFavorite:()=>false,recipeFeedbackHTML:()=>'',recipePersonalNoteHTML:()=>''};
 vm.runInNewContext(code.slice(0,code.indexOf("$('libraryCount').textContent="))+'\n'+
@@ -653,6 +655,8 @@ Object.assign(ingredients,{
   'apero-22':['crevettes crues décortiquées','ail','huile d’olive','citron','persil','sel.*poivre.*piment']
 });
 assert.equal(fixture.recipes.length,1538);
+timers.e06=[[],[],[],[]];
+ingredients.e06=['saumon fumé','concombre','pommes de terre','yaourt nature','aneth.*citron'];
 let quantityChecks=0,timerCount=0;
 for(const record of fixture.recipes){
   const recipe=recipes.find(r=>r.id===record.id);
@@ -1459,7 +1463,7 @@ for(const count of [1,2,3,4,5,8]){
   assert.ok(context.recipeStepText(sole.p[0],sole,count).includes(context.formatQty(30*count/4)+' g de beurre'));
   assert.ok(context.recipeStepText(sole.p[1],sole,count).includes(context.formatQty(20*count/4)+' cl de fumet de poisson'));
   assert.ok(context.recipeStepText(tartine.p[0],tartine,count).includes(context.formatQty(80*count/2)+' g de fromage râpé'));
-  for(const record of batch34.filter(r=>r.status==='blocked')){
+  for(const record of batch34.filter(r=>r.status==='blocked'&&r.id!=='e06')){
     const r=recipes.find(r=>r.id===record.id),output=context.recipeHTML(r,{people:count,dayIndex:1,mealType:'eve'});
     assert.ok(output.includes(context.escapeHTML(editorial[record.id].reviewNote)));
     for(const ingredient of r.i){
@@ -1481,7 +1485,7 @@ assert.match(recipes.find(r=>r.id==='e09').p[0],/poulet cuit, pas du poulet cru/
 assert.match(editorial.e01.reviewNote,/pommes de terre et œufs.*Sans cuisson/);
 assert.match(editorial.e05.reviewNote,/Moulinex.*ne valide pas ce temps CR/);
 assert.match(editorial.e10.reviewNote,/cuisson au bouillon.*ne pas lui ajouter un suage/);
-console.log(`✓ Batch 34: ${reservedQuantityChecks34} original ingredient renders and 138 visible reservations; original roasting/poaching/braising preserved, dynamic quantities, cooked chicken retained`);
+console.log(`✓ Batch 34: ${reservedQuantityChecks34} original ingredient renders and 132 visible reservations; e06 superseded by sourced pilot 01; original roasting/poaching/braising preserved`);
 const batch35=JSON.parse(readFileSync(resolve(root,'scripts/recipe-editorial-batch-35.fixture.json'),'utf8')).recipes;
 assert.equal(batch35.length,40);assert.equal(batch35.filter(r=>r.status==='corrected').length,10);
 assert.equal(batch35.filter(r=>r.status==='blocked').length,30);
@@ -1722,12 +1726,14 @@ const batch43=final43.recipes,ids43=new Set(batch43.map(r=>r.id));
 const inventory43=JSON.parse(readFileSync(resolve(root,'docs/recipe-editorial-inventory.json'),'utf8'));
 assert.equal(batch43.length,49);assert.equal(batch43[0].id,'v39-lasagnes-bolognaise');
 assert.deepEqual(batch43.map(r=>r.id),inventory43.recipes.filter(r=>r.batch==='43').map(r=>r.id));
-assert.deepEqual(inventory43.recipes.reduce((s,r)=>(s[r.status]=(s[r.status]||0)+1,s),{}),{corrected:427,blocked:1115,unchanged:11});
+assert.deepEqual(inventory43.recipes.reduce((s,r)=>(s[r.status]=(s[r.status]||0)+1,s),{}),{corrected:428,blocked:1114,unchanged:11});
 assert.ok(inventory43.recipes.every(r=>r.status!=='pending'),'final lot: no pending recipe');
 assert.equal(recipes.filter(r=>!ids43.has(r.id)).length,final43.outside.count);
-assert.equal(recipeHash(recipes.filter(r=>!ids43.has(r.id))),final43.outside.recipesSha256,'all 1504 previously examined culinary objects untouched');
-assert.equal(recipeHash(Object.entries(editorial).filter(([id])=>!ids43.has(id))),final43.outside.editorialSha256,'previous editorial metadata untouched');
-assert.equal(recipeHash(inventory43.recipes.filter(r=>!ids43.has(r.id))),final43.outside.inventorySha256,'previous review records, including 1085 blocked, untouched');
+// Keep the immutable lot-43 fingerprints: only e06 is superseded, and its live
+// content plus all 1552 neighbours are independently checked by pilot 01 above.
+assert.equal(recipeHash(recipes.filter(r=>!ids43.has(r.id)).map(r=>r.id==='e06'?pilot.before.recipe:r)),final43.outside.recipesSha256,'lot-43 baseline preserved outside the documented pilot');
+assert.equal(recipeHash(Object.entries(editorial).filter(([id])=>!ids43.has(id)).map(([id,value])=>[id,id==='e06'?pilot.before.editorial:value])),final43.outside.editorialSha256,'prior reading baseline preserved');
+assert.equal(recipeHash(inventory43.recipes.filter(r=>!ids43.has(r.id)).map(r=>r.id==='e06'?pilot.before.record:r)),final43.outside.inventorySha256,'prior review baseline preserved');
 assert.equal(batch43.filter(r=>r.status==='corrected').length,18);
 assert.equal(batch43.filter(r=>r.status==='unchanged').length,1);
 let reservedQuantityChecks43=0;

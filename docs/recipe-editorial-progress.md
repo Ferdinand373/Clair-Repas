@@ -8,9 +8,15 @@
 - Le premier lot de 20 est conservé. Son journal est [recipe-clarity-batch-01.md](recipe-clarity-batch-01.md).
 - Statuts : `pending` à examiner ; `unchanged` conforme sans réécriture ; `corrected` révisée ; `blocked` incertitude essentielle documentée. Une fiche bloquée n’est pas validée culinairement.
 
-## État actuel — lot 43 final
+## État actuel — pilote de déblocage 01
 
-État actuel après le **lot final 43**, le 15 septembre 2026 : **1 553 identifiants examinés, 427 corrigés, 11 conformes sans réécriture, 1 115 bloqués, 0 `pending`**. Les sections des lots précédents restent le journal historique ; la reprise du lot 43 a été expressément autorisée après l’arrêt du lot 42. Après publication de ce lot, arrêt : aucun lot 44 ni reprise des anciennes réserves.
+Après le **pilote 01**, le 15 septembre 2026 : **1 553 identifiants examinés, 428 corrigés, 11 conformes sans réécriture, 1 114 bloqués, 0 `pending`**. Douze candidates déjà bloquées ont été réexaminées ; seule `e06` est débloquée grâce à son ancienne source explicite. Les onze autres restent inchangées et bloquées. Aucune recherche culinaire externe effectuée.
+
+[Journal du pilote, identifiants, preuves, réserves et contrôles](recipe-unblocking-pilot-01.md). Le chantier principal reste terminé au lot 43 ; ce pilote n'est pas un lot 44. **Arrêt après ces douze candidates. Aucune treizième recette ni campagne automatique autorisée.** Une nouvelle instruction est nécessaire pour reprendre.
+
+## État historique — lot 43 final
+
+État après le **lot final 43**, avant le pilote 01, le 15 septembre 2026 : **1 553 identifiants examinés, 427 corrigés, 11 conformes sans réécriture, 1 115 bloqués, 0 `pending`**. Les sections des lots précédents restent le journal historique ; la reprise du lot 43 a été expressément autorisée après l’arrêt du lot 42. L'arrêt suivant ce lot a été respecté ; le pilote ci-dessus fait l'objet d'une autorisation distincte et limitée.
 
 ## État de départ
 

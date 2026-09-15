@@ -1,0 +1,142 @@
+{
+  "baselineCommit": "da6ceeae6ab3d3ea0460c0cf017e4765358351f5",
+  "batch": "pilote-01",
+  "selectedIds": [
+    "n33",
+    "n86",
+    "v31n-bowl-quinoa-courge-saumon",
+    "v39-quiche-lorraine",
+    "v39-paella",
+    "theme-bistrot-brasserie-07",
+    "theme-bistrot-plus-18",
+    "bistrot-ext-17",
+    "veg-l1-15",
+    "bourgeois-23",
+    "e05",
+    "e06"
+  ],
+  "source": {
+    "commit": "c456cee99249ce1545fe479598b6facb766a5fb4",
+    "path": "index.html",
+    "line": 163,
+    "ingredient": "I(400,'g','pommes de terre cuites')"
+  },
+  "before": {
+    "recipe": {
+      "id": "e06",
+      "n": "Saumon fumé, concombre et pommes de terre",
+      "m": "Sans cuisson",
+      "t": "15 min",
+      "s": [
+        "printemps",
+        "été"
+      ],
+      "i": [
+        {
+          "q": 200,
+          "u": "g",
+          "n": "saumon fumé",
+          "k": "saumon fumé"
+        },
+        {
+          "q": 0.5,
+          "u": "",
+          "n": "concombre",
+          "k": "concombres"
+        },
+        {
+          "q": 400,
+          "u": "g",
+          "n": "pommes de terre",
+          "k": "pommes de terre"
+        },
+        {
+          "q": 1,
+          "u": "",
+          "n": "yaourt nature",
+          "k": "yaourts nature"
+        },
+        {
+          "q": null,
+          "u": "",
+          "n": "aneth et citron",
+          "k": "aneth et citron"
+        }
+      ],
+      "p": [
+        "Couper le concombre et les pommes de terre.",
+        "Mélanger le yaourt, le citron et l’aneth.",
+        "Servir avec le saumon fumé."
+      ],
+      "protein": "saumon",
+      "group": "poisson",
+      "starch": "pommes-de-terre",
+      "family": "plat-complet",
+      "cuisine": "française",
+      "vegetables": [
+        "concombre"
+      ],
+      "method": "Sans cuisson",
+      "hotCold": "froid",
+      "lightness": "léger-rassasiant",
+      "subFamily": "plat-complet-fume-concombre-pommes-terre",
+      "texture": "moelleux",
+      "technique": "assemblage frais",
+      "presentation": "assiette complète",
+      "profile": "plat-complet|plat-complet-fume-concombre-pommes-terre|française|pommes-de-terre|moelleux|assemblage frais|assiette complète",
+      "season": [
+        "printemps",
+        "été"
+      ],
+      "mealSlots": [
+        "eve"
+      ]
+    },
+    "editorial": {
+      "intro": "Le saumon fumé, le concombre et les pommes de terre se servent avec une sauce au yaourt et à l’aneth.",
+      "titles": [
+        "Couper — pommes de terre à vérifier",
+        "Mélanger la sauce",
+        "Servir avec le saumon fumé"
+      ],
+      "times": {
+        "prep": null,
+        "cook": "État des pommes de terre non établi",
+        "rest": null,
+        "total": "15 min annoncées, non vérifiées"
+      },
+      "reviewNote": "À vérifier : pommes de terre listées sans mention déjà cuites sous une fiche Sans cuisson. Ni cuisson ni refroidissement ne sont décrits. Ne pas convertir leur poids cru en poids cuit ni ajouter une cuisson au saumon fumé ; conserver la sauce yaourt, aneth et citron."
+    },
+    "record": {
+      "id": "e06",
+      "name": "Saumon fumé, concombre et pommes de terre",
+      "status": "blocked",
+      "sourceHash": "f37d7d093e61f0a00f8a42271d56fb72615cf14a14b1e377406fc5c93dcedf4a",
+      "reviewedHash": "f37d7d093e61f0a00f8a42271d56fb72615cf14a14b1e377406fc5c93dcedf4a",
+      "batch": "34",
+      "issues": [
+        "pommes de terre listées sans mention déjà cuites sous une fiche Sans cuisson. Ni cuisson ni refroidissement ne sont décrits. Ne pas convertir leur poids cru en poids cuit ni ajouter une cuisson au saumon fumé ; conserver la sauce yaourt, aneth et citron."
+      ],
+      "reviewNote": "pommes de terre listées sans mention déjà cuites sous une fiche Sans cuisson. Ni cuisson ni refroidissement ne sont décrits. Ne pas convertir leur poids cru en poids cuit ni ajouter une cuisson au saumon fumé ; conserver la sauce yaourt, aneth et citron."
+    }
+  },
+  "after": {
+    "record": {
+      "id": "e06",
+      "name": "Saumon fumé, concombre et pommes de terre",
+      "status": "corrected",
+      "sourceHash": "f37d7d093e61f0a00f8a42271d56fb72615cf14a14b1e377406fc5c93dcedf4a",
+      "reviewedHash": "3d4553c435d751760e917f403442e8ecd7b309a26b5fd007aced744cc8df3fdd",
+      "batch": "pilote-01",
+      "issues": [],
+      "reviewNote": "Pilote de déblocage 01 : état cuit et quantité de référence retrouvés dans c456cee99249ce1545fe479598b6facb766a5fb4:index.html:163 (400 g de pommes de terre cuites). Même identifiant et même assemblage sans cuisson ; aucune conversion de poids cru/cuit ni cuisson ajoutée. Clé de courses et autres ingrédients conservés.",
+      "protectedRecipeSha256": "d495f30e5752ba120daecd2269dfa63ed1ca31f28000bc4d95d112e74f5bc2eb"
+    }
+  },
+  "outside": {
+    "count": 1552,
+    "recipesSha256": "88050ad82c1bdd0dc7ef645eeaac3d1988deebec608650a1945113da4d86eb3c",
+    "editorialSha256": "86f42c9efa203c1907e502288444f9136e1faaddc904b0a3dda3194b3e387f7a",
+    "inventorySha256": "ccfb14d9cf79d0e437c3e582e3bea85292efbe02eb7a03fcedfbdb2868ed81bf"
+  }
+}
