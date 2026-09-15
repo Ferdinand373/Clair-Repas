@@ -8,7 +8,7 @@ import {recipeSource} from './recipe-source.mjs';
 import {recipeHash} from './validate-recipe-editorial.mjs';
 const root=resolve(dirname(fileURLToPath(import.meta.url)),'..');
 const {code,recipes,editorial}=recipeSource(readFileSync(resolve(root,'index.html'),'utf8'));
-const batchNumbers=['02','03','04','05','06','07','08','09','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31','32','33','34','35','36','37','38','39','40','41','42'];
+const batchNumbers=['02','03','04','05','06','07','08','09','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31','32','33','34','35','36','37','38','39','40','41','42','43'];
 const fixture={recipes:batchNumbers.flatMap(number=>JSON.parse(readFileSync(resolve(root,`scripts/recipe-editorial-batch-${number}.fixture.json`),'utf8')).recipes)};
 const slice=(a,b)=>code.slice(code.indexOf(a),code.indexOf(b,code.indexOf(a)+a.length));
 const context={window:{},$:()=>({value:'8'}),MEAL_TYPES:['mid','eve'],recipeRole:r=>r.role||r.course||'dish',isFavorite:()=>false,recipeFeedbackHTML:()=>'',recipePersonalNoteHTML:()=>''};
@@ -616,7 +616,43 @@ Object.assign(ingredients,{
   'v39-amatriciana':['pâtes','guanciale ou la pancetta','tomates pelées','pecorino','piment','salée','eau'],
   'v39-penne-arrabbiata':['penne','tomates concassées','ail','huile d’olive','piment','persil','saler','eau']
 });
-assert.equal(fixture.recipes.length,1489);
+// Lot 43: expectations reviewed independently of the production timer parser.
+Object.assign(timers,{
+  'v39-lasagnes-bolognaise':[[],[6,5],[30],[1,5],[],[35],[10]],
+  'v39-lasagnes-ricotta-epinards':[[],[5],[],[],[25],[15],[8]],
+  'v39-macaroni-jambon-fromage':[[],[1],[5],[],[15]],
+  q407:[[],[5],[18],[5],[5],[3]],q409:[[],[],[],[]],q410:[[],[12],[],[],[20]],
+  'v74-reg-09':[[],[20],[20],[],[],[5]],
+  'v74-reg-17':[[],[15],[5],[],[],[40],[10]],
+  'apero-02':[[],[],[],[]],'apero-04':[[40],[5],[],[],[]],
+  'apero-05':[[],[],[],[],[]],'apero-06':[[25],[10],[],[],[]],
+  'apero-07':[[],[2],[],[],[25]],'apero-08':[[],[],[30],[],[15]],
+  'apero-09':[[],[],[],[15]],'apero-10':[[],[15],[],[8],[8]],
+  'apero-17':[[35],[],[],[25]],'apero-18':[[],[],[],[20]],
+  'apero-22':[[],[2],[2],[]]
+});
+Object.assign(ingredients,{
+  'v39-lasagnes-bolognaise':['feuilles de lasagne','bœuf haché','tomates concassées','carotte','oignon','huile d’olive','beurre','farine','lait','parmesan','muscade','saler.*poivrer'],
+  'v39-lasagnes-ricotta-epinards':['feuilles de lasagne','épinards','ricotta','œufs','coulis','mozzarella','parmesan','ail','huile','saler.*poivrer'],
+  'v39-macaroni-jambon-fromage':['macaroni','jambon','beurre','farine','lait','gruyère','muscade','sel.*poivre'],
+  q407:['dinde','chou rouge','pomme','oignon','vinaigre','miel','huile','saler.*poivrer','eau'],
+  q409:['lentilles','betterave déjà cuite','truite fumée','échalote','vinaigre de cidre','huile de noix','aneth','poivrer'],
+  q410:['courgettes','saumon frais','quinoa','tomates','échalote','huile d’olive','aneth','citron','salée'],
+  'v74-reg-09':['haricots blancs déjà cuits','haricots rouges déjà cuits','haricots verts','courgettes','tomates','pommes de terre','petites pâtes','basilic','ail','parmesan','huile','sel.*poivre','eau'],
+  'v74-reg-17':['pâte brisée','poireaux','beurre','œufs','crème','fromage râpé','muscade','sel.*poivre','salade'],
+  'apero-02':['anchois à l’huile','ail','huile d’olive','vinaigre de vin','jus de citron','poivrer'],
+  'apero-04':['aubergines','ail','huile d’olive','citron','persil','sel.*poivre'],
+  'apero-05':['yaourt','sel','huile','zaatar','herbes'],
+  'apero-06':['poivrons','amandes déjà grillées','ail','vinaigre de xérès','huile d’olive','paprika fumé','saler'],
+  'apero-07':['eau','lait','beurre','farine','œufs','comté','sel.*poivre.*muscade'],
+  'apero-08':['farine','beurre froid','parmesan','jaune d’œuf','thym','poivre'],
+  'apero-09':['pâte feuilletée rectangulaire','comté','œuf','graines de sésame','poivre'],
+  'apero-10':['pâte feuilletée rectangulaire','pesto','parmesan','poivrer'],
+  'apero-17':['pâte à pain ou à pizza','oignons','filets d’anchois','olives noires','huile d’olive','thym'],
+  'apero-18':['mini-poivrons','ricotta','parmesan','ail','basilic et persil','huile d’olive'],
+  'apero-22':['crevettes crues décortiquées','ail','huile d’olive','citron','persil','sel.*poivre.*piment']
+});
+assert.equal(fixture.recipes.length,1538);
 let quantityChecks=0,timerCount=0;
 for(const record of fixture.recipes){
   const recipe=recipes.find(r=>r.id===record.id);
@@ -1681,6 +1717,60 @@ assert.match(editorial['v39-spaghetti-carbonara'].reviewNote,/hors feu.*sécurit
 assert.match(editorial['v31e-bowl-boulgour-tofu'].reviewNote,/six minutes trente/);
 assert.deepEqual(Array.from(context.stepTimerDurations(recipes.find(r=>r.id==='v39-linguine-vongole').p[1])),[]);
 console.log(`✓ Batch 42: sixteen manual rewrites, source-restored scaled water not auto-selected for shopping; ${reservedQuantityChecks42} reserved ingredient renders and 204 visible reservations; 1/2/3/4/5/8 people and original methods preserved`);
+const final43=JSON.parse(readFileSync(resolve(root,'scripts/recipe-editorial-batch-43.fixture.json'),'utf8'));
+const batch43=final43.recipes,ids43=new Set(batch43.map(r=>r.id));
+const inventory43=JSON.parse(readFileSync(resolve(root,'docs/recipe-editorial-inventory.json'),'utf8'));
+assert.equal(batch43.length,49);assert.equal(batch43[0].id,'v39-lasagnes-bolognaise');
+assert.deepEqual(batch43.map(r=>r.id),inventory43.recipes.filter(r=>r.batch==='43').map(r=>r.id));
+assert.deepEqual(inventory43.recipes.reduce((s,r)=>(s[r.status]=(s[r.status]||0)+1,s),{}),{corrected:427,blocked:1115,unchanged:11});
+assert.ok(inventory43.recipes.every(r=>r.status!=='pending'),'final lot: no pending recipe');
+assert.equal(recipes.filter(r=>!ids43.has(r.id)).length,final43.outside.count);
+assert.equal(recipeHash(recipes.filter(r=>!ids43.has(r.id))),final43.outside.recipesSha256,'all 1504 previously examined culinary objects untouched');
+assert.equal(recipeHash(Object.entries(editorial).filter(([id])=>!ids43.has(id))),final43.outside.editorialSha256,'previous editorial metadata untouched');
+assert.equal(recipeHash(inventory43.recipes.filter(r=>!ids43.has(r.id))),final43.outside.inventorySha256,'previous review records, including 1085 blocked, untouched');
+assert.equal(batch43.filter(r=>r.status==='corrected').length,18);
+assert.equal(batch43.filter(r=>r.status==='unchanged').length,1);
+let reservedQuantityChecks43=0;
+for(const count of [1,2,3,4,5,8])for(const record of batch43.filter(r=>r.status==='blocked')){
+  const r=recipes.find(r=>r.id===record.id),output=context.recipeHTML(r,{people:count,dayIndex:1,mealType:'eve'});
+  assert.ok(output.includes(context.escapeHTML(editorial[record.id].reviewNote)));assert.doesNotMatch(output,/\{\{|undefined|NaN/);
+  for(const ingredient of r.i){
+    const q=ingredient.q==null?null:ingredient.q*count/(r.servings||2);
+    assert.ok(output.includes('>'+context.ingredientText(ingredient,q,count)+'</li>'));reservedQuantityChecks43++;
+  }
+  const attached=[...output.matchAll(/data-step-index="(\d+)" data-timer-minutes="(\d+)"/g)].map(([,step,min])=>[+step,+min]);
+  assert.deepEqual(attached,r.p.flatMap((step,index)=>Array.from(context.stepTimerDurations(step)).map(min=>[index,min])));
+}
+const turkey43=recipes.find(r=>r.id==='q407'),pistou43=recipes.find(r=>r.id==='v74-reg-09');
+const spinach43=recipes.find(r=>r.id==='v39-lasagnes-ricotta-epinards'),macaroni43=recipes.find(r=>r.id==='v39-macaroni-jambon-fromage');
+const restorations43={q407:[{q:8,u:'cl',n:'eau',k:'eau'},/8 cl d’eau/],q410:[{q:null,u:'',n:'sel',k:'sel'},/dans l’eau salée/],'v74-reg-09':[{q:1.5,u:'l',n:'eau',k:'eau'},/1,5 litre d’eau/],'v74-reg-17':[{q:null,u:'',n:'salade',k:'salade'},/avec une salade/],'apero-06':[{q:null,u:'',n:'sel',k:'sel'},/Saler et servir/]};
+for(const [id,[ingredient,proof]] of Object.entries(restorations43)){
+  const r=recipes.find(r=>r.id===id);
+  assert.deepEqual(r.i.at(-1),ingredient);assert.match(batch43.find(x=>x.id===id).beforeSteps.join(' '),proof);
+}
+for(const count of [1,2,3,4,5,8]){
+  assert.ok(context.recipeStepText(turkey43.p[2],turkey43,count).includes(context.formatQty(8*count/2)+' cl d’eau'));
+  assert.ok(context.recipeStepText(pistou43.p[1],pistou43,count).includes(context.formatQty(1.5*count/6)+' l d’eau'));
+  assert.equal(context.recipeStepText(spinach43.p[2],spinach43,count).split(context.formatQty(20*count/2)+' g de parmesan').length-1,2,'two spinach-lasagne cheese shares prepared together');
+  assert.equal(context.recipeStepText(macaroni43.p[3],macaroni43,count).split(context.formatQty(50*count/2)+' g de gruyère').length-1,2,'two exact calculated cheese shares');
+  for(const r of [turkey43,pistou43]){
+    const water=shopping42.buildDraft([r],{peopleCount:count}).filter(entry=>entry.canonicalName==='eau');
+    assert.equal(water.length,1);assert.equal(water[0].pantry,true);assert.equal(water[0].selected,false);
+  }
+}
+const distinctMeals43=[{recipe:turkey43,people:2},{recipe:spinach43,people:4},{recipe:pistou43,people:3},{recipe:macaroni43,people:2}];
+const renderMeals43=()=>distinctMeals43.map(({recipe,people},i)=>context.recipeHTML(recipe,{people,dayIndex:Math.floor(i/2),mealType:i%2?'eve':'mid'}));
+const beforeMeals43=renderMeals43();distinctMeals43[1].people=5;const afterMeals43=renderMeals43();
+assert.notEqual(beforeMeals43[1],afterMeals43[1]);for(const i of [0,2,3])assert.equal(beforeMeals43[i],afterMeals43[i]);
+assert.deepEqual(Array.from(context.stepTimerDurations(macaroni43.p[0])),[],'packet minus two is not a timer');
+assert.match(turkey43.p[3],/4 à 5 minutes.*première face/);assert.match(turkey43.p[4],/4 à 5 minutes.*autre face.*74 °C/);
+assert.match(pistou43.p[3],/deux portions identiques.*Ne pas les chauffer/i);assert.match(pistou43.p[5],/Retirer.*du feu.*Ne pas remettre.*bouillir/);
+assert.match(recipes.find(r=>r.id==='q410').p[3],/sans précuire le saumon/);
+assert.match(recipes.find(r=>r.id==='apero-07').p[4],/dix-huit premières minutes, comprises/);
+assert.match(recipes.find(r=>r.id==='apero-10').p[4],/quatorze à seize minutes.*ne s’y ajoutent pas/);
+assert.match(editorial['v39-cannelloni-ricotta-epinards'].reviewNote,/autre composition.*ne pas fusionner/);
+assert.match(editorial['apero-14'].reviewNote,/sans graisse.*ni cuire l’ail directement/);
+console.log(`✓ Final batch 43: 49 ordered records (18 corrected, 1 unchanged, 30 blocked), 0 pending; 1504 prior recipes/metadata/reviews protected; ${reservedQuantityChecks43} reserved ingredient renders and 180 visible reservations; distinct meal quantities and source-restored water preserved`);
 const corrected=fixture.recipes.filter(r=>r.status==='corrected').length;
 const unchanged=fixture.recipes.filter(r=>r.status==='unchanged').length;
 console.log(`✓ Batches ${batchNumbers.join('/')}: ${fixture.recipes.length} individual review records, ${corrected} corrected, ${unchanged} unchanged, ${fixture.recipes.length-corrected-unchanged} blocked with original content preserved; ${timerCount} manually checked timers`);

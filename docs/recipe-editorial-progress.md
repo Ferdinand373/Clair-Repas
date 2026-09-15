@@ -8,6 +8,10 @@
 - Le premier lot de 20 est conservé. Son journal est [recipe-clarity-batch-01.md](recipe-clarity-batch-01.md).
 - Statuts : `pending` à examiner ; `unchanged` conforme sans réécriture ; `corrected` révisée ; `blocked` incertitude essentielle documentée. Une fiche bloquée n’est pas validée culinairement.
 
+## État actuel — lot 43 final
+
+État actuel après le **lot final 43**, le 15 septembre 2026 : **1 553 identifiants examinés, 427 corrigés, 11 conformes sans réécriture, 1 115 bloqués, 0 `pending`**. Les sections des lots précédents restent le journal historique ; la reprise du lot 43 a été expressément autorisée après l’arrêt du lot 42. Après publication de ce lot, arrêt : aucun lot 44 ni reprise des anciennes réserves.
+
 ## État de départ
 
 | Examinées dans le premier lot | Corrigées | Bloquées | Restant à examiner |
@@ -497,3 +501,19 @@ Actualisation ordinateur/iPhone : ouvrir « Clair Repas · Réglages & confiance
 ## Limites des vérifications
 
 Les tests de structure, quantité, minuteurs, stockage simulé et rendu ne sont pas des essais culinaires. Les formats iPhone/PWA sont simulés, sauf mention explicite d’un appareil physique. Le total de fiches à examiner ne doit jamais être remplacé par le nombre de fiches auxquelles le style commun a été appliqué.
+
+## Lot 43 final — toutes les fiches ont un statut
+
+[Journal détaillé, sources et 49 décisions](recipe-editorial-batch-43.md). Reprise depuis `7afdb2a031a26b729811b099c3d37b91f3b37a6b`, confirmé sur le `main` officiel avant modification. Les 49 dernières fiches ont été examinées dans l’ordre de l’inventaire : **18 corrigées, 1 conforme sans réécriture et 30 nouvellement bloquées**. Première `v39-lasagnes-bolognaise`, dernière `apero-30`. Les 1 504 fiches déjà examinées, dont `apero-19`, ne font pas partie de cette relecture.
+
+**Bilan final : 1 553 examinées sur 1 553 ; 427 corrigées, 11 conformes, 1 115 bloquées et 0 à examiner (`pending`).** Les 1 085 anciennes réserves sont intactes. Les nouvelles réserves ne sont pas considérées comme des recettes validées ; leurs ingrédients et préparations sont conservés et leurs raisons affichées.
+
+Les cinq seuls ajouts aux listes sont rétablis depuis les étapes source : eau de la dinde et de la soupe au pistou, sel du quinoa et de la crème de poivrons, salade de service de la flamiche. Dosages préexistants, identifiants, appareils et portions conservés. Les cannelloni de deux archives contradictoires ne sont pas recomposés. Le labneh est conforme sans réécriture ; huiles et fromages partagés utilisent les quantités calculées par repas.
+
+Les **24 commandes du workflow passent** : zéro erreur éditoriale, 3 913 avertissements. Ce lot ajoute 45 minuteurs manuellement attendus, 852 rendus corrigés/conformes à 1/2/3/4/5/8 convives, 1 284 rendus réservés et 180 réserves visibles. Cumul 674 minuteurs et 16 212 rendus d’ingrédients corrigés/conformes. Convives 2/4/3/2 → 2/5/3/2, courses 105/105, QR4 12/12, 7 765 rendus communs, minuteur/persistance/alerte et stockage simulé validés. Empreintes globales de protection des 1 504 anciennes recettes, de leurs métadonnées et de leur suivi vérifiées.
+
+Neuf vues du Livre et du parcours cuisine contrôlées aux trois formats simulés, sans débordement horizontal : commandes de 44 px, minuteur à 12 px de la navigation, quantités calculées et fin de recette accessibles. Le maintien physique de l’écran allumé n’est pas validé par le navigateur ; aucun iPhone physique ou essai culinaire. Détails et limites dans le journal.
+
+La branche parallèle `shopping-v2-engine-test` reste propre, toujours à `f21bad0c63b9dae514d0a85da34efd8453f0ce30` ; aucun de ses changements n’est intégré ni publié. Aucun moteur modifié, aucune donnée personnelle effacée ou écrite directement. Publication à consigner après vérification distante.
+
+**ARRÊT après le lot 43.** Aucun lot 44 n’est créé. Le traitement des 1 115 fiches bloquées nécessitera une décision séparée de l’utilisateur ; aucun réexamen n’est lancé automatiquement.
