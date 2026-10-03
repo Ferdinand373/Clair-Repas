@@ -164,6 +164,37 @@ button.meal-component-toggle:active{transform:scale(.985)}
 .library-count{text-align:center;color:var(--muted);font-size:12px;margin:13px 0 0}
 .wake-note{display:none;margin:4px 0 9px;padding:8px 10px;border-radius:11px;background:#f3f7f2;color:var(--green);font-size:12px;font-weight:760}
 body.wake-active .wake-note{display:block}
+.cooking-open{display:block;width:100%;min-height:48px;margin:0 0 14px;padding:12px;border:1px solid var(--green);border-radius:13px;background:var(--green);color:white;font-weight:850;font-size:17px}
+body.cooking-opened{overflow:hidden}
+.cooking-page[hidden]{display:none}
+.cooking-page{position:fixed;inset:0;z-index:25;overflow:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;background:#fffdfa;color:#27231f;padding:calc(16px + env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) calc(var(--timer-bottom) + 16px) max(16px,env(safe-area-inset-left,0px));scroll-padding-top:18px;scroll-padding-bottom:calc(var(--timer-bottom) + 16px)}
+body.timer-running .cooking-page{padding-bottom:var(--timer-clearance);scroll-padding-bottom:var(--timer-clearance)}
+.cooking-shell{max-width:760px;margin:auto;overflow-wrap:anywhere}
+.cooking-header{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:18px}
+.cooking-header strong{font-size:19px}
+.cooking-page button,.cooking-page summary{min-height:48px;padding:12px 16px;font-size:17px;font-weight:750;line-height:1.35;touch-action:manipulation}
+.cooking-page button{border:1px solid #adbdb0;border-radius:12px;background:#f0f5ef;color:#244c34}
+.cooking-page button:disabled{opacity:.5;cursor:default}
+.cooking-page h1{font-size:clamp(26px,5vw,36px);line-height:1.2;text-align:left}
+.cooking-people{margin:12px 0;font-size:20px;font-weight:800}
+.cooking-facts{display:flex;flex-wrap:wrap;gap:10px 24px;margin:14px 0;font-size:17px;line-height:1.5}
+.cooking-facts div{min-width:0}.cooking-facts dt{font-weight:750}.cooking-facts dd{margin:0}
+.cooking-wake{font-size:15px;color:#55534c;margin:12px 0}
+.cooking-ingredients{border:1px solid #adbdb0;border-radius:14px;margin:20px 0;background:#f7faf5}
+.cooking-ingredients summary{cursor:pointer}.cooking-ingredients ul{padding:0 22px 0 42px;margin:0 0 18px;font-size:20px;line-height:1.65}
+.cooking-ingredients h4{padding:0 18px;font-size:20px}
+.cooking-stage{border-top:2px solid #dae5d8;padding-top:18px}
+.cooking-page h2{font-size:24px;line-height:1.3;margin:0 0 18px}.cooking-page h3{font-size:21px;line-height:1.35;margin:0 0 10px}
+.cooking-step{font-size:22px;line-height:1.65;margin:0 0 24px;white-space:pre-line}
+.cooking-step p{margin:0 0 14px}.cooking-all-steps{padding-left:28px}
+.cooking-navigation{display:flex;flex-wrap:wrap;gap:10px;margin:20px 0 12px}
+.cooking-navigation button{flex:1 1 130px}.cooking-page .cooking-next{background:#315d42;color:white;border-color:#315d42}
+.cooking-page .step-timers{gap:10px;margin:14px 0}.cooking-page .step-timers button{white-space:normal;text-align:left}
+.cooking-page .recipe-review-note,.cooking-page .recipe-useful-tip{font-size:17px;line-height:1.5}
+.cooking-stage :focus{outline:3px solid #315d42;outline-offset:5px}
+body.cooking-opened .timer-stop{min-height:48px;font-size:16px}
+body.cooking-opened .timer-count{font-size:24px}
+body.cooking-opened .timer-label{font-size:14px;white-space:normal}
 .step-timers{display:flex;flex-wrap:wrap;gap:7px;margin-top:6px}
 .step-timer{min-height:36px;padding:7px 10px;border:1px solid #cfe2d5;border-radius:10px;background:var(--green-soft);color:var(--green);font-size:12px;font-weight:850}
 .actions{display:grid;gap:9px;margin-top:15px}
@@ -1117,6 +1148,12 @@ select{min-height:48px;border:1px solid #deebf2;border-radius:16px;background:#f
     <div class="browser-content" id="browserContent"></div>
   </section>
 </div>
+<section class="cooking-page" id="cookingMode" aria-labelledby="cookingTitle" hidden>
+  <div class="cooking-shell">
+    <div class="cooking-header"><strong>Mode Cuisine</strong><button type="button" id="cookingClose">Quitter</button></div>
+    <div id="cookingContent"></div>
+  </div>
+</section>
 <div class="kitchen-timer" id="kitchenTimer" role="status" aria-live="polite">
   <div class="timer-copy">
     <span class="timer-label" id="timerLabel">Minuteur de cuisine</span>
@@ -7004,11 +7041,12 @@ function recipeHTML(x,{showFavorite=true,people=peopleCount(),dayIndex=null,meal
     ${portionControl}
     ${showFavorite?`<button class="recipe-favorite${liked?' active':''}" data-recipe-id="${x.id}" type="button" aria-pressed="${liked}" aria-label="${liked?'Retirer des favoris':'Ajouter aux favoris'}">${liked?'♥':'♡'}</button>`:''}
   </div>
+  <button class="cooking-open" type="button" data-cooking-id="${escapeHTML(x.id)}"${mealData}>Mode Cuisine</button>
   ${x.yieldText&&!fixedYield?`<p class="recipe-yield">📏 Rendement de base : ${x.yieldText}</p>`:''}
   ${recipeEssentialHTML(x,reading)}
   ${reading.reviewNote?`<p class="recipe-review-note">${escapeHTML(reading.reviewNote)}</p>`:!reading.intro?'<p class="recipe-review-note legacy">Fiche historique : précisions culinaires non encore vérifiées.</p>':''}
   <h3>Ingrédients</h3>${recipeIngredientsHTML(x,reading,count,mealData)}
-  <h3>Préparation</h3><p class="wake-note">☀️ Mode cuisine · écran maintenu allumé</p><ol>${steps}</ol>
+  <h3>Préparation</h3><ol>${steps}</ol>
   ${reading.tip?`<aside class="recipe-useful-tip"><strong>Conseil</strong> ${escapeHTML(reading.tip)}</aside>`:''}</div>
   ${recipeFeedbackHTML(x)}${recipePersonalNoteHTML(x)}`;
 }
@@ -10036,7 +10074,117 @@ function setMealPeopleCount(index,type,value,announce=true){
   refreshPortionDisplays();
   if(announce)show(`Repas adapté pour ${count} ${count===1?'personne':'personnes'}`);
 }
+// Cooking is a read-only view of the existing recipe and meal context.
+let cookingView=null;
+let cookingReturnFocus=null;
+let cookingBackground=[];
+function cookingPeopleCount(){
+  const day=cookingView&&Number.isInteger(cookingView.dayIndex)?plan[cookingView.dayIndex]:null;
+  return day&&MEAL_TYPES.includes(cookingView.mealType)?mealPeopleCount(day,cookingView.mealType):peopleCount();
+}
+function cookingTimerButtons(step,index){
+  // Keep the established minute suggestions. Do not mistake the minute part of
+  // a compound hour/second duration for a complete countdown.
+  if(/\b\d+\s*(?:h(?:eure)?s?(?=\b|\d)|s(?:ec(?:onde)?s?)?\b)|\bmin(?:ute)?s?\s*\d/i.test(step))return '';
+  const durations=stepTimerDurations(step);
+  return durations.length?`<div class="step-timers">${durations.map(minutes=>`<button type="button" data-cooking-timer="${minutes}" data-step-index="${index}">Lancer le minuteur · ${escapeHTML(stepTimerLabel(step,minutes))}</button>`).join('')}</div>`:'';
+}
+function cookingStepHTML(recipe,reading,count,index){
+  const step=recipeStepText(recipe.p[index],recipe,count);
+  return `<h3>${escapeHTML(reading.titles?.[index]||`Étape ${index+1}`)}</h3><p>${escapeHTML(step)}</p>${cookingTimerButtons(step,index)}`;
+}
+function renderCookingStage(focus=false){
+  if(!cookingView)return;
+  const recipe=recipeIndex.get(cookingView.recipeId);
+  if(!recipe){closeCookingMode();return}
+  const reading=recipeReadingMetadata(recipe),steps=recipe.p||[],count=cookingPeopleCount();
+  cookingView.stepIndex=Math.max(0,Math.min(cookingView.stepIndex,steps.length-1));
+  const index=cookingView.stepIndex;
+  $('cookingStage').innerHTML=steps.length?`
+    <h2 id="cookingStepHeading" tabindex="-1">${cookingView.allSteps?'Toutes les étapes':`Étape ${index+1} sur ${steps.length}`}</h2>
+    ${cookingView.allSteps?`<ol class="cooking-all-steps">${steps.map((_,i)=>`<li class="cooking-step">${cookingStepHTML(recipe,reading,count,i)}</li>`).join('')}</ol>`:`<div class="cooking-step">${cookingStepHTML(recipe,reading,count,index)}</div>`}
+    ${!cookingView.allSteps&&steps.length>1?`<div class="cooking-navigation"><button type="button" data-cooking-move="-1" ${index===0?'disabled':''}>Précédente</button><button type="button" class="cooking-next" data-cooking-move="1" ${index===steps.length-1?'disabled':''}>Suivante</button></div>`:''}
+    ${steps.length>1?`<button type="button" data-cooking-view>${cookingView.allSteps?`Revenir à l’étape ${index+1}`:'Voir toutes les étapes'}</button>`:''}`
+    :'<h2 id="cookingStepHeading" tabindex="-1">Préparation</h2><p class="cooking-step">Aucune étape renseignée dans cette recette.</p>';
+  if(focus){$('cookingStepHeading').focus({preventScroll:true});$('cookingStage').scrollIntoView({block:'start'})}
+}
+function renderCookingMode(){
+  const recipe=cookingView&&recipeIndex.get(cookingView.recipeId);
+  if(!recipe)return;
+  const reading=recipeReadingMetadata(recipe),count=cookingPeopleCount();
+  const mealData=Number.isInteger(cookingView.dayIndex)?` data-day="${cookingView.dayIndex}" data-type="${cookingView.mealType}"`:'';
+  const facts=[['Appareil',recipe.m],['Durée indicative',reading.times?.total||recipe.t],['Cuisson',reading.times?.cook],['Repos',reading.times?.rest]].filter(([,value])=>value);
+  $('cookingContent').innerHTML=`<h1 id="cookingTitle" tabindex="-1">${escapeHTML(recipe.n)}</h1>
+    <p class="cooking-people">${count} ${count===1?'personne':'personnes'}${recipeHasFixedYield(recipe)?` · ${escapeHTML(recipe.yieldText||'Recette à rendement fixe : quantités non multipliées')}`:''}</p>
+    <dl class="cooking-facts">${facts.map(([label,value])=>`<div><dt>${label}</dt><dd>${escapeHTML(value)}</dd></div>`).join('')}</dl>
+    <p class="cooking-wake" id="cookingWakeStatus" role="status"></p>
+    ${reading.reviewNote?`<p class="recipe-review-note">${escapeHTML(reading.reviewNote)}</p>`:!reading.intro?'<p class="recipe-review-note">Fiche historique : précisions culinaires non encore vérifiées.</p>':''}
+    <details class="cooking-ingredients"><summary>Ingrédients · ${recipeHasFixedYield(recipe)?'rendement fixe':`${count} ${count===1?'personne':'personnes'}`}</summary>${recipe.i?.length?recipeIngredientsHTML(recipe,reading,count,mealData):'<p>Aucun ingrédient renseigné dans cette recette.</p>'}</details>
+    <div class="cooking-stage" id="cookingStage"></div>
+    ${reading.tip?`<aside class="recipe-useful-tip"><strong>Conseil</strong> ${escapeHTML(reading.tip)}</aside>`:''}`;
+  renderCookingStage();
+  updateCookingWakeStatus();
+}
+function openCookingMode(button){
+  const recipeId=button.dataset.cookingId;
+  if(!recipeIndex.has(recipeId))return;
+  if(cookingView)closeCookingMode(false);
+  const dayIndex=Number(button.dataset.day),mealType=button.dataset.type;
+  const contextual=Number.isInteger(dayIndex)&&MEAL_TYPES.includes(mealType)&&Boolean(plan[dayIndex]);
+  cookingReturnFocus=button;
+  cookingView={recipeId,dayIndex:contextual?dayIndex:null,mealType:contextual?mealType:'',stepIndex:0,allSteps:false};
+  cookingBackground=[document.querySelector('main'),$('recipeBrowser')].filter(Boolean).map(element=>({element,inert:element.inert,ariaHidden:element.getAttribute('aria-hidden')}));
+  cookingBackground.forEach(({element})=>{element.inert=true;element.setAttribute('aria-hidden','true')});
+  $('cookingMode').hidden=false;
+  document.body.classList.add('cooking-opened');
+  renderCookingMode();
+  $('cookingMode').scrollTop=0;
+  $('cookingTitle').focus({preventScroll:true});
+  updateWakeLock();
+}
+function closeCookingMode(restoreFocus=true){
+  if(!cookingView)return;
+  cookingView=null;
+  $('cookingMode').hidden=true;
+  document.body.classList.remove('cooking-opened');
+  cookingBackground.forEach(({element,inert,ariaHidden})=>{
+    element.inert=inert;
+    if(ariaHidden===null)element.removeAttribute('aria-hidden');else element.setAttribute('aria-hidden',ariaHidden);
+  });
+  cookingBackground=[];
+  updateWakeLock();
+  if(restoreFocus&&cookingReturnFocus?.isConnected)cookingReturnFocus.focus({preventScroll:true});
+  cookingReturnFocus=null;
+}
+function handleCookingAction(event){
+  const button=event.target.closest('button');
+  if(!cookingView||!button||button.disabled)return;
+  if(button.dataset.cookingMove){
+    cookingView.stepIndex+=Number(button.dataset.cookingMove);
+    renderCookingStage(true);
+  }else if(button.hasAttribute('data-cooking-view')){
+    cookingView.allSteps=!cookingView.allSteps;
+    renderCookingStage(true);
+  }else if(button.dataset.cookingTimer){
+    const recipe=recipeIndex.get(cookingView.recipeId);
+    if(recipe)startKitchenTimer(recipe,Number(button.dataset.cookingTimer),Number(button.dataset.stepIndex));
+  }
+}
+$('cookingContent').addEventListener('click',handleCookingAction);
+$('cookingClose').onclick=()=>closeCookingMode();
+document.addEventListener('keydown',event=>{
+  if(cookingView&&event.key==='Escape'){event.preventDefault();event.stopImmediatePropagation();closeCookingMode()}
+},true);
+document.querySelector('.premium-dock')?.addEventListener('click',event=>{
+  const button=event.target.closest('[data-premium-nav]');
+  if(cookingView&&button){
+    closeCookingMode(false);
+    if(['home','plan'].includes(button.dataset.premiumNav)&&!$('recipeBrowser').hidden)closeRecipeBrowser();
+  }
+},true);
+
 function bindRecipeControls({refreshReactions=true}={}){
+  document.querySelectorAll('.cooking-open').forEach(button=>button.onclick=()=>openCookingMode(button));
   document.querySelectorAll('.step-timer').forEach(button=>button.onclick=()=>{
     const recipe=recipeIndex.get(button.dataset.recipeId);
     const minutes=Number(button.dataset.timerMinutes);
@@ -10068,32 +10216,52 @@ function bindRecipeControls({refreshReactions=true}={}){
 }
 
 let wakeLock=null;
+let wakeLockRequest=null;
+let wakeLockGeneration=0;
+let cookingPageHidden=false;
+function cookingNeedsWakeLock(){return Boolean(cookingView)&&!cookingPageHidden&&document.visibilityState==='visible'}
+function updateCookingWakeStatus(){
+  const status=$('cookingWakeStatus');
+  if(status)status.textContent=wakeLock&&!wakeLock.released?'Écran maintenu allumé':wakeLockRequest?'Activation du maintien de l’écran…':'La mise en veille reste gérée par votre appareil.';
+}
 async function releaseWakeLock(){
+  wakeLockGeneration++;
+  wakeLockRequest=null;
   const lock=wakeLock;
   wakeLock=null;
   document.body.classList.remove('wake-active');
+  updateCookingWakeStatus();
   if(lock){
     try{await lock.release()}catch(e){}
   }
 }
 async function updateWakeLock(){
-  const recipeIsOpen=Boolean(document.querySelector('.recipe.open'));
-  if(!recipeIsOpen||document.visibilityState!=='visible'){
+  if(!cookingNeedsWakeLock()){
     await releaseWakeLock();
     return;
   }
-  if(!('wakeLock' in navigator)||wakeLock)return;
+  if(!navigator.wakeLock?.request||wakeLock||wakeLockRequest){updateCookingWakeStatus();return}
+  const generation=++wakeLockGeneration;
+  let request;
   try{
-    const sentinel=await navigator.wakeLock.request('screen');
+    request=navigator.wakeLock.request('screen');
+    wakeLockRequest=request;
+    updateCookingWakeStatus();
+    const sentinel=await request;
+    if(generation!==wakeLockGeneration||!cookingNeedsWakeLock()||sentinel.released){
+      try{await sentinel.release()}catch(e){}
+      return;
+    }
     wakeLock=sentinel;
     document.body.classList.add('wake-active');
     sentinel.addEventListener('release',()=>{
-      if(wakeLock===sentinel)wakeLock=null;
-      document.body.classList.remove('wake-active');
+      if(wakeLock===sentinel){wakeLock=null;document.body.classList.remove('wake-active');updateCookingWakeStatus()}
     },{once:true});
   }catch(e){
-    wakeLock=null;
-    document.body.classList.remove('wake-active');
+    if(generation===wakeLockGeneration){wakeLock=null;document.body.classList.remove('wake-active')}
+  }finally{
+    if(wakeLockRequest===request)wakeLockRequest=null;
+    updateCookingWakeStatus();
   }
 }
 document.addEventListener('visibilitychange',()=>{
@@ -10101,6 +10269,8 @@ document.addEventListener('visibilitychange',()=>{
   updateWakeLock();
   updateTimerUI();
 });
+window.addEventListener('pagehide',()=>{cookingPageHidden=true;releaseWakeLock()});
+window.addEventListener('pageshow',()=>{cookingPageHidden=false;updateWakeLock()});
 
 const TIMER_KEY='crKitchenTimerV22';
 let kitchenTimer=null;

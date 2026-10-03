@@ -133,7 +133,7 @@ context.plan=[{midPeople:2,evePeople:4},{midPeople:3,evePeople:2}];
 context.peopleKey=type=>`${type}People`;
 context.saveState=()=>{};
 context.document={getElementById:()=>({value:'8'}),querySelectorAll:selector=>selector==='.recipe-step-quantities'?[...lines,globalLine]:[]};
-vm.runInNewContext(block('function refreshPortionDisplays(','function bindRecipeControls('),context);
+vm.runInNewContext(block('function refreshPortionDisplays(','// Cooking is a read-only view'),context);
 context.refreshPortionDisplays();
 const original=lines.map(line=>line.textContent);
 assert.deepEqual(original.map(text=>Number(text.match(/Répartir dessus (\d+) g/)[1])),[40,80,60,40]);
