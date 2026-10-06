@@ -270,7 +270,7 @@ header .subtitle{font-size:14px;line-height:1.35}
 .timer-actions{display:flex;flex-wrap:wrap;gap:8px;width:100%}
 .timer-stop{flex:1 1 96px;min-width:max-content;min-height:44px;padding:8px 6px;border:1px solid rgba(255,255,255,.3);border-radius:10px;background:transparent;color:white;font-size:13px;font-weight:800;line-height:1.25}
 .timer-stop:disabled{opacity:.5;cursor:default}
-.toast{position:fixed;left:50%;bottom:calc(22px + env(safe-area-inset-bottom));transform:translateX(-50%);background:#28231f;color:white;padding:11px 15px;border-radius:999px;display:none;z-index:31;max-width:88%;text-align:center}
+.toast{position:fixed;left:50%;bottom:var(--timer-bottom);transform:translateX(-50%);background:#28231f;color:white;padding:11px 15px;border-radius:999px;display:none;z-index:31;max-width:88%;text-align:center}
 body.timer-running .toast{bottom:var(--timer-clearance)}
 body.timer-running main,body.timer-running .browser-content{padding-bottom:var(--timer-clearance)}
 body.timer-running .browser-content{scroll-padding-bottom:var(--timer-clearance)}
@@ -902,6 +902,9 @@ select{min-height:48px;border:1px solid #deebf2;border-radius:16px;background:#f
 /* Home: equal seasonal cards and an opaque iPhone status-area backing. */
 main.home-layout::before{content:'';position:fixed;z-index:19;top:0;left:0;right:0;height:env(safe-area-inset-top,0px);background:#eef8fd;pointer-events:none}
 .home-layout #newPlan{scroll-margin-top:calc(14px + env(safe-area-inset-top,0px))}
+.home-layout .planning-card,.home-layout #programResults{scroll-margin-top:calc(14px + env(safe-area-inset-top,0px))}
+#cookingMode{scroll-padding-top:calc(18px + env(safe-area-inset-top,0px))}
+#cookingMode::before{content:'';position:fixed;z-index:1;top:0;left:0;right:0;height:env(safe-area-inset-top,0px);background:#fffdfa;pointer-events:none}
 .home-layout .season-shortcut{display:block;box-sizing:border-box;width:100%;min-width:0;margin:0 0 9px;padding:14px;border-radius:22px;text-align:left;scroll-margin-top:calc(14px + env(safe-area-inset-top,0px))}
 .home-layout .season-shortcut .shortcut-overline{margin:0 0 7px}
 .home-layout .season-shortcut .shortcut-title{display:grid;grid-template-columns:26px minmax(0,1fr) 35px;align-items:center;gap:8px;min-height:38px;line-height:1.25}
@@ -6276,7 +6279,7 @@ function refreshV73HealthStatus(){
 }
 $('libraryCount').textContent=`${dishLibrary.length} plats · ${starters.length} entrées · ${desserts.length} desserts · ${breakfastRecipes.length} petits-déjeuners · ${sauceRecipes.length} sauces · ${sideRecipes.length} accompagnements · ${fundamentalRecipes.length} fondamentaux`;
 $('libraryHint').textContent=`Découvrir ${recipeLibrary.length} recettes dans le Livre`;
-$('versionLine').textContent='Clair Repas V7.5 · Accueil 2026.10.06.8';
+$('versionLine').textContent='Clair Repas V7.5 · Stabilisation 2026.10.06.9';
 // V7.5 — Grands Chefs : 60 nouvelles recettes et un chapitre dédié à dix signatures françaises.
 // V7.4 — Tables de France : 40 nouvelles recettes, avec priorité aux régions et aux grands classiques de bistrot.
 // V7.3 — Consolidation technique : robustesse PWA, sauvegarde évolutive, intégrité des données et optimisation des lectures locales.
@@ -7741,7 +7744,7 @@ function recipeSearchCategories(recipe){
   const text=normalizeSearchText(`${recipe.n} ${(recipe.i||[]).map(item=>item.n).join(' ')}`);
   if(role==='dish'&&(recipeHasPasta(recipe)||recipe.cuisine==='italienne'))values.push('pâtes','pates','cuisine italienne');
   if(role==='dish'&&(recipe.group==='volaille'||/poulet|dinde|canard|volaille/.test(text)))values.push('poulet','volaille','volailles');
-  if(role==='dish'&&(recipe.group==='viande'||/boeuf|veau|porc|agneau/.test(text)))values.push('viande','viandes');
+  if(role==='dish'&&(recipe.group==='viande'||/\b(?:boeuf|veau|porc|agneau)\b/.test(text)))values.push('viande','viandes');
   if(role==='dish'&&recipeHasFishOrSeafood(recipe))values.push('poisson','poissons','fruits de mer');
   if(role==='dish'&&(recipe.starch==='pommes-de-terre'||/pomme de terre|gratin/.test(text)))values.push('pommes de terre','gratins');
   if(role==='dish'&&(/riz|semoule|cereale|quinoa|boulgour|orge|ble/.test(text)||['riz','semoule','cereales'].includes(recipe.starch)))values.push('riz','semoule','céréales','cereales');
@@ -8713,7 +8716,7 @@ const BOOK_SHELVES=[
   {id:'companions',icon:'🥣',title:'Sauces, fondamentaux & accompagnements',description:'Les grandes sauces, bases techniques et garnitures de référence, à cuisiner séparément.',filter:recipe=>['sauce','side','fundamental'].includes(recipeRole(recipe))},
   {id:'pasta',icon:'🍝',title:'Pâtes & cuisine italienne',description:'Spaghetti, lasagnes, penne et cuisine italienne.',filter:recipe=>bookIsDish(recipe)&&(recipeHasPasta(recipe)||recipe.cuisine==='italienne')},
   {id:'poultry',icon:'🍗',title:'Poulet & volailles',description:'Poulet, dinde, canard et autres volailles.',filter:recipe=>bookIsDish(recipe)&&(recipe.group==='volaille'||bookHas(recipe,/poulet|dinde|canard|volaille/))},
-  {id:'meat',icon:'🥩',title:'Bœuf, veau, porc & agneau',description:'Les plats de viande, rôtis ou cuisinés.',filter:recipe=>bookIsDish(recipe)&&(recipe.group==='viande'||bookHas(recipe,/boeuf|veau|porc|agneau|filet mignon/))},
+  {id:'meat',icon:'🥩',title:'Bœuf, veau, porc & agneau',description:'Les plats de viande, rôtis ou cuisinés.',filter:recipe=>bookIsDish(recipe)&&(recipe.group==='viande'||bookHas(recipe,/\b(?:boeuf|veau|porc|agneau|filet mignon)\b/))},
   {id:'fish',icon:'🐟',title:'Poissons & fruits de mer',description:'Poissons, coquillages et crustacés.',filter:recipe=>bookIsDish(recipe)&&recipeHasFishOrSeafood(recipe)},
   {id:'potatoes',icon:'🥔',title:'Pommes de terre & gratins',description:'Gratins, purées et pommes de terre sous toutes leurs formes.',filter:recipe=>bookIsDish(recipe)&&(recipe.starch==='pommes-de-terre'||String(recipe.family).includes('gratin')||bookHas(recipe,/pomme de terre|gratin|purée|puree|rösti|rosti/))},
   {id:'cereals',icon:'🍚',title:'Riz, semoule & céréales',description:'Riz, semoule, quinoa, boulgour et autres céréales.',filter:recipe=>bookIsDish(recipe)&&(['riz','semoule','cereales'].includes(recipe.starch)||bookHas(recipe,/riz|semoule|couscous|quinoa|boulgour|orge|cereale|blé|ble/))},
@@ -9150,6 +9153,7 @@ function openRecipeBrowser(mode='search'){
     if(browserMode==='search')refreshBrowserDiscoveryPage();
   }
   renderRecipeBrowser();
+  if(['book','favorites'].includes(browserMode))setPremiumDockView(browserMode);
   if(browserMode==='search')setTimeout(()=>{try{$('recipeSearch').focus()}catch(e){}},60);
 }
 function openIngredientAssistant(mode){
@@ -9217,6 +9221,7 @@ function closeRecipeBrowser(){
   bookVisibleCount=BOOK_PAGE_SIZE;
   updateWakeLock();
   if(browserLastFocus&&typeof browserLastFocus.focus==='function')browserLastFocus.focus();
+  setPremiumDockView(document.querySelector('.premium-dock')?.dataset.mainView||'home');
 }
 function showBrowserRecipe(id,fromMode=browserMode){
   if(!recipeIndex.has(id))return;
@@ -11523,6 +11528,12 @@ if('serviceWorker' in navigator){
 
 
 // V7.0 — navigation premium : raccourcis d'interface uniquement, aucune donnée métier modifiée.
+function setPremiumDockView(view){
+  const dock=document.querySelector('.premium-dock');
+  if(!dock)return;
+  if(['home','plan'].includes(view))dock.dataset.mainView=view;
+  dock.querySelectorAll('.premium-dock-btn').forEach(button=>button.classList.toggle('active',button.dataset.premiumNav===view));
+}
 (function initPremiumDock(){
   const dock=document.querySelector('.premium-dock');
   if(!dock)return;
@@ -11530,7 +11541,8 @@ if('serviceWorker' in navigator){
     const button=event.target.closest('[data-premium-nav]');
     if(!button)return;
     const action=button.dataset.premiumNav;
-    dock.querySelectorAll('.premium-dock-btn').forEach(b=>b.classList.toggle('active',b===button));
+    setPremiumDockView(action);
+    if(['home','plan'].includes(action)&&!$('recipeBrowser').hidden)closeRecipeBrowser();
     if(action==='home')window.scrollTo({top:0,behavior:'smooth'});
     if(action==='plan')document.querySelector('.planning-card')?.scrollIntoView({behavior:'smooth',block:'start'});
     if(action==='book')document.getElementById('chooseRecipe')?.click();

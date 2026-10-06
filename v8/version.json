@@ -15,5 +15,5 @@
   "cloudEnabled": true,
   "cloudHandover": "remote-existing-account-or-local-new-account",
   "bootstrapGeneration": "bootstrap-v2",
-  "productBuild": "2026.10.06.8-home-alignment"
+  "productBuild": "2026.10.06.9-stabilization"
 }
