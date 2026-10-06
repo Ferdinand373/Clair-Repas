@@ -477,7 +477,15 @@ await check("11. Sel et poivre is never split", () => {
   assert.equal(draftFor(syntheticSource("qr4-restored-wraps-seasoning", [structuredClone(restoredWraps.i.at(-1))])).length, 1);
   // Five autumn recipes now specify quantified salt and pepper separately.
   // Winter aloo gobi now lists quantified coriander and salt separately.
-  assert.equal(compoundCount, 477, "Unexpected compoundSource corpus count");
+  // Spring specifies oil and herbs separately in n18, n56 and e05,
+  // and restores the source-requested seasoning in the tilleul chicken.
+  for (const id of ["n18", "n56", "e05"]) {
+    const recipe = recipeLibrary.find(r => r.id === id);
+    assert.ok(!recipe.i.some(i => /huile et (?:herbes|thym)/.test(i.n)));
+    assert.ok(recipe.i.some(i => i.n === "huile d’olive" && i.q === 1 && i.u === "c. à soupe"));
+  }
+  assert.ok(recipeLibrary.find(r => r.id === "v75-chef-guerard-02").i.some(i => i.n === "sel et poivre" && i.q === 1 && i.u === "pincée"));
+  assert.equal(compoundCount, 475, "Unexpected compoundSource corpus count");
   assert.equal(splitCount, 19, "Only the audited vinaigrette compounds may split");
   return `${compoundCount} compound occurrences; ${splitCount} safe splits; 0 unexpected`;
 });

@@ -1,7 +1,7 @@
 {
   "appId": "clair-repas",
   "contractVersion": 1,
-  "catalogVersion": "sha256:88c39d4a6ff1d08890151c15983f4b6d517287c96ec37d7e5d37d201b013ed28",
+  "catalogVersion": "sha256:e4b64b91899dec2afa83f215b59c4ccd74e684f4c126c0455e3ecd798a6f13bb",
   "recipes": {
     "a001": "Tomates au basilic et à l’échalote",
     "a002": "Concombre au yaourt et à la menthe",
@@ -573,7 +573,7 @@
     "ge-oeufs-salade-pommes-haricots": "Salade-repas pommes de terre, haricots verts et tomates aux œufs · comté et ciboulette",
     "ge-oeufs-salade-quinoa-legumes": "Salade-repas quinoa, légumes rôtis et feta aux œufs · feta et menthe",
     "ge-oeufs-salade-riz-concombre": "Salade-repas riz, concombre et avocat aux œufs · feta et menthe",
-    "ge-omelette-asperges-petits-pois": "Omelette complète avec asperges, petits pois, parmesan et pain",
+    "ge-omelette-asperges-petits-pois": "Omelette aux asperges, petits pois et parmesan",
     "ge-omelette-brocoli-cheddar": "Omelette complète avec brocoli, cheddar et pommes de terre",
     "ge-omelette-champignons-pommes": "Omelette complète avec champignons, persil et pommes de terre",
     "ge-omelette-courge-comte": "Omelette complète avec courge, comté et pommes de terre",
@@ -695,7 +695,7 @@
     "ge-tofu-gingembre-riz": "Riz aux légumes, gingembre et tofu croustillant · miso doux et gingembre",
     "ge-tofu-ratatouille-boulgour": "Boulgour, ratatouille légère et tofu croustillant · feta et menthe",
     "ge-tofu-spaetzle-poireaux": "Poêlée de spätzle, poireau, champignons et tofu croustillant · cumin et coriandre",
-    "ge-tofu-verts-quinoa": "Quinoa aux asperges, petits pois et tofu croustillant · feta et menthe",
+    "ge-tofu-verts-quinoa": "Quinoa aux asperges, tofu doré, feta et menthe",
     "gn-boeuf-ail-persil": "Bœuf émincé ail et persil, pommes vapeur et tomates · ail rôti et herbes fraîches",
     "gn-boeuf-champignons-polenta": "Bœuf émincé aux champignons et polenta crémeuse · échalote et balsamique",
     "gn-boeuf-haricots-riz": "Bœuf émincé aux herbes, haricots verts et riz · poivre concassé et crème",

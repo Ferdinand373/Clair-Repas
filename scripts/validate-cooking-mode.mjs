@@ -12,12 +12,13 @@ const {code,recipes,editorial}=recipeSource(html);
 const hash=value=>createHash('sha256').update(typeof value==='string'?value:JSON.stringify(value)).digest('hex');
 const block=(a,b)=>{const start=code.indexOf(a),end=code.indexOf(b,start);assert.ok(start>=0&&end>start,a);return code.slice(start,end)};
 // Published autumn catalogue: culinary content is guarded by validate-automne-gourmand; timer engine remains frozen.
+const springSnapshot=JSON.parse(readFileSync(resolve(root,'scripts/spring-season.fixture.json'),'utf8'));
 const winterSnapshot=JSON.parse(readFileSync(resolve(root,'scripts/winter-season.fixture.json'),'utf8'));
 const autumnSnapshot=JSON.parse(readFileSync(resolve(root,'scripts/autumn-season.fixture.json'),'utf8'));
-const originalRecipes=recipes.map(r=>winterSnapshot.rows.find(row=>row.id===r.id)?.before||autumnSnapshot.rows.find(row=>row.id===r.id)?.before||r);
-const originalEditorial=Object.fromEntries(Object.entries(editorial).map(([id,e])=>[id,winterSnapshot.rows.find(row=>row.id===id)?.readingBefore||autumnSnapshot.rows.find(row=>row.id===id)?.readingBefore||e]));
+const originalRecipes=recipes.map(r=>springSnapshot.rows.find(row=>row.id===r.id)?.before||winterSnapshot.rows.find(row=>row.id===r.id)?.before||autumnSnapshot.rows.find(row=>row.id===r.id)?.before||r);
+const originalEditorial=Object.fromEntries(Object.entries(editorial).map(([id,e])=>[id,springSnapshot.rows.find(row=>row.id===id)?.readingBefore||winterSnapshot.rows.find(row=>row.id===id)?.readingBefore||autumnSnapshot.rows.find(row=>row.id===id)?.readingBefore||e]));
 const originalInventory=JSON.parse(readFileSync(resolve(root,'docs/recipe-editorial-inventory.json'),'utf8'));
-originalInventory.recipes=originalInventory.recipes.map(r=>winterSnapshot.rows.find(row=>row.id===r.id)?.recordBefore||autumnSnapshot.rows.find(row=>row.id===r.id)?.recordBefore||r);
+originalInventory.recipes=originalInventory.recipes.map(r=>springSnapshot.rows.find(row=>row.id===r.id)?.recordBefore||winterSnapshot.rows.find(row=>row.id===r.id)?.recordBefore||autumnSnapshot.rows.find(row=>row.id===r.id)?.recordBefore||r);
 assert.equal(hash(originalRecipes.map(({thumbnail,...recipe})=>recipe)),'778091ead3a7e9def616d925c859f6d2d4166531c683f52a81cabdd63c51e3a4');
 assert.equal(hash(originalEditorial),'ea8cee3da46730ec8d379a160cd8680de50d4a147fc5a2cd0c896d6b9144b27b');
 assert.equal(hash(originalInventory),'588b99ba2b21cb7d4480ed8afd571be74c9b9503a2ff5ccfb9e92099e3f95af7');

@@ -12,7 +12,9 @@ assert.equal(f.otherHash,'d45f4443d4b7363ea9233840cdb3760c6384592214cba2775d7249
 assert.equal(f.otherEditorialHash,'f7cd290678897feeac36c8ef5fc52f40a3792679b29984205c4b22a15aac63f0');
 assert.equal(f.autumnHash,'51644980a6546049c69729c0328af71552c095096b5ec3b60bb2e2bd5d2cb459');
 const {code,recipes:current,editorial:currentEditorial}=recipeSource(read('index.html'));
-const recipes=current,editorial=currentEditorial;
+const spring=JSON.parse(read('scripts/spring-season.fixture.json'));
+const recipes=current.map(r=>spring.rows.find(row=>row.id===r.id)?.before||r);
+const editorial=Object.fromEntries(Object.entries(currentEditorial).map(([id,e])=>[id,spring.rows.find(row=>row.id===id)?.readingBefore||e]));
 const ids=new Set(f.rows.map(r=>r.id));
 assert.equal(ids.size,40);assert.equal(recipes.length,1554);
 assert.equal(recipes.filter(r=>r.thumbnail?.startsWith('assets/recipes/hiver/')).length,40,'Photos only on the selected forty recipes');

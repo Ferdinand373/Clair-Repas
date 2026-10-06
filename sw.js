@@ -18,7 +18,7 @@ const DATA_SCHEMA = 2;
 const CLOUD_APP_ID = "clair-repas";
 const CLOUD_ENABLED = true;
 const CLOUD_DIRECT_SYNC_PROTOCOL = "clair-personal-sync/v1";
-const CORE_REVISION = "sha256:6e66475569032461c5ecfb94b1827e6975b82ea9e2963cebcf3280cb8efce1b9";
+const CORE_REVISION = "sha256:724dcb77a9aaea1e08920530b758571138367c4c78820aa6f47456bb33d4b51f";
 const BOOT_GRACE_MS = 18000;
 
 function fnv1a(text) {
@@ -54,6 +54,48 @@ const PRE_V8_STABLE_CACHES = ["clair-repas-v75-grands-chefs-20260816"];
 
 // Ten original featured WebP assets only.
 // They are cached on first use, never during installation of the recipe catalogue.
+const SPRING_THUMBNAILS = Object.freeze([
+  "./assets/recipes/printemps/n18.webp",
+  "./assets/recipes/printemps/n56.webp",
+  "./assets/recipes/printemps/v75-chef-guerard-02.webp",
+  "./assets/recipes/printemps/v31n-orzo-crevettes.webp",
+  "./assets/recipes/printemps/theme-bistrot-plus-18.webp",
+  "./assets/recipes/printemps/theme-famille-dimanche-08.webp",
+  "./assets/recipes/printemps/n16.webp",
+  "./assets/recipes/printemps/n33.webp",
+  "./assets/recipes/printemps/bistrot-ext-29.webp",
+  "./assets/recipes/printemps/v75-chef-robuchon-05.webp",
+  "./assets/recipes/printemps/v31n-couscous-minute-boulettes.webp",
+  "./assets/recipes/printemps/veg-l1-15.webp",
+  "./assets/recipes/printemps/veg-l1-02.webp",
+  "./assets/recipes/printemps/v39-lasagnes-ricotta-epinards.webp",
+  "./assets/recipes/printemps/theme-famille-dimanche-04.webp",
+  "./assets/recipes/printemps/ge-tofu-verts-quinoa.webp",
+  "./assets/recipes/printemps/n38.webp",
+  "./assets/recipes/printemps/n53.webp",
+  "./assets/recipes/printemps/veg-final-50.webp",
+  "./assets/recipes/printemps/v31n-gratin-chou-fleur-poisson-blanc.webp",
+  "./assets/recipes/printemps/a040.webp",
+  "./assets/recipes/printemps/a056.webp",
+  "./assets/recipes/printemps/a059.webp",
+  "./assets/recipes/printemps/ge-omelette-asperges-petits-pois.webp",
+  "./assets/recipes/printemps/e66.webp",
+  "./assets/recipes/printemps/v31e-bouillon-nouilles-cotes-porc.webp",
+  "./assets/recipes/printemps/v31e-pomme-terre-garnie-filet-mignon.webp",
+  "./assets/recipes/printemps/v31e-pomme-terre-garnie-saucisses.webp",
+  "./assets/recipes/printemps/v31e-pomme-terre-garnie-falafels.webp",
+  "./assets/recipes/printemps/a099.webp",
+  "./assets/recipes/printemps/t411.webp",
+  "./assets/recipes/printemps/q406.webp",
+  "./assets/recipes/printemps/a017.webp",
+  "./assets/recipes/printemps/v74-reg-05.webp",
+  "./assets/recipes/printemps/e24.webp",
+  "./assets/recipes/printemps/a063.webp",
+  "./assets/recipes/printemps/v31e-tartines-gratinees-crevettes.webp",
+  "./assets/recipes/printemps/d048.webp",
+  "./assets/recipes/printemps/d100.webp",
+  "./assets/recipes/printemps/e05.webp"
+]);
 const WINTER_THUMBNAILS = Object.freeze([
   "./assets/recipes/hiver/v39-pot-au-feu.webp",
   "./assets/recipes/hiver/v39-blanquette-veau.webp",
@@ -171,8 +213,8 @@ const PRE_SHOPPING_V2_FOUNDATION_CORE_FILES = FOUNDATION_CORE_FILES.filter(
   path => path !== "./shopping-v2-engine.js"
 );
 const CORE_DIGESTS = Object.freeze({
-  "./": "sha256:bed3b6f149a602910bbc5a9167f065e81f055e13e13ce2f3f3cb936fbb4f88ac",
-  "./index.html": "sha256:bed3b6f149a602910bbc5a9167f065e81f055e13e13ce2f3f3cb936fbb4f88ac",
+  "./": "sha256:9835928e62b3c29cc32a06278c39281853da69a0a7d92faac49e208ec71f8b36",
+  "./index.html": "sha256:9835928e62b3c29cc32a06278c39281853da69a0a7d92faac49e208ec71f8b36",
   "./manifest.webmanifest": "sha256:49b30612587c379d6bb8c6d9ade4e299ff244b41f0bd03e2fcca0a5495834e2a",
   "./icon-192.png": "sha256:8d0d516fdcb7d76a40df62dc92d4f312a1557b9e105917026780e465c32fa9f8",
   "./icon-512.png": "sha256:334f3158730e33ad8232ea229a39f9193b45274f1a72b2f55467b1e625924f70",
@@ -181,7 +223,7 @@ const CORE_DIGESTS = Object.freeze({
   "./v8/vendor/supabase-js-2.111.0.js": "sha256:7396012594aa6d23bb373ebc25d1080bf3672fa847c3713f756520b40fd13453",
   "./v8/clair-foundation.js": "sha256:83786311d67be4be19af248b045735397ed988126b63bf9955c9cc5796d29ba2",
   "./v8/clair-cloud-sync.js": "sha256:826b44d8ee64b816f14e097a39405068001e529cc8a03885a5156de5d40ef7ea",
-  "./v8/version.json": "sha256:528000c0ba9b7864538601ad8ef9631118cc97ba37b58f47876697f73401756c"
+  "./v8/version.json": "sha256:df31d9d1b9cd08603110f5e2b16e004b0fe72cf4b3c14fa026f655cc2a3908a2"
 });
 
 function appIndexUrl() {
@@ -956,7 +998,7 @@ self.addEventListener("fetch", event => {
     return;
   }
 
-  if ([...AUTUMN_THUMBNAILS,...WINTER_THUMBNAILS].some(path => new URL(path, self.registration.scope).href === url.href)) {
+  if ([...AUTUMN_THUMBNAILS,...WINTER_THUMBNAILS,...SPRING_THUMBNAILS].some(path => new URL(path, self.registration.scope).href === url.href)) {
     event.respondWith((async () => {
       const state = await currentServingState();
       const cache = await caches.open(state.activeCache || CURRENT_CACHE);
