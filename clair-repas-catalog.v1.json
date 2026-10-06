@@ -1,7 +1,7 @@
 {
   "appId": "clair-repas",
   "contractVersion": 1,
-  "catalogVersion": "sha256:6af0beb25bb1b6df7bc02c61e7acaab82e7e4f1a664031f3ef78292e4e15007f",
+  "catalogVersion": "sha256:ee98f3c185e489fc6d9aa2ba51d2c15b6e011e3d3f098d3c1b870849716866d0",
   "recipes": {
     "a001": "Tomates au basilic et à l’échalote",
     "a002": "Concombre au yaourt et à la menthe",
@@ -764,7 +764,7 @@
     "gn-poisson-blanc-haricots-riz": "Poisson blanc aux herbes, haricots verts et riz · citron et aneth",
     "gn-poisson-blanc-moutarde-champignons": "Poisson blanc sauce moutarde légère, riz et champignons · citron et aneth",
     "gn-poisson-blanc-paprika-grenailles": "Poisson blanc au paprika, grenailles et poivron · paprika et poivron doux",
-    "gn-poisson-blanc-poireaux-creme": "Poisson blanc aux poireaux, pommes de terre et crème légère · câpres et persil",
+    "gn-poisson-blanc-poireaux-creme": "Poisson blanc fondant, poireaux et pommes de terre",
     "gn-poisson-blanc-provencale": "Poisson blanc à la provençale, semoule et légumes grillés · tomates, olives et basilic",
     "gn-poisson-blanc-ratatouille": "Poisson blanc avec ratatouille minute et semoule · citron et aneth",
     "gn-poisson-blanc-tomate-basilic": "Poisson blanc tomate-basilic, pâtes et courgettes · pesto et citron",

@@ -18,7 +18,7 @@ const DATA_SCHEMA = 2;
 const CLOUD_APP_ID = "clair-repas";
 const CLOUD_ENABLED = true;
 const CLOUD_DIRECT_SYNC_PROTOCOL = "clair-personal-sync/v1";
-const CORE_REVISION = "sha256:75a68e894dc1c30875d16bcc4d7f175ab744adad784bf39dbd6244316a2d5fbb";
+const CORE_REVISION = "sha256:8108722935f925944ad7c612f9f3e212b989fc2e19fbb80cca9859fd5fa93eb5";
 const BOOT_GRACE_MS = 18000;
 
 function fnv1a(text) {
@@ -57,14 +57,44 @@ const PRE_V8_STABLE_CACHES = ["clair-repas-v75-grands-chefs-20260816"];
 const AUTUMN_THUMBNAILS = Object.freeze([
   "./assets/recipes/automne/v31n-orzo-boulettes.webp",
   "./assets/recipes/automne/n64.webp",
+  "./assets/recipes/automne/v39-boeuf-bourguignon.webp",
+  "./assets/recipes/automne/v39-hachis-parmentier.webp",
+  "./assets/recipes/automne/v39-roti-porc.webp",
+  "./assets/recipes/automne/theme-cuisine-regionale-07.webp",
+  "./assets/recipes/automne/theme-cuisine-regionale-08.webp",
+  "./assets/recipes/automne/bourgeois-15.webp",
+  "./assets/recipes/automne/bistrot-ext-26.webp",
+  "./assets/recipes/automne/bistrot-ext-24.webp",
+  "./assets/recipes/automne/theme-bistrot-plus-12.webp",
+  "./assets/recipes/automne/theme-famille-dimanche-09.webp",
+  "./assets/recipes/automne/q407.webp",
+  "./assets/recipes/automne/v31n-orzo-poisson-blanc.webp",
+  "./assets/recipes/automne/v31n-orzo-tofu.webp",
+  "./assets/recipes/automne/veg-l1-08.webp",
+  "./assets/recipes/automne/veg-l1-17.webp",
+  "./assets/recipes/automne/q405.webp",
+  "./assets/recipes/automne/n61.webp",
+  "./assets/recipes/automne/n99.webp",
   "./assets/recipes/automne/a042.webp",
   "./assets/recipes/automne/automne-quiche-poireaux.webp",
-  "./assets/recipes/automne/v39-boeuf-bourguignon.webp",
   "./assets/recipes/automne/v39-gratin-chou-fleur.webp",
-  "./assets/recipes/automne/v39-hachis-parmentier.webp",
-  "./assets/recipes/automne/d081.webp",
   "./assets/recipes/automne/e03.webp",
-  "./assets/recipes/automne/v39-roti-porc.webp"
+  "./assets/recipes/automne/d081.webp",
+  "./assets/recipes/automne/theme-famille-dimanche-02.webp",
+  "./assets/recipes/automne/theme-petits-gourmands-01.webp",
+  "./assets/recipes/automne/theme-bistrot-brasserie-05.webp",
+  "./assets/recipes/automne/a051.webp",
+  "./assets/recipes/automne/a052.webp",
+  "./assets/recipes/automne/v31e-pita-chaude-filet-mignon.webp",
+  "./assets/recipes/automne/a028.webp",
+  "./assets/recipes/automne/a065.webp",
+  "./assets/recipes/automne/q409.webp",
+  "./assets/recipes/automne/v75-chef-constant-05.webp",
+  "./assets/recipes/automne/veg-l1-09.webp",
+  "./assets/recipes/automne/veg-l1-20.webp",
+  "./assets/recipes/automne/a084.webp",
+  "./assets/recipes/automne/gn-poisson-blanc-poireaux-creme.webp",
+  "./assets/recipes/automne/q408.webp"
 ]);
 const CORE_FILES = [
   "./",
@@ -99,8 +129,8 @@ const PRE_SHOPPING_V2_FOUNDATION_CORE_FILES = FOUNDATION_CORE_FILES.filter(
   path => path !== "./shopping-v2-engine.js"
 );
 const CORE_DIGESTS = Object.freeze({
-  "./": "sha256:c78a4bb2a05aac3223c5ff7e65eb2a711722cc62d02227a7372f0beb0392cafd",
-  "./index.html": "sha256:c78a4bb2a05aac3223c5ff7e65eb2a711722cc62d02227a7372f0beb0392cafd",
+  "./": "sha256:eaef2c9e38bb6ca612883f19b81c874d6d9e0c538d1f0c2efcfb68f5d80a1a14",
+  "./index.html": "sha256:eaef2c9e38bb6ca612883f19b81c874d6d9e0c538d1f0c2efcfb68f5d80a1a14",
   "./manifest.webmanifest": "sha256:49b30612587c379d6bb8c6d9ade4e299ff244b41f0bd03e2fcca0a5495834e2a",
   "./icon-192.png": "sha256:8d0d516fdcb7d76a40df62dc92d4f312a1557b9e105917026780e465c32fa9f8",
   "./icon-512.png": "sha256:334f3158730e33ad8232ea229a39f9193b45274f1a72b2f55467b1e625924f70",
@@ -109,7 +139,7 @@ const CORE_DIGESTS = Object.freeze({
   "./v8/vendor/supabase-js-2.111.0.js": "sha256:7396012594aa6d23bb373ebc25d1080bf3672fa847c3713f756520b40fd13453",
   "./v8/clair-foundation.js": "sha256:83786311d67be4be19af248b045735397ed988126b63bf9955c9cc5796d29ba2",
   "./v8/clair-cloud-sync.js": "sha256:826b44d8ee64b816f14e097a39405068001e529cc8a03885a5156de5d40ef7ea",
-  "./v8/version.json": "sha256:eb0c2e577c9c2f22ce17c9cf030a9251409708fc08210671061ace06db6e5bd5"
+  "./v8/version.json": "sha256:f013059fd755082e651742af5bc35285bae999ced537b7654853bb1509c0b523"
 });
 
 function appIndexUrl() {

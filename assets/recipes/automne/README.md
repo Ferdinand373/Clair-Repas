@@ -1,6 +1,6 @@
 # Vignettes Automne gourmand
 
-Les dix photos originales ont été générées avec l’outil intégré imagegen le 6 octobre 2026, après lecture des recettes validées du commit 9ac9225. Aucune photographie provenant d’Internet. Les originaux PNG restent hors du dépôt.
+Les dix premières photos originales ont été générées avec l’outil intégré imagegen le 6 octobre 2026, après lecture des recettes validées du commit 9ac9225. Aucune photographie provenant d’Internet. Les originaux PNG restent hors du dépôt.
 
 ## Optimisation et affichage
 
@@ -27,4 +27,43 @@ Photographie culinaire originale carrée et réaliste. Gros plan à environ 45 d
 
 ## Cache hors ligne
 
-Les dix chemins exacts sont déclarés dans AUTUMN_THUMBNAILS et associés aux seuls identifiants existants dans index.html. Le service worker conserve chaque WebP après sa première consultation. Une vignette jamais consultée nécessite donc une première connexion. Aucun préchargement des photos du catalogue ni ajout au noyau atomique CORE_FILES. Le noyau et le nouveau build ont leurs empreintes d’intégrité actualisées. Aucune migration ou modification de données personnelles.
+Les quarante chemins exacts sont déclarés dans AUTUMN_THUMBNAILS et associés aux seuls identifiants existants dans index.html. Le service worker conserve chaque WebP après sa première consultation. Une vignette jamais consultée nécessite donc une première connexion. Aucun préchargement des photos du catalogue ni ajout au noyau atomique CORE_FILES. Le noyau et le nouveau build ont leurs empreintes d’intégrité actualisées. Aucune migration ou modification de données personnelles.
+
+## Extension saisonnière — 30 photos supplémentaires
+
+Outil intégré imagegen, même direction familiale et chaude. Consignes individuelles complètes dans [prompts-2026-10-06.json](prompts-2026-10-06.json). PNG sources hors dépôt ; optimisation identique aux dix premières photos.
+
+| Fichier | Octets |
+|---|---:|
+| theme-cuisine-regionale-07.webp | 9742 |
+| theme-cuisine-regionale-08.webp | 10062 |
+| bourgeois-15.webp | 9632 |
+| bistrot-ext-26.webp | 9576 |
+| bistrot-ext-24.webp | 9200 |
+| theme-bistrot-plus-12.webp | 10046 |
+| theme-famille-dimanche-09.webp | 9458 |
+| q407.webp | 9824 |
+| v31n-orzo-poisson-blanc.webp | 9652 |
+| v31n-orzo-tofu.webp | 9826 |
+| veg-l1-08.webp | 9528 |
+| veg-l1-17.webp | 10044 |
+| q405.webp | 8958 |
+| n61.webp | 9450 |
+| n99.webp | 9988 |
+| theme-famille-dimanche-02.webp | 5462 |
+| theme-petits-gourmands-01.webp | 6648 |
+| theme-bistrot-brasserie-05.webp | 9164 |
+| a051.webp | 6332 |
+| a052.webp | 7466 |
+| v31e-pita-chaude-filet-mignon.webp | 9250 |
+| a028.webp | 9218 |
+| a065.webp | 10558 |
+| q409.webp | 10258 |
+| v75-chef-constant-05.webp | 11418 |
+| veg-l1-09.webp | 9928 |
+| veg-l1-20.webp | 10712 |
+| a084.webp | 11334 |
+| gn-poisson-blanc-poireaux-creme.webp | 9386 |
+| q408.webp | 10020 |
+
+Ajout : **282140 octets**. Total des 40 photos : **372524 octets**. Les dix premières images n’ont pas été remplacées.

@@ -15,5 +15,5 @@
   "cloudEnabled": true,
   "cloudHandover": "remote-existing-account-or-local-new-account",
   "bootstrapGeneration": "bootstrap-v2",
-  "productBuild": "2026.10.06.3-home-search"
+  "productBuild": "2026.10.06.4-autumn-season"
 }

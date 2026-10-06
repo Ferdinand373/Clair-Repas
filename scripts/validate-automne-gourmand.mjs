@@ -7,7 +7,10 @@ import {recipeSource} from './recipe-source.mjs';
 import {recipeHash,validateEditorial} from './validate-recipe-editorial.mjs';
 const root=resolve(dirname(fileURLToPath(import.meta.url)),'..');
 const read=p=>readFileSync(resolve(root,p),'utf8');
-const html=read('index.html'),{code,recipes,editorial}=recipeSource(html);
+const html=read('index.html'),{code,recipes:current,editorial:currentEditorial}=recipeSource(html);
+const season=JSON.parse(read('scripts/autumn-season.fixture.json'));
+const recipes=current.map(r=>season.rows.find(row=>row.id===r.id)?.before||r);
+const editorial=Object.fromEntries(Object.entries(currentEditorial).map(([id,e])=>[id,season.rows.find(row=>row.id===id)?.readingBefore||e]));
 const fixture=JSON.parse(read('scripts/automne-gourmand.fixture.json'));
 const ids=new Set(fixture.recipes.map(r=>r.id));
 assert.equal(ids.size,10);
@@ -64,7 +67,7 @@ for(const row of fixture.recipes){
  for(const thumbnail of ['https://example.org/photo.webp','assets/recipes/automne/../photo.webp','assets/recipes/automne/photo.jpg'])assert.doesNotMatch(context.autumnCardHTML({...r,thumbnail}),/<img/);
 }
 const other=recipes.find(r=>!ids.has(r.id));assert.doesNotMatch(context.autumnCardHTML({...other,thumbnail:'assets/recipes/automne/test.webp'}),/<img/);
-assert.match(html,/event.target.hidden=true/);const paths=JSON.parse(read('sw.js').match(/const AUTUMN_THUMBNAILS = Object.freeze\((\[[\s\S]*?\])\);/)[1]);
+assert.match(html,/event.target.hidden=true/);const paths=JSON.parse(read('sw.js').match(/const AUTUMN_THUMBNAILS = Object.freeze\((\[[\s\S]*?\])\);/)[1]).filter(path=>ids.has(path.split('/').at(-1).replace('.webp','')));
 assert.deepEqual(paths.sort(),[...ids].map(id=>'./assets/recipes/automne/'+id+'.webp').sort());
 assert.equal(recipes.filter(r=>r.thumbnail).length,10,'Only the ten featured recipes have photos');
 let thumbnailBytes=0;
@@ -77,7 +80,7 @@ for(const path of paths){
 }
 assert.ok(thumbnailBytes<=200000,'Ten-thumbnail total budget');
 assert.doesNotMatch(read('sw.js').match(/const CORE_FILES = (\[[\s\S]*?\]);/)[1],/assets\/recipes/,'Photos must not join the atomic core preload');
-console.log(`✓ Exactly 10 featured recipes, 9 ids preserved, 1 distinct quiche, 1544 other recipes unchanged; no personal-storage migration`);
+console.log(`✓ Archived ten-recipe release: 9 ids preserved, 1 distinct quiche, 1544 baseline recipes verified; extension checked by validate-autumn-season`);
 console.log(`✓ ${renders} renders, scaled ingredients/steps, manual timer expectations, existing collections and editorial review`);
 console.log('✓ Featured-only thumbnails, lazy WebP, absent/invalid-image fallback and ten optional image cache paths');
 console.log(`✓ Ten genuine WebP assets: ${thumbnailBytes} bytes total; optional first-use cache, no catalogue image preload`);

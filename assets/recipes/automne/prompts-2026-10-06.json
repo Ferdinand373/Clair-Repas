@@ -1,0 +1,186 @@
+{
+  "tool": "built-in imagegen",
+  "date": "2026-10-06",
+  "images": [
+    {
+      "id": "theme-cuisine-regionale-07",
+      "file": "theme-cuisine-regionale-07.webp",
+      "prompt": "Use case: photorealistic-natural. Asset: original square culinary thumbnail for French family cooking app Clair Repas. Subject: Breton cotriade: white fish pieces in light broth with potatoes, sliced leek, carrot and chopped parsley, rustic bread alongside. Realistic appetizing home-cooked food, faithful ingredients and textures. Close three-quarter overhead view, entire serving fills a centered ivory ceramic dish on a warm natural wooden kitchen table. Soft warm window light, cream and earthy autumn colors, consistent family cookbook photographic style. Square composition legible at 160 pixels. No text, no watermark, no collage, no hands, no raw ingredients or additional garnishes not described. Generate exactly one photo.",
+      "bytes": 9742
+    },
+    {
+      "id": "theme-cuisine-regionale-08",
+      "file": "theme-cuisine-regionale-08.webp",
+      "prompt": "Use case: photorealistic-natural. Asset: original square culinary thumbnail for French family cooking app Clair Repas. Subject: Chicken vallée d’Auge: browned chicken thighs in creamy cider sauce with sautéed apple wedges and sliced mushrooms. Realistic appetizing home-cooked food, faithful ingredients and textures. Close three-quarter overhead view, entire serving fills a centered ivory ceramic dish on a warm natural wooden kitchen table. Soft warm window light, cream and earthy autumn colors, consistent family cookbook photographic style. Square composition legible at 160 pixels. No text, no watermark, no collage, no hands, no raw ingredients or additional garnishes not described. Generate exactly one photo.",
+      "bytes": 10062
+    },
+    {
+      "id": "bourgeois-15",
+      "file": "bourgeois-15.webp",
+      "prompt": "Use case: photorealistic-natural. Asset: original square culinary thumbnail for French family cooking app Clair Repas. Subject: Guinea fowl braised with cabbage: browned guinea fowl portion resting on tender pale green cabbage, carrots and smoked lardons. Realistic appetizing home-cooked food, faithful ingredients and textures. Close three-quarter overhead view, entire serving fills a centered ivory ceramic dish on a warm natural wooden kitchen table. Soft warm window light, cream and earthy autumn colors, consistent family cookbook photographic style. Square composition legible at 160 pixels. No text, no watermark, no collage, no hands, no raw ingredients or additional garnishes not described. Generate exactly one photo.",
+      "bytes": 9632
+    },
+    {
+      "id": "bistrot-ext-26",
+      "file": "bistrot-ext-26.webp",
+      "prompt": "Use case: photorealistic-natural. Asset: original square culinary thumbnail for French family cooking app Clair Repas. Subject: Pork cheeks braised in cider: tender pork cheeks in glossy brown cider mustard sauce with carrot pieces and onions. Realistic appetizing home-cooked food, faithful ingredients and textures. Close three-quarter overhead view, entire serving fills a centered ivory ceramic dish on a warm natural wooden kitchen table. Soft warm window light, cream and earthy autumn colors, consistent family cookbook photographic style. Square composition legible at 160 pixels. No text, no watermark, no collage, no hands, no raw ingredients or additional garnishes not described. Generate exactly one photo.",
+      "bytes": 9576
+    },
+    {
+      "id": "bistrot-ext-24",
+      "file": "bistrot-ext-24.webp",
+      "prompt": "Use case: photorealistic-natural. Asset: original square culinary thumbnail for French family cooking app Clair Repas. Subject: Slow braised lamb shank with thyme: single browned bone-in lamb shank with carrot chunks, onions, garlic and glossy braising juices. Realistic appetizing home-cooked food, faithful ingredients and textures. Close three-quarter overhead view, entire serving fills a centered ivory ceramic dish on a warm natural wooden kitchen table. Soft warm window light, cream and earthy autumn colors, consistent family cookbook photographic style. Square composition legible at 160 pixels. No text, no watermark, no collage, no hands, no raw ingredients or additional garnishes not described. Generate exactly one photo.",
+      "bytes": 9200
+    },
+    {
+      "id": "theme-bistrot-plus-12",
+      "file": "theme-bistrot-plus-12.webp",
+      "prompt": "Use case: photorealistic-natural. Asset: original square culinary thumbnail for French family cooking app Clair Repas. Subject: Duck confit with pommes sarladaises: crisp golden duck leg with sautéed potato slices, garlic and chopped parsley. Realistic appetizing home-cooked food, faithful ingredients and textures. Close three-quarter overhead view, entire serving fills a centered ivory ceramic dish on a warm natural wooden kitchen table. Soft warm window light, cream and earthy autumn colors, consistent family cookbook photographic style. Square composition legible at 160 pixels. No text, no watermark, no collage, no hands, no raw ingredients or additional garnishes not described. Generate exactly one photo.",
+      "bytes": 10046
+    },
+    {
+      "id": "theme-famille-dimanche-09",
+      "file": "theme-famille-dimanche-09.webp",
+      "prompt": "Use case: photorealistic-natural. Asset: original square culinary thumbnail for French family cooking app Clair Repas. Subject: French beef and carrots: tender beef chunks and abundant carrot rounds in light brown white-wine braising sauce, onions. Realistic appetizing home-cooked food, faithful ingredients and textures. Close three-quarter overhead view, entire serving fills a centered ivory ceramic dish on a warm natural wooden kitchen table. Soft warm window light, cream and earthy autumn colors, consistent family cookbook photographic style. Square composition legible at 160 pixels. No text, no watermark, no collage, no hands, no raw ingredients or additional garnishes not described. Generate exactly one photo.",
+      "bytes": 9458
+    },
+    {
+      "id": "q407",
+      "file": "q407.webp",
+      "prompt": "Use case: photorealistic-natural. Asset: original square culinary thumbnail for French family cooking app Clair Repas. Subject: Grilled turkey with red cabbage and apple: sliced browned turkey escalope with tender purple shredded red cabbage and small apple pieces. Realistic appetizing home-cooked food, faithful ingredients and textures. Close three-quarter overhead view, entire serving fills a centered ivory ceramic dish on a warm natural wooden kitchen table. Soft warm window light, cream and earthy autumn colors, consistent family cookbook photographic style. Square composition legible at 160 pixels. No text, no watermark, no collage, no hands, no raw ingredients or additional garnishes not described. Generate exactly one photo.",
+      "bytes": 9824
+    },
+    {
+      "id": "v31n-orzo-poisson-blanc",
+      "file": "v31n-orzo-poisson-blanc.webp",
+      "prompt": "Use case: photorealistic-natural. Asset: original square culinary thumbnail for French family cooking app Clair Repas. Subject: Green lentils with smoked bacon and carrots: rustic cooked green lentils, chunky smoked bacon lardons, carrot rounds and small leek pieces. Realistic appetizing home-cooked food, faithful ingredients and textures. Close three-quarter overhead view, entire serving fills a centered ivory ceramic dish on a warm natural wooden kitchen table. Soft warm window light, cream and earthy autumn colors, consistent family cookbook photographic style. Square composition legible at 160 pixels. No text, no watermark, no collage, no hands, no raw ingredients or additional garnishes not described. Generate exactly one photo.",
+      "bytes": 9652
+    },
+    {
+      "id": "v31n-orzo-tofu",
+      "file": "v31n-orzo-tofu.webp",
+      "prompt": "Use case: photorealistic-natural. Asset: original square culinary thumbnail for French family cooking app Clair Repas. Subject: Cauliflower ham gratin: creamy cauliflower florets and pink ham ribbons under golden grated cheese béchamel crust. Realistic appetizing home-cooked food, faithful ingredients and textures. Close three-quarter overhead view, entire serving fills a centered ivory ceramic dish on a warm natural wooden kitchen table. Soft warm window light, cream and earthy autumn colors, consistent family cookbook photographic style. Square composition legible at 160 pixels. No text, no watermark, no collage, no hands, no raw ingredients or additional garnishes not described. Generate exactly one photo.",
+      "bytes": 9826
+    },
+    {
+      "id": "veg-l1-08",
+      "file": "veg-l1-08.webp",
+      "prompt": "Use case: photorealistic-natural. Asset: original square culinary thumbnail for French family cooking app Clair Repas. Subject: Gigantes plaki: large white beans baked in thick tomato sauce with small carrot and celery pieces, chopped parsley. Realistic appetizing home-cooked food, faithful ingredients and textures. Close three-quarter overhead view, entire serving fills a centered ivory ceramic dish on a warm natural wooden kitchen table. Soft warm window light, cream and earthy autumn colors, consistent family cookbook photographic style. Square composition legible at 160 pixels. No text, no watermark, no collage, no hands, no raw ingredients or additional garnishes not described. Generate exactly one photo.",
+      "bytes": 9528
+    },
+    {
+      "id": "veg-l1-17",
+      "file": "veg-l1-17.webp",
+      "prompt": "Use case: photorealistic-natural. Asset: original square culinary thumbnail for French family cooking app Clair Repas. Subject: Sesame ginger glazed tofu: golden tofu cubes with glossy brown soy glaze and sesame seeds, steamed broccoli and carrot over rice. Realistic appetizing home-cooked food, faithful ingredients and textures. Close three-quarter overhead view, entire serving fills a centered ivory ceramic dish on a warm natural wooden kitchen table. Soft warm window light, cream and earthy autumn colors, consistent family cookbook photographic style. Square composition legible at 160 pixels. No text, no watermark, no collage, no hands, no raw ingredients or additional garnishes not described. Generate exactly one photo.",
+      "bytes": 10044
+    },
+    {
+      "id": "q405",
+      "file": "q405.webp",
+      "prompt": "Use case: photorealistic-natural. Asset: original square culinary thumbnail for French family cooking app Clair Repas. Subject: Ginger steamed chicken: opaque cooked chicken strips with carrot ribbons and halved pak choi, brown rice, lime wedge. Realistic appetizing home-cooked food, faithful ingredients and textures. Close three-quarter overhead view, entire serving fills a centered ivory ceramic dish on a warm natural wooden kitchen table. Soft warm window light, cream and earthy autumn colors, consistent family cookbook photographic style. Square composition legible at 160 pixels. No text, no watermark, no collage, no hands, no raw ingredients or additional garnishes not described. Generate exactly one photo.",
+      "bytes": 8958
+    },
+    {
+      "id": "n61",
+      "file": "n61.webp",
+      "prompt": "Use case: photorealistic-natural. Asset: original square culinary thumbnail for French family cooking app Clair Repas. Subject: Thin sautéed beef with onions and potatoes: browned beef strips with soft sliced onions and golden 1 cm potato cubes. Realistic appetizing home-cooked food, faithful ingredients and textures. Close three-quarter overhead view, entire serving fills a centered ivory ceramic dish on a warm natural wooden kitchen table. Soft warm window light, cream and earthy autumn colors, consistent family cookbook photographic style. Square composition legible at 160 pixels. No text, no watermark, no collage, no hands, no raw ingredients or additional garnishes not described. Generate exactly one photo.",
+      "bytes": 9450
+    },
+    {
+      "id": "n99",
+      "file": "n99.webp",
+      "prompt": "Use case: photorealistic-natural. Asset: original square culinary thumbnail for French family cooking app Clair Repas. Subject: Parmesan crusted cod: flaky white cod loin topped with golden parmesan breadcrumbs and parsley, roasted potato cubes and lemon wedge. Realistic appetizing home-cooked food, faithful ingredients and textures. Close three-quarter overhead view, entire serving fills a centered ivory ceramic dish on a warm natural wooden kitchen table. Soft warm window light, cream and earthy autumn colors, consistent family cookbook photographic style. Square composition legible at 160 pixels. No text, no watermark, no collage, no hands, no raw ingredients or additional garnishes not described. Generate exactly one photo.",
+      "bytes": 9988
+    },
+    {
+      "id": "theme-famille-dimanche-02",
+      "file": "theme-famille-dimanche-02.webp",
+      "prompt": "Use case: photorealistic-natural. Asset: original square culinary thumbnail for French family cooking app Clair Repas. Subject: Leek potato velouté: smooth pale green creamy leek and potato soup. Realistic appetizing home-cooked food, faithful ingredients and textures. Close three-quarter overhead view, entire serving fills a centered ivory ceramic dish on a warm natural wooden kitchen table. Soft warm window light, cream and earthy autumn colors, consistent family cookbook photographic style. Square composition legible at 160 pixels. No text, no watermark, no collage, no hands, no raw ingredients or additional garnishes not described. Generate exactly one photo. Correction: Edit this original Clair Repas food photo. Remove all green chopped herb garnish from the soup. Keep a completely smooth plain pale green leek-potato velouté surface, no garnish at all. Preserve the same bowl, soup color and texture, wooden table, framing, soft warm natural light, photographic realism and square composition. Change only the specified garnish, no additional ingredients, no text.",
+      "bytes": 5462
+    },
+    {
+      "id": "theme-petits-gourmands-01",
+      "file": "theme-petits-gourmands-01.webp",
+      "prompt": "Use case: photorealistic-natural. Asset: original square culinary thumbnail for French family cooking app Clair Repas. Subject: Carrot sweet potato velouté: smooth thick warm orange carrot and sweet potato soup. Realistic appetizing home-cooked food, faithful ingredients and textures. Close three-quarter overhead view, entire serving fills a centered ivory ceramic dish on a warm natural wooden kitchen table. Soft warm window light, cream and earthy autumn colors, consistent family cookbook photographic style. Square composition legible at 160 pixels. No text, no watermark, no collage, no hands, no raw ingredients or additional garnishes not described. Generate exactly one photo. Correction: Edit this original Clair Repas food photo. Remove all green chopped herb garnish from the soup. Keep a completely smooth plain orange carrot-sweet potato velouté surface, no garnish at all. Preserve the same bowl, soup color and texture, wooden table, framing, soft warm natural light, photographic realism and square composition. Change only the specified garnish, no additional ingredients, no text.",
+      "bytes": 6648
+    },
+    {
+      "id": "theme-bistrot-brasserie-05",
+      "file": "theme-bistrot-brasserie-05.webp",
+      "prompt": "Use case: photorealistic-natural. Asset: original square culinary thumbnail for French family cooking app Clair Repas. Subject: French gratinéed onion soup: dark golden broth and caramelized onion strands beneath a toasted bread slice topped with bubbling browned cheese. Realistic appetizing home-cooked food, faithful ingredients and textures. Close three-quarter overhead view, entire serving fills a centered ivory ceramic dish on a warm natural wooden kitchen table. Soft warm window light, cream and earthy autumn colors, consistent family cookbook photographic style. Square composition legible at 160 pixels. No text, no watermark, no collage, no hands, no raw ingredients or additional garnishes not described. Generate exactly one photo.",
+      "bytes": 9164
+    },
+    {
+      "id": "a051",
+      "file": "a051.webp",
+      "prompt": "Use case: photorealistic-natural. Asset: original square culinary thumbnail for French family cooking app Clair Repas. Subject: Parsnip and apple velouté: smooth ivory cream parsnip and apple soup. Realistic appetizing home-cooked food, faithful ingredients and textures. Close three-quarter overhead view, entire serving fills a centered ivory ceramic dish on a warm natural wooden kitchen table. Soft warm window light, cream and earthy autumn colors, consistent family cookbook photographic style. Square composition legible at 160 pixels. No text, no watermark, no collage, no hands, no raw ingredients or additional garnishes not described. Generate exactly one photo. Correction: Edit this original Clair Repas food photo. Remove all visible apple slices or wedges from the soup. Keep the smooth ivory parsnip-apple velouté, with only the small dusting of ground black pepper already visible. The apple is blended into the soup, never served as a garnish. Preserve the same bowl, soup color and texture, wooden table, framing, soft warm natural light, photographic realism and square composition. Change only the specified garnish, no additional ingredients, no text.",
+      "bytes": 6332
+    },
+    {
+      "id": "a052",
+      "file": "a052.webp",
+      "prompt": "Use case: photorealistic-natural. Asset: original square culinary thumbnail for French family cooking app Clair Repas. Subject: Red lentil coconut soup: thick golden orange soup, slightly textured with softened red lentils and tiny carrot bits. Realistic appetizing home-cooked food, faithful ingredients and textures. Close three-quarter overhead view, entire serving fills a centered ivory ceramic dish on a warm natural wooden kitchen table. Soft warm window light, cream and earthy autumn colors, consistent family cookbook photographic style. Square composition legible at 160 pixels. No text, no watermark, no collage, no hands, no raw ingredients or additional garnishes not described. Generate exactly one photo.",
+      "bytes": 7466
+    },
+    {
+      "id": "v31e-pita-chaude-filet-mignon",
+      "file": "v31e-pita-chaude-filet-mignon.webp",
+      "prompt": "Use case: photorealistic-natural. Asset: original square culinary thumbnail for French family cooking app Clair Repas. Subject: Creamy mushroom soup with Comté toast: beige mushroom soup topped with sautéed mushroom slices and chopped parsley, a rustic toast with melted golden Comté cheese alongside. Realistic appetizing home-cooked food, faithful ingredients and textures. Close three-quarter overhead view, entire serving fills a centered ivory ceramic dish on a warm natural wooden kitchen table. Soft warm window light, cream and earthy autumn colors, consistent family cookbook photographic style. Square composition legible at 160 pixels. No text, no watermark, no collage, no hands, no raw ingredients or additional garnishes not described. Generate exactly one photo.",
+      "bytes": 9250
+    },
+    {
+      "id": "a028",
+      "file": "a028.webp",
+      "prompt": "Use case: photorealistic-natural. Asset: original square culinary thumbnail for French family cooking app Clair Repas. Subject: Eggs cocotte with mushrooms: small ceramic ramekin with cooked white egg, soft yellow yolk, sliced mushrooms and cream, chopped parsley. Realistic appetizing home-cooked food, faithful ingredients and textures. Close three-quarter overhead view, entire serving fills a centered ivory ceramic dish on a warm natural wooden kitchen table. Soft warm window light, cream and earthy autumn colors, consistent family cookbook photographic style. Square composition legible at 160 pixels. No text, no watermark, no collage, no hands, no raw ingredients or additional garnishes not described. Generate exactly one photo.",
+      "bytes": 9218
+    },
+    {
+      "id": "a065",
+      "file": "a065.webp",
+      "prompt": "Use case: photorealistic-natural. Asset: original square culinary thumbnail for French family cooking app Clair Repas. Subject: Hot mushroom mustard tartines: rustic bread toasts piled with browned sliced mushrooms, finely chopped shallot and melted grated cheese. Realistic appetizing home-cooked food, faithful ingredients and textures. Close three-quarter overhead view, entire serving fills a centered ivory ceramic dish on a warm natural wooden kitchen table. Soft warm window light, cream and earthy autumn colors, consistent family cookbook photographic style. Square composition legible at 160 pixels. No text, no watermark, no collage, no hands, no raw ingredients or additional garnishes not described. Generate exactly one photo.",
+      "bytes": 10558
+    },
+    {
+      "id": "q409",
+      "file": "q409.webp",
+      "prompt": "Use case: photorealistic-natural. Asset: original square culinary thumbnail for French family cooking app Clair Repas. Subject: Warm lentil beetroot smoked trout salad: cooked green lentils, diced dark red beetroot and thin pink smoked trout pieces. Realistic appetizing home-cooked food, faithful ingredients and textures. Close three-quarter overhead view, entire serving fills a centered ivory ceramic dish on a warm natural wooden kitchen table. Soft warm window light, cream and earthy autumn colors, consistent family cookbook photographic style. Square composition legible at 160 pixels. No text, no watermark, no collage, no hands, no raw ingredients or additional garnishes not described. Generate exactly one photo.",
+      "bytes": 10258
+    },
+    {
+      "id": "v75-chef-constant-05",
+      "file": "v75-chef-constant-05.webp",
+      "prompt": "Use case: photorealistic-natural. Asset: original square culinary thumbnail for French family cooking app Clair Repas. Subject: Warm gizzard walnut salad: green salad leaves topped with browned poultry gizzard slices, walnut halves and mustard vinaigrette. Realistic appetizing home-cooked food, faithful ingredients and textures. Close three-quarter overhead view, entire serving fills a centered ivory ceramic dish on a warm natural wooden kitchen table. Soft warm window light, cream and earthy autumn colors, consistent family cookbook photographic style. Square composition legible at 160 pixels. No text, no watermark, no collage, no hands, no raw ingredients or additional garnishes not described. Generate exactly one photo.",
+      "bytes": 11418
+    },
+    {
+      "id": "veg-l1-09",
+      "file": "veg-l1-09.webp",
+      "prompt": "Use case: photorealistic-natural. Asset: original square culinary thumbnail for French family cooking app Clair Repas. Subject: Leek Beaufort crozets: small square buckwheat pasta with softened sliced leek and melted Beaufort cheese. Realistic appetizing home-cooked food, faithful ingredients and textures. Close three-quarter overhead view, entire serving fills a centered ivory ceramic dish on a warm natural wooden kitchen table. Soft warm window light, cream and earthy autumn colors, consistent family cookbook photographic style. Square composition legible at 160 pixels. No text, no watermark, no collage, no hands, no raw ingredients or additional garnishes not described. Generate exactly one photo.",
+      "bytes": 9928
+    },
+    {
+      "id": "veg-l1-20",
+      "file": "veg-l1-20.webp",
+      "prompt": "Use case: photorealistic-natural. Asset: original square culinary thumbnail for French family cooking app Clair Repas. Subject: Chard potato parmesan gratin: potato pieces and green chard leaves in creamy béchamel with browned grated parmesan top. Realistic appetizing home-cooked food, faithful ingredients and textures. Close three-quarter overhead view, entire serving fills a centered ivory ceramic dish on a warm natural wooden kitchen table. Soft warm window light, cream and earthy autumn colors, consistent family cookbook photographic style. Square composition legible at 160 pixels. No text, no watermark, no collage, no hands, no raw ingredients or additional garnishes not described. Generate exactly one photo.",
+      "bytes": 10712
+    },
+    {
+      "id": "a084",
+      "file": "a084.webp",
+      "prompt": "Use case: photorealistic-natural. Asset: original square culinary thumbnail for French family cooking app Clair Repas. Subject: Roasted squash with hazelnuts: golden orange roasted 2 cm squash wedges with skins, toasted chopped hazelnuts and thyme. Realistic appetizing home-cooked food, faithful ingredients and textures. Close three-quarter overhead view, entire serving fills a centered ivory ceramic dish on a warm natural wooden kitchen table. Soft warm window light, cream and earthy autumn colors, consistent family cookbook photographic style. Square composition legible at 160 pixels. No text, no watermark, no collage, no hands, no raw ingredients or additional garnishes not described. Generate exactly one photo.",
+      "bytes": 11334
+    },
+    {
+      "id": "gn-poisson-blanc-poireaux-creme",
+      "file": "gn-poisson-blanc-poireaux-creme.webp",
+      "prompt": "Use case: photorealistic-natural. Asset: original square culinary thumbnail for French family cooking app Clair Repas. Subject: Baked white fish with leek potatoes: opaque flaky white fish fillet over creamy braised sliced leeks and tender potatoes with capers and parsley. Realistic appetizing home-cooked food, faithful ingredients and textures. Close three-quarter overhead view, entire serving fills a centered ivory ceramic dish on a warm natural wooden kitchen table. Soft warm window light, cream and earthy autumn colors, consistent family cookbook photographic style. Square composition legible at 160 pixels. No text, no watermark, no collage, no hands, no raw ingredients or additional garnishes not described. Generate exactly one photo.",
+      "bytes": 9386
+    },
+    {
+      "id": "q408",
+      "file": "q408.webp",
+      "prompt": "Use case: photorealistic-natural. Asset: original square culinary thumbnail for French family cooking app Clair Repas. Subject: Buckwheat mushroom spinach bowl with poached egg: cooked buckwheat grains with browned sliced mushrooms, wilted spinach and one poached egg with fully set white. Realistic appetizing home-cooked food, faithful ingredients and textures. Close three-quarter overhead view, entire serving fills a centered ivory ceramic dish on a warm natural wooden kitchen table. Soft warm window light, cream and earthy autumn colors, consistent family cookbook photographic style. Square composition legible at 160 pixels. No text, no watermark, no collage, no hands, no raw ingredients or additional garnishes not described. Generate exactly one photo.",
+      "bytes": 10020
+    }
+  ]
+}
