@@ -867,6 +867,21 @@ select{min-height:48px;border:1px solid #deebf2;border-radius:16px;background:#f
 .recipe .recipe-useful-tip{margin:18px 0;padding:11px 13px;border-left:3px solid #668794;background:#f1f6f7;font-size:14px}
 .recipe .recipe-reading button:focus-visible{outline:3px solid #286e97;outline-offset:3px}
 @media(max-width:430px){.recipe .recipe-reading{font-size:16px}.recipe .recipe-essential{gap:9px 12px;padding:12px}.recipe .recipe-reading.recipe-reading ol>li{padding:13px 12px 13px 42px}.recipe .recipe-reading.recipe-reading ol>li::before{left:9px;top:14px}}
+/* Direct recipe access from home; results use the existing recipe cards. */
+.home-recipe-search{margin:0 0 20px;padding:18px;border:1px solid #dce8ef;border-radius:20px;background:rgba(255,255,255,.9);min-width:0}
+.home-recipe-search>label{display:block;margin-bottom:10px;color:#244b62;font-size:17px;font-weight:800}
+.home-search-field{display:flex;align-items:center;gap:8px;min-width:0}
+.home-search-field input{display:block;flex:1;width:100%;min-width:0;min-height:48px;padding:12px;border:1px solid #bfd7e6;border-radius:12px;background:#fff;color:#17384d;font-size:16px}
+#homeRecipeSearch::-webkit-search-cancel-button{display:none}
+.home-search-field button{flex:0 0 44px;width:44px;min-height:44px;border:1px solid #bfd7e6;border-radius:12px;background:#eef7fc;color:#244b62;font-size:24px}
+.home-search-field button[hidden],#homeRecipeResults[hidden]{display:none}
+.home-search-status{margin:10px 0;color:#566772;font-size:14px;line-height:1.4}
+.home-search-status:empty{display:none}
+.home-recipe-open{display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-areas:'role arrow' 'title arrow' 'meta arrow';align-items:center;column-gap:10px;width:100%;min-height:76px;padding:13px 14px;border:0;background:transparent;text-align:left;touch-action:manipulation}
+.home-recipe-open .book-recipe-title{overflow-wrap:anywhere;line-height:1.35;font-size:16px}
+.home-recipe-search button:focus-visible,.home-search-field input:focus-visible{outline:3px solid #286e97;outline-offset:2px}
+.home-recipe-search .book-more{width:100%;min-height:44px}
+@media(max-width:420px){.home-recipe-search{padding:14px}.home-recipe-open{padding:12px}}
 /* Only the ten featured autumn recipes receive this presentation. */
 .autumn-card-content{display:flex;align-items:flex-start;gap:12px;min-width:0;text-align:left}
 .autumn-card-copy{display:flex;flex:1;min-width:0;flex-direction:column;gap:6px}
@@ -995,6 +1010,16 @@ select{min-height:48px;border:1px solid #deebf2;border-radius:16px;background:#f
     <div class="trust-pill"><span class="trust-icon">⌁</span><strong id="professionalDataStatus">Données locales</strong><small>Privées sur cet appareil</small></div>
   </div>
 </header>
+
+<section class="home-recipe-search" aria-labelledby="homeRecipeSearchLabel">
+  <label id="homeRecipeSearchLabel" for="homeRecipeSearch">🔎 Rechercher une recette…</label>
+  <div class="home-search-field">
+    <input id="homeRecipeSearch" type="search" placeholder="Poulet, poireaux, airfryer…" autocomplete="off" spellcheck="false" aria-controls="homeRecipeResults">
+    <button id="homeRecipeSearchClear" type="button" aria-label="Effacer la recherche" hidden>×</button>
+  </div>
+  <p id="homeRecipeSearchStatus" class="home-search-status" role="status" aria-live="polite" aria-atomic="true"></p>
+  <div id="homeRecipeResults" hidden></div>
+</section>
 
 <section class="planning-card" aria-labelledby="planningTitle">
   <div class="planning-heading">
@@ -6181,7 +6206,7 @@ function refreshV73HealthStatus(){
 }
 $('libraryCount').textContent=`${dishLibrary.length} plats · ${starters.length} entrées · ${desserts.length} desserts · ${breakfastRecipes.length} petits-déjeuners · ${sauceRecipes.length} sauces · ${sideRecipes.length} accompagnements · ${fundamentalRecipes.length} fondamentaux`;
 $('libraryHint').textContent=`Découvrir ${recipeLibrary.length} recettes dans le Livre`;
-$('versionLine').textContent='Clair Repas V7.5 · Automne gourmand 2026.10.06.2';
+$('versionLine').textContent='Clair Repas V7.5 · Recherche accueil 2026.10.06.3';
 // V7.5 — Grands Chefs : 60 nouvelles recettes et un chapitre dédié à dix signatures françaises.
 // V7.4 — Tables de France : 40 nouvelles recettes, avec priorité aux régions et aux grands classiques de bistrot.
 // V7.3 — Consolidation technique : robustesse PWA, sauvegarde évolutive, intégrité des données et optimisation des lectures locales.
@@ -7961,7 +7986,7 @@ function searchableIncludesToken(searchable,token){
   return searchTokenVariants(token).some(value=>searchable.includes(value));
 }
 function searchRecipePool(query,pool){
-  const normalized=normalizeSearchText(query);
+  const normalized=normalizeSearchText(query).replace(/\bair\s*fryer\b/g,'air fryer');
   if(!normalized)return[...(pool||[])];
   const tokens=normalized.split(/\s+/).filter(Boolean);
   const notesById=recipeNoteMap();
@@ -8859,6 +8884,7 @@ function mountClairBookHome(){
   window.CRBookHome.init({
     mount,
     getRecipes:()=>recipeLibrary,
+    searchRecipes:query=>searchRecipePool(query,recipeLibrary),
     bookShelves:BOOK_SHELVES,
     config:CR_BOOK_HOME_CONFIG,
     openRecipe:recipe=>showBrowserRecipe(recipe.id,'book'),
@@ -9057,7 +9083,7 @@ function closeRecipeBrowser(){
 }
 function showBrowserRecipe(id,fromMode=browserMode){
   if(!recipeIndex.has(id))return;
-  browserReturnMode=['book','book-shelf','search','favorites','recent','ingredient-fridge','ingredient-leftovers'].includes(fromMode)?fromMode:'search';
+  browserReturnMode=['home-search','book','book-shelf','search','favorites','recent','ingredient-fridge','ingredient-leftovers'].includes(fromMode)?fromMode:'search';
   browserMode='detail';
   browserRecipeId=id;
   recordRecentRecipe(id);
@@ -11008,6 +11034,36 @@ $('favorite').onclick=()=>{
 };
 $('courses').onclick=openShoppingForProgram;
 
+const HOME_RECIPE_SEARCH_PAGE_SIZE=6;
+let homeRecipeSearchVisible=HOME_RECIPE_SEARCH_PAGE_SIZE;
+function renderHomeRecipeSearch(){
+  const query=$('homeRecipeSearch').value;
+  const hasQuery=Boolean(normalizeSearchText(query));
+  $('homeRecipeSearchClear').hidden=!query;
+  const results=$('homeRecipeResults');
+  results.hidden=!hasQuery;
+  if(!hasQuery){results.innerHTML='';$('homeRecipeSearchStatus').textContent='';return;}
+  const recipes=searchRecipePool(query,recipeLibrary);
+  $('homeRecipeSearchStatus').textContent=recipes.length
+    ?recipes.length+' recette'+(recipes.length>1?'s':'')+' trouvée'+(recipes.length>1?'s':'')
+    :'Aucune recette trouvée. Essayez un autre titre, ingrédient ou appareil.';
+  results.innerHTML=recipes.slice(0,homeRecipeSearchVisible)
+    .map(recipe=>bookRecipeResultHTML(recipe).replace('class="book-recipe-open"','class="home-recipe-open"')).join('')
+    +(recipes.length>homeRecipeSearchVisible?'<button class="book-more" id="homeRecipeSearchMore" type="button">Afficher plus de recettes</button>':'');
+}
+$('homeRecipeSearch').oninput=()=>{homeRecipeSearchVisible=HOME_RECIPE_SEARCH_PAGE_SIZE;renderHomeRecipeSearch();};
+$('homeRecipeSearchClear').onclick=()=>{
+  $('homeRecipeSearch').value='';homeRecipeSearchVisible=HOME_RECIPE_SEARCH_PAGE_SIZE;
+  renderHomeRecipeSearch();$('homeRecipeSearch').focus();
+};
+$('homeRecipeResults').onclick=event=>{
+  if(event.target.closest('#homeRecipeSearchMore')){homeRecipeSearchVisible+=HOME_RECIPE_SEARCH_PAGE_SIZE;renderHomeRecipeSearch();return;}
+  const button=event.target.closest('.home-recipe-open');
+  if(!button)return;
+  browserSelection=null;browserLastFocus=button;
+  $('recipeBrowser').hidden=false;document.body.classList.add('browser-open');
+  showBrowserRecipe(button.dataset.recipeId,'home-search');
+};
 $('chooseRecipe').onclick=()=>openRecipeBrowser('book');
 $('openAutumn').onclick=()=>{openRecipeBrowser('book');openBookShelf('automne-gourmand')};
 $('openFridge').onclick=()=>openIngredientAssistant('fridge');
@@ -11028,6 +11084,7 @@ $('browserBack').onclick=()=>{
     return;
   }
   if(browserMode==='detail'){
+    if(browserReturnMode==='home-search'){closeRecipeBrowser();return;}
     browserMode=browserReturnMode;
     browserRecipeId=null;
     if(browserMode==='search'&&!browserSelection&&!normalizeSearchText($('recipeSearch').value))refreshBrowserDiscoveryPage();
@@ -11472,6 +11529,7 @@ Il reçoit tout par adaptateur.
     const {
       mount,
       getRecipes,
+      searchRecipes,
       bookShelves = [],
       config,
       openRecipe,
@@ -11520,7 +11578,7 @@ Il reçoit tout par adaptateur.
         results.hidden = true;
         return;
       }
-      const found = defaultSearch(recipes, q).slice(0, maxSearchResults);
+      const found = (searchRecipes ? searchRecipes(q) : defaultSearch(recipes, q)).slice(0, maxSearchResults);
       results.hidden = false;
 
       const head = el("div", "cr-book-results-head");
