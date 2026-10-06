@@ -18,7 +18,7 @@ const DATA_SCHEMA = 2;
 const CLOUD_APP_ID = "clair-repas";
 const CLOUD_ENABLED = true;
 const CLOUD_DIRECT_SYNC_PROTOCOL = "clair-personal-sync/v1";
-const CORE_REVISION = "sha256:189f98c3d4c041442ec17c36393b7e4db0f220da65ef3dbd602b5678a7329fa8";
+const CORE_REVISION = "sha256:78aa5541b25767b7d36a56b704e915687d4a79e865b6903e9c004f7dac05009b";
 const BOOT_GRACE_MS = 18000;
 
 function fnv1a(text) {
@@ -52,6 +52,9 @@ const LEGACY_META_URL = META_URL;
 // mais jamais comme shell actif depuis l'activation du transfert Shopping V2.
 const PRE_V8_STABLE_CACHES = ["clair-repas-v75-grands-chefs-20260816"];
 
+// Optional featured WebP assets only. Populate when approved final photos are supplied.
+// They are cached on first use, never during installation of the recipe catalogue.
+const AUTUMN_THUMBNAILS = Object.freeze([]);
 const CORE_FILES = [
   "./",
   "./index.html",
@@ -85,8 +88,8 @@ const PRE_SHOPPING_V2_FOUNDATION_CORE_FILES = FOUNDATION_CORE_FILES.filter(
   path => path !== "./shopping-v2-engine.js"
 );
 const CORE_DIGESTS = Object.freeze({
-  "./": "sha256:110bd155c5835679b47ccab03049163b29d4f33ee2580745f6ae5f310f258c96",
-  "./index.html": "sha256:110bd155c5835679b47ccab03049163b29d4f33ee2580745f6ae5f310f258c96",
+  "./": "sha256:d94e181228a5caa0cbf618d7d2c7efec6866537ffe50ca75f04eae755236973d",
+  "./index.html": "sha256:d94e181228a5caa0cbf618d7d2c7efec6866537ffe50ca75f04eae755236973d",
   "./manifest.webmanifest": "sha256:49b30612587c379d6bb8c6d9ade4e299ff244b41f0bd03e2fcca0a5495834e2a",
   "./icon-192.png": "sha256:8d0d516fdcb7d76a40df62dc92d4f312a1557b9e105917026780e465c32fa9f8",
   "./icon-512.png": "sha256:334f3158730e33ad8232ea229a39f9193b45274f1a72b2f55467b1e625924f70",
@@ -95,7 +98,7 @@ const CORE_DIGESTS = Object.freeze({
   "./v8/vendor/supabase-js-2.111.0.js": "sha256:7396012594aa6d23bb373ebc25d1080bf3672fa847c3713f756520b40fd13453",
   "./v8/clair-foundation.js": "sha256:83786311d67be4be19af248b045735397ed988126b63bf9955c9cc5796d29ba2",
   "./v8/clair-cloud-sync.js": "sha256:826b44d8ee64b816f14e097a39405068001e529cc8a03885a5156de5d40ef7ea",
-  "./v8/version.json": "sha256:e748ea2ecfea92120e550e165dc7dc5557852bd3084fbfb1384eb64c431b10e2"
+  "./v8/version.json": "sha256:351fd1be6b7d08f18baee5ac447a1c0aaa9ca2a01c4b333c91423fd9d4acbddc"
 });
 
 function appIndexUrl() {
@@ -867,6 +870,23 @@ self.addEventListener("fetch", event => {
 
   if (url.toString() === STATUS_URL) {
     event.respondWith(statusResponse());
+    return;
+  }
+
+  if (AUTUMN_THUMBNAILS.some(path => new URL(path, self.registration.scope).href === url.href)) {
+    event.respondWith((async () => {
+      const state = await currentServingState();
+      const cache = await caches.open(state.activeCache || CURRENT_CACHE);
+      const saved = await cache.match(request);
+      if (saved) return saved;
+      try {
+        const response = await fetch(request);
+        if (response.ok && response.headers.get('content-type')?.includes('image/webp')) {
+          try { await cache.put(request, response.clone()); } catch (_) { /* Cache quota must not block display. */ }
+        }
+        return response;
+      } catch (_) { return Response.error(); }
+    })());
     return;
   }
 

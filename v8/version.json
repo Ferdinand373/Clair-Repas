@@ -5,7 +5,7 @@
   "productVersion": "7.5",
   "dataSchema": 2,
   "channel": "production-sync-enabled",
-  "publishedAt": "2026-08-23",
+  "publishedAt": "2026-10-06",
   "updatePolicy": "atomic-with-rollback",
   "personalDataPolicy": "preserve-and-snapshot",
   "cacheIsolation": "app-and-scope",
@@ -14,5 +14,6 @@
   "cloudAppId": "clair-repas",
   "cloudEnabled": true,
   "cloudHandover": "remote-existing-account-or-local-new-account",
-  "bootstrapGeneration": "bootstrap-v2"
+  "bootstrapGeneration": "bootstrap-v2",
+  "productBuild": "2026.10.06.1-automne-gourmand"
 }

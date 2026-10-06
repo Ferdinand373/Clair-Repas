@@ -8,7 +8,11 @@
 - Le premier lot de 20 est conservé. Son journal est [recipe-clarity-batch-01.md](recipe-clarity-batch-01.md).
 - Statuts : `pending` à examiner ; `unchanged` conforme sans réécriture ; `corrected` révisée ; `blocked` incertitude essentielle documentée. Une fiche bloquée n’est pas validée culinairement.
 
-## État actuel — pilote de déblocage 01
+## État actuel — test Automne gourmand
+
+Le 6 octobre 2026, une nouvelle demande autorise un test limité à dix recettes : neuf identifiants améliorés et une quiche distincte ajoutée. **1 554 fiches : 435 corrigées, 11 conformes sans réécriture, 1 108 bloquées, 0 pending.** Les 1 544 recettes hors sélection restent identiques. L’ancien chantier et le pilote restent clos ; aucun lot supplémentaire n’est lancé. Voir [le bilan du test](automne-gourmand.md).
+
+## État historique — pilote de déblocage 01
 
 Après le **pilote 01**, le 15 septembre 2026 : **1 553 identifiants examinés, 428 corrigés, 11 conformes sans réécriture, 1 114 bloqués, 0 `pending`**. Douze candidates déjà bloquées ont été réexaminées ; seule `e06` est débloquée grâce à son ancienne source explicite. Les onze autres restent inchangées et bloquées. Aucune recherche culinaire externe effectuée.
 

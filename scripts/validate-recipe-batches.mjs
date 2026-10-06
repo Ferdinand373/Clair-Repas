@@ -9,7 +9,7 @@ import {recipeHash} from './validate-recipe-editorial.mjs';
 import {pilot,verifyUnblockingPilot} from './validate-recipe-unblocking-pilot.mjs';
 verifyUnblockingPilot();
 const root=resolve(dirname(fileURLToPath(import.meta.url)),'..');
-const {code,recipes,editorial}=recipeSource(readFileSync(resolve(root,'index.html'),'utf8'));
+const {code,recipes,editorial}=recipeSource(readFileSync(resolve(root,'index.html'),'utf8').replace(/\/\/ Automne gourmand — dix fiches dans le catalogue existant, sans stockage personnel\.[\s\S]*?(?=const recipeLibrary=)/,''));
 const batchNumbers=['02','03','04','05','06','07','08','09','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31','32','33','34','35','36','37','38','39','40','41','42','43'];
 const fixture={recipes:batchNumbers.flatMap(number=>JSON.parse(readFileSync(resolve(root,`scripts/recipe-editorial-batch-${number}.fixture.json`),'utf8')).recipes).map(record=>record.id==='e06'?pilot.after.record:record)};
 const slice=(a,b)=>code.slice(code.indexOf(a),code.indexOf(b,code.indexOf(a)+a.length));
@@ -1724,6 +1724,11 @@ console.log(`✓ Batch 42: sixteen manual rewrites, source-restored scaled water
 const final43=JSON.parse(readFileSync(resolve(root,'scripts/recipe-editorial-batch-43.fixture.json'),'utf8'));
 const batch43=final43.recipes,ids43=new Set(batch43.map(r=>r.id));
 const inventory43=JSON.parse(readFileSync(resolve(root,'docs/recipe-editorial-inventory.json'),'utf8'));
+const autumn=JSON.parse(readFileSync(resolve(root,'scripts/automne-gourmand.fixture.json'),'utf8'));
+inventory43.recipes=inventory43.recipes.flatMap(record=>{
+  const replacement=autumn.recipes.find(row=>row.id===record.id);
+  return replacement?(replacement.beforeRecord?[replacement.beforeRecord]:[]):[record];
+});
 assert.equal(batch43.length,49);assert.equal(batch43[0].id,'v39-lasagnes-bolognaise');
 assert.deepEqual(batch43.map(r=>r.id),inventory43.recipes.filter(r=>r.batch==='43').map(r=>r.id));
 assert.deepEqual(inventory43.recipes.reduce((s,r)=>(s[r.status]=(s[r.status]||0)+1,s),{}),{corrected:428,blocked:1114,unchanged:11});

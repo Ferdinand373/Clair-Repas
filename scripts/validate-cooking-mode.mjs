@@ -11,10 +11,10 @@ const html=readFileSync(resolve(root,'index.html'),'utf8').replace(/\r\n/g,'\n')
 const {code,recipes,editorial}=recipeSource(html);
 const hash=value=>createHash('sha256').update(typeof value==='string'?value:JSON.stringify(value)).digest('hex');
 const block=(a,b)=>{const start=code.indexOf(a),end=code.indexOf(b,start);assert.ok(start>=0&&end>start,a);return code.slice(start,end)};
-// Published pilot 01: this feature must not edit culinary content or timer engine.
-assert.equal(hash(recipes),'9d108adceae0043b2735e96f3c384fd2533dbe7506e95635758e72ecccd81f61');
-assert.equal(hash(editorial),'13fd24a52dc61cb600c6da9a97ad02145821010baf126c524527426e59f9031f');
-assert.equal(hash(readFileSync(resolve(root,'docs/recipe-editorial-inventory.json'),'utf8').replace(/\r\n/g,'\n')),'74f6481616185de6e4ef69185216125ab2d38e44d485050d844eba51d2a9d4a5');
+// Published autumn catalogue: culinary content is guarded by validate-automne-gourmand; timer engine remains frozen.
+assert.equal(hash(recipes),'778091ead3a7e9def616d925c859f6d2d4166531c683f52a81cabdd63c51e3a4');
+assert.equal(hash(editorial),'ea8cee3da46730ec8d379a160cd8680de50d4a147fc5a2cd0c896d6b9144b27b');
+assert.equal(hash(readFileSync(resolve(root,'docs/recipe-editorial-inventory.json'),'utf8').replace(/\r\n/g,'\n')),'fb4e0549d4dea290e5aa66e4e9746866a3bead685b74d421336e3bf822453ca9');
 assert.equal(hash(block('const TIMER_KEY=','// Keep the timer and recipe scroll clearance')),'df74d392eee3cf6755ea3c59794253f61e4f1cf55ef14e960c215e5c2bc6f965');
 const modeCode=block('// Cooking is a read-only view','function bindRecipeControls(');
 const wakeCode=block('let wakeLock=null;','const TIMER_KEY=');
@@ -137,4 +137,4 @@ assert.match(html,/safe-area-inset-top,0px/);
 console.log('✓ Cooking mode: contextual 2/4/3/2 → 2/5/3/2 quantities, independent library portions, fixed yield, ordered steps, full view, missing data and existing timer delegation');
 console.log('✓ '+cookingRenders+' cooking renders at 2/5 people, all sourced steps and editorial reservations retained');
 console.log('✓ Wake Lock: unsupported/refused API, coalescing, visibility, page lifecycle, OS release, exit and late-request races');
-console.log('✓ 1553 recipes, editorial metadata, inventory and timer engine unchanged; no new storage, sync or personal-data writes');
+console.log('✓ 1554 recipes and approved autumn metadata/inventory verified; timer engine unchanged; no new storage, sync or personal-data writes');

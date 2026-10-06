@@ -59,6 +59,7 @@ jobs:
           node scripts/validate-recipe-editorial.mjs
           node scripts/validate-recipe-presentation.mjs
           node scripts/validate-cooking-mode.mjs
+          node scripts/validate-automne-gourmand.mjs
           node scripts/validate-planning-dates.mjs
           node scripts/validate-cloud-sync.mjs
           node scripts/validate-repair-tool.mjs

@@ -37,7 +37,7 @@ function extractRealRecipeLibrary() {
     { filename: "index.html:shopping-qr4-recipe-corpus", timeout: 10000 }
   );
   assert.ok(Array.isArray(sandbox.__recipeLibrary), "Recipe corpus extraction failed");
-  assert.equal(sandbox.__recipeLibrary.length, 1553, "Unexpected real recipe corpus size");
+  assert.equal(sandbox.__recipeLibrary.length, 1554, "Unexpected real recipe corpus size");
   return sandbox.__recipeLibrary;
 }
 
@@ -475,7 +475,8 @@ await check("11. Sel et poivre is never split", () => {
   const restoredWraps = recipeLibrary.find(recipe => recipe.id === "e20");
   assert.deepEqual(JSON.parse(JSON.stringify(restoredWraps.i.at(-1))), {q:null,u:"",n:"sel et poivre",k:"sel et poivre"});
   assert.equal(draftFor(syntheticSource("qr4-restored-wraps-seasoning", [structuredClone(restoredWraps.i.at(-1))])).length, 1);
-  assert.equal(compoundCount, 483, "Unexpected compoundSource corpus count");
+  // Five autumn recipes now specify quantified salt and pepper separately.
+  assert.equal(compoundCount, 478, "Unexpected compoundSource corpus count");
   assert.equal(splitCount, 19, "Only the audited vinaigrette compounds may split");
   return `${compoundCount} compound occurrences; ${splitCount} safe splits; 0 unexpected`;
 });

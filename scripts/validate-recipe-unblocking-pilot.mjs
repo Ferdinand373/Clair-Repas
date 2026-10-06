@@ -11,8 +11,14 @@ const root=resolve(dirname(fileURLToPath(import.meta.url)),'..');
 export const pilot=JSON.parse(readFileSync(resolve(root,'scripts/recipe-unblocking-pilot-01.fixture.json'),'utf8'));
 
 export function verifyUnblockingPilot(){
-  const {code,recipes,editorial}=recipeSource(readFileSync(resolve(root,'index.html'),'utf8'));
+  // Historical pilot checks its published source; autumn content has a separate validator.
+  const {code,recipes,editorial}=recipeSource(readFileSync(resolve(root,'index.html'),'utf8').replace(/\/\/ Automne gourmand — dix fiches dans le catalogue existant, sans stockage personnel\.[\s\S]*?(?=const recipeLibrary=)/,''));
   const inventory=JSON.parse(readFileSync(resolve(root,'docs/recipe-editorial-inventory.json'),'utf8'));
+  const autumn=JSON.parse(readFileSync(resolve(root,'scripts/automne-gourmand.fixture.json'),'utf8'));
+  inventory.recipes=inventory.recipes.flatMap(record=>{
+    const replacement=autumn.recipes.find(row=>row.id===record.id);
+    return replacement?(replacement.beforeRecord?[replacement.beforeRecord]:[]):[record];
+  });
   const r=recipes.find(x=>x.id==='e06'),before=pilot.before.recipe;
   assert.equal(pilot.baselineCommit,'da6ceeae6ab3d3ea0460c0cf017e4765358351f5');
   assert.equal(pilot.source.commit,'c456cee99249ce1545fe479598b6facb766a5fb4');

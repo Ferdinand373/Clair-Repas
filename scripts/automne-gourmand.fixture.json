@@ -1,0 +1,2287 @@
+{
+  "baselineCount": 1553,
+  "baselineOtherHash": "567dd24824137f6485d39d68d64b22156618dbd2a6962ededf24634a2c64d0b9",
+  "recipes": [
+    {
+      "id": "v31n-orzo-boulettes",
+      "before": {
+        "id": "v31n-orzo-boulettes",
+        "n": "Poulet rôti traditionnel, pommes de terre",
+        "m": "Four",
+        "t": "50 min",
+        "s": [
+          "printemps",
+          "été",
+          "automne",
+          "hiver"
+        ],
+        "i": [
+          {
+            "q": 2,
+            "u": "",
+            "n": "cuisses de poulet",
+            "k": "cuisses de poulet"
+          },
+          {
+            "q": 650,
+            "u": "g",
+            "n": "pommes de terre",
+            "k": "pommes de terre"
+          },
+          {
+            "q": 3,
+            "u": "",
+            "n": "gousses d’ail",
+            "k": "gousses d’ail"
+          },
+          {
+            "q": 1,
+            "u": "",
+            "n": "citron",
+            "k": "citrons"
+          },
+          {
+            "q": 10,
+            "u": "cl",
+            "n": "bouillon",
+            "k": "bouillon"
+          },
+          {
+            "q": 30,
+            "u": "g",
+            "n": "beurre",
+            "k": "beurre"
+          },
+          {
+            "q": 1,
+            "u": "c. à café",
+            "n": "thym",
+            "k": "thym"
+          },
+          {
+            "q": 1,
+            "u": "c. à café",
+            "n": "romarin",
+            "k": "romarin"
+          },
+          {
+            "q": 1,
+            "u": "",
+            "n": "salade verte",
+            "k": "salades vertes"
+          },
+          {
+            "q": null,
+            "u": "",
+            "n": "sel et poivre selon le goût",
+            "k": "sel et poivre selon le goût"
+          }
+        ],
+        "p": [
+          "Préchauffer le four à 195 °C. Frotter le poulet avec l’ail, le citron, le thym, le romarin, du sel et du poivre, puis le déposer dans un plat avec le bouillon.",
+          "Cuire 35 minutes à 195 °C en arrosant à mi-cuisson ; la peau doit être dorée et le jus qui s’écoule clair.",
+          "Pendant ce temps, cuire les pommes de terre 20 minutes dans l’eau salée, les égoutter puis les écraser grossièrement avec le beurre et un peu de jus du plat.",
+          "Laisser reposer le poulet 5 minutes avant de le servir avec l’écrasé de pommes de terre et la salade."
+        ],
+        "protein": "poulet",
+        "group": "volaille",
+        "starch": "pommes-de-terre",
+        "family": "roti",
+        "subFamily": "poulet-roti-traditionnel",
+        "cuisine": "française",
+        "texture": "roti-moelleux",
+        "technique": "rôti arrosé au four",
+        "presentation": "cuisse rôtie avec écrasé",
+        "kind": "warm",
+        "v31Autonomous": true,
+        "classic": true,
+        "servings": 2,
+        "vegetables": [],
+        "method": "Four",
+        "hotCold": "chaud",
+        "lightness": "classique",
+        "profile": "roti|poulet-roti-traditionnel|française|pommes-de-terre|roti-moelleux|rôti arrosé au four|cuisse rôtie avec écrasé",
+        "season": [
+          "printemps",
+          "été",
+          "automne",
+          "hiver"
+        ],
+        "mealSlots": [
+          "mid"
+        ]
+      },
+      "after": {
+        "id": "v31n-orzo-boulettes",
+        "n": "Poulet rôti, pommes de terre fondantes et thym",
+        "m": "Four",
+        "t": "1 h 10",
+        "s": [
+          "printemps",
+          "été",
+          "automne",
+          "hiver"
+        ],
+        "i": [
+          {
+            "q": 2,
+            "u": "",
+            "n": "cuisses de poulet de 250 à 300 g",
+            "k": "cuisses de poulet de 250 à 300 g"
+          },
+          {
+            "q": 500,
+            "u": "g",
+            "n": "pommes de terre",
+            "k": "pommes de terre"
+          },
+          {
+            "q": 2,
+            "u": "",
+            "n": "gousses d’ail",
+            "k": "gousses d’ail"
+          },
+          {
+            "q": 10,
+            "u": "cl",
+            "n": "bouillon de volaille",
+            "k": "bouillon de volaille"
+          },
+          {
+            "q": 1,
+            "u": "c. à soupe",
+            "n": "huile d’olive",
+            "k": "huile d’olive"
+          },
+          {
+            "q": 1,
+            "u": "c. à café",
+            "n": "thym séché",
+            "k": "thym séché"
+          },
+          {
+            "q": 0.5,
+            "u": "c. à café",
+            "n": "sel",
+            "k": "sel"
+          },
+          {
+            "q": 2,
+            "u": "pincées",
+            "n": "poivre",
+            "k": "poivre"
+          }
+        ],
+        "p": [
+          "Préchauffer le four à 190 °C, chaleur traditionnelle. Éplucher les pommes de terre et les couper en quartiers de 3 cm. Peler les gousses d’ail et les écraser légèrement.",
+          "Mettre pommes de terre et ail dans un plat où les cuisses tiendront côte à côte. Mélanger avec {{qty:4}} d’huile, {{qty:6:0.5}} de sel et {{qty:7:0.5}} de poivre.",
+          "Sécher les cuisses sans les rincer. Les poser sur les pommes de terre, peau vers le haut. Répartir le thym, le reste du sel et du poivre. Verser {{qty:3}} de bouillon au fond du plat. Laver les mains et les ustensiles ayant touché le poulet cru.",
+          "Enfourner à mi-hauteur à 190 °C pendant 50 minutes. Après 25 minutes, remuer les pommes de terre et arroser le poulet avec le jus du plat, puis remettre au four.",
+          "Contrôler au thermomètre 74 °C dans la partie épaisse d’une cuisse, sans toucher l’os. Les pommes de terre doivent céder sous une pointe de couteau. Prolonger par tranches de 5 minutes si nécessaire ; couvrir légèrement si la peau brunit trop.",
+          "Laisser reposer 5 minutes hors du four. Servir les cuisses avec les pommes de terre, l’ail fondant et le jus au thym."
+        ],
+        "protein": "poulet",
+        "group": "volaille",
+        "starch": "pommes-de-terre",
+        "family": "roti",
+        "subFamily": "poulet-roti-traditionnel",
+        "cuisine": "française",
+        "texture": "roti-moelleux",
+        "technique": "rôtissage au four",
+        "presentation": "cuisses et pommes de terre au jus",
+        "kind": "warm",
+        "v31Autonomous": true,
+        "classic": true,
+        "servings": 2,
+        "vegetables": [],
+        "method": "Four",
+        "hotCold": "chaud",
+        "lightness": "classique",
+        "profile": "roti|poulet-roti-traditionnel|française|pommes-de-terre|roti-moelleux|rôti arrosé au four|cuisse rôtie avec écrasé",
+        "season": [
+          "printemps",
+          "été",
+          "automne",
+          "hiver"
+        ],
+        "mealSlots": [
+          "mid"
+        ],
+        "collections": [
+          "automne-gourmand"
+        ]
+      },
+      "reading": {
+        "intro": "Un poulet doré et des pommes de terre qui s’imprègnent du jus au thym.",
+        "titles": [
+          "Préparer les pommes de terre",
+          "Garnir le plat",
+          "Assaisonner le poulet",
+          "Rôtir et arroser",
+          "Vérifier la cuisson",
+          "Laisser reposer et servir"
+        ],
+        "times": {
+          "prep": "15 min",
+          "cook": "50 min à 190 °C, puis contrôle à cœur",
+          "rest": "5 min",
+          "total": "1 h 10 indicative"
+        }
+      },
+      "record": {
+        "id": "v31n-orzo-boulettes",
+        "name": "Poulet rôti, pommes de terre fondantes et thym",
+        "status": "corrected",
+        "sourceHash": "aba51c08174107c458575dbec5d4f20c159e9e02055207bcb2cc0dc42983cbd1",
+        "reviewedHash": "6a5214fd828a5097a7cc3edb56ebb351e034f0186cef3931fd48207d765b67ac",
+        "batch": "automne-gourmand-01",
+        "issues": [],
+        "reviewNote": "Test Automne gourmand autorisé : recette rédigée pour la cuisine familiale, quantités et étapes vérifiées ; identifiant existant conservé lorsque disponible."
+      },
+      "beforeRecord": {
+        "id": "v31n-orzo-boulettes",
+        "name": "Poulet rôti traditionnel, pommes de terre",
+        "status": "blocked",
+        "sourceHash": "aba51c08174107c458575dbec5d4f20c159e9e02055207bcb2cc0dc42983cbd1",
+        "reviewedHash": "aba51c08174107c458575dbec5d4f20c159e9e02055207bcb2cc0dc42983cbd1",
+        "batch": "20",
+        "issues": [
+          "le poulet doit être frotté avec ail et citron entiers sans expliquer s’ils sont coupés, pressés ou râpés. L’écrasé reçoit ensuite un peu de jus de rôti sans quantité concrète. Le jus clair ne suffit pas à garantir la cuisson de la volaille. Confirmer ces gestes et la part de jus ; conserver le beurre réservé aux pommes de terre."
+        ],
+        "reviewNote": "le poulet doit être frotté avec ail et citron entiers sans expliquer s’ils sont coupés, pressés ou râpés. L’écrasé reçoit ensuite un peu de jus de rôti sans quantité concrète. Le jus clair ne suffit pas à garantir la cuisson de la volaille. Confirmer ces gestes et la part de jus ; conserver le beurre réservé aux pommes de terre."
+      }
+    },
+    {
+      "id": "n64",
+      "before": {
+        "id": "n64",
+        "n": "Saucisses aux lentilles express",
+        "m": "Poêle",
+        "t": "35 min",
+        "s": [
+          "printemps",
+          "été",
+          "automne",
+          "hiver"
+        ],
+        "i": [
+          {
+            "q": 4,
+            "u": "",
+            "n": "saucisses",
+            "k": "saucisses"
+          },
+          {
+            "q": 300,
+            "u": "g",
+            "n": "lentilles cuites",
+            "k": "lentilles cuites"
+          },
+          {
+            "q": 2,
+            "u": "",
+            "n": "carottes",
+            "k": "carottes"
+          },
+          {
+            "q": 1,
+            "u": "",
+            "n": "oignon",
+            "k": "oignons"
+          },
+          {
+            "q": 20,
+            "u": "cl",
+            "n": "bouillon",
+            "k": "bouillon"
+          },
+          {
+            "q": null,
+            "u": "",
+            "n": "thym",
+            "k": "thym"
+          }
+        ],
+        "p": [
+          "Faire revenir l’oignon et les carottes.",
+          "Ajouter les lentilles, le bouillon et le thym.",
+          "Déposer les saucisses et laisser mijoter 20 minutes."
+        ],
+        "protein": "viande",
+        "group": "viande",
+        "starch": "legumineuses",
+        "family": "plat-complet",
+        "cuisine": "française",
+        "vegetables": [
+          "carotte",
+          "oignon"
+        ],
+        "method": "Poêle",
+        "hotCold": "chaud",
+        "lightness": "classique",
+        "subFamily": "plat-complet-lentilles",
+        "texture": "moelleux",
+        "technique": "cuisson douce",
+        "presentation": "assiette complète",
+        "profile": "plat-complet|plat-complet-lentilles|française|legumineuses|moelleux|cuisson douce|assiette complète",
+        "season": [
+          "printemps",
+          "été",
+          "automne",
+          "hiver"
+        ],
+        "mealSlots": [
+          "mid"
+        ]
+      },
+      "after": {
+        "id": "n64",
+        "n": "Saucisses dorées aux lentilles mijotées",
+        "m": "Poêle",
+        "t": "40 min",
+        "s": [
+          "printemps",
+          "été",
+          "automne",
+          "hiver"
+        ],
+        "i": [
+          {
+            "q": 2,
+            "u": "",
+            "n": "saucisses de porc crues de 120 g",
+            "k": "saucisses de porc crues de 120 g"
+          },
+          {
+            "q": 350,
+            "u": "g",
+            "n": "lentilles cuites égouttées",
+            "k": "lentilles cuites égouttées"
+          },
+          {
+            "q": 2,
+            "u": "",
+            "n": "carottes",
+            "k": "carottes"
+          },
+          {
+            "q": 1,
+            "u": "",
+            "n": "oignon",
+            "k": "oignon"
+          },
+          {
+            "q": 20,
+            "u": "cl",
+            "n": "bouillon de légumes",
+            "k": "bouillon de légumes"
+          },
+          {
+            "q": 1,
+            "u": "c. à soupe",
+            "n": "huile d’olive",
+            "k": "huile d’olive"
+          },
+          {
+            "q": 1,
+            "u": "c. à café",
+            "n": "thym séché",
+            "k": "thym séché"
+          },
+          {
+            "q": 0.25,
+            "u": "c. à café",
+            "n": "sel",
+            "k": "sel"
+          },
+          {
+            "q": 2,
+            "u": "pincées",
+            "n": "poivre",
+            "k": "poivre"
+          }
+        ],
+        "p": [
+          "Éplucher les carottes et les couper en rondelles de 5 mm. Peler et émincer l’oignon. Rincer les lentilles cuites puis les égoutter.",
+          "Chauffer {{qty:5}} d’huile dans une sauteuse à feu moyen. Faire dorer les saucisses 8 minutes en les tournant régulièrement, sans les piquer. Les réserver sur une assiette.",
+          "Dans la même sauteuse, ajouter oignon et carottes. Faire revenir 5 minutes à feu moyen en remuant. Verser {{qty:4}} de bouillon, ajouter le thym et le poivre, puis remettre les saucisses.",
+          "Porter à petit frémissement. Couvrir et cuire 15 minutes à feu doux ; le bouillon doit frémir sans bouillir vivement. Retourner les saucisses à mi-cuisson.",
+          "Ajouter les lentilles et mélanger autour des saucisses. Cuire encore 5 minutes à feu doux, à découvert. Les carottes doivent être tendres et les lentilles bien chaudes.",
+          "Vérifier 71 °C au cœur des saucisses ; prolonger à feu doux si nécessaire. Goûter, ajouter {{qty:7}} de sel, puis servir avec les lentilles et leur jus."
+        ],
+        "protein": "viande",
+        "group": "viande",
+        "starch": "legumineuses",
+        "family": "plat-complet",
+        "cuisine": "française",
+        "vegetables": [
+          "carotte",
+          "oignon"
+        ],
+        "method": "Poêle",
+        "hotCold": "chaud",
+        "lightness": "classique",
+        "subFamily": "plat-complet-lentilles",
+        "texture": "moelleux",
+        "technique": "cuisson douce",
+        "presentation": "assiette complète",
+        "profile": "plat-complet|plat-complet-lentilles|française|legumineuses|moelleux|cuisson douce|assiette complète",
+        "season": [
+          "printemps",
+          "été",
+          "automne",
+          "hiver"
+        ],
+        "mealSlots": [
+          "mid"
+        ],
+        "servings": 2,
+        "collections": [
+          "automne-gourmand"
+        ]
+      },
+      "reading": {
+        "intro": "Des saucisses bien dorées sur un lit de lentilles tendres aux carottes.",
+        "titles": [
+          "Préparer les légumes",
+          "Dorer les saucisses",
+          "Faire fondre les légumes",
+          "Mijoter à couvert",
+          "Ajouter les lentilles",
+          "Contrôler et servir"
+        ],
+        "times": {
+          "prep": "7 min",
+          "cook": "33 min à la sauteuse",
+          "total": "40 min indicatives",
+          "rest": null
+        }
+      },
+      "record": {
+        "id": "n64",
+        "name": "Saucisses dorées aux lentilles mijotées",
+        "status": "corrected",
+        "sourceHash": "35f15d7fda893b861bf972c66b11d0c5fe966abdd34af29519cf6cd7a915778f",
+        "reviewedHash": "928734564928420d6d90346e62366c9cfcd78774bb52e8110256d05af23e9c1a",
+        "batch": "automne-gourmand-01",
+        "issues": [],
+        "reviewNote": "Test Automne gourmand autorisé : recette rédigée pour la cuisine familiale, quantités et étapes vérifiées ; identifiant existant conservé lorsque disponible."
+      },
+      "beforeRecord": {
+        "id": "n64",
+        "name": "Saucisses aux lentilles express",
+        "status": "blocked",
+        "sourceHash": "35f15d7fda893b861bf972c66b11d0c5fe966abdd34af29519cf6cd7a915778f",
+        "reviewedHash": "35f15d7fda893b861bf972c66b11d0c5fe966abdd34af29519cf6cd7a915778f",
+        "batch": "03",
+        "issues": [
+          "Matière grasse pour oignon et carottes absente ; type de saucisses non précisé."
+        ],
+        "reviewNote": "Lentilles déjà cuites et bouillon conservés ; une recette airfryer ressemblante n’est pas une source pour cette poêle."
+      }
+    },
+    {
+      "id": "a042",
+      "before": {
+        "id": "a042",
+        "n": "Velouté de courge et châtaignes",
+        "m": "Casserole",
+        "t": "35 min",
+        "s": [
+          "automne",
+          "hiver"
+        ],
+        "richness": "normal",
+        "core": [
+          "courge",
+          "châtaigne"
+        ],
+        "i": [
+          {
+            "q": 450,
+            "u": "g",
+            "n": "courge",
+            "k": "courge"
+          },
+          {
+            "q": 100,
+            "u": "g",
+            "n": "châtaignes cuites",
+            "k": "châtaignes cuites"
+          },
+          {
+            "q": 1,
+            "u": "",
+            "n": "oignon",
+            "k": "oignons"
+          },
+          {
+            "q": 50,
+            "u": "cl",
+            "n": "bouillon",
+            "k": "bouillon"
+          }
+        ],
+        "p": [
+          "Faire fondre l’oignon.",
+          "Ajouter la courge, les châtaignes et le bouillon puis cuire 25 minutes.",
+          "Mixer jusqu’à obtenir un velouté lisse."
+        ],
+        "course": "starter",
+        "family": "soupes",
+        "hotCold": "chaud",
+        "cuisine": "française",
+        "kind": "starter",
+        "servings": 2,
+        "protein": "legumes",
+        "group": "legumes",
+        "starch": "entrée",
+        "vegetables": [
+          "courge",
+          "oignon"
+        ],
+        "method": "Casserole",
+        "lightness": "normal",
+        "subFamily": "soupes-veloute-courge-chataignes",
+        "texture": "onctueux",
+        "technique": "cuisson douce",
+        "presentation": "assiette complète",
+        "profile": "starter|soupes|française|normal|chaud",
+        "season": [
+          "automne",
+          "hiver"
+        ],
+        "mealSlots": [
+          "starter"
+        ]
+      },
+      "after": {
+        "id": "a042",
+        "n": "Velouté de potimarron et châtaignes",
+        "m": "Casserole",
+        "t": "40 min",
+        "s": [
+          "automne",
+          "hiver"
+        ],
+        "richness": "normal",
+        "core": [
+          "potimarron",
+          "châtaigne"
+        ],
+        "i": [
+          {
+            "q": 450,
+            "u": "g",
+            "n": "potimarron épépiné",
+            "k": "potimarron épépiné"
+          },
+          {
+            "q": 100,
+            "u": "g",
+            "n": "châtaignes cuites pelées",
+            "k": "châtaignes cuites pelées"
+          },
+          {
+            "q": 1,
+            "u": "",
+            "n": "oignon",
+            "k": "oignon"
+          },
+          {
+            "q": 50,
+            "u": "cl",
+            "n": "bouillon de légumes",
+            "k": "bouillon de légumes"
+          },
+          {
+            "q": 10,
+            "u": "g",
+            "n": "beurre",
+            "k": "beurre"
+          },
+          {
+            "q": 5,
+            "u": "cl",
+            "n": "crème liquide",
+            "k": "crème liquide"
+          },
+          {
+            "q": 0.25,
+            "u": "c. à café",
+            "n": "sel",
+            "k": "sel"
+          },
+          {
+            "q": 2,
+            "u": "pincées",
+            "n": "poivre",
+            "k": "poivre"
+          }
+        ],
+        "p": [
+          "Laver le potimarron, retirer les graines et les filaments. Peser la chair prévue ; conserver la peau si elle est fine, sinon l’éplucher. Couper en cubes de 2 cm. Peler et émincer l’oignon.",
+          "Faire fondre {{qty:4}} de beurre dans une casserole à feu moyen-doux. Ajouter l’oignon et cuire 4 minutes en remuant, sans coloration.",
+          "Ajouter le potimarron et les châtaignes, puis verser {{qty:3}} de bouillon. Porter à frémissement, couvrir et cuire 25 minutes à feu doux. Un cube de potimarron doit s’écraser facilement à la fourchette ; prolonger si nécessaire.",
+          "Retirer du feu et ajouter {{qty:5}} de crème. Mixer au mixeur plongeant, tête immergée pour éviter les projections, jusqu’à obtenir une texture lisse. Ajouter sel et poivre.",
+          "Réchauffer sur feu doux 2 minutes en remuant, sans faire bouillir. Répartir le velouté chaud dans les bols et servir aussitôt."
+        ],
+        "course": "starter",
+        "family": "soupes",
+        "hotCold": "chaud",
+        "cuisine": "française",
+        "kind": "starter",
+        "servings": 2,
+        "protein": "legumes",
+        "group": "legumes",
+        "starch": "entrée",
+        "vegetables": [
+          "potimarron",
+          "oignon"
+        ],
+        "method": "Casserole",
+        "lightness": "normal",
+        "subFamily": "soupes-veloute-courge-chataignes",
+        "texture": "onctueux",
+        "technique": "cuisson douce",
+        "presentation": "assiette complète",
+        "profile": "starter|soupes|française|normal|chaud",
+        "season": [
+          "automne",
+          "hiver"
+        ],
+        "mealSlots": [
+          "starter"
+        ],
+        "collections": [
+          "automne-gourmand"
+        ]
+      },
+      "reading": {
+        "intro": "La douceur du potimarron et des châtaignes dans un velouté bien chaud.",
+        "titles": [
+          "Couper le potimarron",
+          "Faire fondre l’oignon",
+          "Cuire la courge",
+          "Mixer le velouté",
+          "Réchauffer et servir"
+        ],
+        "times": {
+          "prep": "9 min",
+          "cook": "31 min à feu doux",
+          "total": "40 min indicatives",
+          "rest": null
+        }
+      },
+      "record": {
+        "id": "a042",
+        "name": "Velouté de potimarron et châtaignes",
+        "status": "corrected",
+        "sourceHash": "2a5593a819e18528b80beeaa38d1d0315ed2e700e1b47d9d31c3987582c5df2c",
+        "reviewedHash": "c8c6a3619167acffa4cdae3b37a58630a0bbd856ffd56f43881cdf9fc67353d2",
+        "batch": "automne-gourmand-01",
+        "issues": [],
+        "reviewNote": "Test Automne gourmand autorisé : recette rédigée pour la cuisine familiale, quantités et étapes vérifiées ; identifiant existant conservé lorsque disponible."
+      },
+      "beforeRecord": {
+        "id": "a042",
+        "name": "Velouté de courge et châtaignes",
+        "status": "blocked",
+        "sourceHash": "2a5593a819e18528b80beeaa38d1d0315ed2e700e1b47d9d31c3987582c5df2c",
+        "reviewedHash": "2a5593a819e18528b80beeaa38d1d0315ed2e700e1b47d9d31c3987582c5df2c",
+        "batch": "10",
+        "issues": [
+          "la conduite et la matière grasse pour faire fondre l’oignon avant le bouillon ne sont pas définies. La cuisson initiale ne doit pas être remplacée par une cuisson à l’eau."
+        ],
+        "reviewNote": "la conduite et la matière grasse pour faire fondre l’oignon avant le bouillon ne sont pas définies. La cuisson initiale ne doit pas être remplacée par une cuisson à l’eau."
+      }
+    },
+    {
+      "id": "automne-quiche-poireaux",
+      "before": null,
+      "after": {
+        "id": "automne-quiche-poireaux",
+        "n": "Quiche poireaux, lardons et comté",
+        "m": "Four",
+        "t": "1 h 10",
+        "servings": 4,
+        "i": [
+          {
+            "q": 1,
+            "u": "",
+            "n": "pâte brisée de 230 g",
+            "k": "pâte brisée de 230 g"
+          },
+          {
+            "q": 500,
+            "u": "g",
+            "n": "blancs de poireaux",
+            "k": "blancs de poireaux"
+          },
+          {
+            "q": 150,
+            "u": "g",
+            "n": "lardons",
+            "k": "lardons"
+          },
+          {
+            "q": 3,
+            "u": "",
+            "n": "œufs",
+            "k": "œufs"
+          },
+          {
+            "q": 20,
+            "u": "cl",
+            "n": "crème liquide",
+            "k": "crème liquide"
+          },
+          {
+            "q": 100,
+            "u": "g",
+            "n": "comté râpé",
+            "k": "comté râpé"
+          },
+          {
+            "q": 10,
+            "u": "g",
+            "n": "beurre",
+            "k": "beurre"
+          },
+          {
+            "q": 1,
+            "u": "pincée",
+            "n": "sel",
+            "k": "sel"
+          },
+          {
+            "q": 2,
+            "u": "pincées",
+            "n": "poivre",
+            "k": "poivre"
+          }
+        ],
+        "p": [
+          "Préchauffer le four à 180 °C, chaleur traditionnelle. Fendre les blancs de poireaux, les rincer entre les feuilles, puis les émincer en rondelles de 5 mm.",
+          "Mettre les lardons dans une poêle sans matière grasse. Cuire 5 minutes à feu moyen en remuant, puis les réserver ; retirer la graisse rendue.",
+          "Faire fondre {{qty:6}} de beurre dans la poêle à feu moyen-doux. Ajouter les poireaux, couvrir et cuire 12 minutes en remuant deux fois. Retirer le couvercle et cuire encore 3 minutes : ils doivent être tendres et sans eau visible.",
+          "Dérouler la pâte dans un moule de 26 cm avec son papier cuisson. Piquer le fond à la fourchette. Pour une quantité multipliée, répartir dans plusieurs moules de même taille.",
+          "Battre les œufs avec {{qty:4}} de crème, sel et poivre. Ajouter {{qty:5:0.5}} de comté. Répartir poireaux et lardons sur la pâte, verser le mélange aux œufs puis parsemer du reste du comté.",
+          "Enfourner à mi-hauteur à 180 °C pendant 35 minutes. Le dessus doit être doré et le centre pris, sans mélange liquide ; contrôler 71 °C au centre. Prolonger de 5 minutes si nécessaire.",
+          "Sortir du four et laisser reposer 5 minutes avant de découper. Servir la quiche chaude ou tiède."
+        ],
+        "group": "viande",
+        "protein": "porc-oeufs",
+        "starch": "pate",
+        "family": "quiche-poireaux-lardons",
+        "subFamily": "quiche-poireaux-lardons-comte",
+        "cuisine": "française",
+        "kind": "warm",
+        "vegetables": [
+          "poireau"
+        ],
+        "mealSlots": [
+          "eve"
+        ],
+        "s": [
+          "automne",
+          "hiver"
+        ],
+        "season": [
+          "automne",
+          "hiver"
+        ],
+        "method": "Four",
+        "hotCold": "chaud",
+        "texture": "fondant-doré",
+        "technique": "fond de tarte et appareil au four",
+        "presentation": "parts de quiche",
+        "lightness": "classique",
+        "collections": [
+          "automne-gourmand"
+        ],
+        "editorial": "pas-a-pas-debutant"
+      },
+      "reading": {
+        "intro": "Une quiche dorée, généreuse en poireaux fondants et en comté.",
+        "titles": [
+          "Préparer les poireaux",
+          "Dorer les lardons",
+          "Faire fondre les poireaux",
+          "Préparer le fond de tarte",
+          "Mélanger et garnir",
+          "Cuire la quiche",
+          "Laisser reposer et servir"
+        ],
+        "times": {
+          "prep": "15 min",
+          "cook": "20 min à la poêle puis 35 min à 180 °C",
+          "rest": "5 min",
+          "total": "1 h 10 environ, préparation du fond pendant la cuisson des poireaux"
+        }
+      },
+      "record": {
+        "id": "automne-quiche-poireaux",
+        "sourceHash": "a143055df62ba8b3e62b8bad8b85c031e28f3efc2851a74cf07e533195815ac2",
+        "name": "Quiche poireaux, lardons et comté",
+        "status": "corrected",
+        "reviewedHash": "a143055df62ba8b3e62b8bad8b85c031e28f3efc2851a74cf07e533195815ac2",
+        "batch": "automne-gourmand-01",
+        "issues": [],
+        "reviewNote": "Test Automne gourmand autorisé : recette rédigée pour la cuisine familiale, quantités et étapes vérifiées ; identifiant existant conservé lorsque disponible."
+      },
+      "beforeRecord": null
+    },
+    {
+      "id": "v39-boeuf-bourguignon",
+      "before": {
+        "id": "v39-boeuf-bourguignon",
+        "n": "Bœuf bourguignon",
+        "m": "Casserole",
+        "t": "180 min",
+        "s": [
+          "automne",
+          "hiver",
+          "printemps"
+        ],
+        "i": [
+          {
+            "q": 600,
+            "u": "g",
+            "n": "bœuf à braiser",
+            "k": "bœuf à braiser"
+          },
+          {
+            "q": 50,
+            "u": "cl",
+            "n": "vin rouge de Bourgogne",
+            "k": "vin rouge de Bourgogne"
+          },
+          {
+            "q": 100,
+            "u": "g",
+            "n": "lardons",
+            "k": "lardons"
+          },
+          {
+            "q": 200,
+            "u": "g",
+            "n": "champignons de Paris",
+            "k": "champignons de Paris"
+          },
+          {
+            "q": 2,
+            "u": "",
+            "n": "carottes",
+            "k": "carottes"
+          },
+          {
+            "q": 1,
+            "u": "",
+            "n": "oignon",
+            "k": "oignons"
+          },
+          {
+            "q": 1,
+            "u": "",
+            "n": "gousse d’ail",
+            "k": "gousses d’ail"
+          },
+          {
+            "q": 1,
+            "u": "c. à soupe",
+            "n": "farine",
+            "k": "farine"
+          },
+          {
+            "q": 1,
+            "u": "c. à soupe",
+            "n": "huile",
+            "k": "huile"
+          },
+          {
+            "q": 1,
+            "u": "",
+            "n": "bouquet garni",
+            "k": "bouquet garni"
+          },
+          {
+            "q": null,
+            "u": "",
+            "n": "sel et poivre",
+            "k": "sel et poivre"
+          }
+        ],
+        "p": [
+          "Coupez le bœuf en cubes d’environ 4 cm puis séchez-les soigneusement. Une viande humide ne dore pas correctement. Émincez l’oignon et coupez les carottes en rondelles épaisses.",
+          "Chauffez l’huile dans une cocotte sur feu vif. Faites dorer la viande en 2 ou 3 fois, 5 minutes par fournée, sans surcharger la cocotte. Réservez les morceaux sur une assiette.",
+          "Baissez légèrement le feu. Faites revenir lardons, oignon et carottes 6 minutes. Ajoutez l’ail haché puis la farine et remuez 1 minute.",
+          "Remettez la viande et son jus. Versez le vin, ajoutez le bouquet garni et, si nécessaire, un peu d’eau pour que le liquide arrive presque à hauteur de la viande. Portez juste à frémissement.",
+          "Couvrez et laissez cuire 2 heures à feu très doux. Le liquide ne doit jamais bouillir fortement : quelques petites bulles suffisent. Remuez toutes les 30 minutes et ajoutez un peu d’eau si nécessaire.",
+          "Nettoyez et coupez les champignons. Faites-les dorer 6 minutes à la poêle, puis ajoutez-les dans la cocotte. Poursuivez 25 à 30 minutes sans couvercle.",
+          "Vérifiez la cuisson : la viande doit se couper facilement à la fourchette et la sauce doit napper la cuillère. Retirez le bouquet garni, goûtez et rectifiez sel et poivre. Le plat est encore meilleur réchauffé le lendemain."
+        ],
+        "servings": 2,
+        "classic": true,
+        "protein": "boeuf",
+        "group": "viande",
+        "starch": "aucun",
+        "family": "boeuf-bourguignon",
+        "subFamily": "boeuf-bourguignon",
+        "cuisine": "française",
+        "texture": "fondant-nappant",
+        "technique": "braisé long",
+        "presentation": "cocotte à partager",
+        "kind": "warm",
+        "vegetables": [
+          "carotte",
+          "champignon",
+          "oignon"
+        ],
+        "method": "Casserole",
+        "hotCold": "chaud",
+        "lightness": "classique",
+        "profile": "mijote|boeuf-bourguignon|française|aucun|fondant-nappant|braisé long au vin|cocotte à partager",
+        "season": [
+          "automne",
+          "hiver",
+          "printemps"
+        ],
+        "collections": [
+          "bistrot-brasserie",
+          "cuisine-regionale",
+          "famille-dimanche"
+        ],
+        "editorial": "pas-a-pas-debutant",
+        "mealSlots": [
+          "mid"
+        ]
+      },
+      "after": {
+        "id": "v39-boeuf-bourguignon",
+        "n": "Bœuf bourguignon facile",
+        "m": "Casserole",
+        "t": "3 h",
+        "s": [
+          "automne",
+          "hiver",
+          "printemps"
+        ],
+        "i": [
+          {
+            "q": 800,
+            "u": "g",
+            "n": "bœuf à braiser",
+            "k": "bœuf à braiser"
+          },
+          {
+            "q": 50,
+            "u": "cl",
+            "n": "vin rouge",
+            "k": "vin rouge"
+          },
+          {
+            "q": 150,
+            "u": "g",
+            "n": "lardons",
+            "k": "lardons"
+          },
+          {
+            "q": 250,
+            "u": "g",
+            "n": "champignons de Paris",
+            "k": "champignons de Paris"
+          },
+          {
+            "q": 3,
+            "u": "",
+            "n": "carottes",
+            "k": "carottes"
+          },
+          {
+            "q": 1,
+            "u": "",
+            "n": "oignon",
+            "k": "oignon"
+          },
+          {
+            "q": 2,
+            "u": "",
+            "n": "gousses d’ail",
+            "k": "gousses d’ail"
+          },
+          {
+            "q": 20,
+            "u": "g",
+            "n": "farine",
+            "k": "farine"
+          },
+          {
+            "q": 2,
+            "u": "c. à soupe",
+            "n": "huile d’olive",
+            "k": "huile d’olive"
+          },
+          {
+            "q": 1,
+            "u": "",
+            "n": "bouquet garni",
+            "k": "bouquet garni"
+          },
+          {
+            "q": 20,
+            "u": "cl",
+            "n": "eau",
+            "k": "eau"
+          },
+          {
+            "q": 0.5,
+            "u": "c. à café",
+            "n": "sel",
+            "k": "sel"
+          },
+          {
+            "q": 2,
+            "u": "pincées",
+            "n": "poivre",
+            "k": "poivre"
+          }
+        ],
+        "p": [
+          "Couper le bœuf en cubes de 4 cm et les sécher. Peler et émincer l’oignon. Éplucher les carottes et les couper en rondelles de 1 cm. Peler et hacher l’ail. Nettoyer les champignons et les couper en quartiers.",
+          "Chauffer {{qty:8:0.5}} d’huile dans une cocotte à feu moyen-vif. Dorer la viande en deux fournées, 5 minutes par fournée, en la tournant. Réserver chaque fournée sur une assiette.",
+          "Baisser à feu moyen. Ajouter lardons, oignon et carottes dans la cocotte et cuire 6 minutes en remuant. Ajouter l’ail, cuire 1 minute, puis saupoudrer de {{qty:7}} de farine et remuer 1 minute.",
+          "Remettre le bœuf et son jus. Verser {{qty:1}} de vin et {{qty:10}} d’eau. Ajouter bouquet garni, sel et poivre. Gratter le fond pour dissoudre les sucs, puis porter à petit frémissement.",
+          "Couvrir et cuire 120 minutes à feu très doux. Quelques petites bulles doivent apparaître, sans forte ébullition. Remuer toutes les 30 minutes ; si le niveau baisse trop, baisser le feu et vérifier que le couvercle ferme bien.",
+          "Vers la fin du mijotage, chauffer le reste de l’huile dans une poêle à feu moyen-vif. Faire dorer les champignons 6 minutes en remuant ; leur eau doit s’évaporer.",
+          "Ajouter les champignons dans la cocotte. Cuire 25 minutes à feu doux, sans couvercle. La viande doit se détacher à la fourchette et la sauce napper une cuillère. Si la viande résiste encore, couvrir et prolonger par périodes de 15 minutes à feu doux.",
+          "Retirer le bouquet garni. Mélanger et servir le bœuf chaud avec les carottes, les champignons et la sauce."
+        ],
+        "servings": 4,
+        "classic": true,
+        "protein": "boeuf",
+        "group": "viande",
+        "starch": "aucun",
+        "family": "boeuf-bourguignon",
+        "subFamily": "boeuf-bourguignon",
+        "cuisine": "française",
+        "texture": "fondant-nappant",
+        "technique": "braisé long",
+        "presentation": "cocotte à partager",
+        "kind": "warm",
+        "vegetables": [
+          "carotte",
+          "champignon",
+          "oignon"
+        ],
+        "method": "Casserole",
+        "hotCold": "chaud",
+        "lightness": "classique",
+        "profile": "mijote|boeuf-bourguignon|française|aucun|fondant-nappant|braisé long au vin|cocotte à partager",
+        "season": [
+          "automne",
+          "hiver",
+          "printemps"
+        ],
+        "collections": [
+          "bistrot-brasserie",
+          "cuisine-regionale",
+          "famille-dimanche",
+          "automne-gourmand"
+        ],
+        "editorial": "pas-a-pas-debutant",
+        "mealSlots": [
+          "mid"
+        ]
+      },
+      "reading": {
+        "intro": "Un grand classique qui mijote doucement, avec une sauce au vin bien nappante.",
+        "titles": [
+          "Préparer les ingrédients",
+          "Dorer la viande",
+          "Faire revenir la garniture",
+          "Ajouter les liquides",
+          "Laisser mijoter",
+          "Dorer les champignons",
+          "Terminer la cuisson",
+          "Servir"
+        ],
+        "times": {
+          "prep": "20 min",
+          "cook": "Environ 2 h 40 à la cocotte",
+          "total": "3 h indicatives, selon la tendreté du bœuf",
+          "rest": null
+        }
+      },
+      "record": {
+        "id": "v39-boeuf-bourguignon",
+        "name": "Bœuf bourguignon facile",
+        "status": "corrected",
+        "sourceHash": "241e550a5310e2ba7da1be8b6798f612277f5646eed269fc8022bcb1c00a1950",
+        "reviewedHash": "366189096731dc50cfc735fc2d5a8b45d649f5f8221e54f4bea4ff01faecdbcd",
+        "batch": "automne-gourmand-01",
+        "issues": [],
+        "reviewNote": "Test Automne gourmand autorisé : recette rédigée pour la cuisine familiale, quantités et étapes vérifiées ; identifiant existant conservé lorsque disponible."
+      },
+      "beforeRecord": {
+        "id": "v39-boeuf-bourguignon",
+        "name": "Bœuf bourguignon",
+        "status": "blocked",
+        "sourceHash": "241e550a5310e2ba7da1be8b6798f612277f5646eed269fc8022bcb1c00a1950",
+        "reviewedHash": "241e550a5310e2ba7da1be8b6798f612277f5646eed269fc8022bcb1c00a1950",
+        "batch": "27",
+        "issues": [
+          "la matière grasse de la poêle à champignons n’est pas définie, alors que l’huile listée sert déjà à la viande. L’eau conditionnelle manque dans la liste. Le rappel de remuer toutes les trente minutes ne doit pas être confondu avec la cuisson de deux heures. Ne pas transformer les champignons dorés en champignons simplement pochés."
+        ],
+        "reviewNote": "la matière grasse de la poêle à champignons n’est pas définie, alors que l’huile listée sert déjà à la viande. L’eau conditionnelle manque dans la liste. Le rappel de remuer toutes les trente minutes ne doit pas être confondu avec la cuisson de deux heures. Ne pas transformer les champignons dorés en champignons simplement pochés."
+      }
+    },
+    {
+      "id": "v39-gratin-chou-fleur",
+      "before": {
+        "id": "v39-gratin-chou-fleur",
+        "n": "Gratin de chou-fleur classique",
+        "m": "Four",
+        "t": "45 min",
+        "s": [
+          "automne",
+          "hiver",
+          "printemps"
+        ],
+        "i": [
+          {
+            "q": 1,
+            "u": "",
+            "n": "petit chou-fleur",
+            "k": "petits choux-fleurs"
+          },
+          {
+            "q": 30,
+            "u": "g",
+            "n": "beurre",
+            "k": "beurre"
+          },
+          {
+            "q": 30,
+            "u": "g",
+            "n": "farine",
+            "k": "farine"
+          },
+          {
+            "q": 40,
+            "u": "cl",
+            "n": "lait",
+            "k": "lait"
+          },
+          {
+            "q": 100,
+            "u": "g",
+            "n": "gruyère râpé",
+            "k": "gruyère râpé"
+          },
+          {
+            "q": 1,
+            "u": "pincée",
+            "n": "muscade",
+            "k": "muscade"
+          },
+          {
+            "q": null,
+            "u": "",
+            "n": "sel et poivre selon le goût",
+            "k": "sel et poivre selon le goût"
+          }
+        ],
+        "p": [
+          "Préchauffer le four à 200 °C. Laver le chou-fleur, retirer ses feuilles et le séparer en bouquets réguliers. Placer les bouquets dans un panier vapeur au-dessus d’une eau frémissante, couvrir et cuire 9 à 10 minutes. Une pointe de couteau doit entrer dans la tige en gardant une légère résistance. Laisser égoutter.",
+          "Pendant la cuisson du chou-fleur, faire fondre {{qty:1}} de beurre dans une casserole à feu moyen. Ajouter {{qty:2}} de farine et faire cuire 1 minute en remuant, sans coloration. Verser {{qty:3}} de lait progressivement tout en fouettant.",
+          "Faire cuire la sauce 5 minutes à feu moyen en remuant régulièrement le fond pour qu’elle n’attache pas. Elle doit épaissir et enrober le dos d’une cuillère. Retirer du feu, ajouter la muscade, le sel, le poivre et {{qty:4:0.4}} de gruyère. Mélanger pour faire fondre le fromage.",
+          "Ranger le chou-fleur égoutté dans un plat allant au four. Répartir toute la béchamel dessus, puis parsemer des {{qty:4:0.6}} de gruyère réservés pour la surface.",
+          "Faire gratiner 18 à 20 minutes à 200 °C. Le dessus doit être uniformément doré et le chou-fleur tendre sous la pointe d’un couteau. Servir chaud avec la sauce."
+        ],
+        "servings": 2,
+        "classic": true,
+        "protein": "vegetal",
+        "group": "vegetal",
+        "starch": "aucun",
+        "family": "gratin",
+        "subFamily": "gratin-chou-fleur-classique",
+        "cuisine": "française",
+        "texture": "fondant-gratine",
+        "technique": "vapeur puis gratin",
+        "presentation": "gratin à partager",
+        "kind": "warm",
+        "vegetables": [
+          "chou"
+        ],
+        "method": "Four",
+        "hotCold": "chaud",
+        "lightness": "classique",
+        "profile": "gratin|gratin-chou-fleur-classique|française|aucun|fondant-gratine|vapeur puis gratin|gratin à partager",
+        "season": [
+          "automne",
+          "hiver",
+          "printemps"
+        ],
+        "mealSlots": [
+          "mid"
+        ]
+      },
+      "after": {
+        "id": "v39-gratin-chou-fleur",
+        "n": "Gratin de chou-fleur à la béchamel",
+        "m": "Four",
+        "t": "50 min",
+        "s": [
+          "automne",
+          "hiver",
+          "printemps"
+        ],
+        "i": [
+          {
+            "q": 600,
+            "u": "g",
+            "n": "bouquets de chou-fleur",
+            "k": "bouquets de chou-fleur"
+          },
+          {
+            "q": 25,
+            "u": "g",
+            "n": "beurre",
+            "k": "beurre"
+          },
+          {
+            "q": 25,
+            "u": "g",
+            "n": "farine",
+            "k": "farine"
+          },
+          {
+            "q": 30,
+            "u": "cl",
+            "n": "lait",
+            "k": "lait"
+          },
+          {
+            "q": 60,
+            "u": "g",
+            "n": "comté râpé",
+            "k": "comté râpé"
+          },
+          {
+            "q": 1,
+            "u": "pincée",
+            "n": "muscade",
+            "k": "muscade"
+          },
+          {
+            "q": 0.5,
+            "u": "c. à café",
+            "n": "sel",
+            "k": "sel"
+          },
+          {
+            "q": 2,
+            "u": "pincées",
+            "n": "poivre",
+            "k": "poivre"
+          }
+        ],
+        "p": [
+          "Préchauffer le four à 200 °C, chaleur traditionnelle. Rincer le chou-fleur, séparer les bouquets en morceaux de 3 cm et couper le pied tendre en petits dés.",
+          "Placer le chou-fleur dans un panier vapeur au-dessus d’eau frémissante. Couvrir et cuire 12 minutes à feu moyen. Une pointe de couteau doit entrer avec une légère résistance. Égoutter soigneusement.",
+          "Faire fondre {{qty:1}} de beurre dans une casserole à feu doux. Ajouter {{qty:2}} de farine et remuer 1 minute au fouet, sans laisser colorer.",
+          "Verser {{qty:3}} de lait progressivement en fouettant. Passer à feu moyen-doux et cuire 5 minutes à petit frémissement en remuant jusqu’au fond. La sauce doit napper la cuillère. Hors du feu, ajouter muscade, sel et poivre.",
+          "Répartir le chou-fleur dans un plat à gratin, en une couche. Verser toute la béchamel dessus puis parsemer de comté.",
+          "Enfourner à mi-hauteur 20 minutes à 200 °C. Le fromage doit être doré, la sauce bouillonner sur les bords et le chou-fleur être tendre à cœur. Prolonger de 5 minutes si nécessaire. Laisser tiédir 3 minutes avant de servir."
+        ],
+        "servings": 2,
+        "classic": true,
+        "protein": "vegetal",
+        "group": "vegetal",
+        "starch": "aucun",
+        "family": "gratin",
+        "subFamily": "gratin-chou-fleur-classique",
+        "cuisine": "française",
+        "texture": "fondant-gratine",
+        "technique": "vapeur puis gratin",
+        "presentation": "gratin à partager",
+        "kind": "warm",
+        "vegetables": [
+          "chou"
+        ],
+        "method": "Four",
+        "hotCold": "chaud",
+        "lightness": "classique",
+        "profile": "gratin|gratin-chou-fleur-classique|française|aucun|fondant-gratine|vapeur puis gratin|gratin à partager",
+        "season": [
+          "automne",
+          "hiver",
+          "printemps"
+        ],
+        "mealSlots": [
+          "mid"
+        ],
+        "collections": [
+          "automne-gourmand"
+        ]
+      },
+      "reading": {
+        "intro": "Des bouquets tendres sous une béchamel crémeuse et une croûte dorée.",
+        "titles": [
+          "Préparer le chou-fleur",
+          "Précuire à la vapeur",
+          "Faire le roux",
+          "Épaissir la béchamel",
+          "Monter le gratin",
+          "Gratiner et servir"
+        ],
+        "times": {
+          "prep": "10 min",
+          "cook": "Environ 37 min, béchamel pendant la vapeur",
+          "rest": "3 min",
+          "total": "50 min indicatives"
+        }
+      },
+      "record": {
+        "id": "v39-gratin-chou-fleur",
+        "name": "Gratin de chou-fleur à la béchamel",
+        "status": "corrected",
+        "sourceHash": "96cd4e841195ab81d7101ef870d5bd0ad0d34c9c88d2f0e42a3155b508dfcebd",
+        "reviewedHash": "1c1e2d321a51f58dc840fa601314cbea08e297c1a9e5f0546c0b790a5b556f33",
+        "batch": "automne-gourmand-01",
+        "issues": [],
+        "reviewNote": "Test Automne gourmand autorisé : recette rédigée pour la cuisine familiale, quantités et étapes vérifiées ; identifiant existant conservé lorsque disponible."
+      },
+      "beforeRecord": {
+        "id": "v39-gratin-chou-fleur",
+        "name": "Gratin de chou-fleur classique",
+        "status": "corrected",
+        "sourceHash": "96cd4e841195ab81d7101ef870d5bd0ad0d34c9c88d2f0e42a3155b508dfcebd",
+        "reviewedHash": "89aff440db739479fafce54bbb7fddbbd27db5e011d00a4c4df3b16efea70b1a",
+        "batch": "28",
+        "issues": [],
+        "reviewNote": "Les 40 g de gruyère dans la sauce et le reste des 100 g en surface deviennent deux quantités dynamiques. Vapeur, béchamel au beurre et four à 200 °C conservés ; préchauffage, égouttage et chronologie précisés."
+      }
+    },
+    {
+      "id": "v39-hachis-parmentier",
+      "before": {
+        "id": "v39-hachis-parmentier",
+        "n": "Hachis Parmentier classique",
+        "m": "Four",
+        "t": "60 min",
+        "s": [
+          "automne",
+          "hiver",
+          "printemps"
+        ],
+        "i": [
+          {
+            "q": 350,
+            "u": "g",
+            "n": "bœuf haché",
+            "k": "bœuf haché"
+          },
+          {
+            "q": 650,
+            "u": "g",
+            "n": "pommes de terre",
+            "k": "pommes de terre"
+          },
+          {
+            "q": 12,
+            "u": "cl",
+            "n": "lait",
+            "k": "lait"
+          },
+          {
+            "q": 40,
+            "u": "g",
+            "n": "beurre",
+            "k": "beurre"
+          },
+          {
+            "q": 1,
+            "u": "",
+            "n": "oignon",
+            "k": "oignons"
+          },
+          {
+            "q": 1,
+            "u": "",
+            "n": "gousse d’ail",
+            "k": "gousses d’ail"
+          },
+          {
+            "q": 10,
+            "u": "cl",
+            "n": "bouillon de bœuf",
+            "k": "bouillon de bœuf"
+          },
+          {
+            "q": 10,
+            "u": "g",
+            "n": "persil",
+            "k": "persil"
+          },
+          {
+            "q": 20,
+            "u": "g",
+            "n": "chapelure",
+            "k": "chapelure"
+          },
+          {
+            "q": null,
+            "u": "",
+            "n": "sel et poivre selon le goût",
+            "k": "sel et poivre selon le goût"
+          }
+        ],
+        "p": [
+          "Cuire les pommes de terre pelées 20 minutes dans l’eau salée, jusqu’à ce qu’un couteau les traverse facilement.",
+          "Faire fondre l’oignon 5 minutes, ajouter l’ail et le bœuf puis cuire 6 minutes à feu vif afin de bien dorer la viande.",
+          "Verser le bouillon, laisser réduire 5 minutes et ajouter le persil ; la farce doit rester moelleuse sans être liquide.",
+          "Écraser les pommes de terre avec le lait chaud et 30 g de beurre, puis rectifier le sel et le poivre.",
+          "Étaler la viande dans un plat, couvrir de purée, parsemer de chapelure et du reste de beurre, puis gratiner 20 minutes à 200 °C."
+        ],
+        "servings": 2,
+        "classic": true,
+        "protein": "boeuf",
+        "group": "viande",
+        "starch": "pommes-de-terre",
+        "family": "gratin",
+        "subFamily": "hachis-parmentier",
+        "cuisine": "française",
+        "texture": "moelleux-gratine",
+        "technique": "viande réduite puis gratin",
+        "presentation": "hachis à partager",
+        "kind": "warm",
+        "vegetables": [
+          "oignon"
+        ],
+        "method": "Four",
+        "hotCold": "chaud",
+        "lightness": "classique",
+        "profile": "gratin|hachis-parmentier|française|pommes-de-terre|moelleux-gratine|viande réduite puis gratin|hachis à partager",
+        "season": [
+          "automne",
+          "hiver",
+          "printemps"
+        ],
+        "mealSlots": [
+          "mid"
+        ]
+      },
+      "after": {
+        "id": "v39-hachis-parmentier",
+        "n": "Parmentier de bœuf maison",
+        "m": "Four",
+        "t": "1 h",
+        "s": [
+          "automne",
+          "hiver",
+          "printemps"
+        ],
+        "i": [
+          {
+            "q": 500,
+            "u": "g",
+            "n": "pommes de terre à purée",
+            "k": "pommes de terre à purée"
+          },
+          {
+            "q": 300,
+            "u": "g",
+            "n": "bœuf haché",
+            "k": "bœuf haché"
+          },
+          {
+            "q": 1,
+            "u": "",
+            "n": "oignon",
+            "k": "oignon"
+          },
+          {
+            "q": 10,
+            "u": "cl",
+            "n": "lait",
+            "k": "lait"
+          },
+          {
+            "q": 25,
+            "u": "g",
+            "n": "beurre",
+            "k": "beurre"
+          },
+          {
+            "q": 40,
+            "u": "g",
+            "n": "comté râpé",
+            "k": "comté râpé"
+          },
+          {
+            "q": 1,
+            "u": "c. à soupe",
+            "n": "huile d’olive",
+            "k": "huile d’olive"
+          },
+          {
+            "q": 5,
+            "u": "cl",
+            "n": "bouillon de bœuf",
+            "k": "bouillon de bœuf"
+          },
+          {
+            "q": 0.5,
+            "u": "c. à café",
+            "n": "sel",
+            "k": "sel"
+          },
+          {
+            "q": 2,
+            "u": "pincées",
+            "n": "poivre",
+            "k": "poivre"
+          }
+        ],
+        "p": [
+          "Préchauffer le four à 200 °C, chaleur traditionnelle. Éplucher les pommes de terre et les couper en cubes de 3 cm. Peler et hacher l’oignon.",
+          "Mettre les pommes de terre dans une casserole et les couvrir d’eau froide. Porter à ébullition, puis cuire 20 minutes à feu moyen à partir de l’ébullition. Elles doivent s’écraser facilement à la fourchette ; prolonger si nécessaire.",
+          "Pendant cette cuisson, chauffer {{qty:6}} d’huile dans une poêle à feu moyen. Cuire l’oignon 5 minutes en remuant. Ajouter le bœuf et cuire 6 minutes à feu moyen-vif en l’émiettant ; il ne doit plus rester de chair crue.",
+          "Verser {{qty:7}} de bouillon dans la poêle. Ajouter {{qty:8:0.5}} de sel et le poivre. Cuire 3 minutes à feu doux en remuant, puis répartir la farce dans un plat à gratin.",
+          "Égoutter les pommes de terre. Chauffer {{qty:3}} de lait 2 minutes à feu doux sans ébullition. Écraser les pommes de terre au presse-purée avec tout le beurre, le lait chaud et le reste du sel.",
+          "Étaler la purée sur la farce et strier à la fourchette. Parsemer de comté. Cuire 20 minutes à mi-hauteur à 200 °C ; le dessus doit être doré et le centre atteindre 71 °C. Prolonger de 5 minutes si nécessaire.",
+          "Laisser reposer 5 minutes hors du four, puis servir en prenant farce et purée dans chaque portion."
+        ],
+        "servings": 2,
+        "classic": true,
+        "protein": "boeuf",
+        "group": "viande",
+        "starch": "pommes-de-terre",
+        "family": "gratin",
+        "subFamily": "hachis-parmentier",
+        "cuisine": "française",
+        "texture": "moelleux-gratine",
+        "technique": "viande réduite puis gratin",
+        "presentation": "hachis à partager",
+        "kind": "warm",
+        "vegetables": [
+          "oignon"
+        ],
+        "method": "Four",
+        "hotCold": "chaud",
+        "lightness": "classique",
+        "profile": "gratin|hachis-parmentier|française|pommes-de-terre|moelleux-gratine|viande réduite puis gratin|hachis à partager",
+        "season": [
+          "automne",
+          "hiver",
+          "printemps"
+        ],
+        "mealSlots": [
+          "mid"
+        ],
+        "collections": [
+          "automne-gourmand"
+        ]
+      },
+      "reading": {
+        "intro": "Une purée moelleuse sur une farce de bœuf, gratinée comme à la maison.",
+        "titles": [
+          "Préparer les légumes",
+          "Cuire les pommes de terre",
+          "Faire revenir la farce",
+          "Mijoter le bœuf",
+          "Écraser la purée",
+          "Monter et gratiner",
+          "Servir"
+        ],
+        "times": {
+          "prep": "10 min",
+          "cook": "20 min à l’eau et farce en parallèle, puis 20 min au four",
+          "rest": "5 min",
+          "total": "1 h indicative"
+        }
+      },
+      "record": {
+        "id": "v39-hachis-parmentier",
+        "name": "Parmentier de bœuf maison",
+        "status": "corrected",
+        "sourceHash": "1087297ed52e77778c734f0dcd07eef682b52046d9896182a655cc191322919b",
+        "reviewedHash": "a871a00e067480bca98adbec1a5da656e40d0e0c948087a5ab10a249102f427e",
+        "batch": "automne-gourmand-01",
+        "issues": [],
+        "reviewNote": "Test Automne gourmand autorisé : recette rédigée pour la cuisine familiale, quantités et étapes vérifiées ; identifiant existant conservé lorsque disponible."
+      },
+      "beforeRecord": {
+        "id": "v39-hachis-parmentier",
+        "name": "Hachis Parmentier classique",
+        "status": "blocked",
+        "sourceHash": "1087297ed52e77778c734f0dcd07eef682b52046d9896182a655cc191322919b",
+        "reviewedHash": "1087297ed52e77778c734f0dcd07eef682b52046d9896182a655cc191322919b",
+        "batch": "27",
+        "issues": [
+          "la matière grasse pour faire fondre l’oignon avant le bœuf n’est pas définie. Les 40 g de beurre listés sont déjà entièrement répartis entre 30 g de purée et le reste en surface. Ne pas détourner une partie du beurre sans source ; les quantités écrites et la taille des pommes de terre doivent ensuite être adaptées."
+        ],
+        "reviewNote": "la matière grasse pour faire fondre l’oignon avant le bœuf n’est pas définie. Les 40 g de beurre listés sont déjà entièrement répartis entre 30 g de purée et le reste en surface. Ne pas détourner une partie du beurre sans source ; les quantités écrites et la taille des pommes de terre doivent ensuite être adaptées."
+      }
+    },
+    {
+      "id": "d081",
+      "before": {
+        "id": "d081",
+        "n": "Tarte fine aux pommes",
+        "m": "Four",
+        "t": "35 min",
+        "s": [
+          "automne",
+          "hiver"
+        ],
+        "richness": "gourmand",
+        "core": [
+          "pomme"
+        ],
+        "i": [
+          {
+            "q": 1,
+            "u": "",
+            "n": "pâte feuilletée",
+            "k": "pâte feuilletée"
+          },
+          {
+            "q": 3,
+            "u": "",
+            "n": "pommes",
+            "k": "pommes"
+          },
+          {
+            "q": 20,
+            "u": "g",
+            "n": "sucre",
+            "k": "sucre"
+          },
+          {
+            "q": 15,
+            "u": "g",
+            "n": "beurre",
+            "k": "beurre"
+          },
+          {
+            "q": 0.5,
+            "u": "c. à café",
+            "n": "cannelle",
+            "k": "cannelle"
+          }
+        ],
+        "p": [
+          "Étaler un petit rectangle de pâte et le piquer.",
+          "Disposer les pommes très finement tranchées, puis ajouter sucre, beurre et cannelle.",
+          "Cuire 25 minutes à 200 °C."
+        ],
+        "course": "dessert",
+        "family": "tartes",
+        "hotCold": "tiède",
+        "cuisine": "française",
+        "kind": "dessert",
+        "servings": 2,
+        "protein": "patisserie",
+        "group": "patisserie",
+        "starch": "dessert",
+        "vegetables": [],
+        "method": "Four",
+        "lightness": "gourmand",
+        "subFamily": "tartes-tarte-fine-pommes",
+        "texture": "moelleux",
+        "technique": "rôti au four",
+        "presentation": "assiette complète",
+        "profile": "dessert|tartes|française|gourmand|tiède",
+        "season": [
+          "automne",
+          "hiver"
+        ],
+        "mealSlots": [
+          "dessert"
+        ]
+      },
+      "after": {
+        "id": "d081",
+        "n": "Tarte fine aux pommes, cannelle et sucre roux",
+        "m": "Four",
+        "t": "45 min",
+        "s": [
+          "automne",
+          "hiver"
+        ],
+        "richness": "gourmand",
+        "core": [
+          "pomme"
+        ],
+        "i": [
+          {
+            "q": 1,
+            "u": "",
+            "n": "pâte feuilletée de 230 g",
+            "k": "pâte feuilletée de 230 g"
+          },
+          {
+            "q": 3,
+            "u": "",
+            "n": "pommes",
+            "k": "pommes"
+          },
+          {
+            "q": 30,
+            "u": "g",
+            "n": "sucre roux",
+            "k": "sucre roux"
+          },
+          {
+            "q": 20,
+            "u": "g",
+            "n": "beurre",
+            "k": "beurre"
+          },
+          {
+            "q": 0.5,
+            "u": "c. à café",
+            "n": "cannelle",
+            "k": "cannelle"
+          }
+        ],
+        "p": [
+          "Préchauffer le four à 200 °C, chaleur traditionnelle. Dérouler la pâte sur une plaque avec son papier cuisson. Piquer le centre à la fourchette en laissant un bord de 1 cm. Pour une quantité multipliée, préparer plusieurs tartes de même épaisseur.",
+          "Éplucher les pommes, retirer les cœurs et les pépins, puis couper en lamelles de 2 à 3 mm. Les disposer en rangées légèrement superposées sur la pâte, sans couvrir le bord.",
+          "Mélanger {{qty:2}} de sucre roux et {{qty:4}} de cannelle. Répartir sur les pommes. Couper tout le beurre en petits morceaux et le répartir sur la garniture.",
+          "Enfourner à mi-hauteur 25 minutes à 200 °C. La pâte doit être dorée et ferme sous la tarte, les pommes tendres sous un couteau. Prolonger de 5 minutes si le dessous reste pâle.",
+          "Sortir la plaque du four. Laisser tiédir 5 minutes puis découper la tarte et servir."
+        ],
+        "course": "dessert",
+        "family": "tartes",
+        "hotCold": "tiède",
+        "cuisine": "française",
+        "kind": "dessert",
+        "servings": 4,
+        "protein": "patisserie",
+        "group": "patisserie",
+        "starch": "dessert",
+        "vegetables": [],
+        "method": "Four",
+        "lightness": "gourmand",
+        "subFamily": "tartes-tarte-fine-pommes",
+        "texture": "moelleux",
+        "technique": "rôti au four",
+        "presentation": "assiette complète",
+        "profile": "dessert|tartes|française|gourmand|tiède",
+        "season": [
+          "automne",
+          "hiver"
+        ],
+        "mealSlots": [
+          "dessert"
+        ],
+        "collections": [
+          "automne-gourmand"
+        ]
+      },
+      "reading": {
+        "intro": "Une pâte croustillante et des pommes dorées, juste parfumées à la cannelle.",
+        "titles": [
+          "Préparer la pâte",
+          "Couper les pommes",
+          "Garnir la tarte",
+          "Cuire",
+          "Servir tiède"
+        ],
+        "times": {
+          "prep": "15 min",
+          "cook": "25 min à 200 °C",
+          "rest": "5 min",
+          "total": "45 min indicatives"
+        }
+      },
+      "record": {
+        "id": "d081",
+        "name": "Tarte fine aux pommes, cannelle et sucre roux",
+        "status": "corrected",
+        "sourceHash": "86526282a6782d590232514fbda4180f81b1ca4c018a263bbbcc7e3b36ccde62",
+        "reviewedHash": "879d451b9bae7186e08e6065897f6248cb993926421d30c2f5b70d2e887a0cb5",
+        "batch": "automne-gourmand-01",
+        "issues": [],
+        "reviewNote": "Test Automne gourmand autorisé : recette rédigée pour la cuisine familiale, quantités et étapes vérifiées ; identifiant existant conservé lorsque disponible."
+      },
+      "beforeRecord": {
+        "id": "d081",
+        "name": "Tarte fine aux pommes",
+        "status": "blocked",
+        "sourceHash": "86526282a6782d590232514fbda4180f81b1ca4c018a263bbbcc7e3b36ccde62",
+        "reviewedHash": "86526282a6782d590232514fbda4180f81b1ca4c018a263bbbcc7e3b36ccde62",
+        "batch": "12",
+        "issues": [
+          "la liste annonce une pâte feuilletée entière alors que les étapes demandent un « petit rectangle » sans poids ni dimensions. La part utilisée doit être confirmée pour ne pas fausser les quantités par repas."
+        ],
+        "reviewNote": "la liste annonce une pâte feuilletée entière alors que les étapes demandent un « petit rectangle » sans poids ni dimensions. La part utilisée doit être confirmée pour ne pas fausser les quantités par repas."
+      }
+    },
+    {
+      "id": "e03",
+      "before": {
+        "id": "e03",
+        "n": "Omelette aux champignons et salade",
+        "m": "Poêle",
+        "t": "20 min",
+        "s": [
+          "printemps",
+          "été",
+          "automne",
+          "hiver"
+        ],
+        "i": [
+          {
+            "q": 4,
+            "u": "",
+            "n": "œufs",
+            "k": "œufs"
+          },
+          {
+            "q": 200,
+            "u": "g",
+            "n": "champignons",
+            "k": "champignons"
+          },
+          {
+            "q": 1,
+            "u": "",
+            "n": "petite salade",
+            "k": "salades vertes"
+          },
+          {
+            "q": null,
+            "u": "",
+            "n": "beurre",
+            "k": "beurre"
+          },
+          {
+            "q": null,
+            "u": "",
+            "n": "sel et poivre",
+            "k": "sel et poivre"
+          }
+        ],
+        "p": [
+          "Laver et essorer la salade. Nettoyer les champignons, retirer le bout terreux des pieds et les couper en lamelles de 5 mm. Préparer une poêle antiadhésive assez large pour les cuire sans les entasser.",
+          "Faire fondre juste assez de beurre pour recouvrir le fond de la poêle d’une pellicule. Ajouter les champignons et les faire revenir 6 à 8 minutes sur feu moyen-vif, en remuant. Attendre que leur eau se soit évaporée et que les bords commencent à dorer.",
+          "Pendant ce temps, casser les œufs dans un bol, ajouter du sel et du poivre puis battre à la fourchette jusqu’à mélanger blancs et jaunes, sans chercher à faire mousser.",
+          "Baisser sur feu doux, répartir les champignons dans la poêle et verser les œufs battus. Cuire 3 à 5 minutes. Au début, ramener doucement les bords pris vers le centre avec une spatule en inclinant la poêle pour y faire couler l’œuf liquide. Arrêter de remuer quand l’omelette commence à tenir.",
+          "Quand le dessous se détache et que le dessus n’est plus liquide, plier l’omelette avec une spatule. Servir immédiatement avec les feuilles de salade. Si le dessus reste liquide, prolonger doucement la cuisson sans augmenter le feu."
+        ],
+        "protein": "oeufs",
+        "group": "oeufs",
+        "starch": "sans-feculent",
+        "family": "salade",
+        "cuisine": "française",
+        "vegetables": [
+          "champignon"
+        ],
+        "method": "Poêle",
+        "hotCold": "chaud",
+        "lightness": "léger-rassasiant",
+        "subFamily": "salade-omelette-champignons-salade",
+        "texture": "moelleux",
+        "technique": "saisi-poêlé",
+        "presentation": "bol ou assiette composée",
+        "profile": "salade|salade-omelette-champignons-salade|française|sans-feculent|moelleux|saisi-poêlé|bol ou assiette composée",
+        "season": [
+          "printemps",
+          "été",
+          "automne",
+          "hiver"
+        ],
+        "mealSlots": [
+          "eve"
+        ]
+      },
+      "after": {
+        "id": "e03",
+        "n": "Omelette forestière aux champignons",
+        "m": "Poêle",
+        "t": "25 min",
+        "s": [
+          "printemps",
+          "été",
+          "automne",
+          "hiver"
+        ],
+        "i": [
+          {
+            "q": 4,
+            "u": "",
+            "n": "œufs",
+            "k": "œufs"
+          },
+          {
+            "q": 250,
+            "u": "g",
+            "n": "champignons de Paris ou mélange forestier cultivé",
+            "k": "champignons de Paris ou mélange forestier cultivé"
+          },
+          {
+            "q": 1,
+            "u": "",
+            "n": "échalote",
+            "k": "échalote"
+          },
+          {
+            "q": 20,
+            "u": "g",
+            "n": "beurre",
+            "k": "beurre"
+          },
+          {
+            "q": 5,
+            "u": "g",
+            "n": "persil",
+            "k": "persil"
+          },
+          {
+            "q": 0.25,
+            "u": "c. à café",
+            "n": "sel",
+            "k": "sel"
+          },
+          {
+            "q": 2,
+            "u": "pincées",
+            "n": "poivre",
+            "k": "poivre"
+          }
+        ],
+        "p": [
+          "Nettoyer les champignons, couper les pieds terreux puis émincer en tranches de 5 mm. Peler et hacher l’échalote. Laver, sécher et ciseler le persil.",
+          "Faire fondre {{qty:3:0.5}} de beurre dans une poêle antiadhésive à feu moyen. Cuire l’échalote 2 minutes, puis ajouter les champignons. Cuire 8 minutes à feu moyen-vif en remuant, jusqu’à évaporation de l’eau et légère coloration.",
+          "Pendant ce temps, battre les œufs dans un bol avec le persil, le sel et le poivre.",
+          "Baisser à feu moyen-doux, ajouter le reste du beurre puis verser les œufs. Cuire 4 minutes en ramenant les bords pris vers le centre avec une spatule. Incliner la poêle pour répartir les œufs encore liquides.",
+          "Quand le dessous est pris, couvrir et cuire encore 1 minute à feu doux. Le centre doit être pris tout en restant moelleux, sans œuf liquide ; prolonger brièvement si nécessaire. Plier l’omelette et servir aussitôt. Pour plus de quatre personnes, cuire en plusieurs omelettes de même épaisseur."
+        ],
+        "protein": "oeufs",
+        "group": "oeufs",
+        "starch": "sans-feculent",
+        "family": "salade",
+        "cuisine": "française",
+        "vegetables": [
+          "champignon"
+        ],
+        "method": "Poêle",
+        "hotCold": "chaud",
+        "lightness": "léger-rassasiant",
+        "subFamily": "salade-omelette-champignons-salade",
+        "texture": "moelleux",
+        "technique": "saisi-poêlé",
+        "presentation": "bol ou assiette composée",
+        "profile": "salade|salade-omelette-champignons-salade|française|sans-feculent|moelleux|saisi-poêlé|bol ou assiette composée",
+        "season": [
+          "printemps",
+          "été",
+          "automne",
+          "hiver"
+        ],
+        "mealSlots": [
+          "eve"
+        ],
+        "servings": 2,
+        "collections": [
+          "automne-gourmand"
+        ]
+      },
+      "reading": {
+        "intro": "Des champignons bien dorés dans une omelette moelleuse au persil.",
+        "titles": [
+          "Préparer les champignons",
+          "Dorer la garniture",
+          "Battre les œufs",
+          "Cuire l’omelette",
+          "Contrôler et servir"
+        ],
+        "times": {
+          "prep": "10 min",
+          "cook": "15 min à la poêle",
+          "total": "25 min indicatives",
+          "rest": null
+        }
+      },
+      "record": {
+        "id": "e03",
+        "name": "Omelette forestière aux champignons",
+        "status": "corrected",
+        "sourceHash": "20e4107e328c1d5939b29fb2d4966ded669840aee74990f07413bf7f75590289",
+        "reviewedHash": "7d3a94b13e43cee03003b2738c5d467f83ef8dc184aa2dbc8f35518d3dae2145",
+        "batch": "automne-gourmand-01",
+        "issues": [],
+        "reviewNote": "Test Automne gourmand autorisé : recette rédigée pour la cuisine familiale, quantités et étapes vérifiées ; identifiant existant conservé lorsque disponible."
+      },
+      "beforeRecord": {
+        "id": "e03",
+        "name": "Omelette aux champignons et salade",
+        "status": "corrected",
+        "sourceHash": "20e4107e328c1d5939b29fb2d4966ded669840aee74990f07413bf7f75590289",
+        "reviewedHash": "20e4107e328c1d5939b29fb2d4966ded669840aee74990f07413bf7f75590289",
+        "batch": "01",
+        "issues": []
+      }
+    },
+    {
+      "id": "v39-roti-porc",
+      "before": {
+        "id": "v39-roti-porc",
+        "n": "Rôti de porc traditionnel",
+        "m": "Four",
+        "t": "75 min",
+        "s": [
+          "printemps",
+          "été",
+          "automne",
+          "hiver"
+        ],
+        "i": [
+          {
+            "q": 550,
+            "u": "g",
+            "n": "rôti de porc",
+            "k": "rôti de porc"
+          },
+          {
+            "q": 600,
+            "u": "g",
+            "n": "pommes de terre",
+            "k": "pommes de terre"
+          },
+          {
+            "q": 3,
+            "u": "",
+            "n": "carottes",
+            "k": "carottes"
+          },
+          {
+            "q": 1,
+            "u": "",
+            "n": "oignon",
+            "k": "oignons"
+          },
+          {
+            "q": 2,
+            "u": "",
+            "n": "gousses d’ail",
+            "k": "gousses d’ail"
+          },
+          {
+            "q": 15,
+            "u": "cl",
+            "n": "bouillon",
+            "k": "bouillon"
+          },
+          {
+            "q": 1,
+            "u": "c. à soupe",
+            "n": "huile",
+            "k": "huile"
+          },
+          {
+            "q": 1,
+            "u": "c. à café",
+            "n": "thym",
+            "k": "thym"
+          },
+          {
+            "q": null,
+            "u": "",
+            "n": "sel et poivre selon le goût",
+            "k": "sel et poivre selon le goût"
+          }
+        ],
+        "p": [
+          "Sortir le rôti du réfrigérateur 20 minutes avant sa cuisson. Pendant ce temps, préchauffer le four à 180 °C, laver et peler les pommes de terre et les carottes. Couper les pommes de terre en quartiers réguliers et les carottes en morceaux de même épaisseur. Peler l’oignon et l’ail ; couper l’oignon en quartiers.",
+          "Éponger le rôti, le saler et le poivrer. Chauffer {{qty:6}} d’huile dans une poêle à feu moyen-vif. Faire dorer le rôti 2 minutes sur chaque face, en le tournant progressivement pour dorer tout son pourtour sans brûler la surface. Le minuteur correspond à une face ; le relancer à chaque changement de face.",
+          "Déposer le rôti dans un plat allant au four avec les pommes de terre, les carottes, l’oignon, les gousses d’ail et le thym. Verser {{qty:5}} de bouillon autour de la viande, sans remplacer la dorure par cette cuisson au bouillon.",
+          "Faire cuire 45 à 50 minutes à 180 °C. Pendant la cuisson, retourner les légumes et arroser deux fois le rôti avec le jus du plat.",
+          "Vérifier au thermomètre que le centre du rôti atteint 63 °C ; prolonger la cuisson si nécessaire. Le jus clair n’est pas à lui seul une preuve suffisante. Vérifier aussi que les légumes sont tendres sous la pointe d’un couteau. Sortir le rôti et laisser reposer 10 minutes sous une feuille de papier cuisson posée sans serrer, hors du four. Trancher après ce repos et servir avec les légumes et le jus."
+        ],
+        "servings": 2,
+        "classic": true,
+        "protein": "porc",
+        "group": "viande",
+        "starch": "pommes-de-terre",
+        "family": "roti-four",
+        "subFamily": "roti-porc-traditionnel",
+        "cuisine": "française",
+        "texture": "juteux-dore",
+        "technique": "saisi puis rôti",
+        "presentation": "rôti tranché avec légumes",
+        "kind": "warm",
+        "vegetables": [
+          "carotte",
+          "oignon"
+        ],
+        "method": "Four",
+        "hotCold": "chaud",
+        "lightness": "classique",
+        "profile": "roti-four|roti-porc-traditionnel|française|pommes-de-terre|juteux-dore|saisi puis rôti|rôti tranché avec légumes",
+        "season": [
+          "printemps",
+          "été",
+          "automne",
+          "hiver"
+        ],
+        "mealSlots": [
+          "mid"
+        ]
+      },
+      "after": {
+        "id": "v39-roti-porc",
+        "n": "Rôti de porc, carottes et oignons confits",
+        "m": "Four",
+        "t": "1 h 30",
+        "s": [
+          "printemps",
+          "été",
+          "automne",
+          "hiver"
+        ],
+        "i": [
+          {
+            "q": 800,
+            "u": "g",
+            "n": "rôti de porc dans l’échine",
+            "k": "rôti de porc dans l’échine"
+          },
+          {
+            "q": 600,
+            "u": "g",
+            "n": "carottes",
+            "k": "carottes"
+          },
+          {
+            "q": 3,
+            "u": "",
+            "n": "oignons",
+            "k": "oignons"
+          },
+          {
+            "q": 2,
+            "u": "",
+            "n": "gousses d’ail",
+            "k": "gousses d’ail"
+          },
+          {
+            "q": 20,
+            "u": "cl",
+            "n": "bouillon de légumes",
+            "k": "bouillon de légumes"
+          },
+          {
+            "q": 1,
+            "u": "c. à soupe",
+            "n": "huile d’olive",
+            "k": "huile d’olive"
+          },
+          {
+            "q": 1,
+            "u": "c. à café",
+            "n": "thym séché",
+            "k": "thym séché"
+          },
+          {
+            "q": 0.5,
+            "u": "c. à café",
+            "n": "sel",
+            "k": "sel"
+          },
+          {
+            "q": 2,
+            "u": "pincées",
+            "n": "poivre",
+            "k": "poivre"
+          }
+        ],
+        "p": [
+          "Préchauffer le four à 180 °C, chaleur traditionnelle. Éplucher les carottes et les couper en bâtonnets de 1 cm d’épaisseur. Peler les oignons et les couper en quartiers. Peler et écraser légèrement l’ail.",
+          "Sécher le rôti. Chauffer {{qty:5}} d’huile dans une cocotte allant au four à feu moyen-vif. Dorer la viande 8 minutes en la tournant sur toutes ses faces. La réserver sur une assiette.",
+          "Baisser à feu moyen. Mettre les oignons dans la cocotte et cuire 5 minutes en remuant. Ajouter carottes et ail, puis remettre le rôti. Ajouter thym, sel et poivre.",
+          "Verser {{qty:4}} de bouillon autour du rôti. Couvrir et enfourner 45 minutes à 180 °C. Après 25 minutes, arroser la viande avec le jus et mélanger les légumes, puis remettre le couvercle.",
+          "Retirer le couvercle et poursuivre 15 minutes à 180 °C. Contrôler au moins 63 °C au cœur du rôti, sans toucher la cocotte ; prolonger par périodes de 5 minutes si nécessaire. Les carottes doivent céder sous un couteau et les oignons être fondants. Le temps dépend de l’épaisseur du rôti.",
+          "Sortir le rôti sur une planche propre, couvrir légèrement et laisser reposer 10 minutes. Garder les légumes dans la cocotte couverte.",
+          "Retirer la ficelle du rôti. Couper en tranches et servir avec les carottes, les oignons confits et le jus de la cocotte. Pour une quantité multipliée, privilégier plusieurs rôtis de même calibre et vérifier chacun."
+        ],
+        "servings": 4,
+        "classic": true,
+        "protein": "porc",
+        "group": "viande",
+        "starch": "pommes-de-terre",
+        "family": "roti-four",
+        "subFamily": "roti-porc-traditionnel",
+        "cuisine": "française",
+        "texture": "juteux-dore",
+        "technique": "saisi puis rôti",
+        "presentation": "rôti tranché avec légumes",
+        "kind": "warm",
+        "vegetables": [
+          "carotte",
+          "oignon"
+        ],
+        "method": "Four",
+        "hotCold": "chaud",
+        "lightness": "classique",
+        "profile": "roti-four|roti-porc-traditionnel|française|pommes-de-terre|juteux-dore|saisi puis rôti|rôti tranché avec légumes",
+        "season": [
+          "printemps",
+          "été",
+          "automne",
+          "hiver"
+        ],
+        "mealSlots": [
+          "mid"
+        ],
+        "collections": [
+          "automne-gourmand"
+        ]
+      },
+      "reading": {
+        "intro": "Un rôti tendre, des légumes fondants et un jus parfumé au thym.",
+        "titles": [
+          "Préparer les légumes",
+          "Dorer le rôti",
+          "Faire revenir les oignons",
+          "Cuire à couvert",
+          "Dorer et vérifier",
+          "Laisser reposer",
+          "Trancher et servir"
+        ],
+        "times": {
+          "prep": "15 min",
+          "cook": "13 min de saisie et légumes, puis 60 min à 180 °C",
+          "rest": "10 min",
+          "total": "Environ 1 h 30, selon calibre"
+        }
+      },
+      "record": {
+        "id": "v39-roti-porc",
+        "name": "Rôti de porc, carottes et oignons confits",
+        "status": "corrected",
+        "sourceHash": "a2dd211a6d1fd2a2256f4f04b9a506eab23fbc1565b26dd2e7f505b272a6657f",
+        "reviewedHash": "6b8897b909ec6df09a63866ec1a1eac7e6d618c1072d9210fa1179cf01287058",
+        "batch": "automne-gourmand-01",
+        "issues": [],
+        "reviewNote": "Test Automne gourmand autorisé : recette rédigée pour la cuisine familiale, quantités et étapes vérifiées ; identifiant existant conservé lorsque disponible."
+      },
+      "beforeRecord": {
+        "id": "v39-roti-porc",
+        "name": "Rôti de porc traditionnel",
+        "status": "corrected",
+        "sourceHash": "a2dd211a6d1fd2a2256f4f04b9a506eab23fbc1565b26dd2e7f505b272a6657f",
+        "reviewedHash": "e31d548c5b8a636c8c25ca2b4b5befe66eb1ed1f144e6c53bdf8b405354b1693",
+        "batch": "28",
+        "issues": [],
+        "reviewNote": "Rôti entier doré avant le four, huile et bouillon mesurés, légumes préparés pendant la sortie préalable. Le jus clair est remplacé par le contrôle sanitaire à 63 °C et le repos source de dix minutes ; aucune pièce remplacée ni durée par face multipliée arbitrairement."
+      }
+    }
+  ],
+  "baselineEditorialOtherHash": "97afe677a8d9a37578601c89172df238580a20f41fb39ed639ba6f88116abfe8"
+}

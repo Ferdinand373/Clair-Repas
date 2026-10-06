@@ -10,7 +10,9 @@ import {validateEditorial} from './validate-recipe-editorial.mjs';
 const root=resolve(dirname(fileURLToPath(import.meta.url)),'..');
 const html=readFileSync(resolve(root,'index.html'),'utf8');
 const fixture=JSON.parse(readFileSync(resolve(root,'scripts/recipe-clarity-batch-01.fixture.json'),'utf8'));
-const code=[...html.matchAll(/<script\b([^>]*)>([\s\S]*?)<\/script>/gi)]
+// Archived batch: validate the original content; autumn replacements have their own validator.
+const historicalHtml=html.replace(/\/\/ Automne gourmand — dix fiches dans le catalogue existant, sans stockage personnel\.[\s\S]*?(?=const recipeLibrary=)/,'');
+const code=[...historicalHtml.matchAll(/<script\b([^>]*)>([\s\S]*?)<\/script>/gi)]
   .find(([,attrs,body])=>!attrs.includes('src=')&&body.includes('const recipeLibrary='))[2];
 const block=(start,end)=>{
   const a=code.indexOf(start),b=code.indexOf(end,a+start.length);
