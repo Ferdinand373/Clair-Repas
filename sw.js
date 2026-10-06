@@ -18,7 +18,7 @@ const DATA_SCHEMA = 2;
 const CLOUD_APP_ID = "clair-repas";
 const CLOUD_ENABLED = true;
 const CLOUD_DIRECT_SYNC_PROTOCOL = "clair-personal-sync/v1";
-const CORE_REVISION = "sha256:8108722935f925944ad7c612f9f3e212b989fc2e19fbb80cca9859fd5fa93eb5";
+const CORE_REVISION = "sha256:6e66475569032461c5ecfb94b1827e6975b82ea9e2963cebcf3280cb8efce1b9";
 const BOOT_GRACE_MS = 18000;
 
 function fnv1a(text) {
@@ -54,6 +54,48 @@ const PRE_V8_STABLE_CACHES = ["clair-repas-v75-grands-chefs-20260816"];
 
 // Ten original featured WebP assets only.
 // They are cached on first use, never during installation of the recipe catalogue.
+const WINTER_THUMBNAILS = Object.freeze([
+  "./assets/recipes/hiver/v39-pot-au-feu.webp",
+  "./assets/recipes/hiver/v39-blanquette-veau.webp",
+  "./assets/recipes/hiver/theme-cuisine-regionale-14.webp",
+  "./assets/recipes/hiver/theme-bistrot-plus-10.webp",
+  "./assets/recipes/hiver/v39-endives-jambon.webp",
+  "./assets/recipes/hiver/theme-cuisine-regionale-20.webp",
+  "./assets/recipes/hiver/v31n-donburi-dinde.webp",
+  "./assets/recipes/hiver/gn-poulet-poireaux-creme.webp",
+  "./assets/recipes/hiver/n22.webp",
+  "./assets/recipes/hiver/theme-famille-dimanche-11.webp",
+  "./assets/recipes/hiver/bourgeois-31.webp",
+  "./assets/recipes/hiver/n59.webp",
+  "./assets/recipes/hiver/theme-petits-gourmands-09.webp",
+  "./assets/recipes/hiver/theme-petits-gourmands-12.webp",
+  "./assets/recipes/hiver/veg-final-39.webp",
+  "./assets/recipes/hiver/veg-l1-04.webp",
+  "./assets/recipes/hiver/veg-l1-05.webp",
+  "./assets/recipes/hiver/n39.webp",
+  "./assets/recipes/hiver/theme-bistrot-brasserie-09.webp",
+  "./assets/recipes/hiver/veg-final-40.webp",
+  "./assets/recipes/hiver/a043.webp",
+  "./assets/recipes/hiver/a054.webp",
+  "./assets/recipes/hiver/a048.webp",
+  "./assets/recipes/hiver/v31e-ragout-leger-boeuf.webp",
+  "./assets/recipes/hiver/a045.webp",
+  "./assets/recipes/hiver/a053.webp",
+  "./assets/recipes/hiver/v31e-ragout-leger-tofu.webp",
+  "./assets/recipes/hiver/v74-reg-17.webp",
+  "./assets/recipes/hiver/e11.webp",
+  "./assets/recipes/hiver/theme-petits-gourmands-14.webp",
+  "./assets/recipes/hiver/theme-petits-gourmands-03.webp",
+  "./assets/recipes/hiver/q402.webp",
+  "./assets/recipes/hiver/c435.webp",
+  "./assets/recipes/hiver/v31e-quesadillas-crevettes.webp",
+  "./assets/recipes/hiver/theme-bistrot-brasserie-03.webp",
+  "./assets/recipes/hiver/e27.webp",
+  "./assets/recipes/hiver/a085.webp",
+  "./assets/recipes/hiver/n25.webp",
+  "./assets/recipes/hiver/veg-l1-14.webp",
+  "./assets/recipes/hiver/theme-cuisine-regionale-06.webp"
+]);
 const AUTUMN_THUMBNAILS = Object.freeze([
   "./assets/recipes/automne/v31n-orzo-boulettes.webp",
   "./assets/recipes/automne/n64.webp",
@@ -129,8 +171,8 @@ const PRE_SHOPPING_V2_FOUNDATION_CORE_FILES = FOUNDATION_CORE_FILES.filter(
   path => path !== "./shopping-v2-engine.js"
 );
 const CORE_DIGESTS = Object.freeze({
-  "./": "sha256:eaef2c9e38bb6ca612883f19b81c874d6d9e0c538d1f0c2efcfb68f5d80a1a14",
-  "./index.html": "sha256:eaef2c9e38bb6ca612883f19b81c874d6d9e0c538d1f0c2efcfb68f5d80a1a14",
+  "./": "sha256:bed3b6f149a602910bbc5a9167f065e81f055e13e13ce2f3f3cb936fbb4f88ac",
+  "./index.html": "sha256:bed3b6f149a602910bbc5a9167f065e81f055e13e13ce2f3f3cb936fbb4f88ac",
   "./manifest.webmanifest": "sha256:49b30612587c379d6bb8c6d9ade4e299ff244b41f0bd03e2fcca0a5495834e2a",
   "./icon-192.png": "sha256:8d0d516fdcb7d76a40df62dc92d4f312a1557b9e105917026780e465c32fa9f8",
   "./icon-512.png": "sha256:334f3158730e33ad8232ea229a39f9193b45274f1a72b2f55467b1e625924f70",
@@ -139,7 +181,7 @@ const CORE_DIGESTS = Object.freeze({
   "./v8/vendor/supabase-js-2.111.0.js": "sha256:7396012594aa6d23bb373ebc25d1080bf3672fa847c3713f756520b40fd13453",
   "./v8/clair-foundation.js": "sha256:83786311d67be4be19af248b045735397ed988126b63bf9955c9cc5796d29ba2",
   "./v8/clair-cloud-sync.js": "sha256:826b44d8ee64b816f14e097a39405068001e529cc8a03885a5156de5d40ef7ea",
-  "./v8/version.json": "sha256:f013059fd755082e651742af5bc35285bae999ced537b7654853bb1509c0b523"
+  "./v8/version.json": "sha256:528000c0ba9b7864538601ad8ef9631118cc97ba37b58f47876697f73401756c"
 });
 
 function appIndexUrl() {
@@ -914,7 +956,7 @@ self.addEventListener("fetch", event => {
     return;
   }
 
-  if (AUTUMN_THUMBNAILS.some(path => new URL(path, self.registration.scope).href === url.href)) {
+  if ([...AUTUMN_THUMBNAILS,...WINTER_THUMBNAILS].some(path => new URL(path, self.registration.scope).href === url.href)) {
     event.respondWith((async () => {
       const state = await currentServingState();
       const cache = await caches.open(state.activeCache || CURRENT_CACHE);

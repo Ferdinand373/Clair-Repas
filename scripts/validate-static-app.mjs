@@ -9,7 +9,7 @@ import { TextDecoder, TextEncoder } from "node:util";
 import vm from "node:vm";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
-const PRODUCTION_V75_INDEX_BLOB = "6c6e86c79a4fdb67eb7bc758ba416a3544961d8c";
+const PRODUCTION_V75_INDEX_BLOB = "dc24a1de21e0f072bf2bb3d30e8ac5208cf49d37";
 const CLAIR_REPAS_PERSONAL_KEYS = Object.freeze([
   "crFavMeals",
   "crRecentRecipesV25",

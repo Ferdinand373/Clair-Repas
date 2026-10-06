@@ -1,7 +1,7 @@
 {
   "appId": "clair-repas",
   "contractVersion": 1,
-  "catalogVersion": "sha256:ee98f3c185e489fc6d9aa2ba51d2c15b6e011e3d3f098d3c1b870849716866d0",
+  "catalogVersion": "sha256:88c39d4a6ff1d08890151c15983f4b6d517287c96ec37d7e5d37d201b013ed28",
   "recipes": {
     "a001": "Tomates au basilic et à l’échalote",
     "a002": "Concombre au yaourt et à la menthe",
@@ -777,7 +777,7 @@
     "gn-poulet-legumes-racines": "Poulet et légumes racines rôtis · moutarde à l’ancienne et ciboulette",
     "gn-poulet-moutarde-champignons": "Poulet sauce moutarde légère, riz et champignons · citron confit et estragon",
     "gn-poulet-paprika-grenailles": "Poulet au paprika, grenailles et poivron · paprika fumé et amandes",
-    "gn-poulet-poireaux-creme": "Poulet aux poireaux, pommes de terre et crème légère · moutarde à l’ancienne et ciboulette",
+    "gn-poulet-poireaux-creme": "Poulet aux poireaux, crème moutardée et pommes de terre",
     "gn-poulet-provencale": "Poulet à la provençale, semoule et légumes grillés · orange et thym",
     "gn-poulet-ratatouille": "Poulet avec ratatouille minute et semoule · olives et tomates séchées",
     "gn-poulet-soja-miel": "Poulet soja-miel, nouilles et légumes croquants · miso doux et gingembre",

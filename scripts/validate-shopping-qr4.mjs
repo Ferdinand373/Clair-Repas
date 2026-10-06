@@ -476,7 +476,8 @@ await check("11. Sel et poivre is never split", () => {
   assert.deepEqual(JSON.parse(JSON.stringify(restoredWraps.i.at(-1))), {q:null,u:"",n:"sel et poivre",k:"sel et poivre"});
   assert.equal(draftFor(syntheticSource("qr4-restored-wraps-seasoning", [structuredClone(restoredWraps.i.at(-1))])).length, 1);
   // Five autumn recipes now specify quantified salt and pepper separately.
-  assert.equal(compoundCount, 478, "Unexpected compoundSource corpus count");
+  // Winter aloo gobi now lists quantified coriander and salt separately.
+  assert.equal(compoundCount, 477, "Unexpected compoundSource corpus count");
   assert.equal(splitCount, 19, "Only the audited vinaigrette compounds may split");
   return `${compoundCount} compound occurrences; ${splitCount} safe splits; 0 unexpected`;
 });

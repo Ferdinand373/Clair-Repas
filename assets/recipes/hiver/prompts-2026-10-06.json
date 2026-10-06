@@ -1,0 +1,249 @@
+{
+  "tool": "built-in imagegen",
+  "date": "2026-10-06",
+  "images": [
+    {
+      "id": "v39-pot-au-feu",
+      "file": "v39-pot-au-feu.webp",
+      "prompt": "Use case: photorealistic-natural. Asset type: original square food photograph for Clair Repas winter recipe thumbnail. Natural French family cooking, realistic home-cooked food, soft warm window light, natural colors, pale ceramic plate or bowl on light neutral wooden table. Close three-quarter overhead framing; food centered and large, readable when reduced to 160x160 pixels. One finished dish, no text, logo, watermark, hands or utensils. No decorative ingredients beyond precisely specified subject. Subject: French pot-au-feu: tender boiled beef chunks, carrot, leek, turnip, celery and peeled potatoes, clear amber broth, marrow bone. No herbs garnish.",
+      "bytes": 7208
+    },
+    {
+      "id": "v39-blanquette-veau",
+      "file": "v39-blanquette-veau.webp",
+      "prompt": "Use case: photorealistic-natural. Asset type: original square food photograph for Clair Repas winter recipe thumbnail. Natural French family cooking, realistic home-cooked food, soft warm window light, natural colors, pale ceramic plate or bowl on light neutral wooden table. Close three-quarter overhead framing; food centered and large, readable when reduced to 160x160 pixels. One finished dish, no text, logo, watermark, hands or utensils. No decorative ingredients beyond precisely specified subject. Subject: Blanquette de veau: tender veal chunks in ivory cream sauce with carrot rounds, mushrooms and soft leek, white rice alongside. No herbs.",
+      "bytes": 7758
+    },
+    {
+      "id": "theme-cuisine-regionale-14",
+      "file": "theme-cuisine-regionale-14.webp",
+      "prompt": "Use case: photorealistic-natural. Asset type: original square food photograph for Clair Repas winter recipe thumbnail. Natural French family cooking, realistic home-cooked food, soft warm window light, natural colors, pale ceramic plate or bowl on light neutral wooden table. Close three-quarter overhead framing; food centered and large, readable when reduced to 160x160 pixels. One finished dish, no text, logo, watermark, hands or utensils. No decorative ingredients beyond precisely specified subject. Subject: Flemish beef carbonnade: large braised beef chunks and melted onion in dark brown beer sauce. Gingerbread fully dissolved in sauce, no bread garnish, no potatoes, no herbs.",
+      "bytes": 8658
+    },
+    {
+      "id": "theme-bistrot-plus-10",
+      "file": "theme-bistrot-plus-10.webp",
+      "prompt": "Use case: photorealistic-natural. Asset type: original square food photograph for Clair Repas winter recipe thumbnail. Natural French family cooking, realistic home-cooked food, soft warm window light, natural colors, pale ceramic plate or bowl on light neutral wooden table. Close three-quarter overhead framing; food centered and large, readable when reduced to 160x160 pixels. One finished dish, no text, logo, watermark, hands or utensils. No decorative ingredients beyond precisely specified subject. Subject: Petit salé aux lentilles: sliced salted pork and smoked sausage with green lentils, carrot dice and onion. No herbs garnish.",
+      "bytes": 8556
+    },
+    {
+      "id": "v39-endives-jambon",
+      "file": "v39-endives-jambon.webp",
+      "prompt": "Use case: photorealistic-natural. Asset type: original square food photograph for Clair Repas winter recipe thumbnail. Natural French family cooking, realistic home-cooked food, soft warm window light, natural colors, pale ceramic plate or bowl on light neutral wooden table. Close three-quarter overhead framing; food centered and large, readable when reduced to 160x160 pixels. One finished dish, no text, logo, watermark, hands or utensils. No decorative ingredients beyond precisely specified subject. Subject: Endives au jambon: cooked whole endives wrapped in ham, creamy béchamel and lightly browned gruyère cheese, small baking dish. No herbs.",
+      "bytes": 8454
+    },
+    {
+      "id": "theme-cuisine-regionale-20",
+      "file": "theme-cuisine-regionale-20.webp",
+      "prompt": "Use case: photorealistic-natural. Asset type: original square food photograph for Clair Repas winter recipe thumbnail. Natural French family cooking, realistic home-cooked food, soft warm window light, natural colors, pale ceramic plate or bowl on light neutral wooden table. Close three-quarter overhead framing; food centered and large, readable when reduced to 160x160 pixels. One finished dish, no text, logo, watermark, hands or utensils. No decorative ingredients beyond precisely specified subject. Subject: Thick slices of smoked Morteau sausage, steamed peeled potatoes, warm fluid pale cancoillotte garlic cheese sauce, modest chopped parsley.",
+      "bytes": 7622
+    },
+    {
+      "id": "v31n-donburi-dinde",
+      "file": "v31n-donburi-dinde.webp",
+      "prompt": "Use case: photorealistic-natural. Asset type: original square food photograph for Clair Repas winter recipe thumbnail. Natural French family cooking, realistic home-cooked food, soft warm window light, natural colors, pale ceramic plate or bowl on light neutral wooden table. Close three-quarter overhead framing; food centered and large, readable when reduced to 160x160 pixels. One finished dish, no text, logo, watermark, hands or utensils. No decorative ingredients beyond precisely specified subject. Subject: Roast pork slices with dark prunes, honey glazed carrot pieces and roasted potatoes, light onion gravy, thyme cooked into gravy.",
+      "bytes": 9480
+    },
+    {
+      "id": "gn-poulet-poireaux-creme",
+      "file": "gn-poulet-poireaux-creme.webp",
+      "prompt": "Use case: photorealistic-natural. Asset type: original square food photograph for Clair Repas winter recipe thumbnail. Natural French family cooking, realistic home-cooked food, soft warm window light, natural colors, pale ceramic plate or bowl on light neutral wooden table. Close three-quarter overhead framing; food centered and large, readable when reduced to 160x160 pixels. One finished dish, no text, logo, watermark, hands or utensils. No decorative ingredients beyond precisely specified subject. Subject: Golden chicken breast medallions with soft leek and sliced potatoes in a light cream and grain-free Dijon mustard sauce, modest finely chopped chives.",
+      "editPrompt": "Change only seasoning visibility: remove all black pepper flakes and ground pepper, which are not ingredients in this recipe. Keep the brown round wholegrain mustard seeds in the creamy sauce, chopped chives, golden chicken medallions, soft leek and potato slices. The mustard is wholegrain mustard. Keep composition, plate, lighting and realistic cooking style exactly.",
+      "bytes": 9166
+    },
+    {
+      "id": "n22",
+      "file": "n22.webp",
+      "prompt": "Use case: photorealistic-natural. Asset type: original square food photograph for Clair Repas winter recipe thumbnail. Natural French family cooking, realistic home-cooked food, soft warm window light, natural colors, pale ceramic plate or bowl on light neutral wooden table. Close three-quarter overhead framing; food centered and large, readable when reduced to 160x160 pixels. One finished dish, no text, logo, watermark, hands or utensils. No decorative ingredients beyond precisely specified subject. Subject: Roasted chicken leg, golden potato chunks and carrot pieces lightly dusted with paprika. No herbs garnish.",
+      "bytes": 9008
+    },
+    {
+      "id": "theme-famille-dimanche-11",
+      "file": "theme-famille-dimanche-11.webp",
+      "prompt": "Use case: photorealistic-natural. Asset type: original square food photograph for Clair Repas winter recipe thumbnail. Natural French family cooking, realistic home-cooked food, soft warm window light, natural colors, pale ceramic plate or bowl on light neutral wooden table. Close three-quarter overhead framing; food centered and large, readable when reduced to 160x160 pixels. One finished dish, no text, logo, watermark, hands or utensils. No decorative ingredients beyond precisely specified subject. Subject: Braised rabbit leg in ivory wholegrain mustard cream sauce with shallots, steamed peeled potato pieces. No herbs garnish.",
+      "bytes": 7456
+    },
+    {
+      "id": "bourgeois-31",
+      "file": "bourgeois-31.webp",
+      "prompt": "Use case: photorealistic-natural. Asset type: original square food photograph for Clair Repas winter recipe thumbnail. Natural French family cooking, realistic home-cooked food, soft warm window light, natural colors, pale ceramic plate or bowl on light neutral wooden table. Close three-quarter overhead framing; food centered and large, readable when reduced to 160x160 pixels. One finished dish, no text, logo, watermark, hands or utensils. No decorative ingredients beyond precisely specified subject. Subject: Monkfish medallions in pale golden saffron cream sauce with finely cut carrot, leek and fennel strips. No rice, no herbs garnish.",
+      "editPrompt": "Correct only the fish and its cooking appearance: these are poached monkfish tail medallions, not scallops and not pan-seared fish. Show irregular oval chunks of firm opaque white cooked monkfish with visible natural fish muscle texture, no brown crust or grilled marks. The pieces are gently poached in pale saffron cream sauce. Keep the carrot, leek and fennel julienne, plate, warm natural light and framing unchanged. No added garnish.",
+      "bytes": 7238
+    },
+    {
+      "id": "n59",
+      "file": "n59.webp",
+      "prompt": "Use case: photorealistic-natural. Asset type: original square food photograph for Clair Repas winter recipe thumbnail. Natural French family cooking, realistic home-cooked food, soft warm window light, natural colors, pale ceramic plate or bowl on light neutral wooden table. Close three-quarter overhead framing; food centered and large, readable when reduced to 160x160 pixels. One finished dish, no text, logo, watermark, hands or utensils. No decorative ingredients beyond precisely specified subject. Subject: Soy and honey glazed salmon fillet with white rice and steamed green broccoli, a small sprinkle of sesame seeds.",
+      "bytes": 9354
+    },
+    {
+      "id": "theme-petits-gourmands-09",
+      "file": "theme-petits-gourmands-09.webp",
+      "prompt": "Use case: photorealistic-natural. Asset type: original square food photograph for Clair Repas winter recipe thumbnail. Natural French family cooking, realistic home-cooked food, soft warm window light, natural colors, pale ceramic plate or bowl on light neutral wooden table. Close three-quarter overhead framing; food centered and large, readable when reduced to 160x160 pixels. One finished dish, no text, logo, watermark, hands or utensils. No decorative ingredients beyond precisely specified subject. Subject: Homemade golden breaded cod portion beside smooth orange carrot and potato mash. No lemon, no herbs garnish.",
+      "bytes": 8070
+    },
+    {
+      "id": "theme-petits-gourmands-12",
+      "file": "theme-petits-gourmands-12.webp",
+      "prompt": "Use case: photorealistic-natural. Asset type: original square food photograph for Clair Repas winter recipe thumbnail. Natural French family cooking, realistic home-cooked food, soft warm window light, natural colors, pale ceramic plate or bowl on light neutral wooden table. Close three-quarter overhead framing; food centered and large, readable when reduced to 160x160 pixels. One finished dish, no text, logo, watermark, hands or utensils. No decorative ingredients beyond precisely specified subject. Subject: Baked short pasta with small broccoli florets and chopped ham in béchamel, lightly browned emmental crust, small baking dish. No herbs.",
+      "bytes": 8714
+    },
+    {
+      "id": "veg-final-39",
+      "file": "veg-final-39.webp",
+      "prompt": "Use case: photorealistic-natural. Asset type: original square food photograph for Clair Repas winter recipe thumbnail. Natural French family cooking, realistic home-cooked food, soft warm window light, natural colors, pale ceramic plate or bowl on light neutral wooden table. Close three-quarter overhead framing; food centered and large, readable when reduced to 160x160 pixels. One finished dish, no text, logo, watermark, hands or utensils. No decorative ingredients beyond precisely specified subject. Subject: Green cabbage leaf rolls stuffed with buckwheat grains, finely chopped mushrooms, carrot and walnuts, one cut roll shows filling, light vegetable broth. No meat, no garnish.",
+      "bytes": 8220
+    },
+    {
+      "id": "veg-l1-04",
+      "file": "veg-l1-04.webp",
+      "prompt": "Use case: photorealistic-natural. Asset type: original square food photograph for Clair Repas winter recipe thumbnail. Natural French family cooking, realistic home-cooked food, soft warm window light, natural colors, pale ceramic plate or bowl on light neutral wooden table. Close three-quarter overhead framing; food centered and large, readable when reduced to 160x160 pixels. One finished dish, no text, logo, watermark, hands or utensils. No decorative ingredients beyond precisely specified subject. Subject: Aloo gobi: potato cubes and cauliflower florets coated in turmeric cumin tomato spices, nearly dry rather than soupy, modest fresh chopped coriander.",
+      "bytes": 9730
+    },
+    {
+      "id": "veg-l1-05",
+      "file": "veg-l1-05.webp",
+      "prompt": "Use case: photorealistic-natural. Asset type: original square food photograph for Clair Repas winter recipe thumbnail. Natural French family cooking, realistic home-cooked food, soft warm window light, natural colors, pale ceramic plate or bowl on light neutral wooden table. Close three-quarter overhead framing; food centered and large, readable when reduced to 160x160 pixels. One finished dish, no text, logo, watermark, hands or utensils. No decorative ingredients beyond precisely specified subject. Subject: Saag paneer: golden seared paneer cubes in textured dark green creamy spinach sauce, white basmati rice alongside. No herbs garnish.",
+      "bytes": 8978
+    },
+    {
+      "id": "n39",
+      "file": "n39.webp",
+      "prompt": "Use case: photorealistic-natural. Asset type: original square food photograph for Clair Repas winter recipe thumbnail. Natural French family cooking, realistic home-cooked food, soft warm window light, natural colors, pale ceramic plate or bowl on light neutral wooden table. Close three-quarter overhead framing; food centered and large, readable when reduced to 160x160 pixels. One finished dish, no text, logo, watermark, hands or utensils. No decorative ingredients beyond precisely specified subject. Subject: Chili con carne with minced beef, intact red kidney beans and thick tomato sauce, white rice alongside. No cheese, no sour cream, no herbs garnish.",
+      "bytes": 9136
+    },
+    {
+      "id": "theme-bistrot-brasserie-09",
+      "file": "theme-bistrot-brasserie-09.webp",
+      "prompt": "Use case: photorealistic-natural. Asset type: original square food photograph for Clair Repas winter recipe thumbnail. Natural French family cooking, realistic home-cooked food, soft warm window light, natural colors, pale ceramic plate or bowl on light neutral wooden table. Close three-quarter overhead framing; food centered and large, readable when reduced to 160x160 pixels. One finished dish, no text, logo, watermark, hands or utensils. No decorative ingredients beyond precisely specified subject. Subject: Golden Toulouse pork sausages on creamy potato mash, brown onion gravy. No herbs.",
+      "bytes": 8760
+    },
+    {
+      "id": "veg-final-40",
+      "file": "veg-final-40.webp",
+      "prompt": "Use case: photorealistic-natural. Asset type: original square food photograph for Clair Repas winter recipe thumbnail. Natural French family cooking, realistic home-cooked food, soft warm window light, natural colors, pale ceramic plate or bowl on light neutral wooden table. Close three-quarter overhead framing; food centered and large, readable when reduced to 160x160 pixels. One finished dish, no text, logo, watermark, hands or utensils. No decorative ingredients beyond precisely specified subject. Subject: Käsespätzle: short irregular German spätzle egg noodles coated in melted emmental cheese, topped with golden caramelized onion strips and chopped chives.",
+      "bytes": 9710
+    },
+    {
+      "id": "a043",
+      "file": "a043.webp",
+      "prompt": "Use case: photorealistic-natural. Asset type: original square food photograph for Clair Repas winter recipe thumbnail. Natural French family cooking, realistic home-cooked food, soft warm window light, natural colors, pale ceramic plate or bowl on light neutral wooden table. Close three-quarter overhead framing; food centered and large, readable when reduced to 160x160 pixels. One finished dish, no text, logo, watermark, hands or utensils. No decorative ingredients beyond precisely specified subject. Subject: Smooth pale green creamy leek and potato soup. No cream swirl, no garnish, no croutons.",
+      "bytes": 4036
+    },
+    {
+      "id": "a054",
+      "file": "a054.webp",
+      "prompt": "Use case: photorealistic-natural. Asset type: original square food photograph for Clair Repas winter recipe thumbnail. Natural French family cooking, realistic home-cooked food, soft warm window light, natural colors, pale ceramic plate or bowl on light neutral wooden table. Close three-quarter overhead framing; food centered and large, readable when reduced to 160x160 pixels. One finished dish, no text, logo, watermark, hands or utensils. No decorative ingredients beyond precisely specified subject. Subject: Smooth pale ivory celeriac and potato soup topped only with small chopped toasted hazelnuts. No herbs, no cream swirl.",
+      "bytes": 6428
+    },
+    {
+      "id": "a048",
+      "file": "a048.webp",
+      "prompt": "Use case: photorealistic-natural. Asset type: original square food photograph for Clair Repas winter recipe thumbnail. Natural French family cooking, realistic home-cooked food, soft warm window light, natural colors, pale ceramic plate or bowl on light neutral wooden table. Close three-quarter overhead framing; food centered and large, readable when reduced to 160x160 pixels. One finished dish, no text, logo, watermark, hands or utensils. No decorative ingredients beyond precisely specified subject. Subject: Smooth pale golden cauliflower soup with mild curry and milk. No garnish, no cream swirl, no herbs.",
+      "bytes": 4688
+    },
+    {
+      "id": "v31e-ragout-leger-boeuf",
+      "file": "v31e-ragout-leger-boeuf.webp",
+      "prompt": "Use case: photorealistic-natural. Asset type: original square food photograph for Clair Repas winter recipe thumbnail. Natural French family cooking, realistic home-cooked food, soft warm window light, natural colors, pale ceramic plate or bowl on light neutral wooden table. Close three-quarter overhead framing; food centered and large, readable when reduced to 160x160 pixels. One finished dish, no text, logo, watermark, hands or utensils. No decorative ingredients beyond precisely specified subject. Subject: Partially blended orange red lentil soup with carrot and cumin and coconut milk mixed in, textured soup, wholegrain bread alongside. No garnish, no lemon wedge, no cream swirl.",
+      "bytes": 7520
+    },
+    {
+      "id": "a045",
+      "file": "a045.webp",
+      "prompt": "Use case: photorealistic-natural. Asset type: original square food photograph for Clair Repas winter recipe thumbnail. Natural French family cooking, realistic home-cooked food, soft warm window light, natural colors, pale ceramic plate or bowl on light neutral wooden table. Close three-quarter overhead framing; food centered and large, readable when reduced to 160x160 pixels. One finished dish, no text, logo, watermark, hands or utensils. No decorative ingredients beyond precisely specified subject. Subject: French onion soup: amber onion broth topped with toasted bread slices and browned gruyère melted on the bread, ovenproof small bowl. No herbs.",
+      "bytes": 7932
+    },
+    {
+      "id": "a053",
+      "file": "a053.webp",
+      "prompt": "Use case: photorealistic-natural. Asset type: original square food photograph for Clair Repas winter recipe thumbnail. Natural French family cooking, realistic home-cooked food, soft warm window light, natural colors, pale ceramic plate or bowl on light neutral wooden table. Close three-quarter overhead framing; food centered and large, readable when reduced to 160x160 pixels. One finished dish, no text, logo, watermark, hands or utensils. No decorative ingredients beyond precisely specified subject. Subject: Smooth ivory endive potato cream soup with nutmeg mixed in. No garnish, no croutons, no cream swirl.",
+      "bytes": 4874
+    },
+    {
+      "id": "v31e-ragout-leger-tofu",
+      "file": "v31e-ragout-leger-tofu.webp",
+      "prompt": "Use case: photorealistic-natural. Asset type: original square food photograph for Clair Repas winter recipe thumbnail. Natural French family cooking, realistic home-cooked food, soft warm window light, natural colors, pale ceramic plate or bowl on light neutral wooden table. Close three-quarter overhead framing; food centered and large, readable when reduced to 160x160 pixels. One finished dish, no text, logo, watermark, hands or utensils. No decorative ingredients beyond precisely specified subject. Subject: Miso noodle soup in amber broth, firm white tofu cubes, sliced cooked mushrooms and leek, chopped green scallion garnish. No eggs, no seaweed.",
+      "bytes": 8424
+    },
+    {
+      "id": "v74-reg-17",
+      "file": "v74-reg-17.webp",
+      "prompt": "Use case: photorealistic-natural. Asset type: original square food photograph for Clair Repas winter recipe thumbnail. Natural French family cooking, realistic home-cooked food, soft warm window light, natural colors, pale ceramic plate or bowl on light neutral wooden table. Close three-quarter overhead framing; food centered and large, readable when reduced to 160x160 pixels. One finished dish, no text, logo, watermark, hands or utensils. No decorative ingredients beyond precisely specified subject. Subject: Picardy leek flamiche wedge with shortcrust pastry, creamy egg and soft leek filling, thin lightly browned grated cheese surface, small plain green salad alongside.",
+      "bytes": 8274
+    },
+    {
+      "id": "e11",
+      "file": "e11.webp",
+      "prompt": "Use case: photorealistic-natural. Asset type: original square food photograph for Clair Repas winter recipe thumbnail. Natural French family cooking, realistic home-cooked food, soft warm window light, natural colors, pale ceramic plate or bowl on light neutral wooden table. Close three-quarter overhead framing; food centered and large, readable when reduced to 160x160 pixels. One finished dish, no text, logo, watermark, hands or utensils. No decorative ingredients beyond precisely specified subject. Subject: Golden toasted croque monsieur cut diagonally, sliced ham and melted cheese inside, small plain green salad alongside, no béchamel on top.",
+      "bytes": 8446
+    },
+    {
+      "id": "theme-petits-gourmands-14",
+      "file": "theme-petits-gourmands-14.webp",
+      "prompt": "Use case: photorealistic-natural. Asset type: original square food photograph for Clair Repas winter recipe thumbnail. Natural French family cooking, realistic home-cooked food, soft warm window light, natural colors, pale ceramic plate or bowl on light neutral wooden table. Close three-quarter overhead framing; food centered and large, readable when reduced to 160x160 pixels. One finished dish, no text, logo, watermark, hands or utensils. No decorative ingredients beyond precisely specified subject. Subject: Rolled golden omelette cut into thick slices showing spinach and melted emmental inside. No garnish, no bread.",
+      "bytes": 8698
+    },
+    {
+      "id": "theme-petits-gourmands-03",
+      "file": "theme-petits-gourmands-03.webp",
+      "prompt": "Use case: photorealistic-natural. Asset type: original square food photograph for Clair Repas winter recipe thumbnail. Natural French family cooking, realistic home-cooked food, soft warm window light, natural colors, pale ceramic plate or bowl on light neutral wooden table. Close three-quarter overhead framing; food centered and large, readable when reduced to 160x160 pixels. One finished dish, no text, logo, watermark, hands or utensils. No decorative ingredients beyond precisely specified subject. Subject: Individual ramekin of baked egg cocotte with ham pieces, cream, emmental and modest finely chopped chives, egg white fully set, yellow yolk visible. No bread.",
+      "editPrompt": "Remove every black pepper flake or speck, since pepper is absent from this recipe. Make the egg yolk look fully cooked, set and opaque yellow rather than runny or glossy translucent. Keep the fully set white, ham pieces, cream, lightly browned emmental and chopped chives, ramekin, composition and warm light unchanged. No additional ingredients.",
+      "bytes": 7218
+    },
+    {
+      "id": "q402",
+      "file": "q402.webp",
+      "prompt": "Use case: photorealistic-natural. Asset type: original square food photograph for Clair Repas winter recipe thumbnail. Natural French family cooking, realistic home-cooked food, soft warm window light, natural colors, pale ceramic plate or bowl on light neutral wooden table. Close three-quarter overhead framing; food centered and large, readable when reduced to 160x160 pixels. One finished dish, no text, logo, watermark, hands or utensils. No decorative ingredients beyond precisely specified subject. Subject: Steamed trout fillet on tender pale green leek strips, quinoa with lemon juice and zest, modest dill garnish. No lemon wedge.",
+      "bytes": 8620
+    },
+    {
+      "id": "c435",
+      "file": "c435.webp",
+      "prompt": "Use case: photorealistic-natural. Asset type: original square food photograph for Clair Repas winter recipe thumbnail. Natural French family cooking, realistic home-cooked food, soft warm window light, natural colors, pale ceramic plate or bowl on light neutral wooden table. Close three-quarter overhead framing; food centered and large, readable when reduced to 160x160 pixels. One finished dish, no text, logo, watermark, hands or utensils. No decorative ingredients beyond precisely specified subject. Subject: Roasted Brussels sprout halves, golden browned cut faces, chopped toasted hazelnuts and very light honey glaze. No additional vegetables, no garnish.",
+      "bytes": 10014
+    },
+    {
+      "id": "v31e-quesadillas-crevettes",
+      "file": "v31e-quesadillas-crevettes.webp",
+      "prompt": "Use case: photorealistic-natural. Asset type: original square food photograph for Clair Repas winter recipe thumbnail. Natural French family cooking, realistic home-cooked food, soft warm window light, natural colors, pale ceramic plate or bowl on light neutral wooden table. Close three-quarter overhead framing; food centered and large, readable when reduced to 160x160 pixels. One finished dish, no text, logo, watermark, hands or utensils. No decorative ingredients beyond precisely specified subject. Subject: Warm potato and ready-to-eat mild herring salad with small apple cubes, thin cucumber and red onion slices, light yogurt mustard dill dressing. No lemon.",
+      "bytes": 8592
+    },
+    {
+      "id": "theme-bistrot-brasserie-03",
+      "file": "theme-bistrot-brasserie-03.webp",
+      "prompt": "Use case: photorealistic-natural. Asset type: original square food photograph for Clair Repas winter recipe thumbnail. Natural French family cooking, realistic home-cooked food, soft warm window light, natural colors, pale ceramic plate or bowl on light neutral wooden table. Close three-quarter overhead framing; food centered and large, readable when reduced to 160x160 pixels. One finished dish, no text, logo, watermark, hands or utensils. No decorative ingredients beyond precisely specified subject. Subject: Warm green lentil salad with small carrot dice and finely chopped shallot, oil mustard vinegar dressing, chopped parsley. No chicken, no eggs, no tomatoes.",
+      "bytes": 10302
+    },
+    {
+      "id": "e27",
+      "file": "e27.webp",
+      "prompt": "Use case: photorealistic-natural. Asset type: original square food photograph for Clair Repas winter recipe thumbnail. Natural French family cooking, realistic home-cooked food, soft warm window light, natural colors, pale ceramic plate or bowl on light neutral wooden table. Close three-quarter overhead framing; food centered and large, readable when reduced to 160x160 pixels. One finished dish, no text, logo, watermark, hands or utensils. No decorative ingredients beyond precisely specified subject. Subject: Open toasted bread topped with ham, warm goat cheese rounds, thin honey drizzle and tiny thyme leaves, plain green salad alongside.",
+      "bytes": 10376
+    },
+    {
+      "id": "a085",
+      "file": "a085.webp",
+      "prompt": "Use case: photorealistic-natural. Asset type: original square food photograph for Clair Repas winter recipe thumbnail. Natural French family cooking, realistic home-cooked food, soft warm window light, natural colors, pale ceramic plate or bowl on light neutral wooden table. Close three-quarter overhead framing; food centered and large, readable when reduced to 160x160 pixels. One finished dish, no text, logo, watermark, hands or utensils. No decorative ingredients beyond precisely specified subject. Subject: Tender steamed leek pieces with smoked salmon strips and white fromage blanc lemon dill sauce. No potatoes, no lemon wedge.",
+      "bytes": 8202
+    },
+    {
+      "id": "n25",
+      "file": "n25.webp",
+      "prompt": "Use case: photorealistic-natural. Asset type: original square food photograph for Clair Repas winter recipe thumbnail. Natural French family cooking, realistic home-cooked food, soft warm window light, natural colors, pale ceramic plate or bowl on light neutral wooden table. Close three-quarter overhead framing; food centered and large, readable when reduced to 160x160 pixels. One finished dish, no text, logo, watermark, hands or utensils. No decorative ingredients beyond precisely specified subject. Subject: Spanish potato onion tortilla cut into a thick wedge, fully set golden egg with visible soft potato pieces, small plain green salad alongside.",
+      "bytes": 7642
+    },
+    {
+      "id": "veg-l1-14",
+      "file": "veg-l1-14.webp",
+      "prompt": "Use case: photorealistic-natural. Asset type: original square food photograph for Clair Repas winter recipe thumbnail. Natural French family cooking, realistic home-cooked food, soft warm window light, natural colors, pale ceramic plate or bowl on light neutral wooden table. Close three-quarter overhead framing; food centered and large, readable when reduced to 160x160 pixels. One finished dish, no text, logo, watermark, hands or utensils. No decorative ingredients beyond precisely specified subject. Subject: Baked salsify pieces in béchamel with thin golden parmesan crust, a halved soft-boiled egg with thick golden slightly flowing yolk alongside. No herbs.",
+      "bytes": 7904
+    },
+    {
+      "id": "theme-cuisine-regionale-06",
+      "file": "theme-cuisine-regionale-06.webp",
+      "prompt": "Use case: photorealistic-natural. Asset type: original square food photograph for Clair Repas winter recipe thumbnail. Natural French family cooking, realistic home-cooked food, soft warm window light, natural colors, pale ceramic plate or bowl on light neutral wooden table. Close three-quarter overhead framing; food centered and large, readable when reduced to 160x160 pixels. One finished dish, no text, logo, watermark, hands or utensils. No decorative ingredients beyond precisely specified subject. Subject: Breton dark buckwheat galette folded into square, sliced ham and melted emmental inside, sunny egg centered with fully set white and soft golden yolk visible. No garnish.",
+      "bytes": 8536
+    }
+  ]
+}

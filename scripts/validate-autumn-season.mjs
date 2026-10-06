@@ -9,7 +9,10 @@ const root=resolve(dirname(fileURLToPath(import.meta.url)),'..'),read=p=>readFil
 const f=JSON.parse(read('scripts/autumn-season.fixture.json'));
 assert.equal(f.otherHash,'5fb7a6bd118b15276c080532ee00627a2962c9bf5d03ce6f9d355a01f1abc519');
 assert.equal(f.otherEditorialHash,'65901a0deb01fb5c4c2b280297e0950cdd5f142d036d5724957340c17f9f6b26');
-const {code,recipes,editorial}=recipeSource(read('index.html'));
+const {code,recipes:current,editorial:currentEditorial}=recipeSource(read('index.html'));
+const winter=JSON.parse(read('scripts/winter-season.fixture.json'));
+const recipes=current.map(r=>winter.rows.find(row=>row.id===r.id)?.before||r);
+const editorial=Object.fromEntries(Object.entries(currentEditorial).map(([id,e])=>[id,winter.rows.find(row=>row.id===id)?.readingBefore||e]));
 const ids=new Set(f.rows.map(r=>r.id));
 assert.equal(ids.size,40);assert.equal(recipes.length,1554);
 assert.equal(recipes.filter(r=>r.thumbnail).length,40,'Photos only on the selected forty recipes');
