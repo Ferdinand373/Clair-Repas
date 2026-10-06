@@ -9,7 +9,8 @@ const root=resolve(dirname(fileURLToPath(import.meta.url)),'..');
 // The bd5a54b catalogue's ids + original source hashes. Review updates change
 // reviewedHash, never this baseline, so legacy tolerance cannot hide new work.
 const LEGACY_FINGERPRINT='49a96adb7e88646ae8f46baf918eb4e2c67f9f0bcfb32e5c7300be0e81b69c25';
-export const recipeHash=recipe=>createHash('sha256').update(JSON.stringify(recipe)).digest('hex');
+// Photos are presentation metadata; preserve the approved culinary fingerprints.
+export const recipeHash=recipe=>createHash('sha256').update(JSON.stringify(recipe,(key,value)=>key==='thumbnail'?undefined:value)).digest('hex');
 export function inspectRecipe(recipe,reading,{reviewed=false}={}){
   const findings=[];
   const add=(code,message,essential=false)=>findings.push({level:essential&&reviewed?'error':'warning',code,message});

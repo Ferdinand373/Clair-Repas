@@ -6101,6 +6101,22 @@ RECIPE_EDITORIAL["d081"]={"intro":"Une pâte croustillante et des pommes dorées
 RECIPE_EDITORIAL["e03"]={"intro":"Des champignons bien dorés dans une omelette moelleuse au persil.","titles":["Préparer les champignons","Dorer la garniture","Battre les œufs","Cuire l’omelette","Contrôler et servir"],"times":{"prep":"10 min","cook":"15 min à la poêle","total":"25 min indicatives","rest":null}};
 {const recipe=[...dishLibrary,...starters,...desserts].find(r=>r.id==="v39-roti-porc");Object.assign(recipe,{"id":"v39-roti-porc","n":"Rôti de porc, carottes et oignons confits","m":"Four","t":"1 h 30","servings":4,"i":[{"q":800,"u":"g","n":"rôti de porc dans l’échine","k":"rôti de porc dans l’échine"},{"q":600,"u":"g","n":"carottes","k":"carottes"},{"q":3,"u":"","n":"oignons","k":"oignons"},{"q":2,"u":"","n":"gousses d’ail","k":"gousses d’ail"},{"q":20,"u":"cl","n":"bouillon de légumes","k":"bouillon de légumes"},{"q":1,"u":"c. à soupe","n":"huile d’olive","k":"huile d’olive"},{"q":1,"u":"c. à café","n":"thym séché","k":"thym séché"},{"q":0.5,"u":"c. à café","n":"sel","k":"sel"},{"q":2,"u":"pincées","n":"poivre","k":"poivre"}],"p":["Préchauffer le four à 180 °C, chaleur traditionnelle. Éplucher les carottes et les couper en bâtonnets de 1 cm d’épaisseur. Peler les oignons et les couper en quartiers. Peler et écraser légèrement l’ail.","Sécher le rôti. Chauffer {{qty:5}} d’huile dans une cocotte allant au four à feu moyen-vif. Dorer la viande 8 minutes en la tournant sur toutes ses faces. La réserver sur une assiette.","Baisser à feu moyen. Mettre les oignons dans la cocotte et cuire 5 minutes en remuant. Ajouter carottes et ail, puis remettre le rôti. Ajouter thym, sel et poivre.","Verser {{qty:4}} de bouillon autour du rôti. Couvrir et enfourner 45 minutes à 180 °C. Après 25 minutes, arroser la viande avec le jus et mélanger les légumes, puis remettre le couvercle.","Retirer le couvercle et poursuivre 15 minutes à 180 °C. Contrôler au moins 63 °C au cœur du rôti, sans toucher la cocotte ; prolonger par périodes de 5 minutes si nécessaire. Les carottes doivent céder sous un couteau et les oignons être fondants. Le temps dépend de l’épaisseur du rôti.","Sortir le rôti sur une planche propre, couvrir légèrement et laisser reposer 10 minutes. Garder les légumes dans la cocotte couverte.","Retirer la ficelle du rôti. Couper en tranches et servir avec les carottes, les oignons confits et le jus de la cocotte. Pour une quantité multipliée, privilégier plusieurs rôtis de même calibre et vérifier chacun."]});crAddCollection(recipe,'automne-gourmand');}
 RECIPE_EDITORIAL["v39-roti-porc"]={"intro":"Un rôti tendre, des légumes fondants et un jus parfumé au thym.","titles":["Préparer les légumes","Dorer le rôti","Faire revenir les oignons","Cuire à couvert","Dorer et vérifier","Laisser reposer","Trancher et servir"],"times":{"prep":"15 min","cook":"13 min de saisie et légumes, puis 60 min à 180 °C","rest":"10 min","total":"Environ 1 h 30, selon calibre"}};
+// Original autumn photos: metadata only; approved recipes are unchanged.
+const AUTUMN_RECIPE_THUMBNAILS=Object.freeze({
+  "v31n-orzo-boulettes": "assets/recipes/automne/v31n-orzo-boulettes.webp",
+  "n64": "assets/recipes/automne/n64.webp",
+  "a042": "assets/recipes/automne/a042.webp",
+  "automne-quiche-poireaux": "assets/recipes/automne/automne-quiche-poireaux.webp",
+  "v39-boeuf-bourguignon": "assets/recipes/automne/v39-boeuf-bourguignon.webp",
+  "v39-gratin-chou-fleur": "assets/recipes/automne/v39-gratin-chou-fleur.webp",
+  "v39-hachis-parmentier": "assets/recipes/automne/v39-hachis-parmentier.webp",
+  "d081": "assets/recipes/automne/d081.webp",
+  "e03": "assets/recipes/automne/e03.webp",
+  "v39-roti-porc": "assets/recipes/automne/v39-roti-porc.webp"
+});
+for(const recipe of [...dishLibrary,...starters,...desserts]){
+  if(Object.hasOwn(AUTUMN_RECIPE_THUMBNAILS,recipe.id))recipe.thumbnail=AUTUMN_RECIPE_THUMBNAILS[recipe.id];
+}
 const recipeLibrary=[...dishLibrary,...starters,...desserts,...standaloneLibrary];
 const recipeIndex=new Map(recipeLibrary.map(recipe=>[recipe.id,recipe]));
 const CR_APP_VERSION='7.5';
@@ -6165,7 +6181,7 @@ function refreshV73HealthStatus(){
 }
 $('libraryCount').textContent=`${dishLibrary.length} plats · ${starters.length} entrées · ${desserts.length} desserts · ${breakfastRecipes.length} petits-déjeuners · ${sauceRecipes.length} sauces · ${sideRecipes.length} accompagnements · ${fundamentalRecipes.length} fondamentaux`;
 $('libraryHint').textContent=`Découvrir ${recipeLibrary.length} recettes dans le Livre`;
-$('versionLine').textContent='Clair Repas V7.5 · Automne gourmand 2026.10.06.1';
+$('versionLine').textContent='Clair Repas V7.5 · Automne gourmand 2026.10.06.2';
 // V7.5 — Grands Chefs : 60 nouvelles recettes et un chapitre dédié à dix signatures françaises.
 // V7.4 — Tables de France : 40 nouvelles recettes, avec priorité aux régions et aux grands classiques de bistrot.
 // V7.3 — Consolidation technique : robustesse PWA, sauvegarde évolutive, intégrité des données et optimisation des lectures locales.

@@ -37,7 +37,9 @@ const timers={
 let renders=0;
 for(const row of fixture.recipes){
  const r=recipes.find(r=>r.id===row.id);
- assert.deepEqual(r,row.after,row.id+' approved culinary content');assert.deepEqual(editorial[r.id],row.reading);
+ const {thumbnail,...culinary}=r;
+ assert.deepEqual(culinary,row.after,row.id+' approved culinary content');
+ assert.equal(thumbnail,'assets/recipes/automne/'+r.id+'.webp');assert.deepEqual(editorial[r.id],row.reading);
  if(row.before)for(const collection of row.before.collections||[])assert.ok(r.collections.includes(collection),'Previous collection preserved');
  assert.ok(r.servings>0);assert.ok(r.i.every(i=>Number.isFinite(i.q)&&i.q>0&&typeof i.u==='string'),'Every ingredient quantified');
  assert.equal(row.reading.titles.length,r.p.length);assert.ok(row.reading.intro.length<160);
@@ -56,13 +58,26 @@ for(const row of fixture.recipes){
   renders++;
  }
  const card=context.bookRecipeResultHTML(r);assert.match(card,/autumn-featured/);assert.match(card,/Automne/);
- assert.ok(card.includes(context.escapeHTML(r.n)));assert.ok(card.includes(r.servings+' personnes'));assert.doesNotMatch(card,/<img/);
+ assert.ok(card.includes(context.escapeHTML(r.n)));assert.ok(card.includes(r.servings+' personnes'));assert.match(card,/<img/);
  const withPhoto=context.autumnCardHTML({...r,thumbnail:'assets/recipes/automne/test.webp'});
  assert.match(withPhoto,/<img/);assert.match(withPhoto,/loading="lazy" decoding="async"/);assert.match(withPhoto,/width="80" height="80"/);
  for(const thumbnail of ['https://example.org/photo.webp','assets/recipes/automne/../photo.webp','assets/recipes/automne/photo.jpg'])assert.doesNotMatch(context.autumnCardHTML({...r,thumbnail}),/<img/);
 }
 const other=recipes.find(r=>!ids.has(r.id));assert.doesNotMatch(context.autumnCardHTML({...other,thumbnail:'assets/recipes/automne/test.webp'}),/<img/);
-assert.match(html,/event.target.hidden=true/);assert.match(read('sw.js'),/const AUTUMN_THUMBNAILS = Object.freeze\(\[\]\)/);
+assert.match(html,/event.target.hidden=true/);const paths=JSON.parse(read('sw.js').match(/const AUTUMN_THUMBNAILS = Object.freeze\((\[[\s\S]*?\])\);/)[1]);
+assert.deepEqual(paths.sort(),[...ids].map(id=>'./assets/recipes/automne/'+id+'.webp').sort());
+assert.equal(recipes.filter(r=>r.thumbnail).length,10,'Only the ten featured recipes have photos');
+let thumbnailBytes=0;
+for(const path of paths){
+ const bytes=readFileSync(resolve(root,path));
+ assert.equal(bytes.toString('ascii',0,4),'RIFF');
+ assert.equal(bytes.toString('ascii',8,12),'WEBP');
+ assert.ok(bytes.length<=20000,path+' thumbnail budget');
+ thumbnailBytes+=bytes.length;
+}
+assert.ok(thumbnailBytes<=200000,'Ten-thumbnail total budget');
+assert.doesNotMatch(read('sw.js').match(/const CORE_FILES = (\[[\s\S]*?\]);/)[1],/assets\/recipes/,'Photos must not join the atomic core preload');
 console.log(`✓ Exactly 10 featured recipes, 9 ids preserved, 1 distinct quiche, 1544 other recipes unchanged; no personal-storage migration`);
 console.log(`✓ ${renders} renders, scaled ingredients/steps, manual timer expectations, existing collections and editorial review`);
-console.log('✓ Featured-only thumbnails, lazy WebP, absent/invalid-image fallback and empty optional image cache list');
+console.log('✓ Featured-only thumbnails, lazy WebP, absent/invalid-image fallback and ten optional image cache paths');
+console.log(`✓ Ten genuine WebP assets: ${thumbnailBytes} bytes total; optional first-use cache, no catalogue image preload`);

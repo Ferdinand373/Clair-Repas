@@ -12,7 +12,7 @@ const {code,recipes,editorial}=recipeSource(html);
 const hash=value=>createHash('sha256').update(typeof value==='string'?value:JSON.stringify(value)).digest('hex');
 const block=(a,b)=>{const start=code.indexOf(a),end=code.indexOf(b,start);assert.ok(start>=0&&end>start,a);return code.slice(start,end)};
 // Published autumn catalogue: culinary content is guarded by validate-automne-gourmand; timer engine remains frozen.
-assert.equal(hash(recipes),'778091ead3a7e9def616d925c859f6d2d4166531c683f52a81cabdd63c51e3a4');
+assert.equal(hash(recipes.map(({thumbnail,...recipe})=>recipe)),'778091ead3a7e9def616d925c859f6d2d4166531c683f52a81cabdd63c51e3a4');
 assert.equal(hash(editorial),'ea8cee3da46730ec8d379a160cd8680de50d4a147fc5a2cd0c896d6b9144b27b');
 assert.equal(hash(readFileSync(resolve(root,'docs/recipe-editorial-inventory.json'),'utf8').replace(/\r\n/g,'\n')),'fb4e0549d4dea290e5aa66e4e9746866a3bead685b74d421336e3bf822453ca9');
 assert.equal(hash(block('const TIMER_KEY=','// Keep the timer and recipe scroll clearance')),'df74d392eee3cf6755ea3c59794253f61e4f1cf55ef14e960c215e5c2bc6f965');

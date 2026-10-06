@@ -18,7 +18,7 @@ const DATA_SCHEMA = 2;
 const CLOUD_APP_ID = "clair-repas";
 const CLOUD_ENABLED = true;
 const CLOUD_DIRECT_SYNC_PROTOCOL = "clair-personal-sync/v1";
-const CORE_REVISION = "sha256:78aa5541b25767b7d36a56b704e915687d4a79e865b6903e9c004f7dac05009b";
+const CORE_REVISION = "sha256:c8459053d7df5233fba177cd8cbf549209af9c69be0af8eb595ddcebe6ac4ce5";
 const BOOT_GRACE_MS = 18000;
 
 function fnv1a(text) {
@@ -52,9 +52,20 @@ const LEGACY_META_URL = META_URL;
 // mais jamais comme shell actif depuis l'activation du transfert Shopping V2.
 const PRE_V8_STABLE_CACHES = ["clair-repas-v75-grands-chefs-20260816"];
 
-// Optional featured WebP assets only. Populate when approved final photos are supplied.
+// Ten original featured WebP assets only.
 // They are cached on first use, never during installation of the recipe catalogue.
-const AUTUMN_THUMBNAILS = Object.freeze([]);
+const AUTUMN_THUMBNAILS = Object.freeze([
+  "./assets/recipes/automne/v31n-orzo-boulettes.webp",
+  "./assets/recipes/automne/n64.webp",
+  "./assets/recipes/automne/a042.webp",
+  "./assets/recipes/automne/automne-quiche-poireaux.webp",
+  "./assets/recipes/automne/v39-boeuf-bourguignon.webp",
+  "./assets/recipes/automne/v39-gratin-chou-fleur.webp",
+  "./assets/recipes/automne/v39-hachis-parmentier.webp",
+  "./assets/recipes/automne/d081.webp",
+  "./assets/recipes/automne/e03.webp",
+  "./assets/recipes/automne/v39-roti-porc.webp"
+]);
 const CORE_FILES = [
   "./",
   "./index.html",
@@ -88,8 +99,8 @@ const PRE_SHOPPING_V2_FOUNDATION_CORE_FILES = FOUNDATION_CORE_FILES.filter(
   path => path !== "./shopping-v2-engine.js"
 );
 const CORE_DIGESTS = Object.freeze({
-  "./": "sha256:d94e181228a5caa0cbf618d7d2c7efec6866537ffe50ca75f04eae755236973d",
-  "./index.html": "sha256:d94e181228a5caa0cbf618d7d2c7efec6866537ffe50ca75f04eae755236973d",
+  "./": "sha256:f021f568b7ad745752d91a74b1c36901158550e57677b4e7c93a1b600c61d46b",
+  "./index.html": "sha256:f021f568b7ad745752d91a74b1c36901158550e57677b4e7c93a1b600c61d46b",
   "./manifest.webmanifest": "sha256:49b30612587c379d6bb8c6d9ade4e299ff244b41f0bd03e2fcca0a5495834e2a",
   "./icon-192.png": "sha256:8d0d516fdcb7d76a40df62dc92d4f312a1557b9e105917026780e465c32fa9f8",
   "./icon-512.png": "sha256:334f3158730e33ad8232ea229a39f9193b45274f1a72b2f55467b1e625924f70",
@@ -98,7 +109,7 @@ const CORE_DIGESTS = Object.freeze({
   "./v8/vendor/supabase-js-2.111.0.js": "sha256:7396012594aa6d23bb373ebc25d1080bf3672fa847c3713f756520b40fd13453",
   "./v8/clair-foundation.js": "sha256:83786311d67be4be19af248b045735397ed988126b63bf9955c9cc5796d29ba2",
   "./v8/clair-cloud-sync.js": "sha256:826b44d8ee64b816f14e097a39405068001e529cc8a03885a5156de5d40ef7ea",
-  "./v8/version.json": "sha256:351fd1be6b7d08f18baee5ac447a1c0aaa9ca2a01c4b333c91423fd9d4acbddc"
+  "./v8/version.json": "sha256:8ba1c590b53a95c9e670afe6d56d1f6aefe90cbf71a03fa7561364fe3a6171d9"
 });
 
 function appIndexUrl() {
