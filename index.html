@@ -898,6 +898,16 @@ select{min-height:48px;border:1px solid #deebf2;border-radius:16px;background:#f
 .autumn-selection .cr-book-recipe-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:10px}
 @media(max-width:420px){.autumn-thumbnail{width:64px;height:64px;flex-basis:64px}.autumn-card-content{gap:10px}}
 #autumnSearch,#winterSearch,#springSearch,#summerSearch{display:block;box-sizing:border-box;width:100%;min-height:46px;margin:6px 0 14px;padding:10px 12px;border:1px solid var(--line);border-radius:13px;background:var(--card);color:var(--text);font-size:16px}
+
+/* Home: equal seasonal cards and an opaque iPhone status-area backing. */
+main.home-layout::before{content:'';position:fixed;z-index:19;top:0;left:0;right:0;height:env(safe-area-inset-top,0px);background:#eef8fd;pointer-events:none}
+.home-layout #newPlan{scroll-margin-top:calc(14px + env(safe-area-inset-top,0px))}
+.home-layout .season-shortcut{display:block;box-sizing:border-box;width:100%;min-width:0;margin:0 0 9px;padding:14px;border-radius:22px;text-align:left;scroll-margin-top:calc(14px + env(safe-area-inset-top,0px))}
+.home-layout .season-shortcut .shortcut-overline{margin:0 0 7px}
+.home-layout .season-shortcut .shortcut-title{display:grid;grid-template-columns:26px minmax(0,1fr) 35px;align-items:center;gap:8px;min-height:38px;line-height:1.25}
+.home-layout .season-shortcut .season-icon{display:block;text-align:center}
+.home-layout .season-shortcut .shortcut-hint{margin:7px 0 0;line-height:1.4}
+
 </style>
 
 <style id="cr-book-home-style">
@@ -989,7 +999,7 @@ select{min-height:48px;border:1px solid #deebf2;border-radius:16px;background:#f
 </style>
 </head>
 <body>
-<main>
+<main class="home-layout">
 <header class="premium-hero">
   <div class="premium-topline">
     <div class="premium-brand">
@@ -1102,20 +1112,20 @@ select{min-height:48px;border:1px solid #deebf2;border-radius:16px;background:#f
 <div class="premium-divider" aria-hidden="true"><span></span><em>OUVRIR L’INSPIRATION</em><span></span></div>
 <section class="recipe-shortcuts" aria-label="Trouver une recette">
   <div class="recipe-shortcuts-main">
-    <button class="shortcut-btn" id="openAutumn" type="button">
-      <span class="shortcut-overline">La sélection de saison</span><span class="shortcut-title">🍂 Automne gourmand <span class="shortcut-arrow">→</span></span>
+    <button class="shortcut-btn season-shortcut" id="openAutumn" type="button">
+      <span class="shortcut-overline">La sélection de saison</span><span class="shortcut-title"><span class="season-icon">🍂</span> <span class="season-label">Automne gourmand</span> <span class="shortcut-arrow">→</span></span>
       <span class="shortcut-hint">40 recettes de saison · Midi et Soir</span>
     </button>
-    <button class="shortcut-btn" id="openWinter" type="button">
-      <span class="shortcut-overline">La sélection de saison</span><span class="shortcut-title">❄️ Hiver gourmand <span class="shortcut-arrow">→</span></span>
+    <button class="shortcut-btn season-shortcut" id="openWinter" type="button">
+      <span class="shortcut-overline">La sélection de saison</span><span class="shortcut-title"><span class="season-icon">❄️</span> <span class="season-label">Hiver gourmand</span> <span class="shortcut-arrow">→</span></span>
       <span class="shortcut-hint">Décembre, janvier, février · Midi et Soir</span>
     </button>
-    <button class="shortcut-btn" id="openSpring" type="button">
-      <span class="shortcut-overline">La sélection de saison</span><span class="shortcut-title">🌱 Printemps gourmand <span class="shortcut-arrow">→</span></span>
+    <button class="shortcut-btn season-shortcut" id="openSpring" type="button">
+      <span class="shortcut-overline">La sélection de saison</span><span class="shortcut-title"><span class="season-icon">🌱</span> <span class="season-label">Printemps gourmand</span> <span class="shortcut-arrow">→</span></span>
       <span class="shortcut-hint">Mars, avril, mai · Midi et Soir</span>
     </button>
-    <button class="shortcut-btn" id="openSummer" type="button">
-      <span class="shortcut-overline">La sélection de saison</span><span class="shortcut-title">☀️ Été gourmand <span class="shortcut-arrow">→</span></span>
+    <button class="shortcut-btn season-shortcut" id="openSummer" type="button">
+      <span class="shortcut-overline">La sélection de saison</span><span class="shortcut-title"><span class="season-icon">☀️</span> <span class="season-label">Été gourmand</span> <span class="shortcut-arrow">→</span></span>
       <span class="shortcut-hint">Juin, juillet, août · Midi et Soir</span>
     </button>
     <button class="shortcut-btn primary" id="chooseRecipe" type="button">
@@ -6266,7 +6276,7 @@ function refreshV73HealthStatus(){
 }
 $('libraryCount').textContent=`${dishLibrary.length} plats · ${starters.length} entrées · ${desserts.length} desserts · ${breakfastRecipes.length} petits-déjeuners · ${sauceRecipes.length} sauces · ${sideRecipes.length} accompagnements · ${fundamentalRecipes.length} fondamentaux`;
 $('libraryHint').textContent=`Découvrir ${recipeLibrary.length} recettes dans le Livre`;
-$('versionLine').textContent='Clair Repas V7.5 · Été 2026.10.06.7';
+$('versionLine').textContent='Clair Repas V7.5 · Accueil 2026.10.06.8';
 // V7.5 — Grands Chefs : 60 nouvelles recettes et un chapitre dédié à dix signatures françaises.
 // V7.4 — Tables de France : 40 nouvelles recettes, avec priorité aux régions et aux grands classiques de bistrot.
 // V7.3 — Consolidation technique : robustesse PWA, sauvegarde évolutive, intégrité des données et optimisation des lectures locales.
