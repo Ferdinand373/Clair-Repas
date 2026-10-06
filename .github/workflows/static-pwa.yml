@@ -63,6 +63,7 @@ jobs:
           node scripts/validate-autumn-season.mjs
           node scripts/validate-winter-season.mjs
           node scripts/validate-spring-season.mjs
+          node scripts/validate-summer-season.mjs
           node scripts/validate-planning-dates.mjs
           node scripts/validate-cloud-sync.mjs
           node scripts/validate-repair-tool.mjs

@@ -13,7 +13,9 @@ assert.equal(f.otherEditorialHash,'8a11c7c8bfcce2538f4536a581172e8d30e336382234f
 assert.equal(f.protectedSeasonsHash,'484ae4a2f3567ff552db1e15bcc92545e5f23b27d1c975957b3f69257a09ab75');
 assert.equal(f.protectedSeasonEditorialHash,'5ded6241e424262fe01029aaeedc06fb8aca5e8b781f1e65051ed1a4312e9197');
 const {code,recipes:current,editorial:currentEditorial}=recipeSource(read('index.html'));
-const recipes=current,editorial=currentEditorial;
+const summer=JSON.parse(read('scripts/summer-season.fixture.json'));
+const recipes=current.map(r=>summer.rows.find(row=>row.id===r.id)?.before||r);
+const editorial=Object.fromEntries(Object.entries(currentEditorial).map(([id,e])=>[id,summer.rows.find(row=>row.id===id)?.readingBefore||e]));
 const ids=new Set(f.rows.map(r=>r.id));
 assert.equal(ids.size,40);assert.equal(recipes.length,1554);
 assert.equal(recipes.filter(r=>r.thumbnail?.startsWith('assets/recipes/printemps/')).length,40,'Photos only on the selected forty recipes');

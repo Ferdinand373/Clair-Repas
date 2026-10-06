@@ -18,7 +18,7 @@ const DATA_SCHEMA = 2;
 const CLOUD_APP_ID = "clair-repas";
 const CLOUD_ENABLED = true;
 const CLOUD_DIRECT_SYNC_PROTOCOL = "clair-personal-sync/v1";
-const CORE_REVISION = "sha256:724dcb77a9aaea1e08920530b758571138367c4c78820aa6f47456bb33d4b51f";
+const CORE_REVISION = "sha256:075983cc40263505a4287e1924cc85e7e46deb49c85da5401c706805ffb8ebc2";
 const BOOT_GRACE_MS = 18000;
 
 function fnv1a(text) {
@@ -54,6 +54,48 @@ const PRE_V8_STABLE_CACHES = ["clair-repas-v75-grands-chefs-20260816"];
 
 // Ten original featured WebP assets only.
 // They are cached on first use, never during installation of the recipe catalogue.
+const SUMMER_THUMBNAILS = Object.freeze([
+  "./assets/recipes/ete/n05.webp",
+  "./assets/recipes/ete/n06.webp",
+  "./assets/recipes/ete/n43.webp",
+  "./assets/recipes/ete/n78.webp",
+  "./assets/recipes/ete/n10.webp",
+  "./assets/recipes/ete/n34.webp",
+  "./assets/recipes/ete/q410.webp",
+  "./assets/recipes/ete/v31n-bowl-quinoa-courge-falafels.webp",
+  "./assets/recipes/ete/v31n-bowl-quinoa-courge-tofu.webp",
+  "./assets/recipes/ete/n32.webp",
+  "./assets/recipes/ete/e79.webp",
+  "./assets/recipes/ete/q403.webp",
+  "./assets/recipes/ete/veg-final-52.webp",
+  "./assets/recipes/ete/veg-final-51.webp",
+  "./assets/recipes/ete/v31n-couscous-minute-boeuf.webp",
+  "./assets/recipes/ete/n48.webp",
+  "./assets/recipes/ete/n49.webp",
+  "./assets/recipes/ete/e19.webp",
+  "./assets/recipes/ete/n84.webp",
+  "./assets/recipes/ete/ge-falafels-grenailles-legumes.webp",
+  "./assets/recipes/ete/a037.webp",
+  "./assets/recipes/ete/a038.webp",
+  "./assets/recipes/ete/a039.webp",
+  "./assets/recipes/ete/a014.webp",
+  "./assets/recipes/ete/a015.webp",
+  "./assets/recipes/ete/a016.webp",
+  "./assets/recipes/ete/e04.webp",
+  "./assets/recipes/ete/e12.webp",
+  "./assets/recipes/ete/e40.webp",
+  "./assets/recipes/ete/a064.webp",
+  "./assets/recipes/ete/a024.webp",
+  "./assets/recipes/ete/ge-omelette-courgette-feta.webp",
+  "./assets/recipes/ete/v31e-pomme-terre-garnie-poisson-blanc.webp",
+  "./assets/recipes/ete/v31e-pomme-terre-garnie-saumon.webp",
+  "./assets/recipes/ete/e16.webp",
+  "./assets/recipes/ete/v31e-riz-croustillant-tofu.webp",
+  "./assets/recipes/ete/a096.webp",
+  "./assets/recipes/ete/a072.webp",
+  "./assets/recipes/ete/d005.webp",
+  "./assets/recipes/ete/d029.webp"
+]);
 const SPRING_THUMBNAILS = Object.freeze([
   "./assets/recipes/printemps/n18.webp",
   "./assets/recipes/printemps/n56.webp",
@@ -213,8 +255,8 @@ const PRE_SHOPPING_V2_FOUNDATION_CORE_FILES = FOUNDATION_CORE_FILES.filter(
   path => path !== "./shopping-v2-engine.js"
 );
 const CORE_DIGESTS = Object.freeze({
-  "./": "sha256:9835928e62b3c29cc32a06278c39281853da69a0a7d92faac49e208ec71f8b36",
-  "./index.html": "sha256:9835928e62b3c29cc32a06278c39281853da69a0a7d92faac49e208ec71f8b36",
+  "./": "sha256:f76607363d0cb20d571865dbd8fb51c6edae110105285a63e3d7e04c2be68ecf",
+  "./index.html": "sha256:f76607363d0cb20d571865dbd8fb51c6edae110105285a63e3d7e04c2be68ecf",
   "./manifest.webmanifest": "sha256:49b30612587c379d6bb8c6d9ade4e299ff244b41f0bd03e2fcca0a5495834e2a",
   "./icon-192.png": "sha256:8d0d516fdcb7d76a40df62dc92d4f312a1557b9e105917026780e465c32fa9f8",
   "./icon-512.png": "sha256:334f3158730e33ad8232ea229a39f9193b45274f1a72b2f55467b1e625924f70",
@@ -223,7 +265,7 @@ const CORE_DIGESTS = Object.freeze({
   "./v8/vendor/supabase-js-2.111.0.js": "sha256:7396012594aa6d23bb373ebc25d1080bf3672fa847c3713f756520b40fd13453",
   "./v8/clair-foundation.js": "sha256:83786311d67be4be19af248b045735397ed988126b63bf9955c9cc5796d29ba2",
   "./v8/clair-cloud-sync.js": "sha256:826b44d8ee64b816f14e097a39405068001e529cc8a03885a5156de5d40ef7ea",
-  "./v8/version.json": "sha256:df31d9d1b9cd08603110f5e2b16e004b0fe72cf4b3c14fa026f655cc2a3908a2"
+  "./v8/version.json": "sha256:686963cd2fa68093bdd9c55b16f0139249c168ee968b2578fbc7c2353db0eb7c"
 });
 
 function appIndexUrl() {
@@ -998,7 +1040,7 @@ self.addEventListener("fetch", event => {
     return;
   }
 
-  if ([...AUTUMN_THUMBNAILS,...WINTER_THUMBNAILS,...SPRING_THUMBNAILS].some(path => new URL(path, self.registration.scope).href === url.href)) {
+  if ([...AUTUMN_THUMBNAILS,...WINTER_THUMBNAILS,...SPRING_THUMBNAILS,...SUMMER_THUMBNAILS].some(path => new URL(path, self.registration.scope).href === url.href)) {
     event.respondWith((async () => {
       const state = await currentServingState();
       const cache = await caches.open(state.activeCache || CURRENT_CACHE);

@@ -485,8 +485,20 @@ await check("11. Sel et poivre is never split", () => {
     assert.ok(recipe.i.some(i => i.n === "huile d’olive" && i.q === 1 && i.u === "c. à soupe"));
   }
   assert.ok(recipeLibrary.find(r => r.id === "v75-chef-guerard-02").i.some(i => i.n === "sel et poivre" && i.q === 1 && i.u === "pincée"));
-  assert.equal(compoundCount, 475, "Unexpected compoundSource corpus count");
-  assert.equal(splitCount, 19, "Only the audited vinaigrette compounds may split");
+  // Summer separates seven compound ingredients, restores socca seasoning,
+  // and names three ready-cooked cold eggs plus the skin-on dorade precisely.
+  for (const id of ["n05", "n43", "n78", "ge-falafels-grenailles-legumes", "e04"]) {
+    const recipe = recipeLibrary.find(r => r.id === id);
+    assert.ok(!recipe.i.some(i => /^huile.* et /.test(i.n)));
+    assert.ok(recipe.i.some(i => i.n === "huile d’olive" && i.q === 1 && i.u === "c. à soupe"));
+  }
+  assert.ok(!recipeLibrary.find(r => r.id === "v31n-bowl-quinoa-courge-tofu").i.some(i => i.n === "menthe et persil"));
+  assert.ok(!recipeLibrary.find(r => r.id === "e12").i.some(i => i.n === "vinaigrette et persil"));
+  for (const id of ["n49", "e19", "e12"]) assert.ok(recipeLibrary.find(r => r.id === id).i.some(i => i.n === "œufs durs déjà cuits et froids" && i.q === 2));
+  assert.ok(recipeLibrary.find(r => r.id === "veg-final-51").i.some(i => i.n === "sel et poivre" && i.q === 1 && i.u === "pincée"));
+  assert.ok(recipeLibrary.find(r => r.id === "v31n-bowl-quinoa-courge-falafels").i.some(i => i.n === "filets de dorade avec peau, environ 2 cm d’épaisseur"));
+  assert.equal(compoundCount, 473, "Unexpected compoundSource corpus count");
+  assert.equal(splitCount, 18, "Only the audited vinaigrette compounds may split");
   return `${compoundCount} compound occurrences; ${splitCount} safe splits; 0 unexpected`;
 });
 

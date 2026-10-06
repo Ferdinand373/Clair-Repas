@@ -1725,10 +1725,12 @@ const final43=JSON.parse(readFileSync(resolve(root,'scripts/recipe-editorial-bat
 const batch43=final43.recipes,ids43=new Set(batch43.map(r=>r.id));
 const inventory43=JSON.parse(readFileSync(resolve(root,'docs/recipe-editorial-inventory.json'),'utf8'));
 const autumn=JSON.parse(readFileSync(resolve(root,'scripts/automne-gourmand.fixture.json'),'utf8'));
+const summer=JSON.parse(readFileSync(resolve(root,'scripts/summer-season.fixture.json'),'utf8'));
 const spring=JSON.parse(readFileSync(resolve(root,'scripts/spring-season.fixture.json'),'utf8'));
 const winter=JSON.parse(readFileSync(resolve(root,'scripts/winter-season.fixture.json'),'utf8'));
 const season=JSON.parse(readFileSync(resolve(root,'scripts/autumn-season.fixture.json'),'utf8'));
 inventory43.recipes=inventory43.recipes.flatMap(record=>{
+  record=summer.rows.find(row=>row.id===record.id)?.recordBefore||record;
   record=spring.rows.find(row=>row.id===record.id)?.recordBefore||record;
   record=winter.rows.find(row=>row.id===record.id)?.recordBefore||record;
   record=season.rows.find(row=>row.id===record.id)?.recordBefore||record;
